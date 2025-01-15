@@ -93,9 +93,6 @@
     "schemas": {
       "CertificateDetail": {
         "title": "CertificateDetail",
-        "x-stoplight": {
-          "id": "zjhn6dmnyyxla"
-        },
         "type": "object",
         "properties": {
           "alias": {
@@ -145,9 +142,6 @@
       },
       "UploadKeyStoreResponse": {
         "title": "UploadKeyStoreResponse",
-        "x-stoplight": {
-          "id": "uoufvdzkvbo36"
-        },
         "type": "object",
         "properties": {
           "errorCode": {
@@ -160,9 +154,6 @@
       },
       "GetKeyStoreCertificateDetailsResponse": {
         "title": "GetKeyStoreCertificateDetailsResponse",
-        "x-stoplight": {
-          "id": "dbw0szixh4s5f"
-        },
         "type": "object",
         "properties": {
           "errorCode": {
