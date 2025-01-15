@@ -1,12 +1,15 @@
 # Saviynt API Go Client
 
 [![Build Status][build-status-svg]][build-status-link]
+[![Lint Status][lint-status-svg]][lint-status-link]
 [![Go Report Card][goreport-svg]][goreport-link]
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
  [build-status-svg]: https://github.com/grokify/saviynt-api-go-client/workflows/test/badge.svg
  [build-status-link]: https://github.com/grokify/saviynt-api-go-client/actions/workflows/test.yaml
+ [lint-status-svg]: https://github.com/grokify/saviynt-api-go-client/workflows/lint/badge.svg
+ [lint-status-link]: https://github.com/grokify/saviynt-api-go-client/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/saviynt-api-go-client
  [goreport-link]: https://goreportcard.com/report/github.com/grokify/saviynt-api-go-client
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/saviynt-api-go-client
