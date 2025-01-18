@@ -24,6 +24,6 @@ This is an auto-generated client using OpenAPI Generator `7.10.0`.
 ## Supported Saviynt APIs
 
 1. [x] [Delegated Administration](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/delegatedadministration) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html))
-1. [x] [mTLS Authentication](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/mtlsauthentication) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthenticationn.html))
+1. [x] [mTLS Authentication](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/mtlsauthentication) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html))
 1. [x] [SAV Roles](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/savroles) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_savroles.html))
 1. [x] [Transport](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/transport) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_transport.html))
