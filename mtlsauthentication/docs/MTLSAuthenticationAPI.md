@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteKeyStoreAliasAlias**](MTLSAuthenticationAPI.md#DeleteKeyStoreAliasAlias) | **Delete** /deleteKeyStoreAlias/{alias} | Delete KeyStore
-[**GetKeyStoreCertificateDetails**](MTLSAuthenticationAPI.md#GetKeyStoreCertificateDetails) | **Get** /getKeyStoreCertificateDetails | Get KeyStore Details
-[**UploadKeyStore**](MTLSAuthenticationAPI.md#UploadKeyStore) | **Post** /uploadKeyStore | Upload KeyStore
+[**DeleteKeyStore**](MTLSAuthenticationAPI.md#DeleteKeyStore) | **Delete** /ECM/api/v5/deleteKeyStoreAlias/{alias} | Delete KeyStore
+[**GetKeyStoreCertificateDetails**](MTLSAuthenticationAPI.md#GetKeyStoreCertificateDetails) | **Get** /ECM/api/v5/getKeyStoreCertificateDetails | Get KeyStore Details
+[**UploadKeyStore**](MTLSAuthenticationAPI.md#UploadKeyStore) | **Post** /ECM/api/v5/uploadKeyStore | Upload KeyStore
 
 
 
-## DeleteKeyStoreAliasAlias
+## DeleteKeyStore
 
-> DeleteKeyStoreAliasAlias(ctx, alias).Execute()
+> DeleteKeyStore(ctx, alias).Execute()
 
 Delete KeyStore
 
@@ -35,9 +35,9 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.MTLSAuthenticationAPI.DeleteKeyStoreAliasAlias(context.Background(), alias).Execute()
+	r, err := apiClient.MTLSAuthenticationAPI.DeleteKeyStore(context.Background(), alias).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `MTLSAuthenticationAPI.DeleteKeyStoreAliasAlias``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `MTLSAuthenticationAPI.DeleteKeyStore``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteKeyStoreAliasAliasRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteKeyStoreRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -160,7 +160,7 @@ import (
 )
 
 func main() {
-	keyStoreFile := "keyStoreFile_example" // string |  (optional)
+	keyStoreFile := os.NewFile(1234, "some_file") // *os.File |  (optional)
 	keyStorePassword := "keyStorePassword_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
@@ -186,7 +186,7 @@ Other parameters are passed through a pointer to a apiUploadKeyStoreRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **keyStoreFile** | **string** |  | 
+ **keyStoreFile** | ***os.File** |  | 
  **keyStorePassword** | **string** |  | 
 
 ### Return type

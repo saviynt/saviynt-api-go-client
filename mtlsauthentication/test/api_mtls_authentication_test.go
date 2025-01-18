@@ -1,5 +1,5 @@
 /*
-Saviynt mTLS Authentication
+Saviynt mTLS Authentication API
 
 Testing MTLSAuthenticationAPIService
 
@@ -23,13 +23,13 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test MTLSAuthenticationAPIService DeleteKeyStoreAliasAlias", func(t *testing.T) {
+	t.Run("Test MTLSAuthenticationAPIService DeleteKeyStore", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var alias string
 
-		httpRes, err := apiClient.MTLSAuthenticationAPI.DeleteKeyStoreAliasAlias(context.Background(), alias).Execute()
+		httpRes, err := apiClient.MTLSAuthenticationAPI.DeleteKeyStore(context.Background(), alias).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

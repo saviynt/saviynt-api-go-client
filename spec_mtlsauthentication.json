@@ -1,16 +1,29 @@
 {
   "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "329p7bi2qzwzy"
+  },
   "info": {
-    "title": "Saviynt mTLS Authentication",
-    "version": "1.0"
+    "title": "Saviynt mTLS Authentication API",
+    "version": "1.0",
+    "description": "mTLS Authentication",
+    "contact": {
+      "name": "Saviynt Developers Team",
+      "email": "https://github.com/saviynt"
+    }
   },
   "servers": [
     {
       "url": "http://localhost:3000"
     }
   ],
+  "tags": [
+    {
+      "name": "mTLS Authentication"
+    }
+  ],
   "paths": {
-    "/uploadKeyStore": {
+    "/ECM/api/v5/uploadKeyStore": {
       "post": {
         "summary": "Upload KeyStore",
         "tags": [
@@ -39,9 +52,10 @@
           }
         },
         "description": "Introduced in Release v24.7, this API lets administrators upload Mutual Transport Layer Security (mTLS) certificates in the EIC keystore."
-      }
+      },
+      "parameters": []
     },
-    "/getKeyStoreCertificateDetails": {
+    "/ECM/api/v5/getKeyStoreCertificateDetails": {
       "get": {
         "summary": "Get KeyStore Details",
         "tags": [
@@ -61,9 +75,10 @@
         },
         "operationId": "getKeyStoreCertificateDetails",
         "description": "Introduced in Release v24.7, this API enables administrators to view the details of mTLS certificates that are uploaded in the EIC keystore.\n\nA thumbprint is an unique identification of the certificate. The thumbprints attribute of this API provides a unique identification of the certificate. It displays expiry and thumbprint details in the following order:\n\n* Leaf certificate\n* Intermediate certificate\n* Root certificate"
-      }
+      },
+      "parameters": []
     },
-    "/deleteKeyStoreAlias/{alias}": {
+    "/ECM/api/v5/deleteKeyStoreAlias/{alias}": {
       "parameters": [
         {
           "schema": {
@@ -79,7 +94,7 @@
         "tags": [
           "mTLS Authentication"
         ],
-        "operationId": "deleteKeyStoreAlias-alias",
+        "operationId": "deleteKeyStore",
         "responses": {
           "200": {
             "description": "OK"
@@ -91,8 +106,26 @@
   },
   "components": {
     "schemas": {
+      "CertificateThumbprint": {
+        "title": "CertificateThumbprint",
+        "type": "object",
+        "properties": {
+          "expiry": {
+            "type": "string"
+          },
+          "thumbprint": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "k5fx1vt33fqfg"
+            }
+          }
+        }
+      },
       "CertificateDetail": {
         "title": "CertificateDetail",
+        "x-stoplight": {
+          "id": "zjhn6dmnyyxla"
+        },
         "type": "object",
         "properties": {
           "alias": {
@@ -118,21 +151,13 @@
           }
         }
       },
-      "CertificateThumbprint": {
-        "title": "CertificateThumbprint",
-        "type": "object",
-        "properties": {
-          "expiry": {
-            "type": "string"
-          }
-        }
-      },
       "UploadKeyStoreRequest": {
         "title": "UploadKeyStoreRequest",
         "type": "object",
         "properties": {
           "keyStoreFile": {
-            "type": "string"
+            "type": "string",
+            "format": "binary"
           },
           "keyStorePassword": {
             "type": "string"
@@ -142,6 +167,9 @@
       },
       "UploadKeyStoreResponse": {
         "title": "UploadKeyStoreResponse",
+        "x-stoplight": {
+          "id": "uoufvdzkvbo36"
+        },
         "type": "object",
         "properties": {
           "errorCode": {
@@ -154,6 +182,9 @@
       },
       "GetKeyStoreCertificateDetailsResponse": {
         "title": "GetKeyStoreCertificateDetailsResponse",
+        "x-stoplight": {
+          "id": "dbw0szixh4s5f"
+        },
         "type": "object",
         "properties": {
           "errorCode": {
