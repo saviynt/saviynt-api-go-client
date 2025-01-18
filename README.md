@@ -17,4 +17,13 @@
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-link]: https://github.com/grokify/saviynt-api-go-client/blob/master/LICENSE
 
+## Overview
+
 This is an auto-generated client using OpenAPI Generator `7.10.0`.
+
+## Supported Saviynt APIs
+
+1. [x] [Delegated Administration](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/delegatedadministration)
+1. [x] [mTLS Authentication](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/mtlsauthentication)
+1. [x] [SAV Roles](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/savroles)
+1. [x] [Transport(https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/transport)
