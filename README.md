@@ -21,6 +21,15 @@
 
 This is an auto-generated client using OpenAPI Generator `7.10.0`.
 
+## API References
+
+1. [Delegated Administration](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html)
+1. [File Directory](https://grokify.github.io/saviynt-api-go-client/api_filedirectory.html)
+1. [Job Control](https://grokify.github.io/saviynt-api-go-client/api_jobcontrol.html)
+1. [mTLS Authentication](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
+1. [SAV Roles](https://grokify.github.io/saviynt-api-go-client/api_savroles.html)
+1. [Transport](https://grokify.github.io/saviynt-api-go-client/api_transport.html)
+
 ## Supported Saviynt APIs
 
 | No. | Tag | Name | Endpoint | In OpenAPI Spec | Test: cURL | Test: OpenAPI SDK | Test: Automated |
