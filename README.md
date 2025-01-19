@@ -24,7 +24,7 @@ This is an auto-generated client using OpenAPI Generator `7.10.0`.
 ## Supported Saviynt APIs
 
 | Name | Endpoint | Defined | Manual Tests | Automated Tests |
-| [Delegated Administration](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/delegatedadministration) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html)) | | | | | 
+|-|-|-|-|-|
 | Get Delegate User List | `GET /ECM/api/v5/getDelegateUserList` | [x] | [x] | [x] |
 
 ## List
