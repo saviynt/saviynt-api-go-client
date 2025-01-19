@@ -25,18 +25,18 @@ This is an auto-generated client using OpenAPI Generator `7.10.0`.
 
 | Tag | Name | Endpoint | In Spec | Test: cURL | Test: OpenAPI Generator | Test: Automated |
 | - | - | - | - | - | - | - |
-| Delegated Administration | Get Delegate User List | GET/ECM/api/v5/getDelegateUserList | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Create Delegate | POST/ECM/api/v5/createDelegate | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Fetch Delegates List | POST/ECM/api/v5/fetchDelegatesList | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Edit Delegate | POST/ECM/api/v5/editDelegate | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Delete Delegate | POST/ECM/api/v5/deleteDelegate | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Job Control | Create and Update Trigger | POST/ECM/api/v5/createUpdateTrigger | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Check Job Status | POST/ECM/api/v5/checkJobStatus | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Job Control | Delete Trigger | POST/ECM/api/v5/deleteTrigger | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Run Job Trigger | POST/ECM/api/v5/runJobTrigger | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Fetch Job Metadata | POST/ECM/api/v5/fetchJobMetadata | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Create Triggers | POST/ECM/api/v5/createTriggers | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Resume Pause Jobs | POST/ECM/api/v5/resumePauseJobs | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Delegated Administration | Get Delegate User List | `GET /ECM/api/v5/getDelegateUserList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Delegated Administration | Create Delegate | `POST /ECM/api/v5/createDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Delegated Administration | Fetch Delegates List | `POST /ECM/api/v5/fetchDelegatesList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Delegated Administration | Edit Delegate | `POST /ECM/api/v5/editDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Delegated Administration | Delete Delegate | `POST /ECM/api/v5/deleteDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Job Control | Create and Update Trigger | `POST /ECM/api/v5/createUpdateTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| Job Control | Check Job Status | `POST /ECM/api/v5/checkJobStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| Job Control | Delete Trigger | `POST /ECM/api/v5/deleteTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| Job Control | Run Job Trigger | `POST /ECM/api/v5/runJobTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| Job Control | Fetch Job Metadata | `POST /ECM/api/v5/fetchJobMetadata` | :white_check_mark: | :x: | :x: | :x: |
+| Job Control | Create Triggers | `POST /ECM/api/v5/createTriggers` | :white_check_mark: | :x: | :x: | :x: |
+| Job Control | Resume Pause Jobs | `POST /ECM/api/v5/resumePauseJobs` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
 
 ## List
 
