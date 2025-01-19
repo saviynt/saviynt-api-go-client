@@ -21,7 +21,9 @@
 
 This is an auto-generated client using OpenAPI Generator `7.10.0`.
 
-## API References
+## OpenAPI Spec References
+
+The follow API Reference are generated using Redocly and the OpenAPI specs used to build this client SDK.
 
 1. [Delegated Administration](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html)
 1. [File Directory](https://grokify.github.io/saviynt-api-go-client/api_filedirectory.html)
