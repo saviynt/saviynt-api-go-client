@@ -23,37 +23,25 @@ This is an auto-generated client using OpenAPI Generator `7.10.0`.
 
 ## Supported Saviynt APIs
 
-| Tag | Name | Endpoint | In Spec | Test: cURL | Test: OpenAPI Generator | Test: Automated |
-| - | - | - | - | - | - | - |
-| Delegated Administration | Get Delegate User List | `GET /ECM/api/v5/getDelegateUserList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Create Delegate | `POST /ECM/api/v5/createDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Fetch Delegates List | `POST /ECM/api/v5/fetchDelegatesList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Edit Delegate | `POST /ECM/api/v5/editDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Delegated Administration | Delete Delegate | `POST /ECM/api/v5/deleteDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Job Control | Create and Update Trigger | `POST /ECM/api/v5/createUpdateTrigger` | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Check Job Status | `POST /ECM/api/v5/checkJobStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-| Job Control | Delete Trigger | `POST /ECM/api/v5/deleteTrigger` | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Run Job Trigger | `POST /ECM/api/v5/runJobTrigger` | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Fetch Job Metadata | `POST /ECM/api/v5/fetchJobMetadata` | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Create Triggers | `POST /ECM/api/v5/createTriggers` | :white_check_mark: | :x: | :x: | :x: |
-| Job Control | Resume Pause Jobs | `POST /ECM/api/v5/resumePauseJobs` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
-
-## List
-
-1. [x] [Delegated Administration](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/delegatedadministration) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html))
-  1. [x] [x] `GET /ECM/api/v5/getDelegateUserList` - Get Delegate User List
-  1. [x] [x] `POST /ECM/api/v5/createDelegate` - Create Delegate
-  1. [x] [x] `POST /ECM/api/v5/fetchDelegatesList` - etch Existing Delegates list
-  1. [x] [x] `POST /ECM/api/v5/editDelegate` - Edit Delegate
-  1. [x] [x] `POST /ECM/api/v5/deleteDelegate` - Delete Delegate
-1. [ ] Job Control
-  1. [ ] `POST /ECM/api/v5/createUpdateTrigger` - Create and Update Trigger
-  1. [x] `POST /ECM/api/v5/checkJobStatus` - Check Job Status
-  1. [ ] `POST /ECM/api/v5/deleteTrigger` - Delete Trigger
-  1. [ ] `POST /ECM/api/v5/runJobTrigger` - Run Job Trigger
-  1. [ ] `POST /ECM/api/v5/fetchJobMetadata` - Fetch Job Metadata
-  1. [ ] `POST /ECM/api/v5/createTriggers` - Create Triggers
-  1. [x] `POST /ECM/api/v5/resumePauseJobs` - Resume Pause Jobs
-1. [x] [mTLS Authentication](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/mtlsauthentication) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html))
-1. [x] [SAV Roles](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/savroles) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_savroles.html))
-1. [x] [Transport](https://pkg.go.dev/github.com/grokify/saviynt-api-go-client/transport) ([API docs](https://grokify.github.io/saviynt-api-go-client/api_transport.html))
+| No. | Tag | Name | Endpoint | In Spec | Test: cURL | Test: OpenAPI Generator | Test: Automated |
+| - | - | - | - | - | - | - | - |
+| 1 | Delegated Administration | Get Delegate User List | `GET /ECM/api/v5/getDelegateUserList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 2 | Delegated Administration | Create Delegate | `POST /ECM/api/v5/createDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 3 | Delegated Administration | Fetch Delegates List | `POST /ECM/api/v5/fetchDelegatesList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 4 | Delegated Administration | Edit Delegate | `POST /ECM/api/v5/editDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 5 | Delegated Administration | Delete Delegate | `POST /ECM/api/v5/deleteDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 6 | Job Control | Create and Update Trigger | `POST /ECM/api/v5/createUpdateTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| 7 | Job Control | Check Job Status | `POST /ECM/api/v5/checkJobStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 8 | Job Control | Delete Trigger | `POST /ECM/api/v5/deleteTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| 9 | Job Control | Run Job Trigger | `POST /ECM/api/v5/runJobTrigger` | :white_check_mark: | :x: | :x: | :x: |
+| 10 | Job Control | Fetch Job Metadata | `POST /ECM/api/v5/fetchJobMetadata` | :white_check_mark: | :x: | :x: | :x: |
+| 11 | Job Control | Create Triggers | `POST /ECM/api/v5/createTriggers` | :white_check_mark: | :x: | :x: | :x: |
+| 12 | Job Control | Resume Pause Jobs | `POST /ECM/api/v5/resumePauseJobs` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 13 | mTLS Authentication | Upload KeyStore | `POST /ECM/api/v5/uploadKeyStore` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 14 | mTLS Authentication | Get KeyStore Details | `POST /ECM/api/v5/getKeyStoreCertificateDetails` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 15 | mTLS Authentication | Delete KeyStore | `POST /ECM/api/v5/deleteKeyStoreAlias/{alias}` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 16 | SAV Roles | Get All SAV Roles | `POST /ECMv6/api/userms/savroles` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 17 | SAV Roles | Get SAV Role Users | `POST /ECMv6/api/userms/savroles/{roleName/users` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 18 | Transport | Export Package | `POST /ECM/api/v5/exportTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 19 | Transport | Import Package | `POST /ECM/api/v5/importTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 20 | Transport | Transport Status | `GET /ECM/api/v5/transportPackageStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
