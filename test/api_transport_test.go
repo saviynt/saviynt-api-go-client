@@ -13,7 +13,6 @@ import (
 	"context"
 	"testing"
 
-	"github.com/grokify/mogo/fmt/fmtutil"
 	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
 	"github.com/grokify/saviynt-api-go-client/transport"
 	"github.com/stretchr/testify/assert"
@@ -76,15 +75,12 @@ func Test_transport_TransportAPIService(t *testing.T) {
 
 		req := transport.TransportPackageStatusRequest{
 			Operation: "export",
-			Filename:  exportFilename,
-		}
-		fmtutil.PrintJSON(req)
+			Filename:  exportFilename}
 
 		apiReq := apiClient.TransportAPI.TransportPackageStatus(context.Background())
 		apiReq = apiReq.TransportPackageStatusRequest(req)
-
 		resp, httpRes, err := apiReq.Execute()
-		fmtutil.PrintJSON(resp)
+
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
