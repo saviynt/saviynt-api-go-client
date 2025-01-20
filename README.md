@@ -40,7 +40,7 @@ Tests are run with real credentials with the following environment variable:
 
 ## Supported Saviynt APIs
 
-| No. | Tag | Name | Endpoint | In OpenAPI Spec | In OpenAPI SDK | Test: SDK Manual | Test: SDK Automated |
+| No. | Tag | Name | Endpoint | In Spec | In SDK | Test: SDK Manual | Test: SDK Automated |
 | - | - | - | - | - | - | - | - |
 | 1 | Delegated Administration | Get Delegate User List | `GET /ECM/api/v5/getDelegateUserList` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
 | 2 | Delegated Administration | Create Delegate | `POST /ECM/api/v5/createDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
