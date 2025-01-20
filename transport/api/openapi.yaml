@@ -204,7 +204,9 @@ components:
             id: l5896jtsfm1fy
       required:
       - errorcode
+      - fileName
       - msg
+      - msgDescription
       title: ExportTransportPackageResponse
       x-stoplight:
         id: ctaaycs2pwfmd
@@ -259,6 +261,10 @@ components:
           type: integer
           x-stoplight:
             id: ebuqgop7yv8q6
+      required:
+      - errorCode
+      - msg
+      - msgDescription
       title: TransportPackageStatusResponse
       x-stoplight:
         id: xh4kaggchfgoc

@@ -13,6 +13,7 @@ import (
 	"context"
 	"testing"
 
+	"github.com/grokify/mogo/fmt/fmtutil"
 	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
 	"github.com/grokify/saviynt-api-go-client/transport"
 	"github.com/stretchr/testify/assert"
@@ -20,22 +21,13 @@ import (
 )
 
 func Test_transport_TransportAPIService(t *testing.T) {
-	apiClient, wantTest, err := client()
+	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
+
+	var exportFilename string
 
 	t.Run("Test TransportAPIService ExportTransportPackage", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.TransportAPI.ExportTransportPackage(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -64,17 +56,38 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 		assert.Equal(t, int32(0), resp.Errorcode)
+		exportFilename = resp.FileName
 	})
 
-	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {
+	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.TransportAPI.TransportPackageStatus(context.Background()).Execute()
+		resp, httpRes, err := apiClient.TransportAPI.ExportTransportPackage(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
+	})
+
+	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {
+		t.Skip("skip test") // remove to run test
+
+		req := transport.TransportPackageStatusRequest{
+			Operation: "export",
+			Filename:  exportFilename,
+		}
+		fmtutil.PrintJSON(req)
+
+		apiReq := apiClient.TransportAPI.TransportPackageStatus(context.Background())
+		apiReq = apiReq.TransportPackageStatusRequest(req)
+
+		resp, httpRes, err := apiReq.Execute()
+		fmtutil.PrintJSON(resp)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+		assert.Equal(t, int32(0), resp.ErrorCode)
 	})
 }

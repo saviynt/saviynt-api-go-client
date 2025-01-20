@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Msg** | **string** |  | 
-**FileName** | Pointer to **string** |  | [optional] 
-**MsgDescription** | Pointer to **string** |  | [optional] 
+**FileName** | **string** |  | 
+**MsgDescription** | **string** |  | 
 **Errorcode** | **int32** |  | 
 
 ## Methods
 
 ### NewExportTransportPackageResponse
 
-`func NewExportTransportPackageResponse(msg string, errorcode int32, ) *ExportTransportPackageResponse`
+`func NewExportTransportPackageResponse(msg string, fileName string, msgDescription string, errorcode int32, ) *ExportTransportPackageResponse`
 
 NewExportTransportPackageResponse instantiates a new ExportTransportPackageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -67,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetFileName sets FileName field to given value.
 
-### HasFileName
-
-`func (o *ExportTransportPackageResponse) HasFileName() bool`
-
-HasFileName returns a boolean if a field has been set.
 
 ### GetMsgDescription
 
@@ -92,11 +87,6 @@ and a boolean to check if the value has been set.
 
 SetMsgDescription sets MsgDescription field to given value.
 
-### HasMsgDescription
-
-`func (o *ExportTransportPackageResponse) HasMsgDescription() bool`
-
-HasMsgDescription returns a boolean if a field has been set.
 
 ### GetErrorcode
 

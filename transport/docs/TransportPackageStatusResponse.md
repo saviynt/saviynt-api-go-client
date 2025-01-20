@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Msg** | Pointer to **string** |  | [optional] 
-**MsgDescription** | Pointer to **string** |  | [optional] 
-**ErrorCode** | Pointer to **int32** |  | [optional] 
+**Msg** | **string** |  | 
+**MsgDescription** | **string** |  | 
+**ErrorCode** | **int32** |  | 
 
 ## Methods
 
 ### NewTransportPackageStatusResponse
 
-`func NewTransportPackageStatusResponse() *TransportPackageStatusResponse`
+`func NewTransportPackageStatusResponse(msg string, msgDescription string, errorCode int32, ) *TransportPackageStatusResponse`
 
 NewTransportPackageStatusResponse instantiates a new TransportPackageStatusResponse object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *TransportPackageStatusResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetMsgDescription
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetMsgDescription sets MsgDescription field to given value.
 
-### HasMsgDescription
-
-`func (o *TransportPackageStatusResponse) HasMsgDescription() bool`
-
-HasMsgDescription returns a boolean if a field has been set.
 
 ### GetErrorCode
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetErrorCode sets ErrorCode field to given value.
 
-### HasErrorCode
-
-`func (o *TransportPackageStatusResponse) HasErrorCode() bool`
-
-HasErrorCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

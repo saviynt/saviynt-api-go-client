@@ -23,8 +23,8 @@ var _ MappedNullable = &ExportTransportPackageResponse{}
 // ExportTransportPackageResponse struct for ExportTransportPackageResponse
 type ExportTransportPackageResponse struct {
 	Msg string `json:"msg"`
-	FileName *string `json:"fileName,omitempty"`
-	MsgDescription *string `json:"msgDescription,omitempty"`
+	FileName string `json:"fileName"`
+	MsgDescription string `json:"msgDescription"`
 	Errorcode int32 `json:"errorcode"`
 }
 
@@ -34,9 +34,11 @@ type _ExportTransportPackageResponse ExportTransportPackageResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewExportTransportPackageResponse(msg string, errorcode int32) *ExportTransportPackageResponse {
+func NewExportTransportPackageResponse(msg string, fileName string, msgDescription string, errorcode int32) *ExportTransportPackageResponse {
 	this := ExportTransportPackageResponse{}
 	this.Msg = msg
+	this.FileName = fileName
+	this.MsgDescription = msgDescription
 	this.Errorcode = errorcode
 	return &this
 }
@@ -73,68 +75,52 @@ func (o *ExportTransportPackageResponse) SetMsg(v string) {
 	o.Msg = v
 }
 
-// GetFileName returns the FileName field value if set, zero value otherwise.
+// GetFileName returns the FileName field value
 func (o *ExportTransportPackageResponse) GetFileName() string {
-	if o == nil || IsNil(o.FileName) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.FileName
+
+	return o.FileName
 }
 
-// GetFileNameOk returns a tuple with the FileName field value if set, nil otherwise
+// GetFileNameOk returns a tuple with the FileName field value
 // and a boolean to check if the value has been set.
 func (o *ExportTransportPackageResponse) GetFileNameOk() (*string, bool) {
-	if o == nil || IsNil(o.FileName) {
+	if o == nil {
 		return nil, false
 	}
-	return o.FileName, true
+	return &o.FileName, true
 }
 
-// HasFileName returns a boolean if a field has been set.
-func (o *ExportTransportPackageResponse) HasFileName() bool {
-	if o != nil && !IsNil(o.FileName) {
-		return true
-	}
-
-	return false
-}
-
-// SetFileName gets a reference to the given string and assigns it to the FileName field.
+// SetFileName sets field value
 func (o *ExportTransportPackageResponse) SetFileName(v string) {
-	o.FileName = &v
+	o.FileName = v
 }
 
-// GetMsgDescription returns the MsgDescription field value if set, zero value otherwise.
+// GetMsgDescription returns the MsgDescription field value
 func (o *ExportTransportPackageResponse) GetMsgDescription() string {
-	if o == nil || IsNil(o.MsgDescription) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MsgDescription
+
+	return o.MsgDescription
 }
 
-// GetMsgDescriptionOk returns a tuple with the MsgDescription field value if set, nil otherwise
+// GetMsgDescriptionOk returns a tuple with the MsgDescription field value
 // and a boolean to check if the value has been set.
 func (o *ExportTransportPackageResponse) GetMsgDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.MsgDescription) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MsgDescription, true
+	return &o.MsgDescription, true
 }
 
-// HasMsgDescription returns a boolean if a field has been set.
-func (o *ExportTransportPackageResponse) HasMsgDescription() bool {
-	if o != nil && !IsNil(o.MsgDescription) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsgDescription gets a reference to the given string and assigns it to the MsgDescription field.
+// SetMsgDescription sets field value
 func (o *ExportTransportPackageResponse) SetMsgDescription(v string) {
-	o.MsgDescription = &v
+	o.MsgDescription = v
 }
 
 // GetErrorcode returns the Errorcode field value
@@ -172,12 +158,8 @@ func (o ExportTransportPackageResponse) MarshalJSON() ([]byte, error) {
 func (o ExportTransportPackageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["msg"] = o.Msg
-	if !IsNil(o.FileName) {
-		toSerialize["fileName"] = o.FileName
-	}
-	if !IsNil(o.MsgDescription) {
-		toSerialize["msgDescription"] = o.MsgDescription
-	}
+	toSerialize["fileName"] = o.FileName
+	toSerialize["msgDescription"] = o.MsgDescription
 	toSerialize["errorcode"] = o.Errorcode
 	return toSerialize, nil
 }
@@ -188,6 +170,8 @@ func (o *ExportTransportPackageResponse) UnmarshalJSON(data []byte) (err error) 
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"msg",
+		"fileName",
+		"msgDescription",
 		"errorcode",
 	}
 

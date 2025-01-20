@@ -13,6 +13,8 @@ package transport
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TransportPackageStatusResponse type satisfies the MappedNullable interface at compile time
@@ -20,17 +22,22 @@ var _ MappedNullable = &TransportPackageStatusResponse{}
 
 // TransportPackageStatusResponse struct for TransportPackageStatusResponse
 type TransportPackageStatusResponse struct {
-	Msg *string `json:"msg,omitempty"`
-	MsgDescription *string `json:"msgDescription,omitempty"`
-	ErrorCode *int32 `json:"errorCode,omitempty"`
+	Msg string `json:"msg"`
+	MsgDescription string `json:"msgDescription"`
+	ErrorCode int32 `json:"errorCode"`
 }
+
+type _TransportPackageStatusResponse TransportPackageStatusResponse
 
 // NewTransportPackageStatusResponse instantiates a new TransportPackageStatusResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransportPackageStatusResponse() *TransportPackageStatusResponse {
+func NewTransportPackageStatusResponse(msg string, msgDescription string, errorCode int32) *TransportPackageStatusResponse {
 	this := TransportPackageStatusResponse{}
+	this.Msg = msg
+	this.MsgDescription = msgDescription
+	this.ErrorCode = errorCode
 	return &this
 }
 
@@ -42,100 +49,76 @@ func NewTransportPackageStatusResponseWithDefaults() *TransportPackageStatusResp
 	return &this
 }
 
-// GetMsg returns the Msg field value if set, zero value otherwise.
+// GetMsg returns the Msg field value
 func (o *TransportPackageStatusResponse) GetMsg() string {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Msg
+
+	return o.Msg
 }
 
-// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
 func (o *TransportPackageStatusResponse) GetMsgOk() (*string, bool) {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Msg, true
+	return &o.Msg, true
 }
 
-// HasMsg returns a boolean if a field has been set.
-func (o *TransportPackageStatusResponse) HasMsg() bool {
-	if o != nil && !IsNil(o.Msg) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsg gets a reference to the given string and assigns it to the Msg field.
+// SetMsg sets field value
 func (o *TransportPackageStatusResponse) SetMsg(v string) {
-	o.Msg = &v
+	o.Msg = v
 }
 
-// GetMsgDescription returns the MsgDescription field value if set, zero value otherwise.
+// GetMsgDescription returns the MsgDescription field value
 func (o *TransportPackageStatusResponse) GetMsgDescription() string {
-	if o == nil || IsNil(o.MsgDescription) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.MsgDescription
+
+	return o.MsgDescription
 }
 
-// GetMsgDescriptionOk returns a tuple with the MsgDescription field value if set, nil otherwise
+// GetMsgDescriptionOk returns a tuple with the MsgDescription field value
 // and a boolean to check if the value has been set.
 func (o *TransportPackageStatusResponse) GetMsgDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.MsgDescription) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MsgDescription, true
+	return &o.MsgDescription, true
 }
 
-// HasMsgDescription returns a boolean if a field has been set.
-func (o *TransportPackageStatusResponse) HasMsgDescription() bool {
-	if o != nil && !IsNil(o.MsgDescription) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsgDescription gets a reference to the given string and assigns it to the MsgDescription field.
+// SetMsgDescription sets field value
 func (o *TransportPackageStatusResponse) SetMsgDescription(v string) {
-	o.MsgDescription = &v
+	o.MsgDescription = v
 }
 
-// GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
+// GetErrorCode returns the ErrorCode field value
 func (o *TransportPackageStatusResponse) GetErrorCode() int32 {
-	if o == nil || IsNil(o.ErrorCode) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.ErrorCode
+
+	return o.ErrorCode
 }
 
-// GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
+// GetErrorCodeOk returns a tuple with the ErrorCode field value
 // and a boolean to check if the value has been set.
 func (o *TransportPackageStatusResponse) GetErrorCodeOk() (*int32, bool) {
-	if o == nil || IsNil(o.ErrorCode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ErrorCode, true
+	return &o.ErrorCode, true
 }
 
-// HasErrorCode returns a boolean if a field has been set.
-func (o *TransportPackageStatusResponse) HasErrorCode() bool {
-	if o != nil && !IsNil(o.ErrorCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorCode gets a reference to the given int32 and assigns it to the ErrorCode field.
+// SetErrorCode sets field value
 func (o *TransportPackageStatusResponse) SetErrorCode(v int32) {
-	o.ErrorCode = &v
+	o.ErrorCode = v
 }
 
 func (o TransportPackageStatusResponse) MarshalJSON() ([]byte, error) {
@@ -148,16 +131,49 @@ func (o TransportPackageStatusResponse) MarshalJSON() ([]byte, error) {
 
 func (o TransportPackageStatusResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Msg) {
-		toSerialize["msg"] = o.Msg
-	}
-	if !IsNil(o.MsgDescription) {
-		toSerialize["msgDescription"] = o.MsgDescription
-	}
-	if !IsNil(o.ErrorCode) {
-		toSerialize["errorCode"] = o.ErrorCode
-	}
+	toSerialize["msg"] = o.Msg
+	toSerialize["msgDescription"] = o.MsgDescription
+	toSerialize["errorCode"] = o.ErrorCode
 	return toSerialize, nil
+}
+
+func (o *TransportPackageStatusResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"msg",
+		"msgDescription",
+		"errorCode",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTransportPackageStatusResponse := _TransportPackageStatusResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTransportPackageStatusResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TransportPackageStatusResponse(varTransportPackageStatusResponse)
+
+	return err
 }
 
 type NullableTransportPackageStatusResponse struct {
