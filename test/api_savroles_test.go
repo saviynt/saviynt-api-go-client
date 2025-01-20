@@ -18,7 +18,7 @@ import (
 )
 
 func Test_savroles_SAVRolesAPIService(t *testing.T) {
-	apiClient, wantTest, err := client()
+	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
 	t.Run("Test SAVRolesAPIService GetAllSAVRoles", func(t *testing.T) {
