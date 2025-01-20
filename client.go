@@ -80,18 +80,19 @@ func NewClientPassword(ctx context.Context, creds Credentials) (*Client, error) 
 	}
 }
 
-func NewClientPasswordEnv(ctx context.Context, envvar string) (*Client, error) {
+func NewClientPasswordEnv(ctx context.Context, envvar string) (*Client, Credentials, error) {
 	v := os.Getenv(envvar)
 	if v == "" {
-		return nil, errors.New("env var cannot be empty")
+		return nil, Credentials{}, errors.New("env var cannot be empty")
 	} else if strings.Index(strings.TrimSpace(v), "{") != 0 {
-		return nil, errors.New("env var must be a json object")
+		return nil, Credentials{}, errors.New("env var must be a json object")
 	}
 	creds := Credentials{}
 	if err := json.Unmarshal([]byte(v), &creds); err != nil {
-		return nil, err
+		return nil, creds, err
 	}
-	return NewClientPassword(ctx, creds)
+	clt, err := NewClientPassword(ctx, creds)
+	return clt, creds, err
 }
 
 func NewClientToken(ctx context.Context, serverURL string, token *oauth2.Token) *Client {
