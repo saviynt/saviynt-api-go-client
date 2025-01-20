@@ -458,6 +458,14 @@
           "id": "3vp1pbxoxnha7"
         },
         "type": "object",
+        "examples": [
+          {
+            "userName": "string",
+            "max": 0,
+            "offset": 0,
+            "status": "ACTIVE"
+          }
+        ],
         "properties": {
           "userName": {
             "type": "string",
@@ -492,16 +500,7 @@
         },
         "required": [
           "userName"
-        ],
-        "examples": [
-          {
-            "userName": "string",
-            "max": 0,
-            "offset": 0,
-            "status": "ACTIVE"
-          }
-        ],
-        "description": ""
+        ]
       },
       "Delegate": {
         "type": "object",
@@ -587,6 +586,56 @@
           }
         }
       },
+      "FetchDelegatesListResponse": {
+        "title": "FetchDelegatesListResponse",
+        "x-stoplight": {
+          "id": "7w1uzfkcq72d4"
+        },
+        "type": "object",
+        "properties": {
+          "delegateList": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "ouxs7d2smf6s2"
+            },
+            "items": {
+              "$ref": "#/components/schemas/Delegate",
+              "x-stoplight": {
+                "id": "3ku8hhd102u78"
+              }
+            }
+          },
+          "msg": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "9gb768at9zs11"
+            }
+          },
+          "errorCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "52vigy54bcfwh"
+            }
+          },
+          "totalCount": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "lx6kmumhnzpk3"
+            }
+          },
+          "delegateCount": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "ol8319l5zv6pm"
+            }
+          }
+        },
+        "required": [
+          "delegateList",
+          "msg",
+          "errorCode"
+        ]
+      },
       "EditDelegateRequest": {
         "title": "EditDelegateRequest",
         "x-stoplight": {
@@ -659,51 +708,6 @@
           "delegateenddate"
         ],
         "description": ""
-      },
-      "FetchDelegatesListResponse": {
-        "title": "FetchDelegatesListResponse",
-        "x-stoplight": {
-          "id": "7w1uzfkcq72d4"
-        },
-        "type": "object",
-        "properties": {
-          "delegateList": {
-            "type": "array",
-            "x-stoplight": {
-              "id": "ouxs7d2smf6s2"
-            },
-            "items": {
-              "$ref": "#/components/schemas/Delegate",
-              "x-stoplight": {
-                "id": "3ku8hhd102u78"
-              }
-            }
-          },
-          "msg": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "9gb768at9zs11"
-            }
-          },
-          "errorCode": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "52vigy54bcfwh"
-            }
-          },
-          "totalCount": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "lx6kmumhnzpk3"
-            }
-          },
-          "delegateCount": {
-            "type": "integer",
-            "x-stoplight": {
-              "id": "ol8319l5zv6pm"
-            }
-          }
-        }
       }
     }
   }

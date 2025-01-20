@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DelegateList** | Pointer to [**[]Delegate**](Delegate.md) |  | [optional] 
-**Msg** | Pointer to **string** |  | [optional] 
-**ErrorCode** | Pointer to **string** |  | [optional] 
+**DelegateList** | [**[]Delegate**](Delegate.md) |  | 
+**Msg** | **string** |  | 
+**ErrorCode** | **string** |  | 
 **TotalCount** | Pointer to **string** |  | [optional] 
 **DelegateCount** | Pointer to **int32** |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewFetchDelegatesListResponse
 
-`func NewFetchDelegatesListResponse() *FetchDelegatesListResponse`
+`func NewFetchDelegatesListResponse(delegateList []Delegate, msg string, errorCode string, ) *FetchDelegatesListResponse`
 
 NewFetchDelegatesListResponse instantiates a new FetchDelegatesListResponse object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetDelegateList sets DelegateList field to given value.
 
-### HasDelegateList
-
-`func (o *FetchDelegatesListResponse) HasDelegateList() bool`
-
-HasDelegateList returns a boolean if a field has been set.
 
 ### GetMsg
 
@@ -73,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *FetchDelegatesListResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetErrorCode
 
@@ -98,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetErrorCode sets ErrorCode field to given value.
 
-### HasErrorCode
-
-`func (o *FetchDelegatesListResponse) HasErrorCode() bool`
-
-HasErrorCode returns a boolean if a field has been set.
 
 ### GetTotalCount
 

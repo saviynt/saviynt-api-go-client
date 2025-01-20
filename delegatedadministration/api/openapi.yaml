@@ -315,7 +315,6 @@ components:
       x-stoplight:
         id: 2xz3g64u4cg35
     FetchDelegatesListRequest:
-      description: ""
       example:
         offset: 6
         max: 0
@@ -422,6 +421,67 @@ components:
       title: Response
       x-stoplight:
         id: zd7zr47c75zkz
+    FetchDelegatesListResponse:
+      example:
+        msg: msg
+        delegateList:
+        - parentFirstName: parentFirstName
+          delegateFirstName: delegateFirstName
+          enddate: enddate
+          parentLastName: parentLastName
+          delegatekey: delegatekey
+          delegateLastName: delegateLastName
+          name: name
+          description: description
+          delegateusername: delegateusername
+          startdate: startdate
+          parentusername: parentusername
+          status: ACTIVE
+        - parentFirstName: parentFirstName
+          delegateFirstName: delegateFirstName
+          enddate: enddate
+          parentLastName: parentLastName
+          delegatekey: delegatekey
+          delegateLastName: delegateLastName
+          name: name
+          description: description
+          delegateusername: delegateusername
+          startdate: startdate
+          parentusername: parentusername
+          status: ACTIVE
+        errorCode: errorCode
+        totalCount: totalCount
+        delegateCount: 0
+      properties:
+        delegateList:
+          items:
+            $ref: '#/components/schemas/Delegate'
+          type: array
+          x-stoplight:
+            id: ouxs7d2smf6s2
+        msg:
+          type: string
+          x-stoplight:
+            id: 9gb768at9zs11
+        errorCode:
+          type: string
+          x-stoplight:
+            id: 52vigy54bcfwh
+        totalCount:
+          type: string
+          x-stoplight:
+            id: lx6kmumhnzpk3
+        delegateCount:
+          type: integer
+          x-stoplight:
+            id: ol8319l5zv6pm
+      required:
+      - delegateList
+      - errorCode
+      - msg
+      title: FetchDelegatesListResponse
+      x-stoplight:
+        id: 7w1uzfkcq72d4
     EditDelegateRequest:
       description: ""
       example:
@@ -485,63 +545,6 @@ components:
       title: EditDelegateRequest
       x-stoplight:
         id: 1cejr83h2s5a4
-    FetchDelegatesListResponse:
-      example:
-        msg: msg
-        delegateList:
-        - parentFirstName: parentFirstName
-          delegateFirstName: delegateFirstName
-          enddate: enddate
-          parentLastName: parentLastName
-          delegatekey: delegatekey
-          delegateLastName: delegateLastName
-          name: name
-          description: description
-          delegateusername: delegateusername
-          startdate: startdate
-          parentusername: parentusername
-          status: ACTIVE
-        - parentFirstName: parentFirstName
-          delegateFirstName: delegateFirstName
-          enddate: enddate
-          parentLastName: parentLastName
-          delegatekey: delegatekey
-          delegateLastName: delegateLastName
-          name: name
-          description: description
-          delegateusername: delegateusername
-          startdate: startdate
-          parentusername: parentusername
-          status: ACTIVE
-        errorCode: errorCode
-        totalCount: totalCount
-        delegateCount: 0
-      properties:
-        delegateList:
-          items:
-            $ref: '#/components/schemas/Delegate'
-          type: array
-          x-stoplight:
-            id: ouxs7d2smf6s2
-        msg:
-          type: string
-          x-stoplight:
-            id: 9gb768at9zs11
-        errorCode:
-          type: string
-          x-stoplight:
-            id: 52vigy54bcfwh
-        totalCount:
-          type: string
-          x-stoplight:
-            id: lx6kmumhnzpk3
-        delegateCount:
-          type: integer
-          x-stoplight:
-            id: ol8319l5zv6pm
-      title: FetchDelegatesListResponse
-      x-stoplight:
-        id: 7w1uzfkcq72d4
   securitySchemes:
     bearerAuth:
       bearerFormat: JWT

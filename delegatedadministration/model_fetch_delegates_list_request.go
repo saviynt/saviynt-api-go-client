@@ -20,7 +20,7 @@ import (
 // checks if the FetchDelegatesListRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &FetchDelegatesListRequest{}
 
-// FetchDelegatesListRequest 
+// FetchDelegatesListRequest struct for FetchDelegatesListRequest
 type FetchDelegatesListRequest struct {
 	// this is the parentusername
 	UserName string `json:"userName"`
