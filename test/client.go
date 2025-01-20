@@ -11,17 +11,18 @@ import (
 
 const EnvSaviyntTestCredentials = "SAVIYNT_TEST_CREDENTIALS" // #nosec G101
 
-func client() (*saviyntapigoclient.Client, bool, error) {
+func client() (*saviyntapigoclient.Client, saviyntapigoclient.Credentials, bool, error) {
+	creds := saviyntapigoclient.Credentials{}
 	v := strings.TrimSpace(os.Getenv(EnvSaviyntTestCredentials))
 	if v == "" {
-		return nil, false, nil
+		return nil, creds, false, nil
 	}
-	clt, err := saviyntapigoclient.NewClientPasswordEnv(context.Background(), EnvSaviyntTestCredentials)
+	clt, creds, err := saviyntapigoclient.NewClientPasswordEnv(context.Background(), EnvSaviyntTestCredentials)
 	if err != nil {
-		return nil, false, err
+		return nil, creds, false, err
 	} else if clt == nil {
-		return nil, false, errors.New("client not generated")
+		return nil, creds, false, errors.New("client not generated")
 	} else {
-		return clt, true, nil
+		return clt, creds, true, nil
 	}
 }
