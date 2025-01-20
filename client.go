@@ -4,8 +4,10 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -43,18 +45,6 @@ type Client struct {
 	transportClient               *transport.APIClient
 }
 
-func NewClientPassword(ctx context.Context, serverURL, username, password string) (*Client, error) {
-	if tok, err := newOAuth2TokenBasicAuth(loginURL(serverURL), username, password); err != nil {
-		return nil, err
-	} else {
-		return NewClientToken(ctx, serverURL, tok), nil
-	}
-}
-
-func NewClientToken(ctx context.Context, serverURL string, token *oauth2.Token) *Client {
-	return NewClient(ctx, serverURL, newClientToken(ctx, token))
-}
-
 func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *Client {
 	c := &Client{
 		serverURL:  serverURL,
@@ -71,6 +61,42 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 	c.SAVRolesAPI = c.savRolesClient.SAVRolesAPI
 	c.transportClient = newClientTransport(c.APIBaseURL(), c.httpClient)
 	c.TransportAPI = c.transportClient.TransportAPI
+	return c
+}
+
+type Credentials struct {
+	ServerURL string `json:"serverURL"`
+	Username  string `json:"username"`
+	Password  string `json:"password"`
+}
+
+func NewClientPassword(ctx context.Context, creds Credentials) (*Client, error) {
+	if tok, err := newOAuth2TokenBasicAuth(loginURL(creds.ServerURL), creds.Username, creds.Password); err != nil {
+		return nil, err
+	} else {
+		c := NewClientToken(ctx, creds.ServerURL, tok)
+		c.token = tok
+		return c, nil
+	}
+}
+
+func NewClientPasswordEnv(ctx context.Context, envvar string) (*Client, error) {
+	v := os.Getenv(envvar)
+	if v == "" {
+		return nil, errors.New("env var cannot be empty")
+	} else if strings.Index(strings.TrimSpace(v), "{") != 0 {
+		return nil, errors.New("env var must be a json object")
+	}
+	creds := Credentials{}
+	if err := json.Unmarshal([]byte(v), &creds); err != nil {
+		return nil, err
+	}
+	return NewClientPassword(ctx, creds)
+}
+
+func NewClientToken(ctx context.Context, serverURL string, token *oauth2.Token) *Client {
+	c := NewClient(ctx, serverURL, newClientToken(ctx, token))
+	c.token = token
 	return c
 }
 
@@ -180,3 +206,5 @@ func newClientToken(ctx context.Context, tok *oauth2.Token) *http.Client {
 	oAuthConfig := &oauth2.Config{}
 	return oAuthConfig.Client(ctx, tok)
 }
+
+func Pointer[E any](e E) *E { return &e }
