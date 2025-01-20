@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Msg** | Pointer to **string** |  | [optional] 
+**Msg** | **string** |  | 
 **FileName** | Pointer to **string** |  | [optional] 
 **MsgDescription** | Pointer to **string** |  | [optional] 
-**Errorcode** | Pointer to **int32** |  | [optional] 
+**Errorcode** | **int32** |  | 
 
 ## Methods
 
 ### NewExportTransportPackageResponse
 
-`func NewExportTransportPackageResponse() *ExportTransportPackageResponse`
+`func NewExportTransportPackageResponse(msg string, errorcode int32, ) *ExportTransportPackageResponse`
 
 NewExportTransportPackageResponse instantiates a new ExportTransportPackageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *ExportTransportPackageResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetFileName
 
@@ -122,11 +117,6 @@ and a boolean to check if the value has been set.
 
 SetErrorcode sets Errorcode field to given value.
 
-### HasErrorcode
-
-`func (o *ExportTransportPackageResponse) HasErrorcode() bool`
-
-HasErrorcode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
