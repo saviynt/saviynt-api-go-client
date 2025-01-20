@@ -291,6 +291,8 @@
         },
         "required": [
           "msg",
+          "fileName",
+          "msgDescription",
           "errorcode"
         ]
       },
@@ -358,7 +360,12 @@
               "id": "ebuqgop7yv8q6"
             }
           }
-        }
+        },
+        "required": [
+          "msg",
+          "msgDescription",
+          "errorCode"
+        ]
       },
       "ImportTransportPackageRequest": {
         "type": "object",
