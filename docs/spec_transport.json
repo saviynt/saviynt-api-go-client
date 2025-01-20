@@ -288,7 +288,11 @@
               "id": "l5896jtsfm1fy"
             }
           }
-        }
+        },
+        "required": [
+          "msg",
+          "errorcode"
+        ]
       },
       "TransportPackageStatusRequest": {
         "title": "TransportPackageStatusRequest",
