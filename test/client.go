@@ -9,7 +9,7 @@ import (
 	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
 )
 
-const EnvSaviyntTestCredentials = "SAVIYNT_TEST_CREDENTIALS" // env var
+const EnvSaviyntTestCredentials = "SAVIYNT_TEST_CREDENTIALS" // #nosec G101
 
 func client() (*saviyntapigoclient.Client, bool, error) {
 	v := strings.TrimSpace(os.Getenv(EnvSaviyntTestCredentials))
