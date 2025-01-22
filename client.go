@@ -5,9 +5,11 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
@@ -162,10 +164,14 @@ func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err
+	} else if resp.StatusCode >= 300 {
+		return nil, fmt.Errorf("saviynt token response status (%s)", strconv.Itoa(resp.StatusCode))
 	}
 	b, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
+	} else if len(b) == 0 {
+		return nil, errors.New("saviynt token body is empty")
 	}
 	return parseToken(b)
 }
@@ -178,12 +184,12 @@ func parseToken(rawToken []byte) (*oauth2.Token, error) {
 	tok := &oauth2.Token{}
 	err := json.Unmarshal(rawToken, tok)
 	if err != nil {
-		return tok, err
+		return tok, wrapError(err, fmt.Sprintf("parse OAuth 2.0 token: (%s)", string(rawToken)))
 	}
 	msi := map[string]any{}
 	err = json.Unmarshal(rawToken, &msi)
 	if err != nil {
-		return tok, err
+		return tok, wrapError(err, "parse OAuth 2.0 token as msi")
 	}
 	tok = tok.WithExtra(msi)
 	// convert `expires_in` to `Expiry` with 1 minute leeway.
@@ -209,3 +215,10 @@ func newClientToken(ctx context.Context, tok *oauth2.Token) *http.Client {
 }
 
 func Pointer[E any](e E) *E { return &e }
+
+func wrapError(err error, wrapPrefix string) error {
+	if err == nil || wrapPrefix == "" {
+		return err
+	}
+	return fmt.Errorf("%s: [%w]", wrapPrefix, err)
+}
