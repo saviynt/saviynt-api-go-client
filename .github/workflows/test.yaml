@@ -23,7 +23,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     - name: Run tests
-      run: go test -v -covermode=count -coverprofile=coverage.txt ./...
+      run: go test -v -covermode=count -coverprofile='coverage.txt' ./...
     - name: Upload coverage reports to Codecov
       if: matrix.platform != 'windows-latest'
       uses: codecov/codecov-action@v5
