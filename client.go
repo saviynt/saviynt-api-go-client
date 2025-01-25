@@ -14,11 +14,13 @@ import (
 	"time"
 
 	"github.com/grokify/saviynt-api-go-client/delegatedadministration"
+	"github.com/grokify/saviynt-api-go-client/email"
 	"github.com/grokify/saviynt-api-go-client/filedirectory"
 	"github.com/grokify/saviynt-api-go-client/jobcontrol"
 	"github.com/grokify/saviynt-api-go-client/mtlsauthentication"
 	"github.com/grokify/saviynt-api-go-client/savroles"
 	"github.com/grokify/saviynt-api-go-client/transport"
+	"github.com/grokify/saviynt-api-go-client/users"
 	"golang.org/x/oauth2"
 )
 
@@ -35,6 +37,8 @@ type Client struct {
 	httpClient                    *http.Client
 	DelegatedAdministrationAPI    *delegatedadministration.DelegatedAdministrationAPIService
 	delegatedAdministrationClient *delegatedadministration.APIClient
+	EmailAPI                      *email.EmailAPIService
+	emailClient                   *email.APIClient
 	FileDirectoryAPI              *filedirectory.FileDirectoryAPIService
 	fileDirectoryClient           *filedirectory.APIClient
 	JobControlAPI                 *jobcontrol.JobControlAPIService
@@ -45,6 +49,8 @@ type Client struct {
 	savRolesClient                *savroles.APIClient
 	TransportAPI                  *transport.TransportAPIService
 	transportClient               *transport.APIClient
+	UsersAPI                      *users.UsersAPIService
+	usersClient                   *users.APIClient
 }
 
 func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *Client {
@@ -53,6 +59,8 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 		httpClient: httpClient}
 	c.delegatedAdministrationClient = newClientDelegatedAdministration(c.APIBaseURL(), c.httpClient)
 	c.DelegatedAdministrationAPI = c.delegatedAdministrationClient.DelegatedAdministrationAPI
+	c.emailClient = newClientEmail(c.APIBaseURL(), c.httpClient)
+	c.EmailAPI = c.emailClient.EmailAPI
 	c.fileDirectoryClient = newClientFileDirectory(c.APIBaseURL(), c.httpClient)
 	c.FileDirectoryAPI = c.fileDirectoryClient.FileDirectoryAPI
 	c.jobControlClient = newClientJobControl(c.APIBaseURL(), c.httpClient)
@@ -63,6 +71,8 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 	c.SAVRolesAPI = c.savRolesClient.SAVRolesAPI
 	c.transportClient = newClientTransport(c.APIBaseURL(), c.httpClient)
 	c.TransportAPI = c.transportClient.TransportAPI
+	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
+	c.UsersAPI = c.usersClient.UsersAPI
 	return c
 }
 
@@ -118,6 +128,13 @@ func newClientDelegatedAdministration(apiBaseURL string, httpClient *http.Client
 	return delegatedadministration.NewAPIClient(cfg)
 }
 
+func newClientEmail(apiBaseURL string, httpClient *http.Client) *email.APIClient {
+	cfg := email.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = email.ServerConfigurations{{URL: apiBaseURL}}
+	return email.NewAPIClient(cfg)
+}
+
 func newClientFileDirectory(apiBaseURL string, httpClient *http.Client) *filedirectory.APIClient {
 	cfg := filedirectory.NewConfiguration()
 	cfg.HTTPClient = httpClient
@@ -151,6 +168,13 @@ func newClientTransport(apiBaseURL string, httpClient *http.Client) *transport.A
 	cfg.HTTPClient = httpClient
 	cfg.Servers = transport.ServerConfigurations{{URL: apiBaseURL}}
 	return transport.NewAPIClient(cfg)
+}
+
+func newClientUsers(apiBaseURL string, httpClient *http.Client) *users.APIClient {
+	cfg := users.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = users.ServerConfigurations{{URL: apiBaseURL}}
+	return users.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {
