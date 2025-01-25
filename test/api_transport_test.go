@@ -26,7 +26,6 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	var exportFilename string
 
 	t.Run("Test TransportAPIService ExportTransportPackage", func(t *testing.T) {
-
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
