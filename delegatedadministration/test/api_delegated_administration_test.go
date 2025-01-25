@@ -11,10 +11,11 @@ package delegatedadministration
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/grokify/saviynt-api-go-client/delegatedadministration"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	t.Run("Test DelegatedAdministrationAPIService CreateDelegate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.CreateDelegate(context.Background()).Execute()
 
@@ -36,7 +37,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	t.Run("Test DelegatedAdministrationAPIService DeleteDelegate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.DeleteDelegate(context.Background()).Execute()
 
@@ -48,7 +49,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	t.Run("Test DelegatedAdministrationAPIService EditDelegate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.EditDelegate(context.Background()).Execute()
 
@@ -60,7 +61,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	t.Run("Test DelegatedAdministrationAPIService FetchDelegatesList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.FetchDelegatesList(context.Background()).Execute()
 
@@ -72,7 +73,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	t.Run("Test DelegatedAdministrationAPIService GetDelegateUserList", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.GetDelegateUserList(context.Background()).Execute()
 
