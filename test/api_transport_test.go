@@ -62,7 +62,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	})
 
 	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
-		if !wantTest && exportFilename != "" {
+		if !wantTest || exportFilename == "" {
 			t.Skip("skip test") // remove to run test
 		}
 
@@ -79,7 +79,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	})
 
 	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {
-		if !wantTest {
+		if !wantTest || exportFilename == "" {
 			t.Skip("skip test") // remove to run test
 		}
 
