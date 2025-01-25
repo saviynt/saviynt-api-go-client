@@ -33,51 +33,6 @@ paths:
       summary: Get Delegate User List
       tags:
       - Delegated Administration
-  /ECM/api/v5/createDelegate:
-    post:
-      description: This method creates a new delegate for a parent User. The input
-        parameters of this method contains the details of the Parent User as well
-        as the one to whom the Delegation is carried out.
-      operationId: createDelegate
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateDelegateRequest'
-        description: ""
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateDelegateResponse'
-          description: OK
-      security:
-      - bearerAuth: []
-      summary: CreateDelegate
-      tags:
-      - Delegated Administration
-  /ECM/api/v5/deleteDelegate:
-    post:
-      description: This API is used to delete a specific delegate.
-      operationId: deleteDelegate
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/DeleteDelegateRequest'
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response'
-          description: OK
-      security:
-      - bearerAuth: []
-      summary: Delete Delegate
-      tags:
-      - Delegated Administration
   /ECM/api/v5/fetchDelegatesList:
     post:
       description: This API is used to retrieve the list of existing delegates and
@@ -105,6 +60,30 @@ paths:
       summary: Fetch Existing Delegates List
       tags:
       - Delegated Administration
+  /ECM/api/v5/createDelegate:
+    post:
+      description: This method creates a new delegate for a parent User. The input
+        parameters of this method contains the details of the Parent User as well
+        as the one to whom the Delegation is carried out.
+      operationId: createDelegate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDelegateRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDelegateResponse'
+          description: OK
+      security:
+      - bearerAuth: []
+      summary: Create Delegate
+      tags:
+      - Delegated Administration
   /ECM/api/v5/editDelegate:
     post:
       description: This method is used to edit a specific delegate. The input parameters
@@ -126,6 +105,27 @@ paths:
       security:
       - bearerAuth: []
       summary: Edit Delegate
+      tags:
+      - Delegated Administration
+  /ECM/api/v5/deleteDelegate:
+    post:
+      description: This API is used to delete a specific delegate.
+      operationId: deleteDelegate
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DeleteDelegateRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+          description: OK
+      security:
+      - bearerAuth: []
+      summary: Delete Delegate
       tags:
       - Delegated Administration
 components:
@@ -214,9 +214,14 @@ components:
           x-stoplight:
             id: 6pac6s1vzrobw
         username:
+          description: This value is used in the `createDelegate` API.
           type: string
           x-stoplight:
             id: miwr2qeqxhofr
+      required:
+      - firstname
+      - lastname
+      - username
       title: DelegateUser
       x-stoplight:
         id: 8q5oto3vw02aq
@@ -236,13 +241,14 @@ components:
           x-stoplight:
             id: crkmqc783f671
         name:
-          description: name of delegate
+          description: name of delegate.
           type: string
           x-stoplight:
             id: a76jr4ozrl1m4
         delegateusername:
-          description: this is the user who should be assigned as the delegate of
-            the parent user
+          description: This is the user who should be assigned as the delegate of
+            the parent user. It must match `username` in `GetDelegateUserList` API
+            response.
           type: string
           x-stoplight:
             id: vzezs3yglrcbi
@@ -293,6 +299,9 @@ components:
           type: string
           x-stoplight:
             id: 7jsbk17c231ua
+      required:
+      - errorCode
+      - msg
       title: CreateDelegateResponse
       x-stoplight:
         id: vqand6dgyglet
@@ -348,6 +357,8 @@ components:
       x-stoplight:
         id: 3vp1pbxoxnha7
     Delegate:
+      description: Delegate represents a Deleate returne dfrom the Fetch Eisting Delegates
+        List API.
       example:
         parentFirstName: parentFirstName
         delegateFirstName: delegateFirstName
@@ -391,6 +402,15 @@ components:
         enddate:
           description: date with format 07/14/2020
           type: string
+      required:
+      - delegatekey
+      - delegateusername
+      - description
+      - enddate
+      - name
+      - parentusername
+      - startdate
+      - status
       x-examples:
         Example 1:
           delegatekey: "1"
@@ -418,6 +438,9 @@ components:
           type: string
           x-stoplight:
             id: wf376c67qe5h6
+      required:
+      - errorCode
+      - msg
       title: Response
       x-stoplight:
         id: zd7zr47c75zkz

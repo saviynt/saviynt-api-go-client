@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Firstname** | Pointer to **string** |  | [optional] 
-**Lastname** | Pointer to **string** |  | [optional] 
-**Username** | Pointer to **string** |  | [optional] 
+**Firstname** | **string** |  | 
+**Lastname** | **string** |  | 
+**Username** | **string** | This value is used in the &#x60;createDelegate&#x60; API. | 
 
 ## Methods
 
 ### NewDelegateUser
 
-`func NewDelegateUser() *DelegateUser`
+`func NewDelegateUser(firstname string, lastname string, username string, ) *DelegateUser`
 
 NewDelegateUser instantiates a new DelegateUser object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetFirstname sets Firstname field to given value.
 
-### HasFirstname
-
-`func (o *DelegateUser) HasFirstname() bool`
-
-HasFirstname returns a boolean if a field has been set.
 
 ### GetLastname
 
@@ -71,11 +66,6 @@ and a boolean to check if the value has been set.
 
 SetLastname sets Lastname field to given value.
 
-### HasLastname
-
-`func (o *DelegateUser) HasLastname() bool`
-
-HasLastname returns a boolean if a field has been set.
 
 ### GetUsername
 
@@ -96,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetUsername sets Username field to given value.
 
-### HasUsername
-
-`func (o *DelegateUser) HasUsername() bool`
-
-HasUsername returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

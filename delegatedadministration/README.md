@@ -78,7 +78,7 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DelegatedAdministrationAPI* | [**CreateDelegate**](docs/DelegatedAdministrationAPI.md#createdelegate) | **Post** /ECM/api/v5/createDelegate | CreateDelegate
+*DelegatedAdministrationAPI* | [**CreateDelegate**](docs/DelegatedAdministrationAPI.md#createdelegate) | **Post** /ECM/api/v5/createDelegate | Create Delegate
 *DelegatedAdministrationAPI* | [**DeleteDelegate**](docs/DelegatedAdministrationAPI.md#deletedelegate) | **Post** /ECM/api/v5/deleteDelegate | Delete Delegate
 *DelegatedAdministrationAPI* | [**EditDelegate**](docs/DelegatedAdministrationAPI.md#editdelegate) | **Post** /ECM/api/v5/editDelegate | Edit Delegate
 *DelegatedAdministrationAPI* | [**FetchDelegatesList**](docs/DelegatedAdministrationAPI.md#fetchdelegateslist) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List

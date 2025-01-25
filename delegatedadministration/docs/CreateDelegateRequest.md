@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserName** | **string** | this is user who is creating the delegation | 
-**Name** | **string** | name of delegate | 
-**Delegateusername** | **string** | this is the user who should be assigned as the delegate of the parent user | 
+**Name** | **string** | name of delegate. | 
+**Delegateusername** | **string** | This is the user who should be assigned as the delegate of the parent user. It must match &#x60;username&#x60; in &#x60;GetDelegateUserList&#x60; API response. | 
 **Delegatestartdate** | **string** | in format MMDDYYY | 
 **Delegateenddate** | **string** | in format MMDDYYY | 
 **Parentusername** | Pointer to **string** | this is the parent username, if not passed it will consider&#x60; userNam&#x60;e as parentusername | [optional] 

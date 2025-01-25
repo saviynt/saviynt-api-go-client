@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Delegatekey** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Parentusername** | Pointer to **string** |  | [optional] 
+**Delegatekey** | **string** |  | 
+**Name** | **string** |  | 
+**Description** | **string** |  | 
+**Parentusername** | **string** |  | 
 **ParentFirstName** | Pointer to **string** |  | [optional] 
 **ParentLastName** | Pointer to **string** |  | [optional] 
 **DelegateFirstName** | Pointer to **string** |  | [optional] 
 **DelegateLastName** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**Delegateusername** | Pointer to **string** |  | [optional] 
-**Startdate** | Pointer to **string** | date format 07/14/2020 | [optional] 
-**Enddate** | Pointer to **string** | date with format 07/14/2020 | [optional] 
+**Status** | **string** |  | 
+**Delegateusername** | **string** |  | 
+**Startdate** | **string** | date format 07/14/2020 | 
+**Enddate** | **string** | date with format 07/14/2020 | 
 
 ## Methods
 
 ### NewDelegate
 
-`func NewDelegate() *Delegate`
+`func NewDelegate(delegatekey string, name string, description string, parentusername string, status string, delegateusername string, startdate string, enddate string, ) *Delegate`
 
 NewDelegate instantiates a new Delegate object
 This constructor will assign default values to properties that have it defined,
@@ -55,11 +55,6 @@ and a boolean to check if the value has been set.
 
 SetDelegatekey sets Delegatekey field to given value.
 
-### HasDelegatekey
-
-`func (o *Delegate) HasDelegatekey() bool`
-
-HasDelegatekey returns a boolean if a field has been set.
 
 ### GetName
 
@@ -80,11 +75,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *Delegate) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -105,11 +95,6 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-### HasDescription
-
-`func (o *Delegate) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### GetParentusername
 
@@ -130,11 +115,6 @@ and a boolean to check if the value has been set.
 
 SetParentusername sets Parentusername field to given value.
 
-### HasParentusername
-
-`func (o *Delegate) HasParentusername() bool`
-
-HasParentusername returns a boolean if a field has been set.
 
 ### GetParentFirstName
 
@@ -255,11 +235,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-### HasStatus
-
-`func (o *Delegate) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetDelegateusername
 
@@ -280,11 +255,6 @@ and a boolean to check if the value has been set.
 
 SetDelegateusername sets Delegateusername field to given value.
 
-### HasDelegateusername
-
-`func (o *Delegate) HasDelegateusername() bool`
-
-HasDelegateusername returns a boolean if a field has been set.
 
 ### GetStartdate
 
@@ -305,11 +275,6 @@ and a boolean to check if the value has been set.
 
 SetStartdate sets Startdate field to given value.
 
-### HasStartdate
-
-`func (o *Delegate) HasStartdate() bool`
-
-HasStartdate returns a boolean if a field has been set.
 
 ### GetEnddate
 
@@ -330,11 +295,6 @@ and a boolean to check if the value has been set.
 
 SetEnddate sets Enddate field to given value.
 
-### HasEnddate
-
-`func (o *Delegate) HasEnddate() bool`
-
-HasEnddate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

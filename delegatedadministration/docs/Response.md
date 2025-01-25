@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Msg** | Pointer to **string** |  | [optional] 
-**ErrorCode** | Pointer to **string** |  | [optional] 
+**Msg** | **string** |  | 
+**ErrorCode** | **string** |  | 
 
 ## Methods
 
 ### NewResponse
 
-`func NewResponse() *Response`
+`func NewResponse(msg string, errorCode string, ) *Response`
 
 NewResponse instantiates a new Response object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *Response) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetErrorCode
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetErrorCode sets ErrorCode field to given value.
 
-### HasErrorCode
-
-`func (o *Response) HasErrorCode() bool`
-
-HasErrorCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

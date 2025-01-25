@@ -13,35 +13,47 @@ package delegatedadministration
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Delegate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Delegate{}
 
-// Delegate struct for Delegate
+// Delegate Delegate represents a Deleate returne dfrom the Fetch Eisting Delegates List API.
 type Delegate struct {
-	Delegatekey *string `json:"delegatekey,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Parentusername *string `json:"parentusername,omitempty"`
+	Delegatekey string `json:"delegatekey"`
+	Name string `json:"name"`
+	Description string `json:"description"`
+	Parentusername string `json:"parentusername"`
 	ParentFirstName *string `json:"parentFirstName,omitempty"`
 	ParentLastName *string `json:"parentLastName,omitempty"`
 	DelegateFirstName *string `json:"delegateFirstName,omitempty"`
 	DelegateLastName *string `json:"delegateLastName,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Delegateusername *string `json:"delegateusername,omitempty"`
+	Status string `json:"status"`
+	Delegateusername string `json:"delegateusername"`
 	// date format 07/14/2020
-	Startdate *string `json:"startdate,omitempty"`
+	Startdate string `json:"startdate"`
 	// date with format 07/14/2020
-	Enddate *string `json:"enddate,omitempty"`
+	Enddate string `json:"enddate"`
 }
+
+type _Delegate Delegate
 
 // NewDelegate instantiates a new Delegate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDelegate() *Delegate {
+func NewDelegate(delegatekey string, name string, description string, parentusername string, status string, delegateusername string, startdate string, enddate string) *Delegate {
 	this := Delegate{}
+	this.Delegatekey = delegatekey
+	this.Name = name
+	this.Description = description
+	this.Parentusername = parentusername
+	this.Status = status
+	this.Delegateusername = delegateusername
+	this.Startdate = startdate
+	this.Enddate = enddate
 	return &this
 }
 
@@ -53,132 +65,100 @@ func NewDelegateWithDefaults() *Delegate {
 	return &this
 }
 
-// GetDelegatekey returns the Delegatekey field value if set, zero value otherwise.
+// GetDelegatekey returns the Delegatekey field value
 func (o *Delegate) GetDelegatekey() string {
-	if o == nil || IsNil(o.Delegatekey) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Delegatekey
+
+	return o.Delegatekey
 }
 
-// GetDelegatekeyOk returns a tuple with the Delegatekey field value if set, nil otherwise
+// GetDelegatekeyOk returns a tuple with the Delegatekey field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetDelegatekeyOk() (*string, bool) {
-	if o == nil || IsNil(o.Delegatekey) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Delegatekey, true
+	return &o.Delegatekey, true
 }
 
-// HasDelegatekey returns a boolean if a field has been set.
-func (o *Delegate) HasDelegatekey() bool {
-	if o != nil && !IsNil(o.Delegatekey) {
-		return true
-	}
-
-	return false
-}
-
-// SetDelegatekey gets a reference to the given string and assigns it to the Delegatekey field.
+// SetDelegatekey sets field value
 func (o *Delegate) SetDelegatekey(v string) {
-	o.Delegatekey = &v
+	o.Delegatekey = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *Delegate) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *Delegate) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *Delegate) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value
 func (o *Delegate) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *Delegate) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value
 func (o *Delegate) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetParentusername returns the Parentusername field value if set, zero value otherwise.
+// GetParentusername returns the Parentusername field value
 func (o *Delegate) GetParentusername() string {
-	if o == nil || IsNil(o.Parentusername) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Parentusername
+
+	return o.Parentusername
 }
 
-// GetParentusernameOk returns a tuple with the Parentusername field value if set, nil otherwise
+// GetParentusernameOk returns a tuple with the Parentusername field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetParentusernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Parentusername) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Parentusername, true
+	return &o.Parentusername, true
 }
 
-// HasParentusername returns a boolean if a field has been set.
-func (o *Delegate) HasParentusername() bool {
-	if o != nil && !IsNil(o.Parentusername) {
-		return true
-	}
-
-	return false
-}
-
-// SetParentusername gets a reference to the given string and assigns it to the Parentusername field.
+// SetParentusername sets field value
 func (o *Delegate) SetParentusername(v string) {
-	o.Parentusername = &v
+	o.Parentusername = v
 }
 
 // GetParentFirstName returns the ParentFirstName field value if set, zero value otherwise.
@@ -309,132 +289,100 @@ func (o *Delegate) SetDelegateLastName(v string) {
 	o.DelegateLastName = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
+// GetStatus returns the Status field value
 func (o *Delegate) GetStatus() string {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Status
+
+	return o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetStatusOk() (*string, bool) {
-	if o == nil || IsNil(o.Status) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Status, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *Delegate) HasStatus() bool {
-	if o != nil && !IsNil(o.Status) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given string and assigns it to the Status field.
+// SetStatus sets field value
 func (o *Delegate) SetStatus(v string) {
-	o.Status = &v
+	o.Status = v
 }
 
-// GetDelegateusername returns the Delegateusername field value if set, zero value otherwise.
+// GetDelegateusername returns the Delegateusername field value
 func (o *Delegate) GetDelegateusername() string {
-	if o == nil || IsNil(o.Delegateusername) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Delegateusername
+
+	return o.Delegateusername
 }
 
-// GetDelegateusernameOk returns a tuple with the Delegateusername field value if set, nil otherwise
+// GetDelegateusernameOk returns a tuple with the Delegateusername field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetDelegateusernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Delegateusername) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Delegateusername, true
+	return &o.Delegateusername, true
 }
 
-// HasDelegateusername returns a boolean if a field has been set.
-func (o *Delegate) HasDelegateusername() bool {
-	if o != nil && !IsNil(o.Delegateusername) {
-		return true
-	}
-
-	return false
-}
-
-// SetDelegateusername gets a reference to the given string and assigns it to the Delegateusername field.
+// SetDelegateusername sets field value
 func (o *Delegate) SetDelegateusername(v string) {
-	o.Delegateusername = &v
+	o.Delegateusername = v
 }
 
-// GetStartdate returns the Startdate field value if set, zero value otherwise.
+// GetStartdate returns the Startdate field value
 func (o *Delegate) GetStartdate() string {
-	if o == nil || IsNil(o.Startdate) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Startdate
+
+	return o.Startdate
 }
 
-// GetStartdateOk returns a tuple with the Startdate field value if set, nil otherwise
+// GetStartdateOk returns a tuple with the Startdate field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetStartdateOk() (*string, bool) {
-	if o == nil || IsNil(o.Startdate) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Startdate, true
+	return &o.Startdate, true
 }
 
-// HasStartdate returns a boolean if a field has been set.
-func (o *Delegate) HasStartdate() bool {
-	if o != nil && !IsNil(o.Startdate) {
-		return true
-	}
-
-	return false
-}
-
-// SetStartdate gets a reference to the given string and assigns it to the Startdate field.
+// SetStartdate sets field value
 func (o *Delegate) SetStartdate(v string) {
-	o.Startdate = &v
+	o.Startdate = v
 }
 
-// GetEnddate returns the Enddate field value if set, zero value otherwise.
+// GetEnddate returns the Enddate field value
 func (o *Delegate) GetEnddate() string {
-	if o == nil || IsNil(o.Enddate) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Enddate
+
+	return o.Enddate
 }
 
-// GetEnddateOk returns a tuple with the Enddate field value if set, nil otherwise
+// GetEnddateOk returns a tuple with the Enddate field value
 // and a boolean to check if the value has been set.
 func (o *Delegate) GetEnddateOk() (*string, bool) {
-	if o == nil || IsNil(o.Enddate) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Enddate, true
+	return &o.Enddate, true
 }
 
-// HasEnddate returns a boolean if a field has been set.
-func (o *Delegate) HasEnddate() bool {
-	if o != nil && !IsNil(o.Enddate) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnddate gets a reference to the given string and assigns it to the Enddate field.
+// SetEnddate sets field value
 func (o *Delegate) SetEnddate(v string) {
-	o.Enddate = &v
+	o.Enddate = v
 }
 
 func (o Delegate) MarshalJSON() ([]byte, error) {
@@ -447,18 +395,10 @@ func (o Delegate) MarshalJSON() ([]byte, error) {
 
 func (o Delegate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Delegatekey) {
-		toSerialize["delegatekey"] = o.Delegatekey
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.Parentusername) {
-		toSerialize["parentusername"] = o.Parentusername
-	}
+	toSerialize["delegatekey"] = o.Delegatekey
+	toSerialize["name"] = o.Name
+	toSerialize["description"] = o.Description
+	toSerialize["parentusername"] = o.Parentusername
 	if !IsNil(o.ParentFirstName) {
 		toSerialize["parentFirstName"] = o.ParentFirstName
 	}
@@ -471,19 +411,55 @@ func (o Delegate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DelegateLastName) {
 		toSerialize["delegateLastName"] = o.DelegateLastName
 	}
-	if !IsNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !IsNil(o.Delegateusername) {
-		toSerialize["delegateusername"] = o.Delegateusername
-	}
-	if !IsNil(o.Startdate) {
-		toSerialize["startdate"] = o.Startdate
-	}
-	if !IsNil(o.Enddate) {
-		toSerialize["enddate"] = o.Enddate
-	}
+	toSerialize["status"] = o.Status
+	toSerialize["delegateusername"] = o.Delegateusername
+	toSerialize["startdate"] = o.Startdate
+	toSerialize["enddate"] = o.Enddate
 	return toSerialize, nil
+}
+
+func (o *Delegate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"delegatekey",
+		"name",
+		"description",
+		"parentusername",
+		"status",
+		"delegateusername",
+		"startdate",
+		"enddate",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDelegate := _Delegate{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDelegate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Delegate(varDelegate)
+
+	return err
 }
 
 type NullableDelegate struct {

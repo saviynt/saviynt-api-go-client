@@ -24,9 +24,9 @@ var _ MappedNullable = &CreateDelegateRequest{}
 type CreateDelegateRequest struct {
 	// this is user who is creating the delegation
 	UserName string `json:"userName"`
-	// name of delegate
+	// name of delegate.
 	Name string `json:"name"`
-	// this is the user who should be assigned as the delegate of the parent user
+	// This is the user who should be assigned as the delegate of the parent user. It must match `username` in `GetDelegateUserList` API response.
 	Delegateusername string `json:"delegateusername"`
 	// in format MMDDYYY
 	Delegatestartdate string `json:"delegatestartdate"`

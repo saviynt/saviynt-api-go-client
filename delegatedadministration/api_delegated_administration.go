@@ -40,7 +40,7 @@ func (r ApiCreateDelegateRequest) Execute() (*CreateDelegateResponse, *http.Resp
 }
 
 /*
-CreateDelegate CreateDelegate
+CreateDelegate Create Delegate
 
 This method creates a new delegate for a parent User. The input parameters of this method contains the details of the Parent User as well as the one to whom the Delegation is carried out.
 

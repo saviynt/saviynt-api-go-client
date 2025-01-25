@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDelegate**](DelegatedAdministrationAPI.md#CreateDelegate) | **Post** /ECM/api/v5/createDelegate | CreateDelegate
+[**CreateDelegate**](DelegatedAdministrationAPI.md#CreateDelegate) | **Post** /ECM/api/v5/createDelegate | Create Delegate
 [**DeleteDelegate**](DelegatedAdministrationAPI.md#DeleteDelegate) | **Post** /ECM/api/v5/deleteDelegate | Delete Delegate
 [**EditDelegate**](DelegatedAdministrationAPI.md#EditDelegate) | **Post** /ECM/api/v5/editDelegate | Edit Delegate
 [**FetchDelegatesList**](DelegatedAdministrationAPI.md#FetchDelegatesList) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > CreateDelegateResponse CreateDelegate(ctx).CreateDelegateRequest(createDelegateRequest).Execute()
 
-CreateDelegate
+Create Delegate
 
 
 

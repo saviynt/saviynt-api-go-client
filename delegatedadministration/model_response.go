@@ -13,6 +13,8 @@ package delegatedadministration
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Response type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,20 @@ var _ MappedNullable = &Response{}
 
 // Response struct for Response
 type Response struct {
-	Msg *string `json:"msg,omitempty"`
-	ErrorCode *string `json:"errorCode,omitempty"`
+	Msg string `json:"msg"`
+	ErrorCode string `json:"errorCode"`
 }
+
+type _Response Response
 
 // NewResponse instantiates a new Response object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResponse() *Response {
+func NewResponse(msg string, errorCode string) *Response {
 	this := Response{}
+	this.Msg = msg
+	this.ErrorCode = errorCode
 	return &this
 }
 
@@ -41,68 +47,52 @@ func NewResponseWithDefaults() *Response {
 	return &this
 }
 
-// GetMsg returns the Msg field value if set, zero value otherwise.
+// GetMsg returns the Msg field value
 func (o *Response) GetMsg() string {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Msg
+
+	return o.Msg
 }
 
-// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
 func (o *Response) GetMsgOk() (*string, bool) {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Msg, true
+	return &o.Msg, true
 }
 
-// HasMsg returns a boolean if a field has been set.
-func (o *Response) HasMsg() bool {
-	if o != nil && !IsNil(o.Msg) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsg gets a reference to the given string and assigns it to the Msg field.
+// SetMsg sets field value
 func (o *Response) SetMsg(v string) {
-	o.Msg = &v
+	o.Msg = v
 }
 
-// GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
+// GetErrorCode returns the ErrorCode field value
 func (o *Response) GetErrorCode() string {
-	if o == nil || IsNil(o.ErrorCode) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ErrorCode
+
+	return o.ErrorCode
 }
 
-// GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
+// GetErrorCodeOk returns a tuple with the ErrorCode field value
 // and a boolean to check if the value has been set.
 func (o *Response) GetErrorCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.ErrorCode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ErrorCode, true
+	return &o.ErrorCode, true
 }
 
-// HasErrorCode returns a boolean if a field has been set.
-func (o *Response) HasErrorCode() bool {
-	if o != nil && !IsNil(o.ErrorCode) {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorCode gets a reference to the given string and assigns it to the ErrorCode field.
+// SetErrorCode sets field value
 func (o *Response) SetErrorCode(v string) {
-	o.ErrorCode = &v
+	o.ErrorCode = v
 }
 
 func (o Response) MarshalJSON() ([]byte, error) {
@@ -115,13 +105,47 @@ func (o Response) MarshalJSON() ([]byte, error) {
 
 func (o Response) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Msg) {
-		toSerialize["msg"] = o.Msg
-	}
-	if !IsNil(o.ErrorCode) {
-		toSerialize["errorCode"] = o.ErrorCode
-	}
+	toSerialize["msg"] = o.Msg
+	toSerialize["errorCode"] = o.ErrorCode
 	return toSerialize, nil
+}
+
+func (o *Response) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"msg",
+		"errorCode",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varResponse := _Response{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Response(varResponse)
+
+	return err
 }
 
 type NullableResponse struct {

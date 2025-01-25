@@ -13,6 +13,8 @@ package delegatedadministration
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the DelegateUser type satisfies the MappedNullable interface at compile time
@@ -20,17 +22,23 @@ var _ MappedNullable = &DelegateUser{}
 
 // DelegateUser struct for DelegateUser
 type DelegateUser struct {
-	Firstname *string `json:"firstname,omitempty"`
-	Lastname *string `json:"lastname,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Firstname string `json:"firstname"`
+	Lastname string `json:"lastname"`
+	// This value is used in the `createDelegate` API.
+	Username string `json:"username"`
 }
+
+type _DelegateUser DelegateUser
 
 // NewDelegateUser instantiates a new DelegateUser object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDelegateUser() *DelegateUser {
+func NewDelegateUser(firstname string, lastname string, username string) *DelegateUser {
 	this := DelegateUser{}
+	this.Firstname = firstname
+	this.Lastname = lastname
+	this.Username = username
 	return &this
 }
 
@@ -42,100 +50,76 @@ func NewDelegateUserWithDefaults() *DelegateUser {
 	return &this
 }
 
-// GetFirstname returns the Firstname field value if set, zero value otherwise.
+// GetFirstname returns the Firstname field value
 func (o *DelegateUser) GetFirstname() string {
-	if o == nil || IsNil(o.Firstname) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Firstname
+
+	return o.Firstname
 }
 
-// GetFirstnameOk returns a tuple with the Firstname field value if set, nil otherwise
+// GetFirstnameOk returns a tuple with the Firstname field value
 // and a boolean to check if the value has been set.
 func (o *DelegateUser) GetFirstnameOk() (*string, bool) {
-	if o == nil || IsNil(o.Firstname) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Firstname, true
+	return &o.Firstname, true
 }
 
-// HasFirstname returns a boolean if a field has been set.
-func (o *DelegateUser) HasFirstname() bool {
-	if o != nil && !IsNil(o.Firstname) {
-		return true
-	}
-
-	return false
-}
-
-// SetFirstname gets a reference to the given string and assigns it to the Firstname field.
+// SetFirstname sets field value
 func (o *DelegateUser) SetFirstname(v string) {
-	o.Firstname = &v
+	o.Firstname = v
 }
 
-// GetLastname returns the Lastname field value if set, zero value otherwise.
+// GetLastname returns the Lastname field value
 func (o *DelegateUser) GetLastname() string {
-	if o == nil || IsNil(o.Lastname) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Lastname
+
+	return o.Lastname
 }
 
-// GetLastnameOk returns a tuple with the Lastname field value if set, nil otherwise
+// GetLastnameOk returns a tuple with the Lastname field value
 // and a boolean to check if the value has been set.
 func (o *DelegateUser) GetLastnameOk() (*string, bool) {
-	if o == nil || IsNil(o.Lastname) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Lastname, true
+	return &o.Lastname, true
 }
 
-// HasLastname returns a boolean if a field has been set.
-func (o *DelegateUser) HasLastname() bool {
-	if o != nil && !IsNil(o.Lastname) {
-		return true
-	}
-
-	return false
-}
-
-// SetLastname gets a reference to the given string and assigns it to the Lastname field.
+// SetLastname sets field value
 func (o *DelegateUser) SetLastname(v string) {
-	o.Lastname = &v
+	o.Lastname = v
 }
 
-// GetUsername returns the Username field value if set, zero value otherwise.
+// GetUsername returns the Username field value
 func (o *DelegateUser) GetUsername() string {
-	if o == nil || IsNil(o.Username) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Username
+
+	return o.Username
 }
 
-// GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
+// GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
 func (o *DelegateUser) GetUsernameOk() (*string, bool) {
-	if o == nil || IsNil(o.Username) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Username, true
+	return &o.Username, true
 }
 
-// HasUsername returns a boolean if a field has been set.
-func (o *DelegateUser) HasUsername() bool {
-	if o != nil && !IsNil(o.Username) {
-		return true
-	}
-
-	return false
-}
-
-// SetUsername gets a reference to the given string and assigns it to the Username field.
+// SetUsername sets field value
 func (o *DelegateUser) SetUsername(v string) {
-	o.Username = &v
+	o.Username = v
 }
 
 func (o DelegateUser) MarshalJSON() ([]byte, error) {
@@ -148,16 +132,49 @@ func (o DelegateUser) MarshalJSON() ([]byte, error) {
 
 func (o DelegateUser) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Firstname) {
-		toSerialize["firstname"] = o.Firstname
-	}
-	if !IsNil(o.Lastname) {
-		toSerialize["lastname"] = o.Lastname
-	}
-	if !IsNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
+	toSerialize["firstname"] = o.Firstname
+	toSerialize["lastname"] = o.Lastname
+	toSerialize["username"] = o.Username
 	return toSerialize, nil
+}
+
+func (o *DelegateUser) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"firstname",
+		"lastname",
+		"username",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varDelegateUser := _DelegateUser{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varDelegateUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = DelegateUser(varDelegateUser)
+
+	return err
 }
 
 type NullableDelegateUser struct {
