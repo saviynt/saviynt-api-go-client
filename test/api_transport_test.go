@@ -12,6 +12,7 @@ package test
 import (
 	"context"
 	"testing"
+	"time"
 
 	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
 	"github.com/grokify/saviynt-api-go-client/transport"
@@ -47,14 +48,15 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		}
 		apiReq := apiClient.TransportAPI.ExportTransportPackage(context.Background())
 		apiReq = apiReq.ExportTransportPackageRequest(req)
-
 		resp, httpRes, err := apiReq.Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 		assert.Equal(t, int32(0), resp.Errorcode)
+
 		exportFilename = resp.FileName
+		time.Sleep(15 * time.Second)
 	})
 
 	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
@@ -70,7 +72,9 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	})
 
 	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {
-		t.Skip("skip test") // remove to run test
+		if !wantTest {
+			t.Skip("skip test") // remove to run test
+		}
 
 		req := transport.TransportPackageStatusRequest{
 			Operation: "export",
