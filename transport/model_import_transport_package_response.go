@@ -13,6 +13,8 @@ package transport
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ImportTransportPackageResponse type satisfies the MappedNullable interface at compile time
@@ -20,18 +22,22 @@ var _ MappedNullable = &ImportTransportPackageResponse{}
 
 // ImportTransportPackageResponse struct for ImportTransportPackageResponse
 type ImportTransportPackageResponse struct {
-	Msg *string `json:"msg,omitempty"`
+	Msg string `json:"msg"`
 	RequestId *string `json:"requestId,omitempty"`
 	MsgDescription *string `json:"msgDescription,omitempty"`
-	Errorcode *int32 `json:"errorcode,omitempty"`
+	Errorcode int32 `json:"errorcode"`
 }
+
+type _ImportTransportPackageResponse ImportTransportPackageResponse
 
 // NewImportTransportPackageResponse instantiates a new ImportTransportPackageResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewImportTransportPackageResponse() *ImportTransportPackageResponse {
+func NewImportTransportPackageResponse(msg string, errorcode int32) *ImportTransportPackageResponse {
 	this := ImportTransportPackageResponse{}
+	this.Msg = msg
+	this.Errorcode = errorcode
 	return &this
 }
 
@@ -43,36 +49,28 @@ func NewImportTransportPackageResponseWithDefaults() *ImportTransportPackageResp
 	return &this
 }
 
-// GetMsg returns the Msg field value if set, zero value otherwise.
+// GetMsg returns the Msg field value
 func (o *ImportTransportPackageResponse) GetMsg() string {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Msg
+
+	return o.Msg
 }
 
-// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
 func (o *ImportTransportPackageResponse) GetMsgOk() (*string, bool) {
-	if o == nil || IsNil(o.Msg) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Msg, true
+	return &o.Msg, true
 }
 
-// HasMsg returns a boolean if a field has been set.
-func (o *ImportTransportPackageResponse) HasMsg() bool {
-	if o != nil && !IsNil(o.Msg) {
-		return true
-	}
-
-	return false
-}
-
-// SetMsg gets a reference to the given string and assigns it to the Msg field.
+// SetMsg sets field value
 func (o *ImportTransportPackageResponse) SetMsg(v string) {
-	o.Msg = &v
+	o.Msg = v
 }
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
@@ -139,36 +137,28 @@ func (o *ImportTransportPackageResponse) SetMsgDescription(v string) {
 	o.MsgDescription = &v
 }
 
-// GetErrorcode returns the Errorcode field value if set, zero value otherwise.
+// GetErrorcode returns the Errorcode field value
 func (o *ImportTransportPackageResponse) GetErrorcode() int32 {
-	if o == nil || IsNil(o.Errorcode) {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Errorcode
+
+	return o.Errorcode
 }
 
-// GetErrorcodeOk returns a tuple with the Errorcode field value if set, nil otherwise
+// GetErrorcodeOk returns a tuple with the Errorcode field value
 // and a boolean to check if the value has been set.
 func (o *ImportTransportPackageResponse) GetErrorcodeOk() (*int32, bool) {
-	if o == nil || IsNil(o.Errorcode) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Errorcode, true
+	return &o.Errorcode, true
 }
 
-// HasErrorcode returns a boolean if a field has been set.
-func (o *ImportTransportPackageResponse) HasErrorcode() bool {
-	if o != nil && !IsNil(o.Errorcode) {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorcode gets a reference to the given int32 and assigns it to the Errorcode field.
+// SetErrorcode sets field value
 func (o *ImportTransportPackageResponse) SetErrorcode(v int32) {
-	o.Errorcode = &v
+	o.Errorcode = v
 }
 
 func (o ImportTransportPackageResponse) MarshalJSON() ([]byte, error) {
@@ -181,19 +171,53 @@ func (o ImportTransportPackageResponse) MarshalJSON() ([]byte, error) {
 
 func (o ImportTransportPackageResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Msg) {
-		toSerialize["msg"] = o.Msg
-	}
+	toSerialize["msg"] = o.Msg
 	if !IsNil(o.RequestId) {
 		toSerialize["requestId"] = o.RequestId
 	}
 	if !IsNil(o.MsgDescription) {
 		toSerialize["msgDescription"] = o.MsgDescription
 	}
-	if !IsNil(o.Errorcode) {
-		toSerialize["errorcode"] = o.Errorcode
-	}
+	toSerialize["errorcode"] = o.Errorcode
 	return toSerialize, nil
+}
+
+func (o *ImportTransportPackageResponse) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"msg",
+		"errorcode",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varImportTransportPackageResponse := _ImportTransportPackageResponse{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varImportTransportPackageResponse)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ImportTransportPackageResponse(varImportTransportPackageResponse)
+
+	return err
 }
 
 type NullableImportTransportPackageResponse struct {

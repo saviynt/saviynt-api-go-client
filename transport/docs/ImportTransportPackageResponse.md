@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Msg** | Pointer to **string** |  | [optional] 
+**Msg** | **string** |  | 
 **RequestId** | Pointer to **string** |  | [optional] 
 **MsgDescription** | Pointer to **string** |  | [optional] 
-**Errorcode** | Pointer to **int32** |  | [optional] 
+**Errorcode** | **int32** |  | 
 
 ## Methods
 
 ### NewImportTransportPackageResponse
 
-`func NewImportTransportPackageResponse() *ImportTransportPackageResponse`
+`func NewImportTransportPackageResponse(msg string, errorcode int32, ) *ImportTransportPackageResponse`
 
 NewImportTransportPackageResponse instantiates a new ImportTransportPackageResponse object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *ImportTransportPackageResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetRequestId
 
@@ -122,11 +117,6 @@ and a boolean to check if the value has been set.
 
 SetErrorcode sets Errorcode field to given value.
 
-### HasErrorcode
-
-`func (o *ImportTransportPackageResponse) HasErrorcode() bool`
-
-HasErrorcode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

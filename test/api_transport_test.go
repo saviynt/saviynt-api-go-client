@@ -11,6 +11,7 @@ package test
 
 import (
 	"context"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -21,9 +22,10 @@ import (
 )
 
 func Test_transport_TransportAPIService(t *testing.T) {
-	apiClient, _, wantTest, err := client()
+	apiClient, creds, wantTest, err := client()
 	require.Nil(t, err)
 
+	exportFilepath := "/saviynt_shared/testexport/transportPackage"
 	var exportFilename string
 
 	t.Run("Test TransportAPIService ExportTransportPackage", func(t *testing.T) {
@@ -32,11 +34,11 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		}
 
 		req := transport.ExportTransportPackageRequest{
-			Updateuser:       saviyntapigoclient.Pointer("admin"),
+			Updateuser:       &creds.Username,
 			Transportowner:   saviyntapigoclient.Pointer("true"),
 			Transportmembers: saviyntapigoclient.Pointer("true"),
 			Exportonline:     "false",
-			Exportpath:       saviyntapigoclient.Pointer("/saviynt_shared/testexport/transportPackage"),
+			Exportpath:       &exportFilepath,
 			Objectstoexport: transport.ObjectsToExport{
 				SavRoles: []string{"ROLE_ADMIN"},
 				EmailTemplate: []string{
@@ -56,19 +58,24 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		assert.Equal(t, int32(0), resp.Errorcode)
 
 		exportFilename = resp.FileName
-		time.Sleep(15 * time.Second)
+		time.Sleep(25 * time.Second)
 	})
 
 	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
+		if !wantTest && exportFilename != "" {
+			t.Skip("skip test") // remove to run test
+		}
 
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.TransportAPI.ExportTransportPackage(context.Background()).Execute()
+		req := transport.ImportTransportPackageRequest{
+			Packagetoimport: filepath.Join(exportFilepath, exportFilename)}
+		apiReq := apiClient.TransportAPI.ImportTransportPackage(context.Background())
+		apiReq = apiReq.ImportTransportPackageRequest(req)
+		resp, httpRes, err := apiReq.Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-
+		assert.Equal(t, int32(0), resp.Errorcode)
 	})
 
 	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {

@@ -304,6 +304,9 @@ components:
           type: string
         errorcode:
           type: integer
+      required:
+      - errorcode
+      - msg
       x-examples:
         Example 1:
           msg: success
