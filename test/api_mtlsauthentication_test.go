@@ -46,7 +46,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 			t.Skip("skip test") // remove to run test
 		}
 
-		filename := "mtlsauthentication_testdata/pki_key.p12"
+		filename := "testdata/mtlsauthentication_pki_key.p12"
 		filenamePassword := "12345" // #nosec G101
 
 		f, err := os.Open(filename)
