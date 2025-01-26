@@ -65,3 +65,4 @@ Tests are run with real credentials with the following environment variable:
 | 20 | Transport | Export Package | `POST /ECM/api/v5/exportTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 21 | Transport | Import Package | `POST /ECM/api/v5/importTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 22 | Transport | Transport Status | `GET /ECM/api/v5/transportPackageStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 23 | Users | Get User Details | `POST /ECM/api/v5/getUser` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
