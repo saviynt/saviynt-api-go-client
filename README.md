@@ -31,6 +31,7 @@ The follow API Reference are generated using Redocly and the OpenAPI specs used 
 1. [mTLS Authentication](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
 1. [SAV Roles](https://grokify.github.io/saviynt-api-go-client/api_savroles.html)
 1. [Transport](https://grokify.github.io/saviynt-api-go-client/api_transport.html)
+1. [Users](https://grokify.github.io/saviynt-api-go-client/api_users.html)
 
 ## Automated Tests
 
@@ -48,7 +49,7 @@ Tests are run with real credentials with the following environment variable:
 | 4 | Delegated Administration | Edit Delegate | `POST /ECM/api/v5/editDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 5 | Delegated Administration | Delete Delegate | `POST /ECM/api/v5/deleteDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 6 | Email | Send Email | `POST /ECM/api/v5/sendEmail` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 7 | File Directory | Upload New File | `POST /ECM/api/v5/uploadSchemaFile` | :white_check_mark: | :white_check_mark: | :x: | :x: |
+| 7 | File Directory | Upload New File | `POST /ECM/api/v5/uploadSchemaFile` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 8 | Job Control | Create and Update Trigger | `POST /ECM/api/v5/createUpdateTrigger` | :white_check_mark: | :white_check_mark: | :x: | :x: |
 | 9 | Job Control | Check Job Status | `POST /ECM/api/v5/checkJobStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
 | 10 | Job Control | Delete Trigger | `POST /ECM/api/v5/deleteTrigger` | :white_check_mark: | :white_check_mark: | :x: | :x: |

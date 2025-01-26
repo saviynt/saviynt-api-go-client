@@ -19,7 +19,7 @@ paths:
       operationId: uploadNewFile
       requestBody:
         content:
-          application/json:
+          application/x-www-form-urlencoded:
             schema:
               $ref: '#/components/schemas/UploadSchemaFileRequest'
       responses:
@@ -35,9 +35,6 @@ paths:
 components:
   schemas:
     UploadSchemaFileRequest:
-      example:
-        file: ""
-        pathLocation: pathLocation
       properties:
         file:
           description: the file to upload
@@ -71,6 +68,9 @@ components:
           type: string
           x-stoplight:
             id: 05nyb4pfsu45i
+      required:
+      - errorCode
+      - msg
       title: UploadSchemaFileResponse
       x-stoplight:
         id: jvrbda21bzmt8

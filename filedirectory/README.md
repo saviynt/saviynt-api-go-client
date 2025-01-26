@@ -83,7 +83,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [UploadSchemaFileRequest](docs/UploadSchemaFileRequest.md)
  - [UploadSchemaFileResponse](docs/UploadSchemaFileResponse.md)
 
 

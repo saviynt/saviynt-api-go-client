@@ -45,7 +45,7 @@
         "description": "This API call can be used to upload the file in a specific location based on the property `job.ecm.imp.file.path` or  `job.ecm.savfile.path` in `InternalConfig.groovy`.",
         "requestBody": {
           "content": {
-            "application/json": {
+            "application/x-www-form-urlencoded": {
               "schema": {
                 "$ref": "#/components/schemas/UploadSchemaFileRequest"
               }
@@ -83,6 +83,12 @@
         "required": [
           "file",
           "pathLocation"
+        ],
+        "examples": [
+          {
+            "file": "string",
+            "pathLocation": "string"
+          }
         ]
       },
       "UploadSchemaFileResponse": {
@@ -104,7 +110,21 @@
               "id": "05nyb4pfsu45i"
             }
           }
-        }
+        },
+        "required": [
+          "msg",
+          "errorCode"
+        ],
+        "examples": [
+          {
+            "msg": "file Save Successfully",
+            "errorCode": "0"
+          },
+          {
+            "errorCode": "1",
+            "msg": "Unexpected error occurred"
+          }
+        ]
       }
     }
   }

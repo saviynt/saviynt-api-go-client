@@ -17,6 +17,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 )
 
 
@@ -26,11 +27,19 @@ type FileDirectoryAPIService service
 type ApiUploadNewFileRequest struct {
 	ctx context.Context
 	ApiService *FileDirectoryAPIService
-	uploadSchemaFileRequest *UploadSchemaFileRequest
+	file *os.File
+	pathLocation *string
 }
 
-func (r ApiUploadNewFileRequest) UploadSchemaFileRequest(uploadSchemaFileRequest UploadSchemaFileRequest) ApiUploadNewFileRequest {
-	r.uploadSchemaFileRequest = &uploadSchemaFileRequest
+// the file to upload
+func (r ApiUploadNewFileRequest) File(file *os.File) ApiUploadNewFileRequest {
+	r.file = file
+	return r
+}
+
+// Should be set to &#x60;Datafiles&#x60; to upload to &#x60;job.ecm.imp.file.path&#x60; in &#x60;InternalConfig.groovy&#x60;, or &#x60;SAV&#x60; to upload to &#x60;job.ecm.savfile.path&#x60; in &#x60;InternalConfig.groovy&#x60;. 
+func (r ApiUploadNewFileRequest) PathLocation(pathLocation string) ApiUploadNewFileRequest {
+	r.pathLocation = &pathLocation
 	return r
 }
 
@@ -73,9 +82,15 @@ func (a *FileDirectoryAPIService) UploadNewFileExecute(r ApiUploadNewFileRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.file == nil {
+		return localVarReturnValue, nil, reportError("file is required and must be specified")
+	}
+	if r.pathLocation == nil {
+		return localVarReturnValue, nil, reportError("pathLocation is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{"application/x-www-form-urlencoded"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -91,8 +106,22 @@ func (a *FileDirectoryAPIService) UploadNewFileExecute(r ApiUploadNewFileRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.uploadSchemaFileRequest
+	var fileLocalVarFormFileName string
+	var fileLocalVarFileName     string
+	var fileLocalVarFileBytes    []byte
+
+	fileLocalVarFormFileName = "file"
+	fileLocalVarFile := r.file
+
+	if fileLocalVarFile != nil {
+		fbs, _ := io.ReadAll(fileLocalVarFile)
+
+		fileLocalVarFileBytes = fbs
+		fileLocalVarFileName = fileLocalVarFile.Name()
+		fileLocalVarFile.Close()
+		formFiles = append(formFiles, formFile{fileBytes: fileLocalVarFileBytes, fileName: fileLocalVarFileName, formFileName: fileLocalVarFormFileName})
+	}
+	parameterAddToHeaderOrQuery(localVarFormParams, "pathLocation", r.pathLocation, "", "")
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
