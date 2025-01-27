@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
-	"github.com/grokify/saviynt-api-go-client/email"
 )
 
 const (
@@ -15,9 +14,11 @@ const (
 	EnvSaviyntTestData        = "SAVIYNT_TEST_DATA"        // #nosec G101
 )
 
+/*
 type testData struct {
 	Email email.SendEmailRequest `json:"email"`
 }
+*/
 
 func client() (*saviyntapigoclient.Client, saviyntapigoclient.Credentials, bool, error) {
 	creds := saviyntapigoclient.Credentials{}
