@@ -19,7 +19,7 @@
 
 ## Overview
 
-This is an auto-generated client using OpenAPI Generator `7.10.0`.
+This is an auto-generated client using [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) `7.10.0`.
 
 ## OpenAPI Spec References
 
