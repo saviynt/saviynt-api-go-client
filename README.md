@@ -30,6 +30,7 @@ The follow API Reference are generated using Redocly and the OpenAPI specs used 
 1. [Job Control](https://grokify.github.io/saviynt-api-go-client/api_jobcontrol.html)
 1. [mTLS Authentication](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
 1. [SAV Roles](https://grokify.github.io/saviynt-api-go-client/api_savroles.html)
+1. [Tasks](https://grokify.github.io/saviynt-api-go-client/api_tasks.html)
 1. [Transport](https://grokify.github.io/saviynt-api-go-client/api_transport.html)
 1. [Users](https://grokify.github.io/saviynt-api-go-client/api_users.html)
 
@@ -61,8 +62,10 @@ Tests are run with real credentials with the following environment variable:
 | 16 | mTLS Authentication | Get KeyStore Details | `POST /ECM/api/v5/getKeyStoreCertificateDetails` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 17 | mTLS Authentication | Delete KeyStore | `POST /ECM/api/v5/deleteKeyStoreAlias/{alias}` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 18 | SAV Roles | Get All SAV Roles | `POST /ECMv6/api/userms/savroles` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 19 | SAV Roles | Get SAV Role Users | `POST /ECMv6/api/userms/savroles/{roleName/users` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 20 | Transport | Export Package | `POST /ECM/api/v5/exportTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 21 | Transport | Import Package | `POST /ECM/api/v5/importTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 22 | Transport | Transport Status | `GET /ECM/api/v5/transportPackageStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 23 | Users | Get User Details | `POST /ECM/api/v5/getUser` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 19 | SAV Roles | Get SAV Role Users | `POST /ECMv6/api/userms/savroles/{roleName}/users` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 20 | Tasks | Check Task Status | `POST /ECM/api/v5/checkTaskStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 21 | Tasks | Update Tasks | `POST /ECM/api/v5/updateTasks` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x: |
+| 22 | Transport | Export Package | `POST /ECM/api/v5/exportTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 23 | Transport | Import Package | `POST /ECM/api/v5/importTransportPackage` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 24 | Transport | Transport Status | `GET /ECM/api/v5/transportPackageStatus` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 25 | Users | Get User Details | `POST /ECM/api/v5/getUser` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |

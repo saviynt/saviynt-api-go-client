@@ -19,6 +19,7 @@ import (
 	"github.com/grokify/saviynt-api-go-client/jobcontrol"
 	"github.com/grokify/saviynt-api-go-client/mtlsauthentication"
 	"github.com/grokify/saviynt-api-go-client/savroles"
+	"github.com/grokify/saviynt-api-go-client/tasks"
 	"github.com/grokify/saviynt-api-go-client/transport"
 	"github.com/grokify/saviynt-api-go-client/users"
 	"golang.org/x/oauth2"
@@ -47,6 +48,8 @@ type Client struct {
 	mtlsAuthenticationClient      *mtlsauthentication.APIClient
 	SAVRolesAPI                   *savroles.SAVRolesAPIService
 	savRolesClient                *savroles.APIClient
+	TasksAPI                      *tasks.TasksAPIService
+	tasksClient                   *tasks.APIClient
 	TransportAPI                  *transport.TransportAPIService
 	transportClient               *transport.APIClient
 	UsersAPI                      *users.UsersAPIService
@@ -69,6 +72,8 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 	c.MTLSAuthenticationAPI = c.mtlsAuthenticationClient.MTLSAuthenticationAPI
 	c.savRolesClient = newClientSAVRoles(c.APIBaseURL(), c.httpClient)
 	c.SAVRolesAPI = c.savRolesClient.SAVRolesAPI
+	c.tasksClient = newClientTasks(c.APIBaseURL(), c.httpClient)
+	c.TasksAPI = c.tasksClient.TasksAPI
 	c.transportClient = newClientTransport(c.APIBaseURL(), c.httpClient)
 	c.TransportAPI = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
@@ -161,6 +166,13 @@ func newClientSAVRoles(apiBaseURL string, httpClient *http.Client) *savroles.API
 	cfg.HTTPClient = httpClient
 	cfg.Servers = savroles.ServerConfigurations{{URL: apiBaseURL}}
 	return savroles.NewAPIClient(cfg)
+}
+
+func newClientTasks(apiBaseURL string, httpClient *http.Client) *tasks.APIClient {
+	cfg := tasks.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = tasks.ServerConfigurations{{URL: apiBaseURL}}
+	return tasks.NewAPIClient(cfg)
 }
 
 func newClientTransport(apiBaseURL string, httpClient *http.Client) *transport.APIClient {
