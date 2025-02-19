@@ -16,8 +16,8 @@ import (
 	"testing"
 	"time"
 
-	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
-	"github.com/grokify/saviynt-api-go-client/delegatedadministration"
+	saviyntapigoclient "github.com/saviynt/saviynt-api-go-client"
+	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

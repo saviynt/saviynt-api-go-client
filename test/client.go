@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	saviyntapigoclient "github.com/grokify/saviynt-api-go-client"
+	saviyntapigoclient "github.com/saviynt/saviynt-api-go-client"
 )
 
 const (

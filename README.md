@@ -6,16 +6,16 @@
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
 
- [build-status-svg]: https://github.com/grokify/saviynt-api-go-client/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/saviynt-api-go-client/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/grokify/saviynt-api-go-client/workflows/lint/badge.svg
- [lint-status-url]: https://github.com/grokify/saviynt-api-go-client/actions/workflows/lint.yaml
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/saviynt-api-go-client
- [goreport-url]: https://goreportcard.com/report/github.com/grokify/saviynt-api-go-client
- [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/saviynt-api-go-client
- [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/saviynt-api-go-client
+ [build-status-svg]: https://github.com/saviynt/saviynt-api-go-client/workflows/test/badge.svg
+ [build-status-url]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/test.yaml
+ [lint-status-svg]: https://github.com/saviynt/saviynt-api-go-client/workflows/lint/badge.svg
+ [lint-status-url]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/lint.yaml
+ [goreport-svg]: https://goreportcard.com/badge/github.com/saviynt/saviynt-api-go-client
+ [goreport-url]: https://goreportcard.com/report/github.com/saviynt/saviynt-api-go-client
+ [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/saviynt/saviynt-api-go-client
+ [docs-godoc-url]: https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-url]: https://github.com/grokify/saviynt-api-go-client/blob/master/LICENSE
+ [license-url]: https://github.com/saviynt/saviynt-api-go-client/blob/master/LICENSE
 
 ## Overview
 
@@ -25,14 +25,14 @@ This is an auto-generated client using [OpenAPI Generator](https://github.com/Op
 
 The follow API Reference are generated using Redocly and the OpenAPI specs used to build this client SDK.
 
-1. [Delegated Administration](https://grokify.github.io/saviynt-api-go-client/api_delegatedadministration.html)
-1. [File Directory](https://grokify.github.io/saviynt-api-go-client/api_filedirectory.html)
-1. [Job Control](https://grokify.github.io/saviynt-api-go-client/api_jobcontrol.html)
-1. [mTLS Authentication](https://grokify.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
-1. [SAV Roles](https://grokify.github.io/saviynt-api-go-client/api_savroles.html)
-1. [Tasks](https://grokify.github.io/saviynt-api-go-client/api_tasks.html)
-1. [Transport](https://grokify.github.io/saviynt-api-go-client/api_transport.html)
-1. [Users](https://grokify.github.io/saviynt-api-go-client/api_users.html)
+1. [Delegated Administration](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
+1. [File Directory](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
+1. [Job Control](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
+1. [mTLS Authentication](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
+1. [SAV Roles](https://saviynt.github.io/saviynt-api-go-client/api_savroles.html)
+1. [Tasks](https://saviynt.github.io/saviynt-api-go-client/api_tasks.html)
+1. [Transport](https://saviynt.github.io/saviynt-api-go-client/api_transport.html)
+1. [Users](https://saviynt.github.io/saviynt-api-go-client/api_users.html)
 
 ## Automated Tests
 

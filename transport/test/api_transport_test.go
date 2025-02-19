@@ -13,7 +13,7 @@ import (
 	"context"
 	"testing"
 
-	openapiclient "github.com/grokify/saviynt-api-go-client/transport"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/transport"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

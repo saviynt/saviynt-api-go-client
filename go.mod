@@ -1,4 +1,4 @@
-module github.com/grokify/saviynt-api-go-client
+module github.com/saviynt/saviynt-api-go-client
 
 go 1.23.2
 
