@@ -40,6 +40,23 @@ Tests are run with real credentials with the following environment variable:
 
 `SAVIYNT_TEST_CREDENTIALS={"serverURL":"https://myidentitycloud.com","username":"myusername","password":"mypassword"}`
 
+To run the tests, you can execute the following:
+
+```
+% git clone https://github.com/saviynt/saviynt-api-go-client
+% cd saviynt-api-go-client
+% go mod tidy
+% export SAVIYNT_TEST_CREDENTIALS='{...}'
+% cd test
+% go test -v ./...
+% go test -run Test_delegatedadministration_DelegatedAdministrationAPIService
+```
+
+Use the following to run the tests:
+
+1. Run all tests: `go test -v ./...`
+2. Run a specific suite of tests, e.g. for `delegatedadministration`: `go test -run Test_delegatedadministration_DelegatedAdministrationAPIService`
+
 ## Supported Saviynt APIs
 
 | No. | Tag | Name | Endpoint | In Spec | In SDK | SDK Test: Manual | SDK Test: Automated |
