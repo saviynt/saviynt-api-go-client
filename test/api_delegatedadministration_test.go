@@ -212,8 +212,10 @@ func (tr *TimeRange) MaxOrDefault(def time.Time) time.Time {
 func (tr *TimeRange) MinOrDefault(def time.Time) time.Time {
 	if tr.Min == nil {
 		return def
-	} else {
+	} else if tr.Min.Before(def) {
 		return *tr.Min
+	} else {
+		return def
 	}
 }
 
