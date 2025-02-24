@@ -36,7 +36,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	delegateCreateRequest := delegatedadministration.CreateDelegateRequest{}
 	delegateCreateResponse := delegatedadministration.CreateDelegateResponse{}
 
-	t.Run("Test DelegatedAdministrationAPIService GetDelegateUserList", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_GetDelegateUserList", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -57,7 +57,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		delegatesAvailable = resp.Result
 	})
 
-	t.Run("Test DelegatedAdministrationAPIService FetchDelegatesList", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_FetchDelegatesList", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -77,14 +77,14 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		delegatesExisting = resp.DelegateList
 	})
 
-	t.Run("Test DelegatedAdministrationAPIService CreateDelegate", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_CreateDelegate", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
 
 		tr, err := delegatesExisting.MaxTimeRange(dateLayoutFetchDelegatesResponse)
 		require.Nil(t, err)
-		tMax := tr.MaxorDefault(time.Now())
+		tMax := tr.MaxOrDefault(time.Now())
 		t30 := tMax.Add(time.Hour * 24 * 30)
 		t60 := tMax.Add(time.Hour * 24 * 60)
 
@@ -106,12 +106,15 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 		assert.Equal(t, "0", resp.ErrorCode)
+		if resp != nil && resp.ErrorCode != "0" && strings.TrimSpace(resp.Msg) != "" {
+			t.Errorf("error message: (%s)", resp.Msg)
+		}
 
 		delegateCreateRequest = req
 		delegateCreateResponse = *resp
 	})
 
-	t.Run("Test DelegatedAdministrationAPIService EditDelegate", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_EditDelegate", func(t *testing.T) {
 		if !wantTest || delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
 			t.Skip("skip test") // remove to run test
 		}
@@ -136,7 +139,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		assert.Equal(t, "0", resp.ErrorCode)
 	})
 
-	t.Run("Test DelegatedAdministrationAPIService DeleteDelegate", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_DeleteDelegate", func(t *testing.T) {
 		if !wantTest || delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
 			t.Skip("skip test") // remove to run test
 		}
@@ -196,11 +199,13 @@ func (tr *TimeRange) AddTime(t time.Time) {
 	}
 }
 
-func (tr *TimeRange) MaxorDefault(def time.Time) time.Time {
+func (tr *TimeRange) MaxOrDefault(def time.Time) time.Time {
 	if tr.Max == nil {
 		return def
-	} else {
+	} else if tr.Max.After(def) {
 		return *tr.Max
+	} else {
+		return def
 	}
 }
 
