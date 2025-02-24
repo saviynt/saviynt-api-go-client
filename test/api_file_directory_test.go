@@ -22,7 +22,7 @@ func Test_filedirectory_FileDirectoryAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
-	t.Run("Test FileDirectoryAPIService UploadNewFile", func(t *testing.T) {
+	t.Run("Test_FileDirectoryAPIService_UploadNewFile", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -41,6 +41,5 @@ func Test_filedirectory_FileDirectoryAPIService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-
 	})
 }

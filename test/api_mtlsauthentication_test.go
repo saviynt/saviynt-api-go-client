@@ -23,7 +23,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	// Get Initial KeyStore State
 
 	keyStoreAliasesInitial := map[string]int{}
-	t.Run("Test MTLSAuthenticationAPIService GetKeyStoreCertificateDetails Before Upload", func(t *testing.T) {
+	t.Run("Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_Before_Upload", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -41,7 +41,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 		}
 	})
 
-	t.Run("Test MTLSAuthenticationAPIService UploadKeyStore", func(t *testing.T) {
+	t.Run("Test_MTLSAuthenticationAPIService_UploadKeyStore", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -67,7 +67,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	keyStoreAliasNew := []string{}
 
 	// Check KeyStoreCertificates and ensure there is 1 more than previously existing.
-	t.Run("Test MTLSAuthenticationAPIService GetKeyStoreCertificateDetails After Upload", func(t *testing.T) {
+	t.Run("Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_After_Upload", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -94,7 +94,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 		keyStoreAlias = keyStoreAliasNew[0]
 	})
 
-	t.Run("Test MTLSAuthenticationAPIService DeleteKeyStore", func(t *testing.T) {
+	t.Run("Test_MTLSAuthenticationAPIService_DeleteKeyStore", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}

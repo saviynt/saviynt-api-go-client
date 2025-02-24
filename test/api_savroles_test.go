@@ -21,7 +21,7 @@ func Test_savroles_SAVRolesAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
-	t.Run("Test SAVRolesAPIService GetAllSAVRoles", func(t *testing.T) {
+	t.Run("Test_SAVRolesAPIService_GetAllSAVRoles", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -34,7 +34,7 @@ func Test_savroles_SAVRolesAPIService(t *testing.T) {
 		assert.Greater(t, len(resp.Savroles), 0)
 	})
 
-	t.Run("Test SAVRolesAPIService GetSAVRoleUsers", func(t *testing.T) {
+	t.Run("Test_SAVRolesAPIService_GetSAVRoleUsers", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}

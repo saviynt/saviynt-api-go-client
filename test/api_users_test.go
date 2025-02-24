@@ -19,7 +19,7 @@ func Test_users_UsersAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
-	t.Run("Test UsersAPIService GetUser", func(t *testing.T) {
+	t.Run("Test_UsersAPIService_GetUser", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}

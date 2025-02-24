@@ -28,7 +28,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	exportFilepath := "/saviynt_shared/testexport/transportPackage"
 	var exportFilename string
 
-	t.Run("Test TransportAPIService ExportTransportPackage", func(t *testing.T) {
+	t.Run("Test_TransportAPIService_ExportTransportPackage", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
@@ -61,7 +61,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		time.Sleep(25 * time.Second)
 	})
 
-	t.Run("Test TransportAPIService ImportTransportPackage", func(t *testing.T) {
+	t.Run("Test_TransportAPIService_ImportTransportPackage", func(t *testing.T) {
 		if !wantTest || exportFilename == "" {
 			t.Skip("skip test") // remove to run test
 		}
@@ -78,7 +78,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		assert.Equal(t, int32(0), resp.Errorcode)
 	})
 
-	t.Run("Test TransportAPIService TransportPackageStatus", func(t *testing.T) {
+	t.Run("Test_TransportAPIService_TransportPackageStatus", func(t *testing.T) {
 		if !wantTest || exportFilename == "" {
 			t.Skip("skip test") // remove to run test
 		}
