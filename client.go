@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
 	"github.com/saviynt/saviynt-api-go-client/filedirectory"
@@ -36,6 +37,8 @@ type Client struct {
 	serverURL                     string
 	token                         *oauth2.Token
 	httpClient                    *http.Client
+	ConnectionsAPI                *connections.ConnectionsAPIService
+	connectionsClient             *connections.APIClient
 	DelegatedAdministrationAPI    *delegatedadministration.DelegatedAdministrationAPIService
 	delegatedAdministrationClient *delegatedadministration.APIClient
 	EmailAPI                      *email.EmailAPIService
@@ -60,6 +63,8 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 	c := &Client{
 		serverURL:  serverURL,
 		httpClient: httpClient}
+	c.connectionsClient = newClientConnections(c.APIBaseURL(), c.httpClient)
+	c.ConnectionsAPI = c.connectionsClient.ConnectionsAPI
 	c.delegatedAdministrationClient = newClientDelegatedAdministration(c.APIBaseURL(), c.httpClient)
 	c.DelegatedAdministrationAPI = c.delegatedAdministrationClient.DelegatedAdministrationAPI
 	c.emailClient = newClientEmail(c.APIBaseURL(), c.httpClient)
@@ -124,6 +129,13 @@ func (c *Client) APIBaseURL() string {
 
 func (c *Client) Token() *oauth2.Token {
 	return c.token
+}
+
+func newClientConnections(apiBaseURL string, httpClient *http.Client) *connections.APIClient {
+	cfg := connections.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = connections.ServerConfigurations{{URL: apiBaseURL}}
+	return connections.NewAPIClient(cfg)
 }
 
 func newClientDelegatedAdministration(apiBaseURL string, httpClient *http.Client) *delegatedadministration.APIClient {
