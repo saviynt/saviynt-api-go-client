@@ -25,6 +25,7 @@ This is an auto-generated client using [OpenAPI Generator](https://github.com/Op
 
 The follow API Reference are generated using Redocly and the OpenAPI specs used to build this client SDK.
 
+1. [Connections](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
 1. [Delegated Administration](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
 1. [File Directory](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
 1. [Job Control](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
