@@ -54,8 +54,9 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 
 		delegatesAvailable = resp.Result
 	})
@@ -74,8 +75,9 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 
 		delegatesExisting = resp.DelegateList
@@ -108,8 +110,9 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 		if resp != nil && resp.ErrorCode != "0" && strings.TrimSpace(resp.Msg) != "" {
 			t.Errorf("error message: (%s)", resp.Msg)
@@ -140,8 +143,9 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 	})
 
@@ -157,8 +161,9 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 	})
 }

@@ -57,8 +57,9 @@ func Test_transport_TransportAPIService(t *testing.T) {
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, int32(0), resp.Errorcode)
 
 		exportFilename = resp.FileName
@@ -81,6 +82,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, int32(0), resp.Errorcode)
 	})
 

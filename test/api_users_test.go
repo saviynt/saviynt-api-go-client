@@ -29,8 +29,9 @@ func Test_users_UsersAPIService(t *testing.T) {
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Greater(t, len(resp.Userdetails), 0)
 	})
 }

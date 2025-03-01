@@ -38,7 +38,8 @@ func Test_filedirectory_FileDirectoryAPIService(t *testing.T) {
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 	})
 }

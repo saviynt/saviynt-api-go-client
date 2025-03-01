@@ -35,8 +35,10 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
+
 		for _, k := range resp.CertificateDetails {
 			if k.Alias != nil && *k.Alias != "" {
 				keyStoreAliasesInitial[*k.Alias]++
@@ -63,8 +65,9 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 	})
 
 	keyStoreAlias := ""
