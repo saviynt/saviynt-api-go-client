@@ -28,6 +28,8 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	exportFilepath := "/saviynt_shared/testexport/transportPackage"
 	var exportFilename string
 
+	ctx := context.Background()
+
 	t.Run("Test_TransportAPIService_ExportTransportPackage", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
@@ -48,9 +50,11 @@ func Test_transport_TransportAPIService(t *testing.T) {
 			},
 			Businessjustification: saviyntapigoclient.Pointer("justified..."),
 		}
-		apiReq := apiClient.TransportAPI.ExportTransportPackage(context.Background())
-		apiReq = apiReq.ExportTransportPackageRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+
+		resp, httpRes, err := apiClient.Transport.
+			ExportTransportPackage(ctx).
+			ExportTransportPackageRequest(req).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -68,12 +72,14 @@ func Test_transport_TransportAPIService(t *testing.T) {
 
 		req := transport.ImportTransportPackageRequest{
 			Packagetoimport: filepath.Join(exportFilepath, exportFilename)}
-		apiReq := apiClient.TransportAPI.ImportTransportPackage(context.Background())
-		apiReq = apiReq.ImportTransportPackageRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+
+		resp, httpRes, err := apiClient.Transport.
+			ImportTransportPackage(ctx).
+			ImportTransportPackageRequest(req).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
 		assert.Equal(t, int32(0), resp.Errorcode)
 	})
@@ -87,13 +93,15 @@ func Test_transport_TransportAPIService(t *testing.T) {
 			Operation: "export",
 			Filename:  exportFilename}
 
-		apiReq := apiClient.TransportAPI.TransportPackageStatus(context.Background())
-		apiReq = apiReq.TransportPackageStatusRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.Transport.
+			TransportPackageStatus(ctx).
+			TransportPackageStatusRequest(req).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, int32(0), resp.ErrorCode)
 	})
 }

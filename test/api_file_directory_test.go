@@ -31,12 +31,11 @@ func Test_filedirectory_FileDirectoryAPIService(t *testing.T) {
 		f, err := os.Open("testdata/filedirectory_upload_datafile.csv")
 		require.Nil(t, err)
 
-		apiReq := apiClient.FileDirectoryAPI.UploadNewFile(context.Background())
-		apiReq = apiReq.
+		resp, httpRes, err := apiClient.FileDirectory.
+			UploadNewFile(context.Background()).
 			File(f).
-			PathLocation(pathLocation)
-
-		resp, httpRes, err := apiReq.Execute()
+			PathLocation(pathLocation).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

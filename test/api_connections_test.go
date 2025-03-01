@@ -20,13 +20,11 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type CDetails struct {
-	Connectionattributes map[string]any `json:"connectionattributes"`
-}
-
 func Test_connections_ConnectionsAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
+
+	ctx := context.Background()
 
 	var conn *connections.Connection
 
@@ -35,11 +33,14 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 			t.Skip("skip test") // remove to run test
 		}
 
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
+		resp, httpRes, err := apiClient.Connections.
+			GetConnections(ctx).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 
 		if len(resp.ConnectionList) > 0 {
@@ -52,16 +53,16 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 			t.Skip("skip test") // remove to run test
 		}
 
-		req := connections.GetConnectionDetailsRequest{
-			Connectionname: saviyntapigoclient.Pointer(conn.CONNECTIONNAME)}
-
-		apiReq := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background())
-		apiReq = apiReq.GetConnectionDetailsRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.Connections.
+			GetConnectionDetails(ctx).
+			GetConnectionDetailsRequest(connections.GetConnectionDetailsRequest{
+				Connectionname: saviyntapigoclient.Pointer(conn.CONNECTIONNAME)}).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, int32(0), resp.Errorcode)
 		require.NotNil(t, resp.Connectionname)
 		assert.Equal(t, conn.CONNECTIONNAME, *resp.Connectionname)

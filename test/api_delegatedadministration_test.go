@@ -26,6 +26,8 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	apiClient, creds, wantTest, err := client()
 	require.Nil(t, err)
 
+	ctx := context.Background()
+
 	layoutDT8MYD := "01022006"
 	dateLayoutCreateDelegateRequest := layoutDT8MYD
 	layoutM2D2Y4Slash := "01/02/2006"
@@ -46,9 +48,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Max:            saviyntapigoclient.Pointer(int32(10)),
 			Offset:         saviyntapigoclient.Pointer(int32(0))}
 
-		apiReq := apiClient.DelegatedAdministrationAPI.GetDelegateUserList(context.Background())
-		apiReq = apiReq.GetDelegateUserListRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministration.
+			GetDelegateUserList(ctx).
+			GetDelegateUserListRequest(req).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,9 +68,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		req := delegatedadministration.FetchDelegatesListRequest{
 			UserName: creds.Username}
 
-		apiReq := apiClient.DelegatedAdministrationAPI.FetchDelegatesList(context.Background())
-		apiReq = apiReq.FetchDelegatesListRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministration.
+			FetchDelegatesList(ctx).
+			FetchDelegatesListRequest(req).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -98,9 +102,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Delegatestartdate: t30.Format(dateLayoutCreateDelegateRequest),
 			Delegateenddate:   t60.Format(dateLayoutCreateDelegateRequest)}
 
-		apiReq := apiClient.DelegatedAdministrationAPI.CreateDelegate(context.Background())
-		apiReq = apiReq.CreateDelegateRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministration.
+			CreateDelegate(ctx).
+			CreateDelegateRequest(req).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -129,9 +134,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			Description:       saviyntapigoclient.Pointer("Updated at " + time.Now().UTC().Format(time.RFC3339)),
 		}
 
-		apiReq := apiClient.DelegatedAdministrationAPI.EditDelegate(context.Background())
-		apiReq = apiReq.EditDelegateRequest(req)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministration.
+			EditDelegate(ctx).
+			EditDelegateRequest(req).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -144,10 +150,11 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			t.Skip("skip test") // remove to run test
 		}
 
-		apiReq := apiClient.DelegatedAdministrationAPI.DeleteDelegate(context.Background())
-		apiReq = apiReq.UserName(creds.Username)
-		apiReq = apiReq.Key(*delegateCreateResponse.Delegatekey)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministration.
+			DeleteDelegate(ctx).
+			UserName(creds.Username).
+			Key(*delegateCreateResponse.Delegatekey).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

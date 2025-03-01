@@ -37,25 +37,25 @@ type Client struct {
 	serverURL                     string
 	token                         *oauth2.Token
 	httpClient                    *http.Client
-	ConnectionsAPI                *connections.ConnectionsAPIService
+	Connections                   *connections.ConnectionsAPIService
 	connectionsClient             *connections.APIClient
-	DelegatedAdministrationAPI    *delegatedadministration.DelegatedAdministrationAPIService
+	DelegatedAdministration       *delegatedadministration.DelegatedAdministrationAPIService
 	delegatedAdministrationClient *delegatedadministration.APIClient
-	EmailAPI                      *email.EmailAPIService
+	Email                         *email.EmailAPIService
 	emailClient                   *email.APIClient
-	FileDirectoryAPI              *filedirectory.FileDirectoryAPIService
+	FileDirectory                 *filedirectory.FileDirectoryAPIService
 	fileDirectoryClient           *filedirectory.APIClient
-	JobControlAPI                 *jobcontrol.JobControlAPIService
+	JobControl                    *jobcontrol.JobControlAPIService
 	jobControlClient              *jobcontrol.APIClient
-	MTLSAuthenticationAPI         *mtlsauthentication.MTLSAuthenticationAPIService
+	MTLSAuthentication            *mtlsauthentication.MTLSAuthenticationAPIService
 	mtlsAuthenticationClient      *mtlsauthentication.APIClient
-	SAVRolesAPI                   *savroles.SAVRolesAPIService
+	SAVRoles                      *savroles.SAVRolesAPIService
 	savRolesClient                *savroles.APIClient
-	TasksAPI                      *tasks.TasksAPIService
+	Tasks                         *tasks.TasksAPIService
 	tasksClient                   *tasks.APIClient
-	TransportAPI                  *transport.TransportAPIService
+	Transport                     *transport.TransportAPIService
 	transportClient               *transport.APIClient
-	UsersAPI                      *users.UsersAPIService
+	Users                         *users.UsersAPIService
 	usersClient                   *users.APIClient
 }
 
@@ -64,25 +64,25 @@ func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *
 		serverURL:  serverURL,
 		httpClient: httpClient}
 	c.connectionsClient = newClientConnections(c.APIBaseURL(), c.httpClient)
-	c.ConnectionsAPI = c.connectionsClient.ConnectionsAPI
+	c.Connections = c.connectionsClient.ConnectionsAPI
 	c.delegatedAdministrationClient = newClientDelegatedAdministration(c.APIBaseURL(), c.httpClient)
-	c.DelegatedAdministrationAPI = c.delegatedAdministrationClient.DelegatedAdministrationAPI
+	c.DelegatedAdministration = c.delegatedAdministrationClient.DelegatedAdministrationAPI
 	c.emailClient = newClientEmail(c.APIBaseURL(), c.httpClient)
-	c.EmailAPI = c.emailClient.EmailAPI
+	c.Email = c.emailClient.EmailAPI
 	c.fileDirectoryClient = newClientFileDirectory(c.APIBaseURL(), c.httpClient)
-	c.FileDirectoryAPI = c.fileDirectoryClient.FileDirectoryAPI
+	c.FileDirectory = c.fileDirectoryClient.FileDirectoryAPI
 	c.jobControlClient = newClientJobControl(c.APIBaseURL(), c.httpClient)
-	c.JobControlAPI = c.jobControlClient.JobControlAPI
+	c.JobControl = c.jobControlClient.JobControlAPI
 	c.mtlsAuthenticationClient = newClientMTLSAuthentication(c.APIBaseURL(), c.httpClient)
-	c.MTLSAuthenticationAPI = c.mtlsAuthenticationClient.MTLSAuthenticationAPI
+	c.MTLSAuthentication = c.mtlsAuthenticationClient.MTLSAuthenticationAPI
 	c.savRolesClient = newClientSAVRoles(c.APIBaseURL(), c.httpClient)
-	c.SAVRolesAPI = c.savRolesClient.SAVRolesAPI
+	c.SAVRoles = c.savRolesClient.SAVRolesAPI
 	c.tasksClient = newClientTasks(c.APIBaseURL(), c.httpClient)
-	c.TasksAPI = c.tasksClient.TasksAPI
+	c.Tasks = c.tasksClient.TasksAPI
 	c.transportClient = newClientTransport(c.APIBaseURL(), c.httpClient)
-	c.TransportAPI = c.transportClient.TransportAPI
+	c.Transport = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
-	c.UsersAPI = c.usersClient.UsersAPI
+	c.Users = c.usersClient.UsersAPI
 	return c
 }
 

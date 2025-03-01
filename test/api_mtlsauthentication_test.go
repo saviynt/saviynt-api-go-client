@@ -20,6 +20,8 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
+	ctx := context.Background()
+
 	// Get Initial KeyStore State
 
 	keyStoreAliasesInitial := map[string]int{}
@@ -28,8 +30,9 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 			t.Skip("skip test") // remove to run test
 		}
 
-		apiReq := apiClient.MTLSAuthenticationAPI.GetKeyStoreCertificateDetails(context.Background())
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.MTLSAuthentication.
+			GetKeyStoreCertificateDetails(ctx).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -53,9 +56,11 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 		require.Nil(t, err)
 		defer f.Close()
 
-		apiReq := apiClient.MTLSAuthenticationAPI.UploadKeyStore(context.Background())
-		apiReq = apiReq.KeyStoreFile(f).KeyStorePassword(filenamePassword)
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.MTLSAuthentication.
+			UploadKeyStore(ctx).
+			KeyStoreFile(f).
+			KeyStorePassword(filenamePassword).
+			Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -72,12 +77,14 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 			t.Skip("skip test") // remove to run test
 		}
 
-		apiReq := apiClient.MTLSAuthenticationAPI.GetKeyStoreCertificateDetails(context.Background())
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.MTLSAuthentication.
+			GetKeyStoreCertificateDetails(ctx).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Equal(t, len(resp.CertificateDetails), len(keyStoreAliasesInitial)+1)
 		keyStoreAlias = *resp.CertificateDetails[0].Alias
 		for _, k := range resp.CertificateDetails {
@@ -100,10 +107,12 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 		}
 		assert.NotEqual(t, keyStoreAlias, "")
 
-		apiReq := apiClient.MTLSAuthenticationAPI.DeleteKeyStore(context.Background(), keyStoreAlias)
-		httpRes, err := apiReq.Execute()
+		httpRes, err := apiClient.MTLSAuthentication.
+			DeleteKeyStore(ctx, keyStoreAlias).
+			Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
 	})
 }

@@ -21,16 +21,21 @@ func Test_savroles_SAVRolesAPIService(t *testing.T) {
 	apiClient, _, wantTest, err := client()
 	require.Nil(t, err)
 
+	ctx := context.Background()
+
 	t.Run("Test_SAVRolesAPIService_GetAllSAVRoles", func(t *testing.T) {
 		if !wantTest {
 			t.Skip("skip test") // remove to run test
 		}
 
-		resp, httpRes, err := apiClient.SAVRolesAPI.GetAllSAVRoles(context.Background()).Execute()
+		resp, httpRes, err := apiClient.SAVRoles.
+			GetAllSAVRoles(ctx).
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Greater(t, len(resp.Savroles), 0)
 	})
 
@@ -41,15 +46,16 @@ func Test_savroles_SAVRolesAPIService(t *testing.T) {
 
 		savRoleName := "ROLE_ADMIN"
 
-		apiReq := apiClient.SAVRolesAPI.GetSAVRoleUsers(context.Background(), savRoleName)
-		apiReq = apiReq.Limit("100")
-		apiReq = apiReq.Offset("0")
-
-		resp, httpRes, err := apiReq.Execute()
+		resp, httpRes, err := apiClient.SAVRoles.
+			GetSAVRoleUsers(ctx, savRoleName).
+			Limit("100").
+			Offset("0").
+			Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
+		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
+		require.NotNil(t, resp)
 		assert.Greater(t, len(resp.Users), 0)
 	})
 }
