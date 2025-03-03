@@ -11,6 +11,7 @@ package test
 
 import (
 	"context"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -18,14 +19,16 @@ import (
 )
 
 func Test_savroles_SAVRolesAPIService(t *testing.T) {
-	apiClient, _, wantTest, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	ctx := context.Background()
 
 	t.Run("Test_SAVRolesAPIService_GetAllSAVRoles", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		resp, httpRes, err := apiClient.SAVRoles.
@@ -40,8 +43,10 @@ func Test_savroles_SAVRolesAPIService(t *testing.T) {
 	})
 
 	t.Run("Test_SAVRolesAPIService_GetSAVRoleUsers", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		savRoleName := "ROLE_ADMIN"

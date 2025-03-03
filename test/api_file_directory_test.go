@@ -12,6 +12,7 @@ package test
 import (
 	"context"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,12 +20,14 @@ import (
 )
 
 func Test_filedirectory_FileDirectoryAPIService(t *testing.T) {
-	apiClient, _, wantTest, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	t.Run("Test_FileDirectoryAPIService_UploadNewFile", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		pathLocation := "Datafiles"

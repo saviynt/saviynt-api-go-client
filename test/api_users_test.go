@@ -9,6 +9,7 @@ package test
 
 import (
 	"context"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -16,12 +17,14 @@ import (
 )
 
 func Test_users_UsersAPIService(t *testing.T) {
-	apiClient, _, wantTest, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	t.Run("Test_UsersAPIService_GetUser", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		resp, httpRes, err := apiClient.Users.

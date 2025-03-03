@@ -11,7 +11,9 @@ package test
 
 import (
 	"context"
+	"fmt"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -22,7 +24,7 @@ import (
 )
 
 func Test_transport_TransportAPIService(t *testing.T) {
-	apiClient, creds, wantTest, err := client()
+	apiClient, creds, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	exportFilepath := "/saviynt_shared/testexport/transportPackage"
@@ -31,8 +33,10 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	ctx := context.Background()
 
 	t.Run("Test_TransportAPIService_ExportTransportPackage", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		req := transport.ExportTransportPackageRequest{
@@ -67,8 +71,12 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	})
 
 	t.Run("Test_TransportAPIService_ImportTransportPackage", func(t *testing.T) {
-		if !wantTest || exportFilename == "" {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if exportFilename == "" {
+			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`"))
 		}
 
 		req := transport.ImportTransportPackageRequest{
@@ -87,8 +95,12 @@ func Test_transport_TransportAPIService(t *testing.T) {
 	})
 
 	t.Run("Test_TransportAPIService_TransportPackageStatus", func(t *testing.T) {
-		if !wantTest || exportFilename == "" {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if exportFilename == "" {
+			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`"))
 		}
 
 		req := transport.TransportPackageStatusRequest{

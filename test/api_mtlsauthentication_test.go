@@ -9,7 +9,9 @@ package test
 
 import (
 	"context"
+	"fmt"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,7 +19,7 @@ import (
 )
 
 func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
-	apiClient, _, wantTest, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	ctx := context.Background()
@@ -26,8 +28,10 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 
 	keyStoreAliasesInitial := map[string]int{}
 	t.Run("Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_Before_Upload", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		resp, httpRes, err := apiClient.MTLSAuthentication.
@@ -47,8 +51,10 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	})
 
 	t.Run("Test_MTLSAuthenticationAPIService_UploadKeyStore", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		filename := "testdata/mtlsauthentication_pki_key.p12"
@@ -76,8 +82,10 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 
 	// Check KeyStoreCertificates and ensure there is 1 more than previously existing.
 	t.Run("Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_After_Upload", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		resp, httpRes, err := apiClient.MTLSAuthentication.
@@ -105,9 +113,14 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 	})
 
 	t.Run("Test_MTLSAuthenticationAPIService_DeleteKeyStore", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if keyStoreAlias == "" {
+			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_After_Upload`"))
 		}
+
 		assert.NotEqual(t, keyStoreAlias, "")
 
 		httpRes, err := apiClient.MTLSAuthentication.
