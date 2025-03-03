@@ -29,6 +29,7 @@ The follow API Reference are generated using Redocly and the OpenAPI specs used 
 
 1. [Connections](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
 1. [Delegated Administration](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
+1. [Email](https://saviynt.github.io/saviynt-api-go-client/api_email.html)
 1. [File Directory](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
 1. [Job Control](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
 1. [mTLS Authentication](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
