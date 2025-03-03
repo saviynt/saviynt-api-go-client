@@ -47,7 +47,10 @@ paths:
       - Connections
   /ECM/api/v5/getConnectionDetails:
     post:
-      description: This API returns connection details in Saviynt.
+      description: |-
+        This API returns connection details in Saviynt.
+
+        Mandatory params: `connectiontype` or `connectionname` (if both are passed then `connectionkey` will be considered).
       operationId: getConnectionDetails
       requestBody:
         content:
@@ -67,15 +70,14 @@ paths:
       - Connections
   /ECM/api/v5/testConnection:
     post:
-      description: "This API is used to save and test a connection. Mandatory params:\
-        \ `connectiontype`, `connectionName` OR `connectionkey` (if both are passed\
-        \ `connectionkey` is considered) Additional connection parameters can also\
-        \ be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`,\
-        \ `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`, This API is enhanced\
-        \ to update vaultconnection, and vaultconfiguration connection details. From\
-        \ Release v23.10, if you specify the key value for header response as standard,a\
-        \ detailed error message is displayed in the Response that enables you to\
-        \ troubleshoot errors."
+      description: |-
+        This API is used to save and test a connection.
+
+        Mandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`.
+
+        This API is enhanced to update vaultconnection, and vaultconfiguration connection details.
+
+        From Release v23.10, if you specify the key value for header response as standard, a detailed error message is displayed in the Response that enables you to troubleshoot errors.
       operationId: createOrUpdateConnection
       requestBody:
         content:
@@ -94,7 +96,10 @@ paths:
       - Connections
   /ECM/api/v5/deleteConnection:
     delete:
-      description: This API deletes connections in Saviynt.
+      description: |-
+        This API deletes connections in Saviynt.
+
+        Mandatory params: `updateuser`, and `connectionQuery` or `connectionkey` (If both are passed then `connectionkey` will be considered).
       operationId: deleteConnection
       requestBody:
         content:

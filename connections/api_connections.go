@@ -41,7 +41,13 @@ func (r ApiCreateOrUpdateConnectionRequest) Execute() (*CreateOrUpdateConnection
 /*
 CreateOrUpdateConnection Create or Update Connection
 
-This API is used to save and test a connection. Mandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`, This API is enhanced to update vaultconnection, and vaultconfiguration connection details. From Release v23.10, if you specify the key value for header response as standard,a detailed error message is displayed in the Response that enables you to troubleshoot errors.
+This API is used to save and test a connection.
+
+Mandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`.
+
+This API is enhanced to update vaultconnection, and vaultconfiguration connection details.
+
+From Release v23.10, if you specify the key value for header response as standard, a detailed error message is displayed in the Response that enables you to troubleshoot errors.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateOrUpdateConnectionRequest
@@ -150,6 +156,8 @@ DeleteConnection Delete Connection
 
 This API deletes connections in Saviynt.
 
+Mandatory params: `updateuser`, and `connectionQuery` or `connectionkey` (If both are passed then `connectionkey` will be considered).
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiDeleteConnectionRequest
 */
@@ -257,6 +265,8 @@ func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetailsResponse
 GetConnectionDetails Get Connection Details
 
 This API returns connection details in Saviynt.
+
+Mandatory params: `connectiontype` or `connectionname` (if both are passed then `connectionkey` will be considered).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetConnectionDetailsRequest

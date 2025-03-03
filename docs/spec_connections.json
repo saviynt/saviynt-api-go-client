@@ -94,7 +94,7 @@
             }
           }
         },
-        "description": "This API returns connection details in Saviynt.",
+        "description": "This API returns connection details in Saviynt.\n\nMandatory params: `connectiontype` or `connectionname` (if both are passed then `connectionkey` will be considered).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -126,7 +126,7 @@
             }
           }
         },
-        "description": "This API is used to save and test a connection. Mandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`, This API is enhanced to update vaultconnection, and vaultconfiguration connection details. From Release v23.10, if you specify the key value for header response as standard,a detailed error message is displayed in the Response that enables you to troubleshoot errors.",
+        "description": "This API is used to save and test a connection.\n\nMandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`.\n\nThis API is enhanced to update vaultconnection, and vaultconfiguration connection details.\n\nFrom Release v23.10, if you specify the key value for header response as standard, a detailed error message is displayed in the Response that enables you to troubleshoot errors.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -157,7 +157,7 @@
             }
           }
         },
-        "description": "This API deletes connections in Saviynt.",
+        "description": "This API deletes connections in Saviynt.\n\nMandatory params: `updateuser`, and `connectionQuery` or `connectionkey` (If both are passed then `connectionkey` will be considered).",
         "requestBody": {
           "content": {
             "application/json": {
