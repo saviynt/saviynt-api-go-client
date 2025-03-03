@@ -10,6 +10,10 @@ docs/Connection.md
 docs/ConnectionAttributes.md
 docs/ConnectionTimeoutConfig.md
 docs/ConnectionsAPI.md
+docs/CreateOrUpdateConnectionRequest.md
+docs/CreateOrUpdateConnectionResponse.md
+docs/DeleteConnectionRequest.md
+docs/DeleteConnectionResponse.md
 docs/GetConnectionDetailsRequest.md
 docs/GetConnectionDetailsResponse.md
 docs/GetConnectionsRequest.md
@@ -20,6 +24,10 @@ go.sum
 model_connection.go
 model_connection_attributes.go
 model_connection_timeout_config.go
+model_create_or_update_connection_request.go
+model_create_or_update_connection_response.go
+model_delete_connection_request.go
+model_delete_connection_response.go
 model_get_connection_details_request.go
 model_get_connection_details_response.go
 model_get_connections_request.go

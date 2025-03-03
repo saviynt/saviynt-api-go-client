@@ -78,6 +78,8 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ConnectionsAPI* | [**CreateOrUpdateConnection**](docs/ConnectionsAPI.md#createorupdateconnection) | **Post** /ECM/api/v5/testConnection | Create or Update Connection
+*ConnectionsAPI* | [**DeleteConnection**](docs/ConnectionsAPI.md#deleteconnection) | **Delete** /ECM/api/v5/deleteConnection | 
 *ConnectionsAPI* | [**GetConnectionDetails**](docs/ConnectionsAPI.md#getconnectiondetails) | **Post** /ECM/api/v5/getConnectionDetails | Get Connection Details
 *ConnectionsAPI* | [**GetConnections**](docs/ConnectionsAPI.md#getconnections) | **Post** /ECM/api/v5/getConnections | Get List of Connections
 
@@ -87,6 +89,10 @@ Class | Method | HTTP request | Description
  - [Connection](docs/Connection.md)
  - [ConnectionAttributes](docs/ConnectionAttributes.md)
  - [ConnectionTimeoutConfig](docs/ConnectionTimeoutConfig.md)
+ - [CreateOrUpdateConnectionRequest](docs/CreateOrUpdateConnectionRequest.md)
+ - [CreateOrUpdateConnectionResponse](docs/CreateOrUpdateConnectionResponse.md)
+ - [DeleteConnectionRequest](docs/DeleteConnectionRequest.md)
+ - [DeleteConnectionResponse](docs/DeleteConnectionResponse.md)
  - [GetConnectionDetailsRequest](docs/GetConnectionDetailsRequest.md)
  - [GetConnectionDetailsResponse](docs/GetConnectionDetailsResponse.md)
  - [GetConnectionsRequest](docs/GetConnectionsRequest.md)

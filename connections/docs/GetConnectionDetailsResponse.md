@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Connectionattributes** | Pointer to [**ConnectionAttributes**](ConnectionAttributes.md) |  | [optional] 
 **Connectionkey** | Pointer to **int32** |  | [optional] 
 **Connectionname** | Pointer to **string** |  | [optional] 
-**Connectiontype** | Pointer to **string** |  | [optional] 
+**ConnectionType** | Pointer to **string** |  | [optional] 
 **Createdby** | Pointer to **string** |  | [optional] 
 **Createdon** | Pointer to **time.Time** |  | [optional] 
 **Defaultsavroles** | Pointer to **string** |  | [optional] 
@@ -152,30 +152,30 @@ SetConnectionname sets Connectionname field to given value.
 
 HasConnectionname returns a boolean if a field has been set.
 
-### GetConnectiontype
+### GetConnectionType
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontype() string`
+`func (o *GetConnectionDetailsResponse) GetConnectionType() string`
 
-GetConnectiontype returns the Connectiontype field if non-nil, zero value otherwise.
+GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
 
-### GetConnectiontypeOk
+### GetConnectionTypeOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontypeOk() (*string, bool)`
+`func (o *GetConnectionDetailsResponse) GetConnectionTypeOk() (*string, bool)`
 
-GetConnectiontypeOk returns a tuple with the Connectiontype field if it's non-nil, zero value otherwise
+GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnectiontype
+### SetConnectionType
 
-`func (o *GetConnectionDetailsResponse) SetConnectiontype(v string)`
+`func (o *GetConnectionDetailsResponse) SetConnectionType(v string)`
 
-SetConnectiontype sets Connectiontype field to given value.
+SetConnectionType sets ConnectionType field to given value.
 
-### HasConnectiontype
+### HasConnectionType
 
-`func (o *GetConnectionDetailsResponse) HasConnectiontype() bool`
+`func (o *GetConnectionDetailsResponse) HasConnectionType() bool`
 
-HasConnectiontype returns a boolean if a field has been set.
+HasConnectionType returns a boolean if a field has been set.
 
 ### GetCreatedby
 

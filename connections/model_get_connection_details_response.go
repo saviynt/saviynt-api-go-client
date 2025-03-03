@@ -28,7 +28,7 @@ type GetConnectionDetailsResponse struct {
 	Connectionattributes *ConnectionAttributes `json:"connectionattributes,omitempty"`
 	Connectionkey *int32 `json:"connectionkey,omitempty"`
 	Connectionname *string `json:"connectionname,omitempty"`
-	Connectiontype *string `json:"connectiontype,omitempty"`
+	ConnectionType *string `json:"connectionType,omitempty"`
 	Createdby *string `json:"createdby,omitempty"`
 	Createdon *time.Time `json:"createdon,omitempty"`
 	Defaultsavroles *string `json:"defaultsavroles,omitempty"`
@@ -203,36 +203,36 @@ func (o *GetConnectionDetailsResponse) SetConnectionname(v string) {
 	o.Connectionname = &v
 }
 
-// GetConnectiontype returns the Connectiontype field value if set, zero value otherwise.
-func (o *GetConnectionDetailsResponse) GetConnectiontype() string {
-	if o == nil || IsNil(o.Connectiontype) {
+// GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
+func (o *GetConnectionDetailsResponse) GetConnectionType() string {
+	if o == nil || IsNil(o.ConnectionType) {
 		var ret string
 		return ret
 	}
-	return *o.Connectiontype
+	return *o.ConnectionType
 }
 
-// GetConnectiontypeOk returns a tuple with the Connectiontype field value if set, nil otherwise
+// GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetailsResponse) GetConnectiontypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Connectiontype) {
+func (o *GetConnectionDetailsResponse) GetConnectionTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ConnectionType) {
 		return nil, false
 	}
-	return o.Connectiontype, true
+	return o.ConnectionType, true
 }
 
-// HasConnectiontype returns a boolean if a field has been set.
-func (o *GetConnectionDetailsResponse) HasConnectiontype() bool {
-	if o != nil && !IsNil(o.Connectiontype) {
+// HasConnectionType returns a boolean if a field has been set.
+func (o *GetConnectionDetailsResponse) HasConnectionType() bool {
+	if o != nil && !IsNil(o.ConnectionType) {
 		return true
 	}
 
 	return false
 }
 
-// SetConnectiontype gets a reference to the given string and assigns it to the Connectiontype field.
-func (o *GetConnectionDetailsResponse) SetConnectiontype(v string) {
-	o.Connectiontype = &v
+// SetConnectionType gets a reference to the given string and assigns it to the ConnectionType field.
+func (o *GetConnectionDetailsResponse) SetConnectionType(v string) {
+	o.ConnectionType = &v
 }
 
 // GetCreatedby returns the Createdby field value if set, zero value otherwise.
@@ -480,8 +480,8 @@ func (o GetConnectionDetailsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Connectionname) {
 		toSerialize["connectionname"] = o.Connectionname
 	}
-	if !IsNil(o.Connectiontype) {
-		toSerialize["connectiontype"] = o.Connectiontype
+	if !IsNil(o.ConnectionType) {
+		toSerialize["connectionType"] = o.ConnectionType
 	}
 	if !IsNil(o.Createdby) {
 		toSerialize["createdby"] = o.Createdby

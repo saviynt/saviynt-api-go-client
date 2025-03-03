@@ -47,6 +47,7 @@ type ConnectionAttributes struct {
 	FILTER *string `json:"FILTER,omitempty"`
 	GROUP_ATTRIBUTES *string `json:"GROUP_ATTRIBUTES,omitempty"`
 	IMPORT_USERS *string `json:"IMPORT_USERS,omitempty"`
+	IMPORTJSON *string `json:"IMPORTJSON,omitempty"`
 	INCREMENTAL_CONFIG *string `json:"INCREMENTAL_CONFIG,omitempty"`
 	LAST_IMPORT_TIME *string `json:"LAST_IMPORT_TIME,omitempty"`
 	LDAP_OR_AD *string `json:"LDAP_OR_AD,omitempty"`
@@ -978,6 +979,38 @@ func (o *ConnectionAttributes) HasIMPORT_USERS() bool {
 // SetIMPORT_USERS gets a reference to the given string and assigns it to the IMPORT_USERS field.
 func (o *ConnectionAttributes) SetIMPORT_USERS(v string) {
 	o.IMPORT_USERS = &v
+}
+
+// GetIMPORTJSON returns the IMPORTJSON field value if set, zero value otherwise.
+func (o *ConnectionAttributes) GetIMPORTJSON() string {
+	if o == nil || IsNil(o.IMPORTJSON) {
+		var ret string
+		return ret
+	}
+	return *o.IMPORTJSON
+}
+
+// GetIMPORTJSONOk returns a tuple with the IMPORTJSON field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ConnectionAttributes) GetIMPORTJSONOk() (*string, bool) {
+	if o == nil || IsNil(o.IMPORTJSON) {
+		return nil, false
+	}
+	return o.IMPORTJSON, true
+}
+
+// HasIMPORTJSON returns a boolean if a field has been set.
+func (o *ConnectionAttributes) HasIMPORTJSON() bool {
+	if o != nil && !IsNil(o.IMPORTJSON) {
+		return true
+	}
+
+	return false
+}
+
+// SetIMPORTJSON gets a reference to the given string and assigns it to the IMPORTJSON field.
+func (o *ConnectionAttributes) SetIMPORTJSON(v string) {
+	o.IMPORTJSON = &v
 }
 
 // GetINCREMENTAL_CONFIG returns the INCREMENTAL_CONFIG field value if set, zero value otherwise.
@@ -2670,6 +2703,9 @@ func (o ConnectionAttributes) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IMPORT_USERS) {
 		toSerialize["IMPORT_USERS"] = o.IMPORT_USERS
+	}
+	if !IsNil(o.IMPORTJSON) {
+		toSerialize["IMPORTJSON"] = o.IMPORTJSON
 	}
 	if !IsNil(o.INCREMENTAL_CONFIG) {
 		toSerialize["INCREMENTAL_CONFIG"] = o.INCREMENTAL_CONFIG

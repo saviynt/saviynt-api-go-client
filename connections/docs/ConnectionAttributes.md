@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **FILTER** | Pointer to **string** |  | [optional] 
 **GROUP_ATTRIBUTES** | Pointer to **string** |  | [optional] 
 **IMPORT_USERS** | Pointer to **string** |  | [optional] 
+**IMPORTJSON** | Pointer to **string** |  | [optional] 
 **INCREMENTAL_CONFIG** | Pointer to **string** |  | [optional] 
 **LAST_IMPORT_TIME** | Pointer to **string** |  | [optional] 
 **LDAP_OR_AD** | Pointer to **string** |  | [optional] 
@@ -775,6 +776,31 @@ SetIMPORT_USERS sets IMPORT_USERS field to given value.
 `func (o *ConnectionAttributes) HasIMPORT_USERS() bool`
 
 HasIMPORT_USERS returns a boolean if a field has been set.
+
+### GetIMPORTJSON
+
+`func (o *ConnectionAttributes) GetIMPORTJSON() string`
+
+GetIMPORTJSON returns the IMPORTJSON field if non-nil, zero value otherwise.
+
+### GetIMPORTJSONOk
+
+`func (o *ConnectionAttributes) GetIMPORTJSONOk() (*string, bool)`
+
+GetIMPORTJSONOk returns a tuple with the IMPORTJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIMPORTJSON
+
+`func (o *ConnectionAttributes) SetIMPORTJSON(v string)`
+
+SetIMPORTJSON sets IMPORTJSON field to given value.
+
+### HasIMPORTJSON
+
+`func (o *ConnectionAttributes) HasIMPORTJSON() bool`
+
+HasIMPORTJSON returns a boolean if a field has been set.
 
 ### GetINCREMENTAL_CONFIG
 
