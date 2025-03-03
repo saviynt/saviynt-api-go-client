@@ -106,6 +106,68 @@
           "description": ""
         }
       }
+    },
+    "/ECM/api/v5/testConnection": {
+      "post": {
+        "summary": "Create or Update Connection",
+        "operationId": "createOrUpdateConnection",
+        "tags": [
+          "Connections"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateConnectionResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "This API is used to save and test a connection. Mandatory params: `connectiontype`, `connectionName` OR `connectionkey` (if both are passed `connectionkey` is considered) Additional connection parameters can also be passed - For example, for SAP Import, provide paramters - `JCO_ASHOST`, `JCO_SYSNR`, `JCO_CLIENT`, `JCO_USER`, `PASSWORD`, This API is enhanced to update vaultconnection, and vaultconfiguration connection details. From Release v23.10, if you specify the key value for header response as standard,a detailed error message is displayed in the Response that enables you to troubleshoot errors.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateConnectionRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ECM/api/v5/deleteConnection": {
+      "delete": {
+        "summary": "",
+        "operationId": "deleteConnection",
+        "tags": [
+          "Connections"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteConnectionResponse"
+                }
+              }
+            }
+          }
+        },
+        "description": "This API deletes connections in Saviynt.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteConnectionRequest"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -369,7 +431,7 @@
           "ConfigJSON": {
             "type": "string"
           },
-          "CONNECTOR_FILE_PATH":{
+          "CONNECTOR_FILE_PATH": {
             "type": "string"
           },
           "CREATEACCOUNTJSON": {
@@ -418,6 +480,9 @@
             "type": "string"
           },
           "IMPORT_USERS": {
+            "type": "string"
+          },
+          "IMPORTJSON": {
             "type": "string"
           },
           "INCREMENTAL_CONFIG": {
@@ -498,13 +563,13 @@
           "SEARCHFILTER": {
             "type": "string"
           },
-          "SERVICE_ACCOUNT_ID":{
+          "SERVICE_ACCOUNT_ID": {
             "type": "string"
           },
-          "SERVICE_ACCOUNT_KEY_JSON":{
+          "SERVICE_ACCOUNT_KEY_JSON": {
             "type": "string"
           },
-          "SERVICE_ACCOUNT_USER":{
+          "SERVICE_ACCOUNT_USER": {
             "type": "string"
           },
           "SETDEFAULTPAGESIZE": {
@@ -609,7 +674,7 @@
               "id": "fsf3y6c8zdrbp"
             }
           },
-          "connectiontype": {
+          "connectionType": {
             "type": "string",
             "x-stoplight": {
               "id": "lja9jknxjy8jw"
@@ -696,6 +761,279 @@
             "type": "integer"
           }
         }
+      },
+      "CreateOrUpdateConnectionRequest": {
+        "title": "CreateOrUpdateConnectionRequest",
+        "x-stoplight": {
+          "id": "d9n7utxsjjf8p"
+        },
+        "type": "object",
+        "properties": {
+          "connectionName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "kpzefbwhy0oua"
+            },
+            "example": "Active_Directory_Doc"
+          },
+          "connectiontype": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "wuk6vl9fxl2fz"
+            }
+          },
+          "connectionkey": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "k5iuq3jqkuwfn"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "groupSearchBaseDN": {
+            "type": "string"
+          },
+          "saveconnection": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1t0b3va60lisy"
+            },
+            "example": "Y"
+          },
+          "systemname": {
+            "type": "string"
+          },
+          "ACCOUNTNAMERULE": {
+            "type": "string"
+          },
+          "BASE": {
+            "type": "string"
+          },
+          "CHECKFORUNIQUE": {
+            "type": "string"
+          },
+          "CREATEORGJSON": {
+            "type": "string"
+          },
+          "ConfigJSON": {
+            "type": "string"
+          },
+          "ENABLEACCOUNTJSON": {
+            "type": "string"
+          },
+          "ENFORCE_TREE_DELETION": {
+            "type": "string"
+          },
+          "ENTITLEMENT_ATTRIBUTE": {
+            "type": "string"
+          },
+          "IMPORTJSON": {
+            "type": "string"
+          },
+          "JCO_ASHOST": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "n8mn5evw92rmz"
+            }
+          },
+          "JCO_CLIENT": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1jovo79h5xbx7"
+            }
+          },
+          "JCO_SYSNR": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jjvsoejpx3gyx"
+            }
+          },
+          "JCO_USER": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "cx8byx5kgcpep"
+            }
+          },
+          "LDAP_OR_AD": {
+            "type": "string"
+          },
+          "OBJECTFILTER": {
+            "type": "string"
+          },
+          "ORGANIZATION_ATTRIBUTE": {
+            "type": "string"
+          },
+          "ORGIMPORTJSON": {
+            "type": "string"
+          },
+          "ORG_BASE": {
+            "type": "string"
+          },
+          "PAGE_SIZE": {
+            "type": "string"
+          },
+          "PAM_CONFIG": {
+            "type": "string"
+          },
+          "PASSWORD": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "l7myxh12vypcr"
+            }
+          },
+          "PASSWORD_MAX_LENGTH": {
+            "type": "string"
+          },
+          "PASSWORD_MIN_LENGTH": {
+            "type": "string"
+          },
+          "PASSWORD_NOOFCAPSALPHA": {
+            "type": "string"
+          },
+          "PASSWORD_NOOFDIGITS": {
+            "type": "string"
+          },
+          "PASSWORD_NOOFSPLCHARS": {
+            "type": "string"
+          },
+          "READ_OPERATIONAL_ATTRIBUTES": {
+            "type": "string"
+          },
+          "REMOVEACCOUNTACTION": {
+            "type": "string"
+          },
+          "RESETANDCHANGEPASSWRDJSON": {
+            "type": "string"
+          },
+          "REUSEINACTIVEACCOUNT": {
+            "type": "string"
+          },
+          "SEARCHFILTER": {
+            "type": "string"
+          },
+          "SETDEFAULTPAGESIZE": {
+            "type": "string"
+          },
+          "SETRANDOMPASSWORD": {
+            "type": "string"
+          },
+          "STATUSKEYJSON": {
+            "type": "string"
+          },
+          "STATUS_THRESHOLD_CONFIG": {
+            "type": "string"
+          },
+          "SUPPORTEMPTYSTRING": {
+            "type": "string"
+          },
+          "UNLOCKACCOUNTJSON": {
+            "type": "string"
+          },
+          "UPDATEORGJSON": {
+            "type": "string"
+          },
+          "URL": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "yuoozvp6ihpcz"
+            }
+          },
+          "USERNAME": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "1zlvwawhijk3x"
+            }
+          }
+        },
+        "required": [
+          "connectiontype"
+        ]
+      },
+      "CreateOrUpdateConnectionResponse": {
+        "title": "CreateOrUpdateConnectionResponse",
+        "x-stoplight": {
+          "id": "fok5zvqgln0z8"
+        },
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "br4jba4brydxw"
+            }
+          },
+          "errorCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "f5q0uhvpk4j8d"
+            }
+          },
+          "connectionKey": {
+            "type": "integer",
+            "x-stoplight": {
+              "id": "lmvwqmnvlymvw"
+            }
+          }
+        },
+        "required": [
+          "msg",
+          "errorCode"
+        ]
+      },
+      "DeleteConnectionRequest": {
+        "title": "DeleteConnectionRequest",
+        "x-stoplight": {
+          "id": "bqwudyuqtmqv4"
+        },
+        "type": "object",
+        "properties": {
+          "connectionkey": {
+            "type": "array",
+            "x-stoplight": {
+              "id": "om8s9l6kbqx7c"
+            },
+            "items": {
+              "x-stoplight": {
+                "id": "w7x0rbdy052sx"
+              },
+              "type": "string"
+            }
+          },
+          "updateuser": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "mni74pd0ixcg2"
+            }
+          }
+        }
+      },
+      "DeleteConnectionResponse": {
+        "title": "DeleteConnectionResponse",
+        "x-stoplight": {
+          "id": "2ejl6du4vhzey"
+        },
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "bnakjns15cdu3"
+            },
+            "example": "success"
+          },
+          "errorcode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "hytd754r51rra"
+            },
+            "example": "0"
+          }
+        },
+        "required": [
+          "msg",
+          "errorcode"
+        ]
       }
     }
   }
