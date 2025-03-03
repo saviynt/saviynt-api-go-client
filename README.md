@@ -21,6 +21,8 @@
 
 This is a Client SDK in Go for the [Saviynt API](https://saviynt.com/api-reference).
 
+Example code on usage is available in the automated tests, in the [`test`](test) folder.
+
 ## OpenAPI Spec References
 
 The follow API Reference are generated using Redocly and the OpenAPI specs used to build this client SDK.
