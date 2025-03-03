@@ -70,7 +70,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if conn == nil || strings.TrimSpace(conn.CONNECTIONNAME) == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnections`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnections`")
 		}
 
 		resp, httpRes, err := apiClient.Connections.
@@ -141,7 +141,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if createdConnectionKey == nil {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`")
 		}
 
 		resp, httpRes, err := apiClient.Connections.
@@ -166,7 +166,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if connResponse == nil {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnectionDetails_ByKey`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnectionDetails_ByKey`")
 		}
 
 		req, err := connectionsutil.ConnectionDetailsResponseToRequest(*connResponse)
@@ -210,9 +210,9 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if createdConnectionKey == nil {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Update`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Update`")
 		} else if passwordNoOfSplCharsUpdateAfter == nil {
-			t.Skip(fmt.Sprintf("skip test: var not set (%s)", "PASSWORD_NOOFSPLCHARS"))
+			t.Skipf("skip test: var not set (%s)", "PASSWORD_NOOFSPLCHARS")
 		}
 
 		resp, httpRes, err := apiClient.Connections.
@@ -236,7 +236,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if createdConnectionKey == nil {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`")
 		} else {
 			t.Skip("skip test: unimplemented: `Test_ConnectionsAPIService_DeleteConnection`")
 		}

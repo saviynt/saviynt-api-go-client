@@ -9,7 +9,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"strings"
 	"testing"
@@ -118,7 +117,7 @@ func Test_mtlsauthentication_MTLSAuthenticationAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if keyStoreAlias == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_After_Upload`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_MTLSAuthenticationAPIService_GetKeyStoreCertificateDetails_After_Upload`")
 		}
 
 		assert.NotEqual(t, keyStoreAlias, "")

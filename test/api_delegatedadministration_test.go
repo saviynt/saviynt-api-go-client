@@ -135,7 +135,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`")
 		}
 
 		req := delegatedadministration.EditDelegateRequest{
@@ -166,7 +166,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`")
 		}
 
 		resp, httpRes, err := apiClient.DelegatedAdministration.

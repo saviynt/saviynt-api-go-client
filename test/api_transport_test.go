@@ -11,7 +11,6 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -76,7 +75,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if exportFilename == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`")
 		}
 
 		req := transport.ImportTransportPackageRequest{
@@ -100,7 +99,7 @@ func Test_transport_TransportAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		} else if exportFilename == "" {
-			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`"))
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_TransportAPIService_ExportTransportPackage`")
 		}
 
 		req := transport.TransportPackageStatusRequest{

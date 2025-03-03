@@ -47,7 +47,6 @@ func ParseFields(s any) Fields {
 		}
 
 		if jsonTag == "" {
-			jsonTag = field.Name
 			f.Tags["json"] = Tag{Name: field.Name}
 		} else {
 			if jsonTag = parseJSONTag(jsonTag); jsonTag == "" {
