@@ -18,12 +18,13 @@ import (
 
 	saviyntapigoclient "github.com/saviynt/saviynt-api-go-client"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
+	"github.com/saviynt/saviynt-api-go-client/util/delegatedadministrationutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T) {
-	apiClient, creds, wantTest, err := client()
+	apiClient, creds, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
 
 	ctx := context.Background()
@@ -33,14 +34,16 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	layoutM2D2Y4Slash := "01/02/2006"
 	dateLayoutFetchDelegatesResponse := layoutM2D2Y4Slash
 
-	delegatesAvailable := DelegateUsers{}
-	delegatesExisting := Delegates{}
+	delegatesAvailable := delegatedadministrationutil.DelegateUsers{}
+	delegatesExisting := delegatedadministrationutil.Delegates{}
 	delegateCreateRequest := delegatedadministration.CreateDelegateRequest{}
 	delegateCreateResponse := delegatedadministration.CreateDelegateResponse{}
 
 	t.Run("Test_DelegatedAdministrationAPIService_GetDelegateUserList", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		req := delegatedadministration.GetDelegateUserListRequest{
@@ -62,8 +65,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	})
 
 	t.Run("Test_DelegatedAdministrationAPIService_FetchDelegatesList", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		req := delegatedadministration.FetchDelegatesListRequest{
@@ -84,8 +89,10 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	})
 
 	t.Run("Test_DelegatedAdministrationAPIService_CreateDelegate", func(t *testing.T) {
-		if !wantTest {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
 		}
 
 		tr, err := delegatesExisting.MaxTimeRange(dateLayoutFetchDelegatesResponse)
@@ -123,8 +130,12 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	})
 
 	t.Run("Test_DelegatedAdministrationAPIService_EditDelegate", func(t *testing.T) {
-		if !wantTest || delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
+			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`"))
 		}
 
 		req := delegatedadministration.EditDelegateRequest{
@@ -150,8 +161,12 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 	})
 
 	t.Run("Test_DelegatedAdministrationAPIService_DeleteDelegate", func(t *testing.T) {
-		if !wantTest || delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
-			t.Skip("skip test") // remove to run test
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
+			t.Skip(fmt.Sprintf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_CreateDelegate`"))
 		}
 
 		resp, httpRes, err := apiClient.DelegatedAdministration.
@@ -166,102 +181,4 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		require.NotNil(t, resp)
 		assert.Equal(t, "0", resp.ErrorCode)
 	})
-}
-
-type DelegateUsers []delegatedadministration.DelegateUser
-
-func (dels DelegateUsers) Usernames(exclUsernames []string) []string {
-	var users []string
-	exclMap := map[string]int{}
-	for _, exclUsername := range exclUsernames {
-		exclMap[exclUsername]++
-	}
-	for _, del := range dels {
-		if _, ok := exclMap[del.Username]; ok {
-			continue
-		}
-		users = append(users, del.Username)
-	}
-	return users
-}
-
-type Delegates []delegatedadministration.Delegate
-
-func (dels Delegates) Keys() []string {
-	var keys []string
-	for _, del := range dels {
-		keys = append(keys, del.Delegatekey)
-	}
-	return keys
-}
-
-type TimeRange struct {
-	InputLayout  string
-	OutputLayout string
-	Min          *time.Time
-	Max          *time.Time
-}
-
-func (tr *TimeRange) AddTime(t time.Time) {
-	if tr.Min == nil || t.Before(*tr.Min) {
-		tr.Min = &t
-	}
-	if tr.Max == nil || t.After(*tr.Max) {
-		tr.Max = &t
-	}
-}
-
-func (tr *TimeRange) MaxOrDefault(def time.Time) time.Time {
-	if tr.Max == nil {
-		return def
-	} else if tr.Max.After(def) {
-		return *tr.Max
-	} else {
-		return def
-	}
-}
-
-func (tr *TimeRange) MinOrDefault(def time.Time) time.Time {
-	if tr.Min == nil {
-		return def
-	} else if tr.Min.Before(def) {
-		return *tr.Min
-	} else {
-		return def
-	}
-}
-
-func (tr *TimeRange) AddParseTime(layout string, value string) error {
-	if layout == "" {
-		layout = tr.InputLayout
-	}
-	if t, err := time.Parse(layout, value); err != nil {
-		return err
-	} else {
-		tr.AddTime(t)
-		return nil
-	}
-}
-
-func (dels Delegates) MaxTimeRange(dateLayout string) (TimeRange, error) {
-	tr := TimeRange{
-		InputLayout: dateLayout,
-	}
-
-	for _, del := range dels {
-		sta := strings.TrimSpace(del.Startdate)
-		if sta != "" {
-			if err := tr.AddParseTime("", sta); err != nil {
-				return tr, err
-			}
-		}
-		end := strings.TrimSpace(del.Enddate)
-		if end != "" {
-			if err := tr.AddParseTime("", end); err != nil {
-				return tr, err
-			}
-		}
-	}
-
-	return tr, nil
 }
