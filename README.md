@@ -25,18 +25,18 @@ Example code on usage is available in the automated tests, in the [`test`](test)
 
 ## OpenAPI Spec References
 
-The follow API Reference are generated using Redocly and the OpenAPI specs used to build this client SDK.
+The following Saviynt APIs are covered by this SDK.
 
-1. [Connections](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
-1. [Delegated Administration](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
-1. [Email](https://saviynt.github.io/saviynt-api-go-client/api_email.html)
-1. [File Directory](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
-1. [Job Control](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
-1. [mTLS Authentication](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
-1. [SAV Roles](https://saviynt.github.io/saviynt-api-go-client/api_savroles.html)
-1. [Tasks](https://saviynt.github.io/saviynt-api-go-client/api_tasks.html)
-1. [Transport](https://saviynt.github.io/saviynt-api-go-client/api_transport.html)
-1. [Users](https://saviynt.github.io/saviynt-api-go-client/api_users.html)
+1. [Connections](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/connections) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
+1. [Delegated Administration](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/delegatedadministration) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
+1. [Email](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/email) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_email.html)
+1. [File Directory](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/filedirectory) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
+1. [Job Control](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/jobcontrol) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
+1. [mTLS Authentication](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/mtlsauthentication) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
+1. [SAV Roles](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/savroles) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_savroles.html)
+1. [Tasks](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/tasks) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_tasks.html)
+1. [Transport](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/transport) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_transport.html)
+1. [Users](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/users) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_users.html)
 
 ## Supported Saviynt APIs
 
@@ -107,4 +107,6 @@ Feel free to open a PR or a Github issue as a proof of concept and we'll do our 
 
 ## Credits
 
-This is an auto-generated client using [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) `7.10.0`.
+1. Clients are using [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator) `7.10.0`.
+1. OpenAPI Specs are generated using [OpenAPI Specification `v3.1.0`](https://spec.openapis.org/oas/v3.1.0.html).
+1. API References are generated using [Redoc](https://github.com/Redocly/redoc).
