@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost:3000*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrUpdateConnection**](ConnectionsAPI.md#CreateOrUpdateConnection) | **Post** /ECM/api/v5/testConnection | Create or Update Connection
-[**DeleteConnection**](ConnectionsAPI.md#DeleteConnection) | **Delete** /ECM/api/v5/deleteConnection | 
+[**DeleteConnection**](ConnectionsAPI.md#DeleteConnection) | **Delete** /ECM/api/v5/deleteConnection | Delete Connection
 [**GetConnectionDetails**](ConnectionsAPI.md#GetConnectionDetails) | **Post** /ECM/api/v5/getConnectionDetails | Get Connection Details
 [**GetConnections**](ConnectionsAPI.md#GetConnections) | **Post** /ECM/api/v5/getConnections | Get List of Connections
 
@@ -81,7 +81,7 @@ No authorization required
 
 > DeleteConnectionResponse DeleteConnection(ctx).DeleteConnectionRequest(deleteConnectionRequest).Execute()
 
-
+Delete Connection
 
 
 

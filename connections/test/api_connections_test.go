@@ -11,11 +11,10 @@ package connections
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService CreateOrUpdateConnection", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdateConnection(context.Background()).Execute()
 
@@ -37,7 +36,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService DeleteConnection", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConnectionsAPI.DeleteConnection(context.Background()).Execute()
 
@@ -49,7 +48,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Execute()
 
@@ -61,7 +60,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService GetConnections", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
 

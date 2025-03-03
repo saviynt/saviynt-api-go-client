@@ -29,6 +29,7 @@ type CreateOrUpdateConnectionRequest struct {
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
 	Saveconnection *string `json:"saveconnection,omitempty"`
 	Systemname *string `json:"systemname,omitempty"`
+	ACCOUNT_ATTRIBUTE *string `json:"ACCOUNT_ATTRIBUTE,omitempty"`
 	ACCOUNTNAMERULE *string `json:"ACCOUNTNAMERULE,omitempty"`
 	BASE *string `json:"BASE,omitempty"`
 	CHECKFORUNIQUE *string `json:"CHECKFORUNIQUE,omitempty"`
@@ -305,6 +306,38 @@ func (o *CreateOrUpdateConnectionRequest) HasSystemname() bool {
 // SetSystemname gets a reference to the given string and assigns it to the Systemname field.
 func (o *CreateOrUpdateConnectionRequest) SetSystemname(v string) {
 	o.Systemname = &v
+}
+
+// GetACCOUNT_ATTRIBUTE returns the ACCOUNT_ATTRIBUTE field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetACCOUNT_ATTRIBUTE() string {
+	if o == nil || IsNil(o.ACCOUNT_ATTRIBUTE) {
+		var ret string
+		return ret
+	}
+	return *o.ACCOUNT_ATTRIBUTE
+}
+
+// GetACCOUNT_ATTRIBUTEOk returns a tuple with the ACCOUNT_ATTRIBUTE field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetACCOUNT_ATTRIBUTEOk() (*string, bool) {
+	if o == nil || IsNil(o.ACCOUNT_ATTRIBUTE) {
+		return nil, false
+	}
+	return o.ACCOUNT_ATTRIBUTE, true
+}
+
+// HasACCOUNT_ATTRIBUTE returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasACCOUNT_ATTRIBUTE() bool {
+	if o != nil && !IsNil(o.ACCOUNT_ATTRIBUTE) {
+		return true
+	}
+
+	return false
+}
+
+// SetACCOUNT_ATTRIBUTE gets a reference to the given string and assigns it to the ACCOUNT_ATTRIBUTE field.
+func (o *CreateOrUpdateConnectionRequest) SetACCOUNT_ATTRIBUTE(v string) {
+	o.ACCOUNT_ATTRIBUTE = &v
 }
 
 // GetACCOUNTNAMERULE returns the ACCOUNTNAMERULE field value if set, zero value otherwise.
@@ -1615,6 +1648,9 @@ func (o CreateOrUpdateConnectionRequest) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.Systemname) {
 		toSerialize["systemname"] = o.Systemname
+	}
+	if !IsNil(o.ACCOUNT_ATTRIBUTE) {
+		toSerialize["ACCOUNT_ATTRIBUTE"] = o.ACCOUNT_ATTRIBUTE
 	}
 	if !IsNil(o.ACCOUNTNAMERULE) {
 		toSerialize["ACCOUNTNAMERULE"] = o.ACCOUNTNAMERULE

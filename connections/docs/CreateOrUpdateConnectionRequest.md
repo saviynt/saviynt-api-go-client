@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **GroupSearchBaseDN** | Pointer to **string** |  | [optional] 
 **Saveconnection** | Pointer to **string** |  | [optional] 
 **Systemname** | Pointer to **string** |  | [optional] 
+**ACCOUNT_ATTRIBUTE** | Pointer to **string** |  | [optional] 
 **ACCOUNTNAMERULE** | Pointer to **string** |  | [optional] 
 **BASE** | Pointer to **string** |  | [optional] 
 **CHECKFORUNIQUE** | Pointer to **string** |  | [optional] 
@@ -240,6 +241,31 @@ SetSystemname sets Systemname field to given value.
 `func (o *CreateOrUpdateConnectionRequest) HasSystemname() bool`
 
 HasSystemname returns a boolean if a field has been set.
+
+### GetACCOUNT_ATTRIBUTE
+
+`func (o *CreateOrUpdateConnectionRequest) GetACCOUNT_ATTRIBUTE() string`
+
+GetACCOUNT_ATTRIBUTE returns the ACCOUNT_ATTRIBUTE field if non-nil, zero value otherwise.
+
+### GetACCOUNT_ATTRIBUTEOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetACCOUNT_ATTRIBUTEOk() (*string, bool)`
+
+GetACCOUNT_ATTRIBUTEOk returns a tuple with the ACCOUNT_ATTRIBUTE field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetACCOUNT_ATTRIBUTE
+
+`func (o *CreateOrUpdateConnectionRequest) SetACCOUNT_ATTRIBUTE(v string)`
+
+SetACCOUNT_ATTRIBUTE sets ACCOUNT_ATTRIBUTE field to given value.
+
+### HasACCOUNT_ATTRIBUTE
+
+`func (o *CreateOrUpdateConnectionRequest) HasACCOUNT_ATTRIBUTE() bool`
+
+HasACCOUNT_ATTRIBUTE returns a boolean if a field has been set.
 
 ### GetACCOUNTNAMERULE
 

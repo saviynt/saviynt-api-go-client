@@ -79,7 +79,7 @@ All URIs are relative to *http://localhost:3000*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ConnectionsAPI* | [**CreateOrUpdateConnection**](docs/ConnectionsAPI.md#createorupdateconnection) | **Post** /ECM/api/v5/testConnection | Create or Update Connection
-*ConnectionsAPI* | [**DeleteConnection**](docs/ConnectionsAPI.md#deleteconnection) | **Delete** /ECM/api/v5/deleteConnection | 
+*ConnectionsAPI* | [**DeleteConnection**](docs/ConnectionsAPI.md#deleteconnection) | **Delete** /ECM/api/v5/deleteConnection | Delete Connection
 *ConnectionsAPI* | [**GetConnectionDetails**](docs/ConnectionsAPI.md#getconnectiondetails) | **Post** /ECM/api/v5/getConnectionDetails | Get Connection Details
 *ConnectionsAPI* | [**GetConnections**](docs/ConnectionsAPI.md#getconnections) | **Post** /ECM/api/v5/getConnections | Get List of Connections
 

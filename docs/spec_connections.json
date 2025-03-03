@@ -140,7 +140,7 @@
     },
     "/ECM/api/v5/deleteConnection": {
       "delete": {
-        "summary": "",
+        "summary": "Delete Connection",
         "operationId": "deleteConnection",
         "tags": [
           "Connections"
@@ -802,6 +802,9 @@
             "example": "Y"
           },
           "systemname": {
+            "type": "string"
+          },
+          "ACCOUNT_ATTRIBUTE": {
             "type": "string"
           },
           "ACCOUNTNAMERULE": {

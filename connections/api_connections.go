@@ -146,7 +146,7 @@ func (r ApiDeleteConnectionRequest) Execute() (*DeleteConnectionResponse, *http.
 }
 
 /*
-DeleteConnection 
+DeleteConnection Delete Connection
 
 This API deletes connections in Saviynt.
 

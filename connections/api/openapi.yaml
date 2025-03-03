@@ -108,7 +108,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteConnectionResponse'
           description: OK
-      summary: ""
+      summary: Delete Connection
       tags:
       - Connections
 components:
@@ -799,6 +799,7 @@ components:
         UNLOCKACCOUNTJSON: UNLOCKACCOUNTJSON
         JCO_SYSNR: JCO_SYSNR
         saveconnection: "Y"
+        ACCOUNT_ATTRIBUTE: ACCOUNT_ATTRIBUTE
         PASSWORD: PASSWORD
         ORGIMPORTJSON: ORGIMPORTJSON
         PAM_CONFIG: PAM_CONFIG
@@ -835,6 +836,8 @@ components:
           x-stoplight:
             id: 1t0b3va60lisy
         systemname:
+          type: string
+        ACCOUNT_ATTRIBUTE:
           type: string
         ACCOUNTNAMERULE:
           type: string
