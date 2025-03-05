@@ -1,0 +1,441 @@
+openapi: 3.0.0
+info:
+  description: API for managing endpoints in Enterprise Identity Cloud (EIC)
+  title: Endpoints API
+  version: 1.0.0
+servers:
+- url: "{baseUrl}/ECM/{path}"
+  variables:
+    baseUrl:
+      default: https://api.example.com
+      description: Base URL for the API
+    path:
+      default: api
+      description: API path
+security:
+- bearerAuth: []
+paths:
+  /createEndpoint:
+    post:
+      description: Creates a new endpoint in EIC
+      operationId: createEndpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEndpointRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+      summary: Create Endpoint
+  /updateEndpoint:
+    put:
+      description: Updates an existing endpoint in EIC
+      operationId: updateEndpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEndpointRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+      summary: Update Endpoint
+  /getEndpoints:
+    post:
+      description: Returns a list of endpoints based on the specified filters
+      operationId: getEndpoints
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetEndpointsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEndpointsResponse'
+          description: Successful operation
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+      summary: Get List of Endpoints
+components:
+  schemas:
+    CreateEndpointRequest:
+      example:
+        ownerType: ownerType
+        owner: owner
+        disableModifyAccount: disableModifyAccount
+        enableCopyAccess: enableCopyAccess
+        displayName: displayName
+        resourceOwner: resourceOwner
+        securitysystem: securitysystem
+        disableNewAccountRequestIfAccountExists: disableNewAccountRequestIfAccountExists
+        description: description
+        resourceOwnerType: resourceOwnerType
+        userAccountCorrelationRule: userAccountCorrelationRule
+        accessquery: accessquery
+        connectionconfig: connectionconfig
+        endpointname: endpointname
+        blockInflightRequest: blockInflightRequest
+        disableRemoveAccount: disableRemoveAccount
+      properties:
+        endpointname:
+          description: Logical name for the endpoint that helps identify it easily
+          type: string
+        displayName:
+          description: Name displayed in the user interface (can be different from
+            endpoint name)
+          type: string
+        securitysystem:
+          description: Security system that encapsulates the endpoint
+          type: string
+        description:
+          description: Description of the endpoint
+          type: string
+        ownerType:
+          description: "Type of owner (e.g., User, Usergroup)"
+          type: string
+        owner:
+          description: Owner identifier
+          type: string
+        resourceOwnerType:
+          description: Type of resource owner
+          type: string
+        resourceOwner:
+          description: Resource owner identifier
+          type: string
+        accessquery:
+          description: Access query
+          type: string
+        enableCopyAccess:
+          description: Flag to enable copy access
+          type: string
+        disableNewAccountRequestIfAccountExists:
+          description: Flag to disable new account request if account exists
+          type: string
+        disableRemoveAccount:
+          description: Flag to disable remove account functionality
+          type: string
+        disableModifyAccount:
+          description: Flag to disable modify account functionality
+          type: string
+        blockInflightRequest:
+          description: Flag to block inflight requests
+          type: string
+        userAccountCorrelationRule:
+          description: Rule for correlating users to accounts
+          type: string
+        connectionconfig:
+          description: Connection configuration in JSON format (escaped)
+          type: string
+      required:
+      - displayName
+      - endpointname
+      - securitysystem
+      type: object
+    UpdateEndpointRequest:
+      example:
+        ownerType: ownerType
+        owner: owner
+        disableModifyAccount: disableModifyAccount
+        enableCopyAccess: enableCopyAccess
+        displayName: displayName
+        resourceOwner: resourceOwner
+        securitysystem: securitysystem
+        disableNewAccountRequestIfAccountExists: disableNewAccountRequestIfAccountExists
+        description: description
+        resourceOwnerType: resourceOwnerType
+        requestableRoleType:
+        - requestedQuery: requestedQuery
+          selectedQuery: selectedQuery
+          showOn: showOn
+          roleType: roleType
+          required: true
+          requestOption: requestOption
+        - requestedQuery: requestedQuery
+          selectedQuery: selectedQuery
+          showOn: showOn
+          roleType: roleType
+          required: true
+          requestOption: requestOption
+        createEntTaskforRemoveAcc: createEntTaskforRemoveAcc
+        userAccountCorrelationRule: userAccountCorrelationRule
+        accessquery: accessquery
+        connectionconfig: connectionconfig
+        endpointname: endpointname
+        blockInflightRequest: blockInflightRequest
+        disableRemoveAccount: disableRemoveAccount
+      properties:
+        endpointname:
+          description: Name of the endpoint to update
+          type: string
+        securitysystem:
+          description: Security system that encapsulates the endpoint
+          type: string
+        displayName:
+          description: Name displayed in the user interface
+          type: string
+        description:
+          description: Description of the endpoint
+          type: string
+        ownerType:
+          description: Type of owner
+          type: string
+        owner:
+          description: Owner identifier
+          type: string
+        resourceOwnerType:
+          description: Type of resource owner
+          type: string
+        resourceOwner:
+          description: Resource owner identifier
+          type: string
+        accessquery:
+          description: Access query
+          type: string
+        enableCopyAccess:
+          description: Flag to enable copy access
+          type: string
+        disableNewAccountRequestIfAccountExists:
+          description: Flag to disable new account request if account exists
+          type: string
+        disableRemoveAccount:
+          description: Flag to disable remove account functionality
+          type: string
+        disableModifyAccount:
+          description: Flag to disable modify account functionality
+          type: string
+        blockInflightRequest:
+          description: Flag to block inflight requests
+          type: string
+        userAccountCorrelationRule:
+          description: Rule for correlating users to accounts
+          type: string
+        createEntTaskforRemoveAcc:
+          description: Flag to create enterprise task for remove account
+          type: string
+        connectionconfig:
+          description: Connection configuration in JSON format (escaped)
+          type: string
+        requestableRoleType:
+          description: Configuration for requestable role types (available from v23.9)
+          items:
+            $ref: '#/components/schemas/UpdateEndpointRequest_requestableRoleType_inner'
+          type: array
+      required:
+      - endpointname
+      type: object
+    GetEndpointsRequest:
+      example:
+        filterCriteria:
+          key: ""
+        offset: 1
+        max: 6
+        endpointkey:
+        - 0
+        - 0
+        endpointname: endpointname
+        connectionType: connectionType
+      properties:
+        connectionType:
+          description: Filter by connection type
+          type: string
+        endpointkey:
+          description: Filter by endpoint key(s)
+          items:
+            type: integer
+          type: array
+        endpointname:
+          description: Filter by endpoint name
+          type: string
+        max:
+          description: Maximum number of results to return
+          type: integer
+        offset:
+          description: Pagination offset
+          type: integer
+        filterCriteria:
+          additionalProperties: true
+          description: Custom filter criteria
+          type: object
+      type: object
+    SuccessResponse:
+      example:
+        msg: msg
+        errorCode: errorCode
+      properties:
+        msg:
+          description: Response message
+          type: string
+        errorCode:
+          description: Error code (0 indicates success)
+          type: string
+      type: object
+    EndpointResponse:
+      example:
+        ownerType: ownerType
+        securitySystem: securitySystem
+        customproperty1: customproperty1
+        enableCopyAccess: enableCopyAccess
+        displayName: displayName
+        description: description
+        accountNameRule: accountNameRule
+        createEntTaskforRemoveAcc: createEntTaskforRemoveAcc
+        ownerkey: ownerkey
+        userAccountCorrelationRule: userAccountCorrelationRule
+        connectionconfig: connectionconfig
+        endpointname: endpointname
+        disableaccountrequest: disableaccountrequest
+        requestownertype: requestownertype
+        status: status
+        accountTypeNoDeprovision: accountTypeNoDeprovision
+      properties:
+        securitySystem:
+          type: string
+        customproperty1:
+          type: string
+        enableCopyAccess:
+          type: string
+        displayName:
+          type: string
+        endpointname:
+          type: string
+        description:
+          type: string
+        disableaccountrequest:
+          type: string
+        requestownertype:
+          type: string
+        createEntTaskforRemoveAcc:
+          type: string
+        status:
+          type: string
+        ownerType:
+          type: string
+        ownerkey:
+          type: string
+        accountNameRule:
+          type: string
+        userAccountCorrelationRule:
+          type: string
+        connectionconfig:
+          type: string
+        accountTypeNoDeprovision:
+          type: string
+      type: object
+    GetEndpointsResponse:
+      example:
+        endpoints:
+        - ownerType: ownerType
+          securitySystem: securitySystem
+          customproperty1: customproperty1
+          enableCopyAccess: enableCopyAccess
+          displayName: displayName
+          description: description
+          accountNameRule: accountNameRule
+          createEntTaskforRemoveAcc: createEntTaskforRemoveAcc
+          ownerkey: ownerkey
+          userAccountCorrelationRule: userAccountCorrelationRule
+          connectionconfig: connectionconfig
+          endpointname: endpointname
+          disableaccountrequest: disableaccountrequest
+          requestownertype: requestownertype
+          status: status
+          accountTypeNoDeprovision: accountTypeNoDeprovision
+        - ownerType: ownerType
+          securitySystem: securitySystem
+          customproperty1: customproperty1
+          enableCopyAccess: enableCopyAccess
+          displayName: displayName
+          description: description
+          accountNameRule: accountNameRule
+          createEntTaskforRemoveAcc: createEntTaskforRemoveAcc
+          ownerkey: ownerkey
+          userAccountCorrelationRule: userAccountCorrelationRule
+          connectionconfig: connectionconfig
+          endpointname: endpointname
+          disableaccountrequest: disableaccountrequest
+          requestownertype: requestownertype
+          status: status
+          accountTypeNoDeprovision: accountTypeNoDeprovision
+        displayCount: 0
+        errorCode: errorCode
+        totalCount: 6
+        message: message
+      properties:
+        endpoints:
+          items:
+            $ref: '#/components/schemas/EndpointResponse'
+          type: array
+        displayCount:
+          description: Number of endpoints returned
+          type: integer
+        errorCode:
+          description: Error code (0 indicates success)
+          type: string
+        totalCount:
+          description: Total number of endpoints matching the criteria
+          type: integer
+        message:
+          description: Response message
+          type: string
+      type: object
+    UpdateEndpointRequest_requestableRoleType_inner:
+      example:
+        requestedQuery: requestedQuery
+        selectedQuery: selectedQuery
+        showOn: showOn
+        roleType: roleType
+        required: true
+        requestOption: requestOption
+      properties:
+        roleType:
+          description: "Type of role (e.g., Application, Enterprise, Enabler, Transactional,\
+            \ EmergencyAccess)"
+          type: string
+        requestOption:
+          description: "How roles are displayed (e.g., None, DropDownSingle, Table,\
+            \ TableOnlyAdd)"
+          type: string
+        required:
+          description: Whether role selection is required
+          type: boolean
+        requestedQuery:
+          description: Query for filtering requested roles
+          type: string
+        selectedQuery:
+          description: Query for filtering selected roles
+          type: string
+        showOn:
+          description: "Specifies where to display roles (e.g., All, ShowOnApplicationRequest,\
+            \ ShowOnServiceAccountRequest)"
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
