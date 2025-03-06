@@ -16,6 +16,7 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
+	"github.com/saviynt/saviynt-api-go-client/endpoints"
 	"github.com/saviynt/saviynt-api-go-client/filedirectory"
 	"github.com/saviynt/saviynt-api-go-client/jobcontrol"
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
@@ -35,6 +36,7 @@ const (
 
 type Client struct {
 	serverURL                     string
+	Username                      *string
 	token                         *oauth2.Token
 	httpClient                    *http.Client
 	Connections                   *connections.ConnectionsAPIService
@@ -43,6 +45,8 @@ type Client struct {
 	delegatedAdministrationClient *delegatedadministration.APIClient
 	Email                         *email.EmailAPIService
 	emailClient                   *email.APIClient
+	Endpoints                     *endpoints.EndpointsAPIService
+	endpointsClient               *endpoints.APIClient
 	FileDirectory                 *filedirectory.FileDirectoryAPIService
 	fileDirectoryClient           *filedirectory.APIClient
 	JobControl                    *jobcontrol.JobControlAPIService
@@ -59,16 +63,21 @@ type Client struct {
 	usersClient                   *users.APIClient
 }
 
-func NewClient(ctx context.Context, serverURL string, httpClient *http.Client) *Client {
+func newClientHTTPClient(ctx context.Context, serverURL string, username *string, httpClient *http.Client) *Client {
 	c := &Client{
 		serverURL:  serverURL,
 		httpClient: httpClient}
+	if username != nil {
+		c.Username = Pointer(*username)
+	}
 	c.connectionsClient = newClientConnections(c.APIBaseURL(), c.httpClient)
 	c.Connections = c.connectionsClient.ConnectionsAPI
 	c.delegatedAdministrationClient = newClientDelegatedAdministration(c.APIBaseURL(), c.httpClient)
 	c.DelegatedAdministration = c.delegatedAdministrationClient.DelegatedAdministrationAPI
 	c.emailClient = newClientEmail(c.APIBaseURL(), c.httpClient)
 	c.Email = c.emailClient.EmailAPI
+	c.endpointsClient = newClientEndpoints(c.APIBaseURL(), c.httpClient)
+	c.Endpoints = c.endpointsClient.EndpointsAPI
 	c.fileDirectoryClient = newClientFileDirectory(c.APIBaseURL(), c.httpClient)
 	c.FileDirectory = c.fileDirectoryClient.FileDirectoryAPI
 	c.jobControlClient = newClientJobControl(c.APIBaseURL(), c.httpClient)
@@ -92,11 +101,11 @@ type Credentials struct {
 	Password  string `json:"password"`
 }
 
-func NewClientPassword(ctx context.Context, creds Credentials) (*Client, error) {
+func NewClient(ctx context.Context, creds Credentials) (*Client, error) {
 	if tok, err := newOAuth2TokenBasicAuth(loginURL(creds.ServerURL), creds.Username, creds.Password); err != nil {
 		return nil, err
 	} else {
-		c := NewClientToken(ctx, creds.ServerURL, tok)
+		c := NewClientToken(ctx, creds.ServerURL, Pointer(creds.Username), tok)
 		c.token = tok
 		return c, nil
 	}
@@ -113,12 +122,12 @@ func NewClientPasswordEnv(ctx context.Context, envvar string) (*Client, Credenti
 	if err := json.Unmarshal([]byte(v), &creds); err != nil {
 		return nil, creds, err
 	}
-	clt, err := NewClientPassword(ctx, creds)
+	clt, err := NewClient(ctx, creds)
 	return clt, creds, err
 }
 
-func NewClientToken(ctx context.Context, serverURL string, token *oauth2.Token) *Client {
-	c := NewClient(ctx, serverURL, newClientToken(ctx, token))
+func NewClientToken(ctx context.Context, serverURL string, username *string, token *oauth2.Token) *Client {
+	c := newClientHTTPClient(ctx, serverURL, username, newClientToken(ctx, token))
 	c.token = token
 	return c
 }
@@ -150,6 +159,13 @@ func newClientEmail(apiBaseURL string, httpClient *http.Client) *email.APIClient
 	cfg.HTTPClient = httpClient
 	cfg.Servers = email.ServerConfigurations{{URL: apiBaseURL}}
 	return email.NewAPIClient(cfg)
+}
+
+func newClientEndpoints(apiBaseURL string, httpClient *http.Client) *endpoints.APIClient {
+	cfg := endpoints.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = endpoints.ServerConfigurations{{URL: apiBaseURL}}
+	return endpoints.NewAPIClient(cfg)
 }
 
 func newClientFileDirectory(apiBaseURL string, httpClient *http.Client) *filedirectory.APIClient {
