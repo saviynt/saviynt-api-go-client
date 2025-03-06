@@ -27,17 +27,17 @@ Example code on usage is available in the automated tests, in the [`test`](test)
 
 The following Saviynt APIs are covered by this SDK.
 
-1. [Connections](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/connections) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
-1. [Delegated Administration](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/delegatedadministration) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
-1. [Email](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/email) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_email.html)
-1. [Endpoints](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/endpoints) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_endpoints.html)
-1. [File Directory](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/filedirectory) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
-1. [Job Control](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/jobcontrol) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
-1. [mTLS Authentication](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/mtlsauthentication) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
-1. [SAV Roles](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/savroles) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_savroles.html)
-1. [Tasks](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/tasks) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_tasks.html)
-1. [Transport](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/transport) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_transport.html)
-1. [Users](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/users) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_users.html)
+1. [Connections](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/connections) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Connections)
+1. [Delegated Administration](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/delegatedadministration) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Delegated-Administration)
+1. [Email](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/email) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Email)
+1. [Endpoints](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/endpoints) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Endpoints)
+1. [File Directory](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/filedirectory) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/File-Directory)
+1. [Job Control](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/jobcontrol) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Job-Control)
+1. [mTLS Authentication](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/mtlsauthentication) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/mTLS-Authentication)
+1. [SAV Roles](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/savroles) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/SAV-Roles)
+1. [Tasks](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/tasks) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Tasks)
+1. [Transport](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/transport) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Transport)
+1. [Users](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/users) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_saviynt.html#tag/Users) 
 
 ## Supported Saviynt APIs
 
