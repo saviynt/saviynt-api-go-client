@@ -138,7 +138,7 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_GetDelegate`")
 		}
 
-		d, err := delegatedadministrationutil.ReadDelegate(ctx,
+		d, err := delegatedadministrationutil.GetDelegate(ctx,
 			apiClient.DelegatedAdministration,
 			creds.Username,
 			*delegateCreateResponse.Delegatekey)

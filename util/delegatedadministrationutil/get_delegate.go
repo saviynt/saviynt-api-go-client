@@ -11,7 +11,7 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 )
 
-func ReadDelegate(ctx context.Context, api *delegatedadministration.DelegatedAdministrationAPIService, username, key string) (*delegatedadministration.Delegate, error) {
+func GetDelegate(ctx context.Context, api *delegatedadministration.DelegatedAdministrationAPIService, username, key string) (*delegatedadministration.Delegate, error) {
 	if api == nil {
 		return nil, errors.New("delegatedadministration API service cannot be nil")
 	}
