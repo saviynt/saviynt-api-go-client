@@ -1,0 +1,2484 @@
+openapi: 3.0.3
+info:
+  description: "API for creating, updating, retrieving, and deleting Entitlements\
+    \ data in EIC"
+  title: Entitlements Management API
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /ECM/api/v5/getEntitlements:
+    post:
+      description: "This API can be used to get the list of all the entitlements.\n\
+        \nThis API call can be used to get the list and details of all the entitlements\
+        \ the user has access to.\n\nThis API will return only the entitlement attributes\
+        \ which are not null or not empty.\n\nThe `Authorization` must have `Bearer`\
+        \ followed by `Token`.\n\n**Optional parameters:**  \n`username`, `entitlementtype`,\
+        \ `endpoint`, `requestedObject` (\"users\", \"userscount\"), `max`, `offset`,\
+        \  \n`entitlementResponseFields`, `userResponseFields`, `userfiltercriteria`,\
+        \ `accountname`,  \n`entownerwithrank` (if \"true\", returns the list of owners\
+        \ with owner rank for every entitlementValue),  \n`returnentitlementmap` (true/false,\
+        \ default: false) - If true, entitlementmap details will be returned,  \n\
+        `exactmatch` - Default is true. If false, it will search based on similar\
+        \ matches.  \n\nEither pass `entitlementfiltercriteria` (with or without `exactmatch`)\
+        \ **OR** `entQuery`.  \n**Both cannot be passed simultaneously.**\n"
+      operationId: getEntitlements
+      parameters:
+      - example: jasorodriguez
+        explode: true
+        in: query
+        name: username
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: Security-Groups
+        explode: true
+        in: query
+        name: entitlementType
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: AWS
+        explode: true
+        in: query
+        name: endpoint
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: users
+        explode: true
+        in: query
+        name: requestedObject
+        required: false
+        schema:
+          enum:
+          - users
+          - userscount
+          type: string
+        style: form
+      - example: 50
+        explode: true
+        in: query
+        name: max
+        required: false
+        schema:
+          type: integer
+        style: form
+      - example: 0
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - example:
+        - displayname
+        - description
+        explode: true
+        in: query
+        name: entitlementResponseFields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - example:
+        - username
+        - email
+        explode: true
+        in: query
+        name: userResponseFields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - example: status = 'active'
+        explode: true
+        in: query
+        name: userfiltercriteria
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: jasorodriguez
+        explode: true
+        in: query
+        name: accountname
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: true
+        explode: true
+        in: query
+        name: entownerwithrank
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - example: true
+        explode: true
+        in: query
+        name: returnentitlementmap
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - example: true
+        explode: true
+        in: query
+        name: exactmatch
+        required: false
+        schema:
+          default: true
+          type: boolean
+        style: form
+      - example: ent.description = 'Desc'
+        explode: true
+        in: query
+        name: entitlementfiltercriteria
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: ent.entitlement_value like '%i-03d58cd60fa90b9a9%'
+        explode: true
+        in: query
+        name: entQuery
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get Entitlements:
+                  value:
+                    Entitlementdetails:
+                    - accounts:
+                      - accountname: jasorodriguez
+                        enddate: ""
+                        startdate: ""
+                        updatedate: ""
+                      - accountname: jasorodriguez
+                        enddate: ""
+                        startdate: ""
+                        updatedate: ""
+                      - accountname: jasorodriguez
+                        enddate: ""
+                        startdate: ""
+                        updatedate: ""
+                      childEntitlementCount: 0
+                      customproperty1: "Code: 80,Name: stopped"
+                      customproperty10: "false"
+                      customproperty13: "N"
+                      customproperty15: 2017-07-03 17:10:15
+                      customproperty16: "State: disabled"
+                      customproperty17: ami-0c2dfb1a
+                      customproperty18: AWSSaviynt-6612acc
+                      customproperty19: default
+                      customproperty2: m3.xlarge
+                      customproperty20: ip-172-31-19-127.ec2.internal
+                      customproperty3: "Key: Owner,Value: Sagar Srikantaiah, Key:\
+                        \ aws:cloudformation:stack-id,Value: arn:aws:cloudformation:us-east-1:661222050851:stack/IDMAMITest/b8c82f20-f8a8-11e6-845b-500c28903236,\
+                        \ Key: aws:cloudformation:logical-id,Value: SaviyntAWSEC2,\
+                        \ Key: Name,Value: IDMAMITest, Key: aws:cloudformation:stack-name,Value:\
+                        \ IDMAMITest"
+                      customproperty4: 172.31.19.127
+                      customproperty5: vpc-60389904
+                      customproperty6: subnet-3e9ea667
+                      customproperty7: "false"
+                      customproperty8: "Arn: arn:aws:iam::661222050851:instance-profile/IDMAMITest-SaviyntAWSInstanceProfile-PB8FBG9QPF8J,Id:\
+                        \ AIPAI4Z55IKG4PEYTP622"
+                      customproperty9: us-east-1
+                      description: ""
+                      displayname: ""
+                      endpoint: AWS
+                      endpointKey: 1
+                      entitlementID: i-03d58cd60fa90b9a9
+                      entitlementMapDetails:
+                      - addDependentTask: ""
+                        description: "Enable http, https, ssh access to the My ControlNode."
+                        excludeEntitlement: ""
+                        exportPrimary: sg-4341773f
+                        primary: sg-4341773f
+                        primaryEntKey: "189289"
+                        primaryEntType: AWSSecurityGroup
+                        removeDependentEntTask: ""
+                        requestFilter: ""
+                      - addDependentTask: ""
+                        description: ""
+                        excludeEntitlement: ""
+                        exportPrimary: vol-011ca83c3d8894018
+                        primary: vol-011ca83c3d8894018
+                        primaryEntKey: "192408"
+                        primaryEntType: EBSVolume
+                        removeDependentEntTask: ""
+                        requestFilter: ""
+                      - addDependentTask: ""
+                        description: ""
+                        excludeEntitlement: ""
+                        exportPrimary: arn:aws:iam::661222050851:policy/ADAWSFFRoles-SaviyntAWSConfigPolicy-TVZXKOYNVMLC
+                        primary: arn:aws:iam::661222050851:policy/ADAWSFFRoles-SaviyntAWSConfigPolicy-TVZXKOYNVMLC
+                        primaryEntKey: "193885"
+                        primaryEntType: AWSPolicy
+                        removeDependentEntTask: ""
+                        requestFilter: ""
+                      entitlementOwner: ""
+                      entitlementType: EC2InstanceDisplay
+                      entitlementTypeKey: 52
+                      entitlementTypeName: EC2Instance
+                      entitlement_glossary: ""
+                      entitlement_value: i-03d58cd60fa90b9a9
+                      entitlement_valuekey: "191373"
+                      requestForm: Request Form None
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 2017-08-10 16:11:47
+                    entitlementsCount: 1
+                    errorCode: "0"
+                    msg: Successful
+                    totalEntitlementCount: 1
+              schema:
+                $ref: '#/components/schemas/getEntitlements_200_response'
+          description: Get Entitlements / Get Entitlements
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 30 Jun 2021 20:38:34 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=5fa8a880-0b39-44c7-be59-d60df88371ee; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Get Entitlements
+      tags:
+      - entitlements
+  /ECM/api/v5/getChildEntitlements:
+    get:
+      description: |-
+        This API can be used to get the list of all child entitlements.
+        The `Authorization` must have `Bearer` followed by `Token`.
+
+        **Mandatory params:**
+        - `endpointname` or `endpointkey` (if both are passed, `endpointkey` is considered)
+
+        **Optional params:**
+        - `entitlementtypekey` or `entitlementtypename` (if both are passed, `entitlementtypekey` is considered)
+        - `parententitlementvalue` or `parententitlementvaluekey` (if both are passed, `parententitlementvaluekey` is considered)
+        - `entquery` - Query to support parent entitlement values (e.g., `"pev.status = 1"`)
+        - `childentquery` - Query to support child entitlement values (e.g., `"cev.customproperty3 = '25'"`)
+        - `entitlements2query` - Query to support entitlements2 parameters (e.g., `"e2.jobId is not null"`)
+        - `responsefields` - List of child entitlement fields to return (e.g., `["description","customproperty1","customproperty3","displayname"]`)
+        - `max` - Maximum number of records to return
+        - `offset` - Pagination offset
+      operationId: getChildEntitlements
+      parameters:
+      - example: "1"
+        explode: true
+        in: query
+        name: endpointkey
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: AWS
+        explode: true
+        in: query
+        name: endpointname
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: "54"
+        explode: true
+        in: query
+        name: entitlementtypekey
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: AWSSecurityGroup
+        explode: true
+        in: query
+        name: entitlementtypename
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: sg-0303987b
+        explode: true
+        in: query
+        name: parententitlementvalue
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: "189260"
+        explode: true
+        in: query
+        name: parententitlementvaluekey
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: pev.status = 1
+        explode: true
+        in: query
+        name: entquery
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: cev.customproperty3 = '25'
+        explode: true
+        in: query
+        name: childentquery
+        required: false
+        schema:
+          type: string
+        style: form
+      - example: e2.jobId is not null
+        explode: true
+        in: query
+        name: entitlements2query
+        required: false
+        schema:
+          type: string
+        style: form
+      - example:
+        - description
+        - customproperty1
+        - customproperty3
+        - displayname
+        explode: true
+        in: query
+        name: responsefields
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - example: 5
+        explode: true
+        in: query
+        name: max
+        required: false
+        schema:
+          type: integer
+        style: form
+      - example: 0
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get Child Entitlements:
+                  value:
+                    childEntitlementsList:
+                    - customproperty1: 23.240.16.195/32
+                      customproperty3: "25"
+                      endpoint: AWS
+                      endpointKey: 1
+                      entitlementType: SGIBRules
+                      entitlementTypeKey: 63
+                      entitlementTypeName: SGIBRules
+                      entitlement_value: InboundRules::sg-0303987b#0
+                      entitlement_valuekey: "189502"
+                      parententitlementvalue: sg-0303987b
+                      parententitlementvaluekey: 189260
+                      parententstatus: "1"
+                      requestForm: Request Form None
+                    displaycount: 1
+                    errorcode: "0"
+                    msg: success
+                    totalcount: 1
+              schema:
+                $ref: '#/components/schemas/getChildEntitlements_200_response'
+          description: Get Child Entitlements
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Fri, 24 Sep 2021 00:18:25 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=1e59254b-5058-49f9-89cd-3e9b9a250e8d; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Get Child Entitlements
+      tags:
+      - entitlements
+  /ECM/api/v5/createUpdateEntitlement:
+    post:
+      description: "This method creates a new \"entitlementvalue\" for an \"endpoint\"\
+        \ in SSM. \nAll the input parameters it requires are attributes with which\
+        \ the new account record would get created.\n\n**Ensure:** The `Authorization`\
+        \ header variable must be set to `Bearer` followed by `Token`.\n\n**Mandatory\
+        \ parameters:**\n- `endpoint`\n- `entitlementtype`\n- `entitlement_value`\n\
+        \n**Optional parameters:**\n- `entitlementattributes` (Additional attributes\
+        \ for Entitlement_values)\n- `entitlementowner<N>` - N is the rank, `entitlementowner`\
+        \ modifies entitlementowner with rank 1, `entitlementowner3` modifies entitlementowner\
+        \ with rank 3\n- `entitlementID`, `newEntitlementValue` - Used to update entitlement\
+        \ if multiple entitlements with the same `entitlement_value` exist\n- `entitlementcasecheck`\
+        \ (Boolean, default: `false`) - If `true`, entitlement value search is case-sensitive\
+        \ during create/update\n- `entitlement_valuekey`\n- `updatedentitlement_value`\
+        \ - New value for `entitlement_value`\n- `entitlementmap` - Contains:\n  -\
+        \ `entitlementvalue`\n  - `entitlementtype`\n  - `endpoint`\n  - `requestfilter`\n\
+        \  - `excludeentitlement`\n  - `adddependenttask`\n  - `removedependententtask`\n\
+        \  - `updateType` (`ADD`/`REMOVE`, default: `ADD`)\n"
+      operationId: createUpdateEntitlement
+      requestBody:
+        content:
+          application/json:
+            examples:
+              CreateUpdateEntitlementExample:
+                summary: Example payload for creating/updating an entitlement
+                value:
+                  endpoint: Workday
+                  entitlementtype: Security-Groups
+                  entitlement_value: Accounts Receivable Specialist (Unconstrained)
+                  entitlementattributes:
+                    department: Finance
+                    level: Senior
+                  entitlementowner1: admin
+                  entitlementowner3: security_admin
+                  entitlementID: "12345"
+                  newEntitlementValue: Accounts Receivable Specialist (Updated)
+                  entitlementcasecheck: false
+                  entitlement_valuekey: "789"
+                  updatedentitlement_value: Accounts Receivable Specialist (Unconstrained)
+                    Test
+                  entitlementmap:
+                    entitlementvalue: Accounts Receivable Specialist
+                    entitlementtype: Security-Groups
+                    endpoint: Workday
+                    requestfilter: entitlement_type = 'Security-Groups'
+                    excludeentitlement: "false"
+                    adddependenttask: Add approval process
+                    removedependententtask: Remove backup access
+                    updateType: ADD
+            schema:
+              $ref: '#/components/schemas/createUpdateEntitlement_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Create/Update Entitlement:
+                  value:
+                    entitlementObj:
+                      description: ""
+                      displayname: ""
+                      endpoint: Workday
+                      entitlementID: 3f9fc9e54e42458daa84ad725dcae8ff
+                      entitlementOwner: ""
+                      entitlementType: Security-Groups
+                      entitlement_glossary: ""
+                      entitlement_value: Accounts Receivable Specialist (Unconstrained)
+                        Test
+                      entitlement_valuekey: "296"
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                    errorCode: "0"
+                    msg: Successful in saving entitlement
+              schema:
+                $ref: '#/components/schemas/createUpdateEntitlement_200_response'
+          description: Create/Update Entitlement
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Thu, 23 Jul 2020 22:45:47 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=94589b88-cb05-4e05-a11d-dc62e85bb238; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Create/Update Entitlement
+      tags:
+      - entitlements
+  /ECM/api/v5/getEntitlementValuesForEndpoint:
+    post:
+      description: "This method returns a `List` of \"EntitlementValues\" for a specific\
+        \ endpoint in SSM. \r\n\r\nThe `Authorization` must have `Bearer` followed\
+        \ by `Token`.\r\n\r\nMandatory params:\r\n`endpoint`\r\n\r\nOptional params:\r\
+        \n`entitlementType`, `max`, `offset`,\r\n`entownerwithrank` - if \"true\"\
+        , returns the list of owners with owner rank for every entitlementValue\r\n\
+        `returnentitlementmap`(true/false,default:false) - If true, entitlementmap\
+        \ details will be returned"
+      operationId: getEntitlementValuesForEndpoint
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Get Entitlement Values For Endpoint:
+                summary: Example request payload
+                value:
+                  endpoint: Workday
+                  entitlementType: Security-Groups
+                  entownerwithrank: "true"
+                  returnentitlementmap: "true"
+            schema:
+              $ref: '#/components/schemas/getEntitlementValuesForEndpoint_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get Entitlement Values For Endpoint:
+                  value:
+                    Entitlementdetails:
+                    - access: Select
+                      confidentiality: "0"
+                      customproperty1: test
+                      description: ""
+                      displayname: Display Name One
+                      endpoint: System1
+                      entitlementOwner:
+                      - dbailey
+                      - crichards
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: TestEnt1
+                      module: Select
+                      priviliged: "0"
+                      requestForm: Request Form Table
+                      risk: "0"
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 04/08/2017
+                      updateuser: "1"
+                    - customproperty1: test
+                      description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner:
+                      - glogan
+                      - smarquez
+                      - lkrause
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: TestEnt2
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 02/22/2017
+                    - access: Select
+                      confidentiality: "0"
+                      customproperty1: test
+                      description: ""
+                      displayname: Display Name Two
+                      endpoint: System1
+                      entitlementOwner:
+                      - bharell
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement3
+                      module: Select
+                      priviliged: "0"
+                      requestForm: Request Form Table
+                      risk: "0"
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 03/24/2017
+                      updateuser: "1"
+                    - customproperty1: ap1
+                      customproperty20: cp20
+                      customproperty3: cp3
+                      customproperty8: cp8
+                      description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement4
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 04/27/2018
+                      updateuser: "191327"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement5
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 02/22/2017
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement6
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      status: "1"
+                      syscritical: "0"
+                      updatedate: 02/22/2017
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement7
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement8
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement9
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement10
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement11
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement12
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement13
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement14
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement15
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    - description: ""
+                      displayname: ""
+                      endpoint: System1
+                      entitlementOwner: ""
+                      entitlementType: Access
+                      entitlement_glossary: ""
+                      entitlement_value: Entitlement16
+                      requestForm: Request Form Table
+                      soxcritical: "0"
+                      syscritical: "0"
+                    entitlementsCount: 16
+                    errorCode: "0"
+                    msg: Successful
+                    totalEntitlementCount: 16
+              schema:
+                $ref: '#/components/schemas/getEntitlementValuesForEndpoint_200_response'
+          description: Get Entitlement Values For Endpoint / Get Entitlement Values
+            For Endpoint 2
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Tue, 21 Jul 2020 18:33:49 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=8a56ec8d-a73d-4fd4-b58d-7cb6d0034075; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Get Entitlement Values For Endpoint
+      tags:
+      - entitlements
+  /ECM/api/v5/getListofPrivileges:
+    post:
+      description: "This API gives the list of privileges for an entitlement type.\r\
+        \n\r\nThe `Authorization` must have `Bearer` followed by `Token`. \r\n\r\n\
+        Mandatory params:\r\n`endpoint`\r\n\r\nOptional params:\r\n`max`, `offset`,\
+        \ `entitlementType`"
+      operationId: getListOfPrivilegesForEntitlementType
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/getListOfPrivilegesForEntitlementType_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get List of Privileges for Entitlement Type:
+                  value:
+                    PrivilegeDetails:
+                    - actionString: null
+                      attribute: Read
+                      attribute_config: USER-BASED
+                      attribute_type: Boolean
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: "true"
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: Read
+                      orderindex: "0"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:18:49
+                      updateuser: admin
+                    - actionString: null
+                      attribute: Write
+                      attribute_config: USER-BASED
+                      attribute_type: Boolean
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: "false"
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: null
+                      orderindex: "1"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:18:56
+                      updateuser: admin
+                    - actionString: null
+                      attribute: Privilege1
+                      attribute_config: USER-BASED
+                      attribute_type: String
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: ""
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: Privilege1
+                      orderindex: "0"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:19:35
+                      updateuser: admin
+                    errorCode: "0"
+                    msg: Successful
+                Get List of Privileges for Entitlement Type Copy:
+                  value:
+                    PrivilegeDetails:
+                    - actionString: null
+                      attribute: Read
+                      attribute_config: USER-BASED
+                      attribute_type: Boolean
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: "true"
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: Read
+                      orderindex: "0"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:18:49
+                      updateuser: admin
+                    - actionString: null
+                      attribute: Write
+                      attribute_config: USER-BASED
+                      attribute_type: Boolean
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: "false"
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: null
+                      orderindex: "1"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:18:56
+                      updateuser: admin
+                    - actionString: null
+                      attribute: Privilege1
+                      attribute_config: USER-BASED
+                      attribute_type: String
+                      attribute_values: ""
+                      attributegroup: null
+                      childaction: null
+                      defaultvalue: ""
+                      descriptionascsv: null
+                      editable: true
+                      entitlement_types:
+                        endpointkey: System1
+                        entitlementname: Access
+                      entitlements_column: null
+                      hideoncreate: false
+                      hideonupd: false
+                      label: Privilege1
+                      orderindex: "0"
+                      parentattribute: null
+                      regex: null
+                      requestablerequired: false
+                      required: true
+                      sqlquery: null
+                      updatedate: 09/11/2018 02:19:35
+                      updateuser: admin
+                    errorCode: "0"
+                    msg: Successful
+              schema:
+                $ref: '#/components/schemas/getListOfPrivilegesForEntitlementType_200_response'
+          description: Get List of Privileges for Entitlement Type / Get List of Privileges
+            for Entitlement Type Copy
+          headers:
+            Date:
+              explode: false
+              schema:
+                example: "Mon, 10 Sep 2018 21:38:10 GMT"
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=eaae3d7b-2cce-4718-bec3-196281353d51; Path=/
+                type: string
+              style: simple
+      summary: Get List of Privileges for Entitlement Type
+      tags:
+      - entitlements
+  /ECM/api/v5/removeEntitlementsFromRole:
+    post:
+      description: |-
+        This API removes entitlement from role.
+        The `Authorization` must have `Bearer` followed by `Token`.
+        Mandatory params:
+        `rolename` or `rolekey` (if both are passed then rolekey will be considered), `entitlements`(within list of entitlements entitlementvalue, entitlementtype, endpoint are mandatory)
+        Optional params:
+        `requestor`, `comments`
+      operationId: removeEntitlementFromRole
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Remove Entitlement From Role:
+                summary: Example payload to remove entitlement from role
+                value:
+                  requestor: awsadmin
+                  rolename: Lambda_CreateAlarm
+                  rolekey: "115"
+                  comments: removed using API
+                  entitlements:
+                  - entitlementvalue: FIXED_ASSET_INQUIRY_TECH_IN
+                    entitlementtype: OEBS-Responsibility
+                    endpoint: Oracle
+            schema:
+              $ref: '#/components/schemas/removeEntitlementFromRole_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Remove Entitlement From Role:
+                  value:
+                    errorcode: 0
+                    msg: success
+              schema:
+                $ref: '#/components/schemas/removeEntitlementFromRole_200_response'
+          description: Remove Entitlement From Role
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Thu, 31 Dec 2020 22:26:21 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=41605420-ab72-4a92-b5f5-c09531dd583a; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Remove Entitlement From Role
+      tags:
+      - entitlements
+components:
+  schemas:
+    getEntitlements_200_response:
+      example:
+        Entitlementdetails:
+        - accounts:
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          childEntitlementCount: 0
+          customproperty1: "Code: 80,Name: stopped"
+          customproperty10: "false"
+          customproperty13: "N"
+          customproperty15: 2017-07-03 17:10:15
+          customproperty16: "State: disabled"
+          customproperty17: ami-0c2dfb1a
+          customproperty18: AWSSaviynt-6612acc
+          customproperty19: default
+          customproperty2: m3.xlarge
+          customproperty20: ip-172-31-19-127.ec2.internal
+          customproperty3: "Key: Owner,Value: Sagar Srikantaiah, Key: aws:cloudformation:stack-id,Value:\
+            \ arn:aws:cloudformation:us-east-1:661222050851:stack/IDMAMITest/b8c82f20-f8a8-11e6-845b-500c28903236,\
+            \ Key: aws:cloudformation:logical-id,Value: SaviyntAWSEC2, Key: Name,Value:\
+            \ IDMAMITest, Key: aws:cloudformation:stack-name,Value: IDMAMITest"
+          customproperty4: 172.31.19.127
+          customproperty5: vpc-60389904
+          customproperty6: subnet-3e9ea667
+          customproperty7: "false"
+          customproperty8: "Arn: arn:aws:iam::661222050851:instance-profile/IDMAMITest-SaviyntAWSInstanceProfile-PB8FBG9QPF8J,Id:\
+            \ AIPAI4Z55IKG4PEYTP622"
+          customproperty9: us-east-1
+          description: ""
+          displayname: ""
+          endpoint: AWS
+          endpointKey: 1
+          entitlementID: i-03d58cd60fa90b9a9
+          entitlementMapDetails:
+          - addDependentTask: ""
+            description: "Enable http, https, ssh access to the My ControlNode."
+            excludeEntitlement: ""
+            exportPrimary: sg-4341773f
+            primary: sg-4341773f
+            primaryEntKey: "189289"
+            primaryEntType: AWSSecurityGroup
+            removeDependentEntTask: ""
+            requestFilter: ""
+          - addDependentTask: ""
+            description: ""
+            excludeEntitlement: ""
+            exportPrimary: vol-011ca83c3d8894018
+            primary: vol-011ca83c3d8894018
+            primaryEntKey: "192408"
+            primaryEntType: EBSVolume
+            removeDependentEntTask: ""
+            requestFilter: ""
+          - addDependentTask: ""
+            description: ""
+            excludeEntitlement: ""
+            exportPrimary: arn:aws:iam::661222050851:policy/USFederalDemoStack-SaviyntAWSPolicy-EQ3LNR2RUGS7
+            primary: arn:aws:iam::661222050851:policy/USFederalDemoStack-SaviyntAWSPolicy-EQ3LNR2RUGS7
+            primaryEntKey: "3932043"
+            primaryEntType: AWSPolicy
+            removeDependentEntTask: ""
+            requestFilter: ""
+          entitlementOwner: ""
+          entitlementType: EC2InstanceDisplay
+          entitlementTypeKey: 52
+          entitlementTypeName: EC2Instance
+          entitlement_glossary: ""
+          entitlement_value: i-03d58cd60fa90b9a9
+          entitlement_valuekey: "191373"
+          requestForm: Request Form None
+          soxcritical: "0"
+          status: "1"
+          syscritical: "0"
+          updatedate: 2017-08-10 16:11:47
+        msg: Successful
+        totalEntitlementCount: 1
+        entitlementsCount: 1
+        errorCode: "0"
+      properties:
+        Entitlementdetails:
+          example:
+          - accounts:
+            - accountname: jasorodriguez
+              enddate: ""
+              startdate: ""
+              updatedate: ""
+            - accountname: jasorodriguez
+              enddate: ""
+              startdate: ""
+              updatedate: ""
+            - accountname: jasorodriguez
+              enddate: ""
+              startdate: ""
+              updatedate: ""
+            childEntitlementCount: 0
+            customproperty1: "Code: 80,Name: stopped"
+            customproperty10: "false"
+            customproperty13: "N"
+            customproperty15: 2017-07-03 17:10:15
+            customproperty16: "State: disabled"
+            customproperty17: ami-0c2dfb1a
+            customproperty18: AWSSaviynt-6612acc
+            customproperty19: default
+            customproperty2: m3.xlarge
+            customproperty20: ip-172-31-19-127.ec2.internal
+            customproperty3: "Key: Owner,Value: Sagar Srikantaiah, Key: aws:cloudformation:stack-id,Value:\
+              \ arn:aws:cloudformation:us-east-1:661222050851:stack/IDMAMITest/b8c82f20-f8a8-11e6-845b-500c28903236,\
+              \ Key: aws:cloudformation:logical-id,Value: SaviyntAWSEC2, Key: Name,Value:\
+              \ IDMAMITest, Key: aws:cloudformation:stack-name,Value: IDMAMITest"
+            customproperty4: 172.31.19.127
+            customproperty5: vpc-60389904
+            customproperty6: subnet-3e9ea667
+            customproperty7: "false"
+            customproperty8: "Arn: arn:aws:iam::661222050851:instance-profile/IDMAMITest-SaviyntAWSInstanceProfile-PB8FBG9QPF8J,Id:\
+              \ AIPAI4Z55IKG4PEYTP622"
+            customproperty9: us-east-1
+            description: ""
+            displayname: ""
+            endpoint: AWS
+            endpointKey: 1
+            entitlementID: i-03d58cd60fa90b9a9
+            entitlementMapDetails:
+            - addDependentTask: ""
+              description: "Enable http, https, ssh access to the My ControlNode."
+              excludeEntitlement: ""
+              exportPrimary: sg-4341773f
+              primary: sg-4341773f
+              primaryEntKey: "189289"
+              primaryEntType: AWSSecurityGroup
+              removeDependentEntTask: ""
+              requestFilter: ""
+            - addDependentTask: ""
+              description: ""
+              excludeEntitlement: ""
+              exportPrimary: vol-011ca83c3d8894018
+              primary: vol-011ca83c3d8894018
+              primaryEntKey: "192408"
+              primaryEntType: EBSVolume
+              removeDependentEntTask: ""
+              requestFilter: ""
+            - addDependentTask: ""
+              description: ""
+              excludeEntitlement: ""
+              exportPrimary: arn:aws:iam::661222050851:policy/USFederalDemoStack-SaviyntAWSPolicy-EQ3LNR2RUGS7
+              primary: arn:aws:iam::661222050851:policy/USFederalDemoStack-SaviyntAWSPolicy-EQ3LNR2RUGS7
+              primaryEntKey: "3932043"
+              primaryEntType: AWSPolicy
+              removeDependentEntTask: ""
+              requestFilter: ""
+            entitlementOwner: ""
+            entitlementType: EC2InstanceDisplay
+            entitlementTypeKey: 52
+            entitlementTypeName: EC2Instance
+            entitlement_glossary: ""
+            entitlement_value: i-03d58cd60fa90b9a9
+            entitlement_valuekey: "191373"
+            requestForm: Request Form None
+            soxcritical: "0"
+            status: "1"
+            syscritical: "0"
+            updatedate: 2017-08-10 16:11:47
+          items:
+            $ref: '#/components/schemas/getEntitlements_200_response_Entitlementdetails_inner'
+          type: array
+        entitlementsCount:
+          example: 1
+          type: number
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Successful
+          type: string
+        totalEntitlementCount:
+          example: 1
+          type: number
+      type: object
+    getEntitlements_200_response_Entitlementdetails_inner_accounts_inner:
+      properties:
+        accountname:
+          example: jasorodriguez
+          type: string
+        enddate:
+          example: ""
+          type: string
+        startdate:
+          example: ""
+          type: string
+        updatedate:
+          example: ""
+          type: string
+      type: object
+    removeEntitlementFromRole_200_response:
+      example:
+        msg: success
+        errorcode: 0
+      properties:
+        errorcode:
+          example: 0
+          type: number
+        msg:
+          example: success
+          type: string
+      type: object
+    getEntitlementValuesForEndpoint_200_response_Entitlementdetails_inner:
+      properties:
+        entitlement_valuekey:
+          example: "1"
+          type: string
+        entitlementID:
+          example: entitlementID
+          type: string
+        access:
+          example: Select
+          type: string
+        confidentiality:
+          example: "0"
+          type: string
+        customproperty1:
+          example: test
+          type: string
+        customproperty20:
+          example: cp20
+          type: string
+        customproperty3:
+          example: cp3
+          type: string
+        customproperty8:
+          example: cp8
+          type: string
+        description:
+          example: ""
+          type: string
+        displayname:
+          example: Display Name One
+          type: string
+        endpoint:
+          example: System1
+          type: string
+        entitlementOwner:
+          $ref: '#/components/schemas/getEntitlementValuesForEndpoint_200_response_Entitlementdetails_inner_entitlementOwner'
+        entitlementType:
+          example: Access
+          type: string
+        entitlement_glossary:
+          example: ""
+          type: string
+        entitlement_value:
+          example: TestEnt1
+          type: string
+        module:
+          example: Select
+          type: string
+        priviliged:
+          example: "0"
+          type: string
+        requestForm:
+          example: Request Form Table
+          type: string
+        risk:
+          example: "0"
+          type: string
+        soxcritical:
+          example: "0"
+          type: string
+        status:
+          example: "1"
+          type: string
+        syscritical:
+          example: "0"
+          type: string
+        updatedate:
+          example: 04/08/2017
+          type: string
+        updateuser:
+          example: "1"
+          type: string
+      type: object
+    removeEntitlementFromRole_request:
+      nullable: true
+      oneOf: []
+      properties:
+        requestor:
+          description: The person requesting the removal (optional).
+          example: awsadmin
+          type: string
+        rolename:
+          description: "The name of the role. If both rolename and rolekey are provided,\
+            \ rolekey takes precedence."
+          example: Lambda_CreateAlarm
+          type: string
+        rolekey:
+          description: The key of the role. Takes precedence over rolename if provided.
+          example: \"115\"
+          type: string
+        comments:
+          description: Optional comments about the removal.
+          example: removed using API
+          type: string
+        entitlements:
+          items:
+            $ref: '#/components/schemas/removeEntitlementFromRole_request_entitlements_inner'
+          type: array
+      type: object
+    getListOfPrivilegesForEntitlementType_200_response_PrivilegeDetails_inner_entitlement_types:
+      properties:
+        endpointkey:
+          example: System1
+          type: string
+        entitlementname:
+          example: Access
+          type: string
+      type: object
+    getChildEntitlements_200_response:
+      example:
+        displaycount: 1
+        msg: success
+        totalcount: 1
+        childEntitlementsList:
+        - customproperty1: 23.240.16.195/32
+          customproperty3: "25"
+          endpoint: AWS
+          endpointKey: 1
+          entitlementType: SGIBRules
+          entitlementTypeKey: 63
+          entitlementTypeName: SGIBRules
+          entitlement_value: InboundRules::sg-0303987b#0
+          entitlement_valuekey: "189502"
+          parententitlementvalue: sg-0303987b
+          parententitlementvaluekey: 189260
+          parententstatus: "1"
+          requestForm: Request Form None
+        errorcode: "0"
+      properties:
+        childEntitlementsList:
+          example:
+          - customproperty1: 23.240.16.195/32
+            customproperty3: "25"
+            endpoint: AWS
+            endpointKey: 1
+            entitlementType: SGIBRules
+            entitlementTypeKey: 63
+            entitlementTypeName: SGIBRules
+            entitlement_value: InboundRules::sg-0303987b#0
+            entitlement_valuekey: "189502"
+            parententitlementvalue: sg-0303987b
+            parententitlementvaluekey: 189260
+            parententstatus: "1"
+            requestForm: Request Form None
+          items:
+            $ref: '#/components/schemas/getChildEntitlements_200_response_childEntitlementsList_inner'
+          type: array
+        displaycount:
+          example: 1
+          type: number
+        errorcode:
+          example: "0"
+          type: string
+        msg:
+          example: success
+          type: string
+        totalcount:
+          example: 1
+          type: number
+      type: object
+    removeEntitlementFromRole_request_entitlements_inner:
+      properties:
+        entitlementvalue:
+          description: The entitlement value.
+          example: FIXED_ASSET_INQUIRY_TECH_IN
+          type: string
+        entitlementtype:
+          description: The type of entitlement.
+          example: OEBS-Responsibility
+          type: string
+        endpoint:
+          description: The endpoint associated with the entitlement.
+          example: Oracle
+          type: string
+      required:
+      - endpoint
+      - entitlementtype
+      - entitlementvalue
+      type: object
+    getEntitlementValuesForEndpoint_200_response:
+      example:
+        Entitlementdetails:
+        - access: Select
+          confidentiality: "0"
+          customproperty1: test
+          description: ""
+          displayname: Display Name One
+          endpoint: System1
+          entitlementOwner:
+          - dbailey
+          - crichards
+          entitlementType: Access
+          entitlement_glossary: ""
+          entitlement_value: TestEnt1
+          module: Select
+          priviliged: "0"
+          requestForm: Request Form Table
+          risk: "0"
+          soxcritical: "0"
+          status: "1"
+          syscritical: "0"
+          updatedate: 04/08/2017
+          updateuser: "1"
+        - description: ""
+          displayname: ""
+          endpoint: System1
+          entitlementOwner: ""
+          entitlementType: Access
+          entitlement_glossary: ""
+          entitlement_value: Entitlement14
+          requestForm: Request Form Table
+          soxcritical: "0"
+          syscritical: "0"
+        msg: Successful
+        totalEntitlementCount: 16
+        entitlementsCount: 16
+        errorCode: "0"
+        statusCode: 200
+      properties:
+        Entitlementdetails:
+          example:
+          - access: Select
+            confidentiality: "0"
+            customproperty1: test
+            description: ""
+            displayname: Display Name One
+            endpoint: System1
+            entitlementOwner:
+            - dbailey
+            - crichards
+            entitlementType: Access
+            entitlement_glossary: ""
+            entitlement_value: TestEnt1
+            module: Select
+            priviliged: "0"
+            requestForm: Request Form Table
+            risk: "0"
+            soxcritical: "0"
+            status: "1"
+            syscritical: "0"
+            updatedate: 04/08/2017
+            updateuser: "1"
+          - description: ""
+            displayname: ""
+            endpoint: System1
+            entitlementOwner: ""
+            entitlementType: Access
+            entitlement_glossary: ""
+            entitlement_value: Entitlement14
+            requestForm: Request Form Table
+            soxcritical: "0"
+            syscritical: "0"
+          items:
+            $ref: '#/components/schemas/getEntitlementValuesForEndpoint_200_response_Entitlementdetails_inner'
+          type: array
+        entitlementsCount:
+          example: 16
+          type: number
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Successful
+          type: string
+        statusCode:
+          example: 200
+          type: number
+        totalEntitlementCount:
+          example: 16
+          type: number
+      type: object
+    createUpdateEntitlement_request_entitlementmap:
+      description: Mapping details for the entitlement.
+      properties:
+        entitlementvalue:
+          example: Accounts Receivable Specialist
+          type: string
+        entitlementtype:
+          example: Security-Groups
+          type: string
+        endpoint:
+          example: Workday
+          type: string
+        requestfilter:
+          example: entitlement_type = 'Security-Groups'
+          type: string
+        excludeentitlement:
+          example: "false"
+          type: string
+        adddependenttask:
+          example: Add approval process
+          type: string
+        removedependententtask:
+          example: Remove backup access
+          type: string
+        updateType:
+          default: ADD
+          enum:
+          - ADD
+          - REMOVE
+          example: ADD
+          type: string
+      type: object
+    getEntitlementValuesForEndpoint_request:
+      properties:
+        endpoint:
+          example: Workday
+          type: string
+        entitlementType:
+          example: Security-Groups
+          type: string
+        entownerwithrank:
+          example: "true"
+          type: string
+        returnentitlementmap:
+          description: "If 'true', returns entitlementmap details."
+          example: \"true\"
+          type: string
+        max:
+          description: Maximum number of records to return.
+          example: \"50\"
+          type: string
+        offset:
+          description: Pagination offset.
+          example: \"0\"
+          type: string
+      required:
+      - endpoint
+      type: object
+    createUpdateEntitlement_request:
+      properties:
+        endpoint:
+          example: Workday
+          type: string
+        entitlement_value:
+          example: Accounts Receivable Specialist (Unconstrained)
+          type: string
+        entitlementtype:
+          example: Security-Groups
+          type: string
+        entitlementattributes:
+          description: Additional attributes for the entitlement.
+          example:
+            department: Finance
+            level: Senior
+          type: object
+        entitlementowner1:
+          example: admin
+          type: string
+        entitlementowner3:
+          example: security_admin
+          type: string
+        entitlementID:
+          example: "12345"
+          type: string
+        newEntitlementValue:
+          example: Accounts Receivable Specialist (Updated)
+          type: string
+        entitlementcasecheck:
+          default: false
+          example: false
+          type: boolean
+        entitlement_valuekey:
+          example: "789"
+          type: string
+        updatedentitlement_value:
+          example: Accounts Receivable Specialist (Unconstrained) Test
+          type: string
+        entitlementmap:
+          $ref: '#/components/schemas/createUpdateEntitlement_request_entitlementmap'
+      required:
+      - endpoint
+      - entitlement_value
+      - entitlementtype
+      type: object
+    getListOfPrivilegesForEntitlementType_request:
+      properties:
+        endpoint:
+          example: System1
+          type: string
+        entitlementtype:
+          example: Access
+          type: string
+        max:
+          description: Maximum number of records to return.
+          example: "10"
+          type: string
+        offset:
+          description: Pagination offset.
+          example: "0"
+          type: string
+      required:
+      - endpoint
+      type: object
+    getListOfPrivilegesForEntitlementType_200_response:
+      example:
+        msg: Successful
+        errorCode: "0"
+        PrivilegeDetails:
+        - actionString: null
+          attribute: Read
+          attribute_config: USER-BASED
+          attribute_type: Boolean
+          attribute_values: ""
+          attributegroup: null
+          childaction: null
+          defaultvalue: "true"
+          descriptionascsv: null
+          editable: true
+          entitlement_types:
+            endpointkey: System1
+            entitlementname: Access
+          entitlements_column: null
+          hideoncreate: false
+          hideonupd: false
+          label: Read
+          orderindex: "0"
+          parentattribute: null
+          regex: null
+          requestablerequired: false
+          required: true
+          sqlquery: null
+          updatedate: 09/11/2018 02:18:49
+          updateuser: admin
+        - actionString: null
+          attribute: Write
+          attribute_config: USER-BASED
+          attribute_type: Boolean
+          attribute_values: ""
+          attributegroup: null
+          childaction: null
+          defaultvalue: "false"
+          descriptionascsv: null
+          editable: true
+          entitlement_types:
+            endpointkey: System1
+            entitlementname: Access
+          entitlements_column: null
+          hideoncreate: false
+          hideonupd: false
+          label: null
+          orderindex: "1"
+          parentattribute: null
+          regex: null
+          requestablerequired: false
+          required: true
+          sqlquery: null
+          updatedate: 09/11/2018 02:18:56
+          updateuser: admin
+        - actionString: null
+          attribute: Privilege1
+          attribute_config: USER-BASED
+          attribute_type: String
+          attribute_values: ""
+          attributegroup: null
+          childaction: null
+          defaultvalue: ""
+          descriptionascsv: null
+          editable: true
+          entitlement_types:
+            endpointkey: System1
+            entitlementname: Access
+          entitlements_column: null
+          hideoncreate: false
+          hideonupd: false
+          label: Privilege1
+          orderindex: "0"
+          parentattribute: null
+          regex: null
+          requestablerequired: false
+          required: true
+          sqlquery: null
+          updatedate: 09/11/2018 02:19:35
+          updateuser: admin
+      properties:
+        PrivilegeDetails:
+          example:
+          - actionString: null
+            attribute: Read
+            attribute_config: USER-BASED
+            attribute_type: Boolean
+            attribute_values: ""
+            attributegroup: null
+            childaction: null
+            defaultvalue: "true"
+            descriptionascsv: null
+            editable: true
+            entitlement_types:
+              endpointkey: System1
+              entitlementname: Access
+            entitlements_column: null
+            hideoncreate: false
+            hideonupd: false
+            label: Read
+            orderindex: "0"
+            parentattribute: null
+            regex: null
+            requestablerequired: false
+            required: true
+            sqlquery: null
+            updatedate: 09/11/2018 02:18:49
+            updateuser: admin
+          - actionString: null
+            attribute: Write
+            attribute_config: USER-BASED
+            attribute_type: Boolean
+            attribute_values: ""
+            attributegroup: null
+            childaction: null
+            defaultvalue: "false"
+            descriptionascsv: null
+            editable: true
+            entitlement_types:
+              endpointkey: System1
+              entitlementname: Access
+            entitlements_column: null
+            hideoncreate: false
+            hideonupd: false
+            label: null
+            orderindex: "1"
+            parentattribute: null
+            regex: null
+            requestablerequired: false
+            required: true
+            sqlquery: null
+            updatedate: 09/11/2018 02:18:56
+            updateuser: admin
+          - actionString: null
+            attribute: Privilege1
+            attribute_config: USER-BASED
+            attribute_type: String
+            attribute_values: ""
+            attributegroup: null
+            childaction: null
+            defaultvalue: ""
+            descriptionascsv: null
+            editable: true
+            entitlement_types:
+              endpointkey: System1
+              entitlementname: Access
+            entitlements_column: null
+            hideoncreate: false
+            hideonupd: false
+            label: Privilege1
+            orderindex: "0"
+            parentattribute: null
+            regex: null
+            requestablerequired: false
+            required: true
+            sqlquery: null
+            updatedate: 09/11/2018 02:19:35
+            updateuser: admin
+          items:
+            $ref: '#/components/schemas/getListOfPrivilegesForEntitlementType_200_response_PrivilegeDetails_inner'
+          type: array
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Successful
+          type: string
+      type: object
+    getEntitlementValuesForEndpoint_200_response_Entitlementdetails_inner_entitlementOwner:
+      anyOf:
+      - example:
+        - dbailey
+        - crichards
+        items:
+          example: dbailey
+          type: string
+        type: array
+      - example: dbailey
+        type: string
+    createUpdateEntitlement_200_response:
+      example:
+        msg: Successful in saving entitlement
+        entitlementObj:
+          syscritical: "0"
+          entitlement_valuekey: "296"
+          entitlementID: 3f9fc9e54e42458daa84ad725dcae8ff
+          description: ""
+          entitlementOwner: ""
+          entitlementType: Security-Groups
+          entitlement_glossary: ""
+          endpoint: Workday
+          requestForm: Request Form Table
+          displayname: ""
+          soxcritical: "0"
+          entitlement_value: Accounts Receivable Specialist (Unconstrained) Test
+          status: "1"
+        errorCode: "0"
+      properties:
+        msg:
+          example: Successful in saving entitlement
+          type: string
+        entitlementObj:
+          $ref: '#/components/schemas/createUpdateEntitlement_200_response_entitlementObj'
+        errorCode:
+          example: "0"
+          type: string
+      type: object
+    getChildEntitlements_200_response_childEntitlementsList_inner:
+      properties:
+        customproperty1:
+          example: 23.240.16.195/32
+          type: string
+        customproperty3:
+          example: "25"
+          type: string
+        endpoint:
+          example: AWS
+          type: string
+        endpointKey:
+          example: 1
+          type: number
+        entitlementType:
+          example: SGIBRules
+          type: string
+        entitlementTypeKey:
+          example: 63
+          type: number
+        entitlementTypeName:
+          example: SGIBRules
+          type: string
+        entitlement_value:
+          example: InboundRules::sg-0303987b#0
+          type: string
+        entitlement_valuekey:
+          example: "189502"
+          type: string
+        parententitlementvalue:
+          example: sg-0303987b
+          type: string
+        parententitlementvaluekey:
+          example: 189260
+          type: number
+        parententstatus:
+          example: "1"
+          type: string
+        requestForm:
+          example: Request Form None
+          type: string
+      type: object
+    createUpdateEntitlement_200_response_entitlementObj:
+      example:
+        syscritical: "0"
+        entitlement_valuekey: "296"
+        entitlementID: 3f9fc9e54e42458daa84ad725dcae8ff
+        description: ""
+        entitlementOwner: ""
+        entitlementType: Security-Groups
+        entitlement_glossary: ""
+        endpoint: Workday
+        requestForm: Request Form Table
+        displayname: ""
+        soxcritical: "0"
+        entitlement_value: Accounts Receivable Specialist (Unconstrained) Test
+        status: "1"
+      properties:
+        description:
+          example: ""
+          type: string
+        displayname:
+          example: ""
+          type: string
+        endpoint:
+          example: Workday
+          type: string
+        entitlementID:
+          example: 3f9fc9e54e42458daa84ad725dcae8ff
+          type: string
+        entitlementOwner:
+          example: ""
+          type: string
+        entitlementType:
+          example: Security-Groups
+          type: string
+        entitlement_glossary:
+          example: ""
+          type: string
+        entitlement_value:
+          example: Accounts Receivable Specialist (Unconstrained) Test
+          type: string
+        entitlement_valuekey:
+          example: "296"
+          type: string
+        requestForm:
+          example: Request Form Table
+          type: string
+        soxcritical:
+          example: "0"
+          type: string
+        status:
+          example: "1"
+          type: string
+        syscritical:
+          example: "0"
+          type: string
+      type: object
+    getEntitlements_200_response_Entitlementdetails_inner_entitlementMapDetails_inner:
+      properties:
+        addDependentTask:
+          example: ""
+          type: string
+        description:
+          example: "Enable http, https, ssh access to the My ControlNode."
+          type: string
+        excludeEntitlement:
+          example: ""
+          type: string
+        exportPrimary:
+          example: sg-4341773f
+          type: string
+        primary:
+          example: sg-4341773f
+          type: string
+        primaryEntKey:
+          example: "189289"
+          type: string
+        primaryEntType:
+          example: AWSSecurityGroup
+          type: string
+        removeDependentEntTask:
+          example: ""
+          type: string
+        requestFilter:
+          example: ""
+          type: string
+      type: object
+    getListOfPrivilegesForEntitlementType_200_response_PrivilegeDetails_inner:
+      properties:
+        actionString:
+          type: string
+        attribute:
+          example: Read
+          type: string
+        attribute_config:
+          example: USER-BASED
+          type: string
+        attribute_type:
+          example: Boolean
+          type: string
+        attribute_values:
+          example: ""
+          type: string
+        attributegroup:
+          type: string
+        childaction:
+          type: string
+        defaultvalue:
+          example: "true"
+          type: string
+        descriptionascsv:
+          type: string
+        editable:
+          example: true
+          type: boolean
+        entitlement_types:
+          $ref: '#/components/schemas/getListOfPrivilegesForEntitlementType_200_response_PrivilegeDetails_inner_entitlement_types'
+        entitlements_column:
+          type: number
+        hideoncreate:
+          example: false
+          type: boolean
+        hideonupd:
+          example: false
+          type: boolean
+        label:
+          type: string
+        orderindex:
+          example: "0"
+          type: string
+        parentattribute:
+          type: string
+        regex:
+          type: string
+        requestablerequired:
+          example: false
+          type: boolean
+        required:
+          example: true
+          type: boolean
+        sqlquery:
+          type: string
+        updatedate:
+          example: 09/11/2018 02:18:49
+          type: string
+        updateuser:
+          example: admin
+          type: string
+      type: object
+    getEntitlements_200_response_Entitlementdetails_inner:
+      properties:
+        accounts:
+          example:
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          - accountname: jasorodriguez
+            enddate: ""
+            startdate: ""
+            updatedate: ""
+          items:
+            $ref: '#/components/schemas/getEntitlements_200_response_Entitlementdetails_inner_accounts_inner'
+          type: array
+        childEntitlementCount:
+          example: 0
+          type: number
+        customproperty1:
+          example: "Code: 80,Name: stopped"
+          type: string
+        customproperty10:
+          example: "false"
+          type: string
+        customproperty13:
+          example: "N"
+          type: string
+        customproperty15:
+          example: 2017-07-03 17:10:15
+          type: string
+        customproperty16:
+          example: "State: disabled"
+          type: string
+        customproperty17:
+          example: ami-0c2dfb1a
+          type: string
+        customproperty18:
+          example: AWSSaviynt-6612acc
+          type: string
+        customproperty19:
+          example: default
+          type: string
+        customproperty2:
+          example: m3.xlarge
+          type: string
+        customproperty20:
+          example: ip-172-31-19-127.ec2.internal
+          type: string
+        customproperty3:
+          example: "Key: Owner,Value: Sagar Srikantaiah, Key: aws:cloudformation:stack-id,Value:\
+            \ arn:aws:cloudformation:us-east-1:661222050851:stack/IDMAMITest/b8c82f20-f8a8-11e6-845b-500c28903236,\
+            \ Key: aws:cloudformation:logical-id,Value: SaviyntAWSEC2, Key: Name,Value:\
+            \ IDMAMITest, Key: aws:cloudformation:stack-name,Value: IDMAMITest"
+          type: string
+        customproperty4:
+          example: 172.31.19.127
+          type: string
+        customproperty5:
+          example: vpc-60389904
+          type: string
+        customproperty6:
+          example: subnet-3e9ea667
+          type: string
+        customproperty7:
+          example: "false"
+          type: string
+        customproperty8:
+          example: "Arn: arn:aws:iam::661222050851:instance-profile/IDMAMITest-SaviyntAWSInstanceProfile-PB8FBG9QPF8J,Id:\
+            \ AIPAI4Z55IKG4PEYTP622"
+          type: string
+        customproperty9:
+          example: us-east-1
+          type: string
+        description:
+          example: ""
+          type: string
+        displayname:
+          example: ""
+          type: string
+        endpoint:
+          example: AWS
+          type: string
+        endpointKey:
+          example: 1
+          type: number
+        entitlementID:
+          example: i-03d58cd60fa90b9a9
+          type: string
+        entitlementMapDetails:
+          example:
+          - addDependentTask: ""
+            description: "Enable http, https, ssh access to the My ControlNode."
+            excludeEntitlement: ""
+            exportPrimary: sg-4341773f
+            primary: sg-4341773f
+            primaryEntKey: "189289"
+            primaryEntType: AWSSecurityGroup
+            removeDependentEntTask: ""
+            requestFilter: ""
+          - addDependentTask: ""
+            description: ""
+            excludeEntitlement: ""
+            exportPrimary: vol-011ca83c3d8894018
+            primary: vol-011ca83c3d8894018
+            primaryEntKey: "192408"
+            primaryEntType: EBSVolume
+            removeDependentEntTask: ""
+            requestFilter: ""
+          - addDependentTask: ""
+            description: ""
+            excludeEntitlement: ""
+            exportPrimary: arn:aws:iam::661222050851:policy/ADAWSFFRoles-SaviyntAWSConfigPolicy-TVZXKOYNVMLC
+            primary: arn:aws:iam::661222050851:policy/ADAWSFFRoles-SaviyntAWSConfigPolicy-TVZXKOYNVMLC
+            primaryEntKey: "193885"
+            primaryEntType: AWSPolicy
+            removeDependentEntTask: ""
+            requestFilter: ""
+          items:
+            $ref: '#/components/schemas/getEntitlements_200_response_Entitlementdetails_inner_entitlementMapDetails_inner'
+          type: array
+        entitlementOwner:
+          example: ""
+          type: string
+        entitlementType:
+          example: EC2InstanceDisplay
+          type: string
+        entitlementTypeKey:
+          example: 52
+          type: number
+        entitlementTypeName:
+          example: EC2Instance
+          type: string
+        entitlement_glossary:
+          example: ""
+          type: string
+        entitlement_value:
+          example: i-03d58cd60fa90b9a9
+          type: string
+        entitlement_valuekey:
+          example: "191373"
+          type: string
+        requestForm:
+          example: Request Form None
+          type: string
+        soxcritical:
+          example: "0"
+          type: string
+        status:
+          example: "1"
+          type: string
+        syscritical:
+          example: "0"
+          type: string
+        updatedate:
+          example: 2017-08-10 16:11:47
+          type: string
+      type: object

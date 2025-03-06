@@ -17,6 +17,7 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
 	"github.com/saviynt/saviynt-api-go-client/endpoints"
+	entitlements "github.com/saviynt/saviynt-api-go-client/entitlements"
 	"github.com/saviynt/saviynt-api-go-client/filedirectory"
 	"github.com/saviynt/saviynt-api-go-client/jobcontrol"
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
@@ -61,6 +62,8 @@ type Client struct {
 	transportClient               *transport.APIClient
 	Users                         *users.UsersAPIService
 	usersClient                   *users.APIClient
+	Entitlements                  *entitlements.EntitlementsAPIService
+	entitlementsClient            *entitlements.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
@@ -92,6 +95,8 @@ func newClientHTTPClient(serverURL string, username *string, httpClient *http.Cl
 	c.Transport = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
 	c.Users = c.usersClient.UsersAPI
+	c.entitlementsClient = newClientEntitlements(c.APIBaseURL(), c.httpClient)
+	c.Entitlements = c.entitlementsClient.EntitlementsAPI
 	return c
 }
 
@@ -215,6 +220,12 @@ func newClientUsers(apiBaseURL string, httpClient *http.Client) *users.APIClient
 	cfg.HTTPClient = httpClient
 	cfg.Servers = users.ServerConfigurations{{URL: apiBaseURL}}
 	return users.NewAPIClient(cfg)
+}
+func newClientEntitlements(apiBaseURL string, httpClient *http.Client) *entitlements.APIClient {
+	cfg := entitlements.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = entitlements.ServerConfigurations{{URL: apiBaseURL}}
+	return entitlements.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {
