@@ -63,7 +63,7 @@ type Client struct {
 	usersClient                   *users.APIClient
 }
 
-func newClientHTTPClient(ctx context.Context, serverURL string, username *string, httpClient *http.Client) *Client {
+func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
 	c := &Client{
 		serverURL:  serverURL,
 		httpClient: httpClient}
@@ -127,7 +127,7 @@ func NewClientPasswordEnv(ctx context.Context, envvar string) (*Client, Credenti
 }
 
 func NewClientToken(ctx context.Context, serverURL string, username *string, token *oauth2.Token) *Client {
-	c := newClientHTTPClient(ctx, serverURL, username, newClientToken(ctx, token))
+	c := newClientHTTPClient(serverURL, username, newClientToken(ctx, token))
 	c.token = token
 	return c
 }
