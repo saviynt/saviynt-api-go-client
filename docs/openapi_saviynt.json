@@ -548,14 +548,14 @@
       "CreateDelegateRequest": {
         "properties": {
           "delegateenddate": {
-            "description": "in format MMDDYYY",
+            "description": "in format MMDDYYYY",
             "type": "string",
             "x-stoplight": {
               "id": "r2d2t9ketxoee"
             }
           },
           "delegatestartdate": {
-            "description": "in format MMDDYYY",
+            "description": "in format MMDDYYYY",
             "type": "string",
             "x-stoplight": {
               "id": "d1whomrq2rx8e"
@@ -582,7 +582,7 @@
             }
           },
           "parentusername": {
-            "description": "this is the parent username, if not passed it will consider` userNam`e as parentusername",
+            "description": "this is the parent username, if not passed it will consider `userName` as parentusername",
             "type": "string",
             "x-stoplight": {
               "id": "isjdqzs6dx7qk"
@@ -1104,14 +1104,14 @@
       "EditDelegateRequest": {
         "properties": {
           "delegateenddate": {
-            "description": "in format MMDDYYY",
+            "description": "in format MMDDYYYY",
             "type": "string",
             "x-stoplight": {
               "id": "7r3gxhcrq3477"
             }
           },
           "delegatestartdate": {
-            "description": "in format MMDDYYY",
+            "description": "in format MMDDYYYY",
             "type": "string",
             "x-stoplight": {
               "id": "bn1i05twfri5v"
@@ -1303,7 +1303,7 @@
           "id": "ctaaycs2pwfmd"
         }
       },
-      "FetchDelegatesListRequest": {
+      "FetchExistingDelegatesListRequest": {
         "examples": [
           {
             "max": 0,
@@ -1353,7 +1353,7 @@
           "id": "3vp1pbxoxnha7"
         }
       },
-      "FetchDelegatesListResponse": {
+      "FetchExistingDelegatesListResponse": {
         "properties": {
           "delegateCount": {
             "type": "integer",
@@ -2621,9 +2621,9 @@
       "email": "https://github.com/saviynt",
       "name": "Saviynt Developers Team"
     },
-    "description": "Connections",
-    "title": "Saviynt Connections API",
-    "version": "1.0"
+    "description": "API for the Saviynt Enterprise Identity Cloud identity security solution covering Identity Governance and Administration (IGA), External Identity Management, Privileged Access Management, and Application Access Governance.",
+    "title": "Saviynt EIC API",
+    "version": "5.0"
   },
   "openapi": "3.1.0",
   "paths": {
@@ -2932,17 +2932,12 @@
     "/ECM/api/v5/fetchDelegatesList": {
       "post": {
         "description": "This API is used to retrieve the list of existing delegates and their details. If any optional parameter is not specified then only active delegates are displayed.",
-        "operationId": "fetchDelegatesList",
+        "operationId": "fetchExistingDelegatesList",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FetchDelegatesListRequest"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/FetchDelegatesListRequest"
+                "$ref": "#/components/schemas/FetchExistingDelegatesListRequest"
               }
             }
           }
@@ -2952,7 +2947,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FetchDelegatesListResponse"
+                  "$ref": "#/components/schemas/FetchExistingDelegatesListResponse"
                 }
               }
             },
