@@ -75,6 +75,6 @@ func GetEndpoint(ctx context.Context, api *endpoints.EndpointsAPIService, endpoi
 	} else if len(eps) == 1 {
 		return saviyntapigoclient.Pointer(eps[0]), nil
 	} else {
-		return nil, fmt.Errorf("endpoint for endpoint name resulted in multiple matches (%s)", endpointname)
+		return nil, fmt.Errorf("endpoint for endpoint name (%s) resulted in multiple matches (%d)", endpointname, len(eps))
 	}
 }
