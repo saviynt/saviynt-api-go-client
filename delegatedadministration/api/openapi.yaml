@@ -38,22 +38,19 @@ paths:
       description: This API is used to retrieve the list of existing delegates and
         their details. If any optional parameter is not specified then only active
         delegates are displayed.
-      operationId: fetchDelegatesList
+      operationId: fetchExistingDelegatesList
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FetchDelegatesListRequest'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/FetchDelegatesListRequest'
+              $ref: '#/components/schemas/FetchExistingDelegatesListRequest'
         description: ""
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FetchDelegatesListResponse'
+                $ref: '#/components/schemas/FetchExistingDelegatesListResponse'
           description: OK
       security:
       - bearerAuth: []
@@ -199,32 +196,6 @@ components:
       title: GetDelegateUserListResponse
       x-stoplight:
         id: cw443dnw8ly41
-    DelegateUser:
-      example:
-        firstname: firstname
-        lastname: lastname
-        username: username
-      properties:
-        firstname:
-          type: string
-          x-stoplight:
-            id: s6bfbv2e0x8r7
-        lastname:
-          type: string
-          x-stoplight:
-            id: 6pac6s1vzrobw
-        username:
-          description: This value is used in the `createDelegate` API.
-          type: string
-          x-stoplight:
-            id: miwr2qeqxhofr
-      required:
-      - firstname
-      - lastname
-      - username
-      title: DelegateUser
-      x-stoplight:
-        id: 8q5oto3vw02aq
     CreateDelegateRequest:
       example:
         name: name
@@ -253,18 +224,18 @@ components:
           x-stoplight:
             id: vzezs3yglrcbi
         delegatestartdate:
-          description: in format MMDDYYY
+          description: in format MMDDYYYY
           type: string
           x-stoplight:
             id: d1whomrq2rx8e
         delegateenddate:
-          description: in format MMDDYYY
+          description: in format MMDDYYYY
           type: string
           x-stoplight:
             id: r2d2t9ketxoee
         parentusername:
-          description: "this is the parent username, if not passed it will consider`\
-            \ userNam`e as parentusername"
+          description: "this is the parent username, if not passed it will consider\
+            \ `userName` as parentusername"
           type: string
           x-stoplight:
             id: isjdqzs6dx7qk
@@ -281,6 +252,32 @@ components:
       title: CreateDelegateRequest
       x-stoplight:
         id: 3loxtkwxpp2q2
+    DelegateUser:
+      example:
+        firstname: firstname
+        lastname: lastname
+        username: username
+      properties:
+        firstname:
+          type: string
+          x-stoplight:
+            id: s6bfbv2e0x8r7
+        lastname:
+          type: string
+          x-stoplight:
+            id: 6pac6s1vzrobw
+        username:
+          description: This value is used in the `createDelegate` API.
+          type: string
+          x-stoplight:
+            id: miwr2qeqxhofr
+      required:
+      - firstname
+      - lastname
+      - username
+      title: DelegateUser
+      x-stoplight:
+        id: 8q5oto3vw02aq
     CreateDelegateResponse:
       example:
         msg: msg
@@ -323,7 +320,7 @@ components:
       title: DeleteDelegateRequest
       x-stoplight:
         id: 2xz3g64u4cg35
-    FetchDelegatesListRequest:
+    FetchExistingDelegatesListRequest:
       example:
         offset: 6
         max: 0
@@ -444,7 +441,7 @@ components:
       title: Response
       x-stoplight:
         id: zd7zr47c75zkz
-    FetchDelegatesListResponse:
+    FetchExistingDelegatesListResponse:
       example:
         msg: msg
         delegateList:
@@ -506,7 +503,6 @@ components:
       x-stoplight:
         id: 7w1uzfkcq72d4
     EditDelegateRequest:
-      description: ""
       example:
         name: name
         description: description
@@ -539,12 +535,12 @@ components:
           x-stoplight:
             id: kba006ufar4dy
         delegatestartdate:
-          description: in format MMDDYYY
+          description: in format MMDDYYYY
           type: string
           x-stoplight:
             id: bn1i05twfri5v
         delegateenddate:
-          description: in format MMDDYYY
+          description: in format MMDDYYYY
           type: string
           x-stoplight:
             id: 7r3gxhcrq3477

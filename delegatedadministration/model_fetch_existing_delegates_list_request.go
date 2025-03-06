@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the FetchDelegatesListRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FetchDelegatesListRequest{}
+// checks if the FetchExistingDelegatesListRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FetchExistingDelegatesListRequest{}
 
-// FetchDelegatesListRequest struct for FetchDelegatesListRequest
-type FetchDelegatesListRequest struct {
+// FetchExistingDelegatesListRequest struct for FetchExistingDelegatesListRequest
+type FetchExistingDelegatesListRequest struct {
 	// this is the parentusername
 	UserName string `json:"userName"`
 	Max *int32 `json:"max,omitempty"`
@@ -30,28 +30,28 @@ type FetchDelegatesListRequest struct {
 	Status *string `json:"status,omitempty"`
 }
 
-type _FetchDelegatesListRequest FetchDelegatesListRequest
+type _FetchExistingDelegatesListRequest FetchExistingDelegatesListRequest
 
-// NewFetchDelegatesListRequest instantiates a new FetchDelegatesListRequest object
+// NewFetchExistingDelegatesListRequest instantiates a new FetchExistingDelegatesListRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFetchDelegatesListRequest(userName string) *FetchDelegatesListRequest {
-	this := FetchDelegatesListRequest{}
+func NewFetchExistingDelegatesListRequest(userName string) *FetchExistingDelegatesListRequest {
+	this := FetchExistingDelegatesListRequest{}
 	this.UserName = userName
 	return &this
 }
 
-// NewFetchDelegatesListRequestWithDefaults instantiates a new FetchDelegatesListRequest object
+// NewFetchExistingDelegatesListRequestWithDefaults instantiates a new FetchExistingDelegatesListRequest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFetchDelegatesListRequestWithDefaults() *FetchDelegatesListRequest {
-	this := FetchDelegatesListRequest{}
+func NewFetchExistingDelegatesListRequestWithDefaults() *FetchExistingDelegatesListRequest {
+	this := FetchExistingDelegatesListRequest{}
 	return &this
 }
 
 // GetUserName returns the UserName field value
-func (o *FetchDelegatesListRequest) GetUserName() string {
+func (o *FetchExistingDelegatesListRequest) GetUserName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -62,7 +62,7 @@ func (o *FetchDelegatesListRequest) GetUserName() string {
 
 // GetUserNameOk returns a tuple with the UserName field value
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListRequest) GetUserNameOk() (*string, bool) {
+func (o *FetchExistingDelegatesListRequest) GetUserNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -70,12 +70,12 @@ func (o *FetchDelegatesListRequest) GetUserNameOk() (*string, bool) {
 }
 
 // SetUserName sets field value
-func (o *FetchDelegatesListRequest) SetUserName(v string) {
+func (o *FetchExistingDelegatesListRequest) SetUserName(v string) {
 	o.UserName = v
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *FetchDelegatesListRequest) GetMax() int32 {
+func (o *FetchExistingDelegatesListRequest) GetMax() int32 {
 	if o == nil || IsNil(o.Max) {
 		var ret int32
 		return ret
@@ -85,7 +85,7 @@ func (o *FetchDelegatesListRequest) GetMax() int32 {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListRequest) GetMaxOk() (*int32, bool) {
+func (o *FetchExistingDelegatesListRequest) GetMaxOk() (*int32, bool) {
 	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *FetchDelegatesListRequest) GetMaxOk() (*int32, bool) {
 }
 
 // HasMax returns a boolean if a field has been set.
-func (o *FetchDelegatesListRequest) HasMax() bool {
+func (o *FetchExistingDelegatesListRequest) HasMax() bool {
 	if o != nil && !IsNil(o.Max) {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *FetchDelegatesListRequest) HasMax() bool {
 }
 
 // SetMax gets a reference to the given int32 and assigns it to the Max field.
-func (o *FetchDelegatesListRequest) SetMax(v int32) {
+func (o *FetchExistingDelegatesListRequest) SetMax(v int32) {
 	o.Max = &v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *FetchDelegatesListRequest) GetOffset() int32 {
+func (o *FetchExistingDelegatesListRequest) GetOffset() int32 {
 	if o == nil || IsNil(o.Offset) {
 		var ret int32
 		return ret
@@ -117,7 +117,7 @@ func (o *FetchDelegatesListRequest) GetOffset() int32 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListRequest) GetOffsetOk() (*int32, bool) {
+func (o *FetchExistingDelegatesListRequest) GetOffsetOk() (*int32, bool) {
 	if o == nil || IsNil(o.Offset) {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *FetchDelegatesListRequest) GetOffsetOk() (*int32, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *FetchDelegatesListRequest) HasOffset() bool {
+func (o *FetchExistingDelegatesListRequest) HasOffset() bool {
 	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
@@ -134,12 +134,12 @@ func (o *FetchDelegatesListRequest) HasOffset() bool {
 }
 
 // SetOffset gets a reference to the given int32 and assigns it to the Offset field.
-func (o *FetchDelegatesListRequest) SetOffset(v int32) {
+func (o *FetchExistingDelegatesListRequest) SetOffset(v int32) {
 	o.Offset = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *FetchDelegatesListRequest) GetStatus() string {
+func (o *FetchExistingDelegatesListRequest) GetStatus() string {
 	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
@@ -149,7 +149,7 @@ func (o *FetchDelegatesListRequest) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListRequest) GetStatusOk() (*string, bool) {
+func (o *FetchExistingDelegatesListRequest) GetStatusOk() (*string, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *FetchDelegatesListRequest) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *FetchDelegatesListRequest) HasStatus() bool {
+func (o *FetchExistingDelegatesListRequest) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -166,11 +166,11 @@ func (o *FetchDelegatesListRequest) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *FetchDelegatesListRequest) SetStatus(v string) {
+func (o *FetchExistingDelegatesListRequest) SetStatus(v string) {
 	o.Status = &v
 }
 
-func (o FetchDelegatesListRequest) MarshalJSON() ([]byte, error) {
+func (o FetchExistingDelegatesListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -178,7 +178,7 @@ func (o FetchDelegatesListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FetchDelegatesListRequest) ToMap() (map[string]interface{}, error) {
+func (o FetchExistingDelegatesListRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["userName"] = o.UserName
 	if !IsNil(o.Max) {
@@ -193,7 +193,7 @@ func (o FetchDelegatesListRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FetchDelegatesListRequest) UnmarshalJSON(data []byte) (err error) {
+func (o *FetchExistingDelegatesListRequest) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -215,53 +215,53 @@ func (o *FetchDelegatesListRequest) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFetchDelegatesListRequest := _FetchDelegatesListRequest{}
+	varFetchExistingDelegatesListRequest := _FetchExistingDelegatesListRequest{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFetchDelegatesListRequest)
+	err = decoder.Decode(&varFetchExistingDelegatesListRequest)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FetchDelegatesListRequest(varFetchDelegatesListRequest)
+	*o = FetchExistingDelegatesListRequest(varFetchExistingDelegatesListRequest)
 
 	return err
 }
 
-type NullableFetchDelegatesListRequest struct {
-	value *FetchDelegatesListRequest
+type NullableFetchExistingDelegatesListRequest struct {
+	value *FetchExistingDelegatesListRequest
 	isSet bool
 }
 
-func (v NullableFetchDelegatesListRequest) Get() *FetchDelegatesListRequest {
+func (v NullableFetchExistingDelegatesListRequest) Get() *FetchExistingDelegatesListRequest {
 	return v.value
 }
 
-func (v *NullableFetchDelegatesListRequest) Set(val *FetchDelegatesListRequest) {
+func (v *NullableFetchExistingDelegatesListRequest) Set(val *FetchExistingDelegatesListRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFetchDelegatesListRequest) IsSet() bool {
+func (v NullableFetchExistingDelegatesListRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFetchDelegatesListRequest) Unset() {
+func (v *NullableFetchExistingDelegatesListRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFetchDelegatesListRequest(val *FetchDelegatesListRequest) *NullableFetchDelegatesListRequest {
-	return &NullableFetchDelegatesListRequest{value: val, isSet: true}
+func NewNullableFetchExistingDelegatesListRequest(val *FetchExistingDelegatesListRequest) *NullableFetchExistingDelegatesListRequest {
+	return &NullableFetchExistingDelegatesListRequest{value: val, isSet: true}
 }
 
-func (v NullableFetchDelegatesListRequest) MarshalJSON() ([]byte, error) {
+func (v NullableFetchExistingDelegatesListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFetchDelegatesListRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableFetchExistingDelegatesListRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

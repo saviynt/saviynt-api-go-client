@@ -59,11 +59,11 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 
 	})
 
-	t.Run("Test DelegatedAdministrationAPIService FetchDelegatesList", func(t *testing.T) {
+	t.Run("Test DelegatedAdministrationAPIService FetchExistingDelegatesList", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.FetchDelegatesList(context.Background()).Execute()
+		resp, httpRes, err := apiClient.DelegatedAdministrationAPI.FetchExistingDelegatesList(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

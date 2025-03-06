@@ -17,11 +17,11 @@ import (
 	"fmt"
 )
 
-// checks if the FetchDelegatesListResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &FetchDelegatesListResponse{}
+// checks if the FetchExistingDelegatesListResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FetchExistingDelegatesListResponse{}
 
-// FetchDelegatesListResponse struct for FetchDelegatesListResponse
-type FetchDelegatesListResponse struct {
+// FetchExistingDelegatesListResponse struct for FetchExistingDelegatesListResponse
+type FetchExistingDelegatesListResponse struct {
 	DelegateList []Delegate `json:"delegateList"`
 	Msg string `json:"msg"`
 	ErrorCode string `json:"errorCode"`
@@ -29,30 +29,30 @@ type FetchDelegatesListResponse struct {
 	DelegateCount *int32 `json:"delegateCount,omitempty"`
 }
 
-type _FetchDelegatesListResponse FetchDelegatesListResponse
+type _FetchExistingDelegatesListResponse FetchExistingDelegatesListResponse
 
-// NewFetchDelegatesListResponse instantiates a new FetchDelegatesListResponse object
+// NewFetchExistingDelegatesListResponse instantiates a new FetchExistingDelegatesListResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFetchDelegatesListResponse(delegateList []Delegate, msg string, errorCode string) *FetchDelegatesListResponse {
-	this := FetchDelegatesListResponse{}
+func NewFetchExistingDelegatesListResponse(delegateList []Delegate, msg string, errorCode string) *FetchExistingDelegatesListResponse {
+	this := FetchExistingDelegatesListResponse{}
 	this.DelegateList = delegateList
 	this.Msg = msg
 	this.ErrorCode = errorCode
 	return &this
 }
 
-// NewFetchDelegatesListResponseWithDefaults instantiates a new FetchDelegatesListResponse object
+// NewFetchExistingDelegatesListResponseWithDefaults instantiates a new FetchExistingDelegatesListResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewFetchDelegatesListResponseWithDefaults() *FetchDelegatesListResponse {
-	this := FetchDelegatesListResponse{}
+func NewFetchExistingDelegatesListResponseWithDefaults() *FetchExistingDelegatesListResponse {
+	this := FetchExistingDelegatesListResponse{}
 	return &this
 }
 
 // GetDelegateList returns the DelegateList field value
-func (o *FetchDelegatesListResponse) GetDelegateList() []Delegate {
+func (o *FetchExistingDelegatesListResponse) GetDelegateList() []Delegate {
 	if o == nil {
 		var ret []Delegate
 		return ret
@@ -63,7 +63,7 @@ func (o *FetchDelegatesListResponse) GetDelegateList() []Delegate {
 
 // GetDelegateListOk returns a tuple with the DelegateList field value
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListResponse) GetDelegateListOk() ([]Delegate, bool) {
+func (o *FetchExistingDelegatesListResponse) GetDelegateListOk() ([]Delegate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -71,12 +71,12 @@ func (o *FetchDelegatesListResponse) GetDelegateListOk() ([]Delegate, bool) {
 }
 
 // SetDelegateList sets field value
-func (o *FetchDelegatesListResponse) SetDelegateList(v []Delegate) {
+func (o *FetchExistingDelegatesListResponse) SetDelegateList(v []Delegate) {
 	o.DelegateList = v
 }
 
 // GetMsg returns the Msg field value
-func (o *FetchDelegatesListResponse) GetMsg() string {
+func (o *FetchExistingDelegatesListResponse) GetMsg() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *FetchDelegatesListResponse) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListResponse) GetMsgOk() (*string, bool) {
+func (o *FetchExistingDelegatesListResponse) GetMsgOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +95,12 @@ func (o *FetchDelegatesListResponse) GetMsgOk() (*string, bool) {
 }
 
 // SetMsg sets field value
-func (o *FetchDelegatesListResponse) SetMsg(v string) {
+func (o *FetchExistingDelegatesListResponse) SetMsg(v string) {
 	o.Msg = v
 }
 
 // GetErrorCode returns the ErrorCode field value
-func (o *FetchDelegatesListResponse) GetErrorCode() string {
+func (o *FetchExistingDelegatesListResponse) GetErrorCode() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -111,7 +111,7 @@ func (o *FetchDelegatesListResponse) GetErrorCode() string {
 
 // GetErrorCodeOk returns a tuple with the ErrorCode field value
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListResponse) GetErrorCodeOk() (*string, bool) {
+func (o *FetchExistingDelegatesListResponse) GetErrorCodeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,12 +119,12 @@ func (o *FetchDelegatesListResponse) GetErrorCodeOk() (*string, bool) {
 }
 
 // SetErrorCode sets field value
-func (o *FetchDelegatesListResponse) SetErrorCode(v string) {
+func (o *FetchExistingDelegatesListResponse) SetErrorCode(v string) {
 	o.ErrorCode = v
 }
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
-func (o *FetchDelegatesListResponse) GetTotalCount() string {
+func (o *FetchExistingDelegatesListResponse) GetTotalCount() string {
 	if o == nil || IsNil(o.TotalCount) {
 		var ret string
 		return ret
@@ -134,7 +134,7 @@ func (o *FetchDelegatesListResponse) GetTotalCount() string {
 
 // GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListResponse) GetTotalCountOk() (*string, bool) {
+func (o *FetchExistingDelegatesListResponse) GetTotalCountOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalCount) {
 		return nil, false
 	}
@@ -142,7 +142,7 @@ func (o *FetchDelegatesListResponse) GetTotalCountOk() (*string, bool) {
 }
 
 // HasTotalCount returns a boolean if a field has been set.
-func (o *FetchDelegatesListResponse) HasTotalCount() bool {
+func (o *FetchExistingDelegatesListResponse) HasTotalCount() bool {
 	if o != nil && !IsNil(o.TotalCount) {
 		return true
 	}
@@ -151,12 +151,12 @@ func (o *FetchDelegatesListResponse) HasTotalCount() bool {
 }
 
 // SetTotalCount gets a reference to the given string and assigns it to the TotalCount field.
-func (o *FetchDelegatesListResponse) SetTotalCount(v string) {
+func (o *FetchExistingDelegatesListResponse) SetTotalCount(v string) {
 	o.TotalCount = &v
 }
 
 // GetDelegateCount returns the DelegateCount field value if set, zero value otherwise.
-func (o *FetchDelegatesListResponse) GetDelegateCount() int32 {
+func (o *FetchExistingDelegatesListResponse) GetDelegateCount() int32 {
 	if o == nil || IsNil(o.DelegateCount) {
 		var ret int32
 		return ret
@@ -166,7 +166,7 @@ func (o *FetchDelegatesListResponse) GetDelegateCount() int32 {
 
 // GetDelegateCountOk returns a tuple with the DelegateCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FetchDelegatesListResponse) GetDelegateCountOk() (*int32, bool) {
+func (o *FetchExistingDelegatesListResponse) GetDelegateCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.DelegateCount) {
 		return nil, false
 	}
@@ -174,7 +174,7 @@ func (o *FetchDelegatesListResponse) GetDelegateCountOk() (*int32, bool) {
 }
 
 // HasDelegateCount returns a boolean if a field has been set.
-func (o *FetchDelegatesListResponse) HasDelegateCount() bool {
+func (o *FetchExistingDelegatesListResponse) HasDelegateCount() bool {
 	if o != nil && !IsNil(o.DelegateCount) {
 		return true
 	}
@@ -183,11 +183,11 @@ func (o *FetchDelegatesListResponse) HasDelegateCount() bool {
 }
 
 // SetDelegateCount gets a reference to the given int32 and assigns it to the DelegateCount field.
-func (o *FetchDelegatesListResponse) SetDelegateCount(v int32) {
+func (o *FetchExistingDelegatesListResponse) SetDelegateCount(v int32) {
 	o.DelegateCount = &v
 }
 
-func (o FetchDelegatesListResponse) MarshalJSON() ([]byte, error) {
+func (o FetchExistingDelegatesListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -195,7 +195,7 @@ func (o FetchDelegatesListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o FetchDelegatesListResponse) ToMap() (map[string]interface{}, error) {
+func (o FetchExistingDelegatesListResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["delegateList"] = o.DelegateList
 	toSerialize["msg"] = o.Msg
@@ -209,7 +209,7 @@ func (o FetchDelegatesListResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *FetchDelegatesListResponse) UnmarshalJSON(data []byte) (err error) {
+func (o *FetchExistingDelegatesListResponse) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -233,53 +233,53 @@ func (o *FetchDelegatesListResponse) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varFetchDelegatesListResponse := _FetchDelegatesListResponse{}
+	varFetchExistingDelegatesListResponse := _FetchExistingDelegatesListResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFetchDelegatesListResponse)
+	err = decoder.Decode(&varFetchExistingDelegatesListResponse)
 
 	if err != nil {
 		return err
 	}
 
-	*o = FetchDelegatesListResponse(varFetchDelegatesListResponse)
+	*o = FetchExistingDelegatesListResponse(varFetchExistingDelegatesListResponse)
 
 	return err
 }
 
-type NullableFetchDelegatesListResponse struct {
-	value *FetchDelegatesListResponse
+type NullableFetchExistingDelegatesListResponse struct {
+	value *FetchExistingDelegatesListResponse
 	isSet bool
 }
 
-func (v NullableFetchDelegatesListResponse) Get() *FetchDelegatesListResponse {
+func (v NullableFetchExistingDelegatesListResponse) Get() *FetchExistingDelegatesListResponse {
 	return v.value
 }
 
-func (v *NullableFetchDelegatesListResponse) Set(val *FetchDelegatesListResponse) {
+func (v *NullableFetchExistingDelegatesListResponse) Set(val *FetchExistingDelegatesListResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableFetchDelegatesListResponse) IsSet() bool {
+func (v NullableFetchExistingDelegatesListResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableFetchDelegatesListResponse) Unset() {
+func (v *NullableFetchExistingDelegatesListResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableFetchDelegatesListResponse(val *FetchDelegatesListResponse) *NullableFetchDelegatesListResponse {
-	return &NullableFetchDelegatesListResponse{value: val, isSet: true}
+func NewNullableFetchExistingDelegatesListResponse(val *FetchExistingDelegatesListResponse) *NullableFetchExistingDelegatesListResponse {
+	return &NullableFetchExistingDelegatesListResponse{value: val, isSet: true}
 }
 
-func (v NullableFetchDelegatesListResponse) MarshalJSON() ([]byte, error) {
+func (v NullableFetchExistingDelegatesListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableFetchDelegatesListResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableFetchExistingDelegatesListResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -359,48 +359,48 @@ func (a *DelegatedAdministrationAPIService) EditDelegateExecute(r ApiEditDelegat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiFetchDelegatesListRequest struct {
+type ApiFetchExistingDelegatesListRequest struct {
 	ctx context.Context
 	ApiService *DelegatedAdministrationAPIService
-	fetchDelegatesListRequest *FetchDelegatesListRequest
+	fetchExistingDelegatesListRequest *FetchExistingDelegatesListRequest
 }
 
 // 
-func (r ApiFetchDelegatesListRequest) FetchDelegatesListRequest(fetchDelegatesListRequest FetchDelegatesListRequest) ApiFetchDelegatesListRequest {
-	r.fetchDelegatesListRequest = &fetchDelegatesListRequest
+func (r ApiFetchExistingDelegatesListRequest) FetchExistingDelegatesListRequest(fetchExistingDelegatesListRequest FetchExistingDelegatesListRequest) ApiFetchExistingDelegatesListRequest {
+	r.fetchExistingDelegatesListRequest = &fetchExistingDelegatesListRequest
 	return r
 }
 
-func (r ApiFetchDelegatesListRequest) Execute() (*FetchDelegatesListResponse, *http.Response, error) {
-	return r.ApiService.FetchDelegatesListExecute(r)
+func (r ApiFetchExistingDelegatesListRequest) Execute() (*FetchExistingDelegatesListResponse, *http.Response, error) {
+	return r.ApiService.FetchExistingDelegatesListExecute(r)
 }
 
 /*
-FetchDelegatesList Fetch Existing Delegates List
+FetchExistingDelegatesList Fetch Existing Delegates List
 
 This API is used to retrieve the list of existing delegates and their details. If any optional parameter is not specified then only active delegates are displayed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchDelegatesListRequest
+ @return ApiFetchExistingDelegatesListRequest
 */
-func (a *DelegatedAdministrationAPIService) FetchDelegatesList(ctx context.Context) ApiFetchDelegatesListRequest {
-	return ApiFetchDelegatesListRequest{
+func (a *DelegatedAdministrationAPIService) FetchExistingDelegatesList(ctx context.Context) ApiFetchExistingDelegatesListRequest {
+	return ApiFetchExistingDelegatesListRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchDelegatesListResponse
-func (a *DelegatedAdministrationAPIService) FetchDelegatesListExecute(r ApiFetchDelegatesListRequest) (*FetchDelegatesListResponse, *http.Response, error) {
+//  @return FetchExistingDelegatesListResponse
+func (a *DelegatedAdministrationAPIService) FetchExistingDelegatesListExecute(r ApiFetchExistingDelegatesListRequest) (*FetchExistingDelegatesListResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *FetchDelegatesListResponse
+		localVarReturnValue  *FetchExistingDelegatesListResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.FetchDelegatesList")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.FetchExistingDelegatesList")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -412,7 +412,7 @@ func (a *DelegatedAdministrationAPIService) FetchDelegatesListExecute(r ApiFetch
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/xml"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -429,7 +429,7 @@ func (a *DelegatedAdministrationAPIService) FetchDelegatesListExecute(r ApiFetch
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.fetchDelegatesListRequest
+	localVarPostBody = r.fetchExistingDelegatesListRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

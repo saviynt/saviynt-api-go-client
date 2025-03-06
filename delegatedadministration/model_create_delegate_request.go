@@ -28,11 +28,11 @@ type CreateDelegateRequest struct {
 	Name string `json:"name"`
 	// This is the user who should be assigned as the delegate of the parent user. It must match `username` in `GetDelegateUserList` API response.
 	Delegateusername string `json:"delegateusername"`
-	// in format MMDDYYY
+	// in format MMDDYYYY
 	Delegatestartdate string `json:"delegatestartdate"`
-	// in format MMDDYYY
+	// in format MMDDYYYY
 	Delegateenddate string `json:"delegateenddate"`
-	// this is the parent username, if not passed it will consider` userNam`e as parentusername
+	// this is the parent username, if not passed it will consider `userName` as parentusername
 	Parentusername *string `json:"parentusername,omitempty"`
 	Description *string `json:"description,omitempty"`
 }

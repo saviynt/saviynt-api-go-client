@@ -81,7 +81,7 @@ Class | Method | HTTP request | Description
 *DelegatedAdministrationAPI* | [**CreateDelegate**](docs/DelegatedAdministrationAPI.md#createdelegate) | **Post** /ECM/api/v5/createDelegate | Create Delegate
 *DelegatedAdministrationAPI* | [**DeleteDelegate**](docs/DelegatedAdministrationAPI.md#deletedelegate) | **Post** /ECM/api/v5/deleteDelegate | Delete Delegate
 *DelegatedAdministrationAPI* | [**EditDelegate**](docs/DelegatedAdministrationAPI.md#editdelegate) | **Post** /ECM/api/v5/editDelegate | Edit Delegate
-*DelegatedAdministrationAPI* | [**FetchDelegatesList**](docs/DelegatedAdministrationAPI.md#fetchdelegateslist) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List
+*DelegatedAdministrationAPI* | [**FetchExistingDelegatesList**](docs/DelegatedAdministrationAPI.md#fetchexistingdelegateslist) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List
 *DelegatedAdministrationAPI* | [**GetDelegateUserList**](docs/DelegatedAdministrationAPI.md#getdelegateuserlist) | **Get** /ECM/api/v5/getDelegateUserList | Get Delegate User List
 
 
@@ -92,8 +92,8 @@ Class | Method | HTTP request | Description
  - [Delegate](docs/Delegate.md)
  - [DelegateUser](docs/DelegateUser.md)
  - [EditDelegateRequest](docs/EditDelegateRequest.md)
- - [FetchDelegatesListRequest](docs/FetchDelegatesListRequest.md)
- - [FetchDelegatesListResponse](docs/FetchDelegatesListResponse.md)
+ - [FetchExistingDelegatesListRequest](docs/FetchExistingDelegatesListRequest.md)
+ - [FetchExistingDelegatesListResponse](docs/FetchExistingDelegatesListResponse.md)
  - [GetDelegateUserListRequest](docs/GetDelegateUserListRequest.md)
  - [GetDelegateUserListResponse](docs/GetDelegateUserListResponse.md)
  - [Response](docs/Response.md)

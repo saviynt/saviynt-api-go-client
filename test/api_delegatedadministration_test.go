@@ -64,19 +64,19 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		delegatesAvailable = resp.Result
 	})
 
-	t.Run("Test_DelegatedAdministrationAPIService_FetchDelegatesList", func(t *testing.T) {
+	t.Run("Test_DelegatedAdministrationAPIService_FetchExistingDelegatesList", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		}
 
-		req := delegatedadministration.FetchDelegatesListRequest{
+		req := delegatedadministration.FetchExistingDelegatesListRequest{
 			UserName: creds.Username}
 
 		resp, httpRes, err := apiClient.DelegatedAdministration.
-			FetchDelegatesList(ctx).
-			FetchDelegatesListRequest(req).
+			FetchExistingDelegatesList(ctx).
+			FetchExistingDelegatesListRequest(req).
 			Execute()
 
 		require.Nil(t, err)

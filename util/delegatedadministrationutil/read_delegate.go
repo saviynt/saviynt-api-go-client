@@ -20,15 +20,15 @@ func ReadDelegate(ctx context.Context, api *delegatedadministration.DelegatedAdm
 	totalCount := int32(0)
 
 	for {
-		req := delegatedadministration.FetchDelegatesListRequest{
+		req := delegatedadministration.FetchExistingDelegatesListRequest{
 			UserName: username,
 			Offset:   saviyntapigoclient.Pointer(offset),
 			Max:      saviyntapigoclient.Pointer(max),
 		}
 
 		resp, httpRes, err := api.
-			FetchDelegatesList(ctx).
-			FetchDelegatesListRequest(req).
+			FetchExistingDelegatesList(ctx).
+			FetchExistingDelegatesListRequest(req).
 			Execute()
 		if err != nil {
 			return nil, err

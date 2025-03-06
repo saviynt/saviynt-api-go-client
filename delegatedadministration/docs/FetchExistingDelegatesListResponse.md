@@ -1,4 +1,4 @@
-# FetchDelegatesListResponse
+# FetchExistingDelegatesListResponse
 
 ## Properties
 
@@ -12,130 +12,130 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewFetchDelegatesListResponse
+### NewFetchExistingDelegatesListResponse
 
-`func NewFetchDelegatesListResponse(delegateList []Delegate, msg string, errorCode string, ) *FetchDelegatesListResponse`
+`func NewFetchExistingDelegatesListResponse(delegateList []Delegate, msg string, errorCode string, ) *FetchExistingDelegatesListResponse`
 
-NewFetchDelegatesListResponse instantiates a new FetchDelegatesListResponse object
+NewFetchExistingDelegatesListResponse instantiates a new FetchExistingDelegatesListResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewFetchDelegatesListResponseWithDefaults
+### NewFetchExistingDelegatesListResponseWithDefaults
 
-`func NewFetchDelegatesListResponseWithDefaults() *FetchDelegatesListResponse`
+`func NewFetchExistingDelegatesListResponseWithDefaults() *FetchExistingDelegatesListResponse`
 
-NewFetchDelegatesListResponseWithDefaults instantiates a new FetchDelegatesListResponse object
+NewFetchExistingDelegatesListResponseWithDefaults instantiates a new FetchExistingDelegatesListResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetDelegateList
 
-`func (o *FetchDelegatesListResponse) GetDelegateList() []Delegate`
+`func (o *FetchExistingDelegatesListResponse) GetDelegateList() []Delegate`
 
 GetDelegateList returns the DelegateList field if non-nil, zero value otherwise.
 
 ### GetDelegateListOk
 
-`func (o *FetchDelegatesListResponse) GetDelegateListOk() (*[]Delegate, bool)`
+`func (o *FetchExistingDelegatesListResponse) GetDelegateListOk() (*[]Delegate, bool)`
 
 GetDelegateListOk returns a tuple with the DelegateList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDelegateList
 
-`func (o *FetchDelegatesListResponse) SetDelegateList(v []Delegate)`
+`func (o *FetchExistingDelegatesListResponse) SetDelegateList(v []Delegate)`
 
 SetDelegateList sets DelegateList field to given value.
 
 
 ### GetMsg
 
-`func (o *FetchDelegatesListResponse) GetMsg() string`
+`func (o *FetchExistingDelegatesListResponse) GetMsg() string`
 
 GetMsg returns the Msg field if non-nil, zero value otherwise.
 
 ### GetMsgOk
 
-`func (o *FetchDelegatesListResponse) GetMsgOk() (*string, bool)`
+`func (o *FetchExistingDelegatesListResponse) GetMsgOk() (*string, bool)`
 
 GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMsg
 
-`func (o *FetchDelegatesListResponse) SetMsg(v string)`
+`func (o *FetchExistingDelegatesListResponse) SetMsg(v string)`
 
 SetMsg sets Msg field to given value.
 
 
 ### GetErrorCode
 
-`func (o *FetchDelegatesListResponse) GetErrorCode() string`
+`func (o *FetchExistingDelegatesListResponse) GetErrorCode() string`
 
 GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
 
 ### GetErrorCodeOk
 
-`func (o *FetchDelegatesListResponse) GetErrorCodeOk() (*string, bool)`
+`func (o *FetchExistingDelegatesListResponse) GetErrorCodeOk() (*string, bool)`
 
 GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorCode
 
-`func (o *FetchDelegatesListResponse) SetErrorCode(v string)`
+`func (o *FetchExistingDelegatesListResponse) SetErrorCode(v string)`
 
 SetErrorCode sets ErrorCode field to given value.
 
 
 ### GetTotalCount
 
-`func (o *FetchDelegatesListResponse) GetTotalCount() string`
+`func (o *FetchExistingDelegatesListResponse) GetTotalCount() string`
 
 GetTotalCount returns the TotalCount field if non-nil, zero value otherwise.
 
 ### GetTotalCountOk
 
-`func (o *FetchDelegatesListResponse) GetTotalCountOk() (*string, bool)`
+`func (o *FetchExistingDelegatesListResponse) GetTotalCountOk() (*string, bool)`
 
 GetTotalCountOk returns a tuple with the TotalCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalCount
 
-`func (o *FetchDelegatesListResponse) SetTotalCount(v string)`
+`func (o *FetchExistingDelegatesListResponse) SetTotalCount(v string)`
 
 SetTotalCount sets TotalCount field to given value.
 
 ### HasTotalCount
 
-`func (o *FetchDelegatesListResponse) HasTotalCount() bool`
+`func (o *FetchExistingDelegatesListResponse) HasTotalCount() bool`
 
 HasTotalCount returns a boolean if a field has been set.
 
 ### GetDelegateCount
 
-`func (o *FetchDelegatesListResponse) GetDelegateCount() int32`
+`func (o *FetchExistingDelegatesListResponse) GetDelegateCount() int32`
 
 GetDelegateCount returns the DelegateCount field if non-nil, zero value otherwise.
 
 ### GetDelegateCountOk
 
-`func (o *FetchDelegatesListResponse) GetDelegateCountOk() (*int32, bool)`
+`func (o *FetchExistingDelegatesListResponse) GetDelegateCountOk() (*int32, bool)`
 
 GetDelegateCountOk returns a tuple with the DelegateCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDelegateCount
 
-`func (o *FetchDelegatesListResponse) SetDelegateCount(v int32)`
+`func (o *FetchExistingDelegatesListResponse) SetDelegateCount(v int32)`
 
 SetDelegateCount sets DelegateCount field to given value.
 
 ### HasDelegateCount
 
-`func (o *FetchDelegatesListResponse) HasDelegateCount() bool`
+`func (o *FetchExistingDelegatesListResponse) HasDelegateCount() bool`
 
 HasDelegateCount returns a boolean if a field has been set.
 

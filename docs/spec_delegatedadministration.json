@@ -63,7 +63,7 @@
     "/ECM/api/v5/fetchDelegatesList": {
       "post": {
         "summary": "Fetch Existing Delegates List",
-        "operationId": "fetchDelegatesList",
+        "operationId": "fetchExistingDelegatesList",
         "tags": [
           "Delegated Administration"
         ],
@@ -78,7 +78,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FetchDelegatesListResponse"
+                  "$ref": "#/components/schemas/FetchExistingDelegatesListResponse"
                 }
               }
             }
@@ -89,12 +89,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/FetchDelegatesListRequest"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/FetchDelegatesListRequest"
+                "$ref": "#/components/schemas/FetchExistingDelegatesListRequest"
               }
             }
           },
@@ -307,39 +302,6 @@
           }
         }
       },
-      "DelegateUser": {
-        "title": "DelegateUser",
-        "x-stoplight": {
-          "id": "8q5oto3vw02aq"
-        },
-        "type": "object",
-        "properties": {
-          "firstname": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "s6bfbv2e0x8r7"
-            }
-          },
-          "lastname": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "6pac6s1vzrobw"
-            }
-          },
-          "username": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "miwr2qeqxhofr"
-            },
-            "description": "This value is used in the `createDelegate` API."
-          }
-        },
-        "required": [
-          "firstname",
-          "lastname",
-          "username"
-        ]
-      },
       "CreateDelegateRequest": {
         "title": "CreateDelegateRequest",
         "x-stoplight": {
@@ -373,21 +335,21 @@
             "x-stoplight": {
               "id": "d1whomrq2rx8e"
             },
-            "description": "in format MMDDYYY"
+            "description": "in format MMDDYYYY"
           },
           "delegateenddate": {
             "type": "string",
             "x-stoplight": {
               "id": "r2d2t9ketxoee"
             },
-            "description": "in format MMDDYYY"
+            "description": "in format MMDDYYYY"
           },
           "parentusername": {
             "type": "string",
             "x-stoplight": {
               "id": "isjdqzs6dx7qk"
             },
-            "description": "this is the parent username, if not passed it will consider` userNam`e as parentusername"
+            "description": "this is the parent username, if not passed it will consider `userName` as parentusername"
           },
           "description": {
             "type": "string",
@@ -402,6 +364,39 @@
           "delegateusername",
           "delegatestartdate",
           "delegateenddate"
+        ]
+      },
+      "DelegateUser": {
+        "title": "DelegateUser",
+        "x-stoplight": {
+          "id": "8q5oto3vw02aq"
+        },
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "s6bfbv2e0x8r7"
+            }
+          },
+          "lastname": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "6pac6s1vzrobw"
+            }
+          },
+          "username": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "miwr2qeqxhofr"
+            },
+            "description": "This value is used in the `createDelegate` API."
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "username"
         ]
       },
       "CreateDelegateResponse": {
@@ -462,7 +457,7 @@
           "key"
         ]
       },
-      "FetchDelegatesListRequest": {
+      "FetchExistingDelegatesListRequest": {
         "title": "FetchDelegatesListRequest",
         "x-stoplight": {
           "id": "3vp1pbxoxnha7"
@@ -611,7 +606,7 @@
           "errorCode"
         ]
       },
-      "FetchDelegatesListResponse": {
+      "FetchExistingDelegatesListResponse": {
         "title": "FetchDelegatesListResponse",
         "x-stoplight": {
           "id": "7w1uzfkcq72d4"
@@ -701,14 +696,14 @@
             "x-stoplight": {
               "id": "bn1i05twfri5v"
             },
-            "description": "in format MMDDYYY"
+            "description": "in format MMDDYYYY"
           },
           "delegateenddate": {
             "type": "string",
             "x-stoplight": {
               "id": "7r3gxhcrq3477"
             },
-            "description": "in format MMDDYYY"
+            "description": "in format MMDDYYYY"
           },
           "parentusername": {
             "type": "string",
@@ -731,8 +726,7 @@
           "delegateusername",
           "delegatestartdate",
           "delegateenddate"
-        ],
-        "description": ""
+        ]
       }
     }
   }

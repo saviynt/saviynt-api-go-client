@@ -12,8 +12,8 @@ docs/Delegate.md
 docs/DelegateUser.md
 docs/DelegatedAdministrationAPI.md
 docs/EditDelegateRequest.md
-docs/FetchDelegatesListRequest.md
-docs/FetchDelegatesListResponse.md
+docs/FetchExistingDelegatesListRequest.md
+docs/FetchExistingDelegatesListResponse.md
 docs/GetDelegateUserListRequest.md
 docs/GetDelegateUserListResponse.md
 docs/Response.md
@@ -25,8 +25,8 @@ model_create_delegate_response.go
 model_delegate.go
 model_delegate_user.go
 model_edit_delegate_request.go
-model_fetch_delegates_list_request.go
-model_fetch_delegates_list_response.go
+model_fetch_existing_delegates_list_request.go
+model_fetch_existing_delegates_list_response.go
 model_get_delegate_user_list_request.go
 model_get_delegate_user_list_response.go
 model_response.go

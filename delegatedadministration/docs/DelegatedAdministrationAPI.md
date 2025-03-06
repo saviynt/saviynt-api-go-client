@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateDelegate**](DelegatedAdministrationAPI.md#CreateDelegate) | **Post** /ECM/api/v5/createDelegate | Create Delegate
 [**DeleteDelegate**](DelegatedAdministrationAPI.md#DeleteDelegate) | **Post** /ECM/api/v5/deleteDelegate | Delete Delegate
 [**EditDelegate**](DelegatedAdministrationAPI.md#EditDelegate) | **Post** /ECM/api/v5/editDelegate | Edit Delegate
-[**FetchDelegatesList**](DelegatedAdministrationAPI.md#FetchDelegatesList) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List
+[**FetchExistingDelegatesList**](DelegatedAdministrationAPI.md#FetchExistingDelegatesList) | **Post** /ECM/api/v5/fetchDelegatesList | Fetch Existing Delegates List
 [**GetDelegateUserList**](DelegatedAdministrationAPI.md#GetDelegateUserList) | **Get** /ECM/api/v5/getDelegateUserList | Get Delegate User List
 
 
@@ -212,9 +212,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## FetchDelegatesList
+## FetchExistingDelegatesList
 
-> FetchDelegatesListResponse FetchDelegatesList(ctx).FetchDelegatesListRequest(fetchDelegatesListRequest).Execute()
+> FetchExistingDelegatesListResponse FetchExistingDelegatesList(ctx).FetchExistingDelegatesListRequest(fetchExistingDelegatesListRequest).Execute()
 
 Fetch Existing Delegates List
 
@@ -233,17 +233,17 @@ import (
 )
 
 func main() {
-	fetchDelegatesListRequest := *openapiclient.NewFetchDelegatesListRequest("UserName_example") // FetchDelegatesListRequest |  (optional)
+	fetchExistingDelegatesListRequest := *openapiclient.NewFetchExistingDelegatesListRequest("UserName_example") // FetchExistingDelegatesListRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DelegatedAdministrationAPI.FetchDelegatesList(context.Background()).FetchDelegatesListRequest(fetchDelegatesListRequest).Execute()
+	resp, r, err := apiClient.DelegatedAdministrationAPI.FetchExistingDelegatesList(context.Background()).FetchExistingDelegatesListRequest(fetchExistingDelegatesListRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DelegatedAdministrationAPI.FetchDelegatesList``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DelegatedAdministrationAPI.FetchExistingDelegatesList``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `FetchDelegatesList`: FetchDelegatesListResponse
-	fmt.Fprintf(os.Stdout, "Response from `DelegatedAdministrationAPI.FetchDelegatesList`: %v\n", resp)
+	// response from `FetchExistingDelegatesList`: FetchExistingDelegatesListResponse
+	fmt.Fprintf(os.Stdout, "Response from `DelegatedAdministrationAPI.FetchExistingDelegatesList`: %v\n", resp)
 }
 ```
 
@@ -253,16 +253,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiFetchDelegatesListRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiFetchExistingDelegatesListRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fetchDelegatesListRequest** | [**FetchDelegatesListRequest**](FetchDelegatesListRequest.md) |  | 
+ **fetchExistingDelegatesListRequest** | [**FetchExistingDelegatesListRequest**](FetchExistingDelegatesListRequest.md) |  | 
 
 ### Return type
 
-[**FetchDelegatesListResponse**](FetchDelegatesListResponse.md)
+[**FetchExistingDelegatesListResponse**](FetchExistingDelegatesListResponse.md)
 
 ### Authorization
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/xml
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

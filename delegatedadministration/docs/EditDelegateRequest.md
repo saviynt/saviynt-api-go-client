@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **UserName** | **string** | this is user who is updating the delegation | 
 **Name** | **string** | name of delegate | 
 **Delegateusername** | **string** | this is the user who should be assigned as the delegate of the parent use | 
-**Delegatestartdate** | **string** | in format MMDDYYY | 
-**Delegateenddate** | **string** | in format MMDDYYY | 
+**Delegatestartdate** | **string** | in format MMDDYYYY | 
+**Delegateenddate** | **string** | in format MMDDYYYY | 
 **Parentusername** | Pointer to **string** | this is the parent username, if not passed it will consider userName as parentusername | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 

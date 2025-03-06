@@ -20,7 +20,7 @@ import (
 // checks if the EditDelegateRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &EditDelegateRequest{}
 
-// EditDelegateRequest 
+// EditDelegateRequest struct for EditDelegateRequest
 type EditDelegateRequest struct {
 	// this is the delegatekey
 	Key string `json:"key"`
@@ -30,9 +30,9 @@ type EditDelegateRequest struct {
 	Name string `json:"name"`
 	// this is the user who should be assigned as the delegate of the parent use
 	Delegateusername string `json:"delegateusername"`
-	// in format MMDDYYY
+	// in format MMDDYYYY
 	Delegatestartdate string `json:"delegatestartdate"`
-	// in format MMDDYYY
+	// in format MMDDYYYY
 	Delegateenddate string `json:"delegateenddate"`
 	// this is the parent username, if not passed it will consider userName as parentusername
 	Parentusername *string `json:"parentusername,omitempty"`
