@@ -30,6 +30,7 @@ The following Saviynt APIs are covered by this SDK.
 1. [Connections](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/connections) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_connections.html)
 1. [Delegated Administration](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/delegatedadministration) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_delegatedadministration.html)
 1. [Email](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/email) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_email.html)
+1. [Endpoints](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/endpoints) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_endpoints.html)
 1. [File Directory](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/filedirectory) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_filedirectory.html)
 1. [Job Control](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/jobcontrol) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_jobcontrol.html)
 1. [mTLS Authentication](https://pkg.go.dev/github.com/saviynt/saviynt-api-go-client/mtlsauthentication) - [API Reference](https://saviynt.github.io/saviynt-api-go-client/api_mtlsauthentication.html)
