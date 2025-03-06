@@ -640,6 +640,100 @@
           "id": "vqand6dgyglet"
         }
       },
+      "CreateEndpointRequest": {
+        "properties": {
+          "accessquery": {
+            "description": "Access query",
+            "type": "string"
+          },
+          "accountNameRule": {
+            "description": "Account name rule",
+            "type": "string"
+          },
+          "blockInflightRequest": {
+            "description": "Flag to block inflight requests",
+            "type": "string"
+          },
+          "connectionconfig": {
+            "description": "Connection configuration in JSON format (escaped)",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of the endpoint",
+            "type": "string"
+          },
+          "disableModifyAccount": {
+            "description": "Flag to disable modify account functionality",
+            "type": "string"
+          },
+          "disableNewAccountRequestIfAccountExists": {
+            "description": "Flag to disable new account request if account exists",
+            "type": "string"
+          },
+          "disableRemoveAccount": {
+            "description": "Flag to disable remove account functionality",
+            "type": "string"
+          },
+          "displayName": {
+            "description": "Name displayed in the user interface (can be different from endpoint name)",
+            "type": "string"
+          },
+          "enableCopyAccess": {
+            "description": "Flag to enable copy access",
+            "type": "string"
+          },
+          "endpointname": {
+            "description": "Logical name for the endpoint that helps identify it easily",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owner identifier",
+            "type": "string"
+          },
+          "ownerType": {
+            "description": "Type of owner (e.g., User, Usergroup)",
+            "type": "string"
+          },
+          "resourceOwner": {
+            "description": "Resource owner identifier",
+            "type": "string"
+          },
+          "resourceOwnerType": {
+            "description": "Type of resource owner",
+            "type": "string"
+          },
+          "securitysystem": {
+            "description": "The security system for which you want to create an endpoint. The security system encapsulates the endpoint along with other endpoints sharing the same connections, workflows, or more.",
+            "type": "string"
+          },
+          "userAccountCorrelationRule": {
+            "description": "Rule for correlating users to accounts",
+            "type": "string"
+          }
+        },
+        "required": [
+          "displayName",
+          "endpointname",
+          "securitysystem"
+        ],
+        "type": "object"
+      },
+      "CreateEndpointResponse": {
+        "properties": {
+          "errorCode": {
+            "description": "Error code (0 indicates success)",
+            "type": "string"
+          },
+          "msg": {
+            "description": "Response message",
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-stoplight": {
+          "id": "84af8425b9be9"
+        }
+      },
       "CreateOrUpdateConnectionRequest": {
         "properties": {
           "ACCOUNTNAMERULE": {
@@ -1171,6 +1265,523 @@
         "type": "object",
         "x-stoplight": {
           "id": "1cejr83h2s5a4"
+        }
+      },
+      "Endpoint": {
+        "properties": {
+          "Account Custom Property 1 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 10 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 11 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 12 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 13 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 14 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 15 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 16 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 17 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 18 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 19 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 2 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 20 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 21 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 22 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 23 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 24 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 25 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 26 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 27 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 28 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 29 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 3 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 30 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 4 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 5 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 6 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 7 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 8 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 9 Label": {
+            "type": "string"
+          },
+          "Custom Property 1": {
+            "type": "string"
+          },
+          "Custom Property 10": {
+            "type": "string"
+          },
+          "Custom Property 11": {
+            "type": "string"
+          },
+          "Custom Property 12": {
+            "type": "string"
+          },
+          "Custom Property 13": {
+            "type": "string"
+          },
+          "Custom Property 14": {
+            "type": "string"
+          },
+          "Custom Property 15": {
+            "type": "string"
+          },
+          "Custom Property 16": {
+            "type": "string"
+          },
+          "Custom Property 17": {
+            "type": "string"
+          },
+          "Custom Property 18": {
+            "type": "string"
+          },
+          "Custom Property 19": {
+            "type": "string"
+          },
+          "Custom Property 2": {
+            "type": "string"
+          },
+          "Custom Property 20": {
+            "type": "string"
+          },
+          "Custom Property 21": {
+            "type": "string"
+          },
+          "Custom Property 22": {
+            "type": "string"
+          },
+          "Custom Property 23": {
+            "type": "string"
+          },
+          "Custom Property 24": {
+            "type": "string"
+          },
+          "Custom Property 25": {
+            "type": "string"
+          },
+          "Custom Property 26": {
+            "type": "string"
+          },
+          "Custom Property 27": {
+            "type": "string"
+          },
+          "Custom Property 28": {
+            "type": "string"
+          },
+          "Custom Property 29": {
+            "type": "string"
+          },
+          "Custom Property 3": {
+            "type": "string"
+          },
+          "Custom Property 30": {
+            "type": "string"
+          },
+          "Custom Property 4": {
+            "type": "string"
+          },
+          "Custom Property 5": {
+            "type": "string"
+          },
+          "Custom Property 6": {
+            "type": "string"
+          },
+          "Custom Property 7": {
+            "type": "string"
+          },
+          "Custom Property 8": {
+            "type": "string"
+          },
+          "Custom Property 9": {
+            "type": "string"
+          },
+          "accessquery": {
+            "type": "string"
+          },
+          "accountNameRule": {
+            "type": "string"
+          },
+          "accountNameValidatorRegex": {
+            "type": "string"
+          },
+          "accountTypeForServiceAccount": {
+            "type": "string"
+          },
+          "accountTypeNoDeprovision": {
+            "type": "string"
+          },
+          "allowChangePassword_sqlquery": {
+            "type": "string"
+          },
+          "allowRemoveAllRoleOnRequest": {
+            "type": "string"
+          },
+          "baseLineConfig": {
+            "type": "string"
+          },
+          "connectionconfig": {
+            "type": "string"
+          },
+          "connectionconfig_as_json": {
+            "type": "string"
+          },
+          "createDate": {
+            "description": "date time in `YYYY-MM-DD HH:MM:SS` format",
+            "type": "string"
+          },
+          "createEntTaskforRemoveAcc": {
+            "type": "string"
+          },
+          "createdBy": {
+            "type": "string"
+          },
+          "createdFrom": {
+            "type": "string"
+          },
+          "customproperty1": {
+            "type": "string"
+          },
+          "customproperty31": {
+            "type": "string"
+          },
+          "customproperty31Label": {
+            "type": "string"
+          },
+          "customproperty32": {
+            "type": "string"
+          },
+          "customproperty32Label": {
+            "type": "string"
+          },
+          "customproperty33": {
+            "type": "string"
+          },
+          "customproperty33Label": {
+            "type": "string"
+          },
+          "customproperty34": {
+            "type": "string"
+          },
+          "customproperty34Label": {
+            "type": "string"
+          },
+          "customproperty35": {
+            "type": "string"
+          },
+          "customproperty35Label": {
+            "type": "string"
+          },
+          "customproperty36": {
+            "type": "string"
+          },
+          "customproperty36Label": {
+            "type": "string"
+          },
+          "customproperty37": {
+            "type": "string"
+          },
+          "customproperty37Label": {
+            "type": "string"
+          },
+          "customproperty38": {
+            "type": "string"
+          },
+          "customproperty38Label": {
+            "type": "string"
+          },
+          "customproperty39": {
+            "type": "string"
+          },
+          "customproperty39Label": {
+            "type": "string"
+          },
+          "customproperty40": {
+            "type": "string"
+          },
+          "customproperty40Label": {
+            "type": "string"
+          },
+          "customproperty41": {
+            "type": "string"
+          },
+          "customproperty41Label": {
+            "type": "string"
+          },
+          "customproperty42": {
+            "type": "string"
+          },
+          "customproperty42Label": {
+            "type": "string"
+          },
+          "customproperty43": {
+            "type": "string"
+          },
+          "customproperty43Label": {
+            "type": "string"
+          },
+          "customproperty44": {
+            "type": "string"
+          },
+          "customproperty44Label": {
+            "type": "string"
+          },
+          "customproperty45": {
+            "type": "string"
+          },
+          "customproperty45Label": {
+            "type": "string"
+          },
+          "customproperty46": {
+            "type": "string"
+          },
+          "customproperty46Label": {
+            "type": "string"
+          },
+          "customproperty47": {
+            "type": "string"
+          },
+          "customproperty47Label": {
+            "type": "string"
+          },
+          "customproperty48": {
+            "type": "string"
+          },
+          "customproperty48Label": {
+            "type": "string"
+          },
+          "customproperty49": {
+            "type": "string"
+          },
+          "customproperty49Label": {
+            "type": "string"
+          },
+          "customproperty50": {
+            "type": "string"
+          },
+          "customproperty50Label": {
+            "type": "string"
+          },
+          "customproperty51": {
+            "type": "string"
+          },
+          "customproperty51Label": {
+            "type": "string"
+          },
+          "customproperty52": {
+            "type": "string"
+          },
+          "customproperty52Label": {
+            "type": "string"
+          },
+          "customproperty53": {
+            "type": "string"
+          },
+          "customproperty53Label": {
+            "type": "string"
+          },
+          "customproperty54": {
+            "type": "string"
+          },
+          "customproperty54Label": {
+            "type": "string"
+          },
+          "customproperty55": {
+            "type": "string"
+          },
+          "customproperty55Label": {
+            "type": "string"
+          },
+          "customproperty56": {
+            "type": "string"
+          },
+          "customproperty56Label": {
+            "type": "string"
+          },
+          "customproperty57": {
+            "type": "string"
+          },
+          "customproperty57Label": {
+            "type": "string"
+          },
+          "customproperty58": {
+            "type": "string"
+          },
+          "customproperty58Label": {
+            "type": "string"
+          },
+          "customproperty59": {
+            "type": "string"
+          },
+          "customproperty59Label": {
+            "type": "string"
+          },
+          "customproperty60": {
+            "type": "string"
+          },
+          "customproperty60Label": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "disableaccountrequest": {
+            "type": "string"
+          },
+          "disableaccountrequestServiceAccount": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "enableCopyAccess": {
+            "type": "string"
+          },
+          "endpointConfig": {
+            "type": "string"
+          },
+          "endpointname": {
+            "type": "string"
+          },
+          "entsWithNewAccount": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "imageId": {
+            "type": "string"
+          },
+          "jrmDataPopulated": {
+            "type": "string"
+          },
+          "lastImport": {
+            "type": "string"
+          },
+          "lastReviewedBy": {
+            "type": "string"
+          },
+          "lastReviewedCampaignName": {
+            "type": "string"
+          },
+          "lastReviewedDate": {
+            "type": "string"
+          },
+          "ownerType": {
+            "type": "string"
+          },
+          "ownerkey": {
+            "type": "string"
+          },
+          "parentAccountPattern": {
+            "type": "string"
+          },
+          "parentEndpoint": {
+            "type": "string"
+          },
+          "pluginConfigs": {
+            "type": "string"
+          },
+          "requestable": {
+            "type": "string"
+          },
+          "requestableapplication": {
+            "type": "string"
+          },
+          "requestowner": {
+            "type": "string"
+          },
+          "requestownertype": {
+            "type": "string"
+          },
+          "roleTypeAsJson": {
+            "type": "string"
+          },
+          "securitySystem": {
+            "type": "string"
+          },
+          "serviceAccountNameRule": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "statusConfig": {
+            "type": "string"
+          },
+          "statusForUniqueAccount": {
+            "type": "string"
+          },
+          "taskemailtemplates": {
+            "type": "string"
+          },
+          "updateDate": {
+            "description": "date time in `YYYY-MM-DD HH:MM:SS` format",
+            "type": "string"
+          },
+          "updatedBy": {
+            "type": "string"
+          },
+          "userAccountCorrelationRule": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "x-stoplight": {
+          "id": "c89f42523dee7"
         }
       },
       "ExportTransportPackageRequest": {
@@ -1749,6 +2360,72 @@
         "x-stoplight": {
           "id": "cw443dnw8ly41"
         }
+      },
+      "GetEndpointsRequest": {
+        "properties": {
+          "connectionType": {
+            "description": "Filter by connection type",
+            "type": "string"
+          },
+          "endpointkey": {
+            "description": "Filter by endpoint key(s)",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "endpointname": {
+            "description": "Filter by endpoint name",
+            "type": "string"
+          },
+          "filterCriteria": {
+            "description": "Custom filter criteria",
+            "type": "object"
+          },
+          "max": {
+            "description": "Maximum number of results to return. Maximium is 500.",
+            "maximum": 500,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "offset": {
+            "description": "Pagination offset",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "GetEndpointsResponse": {
+        "properties": {
+          "displayCount": {
+            "description": "Number of endpoints returned",
+            "type": "integer"
+          },
+          "endpoints": {
+            "items": {
+              "$ref": "#/components/schemas/Endpoint"
+            },
+            "type": "array"
+          },
+          "errorCode": {
+            "description": "Error code (0 indicates success)",
+            "type": "string"
+          },
+          "message": {
+            "description": "Response message",
+            "type": "string"
+          },
+          "totalCount": {
+            "description": "Total number of endpoints matching the criteria",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "errorCode",
+          "message"
+        ],
+        "type": "object"
       },
       "GetKeyStoreCertificateDetailsResponse": {
         "properties": {
@@ -2378,6 +3055,154 @@
           "id": "xh4kaggchfgoc"
         }
       },
+      "UpdateEndpointRequest": {
+        "properties": {
+          "accessquery": {
+            "description": "Access query",
+            "type": "string"
+          },
+          "accountNameRule": {
+            "type": "string"
+          },
+          "blockInflightRequest": {
+            "description": "Flag to block inflight requests",
+            "type": "string"
+          },
+          "connectionconfig": {
+            "description": "Connection configuration in JSON format (escaped). Supports valid case-senstive string values such as “None”, “DropDownSingle”, “Table”, and “TableOnlyAdd”",
+            "type": "string"
+          },
+          "createEntTaskforRemoveAcc": {
+            "description": "Flag to create enterprise task for remove account",
+            "type": "string"
+          },
+          "description": {
+            "description": "Description of the endpoint",
+            "type": "string"
+          },
+          "disableModifyAccount": {
+            "description": "Flag to disable modify account functionality",
+            "type": "string"
+          },
+          "disableNewAccountRequestIfAccountExists": {
+            "description": "Flag to disable new account request if account exists",
+            "type": "string"
+          },
+          "disableRemoveAccount": {
+            "description": "Flag to disable remove account functionality",
+            "type": "string"
+          },
+          "displayName": {
+            "description": "Name displayed in the user interface",
+            "type": "string"
+          },
+          "enableCopyAccess": {
+            "description": "Flag to enable copy access",
+            "type": "string"
+          },
+          "endpointname": {
+            "description": "Name of the endpoint to update",
+            "type": "string"
+          },
+          "owner": {
+            "description": "Owner identifier",
+            "type": "string"
+          },
+          "ownerType": {
+            "description": "Type of owner",
+            "type": "string"
+          },
+          "requestOption": {
+            "type": "string"
+          },
+          "requestableRoleType": {
+            "description": "Configuration for requestable role types (available from v23.9)",
+            "items": {
+              "properties": {
+                "requestOption": {
+                  "description": "How roles are displayed (e.g., None, DropDownSingle, Table, TableOnlyAdd)",
+                  "type": "string"
+                },
+                "requestedQuery": {
+                  "description": "Query for filtering requested roles",
+                  "type": "string"
+                },
+                "required": {
+                  "description": "Whether role selection is required",
+                  "type": "boolean"
+                },
+                "roleType": {
+                  "description": "Type of role (e.g., Application, Enterprise, Enabler, Transactional, EmergencyAccess)",
+                  "type": "string"
+                },
+                "selectedQuery": {
+                  "description": "Query for filtering selected roles",
+                  "type": "string"
+                },
+                "showOn": {
+                  "description": "Specifies where to display roles (e.g., All, ShowOnApplicationRequest, ShowOnServiceAccountRequest)",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "required": {
+            "description": "Supports valid boolean values are true and falserequestedQuery/selectedQuery Supports string values in double quotes",
+            "type": "string"
+          },
+          "resourceOwner": {
+            "description": "Resource owner identifier",
+            "type": "string"
+          },
+          "resourceOwnerType": {
+            "description": "Type of resource owner",
+            "type": "string"
+          },
+          "roleType": {
+            "description": "Supports valid case-senstive string values such as “Enabler”, “Transactional”, “EmergencyAccess”, “Enterprise”, and “Application”",
+            "type": "string"
+          },
+          "securitysystem": {
+            "description": "Security system that encapsulates the endpoint",
+            "type": "string"
+          },
+          "showOn": {
+            "description": "Supports valid case-sensitive string values such as “All”, “ShowOnApplicationRequest”, and “ShowOnServiceAccountRequest”. specify the value to display the roles on Application Requests, Service Account Requests, or both. This parameter is available from the Release v24.6 onwards.",
+            "type": "string"
+          },
+          "userAccountCorrelationRule": {
+            "description": "Rule for correlating users to accounts",
+            "type": "string"
+          }
+        },
+        "required": [
+          "endpointname"
+        ],
+        "type": "object"
+      },
+      "UpdateEndpointResponse": {
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gart4xtpgbzb7"
+            }
+          },
+          "msg": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "f1khdm6trvs9a"
+            }
+          }
+        },
+        "title": "UpdateEndpointResponse",
+        "type": "object",
+        "x-stoplight": {
+          "id": "b26jc7jdirrls"
+        }
+      },
       "UpdateTaskRequestInfo": {
         "description": "1. `updatetype` (if this is set to \"completetask\" then refer completetask api and pass appropriate params as well),\n1. `comments`\n1. `provisioningComments`\n1. `provisioningMetadata`\n1. `password`\n1. `status`\n1. `ticketId`\n1. `taskownerusergroup`\n1. `taskowneruser`\n1. `updateuser` - username of user who is updating the task,\n1. `completeassociatedtasks` - true / false,\n1. `emailto`\n1. `notify` - to pick up data from the task, supported values - \"notify\":[\"USER\",\"requestor\",\"MANAGER\"],\n1. `from`\n1. `subject`\n1. `emailbody`",
         "properties": {
@@ -2722,6 +3547,44 @@
         "summary": "Create Delegate",
         "tags": [
           "Delegated Administration"
+        ]
+      }
+    },
+    "/ECM/api/v5/createEndpoint": {
+      "post": {
+        "description": "Creates a new endpoint in EIC",
+        "operationId": "createEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEndpointRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateEndpointResponse"
+                }
+              }
+            },
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "Create Endpoint",
+        "tags": [
+          "Endpoints"
         ]
       }
     },
@@ -3114,6 +3977,44 @@
         ]
       }
     },
+    "/ECM/api/v5/getEndpoints": {
+      "post": {
+        "description": "Returns a list of endpoints based on the specified filters",
+        "operationId": "getEndpoints",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetEndpointsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetEndpointsResponse"
+                }
+              }
+            },
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "Get List of Endpoints",
+        "tags": [
+          "Endpoints"
+        ]
+      }
+    },
     "/ECM/api/v5/getKeyStoreCertificateDetails": {
       "get": {
         "description": "Introduced in Release v24.7, this API enables administrators to view the details of mTLS certificates that are uploaded in the EIC keystore.\n\nA thumbprint is an unique identification of the certificate. The thumbprints attribute of this API provides a unique identification of the certificate. It displays expiry and thumbprint details in the following order:\n\n* Leaf certificate\n* Intermediate certificate\n* Root certificate",
@@ -3367,6 +4268,44 @@
         ]
       }
     },
+    "/ECM/api/v5/updateEndpoint": {
+      "put": {
+        "description": "Updates an existing endpoint in EIC",
+        "operationId": "updateEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEndpointRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateEndpointResponse"
+                }
+              }
+            },
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "Update Endpoint",
+        "tags": [
+          "Endpoints"
+        ]
+      }
+    },
     "/ECM/api/v5/updateTasks": {
       "post": {
         "description": "It can update certain params of a task as well as complete a task.",
@@ -3552,6 +4491,9 @@
     },
     {
       "name": "Email"
+    },
+    {
+      "name": "Endpoints"
     },
     {
       "name": "File Directory"
