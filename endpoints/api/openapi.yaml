@@ -1221,6 +1221,8 @@ components:
           type: string
         customproperty60Label:
           type: string
+      required:
+      - endpointname
       title: ""
       x-stoplight:
         id: c89f42523dee7

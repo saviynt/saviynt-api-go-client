@@ -13,6 +13,8 @@ package endpoints
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Endpoint type satisfies the MappedNullable interface at compile time
@@ -42,7 +44,7 @@ type Endpoint struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	EnableCopyAccess *string `json:"enableCopyAccess,omitempty"`
 	EndpointConfig *string `json:"endpointConfig,omitempty"`
-	Endpointname *string `json:"endpointname,omitempty"`
+	Endpointname string `json:"endpointname"`
 	EntsWithNewAccount *string `json:"entsWithNewAccount,omitempty"`
 	Id *string `json:"id,omitempty"`
 	ImageId *string `json:"imageId,omitempty"`
@@ -193,12 +195,15 @@ type Endpoint struct {
 	Customproperty60Label *string `json:"customproperty60Label,omitempty"`
 }
 
+type _Endpoint Endpoint
+
 // NewEndpoint instantiates a new Endpoint object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpoint() *Endpoint {
+func NewEndpoint(endpointname string) *Endpoint {
 	this := Endpoint{}
+	this.Endpointname = endpointname
 	return &this
 }
 
@@ -882,36 +887,28 @@ func (o *Endpoint) SetEndpointConfig(v string) {
 	o.EndpointConfig = &v
 }
 
-// GetEndpointname returns the Endpointname field value if set, zero value otherwise.
+// GetEndpointname returns the Endpointname field value
 func (o *Endpoint) GetEndpointname() string {
-	if o == nil || IsNil(o.Endpointname) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Endpointname
+
+	return o.Endpointname
 }
 
-// GetEndpointnameOk returns a tuple with the Endpointname field value if set, nil otherwise
+// GetEndpointnameOk returns a tuple with the Endpointname field value
 // and a boolean to check if the value has been set.
 func (o *Endpoint) GetEndpointnameOk() (*string, bool) {
-	if o == nil || IsNil(o.Endpointname) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Endpointname, true
+	return &o.Endpointname, true
 }
 
-// HasEndpointname returns a boolean if a field has been set.
-func (o *Endpoint) HasEndpointname() bool {
-	if o != nil && !IsNil(o.Endpointname) {
-		return true
-	}
-
-	return false
-}
-
-// SetEndpointname gets a reference to the given string and assigns it to the Endpointname field.
+// SetEndpointname sets field value
 func (o *Endpoint) SetEndpointname(v string) {
-	o.Endpointname = &v
+	o.Endpointname = v
 }
 
 // GetEntsWithNewAccount returns the EntsWithNewAccount field value if set, zero value otherwise.
@@ -5691,9 +5688,7 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EndpointConfig) {
 		toSerialize["endpointConfig"] = o.EndpointConfig
 	}
-	if !IsNil(o.Endpointname) {
-		toSerialize["endpointname"] = o.Endpointname
-	}
+	toSerialize["endpointname"] = o.Endpointname
 	if !IsNil(o.EntsWithNewAccount) {
 		toSerialize["entsWithNewAccount"] = o.EntsWithNewAccount
 	}
@@ -6136,6 +6131,43 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 		toSerialize["customproperty60Label"] = o.Customproperty60Label
 	}
 	return toSerialize, nil
+}
+
+func (o *Endpoint) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"endpointname",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEndpoint := _Endpoint{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEndpoint)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Endpoint(varEndpoint)
+
+	return err
 }
 
 type NullableEndpoint struct {

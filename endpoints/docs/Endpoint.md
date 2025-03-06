@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **DisplayName** | Pointer to **string** |  | [optional] 
 **EnableCopyAccess** | Pointer to **string** |  | [optional] 
 **EndpointConfig** | Pointer to **string** |  | [optional] 
-**Endpointname** | Pointer to **string** |  | [optional] 
+**Endpointname** | **string** |  | 
 **EntsWithNewAccount** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **ImageId** | Pointer to **string** |  | [optional] 
@@ -178,7 +178,7 @@ Name | Type | Description | Notes
 
 ### NewEndpoint
 
-`func NewEndpoint() *Endpoint`
+`func NewEndpoint(endpointname string, ) *Endpoint`
 
 NewEndpoint instantiates a new Endpoint object
 This constructor will assign default values to properties that have it defined,
@@ -737,11 +737,6 @@ and a boolean to check if the value has been set.
 
 SetEndpointname sets Endpointname field to given value.
 
-### HasEndpointname
-
-`func (o *Endpoint) HasEndpointname() bool`
-
-HasEndpointname returns a boolean if a field has been set.
 
 ### GetEntsWithNewAccount
 
