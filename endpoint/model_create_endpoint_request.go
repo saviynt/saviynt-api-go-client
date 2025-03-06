@@ -14,46 +14,135 @@ import (
 	"encoding/json"
 	"bytes"
 	"fmt"
+	"reflect"
 )
 
 // checks if the CreateEndpointRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CreateEndpointRequest{}
 
 // CreateEndpointRequest struct for CreateEndpointRequest
+// type CreateEndpointRequest struct {
+// 	// Logical name for the endpoint that helps identify it easily
+// 	Endpointname string `json:"endpointname"`
+// 	// Name displayed in the user interface (can be different from endpoint name)
+// 	DisplayName string `json:"displayName"`
+// 	// Security system that encapsulates the endpoint
+// 	Securitysystem string `json:"securitysystem"`
+// 	// Description of the endpoint
+// 	Description *string `json:"description,omitempty"`
+// 	// Type of owner (e.g., User, Usergroup)
+// 	OwnerType *string `json:"ownerType,omitempty"`
+// 	// Owner identifier
+// 	Owner *string `json:"owner,omitempty"`
+// 	// Type of resource owner
+// 	ResourceOwnerType *string `json:"resourceOwnerType,omitempty"`
+// 	// Resource owner identifier
+// 	ResourceOwner *string `json:"resourceOwner,omitempty"`
+// 	// Access query
+// 	Accessquery *string `json:"accessquery,omitempty"`
+// 	// Flag to enable copy access
+// 	EnableCopyAccess *string `json:"enableCopyAccess,omitempty"`
+// 	// Flag to disable new account request if account exists
+// 	DisableNewAccountRequestIfAccountExists *string `json:"disableNewAccountRequestIfAccountExists,omitempty"`
+// 	// Flag to disable remove account functionality
+// 	DisableRemoveAccount *string `json:"disableRemoveAccount,omitempty"`
+// 	// Flag to disable modify account functionality
+// 	DisableModifyAccount *string `json:"disableModifyAccount,omitempty"`
+// 	// Flag to block inflight requests
+// 	BlockInflightRequest *string `json:"blockInflightRequest,omitempty"`
+// 	// Rule for correlating users to accounts
+// 	UserAccountCorrelationRule *string `json:"userAccountCorrelationRule,omitempty"`
+// 	// Connection configuration in JSON format (escaped)
+// 	Connectionconfig *string `json:"connectionconfig,omitempty"`
+// }
+
 type CreateEndpointRequest struct {
-	// Logical name for the endpoint that helps identify it easily
-	Endpointname string `json:"endpointname"`
-	// Name displayed in the user interface (can be different from endpoint name)
-	DisplayName string `json:"displayName"`
-	// Security system that encapsulates the endpoint
-	Securitysystem string `json:"securitysystem"`
-	// Description of the endpoint
-	Description *string `json:"description,omitempty"`
-	// Type of owner (e.g., User, Usergroup)
-	OwnerType *string `json:"ownerType,omitempty"`
-	// Owner identifier
-	Owner *string `json:"owner,omitempty"`
-	// Type of resource owner
-	ResourceOwnerType *string `json:"resourceOwnerType,omitempty"`
-	// Resource owner identifier
-	ResourceOwner *string `json:"resourceOwner,omitempty"`
-	// Access query
-	Accessquery *string `json:"accessquery,omitempty"`
-	// Flag to enable copy access
-	EnableCopyAccess *string `json:"enableCopyAccess,omitempty"`
-	// Flag to disable new account request if account exists
+	// Mandatory Parameters
+	Endpointname   string `json:"endpointname"`   // Logical name for the endpoint
+	DisplayName    string `json:"displayName"`    // Name displayed in the UI
+	Securitysystem string `json:"securitysystem"` // Security system encapsulating the endpoint
+
+	// Optional Parameters
+	Description                         *string `json:"description,omitempty"`
+	OwnerType                           *string `json:"ownerType,omitempty"`
+	Owner                               *string `json:"owner,omitempty"`
+	ResourceOwnerType                   *string `json:"resourceOwnerType,omitempty"`
+	ResourceOwner                       *string `json:"resourceOwner,omitempty"`
+	AccountNameRule                     *string `json:"accountNameRule,omitempty"`
+	Accessquery                         *string `json:"accessquery,omitempty"`
+	EnableCopyAccess                    *string `json:"enableCopyAccess,omitempty"`
 	DisableNewAccountRequestIfAccountExists *string `json:"disableNewAccountRequestIfAccountExists,omitempty"`
-	// Flag to disable remove account functionality
-	DisableRemoveAccount *string `json:"disableRemoveAccount,omitempty"`
-	// Flag to disable modify account functionality
-	DisableModifyAccount *string `json:"disableModifyAccount,omitempty"`
-	// Flag to block inflight requests
-	BlockInflightRequest *string `json:"blockInflightRequest,omitempty"`
-	// Rule for correlating users to accounts
-	UserAccountCorrelationRule *string `json:"userAccountCorrelationRule,omitempty"`
-	// Connection configuration in JSON format (escaped)
-	Connectionconfig *string `json:"connectionconfig,omitempty"`
+	DisableRemoveAccount                *string `json:"disableRemoveAccount,omitempty"`
+	DisableModifyAccount                *string `json:"disableModifyAccount,omitempty"`
+	BlockInflightRequest                *string `json:"blockInflightRequest,omitempty"`
+	UserAccountCorrelationRule          *string `json:"userAccountCorrelationRule,omitempty"`
+	Connectionconfig                    *string `json:"connectionconfig,omitempty"`
+
+	// Custom Properties (1 to 30)
+	Customproperty1  *string `json:"customproperty1,omitempty"`
+	Customproperty2  *string `json:"customproperty2,omitempty"`
+	Customproperty3  *string `json:"customproperty3,omitempty"`
+	Customproperty4  *string `json:"customproperty4,omitempty"`
+	Customproperty5  *string `json:"customproperty5,omitempty"`
+	Customproperty6  *string `json:"customproperty6,omitempty"`
+	Customproperty7  *string `json:"customproperty7,omitempty"`
+	Customproperty8  *string `json:"customproperty8,omitempty"`
+	Customproperty9  *string `json:"customproperty9,omitempty"`
+	Customproperty10 *string `json:"customproperty10,omitempty"`
+	Customproperty11 *string `json:"customproperty11,omitempty"`
+	Customproperty12 *string `json:"customproperty12,omitempty"`
+	Customproperty13 *string `json:"customproperty13,omitempty"`
+	Customproperty14 *string `json:"customproperty14,omitempty"`
+	Customproperty15 *string `json:"customproperty15,omitempty"`
+	Customproperty16 *string `json:"customproperty16,omitempty"`
+	Customproperty17 *string `json:"customproperty17,omitempty"`
+	Customproperty18 *string `json:"customproperty18,omitempty"`
+	Customproperty19 *string `json:"customproperty19,omitempty"`
+	Customproperty20 *string `json:"customproperty20,omitempty"`
+	Customproperty21 *string `json:"customproperty21,omitempty"`
+	Customproperty22 *string `json:"customproperty22,omitempty"`
+	Customproperty23 *string `json:"customproperty23,omitempty"`
+	Customproperty24 *string `json:"customproperty24,omitempty"`
+	Customproperty25 *string `json:"customproperty25,omitempty"`
+	Customproperty26 *string `json:"customproperty26,omitempty"`
+	Customproperty27 *string `json:"customproperty27,omitempty"`
+	Customproperty28 *string `json:"customproperty28,omitempty"`
+	Customproperty29 *string `json:"customproperty29,omitempty"`
+	Customproperty30 *string `json:"customproperty30,omitempty"`
+
+	// Custom Property Labels (1 to 30)
+	CustompropertyLabel1  *string `json:"custompropertyLabel1,omitempty"`
+	CustompropertyLabel2  *string `json:"custompropertyLabel2,omitempty"`
+	CustompropertyLabel3  *string `json:"custompropertyLabel3,omitempty"`
+	CustompropertyLabel4  *string `json:"custompropertyLabel4,omitempty"`
+	CustompropertyLabel5  *string `json:"custompropertyLabel5,omitempty"`
+	CustompropertyLabel6  *string `json:"custompropertyLabel6,omitempty"`
+	CustompropertyLabel7  *string `json:"custompropertyLabel7,omitempty"`
+	CustompropertyLabel8  *string `json:"custompropertyLabel8,omitempty"`
+	CustompropertyLabel9  *string `json:"custompropertyLabel9,omitempty"`
+	CustompropertyLabel10 *string `json:"custompropertyLabel10,omitempty"`
+	CustompropertyLabel11 *string `json:"custompropertyLabel11,omitempty"`
+	CustompropertyLabel12 *string `json:"custompropertyLabel12,omitempty"`
+	CustompropertyLabel13 *string `json:"custompropertyLabel13,omitempty"`
+	CustompropertyLabel14 *string `json:"custompropertyLabel14,omitempty"`
+	CustompropertyLabel15 *string `json:"custompropertyLabel15,omitempty"`
+	CustompropertyLabel16 *string `json:"custompropertyLabel16,omitempty"`
+	CustompropertyLabel17 *string `json:"custompropertyLabel17,omitempty"`
+	CustompropertyLabel18 *string `json:"custompropertyLabel18,omitempty"`
+	CustompropertyLabel19 *string `json:"custompropertyLabel19,omitempty"`
+	CustompropertyLabel20 *string `json:"custompropertyLabel20,omitempty"`
+	CustompropertyLabel21 *string `json:"custompropertyLabel21,omitempty"`
+	CustompropertyLabel22 *string `json:"custompropertyLabel22,omitempty"`
+	CustompropertyLabel23 *string `json:"custompropertyLabel23,omitempty"`
+	CustompropertyLabel24 *string `json:"custompropertyLabel24,omitempty"`
+	CustompropertyLabel25 *string `json:"custompropertyLabel25,omitempty"`
+	CustompropertyLabel26 *string `json:"custompropertyLabel26,omitempty"`
+	CustompropertyLabel27 *string `json:"custompropertyLabel27,omitempty"`
+	CustompropertyLabel28 *string `json:"custompropertyLabel28,omitempty"`
+	CustompropertyLabel29 *string `json:"custompropertyLabel29,omitempty"`
+	CustompropertyLabel30 *string `json:"custompropertyLabel30,omitempty"`
 }
+
 
 type _CreateEndpointRequest CreateEndpointRequest
 
@@ -533,6 +622,139 @@ func (o *CreateEndpointRequest) SetUserAccountCorrelationRule(v string) {
 	o.UserAccountCorrelationRule = &v
 }
 
+// SetCustomProperty sets the value of a custom property based on the index (1-30)
+func (o *CreateEndpointRequest) SetCustomProperty(index int, value string) {
+	switch index {
+	case 1:
+		o.Customproperty1 = &value
+	case 2:
+		o.Customproperty2 = &value
+	case 3:
+		o.Customproperty3 = &value
+	case 4:
+		o.Customproperty4 = &value
+	case 5:
+		o.Customproperty5 = &value
+	case 6:
+		o.Customproperty6 = &value
+	case 7:
+		o.Customproperty7 = &value
+	case 8:
+		o.Customproperty8 = &value
+	case 9:
+		o.Customproperty9 = &value
+	case 10:
+		o.Customproperty10 = &value
+	case 11:
+		o.Customproperty11 = &value
+	case 12:
+		o.Customproperty12 = &value
+	case 13:
+		o.Customproperty13 = &value
+	case 14:
+		o.Customproperty14 = &value
+	case 15:
+		o.Customproperty15 = &value
+	case 16:
+		o.Customproperty16 = &value
+	case 17:
+		o.Customproperty17 = &value
+	case 18:
+		o.Customproperty18 = &value
+	case 19:
+		o.Customproperty19 = &value
+	case 20:
+		o.Customproperty20 = &value
+	case 21:
+		o.Customproperty21 = &value
+	case 22:
+		o.Customproperty22 = &value
+	case 23:
+		o.Customproperty23 = &value
+	case 24:
+		o.Customproperty24 = &value
+	case 25:
+		o.Customproperty25 = &value
+	case 26:
+		o.Customproperty26 = &value
+	case 27:
+		o.Customproperty27 = &value
+	case 28:
+		o.Customproperty28 = &value
+	case 29:
+		o.Customproperty29 = &value
+	case 30:
+		o.Customproperty30 = &value
+	}
+}
+
+// SetCustomPropertyLabel sets the label for a custom property based on the index (1-30)
+func (o *CreateEndpointRequest) SetCustomPropertyLabel(index int, value string) {
+	switch index {
+	case 1:
+		o.CustompropertyLabel1 = &value
+	case 2:
+		o.CustompropertyLabel2 = &value
+	case 3:
+		o.CustompropertyLabel3 = &value
+	case 4:
+		o.CustompropertyLabel14 = &value
+	case 5:
+		o.CustompropertyLabel15 = &value
+	case 6:
+		o.CustompropertyLabel16 = &value
+	case 7:
+		o.CustompropertyLabel17 = &value
+	case 8:
+		o.CustompropertyLabel18 = &value
+	case 9:
+		o.CustompropertyLabel19 = &value
+	case 10:
+		o.CustompropertyLabel10 = &value
+	case 11:
+		o.CustompropertyLabel11 = &value
+	case 12:
+		o.CustompropertyLabel12 = &value
+	case 13:
+		o.CustompropertyLabel13 = &value
+	case 14:
+		o.CustompropertyLabel14 = &value
+	case 15:
+		o.CustompropertyLabel15 = &value
+	case 16:
+		o.CustompropertyLabel16 = &value
+	case 17:
+		o.CustompropertyLabel17 = &value
+	case 18:
+		o.CustompropertyLabel18 = &value
+	case 19:
+		o.CustompropertyLabel19 = &value
+	case 20:
+		o.CustompropertyLabel20 = &value
+	case 21:
+		o.CustompropertyLabel21 = &value
+	case 22:
+		o.CustompropertyLabel22 = &value
+	case 23:
+		o.CustompropertyLabel23 = &value
+	case 24:
+		o.CustompropertyLabel24 = &value
+	case 25:
+		o.CustompropertyLabel25= &value
+	case 26:
+		o.CustompropertyLabel26 = &value
+	case 27:
+		o.CustompropertyLabel27 = &value
+	case 28:
+		o.CustompropertyLabel28 = &value
+	case 29:
+		o.CustompropertyLabel29 = &value
+	case 30:
+		o.CustompropertyLabel30 = &value
+	}
+}
+
+
 // GetConnectionconfig returns the Connectionconfig field value if set, zero value otherwise.
 func (o *CreateEndpointRequest) GetConnectionconfig() string {
 	if o == nil || IsNil(o.Connectionconfig) {
@@ -617,6 +839,22 @@ func (o CreateEndpointRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Connectionconfig) {
 		toSerialize["connectionconfig"] = o.Connectionconfig
 	}
+	for i := 1; i <= 30; i++ {
+		customPropertyField := fmt.Sprintf("Customproperty%d", i)
+		customPropertyLabelField := fmt.Sprintf("CustompropertyLabel%d", i)
+
+		// Get values using struct fields directly
+		customProperty := reflect.ValueOf(o).FieldByName(customPropertyField).Interface()
+		customPropertyLabel := reflect.ValueOf(o).FieldByName(customPropertyLabelField).Interface()
+
+		if customProperty != nil {
+			toSerialize[fmt.Sprintf("customproperty%d", i)] = customProperty
+		}
+		if customPropertyLabel != nil {
+			toSerialize[fmt.Sprintf("custompropertyLabel%d", i)] = customPropertyLabel
+		}
+	}
+
 	return toSerialize, nil
 }
 

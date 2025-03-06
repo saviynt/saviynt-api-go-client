@@ -12,6 +12,7 @@ package usergroups
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the GetListOfUsergroups200ResponseUsergroupsInner type satisfies the MappedNullable interface at compile time
@@ -22,7 +23,7 @@ type GetListOfUsergroups200ResponseUsergroupsInner struct {
 	Entitlements []GetListOfUsergroups200ResponseUsergroupsInnerEntitlementsInner `json:"entitlements,omitempty"`
 	Groupid *string `json:"groupid,omitempty"`
 	Owners []interface{} `json:"owners,omitempty"`
-	Risk *string `json:"risk,omitempty"`
+	Risk                 *string     `json:"risk,omitempty"`
 	UserGroupdescription *string `json:"user_groupdescription,omitempty"`
 	UserGroupname *string `json:"user_groupname,omitempty"`
 	Usergroupkey *float32 `json:"usergroupkey,omitempty"`
@@ -143,18 +144,18 @@ func (o *GetListOfUsergroups200ResponseUsergroupsInner) SetOwners(v []interface{
 }
 
 // GetRisk returns the Risk field value if set, zero value otherwise.
+// GetRisk returns the Risk field as a string.
 func (o *GetListOfUsergroups200ResponseUsergroupsInner) GetRisk() string {
-	if o == nil || IsNil(o.Risk) {
-		var ret string
-		return ret
+	if o == nil || o.Risk == nil {
+		return ""
 	}
-	return *o.Risk
+	return *o.Risk // Dereference pointer safely
 }
 
 // GetRiskOk returns a tuple with the Risk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetListOfUsergroups200ResponseUsergroupsInner) GetRiskOk() (*string, bool) {
-	if o == nil || IsNil(o.Risk) {
+	if o == nil || o.Risk == nil {
 		return nil, false
 	}
 	return o.Risk, true
@@ -162,17 +163,15 @@ func (o *GetListOfUsergroups200ResponseUsergroupsInner) GetRiskOk() (*string, bo
 
 // HasRisk returns a boolean if a field has been set.
 func (o *GetListOfUsergroups200ResponseUsergroupsInner) HasRisk() bool {
-	if o != nil && !IsNil(o.Risk) {
-		return true
-	}
-
-	return false
+	return o != nil && o.Risk != nil
 }
 
-// SetRisk gets a reference to the given string and assigns it to the Risk field.
+// SetRisk assigns a string value to the Risk field.
 func (o *GetListOfUsergroups200ResponseUsergroupsInner) SetRisk(v string) {
-	o.Risk = &v
+	o.Risk = &v // Directly assign as a string
 }
+
+
 
 // GetUserGroupdescription returns the UserGroupdescription field value if set, zero value otherwise.
 func (o *GetListOfUsergroups200ResponseUsergroupsInner) GetUserGroupdescription() string {
@@ -369,6 +368,38 @@ func NewNullableGetListOfUsergroups200ResponseUsergroupsInner(val *GetListOfUser
 func (v NullableGetListOfUsergroups200ResponseUsergroupsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
+
+func (o *GetListOfUsergroups200ResponseUsergroupsInner) UnmarshalJSON(data []byte) error {
+	// Define an alias to avoid infinite recursion
+	type Alias GetListOfUsergroups200ResponseUsergroupsInner
+	aux := &struct {
+		Risk interface{} `json:"risk,omitempty"`
+		*Alias
+	}{
+		Alias: (*Alias)(o),
+	}
+
+	// Unmarshal into the alias struct
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	// Handle Risk conversion
+	if aux.Risk != nil {
+		switch v := aux.Risk.(type) {
+		case string:
+			o.Risk = &v
+		case float64:
+			str := fmt.Sprintf("%v", v) // Convert number to string
+			o.Risk = &str
+		default:
+			o.Risk = nil // Set to nil if the value is not a valid string/number
+		}
+	}
+
+	return nil
+}
+
 
 func (v *NullableGetListOfUsergroups200ResponseUsergroupsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true

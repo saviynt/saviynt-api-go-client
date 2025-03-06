@@ -12,6 +12,8 @@ package endpoint
 
 import (
 	"encoding/json"
+	"reflect"
+	"fmt"
 )
 
 // checks if the EndpointResponse type satisfies the MappedNullable interface at compile time
@@ -20,7 +22,6 @@ var _ MappedNullable = &EndpointResponse{}
 // EndpointResponse struct for EndpointResponse
 type EndpointResponse struct {
 	SecuritySystem *string `json:"securitySystem,omitempty"`
-	Customproperty1 *string `json:"customproperty1,omitempty"`
 	EnableCopyAccess *string `json:"enableCopyAccess,omitempty"`
 	DisplayName *string `json:"displayName,omitempty"`
 	Endpointname *string `json:"endpointname,omitempty"`
@@ -35,6 +36,67 @@ type EndpointResponse struct {
 	UserAccountCorrelationRule *string `json:"userAccountCorrelationRule,omitempty"`
 	Connectionconfig *string `json:"connectionconfig,omitempty"`
 	AccountTypeNoDeprovision *string `json:"accountTypeNoDeprovision,omitempty"`
+
+	Customproperty1  *string `json:"customproperty1,omitempty"`
+	Customproperty2  *string `json:"customproperty2,omitempty"`
+	Customproperty3  *string `json:"customproperty3,omitempty"`
+	Customproperty4  *string `json:"customproperty4,omitempty"`
+	Customproperty5  *string `json:"customproperty5,omitempty"`
+	Customproperty6  *string `json:"customproperty6,omitempty"`
+	Customproperty7  *string `json:"customproperty7,omitempty"`
+	Customproperty8  *string `json:"customproperty8,omitempty"`
+	Customproperty9  *string `json:"customproperty9,omitempty"`
+	Customproperty10 *string `json:"customproperty10,omitempty"`
+	Customproperty11 *string `json:"customproperty11,omitempty"`
+	Customproperty12 *string `json:"customproperty12,omitempty"`
+	Customproperty13 *string `json:"customproperty13,omitempty"`
+	Customproperty14 *string `json:"customproperty14,omitempty"`
+	Customproperty15 *string `json:"customproperty15,omitempty"`
+	Customproperty16 *string `json:"customproperty16,omitempty"`
+	Customproperty17 *string `json:"customproperty17,omitempty"`
+	Customproperty18 *string `json:"customproperty18,omitempty"`
+	Customproperty19 *string `json:"customproperty19,omitempty"`
+	Customproperty20 *string `json:"customproperty20,omitempty"`
+	Customproperty21 *string `json:"customproperty21,omitempty"`
+	Customproperty22 *string `json:"customproperty22,omitempty"`
+	Customproperty23 *string `json:"customproperty23,omitempty"`
+	Customproperty24 *string `json:"customproperty24,omitempty"`
+	Customproperty25 *string `json:"customproperty25,omitempty"`
+	Customproperty26 *string `json:"customproperty26,omitempty"`
+	Customproperty27 *string `json:"customproperty27,omitempty"`
+	Customproperty28 *string `json:"customproperty28,omitempty"`
+	Customproperty29 *string `json:"customproperty29,omitempty"`
+	Customproperty30 *string `json:"customproperty30,omitempty"`
+	Customproperty31 *string `json:"customproperty31,omitempty"`
+	Customproperty32 *string `json:"customproperty32,omitempty"`
+	Customproperty33 *string `json:"customproperty33,omitempty"`
+	Customproperty34 *string `json:"customproperty34,omitempty"`
+	Customproperty35 *string `json:"customproperty35,omitempty"`
+	Customproperty36 *string `json:"customproperty36,omitempty"`
+	Customproperty37 *string `json:"customproperty37,omitempty"`
+	Customproperty38 *string `json:"customproperty38,omitempty"`
+	Customproperty39 *string `json:"customproperty39,omitempty"`
+	Customproperty40 *string `json:"customproperty40,omitempty"`
+	Customproperty41 *string `json:"customproperty41,omitempty"`
+	Customproperty42 *string `json:"customproperty42,omitempty"`
+	Customproperty43 *string `json:"customproperty43,omitempty"`
+	Customproperty44 *string `json:"customproperty44,omitempty"`
+	Customproperty45 *string `json:"customproperty45,omitempty"`
+	Customproperty46 *string `json:"customproperty46,omitempty"`
+	Customproperty47 *string `json:"customproperty47,omitempty"`
+	Customproperty48 *string `json:"customproperty48,omitempty"`
+	Customproperty49 *string `json:"customproperty49,omitempty"`
+	Customproperty50 *string `json:"customproperty50,omitempty"`
+	Customproperty51 *string `json:"customproperty51,omitempty"`
+	Customproperty52 *string `json:"customproperty52,omitempty"`
+	Customproperty53 *string `json:"customproperty53,omitempty"`
+	Customproperty54 *string `json:"customproperty54,omitempty"`
+	Customproperty55 *string `json:"customproperty55,omitempty"`
+	Customproperty56 *string `json:"customproperty56,omitempty"`
+	Customproperty57 *string `json:"customproperty57,omitempty"`
+	Customproperty58 *string `json:"customproperty58,omitempty"`
+	Customproperty59 *string `json:"customproperty59,omitempty"`
+	Customproperty60 *string `json:"customproperty60,omitempty"`
 }
 
 // NewEndpointResponse instantiates a new EndpointResponse object
@@ -566,6 +628,8 @@ func (o *EndpointResponse) SetAccountTypeNoDeprovision(v string) {
 	o.AccountTypeNoDeprovision = &v
 }
 
+
+
 func (o EndpointResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -624,6 +688,23 @@ func (o EndpointResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AccountTypeNoDeprovision) {
 		toSerialize["accountTypeNoDeprovision"] = o.AccountTypeNoDeprovision
 	}
+
+	for i := 1; i <= 30; i++ {
+		customPropertyField := fmt.Sprintf("Customproperty%d", i)
+		customPropertyLabelField := fmt.Sprintf("CustompropertyLabel%d", i)
+
+		// Get values using struct fields directly
+		customProperty := reflect.ValueOf(o).FieldByName(customPropertyField).Interface()
+		customPropertyLabel := reflect.ValueOf(o).FieldByName(customPropertyLabelField).Interface()
+
+		if customProperty != nil {
+			toSerialize[fmt.Sprintf("customproperty%d", i)] = customProperty
+		}
+		if customPropertyLabel != nil {
+			toSerialize[fmt.Sprintf("custompropertyLabel%d", i)] = customPropertyLabel
+		}
+	}
+
 	return toSerialize, nil
 }
 
