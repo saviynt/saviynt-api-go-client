@@ -11,8 +11,6 @@ Contact: https://github.com/saviynt
 
 package savroles
 
-
-
 import (
 	"bytes"
 	"context"

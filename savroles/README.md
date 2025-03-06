@@ -87,7 +87,7 @@ Class | Method | HTTP request | Description
  - [GetAllSAVRolesResponse](docs/GetAllSAVRolesResponse.md)
  - [GetSAVRoleUsersResponse](docs/GetSAVRoleUsersResponse.md)
  - [SAVRole](docs/SAVRole.md)
- - [User](docs/User.md)
+ - [SAVRoleUser](docs/SAVRoleUser.md)
 
 
 ## Documentation For Authorization

@@ -20,7 +20,7 @@ var _ MappedNullable = &GetSAVRoleUsersResponse{}
 
 // GetSAVRoleUsersResponse struct for GetSAVRoleUsersResponse
 type GetSAVRoleUsersResponse struct {
-	Users []User `json:"users,omitempty"`
+	Users []SAVRoleUser `json:"users,omitempty"`
 }
 
 // NewGetSAVRoleUsersResponse instantiates a new GetSAVRoleUsersResponse object
@@ -41,9 +41,9 @@ func NewGetSAVRoleUsersResponseWithDefaults() *GetSAVRoleUsersResponse {
 }
 
 // GetUsers returns the Users field value if set, zero value otherwise.
-func (o *GetSAVRoleUsersResponse) GetUsers() []User {
+func (o *GetSAVRoleUsersResponse) GetUsers() []SAVRoleUser {
 	if o == nil || IsNil(o.Users) {
-		var ret []User
+		var ret []SAVRoleUser
 		return ret
 	}
 	return o.Users
@@ -51,7 +51,7 @@ func (o *GetSAVRoleUsersResponse) GetUsers() []User {
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSAVRoleUsersResponse) GetUsersOk() ([]User, bool) {
+func (o *GetSAVRoleUsersResponse) GetUsersOk() ([]SAVRoleUser, bool) {
 	if o == nil || IsNil(o.Users) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *GetSAVRoleUsersResponse) HasUsers() bool {
 	return false
 }
 
-// SetUsers gets a reference to the given []User and assigns it to the Users field.
-func (o *GetSAVRoleUsersResponse) SetUsers(v []User) {
+// SetUsers gets a reference to the given []SAVRoleUser and assigns it to the Users field.
+func (o *GetSAVRoleUsersResponse) SetUsers(v []SAVRoleUser) {
 	o.Users = v
 }
 

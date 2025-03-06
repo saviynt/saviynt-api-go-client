@@ -159,7 +159,7 @@ components:
       properties:
         users:
           items:
-            $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/SAVRoleUser'
           type: array
           x-stoplight:
             id: v8woquwbseecb
@@ -283,7 +283,7 @@ components:
           UPDATEDATE: 2022-12-06 07:30:18.0
           READONLY: "false"
           STATUSKEY: Active
-    User:
+    SAVRoleUser:
       example:
         username: username
       properties:

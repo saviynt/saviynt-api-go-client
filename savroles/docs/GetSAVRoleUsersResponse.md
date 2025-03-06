@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | Pointer to [**[]User**](User.md) |  | [optional] 
+**Users** | Pointer to [**[]SAVRoleUser**](SAVRoleUser.md) |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetUsers
 
-`func (o *GetSAVRoleUsersResponse) GetUsers() []User`
+`func (o *GetSAVRoleUsersResponse) GetUsers() []SAVRoleUser`
 
 GetUsers returns the Users field if non-nil, zero value otherwise.
 
 ### GetUsersOk
 
-`func (o *GetSAVRoleUsersResponse) GetUsersOk() (*[]User, bool)`
+`func (o *GetSAVRoleUsersResponse) GetUsersOk() (*[]SAVRoleUser, bool)`
 
 GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsers
 
-`func (o *GetSAVRoleUsersResponse) SetUsers(v []User)`
+`func (o *GetSAVRoleUsersResponse) SetUsers(v []SAVRoleUser)`
 
 SetUsers sets Users field to given value.
 

@@ -139,7 +139,7 @@
               "id": "v8woquwbseecb"
             },
             "items": {
-              "$ref": "#/components/schemas/User",
+              "$ref": "#/components/schemas/SAVRoleUser",
               "x-stoplight": {
                 "id": "x44f8gwlp2nu9"
               }
@@ -268,7 +268,7 @@
           }
         }
       },
-      "User": {
+      "SAVRoleUser": {
         "title": "User",
         "x-stoplight": {
           "id": "2uw2ub7z4e8vp"

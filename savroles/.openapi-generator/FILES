@@ -9,15 +9,15 @@ configuration.go
 docs/GetAllSAVRolesResponse.md
 docs/GetSAVRoleUsersResponse.md
 docs/SAVRole.md
+docs/SAVRoleUser.md
 docs/SAVRolesAPI.md
-docs/User.md
 git_push.sh
 go.mod
 go.sum
 model_get_all_sav_roles_response.go
 model_get_sav_role_users_response.go
 model_sav_role.go
-model_user.go
+model_sav_role_user.go
 response.go
 test/api_sav_roles_test.go
 utils.go
