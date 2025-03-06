@@ -607,127 +607,370 @@
           "userAccountCorrelationRule": {
             "type": "string"
           },
-          "Account Custom Property 1 Label": {"type":"string"},
-"Account Custom Property 2 Label": {"type":"string"},
-"Account Custom Property 3 Label": {"type":"string"},
-"Account Custom Property 4 Label": {"type":"string"},
-"Account Custom Property 5 Label": {"type":"string"},
-"Account Custom Property 6 Label": {"type":"string"},
-"Account Custom Property 7 Label": {"type":"string"},
-"Account Custom Property 8 Label": {"type":"string"},
-"Account Custom Property 9 Label": {"type":"string"},
-"Account Custom Property 10 Label": {"type":"string"},
-"Account Custom Property 11 Label": {"type":"string"},
-"Account Custom Property 12 Label": {"type":"string"},
-"Account Custom Property 13 Label": {"type":"string"},
-"Account Custom Property 14 Label": {"type":"string"},
-"Account Custom Property 15 Label": {"type":"string"},
-"Account Custom Property 16 Label": {"type":"string"},
-"Account Custom Property 17 Label": {"type":"string"},
-"Account Custom Property 18 Label": {"type":"string"},
-"Account Custom Property 19 Label": {"type":"string"},
-"Account Custom Property 20 Label": {"type":"string"},
-"Account Custom Property 21 Label": {"type":"string"},
-"Account Custom Property 22 Label": {"type":"string"},
-"Account Custom Property 23 Label": {"type":"string"},
-"Account Custom Property 24 Label": {"type":"string"},
-"Account Custom Property 25 Label": {"type":"string"},
-"Account Custom Property 26 Label": {"type":"string"},
-"Account Custom Property 27 Label": {"type":"string"},
-"Account Custom Property 28 Label": {"type":"string"},
-"Account Custom Property 29 Label": {"type":"string"},
-"Account Custom Property 30 Label": {"type":"string"},
-"Custom Property 1": {"type":"string"},
-"Custom Property 2": {"type":"string"},
-"Custom Property 3": {"type":"string"},
-"Custom Property 4": {"type":"string"},
-"Custom Property 5": {"type":"string"},
-"Custom Property 6": {"type":"string"},
-"Custom Property 7": {"type":"string"},
-"Custom Property 8": {"type":"string"},
-"Custom Property 9": {"type":"string"},
-"Custom Property 10": {"type":"string"},
-"Custom Property 11": {"type":"string"},
-"Custom Property 12": {"type":"string"},
-"Custom Property 13": {"type":"string"},
-"Custom Property 14": {"type":"string"},
-"Custom Property 15": {"type":"string"},
-"Custom Property 16": {"type":"string"},
-"Custom Property 17": {"type":"string"},
-"Custom Property 18": {"type":"string"},
-"Custom Property 19": {"type":"string"},
-"Custom Property 20": {"type":"string"},
-"Custom Property 21": {"type":"string"},
-"Custom Property 22": {"type":"string"},
-"Custom Property 23": {"type":"string"},
-"Custom Property 24": {"type":"string"},
-"Custom Property 25": {"type":"string"},
-"Custom Property 26": {"type":"string"},
-"Custom Property 27": {"type":"string"},
-"Custom Property 28": {"type":"string"},
-"Custom Property 29": {"type":"string"},
-"Custom Property 30": {"type":"string"},
-"customproperty31": {"type":"string"},
-"customproperty31Label": {"type":"string"},
-"customproperty32": {"type":"string"},
-"customproperty32Label": {"type":"string"},
-"customproperty33": {"type":"string"},
-"customproperty33Label": {"type":"string"},
-"customproperty34": {"type":"string"},
-"customproperty34Label": {"type":"string"},
-"customproperty35": {"type":"string"},
-"customproperty35Label": {"type":"string"},
-"customproperty36": {"type":"string"},
-"customproperty36Label": {"type":"string"},
-"customproperty37": {"type":"string"},
-"customproperty37Label": {"type":"string"},
-"customproperty38": {"type":"string"},
-"customproperty38Label": {"type":"string"},
-"customproperty39": {"type":"string"},
-"customproperty39Label": {"type":"string"},
-"customproperty40": {"type":"string"},
-"customproperty40Label": {"type":"string"},
-"customproperty41": {"type":"string"},
-"customproperty41Label": {"type":"string"},
-"customproperty42": {"type":"string"},
-"customproperty42Label": {"type":"string"},
-"customproperty43": {"type":"string"},
-"customproperty43Label": {"type":"string"},
-"customproperty44": {"type":"string"},
-"customproperty44Label": {"type":"string"},
-"customproperty45": {"type":"string"},
-"customproperty45Label": {"type":"string"},
-"customproperty46": {"type":"string"},
-"customproperty46Label": {"type":"string"},
-"customproperty47": {"type":"string"},
-"customproperty47Label": {"type":"string"},
-"customproperty48": {"type":"string"},
-"customproperty48Label": {"type":"string"},
-"customproperty49": {"type":"string"},
-"customproperty49Label": {"type":"string"},
-"customproperty50": {"type":"string"},
-"customproperty50Label": {"type":"string"},
-"customproperty51": {"type":"string"},
-"customproperty51Label": {"type":"string"},
-"customproperty52": {"type":"string"},
-"customproperty52Label": {"type":"string"},
-"customproperty53": {"type":"string"},
-"customproperty53Label": {"type":"string"},
-"customproperty54": {"type":"string"},
-"customproperty54Label": {"type":"string"},
-"customproperty55": {"type":"string"},
-"customproperty55Label": {"type":"string"},
-"customproperty56": {"type":"string"},
-"customproperty56Label": {"type":"string"},
-"customproperty57": {"type":"string"},
-"customproperty57Label": {"type":"string"},
-"customproperty58": {"type":"string"},
-"customproperty58Label": {"type":"string"},
-"customproperty59": {"type":"string"},
-"customproperty59Label": {"type":"string"},
-"customproperty60": {"type":"string"},
-"customproperty60Label": {"type":"string"}
+          "Account Custom Property 1 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 2 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 3 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 4 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 5 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 6 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 7 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 8 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 9 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 10 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 11 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 12 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 13 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 14 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 15 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 16 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 17 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 18 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 19 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 20 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 21 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 22 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 23 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 24 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 25 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 26 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 27 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 28 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 29 Label": {
+            "type": "string"
+          },
+          "Account Custom Property 30 Label": {
+            "type": "string"
+          },
+          "Custom Property 1": {
+            "type": "string"
+          },
+          "Custom Property 2": {
+            "type": "string"
+          },
+          "Custom Property 3": {
+            "type": "string"
+          },
+          "Custom Property 4": {
+            "type": "string"
+          },
+          "Custom Property 5": {
+            "type": "string"
+          },
+          "Custom Property 6": {
+            "type": "string"
+          },
+          "Custom Property 7": {
+            "type": "string"
+          },
+          "Custom Property 8": {
+            "type": "string"
+          },
+          "Custom Property 9": {
+            "type": "string"
+          },
+          "Custom Property 10": {
+            "type": "string"
+          },
+          "Custom Property 11": {
+            "type": "string"
+          },
+          "Custom Property 12": {
+            "type": "string"
+          },
+          "Custom Property 13": {
+            "type": "string"
+          },
+          "Custom Property 14": {
+            "type": "string"
+          },
+          "Custom Property 15": {
+            "type": "string"
+          },
+          "Custom Property 16": {
+            "type": "string"
+          },
+          "Custom Property 17": {
+            "type": "string"
+          },
+          "Custom Property 18": {
+            "type": "string"
+          },
+          "Custom Property 19": {
+            "type": "string"
+          },
+          "Custom Property 20": {
+            "type": "string"
+          },
+          "Custom Property 21": {
+            "type": "string"
+          },
+          "Custom Property 22": {
+            "type": "string"
+          },
+          "Custom Property 23": {
+            "type": "string"
+          },
+          "Custom Property 24": {
+            "type": "string"
+          },
+          "Custom Property 25": {
+            "type": "string"
+          },
+          "Custom Property 26": {
+            "type": "string"
+          },
+          "Custom Property 27": {
+            "type": "string"
+          },
+          "Custom Property 28": {
+            "type": "string"
+          },
+          "Custom Property 29": {
+            "type": "string"
+          },
+          "Custom Property 30": {
+            "type": "string"
+          },
+          "customproperty31": {
+            "type": "string"
+          },
+          "customproperty31Label": {
+            "type": "string"
+          },
+          "customproperty32": {
+            "type": "string"
+          },
+          "customproperty32Label": {
+            "type": "string"
+          },
+          "customproperty33": {
+            "type": "string"
+          },
+          "customproperty33Label": {
+            "type": "string"
+          },
+          "customproperty34": {
+            "type": "string"
+          },
+          "customproperty34Label": {
+            "type": "string"
+          },
+          "customproperty35": {
+            "type": "string"
+          },
+          "customproperty35Label": {
+            "type": "string"
+          },
+          "customproperty36": {
+            "type": "string"
+          },
+          "customproperty36Label": {
+            "type": "string"
+          },
+          "customproperty37": {
+            "type": "string"
+          },
+          "customproperty37Label": {
+            "type": "string"
+          },
+          "customproperty38": {
+            "type": "string"
+          },
+          "customproperty38Label": {
+            "type": "string"
+          },
+          "customproperty39": {
+            "type": "string"
+          },
+          "customproperty39Label": {
+            "type": "string"
+          },
+          "customproperty40": {
+            "type": "string"
+          },
+          "customproperty40Label": {
+            "type": "string"
+          },
+          "customproperty41": {
+            "type": "string"
+          },
+          "customproperty41Label": {
+            "type": "string"
+          },
+          "customproperty42": {
+            "type": "string"
+          },
+          "customproperty42Label": {
+            "type": "string"
+          },
+          "customproperty43": {
+            "type": "string"
+          },
+          "customproperty43Label": {
+            "type": "string"
+          },
+          "customproperty44": {
+            "type": "string"
+          },
+          "customproperty44Label": {
+            "type": "string"
+          },
+          "customproperty45": {
+            "type": "string"
+          },
+          "customproperty45Label": {
+            "type": "string"
+          },
+          "customproperty46": {
+            "type": "string"
+          },
+          "customproperty46Label": {
+            "type": "string"
+          },
+          "customproperty47": {
+            "type": "string"
+          },
+          "customproperty47Label": {
+            "type": "string"
+          },
+          "customproperty48": {
+            "type": "string"
+          },
+          "customproperty48Label": {
+            "type": "string"
+          },
+          "customproperty49": {
+            "type": "string"
+          },
+          "customproperty49Label": {
+            "type": "string"
+          },
+          "customproperty50": {
+            "type": "string"
+          },
+          "customproperty50Label": {
+            "type": "string"
+          },
+          "customproperty51": {
+            "type": "string"
+          },
+          "customproperty51Label": {
+            "type": "string"
+          },
+          "customproperty52": {
+            "type": "string"
+          },
+          "customproperty52Label": {
+            "type": "string"
+          },
+          "customproperty53": {
+            "type": "string"
+          },
+          "customproperty53Label": {
+            "type": "string"
+          },
+          "customproperty54": {
+            "type": "string"
+          },
+          "customproperty54Label": {
+            "type": "string"
+          },
+          "customproperty55": {
+            "type": "string"
+          },
+          "customproperty55Label": {
+            "type": "string"
+          },
+          "customproperty56": {
+            "type": "string"
+          },
+          "customproperty56Label": {
+            "type": "string"
+          },
+          "customproperty57": {
+            "type": "string"
+          },
+          "customproperty57Label": {
+            "type": "string"
+          },
+          "customproperty58": {
+            "type": "string"
+          },
+          "customproperty58Label": {
+            "type": "string"
+          },
+          "customproperty59": {
+            "type": "string"
+          },
+          "customproperty59Label": {
+            "type": "string"
+          },
+          "customproperty60": {
+            "type": "string"
+          },
+          "customproperty60Label": {
+            "type": "string"
+          }
         },
+        "required": [
+          "endpointname"
+        ],
         "title": ""
       }
     }
