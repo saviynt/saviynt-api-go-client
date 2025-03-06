@@ -129,6 +129,25 @@ func Test_delegatedadministration_DelegatedAdministrationAPIService(t *testing.T
 		delegateCreateResponse = *resp
 	})
 
+	t.Run("Test_DelegatedAdministrationAPIService_GetDelegate", func(t *testing.T) {
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		} else if delegateCreateResponse.Delegatekey == nil || *delegateCreateResponse.Delegatekey == "" {
+			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_DelegatedAdministrationAPIService_GetDelegate`")
+		}
+
+		d, err := delegatedadministrationutil.ReadDelegate(ctx,
+			apiClient.DelegatedAdministration,
+			creds.Username,
+			*delegateCreateResponse.Delegatekey)
+
+		require.Nil(t, err)
+		require.NotNil(t, d)
+		assert.Equal(t, *delegateCreateResponse.Delegatekey, d.Delegatekey)
+	})
+
 	t.Run("Test_DelegatedAdministrationAPIService_EditDelegate", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)
