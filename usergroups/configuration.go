@@ -90,8 +90,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://dev-scrum-intgn.saviyntcloud.com",
-				Description: "Development Server",
+				URL: "http://localhost:3000",
+				Description: "No description provided",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
