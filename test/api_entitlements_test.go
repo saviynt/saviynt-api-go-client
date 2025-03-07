@@ -26,15 +26,24 @@ func PtrString(s string) *string {
 
 func Test_EntitlementsService(t *testing.T) {
 	// client() is a shared helper defined in test/client.go that returns the configured API client.
-	apiClient, _, _, _, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
+
 	require.NoError(t, err, "Failed to initialize API client")
-	require.NotNil(t, apiClient, "apiClient should not be nil")
-	require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements should not be nil")
+	if !skipTests {
+		require.NotNil(t, apiClient, "apiClient should not be nil")
+		require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements should not be nil")
+	}
 	ctx := context.Background()
 	t.Run("Test GetEntitlements without parameters", func(t *testing.T) {
-		if apiClient.Entitlements == nil {
-			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+
+		require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements is nil, skipping test")
 		resp, httpRes, err := apiClient.Entitlements.GetEntitlements(ctx).Execute()
 		require.NoError(t, err, "Unexpected error in GetEntitlements")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
