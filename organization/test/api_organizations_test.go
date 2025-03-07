@@ -30,11 +30,8 @@ func marshalResp(v interface{}) []byte {
 }
 
 var (
-	apiClient *openapi.APIClient
-	ctx       context.Context
-	// Common test data:
-	testServerURL   = "https://dev-scrum-intgn.saviyntcloud.com"
-	testAuthToken   = "Bearer token_value"
+	apiClient       *openapi.APIClient
+	ctx             context.Context
 	defaultUsername = "awsadmin"
 	defaultOrgName  = "TestOrg8"
 	comment         = "Hello this is from test connections"
@@ -43,15 +40,10 @@ var (
 func Test_openapi_OrganizationsAPIService(t *testing.T) {
 
 	cfg := openapi.NewConfiguration()
-	cfg.Servers = openapi.ServerConfigurations{
-		{URL: testServerURL},
-	}
-	cfg.AddDefaultHeader("Authorization", testAuthToken)
-	cfg.AddDefaultHeader("Content-Type", "application/json")
 	apiClient = openapi.NewAPIClient(cfg)
 	ctx = context.Background()
 	t.Run("Test OrganizationsAPIService CreateOrganization", func(t *testing.T) {
-
+		t.Skip("skip test")
 		createReq := openapi.CreateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -72,6 +64,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganization", func(t *testing.T) {
+		t.Skip("skip test")
 		updateReq := openapi.UpdateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -90,6 +83,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 		fmt.Println(string(marshalResp(resp)))
 	})
 	t.Run("Test OrganizationsAPIService GetOrganization", func(t *testing.T) {
+		t.Skip("skip test")
 		getReq := openapi.GetOrganizationRequest{
 			Organizationname: &defaultOrgName,
 		}
@@ -110,6 +104,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService GetOrganizationUserDetails", func(t *testing.T) {
+		t.Skip("skip test")
 		getDetailsReq := openapi.GetOrganizationUserDetailsRequest{
 			Username: defaultUsername,
 		}
@@ -126,6 +121,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService DeleteOrganization", func(t *testing.T) {
+		t.Skip("skip test")
 		deleteReq := openapi.DeleteOrganizationRequest{
 			Organizationname: &defaultOrgName,
 			Username:         &defaultUsername,
@@ -143,6 +139,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganizationUsers", func(t *testing.T) {
+		t.Skip("skip test")
 		organizationName := "TestOrg5"
 		username := "Customer101C"
 		updatetype := "remove"

@@ -27,13 +27,17 @@ func PtrString(s string) *string {
 func Test_EntitlementsService(t *testing.T) {
 	// client() is a shared helper defined in test/client.go that returns the configured API client.
 	apiClient, _, _, _, err := client()
-	require.Nil(t, err)
-
+	require.NoError(t, err, "Failed to initialize API client")
+	require.NotNil(t, apiClient, "apiClient should not be nil")
+	require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements should not be nil")
 	ctx := context.Background()
-
 	t.Run("Test GetEntitlements without parameters", func(t *testing.T) {
+		if apiClient.Entitlements == nil {
+			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		}
 		resp, httpRes, err := apiClient.Entitlements.GetEntitlements(ctx).Execute()
 		require.NoError(t, err, "Unexpected error in GetEntitlements")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
@@ -47,12 +51,16 @@ func Test_EntitlementsService(t *testing.T) {
 			Offset(0).
 			Execute()
 		require.NoError(t, err, "Unexpected error in GetChildEntitlements")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 	})
 
 	// ─── Test: CreateUpdateEntitlement ─────────────────────────────────────────────
 	t.Run("Test CreateUpdateEntitlement", func(t *testing.T) {
+		if apiClient.Entitlements == nil {
+			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		}
 		newValue := "CN=adtestrequest123,OU=DocTeamOU,OU=SaviyntTeams,DC=saviyntlabs,DC=org1"
 		createReq := entitlements.CreateUpdateEntitlementRequest{
 			Endpoint:            "AD_Rashid",
@@ -63,12 +71,16 @@ func Test_EntitlementsService(t *testing.T) {
 		resp, httpRes, err := apiClient.Entitlements.CreateUpdateEntitlement(ctx).
 			CreateUpdateEntitlementRequest(createReq).Execute()
 		require.NoError(t, err, "Unexpected error in CreateUpdateEntitlement")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 	})
 
 	// ─── Test: GetEntitlementValuesForEndpoint ─────────────────────────────────────
 	t.Run("Test GetEntitlementValuesForEndpoint", func(t *testing.T) {
+		if apiClient.Entitlements == nil {
+			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		}
 		getReq := entitlements.GetEntitlementValuesForEndpointRequest{
 			Endpoint:        "AD_Rashid",
 			EntitlementType: PtrString("memberOf"), // Optional field
@@ -76,23 +88,31 @@ func Test_EntitlementsService(t *testing.T) {
 		resp, httpRes, err := apiClient.Entitlements.GetEntitlementValuesForEndpoint(ctx).
 			GetEntitlementValuesForEndpointRequest(getReq).Execute()
 		require.NoError(t, err, "Unexpected error in GetEntitlementValuesForEndpoint")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 	})
 
 	// ─── Test: GetListOfPrivilegesForEntitlementType ──────────────────────────────
 	t.Run("Test GetListOfPrivileges", func(t *testing.T) {
+		if apiClient.Entitlements == nil {
+			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		}
 		req := apiClient.Entitlements.GetListOfPrivilegesForEntitlementType(ctx).
 			Endpoint("AD_Rashid").
 			Entitlementtype("memberOf")
 		resp, httpRes, err := req.Execute()
 		require.NoError(t, err, "Unexpected error in GetListOfPrivileges")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 	})
 
 	// ─── Test: RemoveEntitlementFromRole ───────────────────────────────────────────
 	t.Run("Test RemoveEntitlementFromRole", func(t *testing.T) {
+		if apiClient.Entitlements == nil {
+			t.Fatal("apiClient.Entitlements is nil, skipping test")
+		}
 		entitlementValue := "CN=adtestrequest123,OU=DocTeamOU,OU=SaviyntTeams,DC=saviyntlabs,DC=org"
 		req := entitlements.RemoveEntitlementFromRoleRequest{
 			Requestor: PtrString("admin"),
@@ -108,6 +128,7 @@ func Test_EntitlementsService(t *testing.T) {
 		resp, httpRes, err := apiClient.Entitlements.RemoveEntitlementFromRole(ctx).
 			RemoveEntitlementFromRoleRequest(req).Execute()
 		require.NoError(t, err, "Unexpected error in RemoveEntitlementFromRole")
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 	})

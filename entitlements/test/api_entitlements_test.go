@@ -11,7 +11,6 @@ package openapi
 
 import (
 	"context"
-	"net/http"
 	"testing"
 
 	openapiclient "github.com/saviynt/saviynt-api-go-client/entitlements"
@@ -25,20 +24,12 @@ func StringPtr(s string) *string {
 func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	cfg := openapiclient.NewConfiguration()
-	cfg.Servers = openapiclient.ServerConfigurations{
-		{
-			URL: "https://dev-scrum-intgn.saviyntcloud.com",
-		},
-	}
-	cfg.AddDefaultHeader("Authorization", "Bearer token_value")
-	cfg.AddDefaultHeader("Content-Type", "application/json")
-	cfg.HTTPClient = http.DefaultClient
-
 	apiClient := openapiclient.NewAPIClient(cfg)
 	ctx := context.Background()
 
 	// Test GetEntitlements
 	t.Run("Test GetEntitlements without parameters", func(t *testing.T) {
+		t.Skip("skip test")
 		resp, httpRes, err := apiClient.EntitlementsAPI.GetEntitlements(ctx).Execute()
 		require.NoError(t, err, "Unexpected error in GetEntitlements API")
 		require.NotNil(t, resp, "Response should not be nil")
@@ -47,6 +38,7 @@ func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	// Test GetChildEntitlements
 	t.Run("Test GetChildEntitlements", func(t *testing.T) {
+		t.Skip("skip test")
 		resp, httpRes, err := apiClient.EntitlementsAPI.GetChildEntitlements(ctx).
 			Endpointname("AD_Rashid").
 			Max(5).
@@ -60,6 +52,7 @@ func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	// Test CreateUpdateEntitlement
 	t.Run("Test CreateUpdateEntitlement", func(t *testing.T) {
+		t.Skip("skip test")
 		NewValue := "CN=adtestrequest123,OU=DocTeamOU,OU=SaviyntTeams,DC=saviyntlabs,DC=org1"
 		createReq := openapiclient.CreateUpdateEntitlementRequest{
 			Endpoint:            "AD_Rashid",
@@ -78,6 +71,7 @@ func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	// Test GetEntitlementValuesForEndpoint
 	t.Run("Test GetEntitlementValuesForEndpoint", func(t *testing.T) {
+		t.Skip("skip test")
 		getReq := openapiclient.GetEntitlementValuesForEndpointRequest{
 			Endpoint:        "AD_Rashid",
 			EntitlementType: openapiclient.PtrString("memberOf"), // Optional field
@@ -91,6 +85,7 @@ func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	// Test GetListOfPrivileges
 	t.Run("Test GetListOfPrivileges", func(t *testing.T) {
+		t.Skip("skip test")
 		resp, httpRes, err := apiClient.EntitlementsAPI.GetListOfPrivilegesForEntitlementType(ctx).
 			Endpoint("AD_Rashid").
 			Entitlementtype("memberOf").
@@ -103,6 +98,7 @@ func Test_openapi_EntitlementsAPIService(t *testing.T) {
 
 	// Test RemoveEntitlementFromRole
 	t.Run("Test RemoveEntitlementFromRole", func(t *testing.T) {
+		t.Skip("skip test")
 		entitlement_value := "CN=adtestrequest123,OU=DocTeamOU,OU=SaviyntTeams,DC=saviyntlabs,DC=org"
 		entitlement_type := "memberOf"
 		entitlment_endpoint := "AD_Rashid"

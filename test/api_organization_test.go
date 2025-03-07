@@ -36,11 +36,15 @@ func marshalResp(v interface{}) []byte {
 
 func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	apiClient, _, _, _, err := client()
-	require.Nil(t, err)
+	require.NoError(t, err, "Failed to initialize API client")
+	require.NotNil(t, apiClient, "apiClient should not be nil")
+	require.NotNil(t, apiClient.Organizations, "apiClient.Organizations should not be nil")
 
 	ctx := context.Background()
 	t.Run("Test OrganizationsAPIService CreateOrganization", func(t *testing.T) {
-
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
 		createReq := openapi.CreateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -53,6 +57,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			CreateOrganizationRequest(createReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -61,6 +66,9 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganization", func(t *testing.T) {
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
 		updateReq := openapi.UpdateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -72,6 +80,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			UpdateOrganizationRequest(updateReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -79,6 +88,9 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 		fmt.Println(string(marshalResp(resp)))
 	})
 	t.Run("Test OrganizationsAPIService GetOrganization", func(t *testing.T) {
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
 		getReq := openapi.GetOrganizationRequest{
 			Organizationname: &defaultOrgName,
 		}
@@ -89,6 +101,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			GetOrganizationRequest(getReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -99,6 +112,10 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService GetOrganizationUserDetails", func(t *testing.T) {
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
+
 		getDetailsReq := openapi.GetOrganizationUserDetailsRequest{
 			Username: defaultUsername,
 		}
@@ -107,6 +124,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			GetOrganizationUserDetailsRequest(getDetailsReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -115,6 +133,9 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService DeleteOrganization", func(t *testing.T) {
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
 		deleteReq := openapi.DeleteOrganizationRequest{
 			Organizationname: &defaultOrgName,
 			Username:         &defaultUsername,
@@ -124,6 +145,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			DeleteOrganizationRequest(deleteReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
@@ -132,6 +154,9 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganizationUsers", func(t *testing.T) {
+		if apiClient.Organizations == nil {
+			t.Fatal("apiClient.Organizations is nil, skipping test")
+		}
 		organizationName := "TestOrg5"
 		username := "User_spc$%^&"
 		updatetype := "remove"
@@ -150,6 +175,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			UpdateOrganizationUsersRequest(updateUsersReq).
 			Execute()
 		require.NoError(t, err)
+		require.NotNil(t, httpRes, "httpRes should not be nil")
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
