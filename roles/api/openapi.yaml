@@ -1,0 +1,2149 @@
+openapi: 3.1.0
+info:
+  description: API for managing roles in Saviynt.
+  title: Saviynt API
+  version: 1.0.0
+servers:
+- description: Development Server
+  url: https://dev-scrum-intgn.saviyntcloud.com
+paths:
+  /addrole:
+    post:
+      description: |-
+        This API adds role to user.
+        The `Authorization` must have `Bearer` followed by `Token`.
+        Mandatory params:
+        `username`,
+        `rolename`
+      operationId: addRole
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Add Role:
+                value:
+                  rolename: Fire Fighter
+                  username: johndoe
+            schema:
+              $ref: '#/components/schemas/addRole_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Add Role:
+                  value:
+                    message: " Tasks created. IDs:: 673975 "
+              schema:
+                $ref: '#/components/schemas/addRole_200_response'
+          description: Add Role
+          headers:
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 24 Oct 2018 21:17:09 GMT"
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=9aabdb9e-22bc-4d27-9ed5-22661edc2a38; Path=/
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+      summary: Add Role
+      tags:
+      - roles
+  /getRoles:
+    post:
+      description: "This API can be used to get the list of all the roles.\nThis API\
+        \ call can be used to get the list and details of all the roles associated\
+        \ to the user. \nThe `Authorization` must have `Bearer` followed by `Token`.\
+        \ \nOptional params:\n`username`, `customproperty<1 to 60>`, `roletype`, `requestable`,\
+        \ `status`, `role_name`, `description`, `displayname`, `glossary`, `mininginstance`,\
+        \ `risk`, `updateuser`, `systemid`, `soxcritical`, `syscritical`, `level`,\
+        \ `priviliged`, `confidentiality`, `requestedObject` - contains users and/or\
+        \ entitlement_values"
+      operationId: getRoleDetailsForUser
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/getRoleDetailsForUser_request'
+          text/plain:
+            examples:
+              Get Role Details for user:
+                value: ""
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get Role Details:
+                  value:
+                    Roledetails:
+                    - customproperty1: ""
+                      customproperty10: ""
+                      customproperty11: ""
+                      customproperty12: ""
+                      customproperty13: ""
+                      customproperty14: ""
+                      customproperty15: ""
+                      customproperty16: ""
+                      customproperty17: ""
+                      customproperty18: ""
+                      customproperty19: ""
+                      customproperty2: ""
+                      customproperty20: ""
+                      customproperty21: ""
+                      customproperty22: ""
+                      customproperty23: ""
+                      customproperty24: ""
+                      customproperty25: ""
+                      customproperty26: ""
+                      customproperty27: ""
+                      customproperty28: ""
+                      customproperty29: ""
+                      customproperty3: ""
+                      customproperty30: ""
+                      customproperty31: ""
+                      customproperty32: ""
+                      customproperty33: ""
+                      customproperty34: ""
+                      customproperty35: ""
+                      customproperty36: ""
+                      customproperty37: ""
+                      customproperty38: ""
+                      customproperty39: ""
+                      customproperty4: ""
+                      customproperty40: ""
+                      customproperty41: ""
+                      customproperty42: ""
+                      customproperty43: ""
+                      customproperty44: ""
+                      customproperty45: ""
+                      customproperty46: ""
+                      customproperty47: ""
+                      customproperty48: ""
+                      customproperty49: ""
+                      customproperty5: ""
+                      customproperty50: ""
+                      customproperty51: ""
+                      customproperty52: ""
+                      customproperty53: ""
+                      customproperty54: ""
+                      customproperty55: ""
+                      customproperty56: ""
+                      customproperty57: ""
+                      customproperty58: ""
+                      customproperty59: ""
+                      customproperty6: ""
+                      customproperty60: ""
+                      customproperty7: ""
+                      customproperty8: ""
+                      customproperty9: ""
+                      UserDetails:
+                      - User Details Not Found
+                      confidentiality: ""
+                      defaultTimeFrameHrs: ""
+                      description: ""
+                      displayname: ""
+                      endpointkey: "396"
+                      entitlement_valueKey: ""
+                      glossary: ""
+                      lastReviewedBy: ""
+                      lastReviewedCampaignName: ""
+                      maxTimeFrameHrs: ""
+                      owner:
+                      - ownername: admin
+                        rank: "1"
+                      priviliged: ""
+                      requestable: "true"
+                      risk: ""
+                      roleKey: 1310
+                      roleState: ""
+                      role_name: Feb7th1988Role
+                      roletype: "4"
+                      showDynamicAttrs: "true"
+                      soxcritical: ""
+                      status: "1"
+                      syscritical: ""
+                      updatedate: 2023-02-08 09:18:08
+                      updateuser: "1"
+                      version: 8
+                    displayCount: 1
+                    errorCode: "0"
+                    msg: Successful
+                    totalCount: 1
+                Get Role Details for user:
+                  value:
+                    Roledetails:
+                    - confidentiality: "5"
+                      customproperty1: jjjjjjjjjjj
+                      customproperty10: cp10
+                      customproperty11: ""
+                      customproperty12: ""
+                      customproperty13: ""
+                      customproperty14: ""
+                      customproperty15: ""
+                      customproperty16: ""
+                      customproperty17: ""
+                      customproperty18: ""
+                      customproperty19: ""
+                      customproperty2: ""
+                      customproperty20: ""
+                      customproperty21: ""
+                      customproperty22: ""
+                      customproperty23: ""
+                      customproperty24: ""
+                      customproperty25: ""
+                      customproperty26: ""
+                      customproperty27: ""
+                      customproperty28: ""
+                      customproperty29: ""
+                      customproperty3: ""
+                      customproperty30: cp30bh
+                      customproperty31: cp31
+                      customproperty32: ""
+                      customproperty33: ""
+                      customproperty34: ""
+                      customproperty35: ""
+                      customproperty36: cp36
+                      customproperty37: ""
+                      customproperty38: ""
+                      customproperty39: ""
+                      customproperty4: ""
+                      customproperty40: ""
+                      customproperty41: ""
+                      customproperty42: ""
+                      customproperty43: ""
+                      customproperty44: ""
+                      customproperty45: ""
+                      customproperty46: ""
+                      customproperty47: ""
+                      customproperty48: ""
+                      customproperty49: ""
+                      customproperty5: ""
+                      customproperty50: ""
+                      customproperty51: ""
+                      customproperty52: ""
+                      customproperty53: ""
+                      customproperty54: ""
+                      customproperty55: ""
+                      customproperty56: ""
+                      customproperty57: ""
+                      customproperty58: ""
+                      customproperty59: ""
+                      customproperty6: ""
+                      customproperty60: ""
+                      customproperty7: ""
+                      customproperty8: ""
+                      customproperty9: ""
+                      defaultTimeFrameHrs: ""
+                      description: this is description |  | EnterPriseEnterPrise  EnterPriseEnterPrise
+                      displayname: ""
+                      endpointkey: "13"
+                      glossary: ""
+                      maxTimeFrameHrs: ""
+                      owner:
+                      - dbailey
+                      - lkrause
+                      priviliged: "1"
+                      requestable: "true"
+                      risk: ""
+                      role_name: EnterPrise
+                      roletype: "4"
+                      showDynamicAttrs: "false"
+                      soxcritical: "3"
+                      status: "1"
+                      syscritical: "3"
+                      updatedate: 2019-02-01 00:04:21
+                      updateuser: "1"
+                      userAccounts:
+                      - accountname: johndoe
+                        enddate: ""
+                        startdate: 2019-02-11 22:47:32
+                      version: "79"
+                    errorCode: "0"
+                    msg: Successful
+              schema:
+                $ref: '#/components/schemas/getRoleDetailsForUser_200_response'
+          description: Get Role Details for user / Get Role Details
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: https://23-monthly-aws.saviyntcloud.com
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Mon, 13 Feb 2023 09:18:08 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: origin
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=3ace8924-6ccb-4065-9808-42a794834bf9; Version=1;
+                  Path=";Path=/;HttpOnly;"; Secure
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=15724800; includeSubDomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+      summary: Get Role Details for user
+      tags:
+      - roles
+  /getFireFighterRoles:
+    post:
+      description: "This method returns a `List` of active \"FireFighter\" roles in\
+        \ SSM. \nThe `Authorization` must have `Bearer` followed by `Token`.\nNo params"
+      operationId: getFirefighterRoleDetails
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Get FireFighter Roles:
+                  value:
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                    confidentiality: null
+                    customproperty1: null
+                    customproperty10: null
+                    customproperty11: null
+                    customproperty12: null
+                    customproperty13: null
+                    customproperty14: null
+                    customproperty15: null
+                    customproperty16: null
+                    customproperty17: null
+                    customproperty18: null
+                    customproperty19: null
+                    customproperty2: null
+                    customproperty20: null
+                    customproperty21: null
+                    customproperty22: null
+                    customproperty23: null
+                    customproperty24: null
+                    customproperty25: null
+                    customproperty26: null
+                    customproperty27: null
+                    customproperty28: null
+                    customproperty29: null
+                    customproperty3: null
+                    customproperty30: null
+                    customproperty31: null
+                    customproperty32: null
+                    customproperty33: null
+                    customproperty34: null
+                    customproperty35: null
+                    customproperty36: null
+                    customproperty37: null
+                    customproperty38: null
+                    customproperty39: null
+                    customproperty4: null
+                    customproperty40: null
+                    customproperty41: null
+                    customproperty42: null
+                    customproperty43: null
+                    customproperty44: null
+                    customproperty45: null
+                    customproperty46: null
+                    customproperty47: null
+                    customproperty48: null
+                    customproperty49: null
+                    customproperty5: null
+                    customproperty50: null
+                    customproperty51: null
+                    customproperty52: null
+                    customproperty53: null
+                    customproperty54: null
+                    customproperty55: null
+                    customproperty56: null
+                    customproperty57: null
+                    customproperty58: null
+                    customproperty59: null
+                    customproperty6: null
+                    customproperty60: null
+                    customproperty7: null
+                    customproperty8: null
+                    customproperty9: null
+                    defaultTimeFrameHrs: 8
+                    description: desc
+                    displayname: null
+                    endpointkey: null
+                    flagexportedtoOIA: false
+                    glossary: null
+                    id: 125
+                    level: null
+                    maxTimeFrameHrs: null
+                    mininginstance: null
+                    parentroles: null
+                    priviliged: null
+                    requestable: true
+                    risk: null
+                    role_name: Data Administrator
+                    role_user_accounts:
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 24
+                    roletype: 3
+                    showDynamicAttrs: null
+                    sodflag: false
+                    soxcritical: 0
+                    status: 1
+                    syscritical: 0
+                    systemid: null
+                    updatedate: 2017-03-24T20:16:11Z
+                    updateuser: null
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                    confidentiality: null
+                    customproperty1: null
+                    customproperty10: null
+                    customproperty11: null
+                    customproperty12: null
+                    customproperty13: null
+                    customproperty14: null
+                    customproperty15: null
+                    customproperty16: null
+                    customproperty17: null
+                    customproperty18: null
+                    customproperty19: null
+                    customproperty2: null
+                    customproperty20: null
+                    customproperty21: null
+                    customproperty22: null
+                    customproperty23: null
+                    customproperty24: null
+                    customproperty25: null
+                    customproperty26: null
+                    customproperty27: null
+                    customproperty28: null
+                    customproperty29: null
+                    customproperty3: null
+                    customproperty30: null
+                    customproperty31: null
+                    customproperty32: null
+                    customproperty33: null
+                    customproperty34: null
+                    customproperty35: null
+                    customproperty36: null
+                    customproperty37: null
+                    customproperty38: null
+                    customproperty39: null
+                    customproperty4: null
+                    customproperty40: null
+                    customproperty41: null
+                    customproperty42: null
+                    customproperty43: null
+                    customproperty44: null
+                    customproperty45: null
+                    customproperty46: null
+                    customproperty47: null
+                    customproperty48: null
+                    customproperty49: null
+                    customproperty5: null
+                    customproperty50: null
+                    customproperty51: null
+                    customproperty52: null
+                    customproperty53: null
+                    customproperty54: null
+                    customproperty55: null
+                    customproperty56: null
+                    customproperty57: null
+                    customproperty58: null
+                    customproperty59: null
+                    customproperty6: null
+                    customproperty60: null
+                    customproperty7: null
+                    customproperty8: null
+                    customproperty9: null
+                    defaultTimeFrameHrs: 8
+                    description: desc
+                    displayname: null
+                    endpointkey: 15
+                    flagexportedtoOIA: false
+                    glossary: null
+                    id: 126
+                    level: null
+                    maxTimeFrameHrs: null
+                    mininginstance: null
+                    parentroles: null
+                    priviliged: null
+                    requestable: true
+                    risk: null
+                    role_name: Network Administrator
+                    role_user_accounts:
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 61
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 21
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 20
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 46
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 59
+                    roletype: 3
+                    showDynamicAttrs: null
+                    sodflag: false
+                    soxcritical: 0
+                    status: 1
+                    syscritical: 0
+                    systemid: null
+                    updatedate: 2017-07-26T03:18:31Z
+                    updateuser: 1
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                    confidentiality: null
+                    customproperty1: "3"
+                    customproperty10: null
+                    customproperty11: null
+                    customproperty12: null
+                    customproperty13: null
+                    customproperty14: null
+                    customproperty15: null
+                    customproperty16: null
+                    customproperty17: null
+                    customproperty18: null
+                    customproperty19: null
+                    customproperty2: null
+                    customproperty20: null
+                    customproperty21: null
+                    customproperty22: null
+                    customproperty23: null
+                    customproperty24: null
+                    customproperty25: null
+                    customproperty26: null
+                    customproperty27: null
+                    customproperty28: null
+                    customproperty29: null
+                    customproperty3: "4"
+                    customproperty30: null
+                    customproperty31: null
+                    customproperty32: null
+                    customproperty33: null
+                    customproperty34: null
+                    customproperty35: null
+                    customproperty36: null
+                    customproperty37: null
+                    customproperty38: null
+                    customproperty39: null
+                    customproperty4: null
+                    customproperty40: null
+                    customproperty41: null
+                    customproperty42: null
+                    customproperty43: null
+                    customproperty44: null
+                    customproperty45: null
+                    customproperty46: null
+                    customproperty47: null
+                    customproperty48: null
+                    customproperty49: null
+                    customproperty5: "5"
+                    customproperty50: null
+                    customproperty51: null
+                    customproperty52: null
+                    customproperty53: null
+                    customproperty54: null
+                    customproperty55: null
+                    customproperty56: null
+                    customproperty57: null
+                    customproperty58: null
+                    customproperty59: null
+                    customproperty6: null
+                    customproperty60: null
+                    customproperty7: null
+                    customproperty8: null
+                    customproperty9: null
+                    defaultTimeFrameHrs: 8
+                    description: desc
+                    displayname: Display Name Role 1
+                    endpointkey: null
+                    flagexportedtoOIA: false
+                    glossary: test update
+                    id: 129
+                    level: null
+                    maxTimeFrameHrs: null
+                    mininginstance: null
+                    parentroles: null
+                    priviliged: null
+                    requestable: true
+                    risk: null
+                    role_name: Policy Administrator
+                    role_user_accounts:
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 35
+                    roletype: 3
+                    showDynamicAttrs: false
+                    sodflag: false
+                    soxcritical: 0
+                    status: 1
+                    syscritical: 0
+                    systemid: null
+                    updatedate: 2017-12-02T00:45:07Z
+                    updateuser: 1
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                    confidentiality: null
+                    customproperty1: null
+                    customproperty10: null
+                    customproperty11: null
+                    customproperty12: null
+                    customproperty13: null
+                    customproperty14: null
+                    customproperty15: null
+                    customproperty16: null
+                    customproperty17: null
+                    customproperty18: null
+                    customproperty19: null
+                    customproperty2: null
+                    customproperty20: null
+                    customproperty21: null
+                    customproperty22: null
+                    customproperty23: null
+                    customproperty24: null
+                    customproperty25: null
+                    customproperty26: null
+                    customproperty27: null
+                    customproperty28: null
+                    customproperty29: null
+                    customproperty3: null
+                    customproperty30: null
+                    customproperty31: null
+                    customproperty32: null
+                    customproperty33: null
+                    customproperty34: null
+                    customproperty35: null
+                    customproperty36: null
+                    customproperty37: null
+                    customproperty38: null
+                    customproperty39: null
+                    customproperty4: null
+                    customproperty40: null
+                    customproperty41: null
+                    customproperty42: null
+                    customproperty43: null
+                    customproperty44: null
+                    customproperty45: null
+                    customproperty46: null
+                    customproperty47: null
+                    customproperty48: null
+                    customproperty49: null
+                    customproperty5: null
+                    customproperty50: null
+                    customproperty51: null
+                    customproperty52: null
+                    customproperty53: null
+                    customproperty54: null
+                    customproperty55: null
+                    customproperty56: null
+                    customproperty57: null
+                    customproperty58: null
+                    customproperty59: null
+                    customproperty6: null
+                    customproperty60: null
+                    customproperty7: null
+                    customproperty8: null
+                    customproperty9: null
+                    defaultTimeFrameHrs: null
+                    description: desc
+                    displayname: null
+                    endpointkey: null
+                    flagexportedtoOIA: false
+                    glossary: null
+                    id: 130
+                    level: null
+                    maxTimeFrameHrs: null
+                    mininginstance: null
+                    parentroles: null
+                    priviliged: 4
+                    requestable: true
+                    risk: null
+                    role_name: RoleTest
+                    role_user_accounts:
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 34
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 33
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 36
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 37
+                    - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                      id: 39
+                    roletype: 3
+                    showDynamicAttrs: null
+                    sodflag: false
+                    soxcritical: 0
+                    status: 1
+                    syscritical: 0
+                    systemid: null
+                    updatedate: 2017-02-01T05:20:29Z
+                    updateuser: 1
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                    confidentiality: null
+                    customproperty1: null
+                    customproperty10: null
+                    customproperty11: null
+                    customproperty12: null
+                    customproperty13: null
+                    customproperty14: null
+                    customproperty15: null
+                    customproperty16: null
+                    customproperty17: null
+                    customproperty18: null
+                    customproperty19: null
+                    customproperty2: hhh
+                    customproperty20: null
+                    customproperty21: null
+                    customproperty22: null
+                    customproperty23: null
+                    customproperty24: null
+                    customproperty25: null
+                    customproperty26: null
+                    customproperty27: null
+                    customproperty28: null
+                    customproperty29: null
+                    customproperty3: null
+                    customproperty30: null
+                    customproperty31: null
+                    customproperty32: null
+                    customproperty33: null
+                    customproperty34: null
+                    customproperty35: null
+                    customproperty36: null
+                    customproperty37: null
+                    customproperty38: null
+                    customproperty39: null
+                    customproperty4: null
+                    customproperty40: null
+                    customproperty41: null
+                    customproperty42: null
+                    customproperty43: null
+                    customproperty44: null
+                    customproperty45: null
+                    customproperty46: null
+                    customproperty47: null
+                    customproperty48: null
+                    customproperty49: null
+                    customproperty5: null
+                    customproperty50: null
+                    customproperty51: null
+                    customproperty52: null
+                    customproperty53: null
+                    customproperty54: null
+                    customproperty55: null
+                    customproperty56: null
+                    customproperty57: null
+                    customproperty58: null
+                    customproperty59: null
+                    customproperty6: null
+                    customproperty60: null
+                    customproperty7: null
+                    customproperty8: null
+                    customproperty9: null
+                    defaultTimeFrameHrs: null
+                    description: null
+                    displayname: null
+                    endpointkey: 15
+                    flagexportedtoOIA: false
+                    glossary: null
+                    id: 132
+                    level: null
+                    maxTimeFrameHrs: null
+                    mininginstance: null
+                    parentroles: null
+                    priviliged: null
+                    requestable: true
+                    risk: null
+                    role_name: test 66
+                    role_user_accounts: []
+                    roletype: 3
+                    showDynamicAttrs: null
+                    sodflag: false
+                    soxcritical: 0
+                    status: 1
+                    syscritical: 0
+                    systemid: null
+                    updatedate: 2017-07-26T03:21:12Z
+                    updateuser: 1
+              schema:
+                example:
+                - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                  confidentiality: null
+                  customproperty1: null
+                  customproperty10: null
+                  customproperty11: null
+                  customproperty12: null
+                  customproperty13: null
+                  customproperty14: null
+                  customproperty15: null
+                  customproperty16: null
+                  customproperty17: null
+                  customproperty18: null
+                  customproperty19: null
+                  customproperty2: null
+                  customproperty20: null
+                  customproperty21: null
+                  customproperty22: null
+                  customproperty23: null
+                  customproperty24: null
+                  customproperty25: null
+                  customproperty26: null
+                  customproperty27: null
+                  customproperty28: null
+                  customproperty29: null
+                  customproperty3: null
+                  customproperty30: null
+                  customproperty31: null
+                  customproperty32: null
+                  customproperty33: null
+                  customproperty34: null
+                  customproperty35: null
+                  customproperty36: null
+                  customproperty37: null
+                  customproperty38: null
+                  customproperty39: null
+                  customproperty4: null
+                  customproperty40: null
+                  customproperty41: null
+                  customproperty42: null
+                  customproperty43: null
+                  customproperty44: null
+                  customproperty45: null
+                  customproperty46: null
+                  customproperty47: null
+                  customproperty48: null
+                  customproperty49: null
+                  customproperty5: null
+                  customproperty50: null
+                  customproperty51: null
+                  customproperty52: null
+                  customproperty53: null
+                  customproperty54: null
+                  customproperty55: null
+                  customproperty56: null
+                  customproperty57: null
+                  customproperty58: null
+                  customproperty59: null
+                  customproperty6: null
+                  customproperty60: null
+                  customproperty7: null
+                  customproperty8: null
+                  customproperty9: null
+                  defaultTimeFrameHrs: 8
+                  description: desc
+                  displayname: null
+                  endpointkey: null
+                  flagexportedtoOIA: false
+                  glossary: null
+                  id: 125
+                  level: null
+                  maxTimeFrameHrs: null
+                  mininginstance: null
+                  parentroles: null
+                  priviliged: null
+                  requestable: true
+                  risk: null
+                  role_name: Data Administrator
+                  role_user_accounts:
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 24
+                  roletype: 3
+                  showDynamicAttrs: null
+                  sodflag: false
+                  soxcritical: 0
+                  status: 1
+                  syscritical: 0
+                  systemid: null
+                  updatedate: 2017-03-24T20:16:11Z
+                  updateuser: null
+                - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                  confidentiality: null
+                  customproperty1: null
+                  customproperty10: null
+                  customproperty11: null
+                  customproperty12: null
+                  customproperty13: null
+                  customproperty14: null
+                  customproperty15: null
+                  customproperty16: null
+                  customproperty17: null
+                  customproperty18: null
+                  customproperty19: null
+                  customproperty2: null
+                  customproperty20: null
+                  customproperty21: null
+                  customproperty22: null
+                  customproperty23: null
+                  customproperty24: null
+                  customproperty25: null
+                  customproperty26: null
+                  customproperty27: null
+                  customproperty28: null
+                  customproperty29: null
+                  customproperty3: null
+                  customproperty30: null
+                  customproperty31: null
+                  customproperty32: null
+                  customproperty33: null
+                  customproperty34: null
+                  customproperty35: null
+                  customproperty36: null
+                  customproperty37: null
+                  customproperty38: null
+                  customproperty39: null
+                  customproperty4: null
+                  customproperty40: null
+                  customproperty41: null
+                  customproperty42: null
+                  customproperty43: null
+                  customproperty44: null
+                  customproperty45: null
+                  customproperty46: null
+                  customproperty47: null
+                  customproperty48: null
+                  customproperty49: null
+                  customproperty5: null
+                  customproperty50: null
+                  customproperty51: null
+                  customproperty52: null
+                  customproperty53: null
+                  customproperty54: null
+                  customproperty55: null
+                  customproperty56: null
+                  customproperty57: null
+                  customproperty58: null
+                  customproperty59: null
+                  customproperty6: null
+                  customproperty60: null
+                  customproperty7: null
+                  customproperty8: null
+                  customproperty9: null
+                  defaultTimeFrameHrs: 8
+                  description: desc
+                  displayname: null
+                  endpointkey: 15
+                  flagexportedtoOIA: false
+                  glossary: null
+                  id: 126
+                  level: null
+                  maxTimeFrameHrs: null
+                  mininginstance: null
+                  parentroles: null
+                  priviliged: null
+                  requestable: true
+                  risk: null
+                  role_name: Network Administrator
+                  role_user_accounts:
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 61
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 21
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 20
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 46
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 59
+                  roletype: 3
+                  showDynamicAttrs: null
+                  sodflag: false
+                  soxcritical: 0
+                  status: 1
+                  syscritical: 0
+                  systemid: null
+                  updatedate: 2017-07-26T03:18:31Z
+                  updateuser: 1
+                - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                  confidentiality: null
+                  customproperty1: "3"
+                  customproperty10: null
+                  customproperty11: null
+                  customproperty12: null
+                  customproperty13: null
+                  customproperty14: null
+                  customproperty15: null
+                  customproperty16: null
+                  customproperty17: null
+                  customproperty18: null
+                  customproperty19: null
+                  customproperty2: null
+                  customproperty20: null
+                  customproperty21: null
+                  customproperty22: null
+                  customproperty23: null
+                  customproperty24: null
+                  customproperty25: null
+                  customproperty26: null
+                  customproperty27: null
+                  customproperty28: null
+                  customproperty29: null
+                  customproperty3: "4"
+                  customproperty30: null
+                  customproperty31: null
+                  customproperty32: null
+                  customproperty33: null
+                  customproperty34: null
+                  customproperty35: null
+                  customproperty36: null
+                  customproperty37: null
+                  customproperty38: null
+                  customproperty39: null
+                  customproperty4: null
+                  customproperty40: null
+                  customproperty41: null
+                  customproperty42: null
+                  customproperty43: null
+                  customproperty44: null
+                  customproperty45: null
+                  customproperty46: null
+                  customproperty47: null
+                  customproperty48: null
+                  customproperty49: null
+                  customproperty5: "5"
+                  customproperty50: null
+                  customproperty51: null
+                  customproperty52: null
+                  customproperty53: null
+                  customproperty54: null
+                  customproperty55: null
+                  customproperty56: null
+                  customproperty57: null
+                  customproperty58: null
+                  customproperty59: null
+                  customproperty6: null
+                  customproperty60: null
+                  customproperty7: null
+                  customproperty8: null
+                  customproperty9: null
+                  defaultTimeFrameHrs: 8
+                  description: desc
+                  displayname: Display Name Role 1
+                  endpointkey: null
+                  flagexportedtoOIA: false
+                  glossary: test update
+                  id: 129
+                  level: null
+                  maxTimeFrameHrs: null
+                  mininginstance: null
+                  parentroles: null
+                  priviliged: null
+                  requestable: true
+                  risk: null
+                  role_name: Policy Administrator
+                  role_user_accounts:
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 35
+                  roletype: 3
+                  showDynamicAttrs: false
+                  sodflag: false
+                  soxcritical: 0
+                  status: 1
+                  syscritical: 0
+                  systemid: null
+                  updatedate: 2017-12-02T00:45:07Z
+                  updateuser: 1
+                - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                  confidentiality: null
+                  customproperty1: null
+                  customproperty10: null
+                  customproperty11: null
+                  customproperty12: null
+                  customproperty13: null
+                  customproperty14: null
+                  customproperty15: null
+                  customproperty16: null
+                  customproperty17: null
+                  customproperty18: null
+                  customproperty19: null
+                  customproperty2: null
+                  customproperty20: null
+                  customproperty21: null
+                  customproperty22: null
+                  customproperty23: null
+                  customproperty24: null
+                  customproperty25: null
+                  customproperty26: null
+                  customproperty27: null
+                  customproperty28: null
+                  customproperty29: null
+                  customproperty3: null
+                  customproperty30: null
+                  customproperty31: null
+                  customproperty32: null
+                  customproperty33: null
+                  customproperty34: null
+                  customproperty35: null
+                  customproperty36: null
+                  customproperty37: null
+                  customproperty38: null
+                  customproperty39: null
+                  customproperty4: null
+                  customproperty40: null
+                  customproperty41: null
+                  customproperty42: null
+                  customproperty43: null
+                  customproperty44: null
+                  customproperty45: null
+                  customproperty46: null
+                  customproperty47: null
+                  customproperty48: null
+                  customproperty49: null
+                  customproperty5: null
+                  customproperty50: null
+                  customproperty51: null
+                  customproperty52: null
+                  customproperty53: null
+                  customproperty54: null
+                  customproperty55: null
+                  customproperty56: null
+                  customproperty57: null
+                  customproperty58: null
+                  customproperty59: null
+                  customproperty6: null
+                  customproperty60: null
+                  customproperty7: null
+                  customproperty8: null
+                  customproperty9: null
+                  defaultTimeFrameHrs: null
+                  description: desc
+                  displayname: null
+                  endpointkey: null
+                  flagexportedtoOIA: false
+                  glossary: null
+                  id: 130
+                  level: null
+                  maxTimeFrameHrs: null
+                  mininginstance: null
+                  parentroles: null
+                  priviliged: 4
+                  requestable: true
+                  risk: null
+                  role_name: RoleTest
+                  role_user_accounts:
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 34
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 33
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 36
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 37
+                  - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+                    id: 39
+                  roletype: 3
+                  showDynamicAttrs: null
+                  sodflag: false
+                  soxcritical: 0
+                  status: 1
+                  syscritical: 0
+                  systemid: null
+                  updatedate: 2017-02-01T05:20:29Z
+                  updateuser: 1
+                - class: com.saviynt.ecm.identitywarehouse.domain.Roles
+                  confidentiality: null
+                  customproperty1: null
+                  customproperty10: null
+                  customproperty11: null
+                  customproperty12: null
+                  customproperty13: null
+                  customproperty14: null
+                  customproperty15: null
+                  customproperty16: null
+                  customproperty17: null
+                  customproperty18: null
+                  customproperty19: null
+                  customproperty2: hhh
+                  customproperty20: null
+                  customproperty21: null
+                  customproperty22: null
+                  customproperty23: null
+                  customproperty24: null
+                  customproperty25: null
+                  customproperty26: null
+                  customproperty27: null
+                  customproperty28: null
+                  customproperty29: null
+                  customproperty3: null
+                  customproperty30: null
+                  customproperty31: null
+                  customproperty32: null
+                  customproperty33: null
+                  customproperty34: null
+                  customproperty35: null
+                  customproperty36: null
+                  customproperty37: null
+                  customproperty38: null
+                  customproperty39: null
+                  customproperty4: null
+                  customproperty40: null
+                  customproperty41: null
+                  customproperty42: null
+                  customproperty43: null
+                  customproperty44: null
+                  customproperty45: null
+                  customproperty46: null
+                  customproperty47: null
+                  customproperty48: null
+                  customproperty49: null
+                  customproperty5: null
+                  customproperty50: null
+                  customproperty51: null
+                  customproperty52: null
+                  customproperty53: null
+                  customproperty54: null
+                  customproperty55: null
+                  customproperty56: null
+                  customproperty57: null
+                  customproperty58: null
+                  customproperty59: null
+                  customproperty6: null
+                  customproperty60: null
+                  customproperty7: null
+                  customproperty8: null
+                  customproperty9: null
+                  defaultTimeFrameHrs: null
+                  description: null
+                  displayname: null
+                  endpointkey: 15
+                  flagexportedtoOIA: false
+                  glossary: null
+                  id: 132
+                  level: null
+                  maxTimeFrameHrs: null
+                  mininginstance: null
+                  parentroles: null
+                  priviliged: null
+                  requestable: true
+                  risk: null
+                  role_name: test 66
+                  role_user_accounts: []
+                  roletype: 3
+                  showDynamicAttrs: null
+                  sodflag: false
+                  soxcritical: 0
+                  status: 1
+                  syscritical: 0
+                  systemid: null
+                  updatedate: 2017-07-26T03:21:12Z
+                  updateuser: 1
+                items:
+                  $ref: '#/components/schemas/getFirefighterRoleDetails_200_response_inner'
+                type: array
+          description: Get FireFighter Roles
+          headers:
+            Date:
+              explode: false
+              schema:
+                example: "Tue, 07 Aug 2018 20:12:19 GMT"
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=a05c45f2-64d1-4521-a5a3-69cb73b94352; Path=/
+                type: string
+              style: simple
+      summary: Get FireFighter Role Details
+      tags:
+      - roles
+  /removerole:
+    post:
+      description: |-
+        This API removes role from user.
+        The `Authorization` must have `Bearer` followed by `Token`.
+        Mandatory params:
+        `username`,
+        `rolename`
+      operationId: removeRole
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Remove Role:
+                value:
+                  rolename: RoleTest
+                  username: johndoe
+            schema:
+              $ref: '#/components/schemas/removeRole_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Remove Role:
+                  value:
+                    message: " Tasks created. IDs:: 673977 "
+              schema:
+                $ref: '#/components/schemas/removeRole_200_response'
+          description: Remove Role
+          headers:
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 24 Oct 2018 21:33:54 GMT"
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=068b5011-365c-4e03-a926-9b08e439b8e1; Path=/
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+      summary: Remove Role
+      tags:
+      - roles
+components:
+  schemas:
+    getRoleDetailsForUser_200_response_Roledetails_inner:
+      properties:
+        confidentiality:
+          example: "5"
+          type: string
+        customproperty1:
+          example: jjjjjjjjjjj
+          type: string
+        customproperty10:
+          example: cp10
+          type: string
+        customproperty11:
+          example: ""
+          type: string
+        customproperty12:
+          example: ""
+          type: string
+        customproperty13:
+          example: ""
+          type: string
+        customproperty14:
+          example: ""
+          type: string
+        customproperty15:
+          example: ""
+          type: string
+        customproperty16:
+          example: ""
+          type: string
+        customproperty17:
+          example: ""
+          type: string
+        customproperty18:
+          example: ""
+          type: string
+        customproperty19:
+          example: ""
+          type: string
+        customproperty2:
+          example: ""
+          type: string
+        customproperty20:
+          example: ""
+          type: string
+        customproperty21:
+          example: ""
+          type: string
+        customproperty22:
+          example: ""
+          type: string
+        customproperty23:
+          example: ""
+          type: string
+        customproperty24:
+          example: ""
+          type: string
+        customproperty25:
+          example: ""
+          type: string
+        customproperty26:
+          example: ""
+          type: string
+        customproperty27:
+          example: ""
+          type: string
+        customproperty28:
+          example: ""
+          type: string
+        customproperty29:
+          example: ""
+          type: string
+        customproperty3:
+          example: ""
+          type: string
+        customproperty30:
+          example: cp30bh
+          type: string
+        customproperty31:
+          example: cp31
+          type: string
+        customproperty32:
+          example: ""
+          type: string
+        customproperty33:
+          example: ""
+          type: string
+        customproperty34:
+          example: ""
+          type: string
+        customproperty35:
+          example: ""
+          type: string
+        customproperty36:
+          example: cp36
+          type: string
+        customproperty37:
+          example: ""
+          type: string
+        customproperty38:
+          example: ""
+          type: string
+        customproperty39:
+          example: ""
+          type: string
+        customproperty4:
+          example: ""
+          type: string
+        customproperty40:
+          example: ""
+          type: string
+        customproperty41:
+          example: ""
+          type: string
+        customproperty42:
+          example: ""
+          type: string
+        customproperty43:
+          example: ""
+          type: string
+        customproperty44:
+          example: ""
+          type: string
+        customproperty45:
+          example: ""
+          type: string
+        customproperty46:
+          example: ""
+          type: string
+        customproperty47:
+          example: ""
+          type: string
+        customproperty48:
+          example: ""
+          type: string
+        customproperty49:
+          example: ""
+          type: string
+        customproperty5:
+          example: ""
+          type: string
+        customproperty50:
+          example: ""
+          type: string
+        customproperty51:
+          example: ""
+          type: string
+        customproperty52:
+          example: ""
+          type: string
+        customproperty53:
+          example: ""
+          type: string
+        customproperty54:
+          example: ""
+          type: string
+        customproperty55:
+          example: ""
+          type: string
+        customproperty56:
+          example: ""
+          type: string
+        customproperty57:
+          example: ""
+          type: string
+        customproperty58:
+          example: ""
+          type: string
+        customproperty59:
+          example: ""
+          type: string
+        customproperty6:
+          example: ""
+          type: string
+        customproperty60:
+          example: ""
+          type: string
+        customproperty7:
+          example: ""
+          type: string
+        customproperty8:
+          example: ""
+          type: string
+        customproperty9:
+          example: ""
+          type: string
+        defaultTimeFrameHrs:
+          example: ""
+          type: string
+        description:
+          example: this is description |  | EnterPriseEnterPrise  EnterPriseEnterPrise
+          type: string
+        displayname:
+          example: ""
+          type: string
+        endpointkey:
+          example: "13"
+          type: string
+        glossary:
+          example: ""
+          type: string
+        maxTimeFrameHrs:
+          example: ""
+          type: string
+        owner:
+          example:
+          - dbailey
+          - lkrause
+          items:
+            example: dbailey
+            type: string
+          type: array
+        priviliged:
+          example: "1"
+          type: string
+        requestable:
+          example: "true"
+          type: string
+        risk:
+          example: ""
+          type: string
+        role_name:
+          example: EnterPrise
+          type: string
+        roletype:
+          example: "4"
+          type: string
+        showDynamicAttrs:
+          example: "false"
+          type: string
+        soxcritical:
+          example: "3"
+          type: string
+        status:
+          example: "1"
+          type: string
+        syscritical:
+          example: "3"
+          type: string
+        updatedate:
+          example: 2019-02-01 00:04:21
+          type: string
+        updateuser:
+          example: "1"
+          type: string
+        userAccounts:
+          example:
+          - accountname: johndoe
+            enddate: ""
+            startdate: 2019-02-11 22:47:32
+          items:
+            $ref: '#/components/schemas/getRoleDetailsForUser_200_response_Roledetails_inner_userAccounts_inner'
+          type: array
+        version:
+          example: "79"
+          type: string
+    getFirefighterRoleDetails_200_response_inner:
+      properties:
+        class:
+          example: com.saviynt.ecm.identitywarehouse.domain.Roles
+          type: string
+        confidentiality:
+          nullable: true
+          type: string
+        customproperty1:
+          nullable: true
+          type: string
+        customproperty10:
+          nullable: true
+          type: string
+        customproperty11:
+          nullable: true
+          type: string
+        customproperty12:
+          nullable: true
+          type: string
+        customproperty13:
+          nullable: true
+          type: string
+        customproperty14:
+          nullable: true
+          type: string
+        customproperty15:
+          nullable: true
+          type: string
+        customproperty16:
+          nullable: true
+          type: string
+        customproperty17:
+          nullable: true
+          type: string
+        customproperty18:
+          nullable: true
+          type: string
+        customproperty19:
+          nullable: true
+          type: string
+        customproperty2:
+          nullable: true
+          type: string
+        customproperty20:
+          nullable: true
+          type: string
+        customproperty21:
+          nullable: true
+          type: string
+        customproperty22:
+          nullable: true
+          type: string
+        customproperty23:
+          nullable: true
+          type: string
+        customproperty24:
+          nullable: true
+          type: string
+        customproperty25:
+          nullable: true
+          type: string
+        customproperty26:
+          nullable: true
+          type: string
+        customproperty27:
+          nullable: true
+          type: string
+        customproperty28:
+          nullable: true
+          type: string
+        customproperty29:
+          nullable: true
+          type: string
+        customproperty3:
+          nullable: true
+          type: string
+        customproperty30:
+          nullable: true
+          type: string
+        customproperty31:
+          nullable: true
+          type: string
+        customproperty32:
+          nullable: true
+          type: string
+        customproperty33:
+          nullable: true
+          type: string
+        customproperty34:
+          nullable: true
+          type: string
+        customproperty35:
+          nullable: true
+          type: string
+        customproperty36:
+          nullable: true
+          type: string
+        customproperty37:
+          nullable: true
+          type: string
+        customproperty38:
+          nullable: true
+          type: string
+        customproperty39:
+          nullable: true
+          type: string
+        customproperty4:
+          nullable: true
+          type: string
+        customproperty40:
+          nullable: true
+          type: string
+        customproperty41:
+          nullable: true
+          type: string
+        customproperty42:
+          nullable: true
+          type: string
+        customproperty43:
+          nullable: true
+          type: string
+        customproperty44:
+          nullable: true
+          type: string
+        customproperty45:
+          nullable: true
+          type: string
+        customproperty46:
+          nullable: true
+          type: string
+        customproperty47:
+          nullable: true
+          type: string
+        customproperty48:
+          nullable: true
+          type: string
+        customproperty49:
+          nullable: true
+          type: string
+        customproperty5:
+          nullable: true
+          type: string
+        customproperty50:
+          nullable: true
+          type: string
+        customproperty51:
+          nullable: true
+          type: string
+        customproperty52:
+          nullable: true
+          type: string
+        customproperty53:
+          nullable: true
+          type: string
+        customproperty54:
+          nullable: true
+          type: string
+        customproperty55:
+          nullable: true
+          type: string
+        customproperty56:
+          nullable: true
+          type: string
+        customproperty57:
+          nullable: true
+          type: string
+        customproperty58:
+          nullable: true
+          type: string
+        customproperty59:
+          nullable: true
+          type: string
+        customproperty6:
+          nullable: true
+          type: string
+        customproperty60:
+          nullable: true
+          type: string
+        customproperty7:
+          nullable: true
+          type: string
+        customproperty8:
+          nullable: true
+          type: string
+        customproperty9:
+          nullable: true
+          type: string
+        defaultTimeFrameHrs:
+          example: 8
+          nullable: true
+          type: number
+        description:
+          example: desc
+          nullable: true
+          type: string
+        displayname:
+          nullable: true
+          type: string
+        endpointkey:
+          nullable: true
+          type: number
+        flagexportedtoOIA:
+          example: false
+          type: boolean
+        glossary:
+          nullable: true
+          type: string
+        id:
+          example: 125
+          type: number
+        level:
+          nullable: true
+          type: string
+        maxTimeFrameHrs:
+          nullable: true
+          type: string
+        mininginstance:
+          nullable: true
+          type: string
+        parentroles:
+          nullable: true
+          type: string
+        priviliged:
+          nullable: true
+          type: number
+        requestable:
+          example: true
+          type: boolean
+        risk:
+          nullable: true
+          type: string
+        role_name:
+          example: Data Administrator
+          type: string
+        role_user_accounts:
+          example:
+          - class: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+            id: 24
+          items:
+            $ref: '#/components/schemas/getFirefighterRoleDetails_200_response_inner_role_user_accounts_inner'
+          type: array
+        roletype:
+          example: 3
+          type: number
+        showDynamicAttrs:
+          nullable: true
+          type: boolean
+        sodflag:
+          example: false
+          type: boolean
+        soxcritical:
+          example: 0
+          type: number
+        status:
+          example: 1
+          type: number
+        syscritical:
+          example: 0
+          type: number
+        systemid:
+          nullable: true
+          type: number
+        updatedate:
+          example: 2017-03-24T20:16:11Z
+          type: string
+        updateuser:
+          nullable: true
+          type: number
+    getFirefighterRoleDetails_200_response_inner_role_user_accounts_inner:
+      properties:
+        class:
+          example: com.saviynt.ecm.identitywarehouse.domain.Role_user_account
+          type: string
+        id:
+          example: 24
+          type: number
+    addRole_request:
+      properties:
+        rolename:
+          example: Fire Fighter
+          type: string
+        username:
+          example: johndoe
+          type: string
+    getRoleDetailsForUser_200_response_Roledetails_inner_userAccounts_inner:
+      properties:
+        accountname:
+          example: johndoe
+          type: string
+        enddate:
+          example: ""
+          type: string
+        startdate:
+          example: 2019-02-11 22:47:32
+          type: string
+    removeRole_200_response:
+      example:
+        message: " Tasks created. IDs:: 673977 "
+      properties:
+        message:
+          example: " Tasks created. IDs:: 673977 "
+          type: string
+    removeRole_request:
+      properties:
+        rolename:
+          example: RoleTest
+          type: string
+        username:
+          example: johndoe
+          type: string
+    getRoleDetailsForUser_request:
+      properties:
+        max:
+          example: "5"
+          type: string
+        offset:
+          example: "0"
+          type: string
+        requestedObject:
+          example: "entitlement_values,users"
+          type: string
+        roleQuery:
+          example: r.role_name = 'Feb7th1988Role'
+          type: string
+        roletype:
+          example: "4"
+          type: string
+        username:
+          example: usngom
+          type: string
+    getRoleDetailsForUser_200_response:
+      example:
+        msg: Successful
+        displayCount: 1
+        errorCode: "0"
+        Roledetails:
+        - confidentiality: "5"
+          customproperty1: jjjjjjjjjjj
+          customproperty10: cp10
+          customproperty11: ""
+          customproperty12: ""
+          customproperty13: ""
+          customproperty14: ""
+          customproperty15: ""
+          customproperty16: ""
+          customproperty17: ""
+          customproperty18: ""
+          customproperty19: ""
+          customproperty2: ""
+          customproperty20: ""
+          customproperty21: ""
+          customproperty22: ""
+          customproperty23: ""
+          customproperty24: ""
+          customproperty25: ""
+          customproperty26: ""
+          customproperty27: ""
+          customproperty28: ""
+          customproperty29: ""
+          customproperty3: ""
+          customproperty30: cp30bh
+          customproperty31: cp31
+          customproperty32: ""
+          customproperty33: ""
+          customproperty34: ""
+          customproperty35: ""
+          customproperty36: cp36
+          customproperty37: ""
+          customproperty38: ""
+          customproperty39: ""
+          customproperty4: ""
+          customproperty40: ""
+          customproperty41: ""
+          customproperty42: ""
+          customproperty43: ""
+          customproperty44: ""
+          customproperty45: ""
+          customproperty46: ""
+          customproperty47: ""
+          customproperty48: ""
+          customproperty49: ""
+          customproperty5: ""
+          customproperty50: ""
+          customproperty51: ""
+          customproperty52: ""
+          customproperty53: ""
+          customproperty54: ""
+          customproperty55: ""
+          customproperty56: ""
+          customproperty57: ""
+          customproperty58: ""
+          customproperty59: ""
+          customproperty6: ""
+          customproperty60: ""
+          customproperty7: ""
+          customproperty8: ""
+          customproperty9: ""
+          defaultTimeFrameHrs: ""
+          description: this is description |  | EnterPriseEnterPrise  EnterPriseEnterPrise
+          displayname: ""
+          endpointkey: "13"
+          glossary: ""
+          maxTimeFrameHrs: ""
+          owner:
+          - dbailey
+          - lkrause
+          priviliged: "1"
+          requestable: "true"
+          risk: ""
+          role_name: EnterPrise
+          roletype: "4"
+          showDynamicAttrs: "false"
+          soxcritical: "3"
+          status: "1"
+          syscritical: "3"
+          updatedate: 2019-02-01 00:04:21
+          updateuser: "1"
+          userAccounts:
+          - accountname: johndoe
+            enddate: ""
+            startdate: 2019-02-11 22:47:32
+          version: "79"
+        totalCount: 1
+      properties:
+        Roledetails:
+          example:
+          - confidentiality: "5"
+            customproperty1: jjjjjjjjjjj
+            customproperty10: cp10
+            customproperty11: ""
+            customproperty12: ""
+            customproperty13: ""
+            customproperty14: ""
+            customproperty15: ""
+            customproperty16: ""
+            customproperty17: ""
+            customproperty18: ""
+            customproperty19: ""
+            customproperty2: ""
+            customproperty20: ""
+            customproperty21: ""
+            customproperty22: ""
+            customproperty23: ""
+            customproperty24: ""
+            customproperty25: ""
+            customproperty26: ""
+            customproperty27: ""
+            customproperty28: ""
+            customproperty29: ""
+            customproperty3: ""
+            customproperty30: cp30bh
+            customproperty31: cp31
+            customproperty32: ""
+            customproperty33: ""
+            customproperty34: ""
+            customproperty35: ""
+            customproperty36: cp36
+            customproperty37: ""
+            customproperty38: ""
+            customproperty39: ""
+            customproperty4: ""
+            customproperty40: ""
+            customproperty41: ""
+            customproperty42: ""
+            customproperty43: ""
+            customproperty44: ""
+            customproperty45: ""
+            customproperty46: ""
+            customproperty47: ""
+            customproperty48: ""
+            customproperty49: ""
+            customproperty5: ""
+            customproperty50: ""
+            customproperty51: ""
+            customproperty52: ""
+            customproperty53: ""
+            customproperty54: ""
+            customproperty55: ""
+            customproperty56: ""
+            customproperty57: ""
+            customproperty58: ""
+            customproperty59: ""
+            customproperty6: ""
+            customproperty60: ""
+            customproperty7: ""
+            customproperty8: ""
+            customproperty9: ""
+            defaultTimeFrameHrs: ""
+            description: this is description |  | EnterPriseEnterPrise  EnterPriseEnterPrise
+            displayname: ""
+            endpointkey: "13"
+            glossary: ""
+            maxTimeFrameHrs: ""
+            owner:
+            - dbailey
+            - lkrause
+            priviliged: "1"
+            requestable: "true"
+            risk: ""
+            role_name: EnterPrise
+            roletype: "4"
+            showDynamicAttrs: "false"
+            soxcritical: "3"
+            status: "1"
+            syscritical: "3"
+            updatedate: 2019-02-01 00:04:21
+            updateuser: "1"
+            userAccounts:
+            - accountname: johndoe
+              enddate: ""
+              startdate: 2019-02-11 22:47:32
+            version: "79"
+          items:
+            $ref: '#/components/schemas/getRoleDetailsForUser_200_response_Roledetails_inner'
+          type: array
+        displayCount:
+          example: 1
+          type: number
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Successful
+          type: string
+        totalCount:
+          example: 1
+          type: number
+    addRole_200_response:
+      example:
+        message: " Tasks created. IDs:: 673975 "
+      properties:
+        message:
+          example: " Tasks created. IDs:: 673975 "
+          type: string
