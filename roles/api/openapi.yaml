@@ -4,8 +4,8 @@ info:
   title: Saviynt API
   version: 1.0.0
 servers:
-- description: Development Server
-  url: https://dev-scrum-intgn.saviyntcloud.com
+- description: "Server"
+  url: "https://api.example.com"
 paths:
   /addrole:
     post:
