@@ -6,9 +6,9 @@
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![License][license-svg]][license-url]
 
- [build-status-svg]: https://github.com/saviynt/saviynt-api-go-client/workflows/test/badge.svg
+ [build-status-svg]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/test.yaml/badge.svg?branch=main
  [build-status-url]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/saviynt/saviynt-api-go-client/workflows/lint/badge.svg
+ [lint-status-svg]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/lint.yaml/badge.svg?branch=main
  [lint-status-url]: https://github.com/saviynt/saviynt-api-go-client/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/saviynt/saviynt-api-go-client
  [goreport-url]: https://goreportcard.com/report/github.com/saviynt/saviynt-api-go-client
