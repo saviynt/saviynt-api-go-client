@@ -1,0 +1,2511 @@
+openapi: 3.0.0
+info:
+  description: |
+    API for managing accounts in Saviynt/SSM.
+    - **Create Account**: Creates a new account record.
+    - **Update Account**: Updates an existing account based on its name.
+    - **Export Account**: Retrieves all existing accounts for a given endpoint and security system.
+    - **Get Account Details**: Returns a list of accounts based on search criteria.
+    - **Assign Account to User**: Provisions an account to a user.
+    - **Assign Entitlement to Account**: Provisions one or more entitlements to an account.
+    - **Remove Entitlement from Account**: Deprovisions one or more entitlements from an account.
+  title: Account Management API
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /ECM/api/v5/getAccounts:
+    post:
+      description: "This method returns a list of \"Accounts\" in SSM.\nThe Authorization\
+        \ header must have \"Bearer {token}\".\n\n**Optional Parameters:**\n- **username**:\
+        \ Filter accounts by username.\n- **endpoint**: Filter accounts by endpoint.\n\
+        - **max**: Maximum number of records to return.\n- **offset**: Pagination\
+        \ offset.\n- **accountQuery**: A query string to filter accounts.\n- **advsearchcriteria**:\
+        \ Advanced search criteria for accounts.  \n  The following fields can be\
+        \ used:\n  - accountKey\n  - description\n  - comments\n  - accounttype\n\
+        \  - status\n  - customproperties (for customproperty1 to customproperty56)\n\
+        \  - accountID\n  - displayName\n  - name\n  - creator (username)\n  - updateuser\
+        \ (username)\n  - validfromDate\n  - validthrough\n  - createdon\n  - lastlogondate\n\
+        \  - lastpasswordchange\n  - updatedate\n  - orphan (true/false)\n  - accountowner:\
+        \ an array of objects, each with:\n      - type (mandatory; e.g., user or\
+        \ usergroup)\n      - value (mandatory; username or usergroup name)\n    \
+        \  - rank (optional; e.g., \"1\" to \"5\")\n\n**Note:** For OR conditions\
+        \ in queries, enclose them in parenthesis."
+      operationId: getAccounts
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetAccountDetails:
+                value:
+                  username: admin
+                  endpoint: Office365
+                  max: "10"
+                  offset: "0"
+                  accountQuery: acc.status='1'
+                  advsearchcriteria:
+                    accountKey: "12345"
+                    description: Service Account for IT
+                    comments: Managed by IT team
+                    accounttype: Service Account
+                    status: ACTIVE
+                    customproperty12: '*Ro*'
+                    accountID: ACCT123456
+                    displayName: IT Service Account
+                    name: svcIT123
+                    creator: admin
+                    updateuser: admin
+                    validfromDate: 2022-01-01
+                    validthrough: 2022-12-31
+                    createdon: 2020-07-10
+                    lastlogondate: 2020-07-09
+                    lastpasswordchange: 2020-07-08
+                    updatedate: 2020-07-11
+                    orphan: true
+                    accountowner:
+                    - type: user
+                      value: janedoe
+                      rank: "1"
+            schema:
+              $ref: '#/components/schemas/getAccounts_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                GetAccountDetails:
+                  value:
+                    msg: Successful
+                    errorCode: "0"
+                    displaycount: 1
+                    total: 1
+                    Accountdetails:
+                    - accountKey: 541341
+                      accountID: "CN=svcIT62341,OU=SaviyntPoC,DC=corpAD,DC=saviynt,DC=com"
+                      name: svcIT62341
+                      status: "1"
+                      createdon: 07/10/2020
+                      lastpasswordchange: 07/10/2020
+                      updatedate: 07/10/2020
+                      accountowner:
+                      - type: user
+                        value: admin
+                        rank: "1"
+                      customproperties:
+                        customproperty12: '*Ro*'
+              schema:
+                $ref: '#/components/schemas/getAccounts_200_response'
+          description: Successful response with account details.
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Tue, 29 Dec 2020 03:25:42 GMT"
+                type: string
+              style: simple
+      summary: Get Account Details
+      tags:
+      - accounts
+  /ECM/api/v5/exportAccount:
+    post:
+      description: "This API call can be used to fetch all the existing accounts in\
+        \ a particular endpoint and security system along with the account attributes.\n\
+        \nThe **Authorization** header must have `Bearer <Token>`.\n\n**Mandatory\
+        \ parameters:**\n- `securitysystem`: The security system (not the display\
+        \ name).\n- `endpoint`: The endpoint (not the display name).\n\n**Optional\
+        \ parameters:**\n- `username`\n- `max`\n- `offset`\n- `accountQuery`\n- `advsearchcriteria`:\
+        \ An object with advanced search criteria for accounts.  \n  Its properties\
+        \ include:\n    - `accountKey`\n    - `description`\n    - `comments`\n  \
+        \  - `accounttype`\n    - `status`\n    - `customproperties`: (for customproperty1\
+        \ to customproperty56)\n    - `accountID`\n    - `displayName`\n    - `name`\n\
+        \    - `creator`\n    - `updateuser`\n    - `validfromDate`\n    - `validthrough`\n\
+        \    - `createdon`\n    - `lastlogondate`\n    - `lastpasswordchange`\n  \
+        \  - `updatedate`\n    - `orphan`\n    - `accountowner`: an array of objects\
+        \ with:\n        - `type` (mandatory, e.g. \"user\" or \"usergroup\")\n  \
+        \      - `value` (mandatory, e.g. username or usergroup name)\n        - `rank`\
+        \ (optional, e.g. \"1\" to \"5\")"
+      operationId: exportAccount
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            examples:
+              ExportAccountExample:
+                summary: Example export account form data
+                value:
+                  securitysystem: System1
+                  endpoint: System1
+                  username: admin
+                  max: "10"
+                  offset: "0"
+                  accountQuery: acc.status='1'
+                  advsearchcriteria:
+                    accountKey: "12345"
+                    description: Service Account for IT
+                    comments: Managed by IT team
+                    accounttype: Service Account
+                    status: ACTIVE
+                    customproperty12: '*Ro*'
+                    accountID: ACCT123456
+                    displayName: IT Service Account
+                    name: svcIT123
+                    creator: admin
+                    updateuser: admin
+                    validfromDate: 2022-01-01
+                    validthrough: 2022-12-31
+                    createdon: 2020-07-10
+                    lastlogondate: 2020-07-09
+                    lastpasswordchange: 2020-07-08
+                    updatedate: 2020-07-11
+                    orphan: true
+                    accountowner:
+                    - type: user
+                      value: janedoe
+                      rank: "1"
+            schema:
+              $ref: '#/components/schemas/exportAccount_request'
+        description: Form data for exporting accounts.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                ExportAccount:
+                  value:
+                    result:
+                      total: "6"
+                      accounts:
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: smarquez
+                        accounttype: A
+                        status: "1"
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: tbowers
+                        accounttype: "null"
+                        status: Manually Provisioned
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: dbailey
+                        accounttype: "null"
+                        status: Manually Provisioned
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: mchapman
+                        accounttype: "null"
+                        status: Manually Provisioned
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: glogan
+                        accounttype: "null"
+                        status: "1"
+                      - accountID: "null"
+                        endpoint: System1
+                        systemname: System1
+                        name: lkrause
+                        accounttype: "null"
+                        status: "1"
+                    errorCode: "0"
+                    message: SUCCESS
+              schema:
+                $ref: '#/components/schemas/exportAccount_200_response'
+          description: Successful response with account details.
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Tue, 29 Dec 2020 03:25:42 GMT"
+                type: string
+              style: simple
+      summary: Export Account
+      tags:
+      - accounts
+  /ECM/api/v5/createAccount:
+    post:
+      description: |-
+        This method creates a new "account" for an "endpoint" in SSM. All the input parameters it requires are attributes with which the new account record would get created.
+
+        The **Authorization** header variable must be set to `Bearer` followed by `Token`.
+
+        **Mandatory parameters:**
+        - `securitysystem`: The security system (not the display name).
+        - `endpoint`: The endpoint (not the display name).
+        - `name`: The account name to be created.
+
+        **Optional parameters:**
+        - `accountid`
+        - `username`: The user for whom the account is created.
+        - `requestor`: The user who is creating the account.
+        - `accountowner`: An array of objects representing the owner of the account. Each object must include:
+            - `type`: (mandatory; e.g., "user" or "usergroup")
+            - `value`: (mandatory; username or usergroup name)
+            - `rank`: (optional; values from "1" to "5", default is "1")
+        - `description`
+        - `displayname`
+        - `comments`
+        - `customproperty1` to `customproperty56`
+        - `passwordchangestatus`
+        - `privileged`
+        - `usergroup`
+        - `status`: Allowed values such as "Manually Suspended", "Manually Provisioned", "SUSPENDED FROM IMPORT SERVICE", or numeric values ("1", "2", "3", "4"); default is "1"
+        - `accounttype`: Allowed values such as "Service Account", "Shared Account", "FIREFIGHTERID"; default is null
+        - `incorrectlogons`
+        - `orphan`: "true" or "false"
+        - `validfrom`: Date in MM-dd-yyyy format
+        - `validthrough`: Date in MM-dd-yyyy format
+        - `lastlogondate`: Date in MM-dd-yyyy format
+        - `passwordlockdate`: Date in MM-dd-yyyy format
+        - `lastpasswordchange`: Date in MM-dd-yyyy format
+      operationId: createAccount
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            examples:
+              CreateAccountExample:
+                summary: Example payload for creating an account
+                value:
+                  securitysystem: System1
+                  endpoint: System1
+                  name: johnWS
+                  username: johndoe
+                  requestor: admin
+                  accountowner:
+                  - type: user
+                    value: dbailey
+                    rank: "1"
+                  description: test
+                  displayname: testaccc
+                  comments: "10282"
+                  accountid: "123"
+                  customproperty1: "1212"
+                  customproperty30: "1212"
+                  passwordchangestatus: changed
+                  privileged: "true"
+                  usergroup: testgroup
+                  accounttype: service account
+                  incorrectlogons: "12"
+                  orphan: "true"
+                  validfrom: 11-03-2019
+                  validthrough: 10-03-2019
+                  lastlogondate: 10-03-2019
+                  passwordlockdate: 10-03-2019
+                  lastpasswordchange: 10-03-2019
+            schema:
+              $ref: '#/components/schemas/createAccount_request'
+        description: Request payload for creating an account.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                CreateAccountSuccess:
+                  summary: Successful account creation
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS
+              schema:
+                $ref: '#/components/schemas/createAccount_200_response'
+          description: Create Account Success
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 08 Aug 2018 00:33:37 GMT"
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              examples:
+                CreateAccountFailure:
+                  summary: Account already exists
+                  value:
+                    errorCode: "1"
+                    message: Account with name johnWS already exists.
+              schema:
+                $ref: '#/components/schemas/createAccount_default_response'
+          description: Account creation failure
+      summary: Create Account
+      tags:
+      - accounts
+  /ECM/api/v5/updateAccount:
+    post:
+      description: |-
+        This method updates a particular "account" record in Saviynt based on the account name.
+
+        The **Authorization** header must have `Bearer` followed by `Token`.
+
+        **Mandatory parameters:**
+        - `securitysystem`: The security system (not the display name).
+        - `endpoint`: The endpoint (not the display name).
+        - `name`: The account name.
+
+        **Optional parameters:**
+        - `customproperty1` to `customproperty30`
+        - `status`
+        - `description`
+        - `displayname`
+        - `comments`
+        - `accountid`
+        - `customproperty1` to `customproperty56` (if more than 30 are needed)
+        - `passwordchangestatus`
+        - `privileged`
+        - `usergroup`
+        - `updateuser`: Username of the user who is updating the account.
+        - `status`: e.g. "Manually Suspended", "Manually Provisioned", "SUSPENDED FROM IMPORT SERVICE", "1", "2", "3", "4" (default: "1")
+        - `accounttype`: e.g. "Service Account", "Shared Account", "FIREFIGHTERID" (default: null)
+        - `incorrectlogons`
+        - `orphan`: true/false
+        - `validfrom`: Date in MM-dd-yyyy format
+        - `validthrough`: Date in MM-dd-yyyy format
+        - `lastlogondate`: Date in MM-dd-yyyy format
+        - `passwordlockdate`: Date in MM-dd-yyyy format
+        - `lastpasswordchange`: Date in MM-dd-yyyy format
+        - `accountowner`: An array of objects. Each object represents an owner with:
+            - **type** (mandatory): "user" or "usergroup"
+            - **value** (mandatory): username or usergroup name
+            - **rank** (optional): allowed values "1" to "5", "26" (for primary certifier) or "27" (for secondary certifier). Default is "1".
+            - **action** (mandatory): "add" or "remove"
+      operationId: updateAccount
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateAccount_request'
+        description: Request payload for updating an account.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                UpdateAccountSuccess:
+                  summary: Successful account update
+                  value:
+                    errorCode: "0"
+                    message: Account Updated Successfully
+              schema:
+                $ref: '#/components/schemas/updateAccount_200_response'
+          description: Update Account Success
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 08 Aug 2018 00:36:41 GMT"
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              examples:
+                UpdateAccountFailure:
+                  summary: Account update error
+                  value:
+                    errorCode: "1"
+                    message: Failed to update account
+              schema:
+                $ref: '#/components/schemas/updateAccount_default_response'
+          description: Account update failure
+      summary: Update Account
+      tags:
+      - accounts
+  /ECM/api/v5/assignAccountToUser:
+    post:
+      description: |-
+        This method provisions an "Account" to a "User" in SSM. The "Account" corresponds to a particular IT Application (e.g. Microsoft Active Directory) which is modeled in SSM as an "Endpoint" of a "Security System".
+
+        **Mandatory Parameters:**
+        - `securitysystem`: Name of the Security System for the relevant IT Application modeled in SSM.
+        - `endpoint`: Name of the Endpoint corresponding to the Security System.
+        - `accountname`: Account name for the provisioned account.
+        - `username`: Username of the user to whom the account has to be provisioned.
+
+        The `Authorization` header must have `Bearer` followed by the token.
+      operationId: assignAccountToUser
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/assignAccountToUser_request'
+        description: Form data for assigning an account to a user.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                AssignAccountToUser:
+                  summary: Successful account assignment
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS
+              schema:
+                $ref: '#/components/schemas/createAccount_200_response'
+          description: Successful assignment of account to user.
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 08 Aug 2018 00:38:43 GMT"
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/assignAccountToUser_default_response'
+          description: Error in assigning account
+      summary: Assign Account to User
+      tags:
+      - accounts
+  /ECM/api/v5/assignAccountToEntitlement:
+    post:
+      description: |-
+        This method provisions one or more "Entitlements" to an "Account". The "Entitlements" and the "Account" correspond to a particular IT Application (e.g. Microsoft Active Directory) which is modeled in SSM as an "Endpoint" of a "Security System".
+
+        **Mandatory Parameters:**
+        - **securitysystem**: Name of the Security System for the relevant IT Application.
+        - **endpoint**: Name of the Endpoint corresponding to the Security System.
+        - **accountname**: Account name to which the entitlements should be provisioned.
+        - **entitlementtype**: The type of the entitlement (e.g., AD Groups, EBS Responsibilities, SAP Roles, etc.).
+        - **entitlementvalue**: The actual entitlement value(s) to be provisioned.
+        - **startdate**: The start date for the access period in MM-DD-YYYY format (e.g., 12-23-2022).
+
+        The `Authorization` header must have `Bearer` followed by the token.
+      operationId: assignAccountToEntitlement
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/assignAccountToEntitlement_request'
+        description: Form data for assigning entitlements to an account.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                AssignEntitlementToAccount:
+                  summary: Successful assignment response
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS
+              schema:
+                $ref: '#/components/schemas/createAccount_200_response'
+          description: Successful assignment of entitlements to the account.
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 08 Aug 2018 00:44:22 GMT"
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/assignAccountToEntitlement_default_response'
+          description: Error in assigning entitlements.
+      summary: Assign Entitlement to Account
+      tags:
+      - accounts
+  /ECM/api/v5/removeAccountToEntitlement:
+    post:
+      description: |-
+        This method deprovisions one or more "Entitlements" from an "Account". The "Entitlements" and the "Account" correspond to a particular IT Application (e.g. Microsoft Active Directory) which is modeled in SSM as an "Endpoint" of a "Security System".
+
+        **Mandatory Parameters:**
+        - **securitysystem**: Name of the Security System for the relevant IT Application.
+        - **endpoint**: Name of the Endpoint corresponding to the Security System.
+        - **accountname**: Account name from which the entitlements should be deprovisioned.
+        - **entitlementtype**: Entitlement type for the entitlements to be deprovisioned (e.g., AD Groups, EBS Responsibilities, SAP Roles).
+        - **entitlementvalue**: The actual entitlement value(s) to be deprovisioned.
+
+        The `Authorization` header must have `Bearer` followed by a valid token.
+      operationId: removeAccountToEntitlement
+      parameters: []
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/removeAccountToEntitlement_request'
+        description: Form data for deprovisioning entitlements from an account.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                RemoveAccountToEntitlementSuccess:
+                  summary: Successful removal response
+                  value:
+                    errorCode: "0"
+                    message: SUCCESS
+              schema:
+                $ref: '#/components/schemas/createAccount_200_response'
+          description: Successful removal of entitlements from the account.
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "no-store, no-cache, must-revalidate"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 08 Aug 2018 01:01:45 GMT"
+                type: string
+              style: simple
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/removeAccountToEntitlement_default_response'
+          description: Error response.
+      summary: Remove Entitlement from Account
+      tags:
+      - accounts
+components:
+  schemas:
+    assignAccountToUser_default_response:
+      example:
+        errorCode: "1"
+        message: Failed to assign account
+      properties:
+        errorCode:
+          example: "1"
+          type: string
+        message:
+          example: Failed to assign account
+          type: string
+      type: object
+    getAccounts_200_response_Accountdetails_inner_accountowner_inner:
+      example:
+        rank: "1"
+        type: user
+        value: admin
+      properties:
+        type:
+          example: user
+          type: string
+        value:
+          example: admin
+          type: string
+        rank:
+          example: "1"
+          type: string
+      type: object
+    updateAccount_request:
+      properties:
+        securitysystem:
+          description: The security system (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: The endpoint (not the display name).
+          example: System1
+          type: string
+        name:
+          description: The account name.
+          example: johnWS
+          type: string
+        customproperty1:
+          example: value1
+          type: string
+        customproperty2:
+          example: value2
+          type: string
+        customproperty3:
+          example: value3
+          type: string
+        customproperty4:
+          example: value4
+          type: string
+        customproperty5:
+          example: value5
+          type: string
+        customproperty6:
+          example: value6
+          type: string
+        customproperty7:
+          example: value7
+          type: string
+        customproperty8:
+          example: value8
+          type: string
+        customproperty9:
+          example: value9
+          type: string
+        customproperty10:
+          example: value10
+          type: string
+        customproperty11:
+          example: value11
+          type: string
+        customproperty12:
+          example: value12
+          type: string
+        customproperty13:
+          example: value13
+          type: string
+        customproperty14:
+          example: value14
+          type: string
+        customproperty15:
+          example: value15
+          type: string
+        customproperty16:
+          example: value16
+          type: string
+        customproperty17:
+          example: value17
+          type: string
+        customproperty18:
+          example: value18
+          type: string
+        customproperty19:
+          example: value19
+          type: string
+        customproperty20:
+          example: value20
+          type: string
+        customproperty21:
+          example: value21
+          type: string
+        customproperty22:
+          example: value22
+          type: string
+        customproperty23:
+          example: value23
+          type: string
+        customproperty24:
+          example: value24
+          type: string
+        customproperty25:
+          example: value25
+          type: string
+        customproperty26:
+          example: value26
+          type: string
+        customproperty27:
+          example: value27
+          type: string
+        customproperty28:
+          example: value28
+          type: string
+        customproperty29:
+          example: value29
+          type: string
+        customproperty30:
+          example: value30
+          type: string
+        customproperty31:
+          example: value31
+          type: string
+        customproperty32:
+          example: value32
+          type: string
+        customproperty33:
+          example: value33
+          type: string
+        customproperty34:
+          example: value34
+          type: string
+        customproperty35:
+          example: value35
+          type: string
+        customproperty36:
+          example: value36
+          type: string
+        customproperty37:
+          example: value37
+          type: string
+        customproperty38:
+          example: value38
+          type: string
+        customproperty39:
+          example: value39
+          type: string
+        customproperty40:
+          example: value40
+          type: string
+        customproperty41:
+          example: value41
+          type: string
+        customproperty42:
+          example: value42
+          type: string
+        customproperty43:
+          example: value43
+          type: string
+        customproperty44:
+          example: value44
+          type: string
+        customproperty45:
+          example: value45
+          type: string
+        customproperty46:
+          example: value46
+          type: string
+        customproperty47:
+          example: value47
+          type: string
+        customproperty48:
+          example: value48
+          type: string
+        customproperty49:
+          example: value49
+          type: string
+        customproperty50:
+          example: value50
+          type: string
+        customproperty51:
+          example: value51
+          type: string
+        customproperty52:
+          example: value52
+          type: string
+        customproperty53:
+          example: value53
+          type: string
+        customproperty54:
+          example: value54
+          type: string
+        customproperty55:
+          example: value55
+          type: string
+        customproperty56:
+          example: value56
+          type: string
+        description:
+          example: desc
+          type: string
+        displayname:
+          example: testaccc
+          type: string
+        comments:
+          example: Updated account comments
+          type: string
+        accountid:
+          example: "123"
+          type: string
+        passwordchangestatus:
+          example: changed
+          type: string
+        privileged:
+          example: "true"
+          type: string
+        usergroup:
+          example: testgroup
+          type: string
+        updateuser:
+          description: Username of the user updating the account.
+          example: admin
+          type: string
+        status:
+          description: "Account status, e.g., Manually Suspended, Manually Provisioned,\
+            \ SUSPENDED FROM IMPORT SERVICE, or numeric values like 1, 2, 3, 4 (default:\
+            \ 1)."
+          example: "1"
+          type: string
+        accounttype:
+          description: "The account type imported from a third-party system, e.g.,\
+            \ Service Account, Shared Account, FIREFIGHTERID."
+          example: service account
+          type: string
+        incorrectlogons:
+          example: "12"
+          type: string
+        orphan:
+          example: "true"
+          type: string
+        validfrom:
+          description: Date in MM-dd-yyyy format.
+          example: 11-03-2019
+          type: string
+        validthrough:
+          description: Date in MM-dd-yyyy format.
+          example: 10-03-2019
+          type: string
+        lastlogondate:
+          description: Date in MM-dd-yyyy format.
+          example: 10-03-2019
+          type: string
+        passwordlockdate:
+          description: Date in MM-dd-yyyy format.
+          example: 10-03-2019
+          type: string
+        lastpasswordchange:
+          description: Date in MM-dd-yyyy format.
+          example: 10-03-2019
+          type: string
+        accountowner:
+          description: "List of account owner objects. Each object must include type,\
+            \ value, and action; rank is optional (default: '1')."
+          items:
+            $ref: '#/components/schemas/updateAccount_request_accountowner_inner'
+          type: array
+      required:
+      - endpoint
+      - name
+      - securitysystem
+      type: object
+    getAccounts_request:
+      properties:
+        username:
+          description: Filter accounts by username.
+          example: admin
+          type: string
+        endpoint:
+          description: Filter accounts by endpoint.
+          example: Office365
+          type: string
+        max:
+          description: Maximum number of records to return.
+          example: "10"
+          type: string
+        offset:
+          description: Pagination offset.
+          example: "0"
+          type: string
+        accountQuery:
+          description: A query string to filter accounts.
+          example: acc.status='1'
+          type: string
+        advsearchcriteria:
+          $ref: '#/components/schemas/getAccounts_request_advsearchcriteria'
+      type: object
+    exportAccount_request_advsearchcriteria:
+      description: "Advanced search criteria for accounts. Date values must be in\
+        \ yyyy-MM-dd format, and booleans are exact matches."
+      properties:
+        accountKey:
+          example: "12345"
+          type: string
+        description:
+          example: Service Account for IT
+          type: string
+        comments:
+          example: Managed by IT team
+          type: string
+        accounttype:
+          example: Service Account
+          type: string
+        status:
+          example: ACTIVE
+          type: string
+        customproperty1:
+          example: value1
+          type: string
+        customproperty2:
+          example: value2
+          type: string
+        customproperty3:
+          example: value3
+          type: string
+        customproperty4:
+          example: value4
+          type: string
+        customproperty5:
+          example: value5
+          type: string
+        customproperty6:
+          example: value6
+          type: string
+        customproperty7:
+          example: value7
+          type: string
+        customproperty8:
+          example: value8
+          type: string
+        customproperty9:
+          example: value9
+          type: string
+        customproperty10:
+          example: value10
+          type: string
+        customproperty11:
+          example: value11
+          type: string
+        customproperty12:
+          example: value12
+          type: string
+        customproperty13:
+          example: value13
+          type: string
+        customproperty14:
+          example: value14
+          type: string
+        customproperty15:
+          example: value15
+          type: string
+        customproperty16:
+          example: value16
+          type: string
+        customproperty17:
+          example: value17
+          type: string
+        customproperty18:
+          example: value18
+          type: string
+        customproperty19:
+          example: value19
+          type: string
+        customproperty20:
+          example: value20
+          type: string
+        customproperty21:
+          example: value21
+          type: string
+        customproperty22:
+          example: value22
+          type: string
+        customproperty23:
+          example: value23
+          type: string
+        customproperty24:
+          example: value24
+          type: string
+        customproperty25:
+          example: value25
+          type: string
+        customproperty26:
+          example: value26
+          type: string
+        customproperty27:
+          example: value27
+          type: string
+        customproperty28:
+          example: value28
+          type: string
+        customproperty29:
+          example: value29
+          type: string
+        customproperty30:
+          example: value30
+          type: string
+        customproperty31:
+          example: value31
+          type: string
+        customproperty32:
+          example: value32
+          type: string
+        customproperty33:
+          example: value33
+          type: string
+        customproperty34:
+          example: value34
+          type: string
+        customproperty35:
+          example: value35
+          type: string
+        customproperty36:
+          example: value36
+          type: string
+        customproperty37:
+          example: value37
+          type: string
+        customproperty38:
+          example: value38
+          type: string
+        customproperty39:
+          example: value39
+          type: string
+        customproperty40:
+          example: value40
+          type: string
+        customproperty41:
+          example: value41
+          type: string
+        customproperty42:
+          example: value42
+          type: string
+        customproperty43:
+          example: value43
+          type: string
+        customproperty44:
+          example: value44
+          type: string
+        customproperty45:
+          example: value45
+          type: string
+        customproperty46:
+          example: value46
+          type: string
+        customproperty47:
+          example: value47
+          type: string
+        customproperty48:
+          example: value48
+          type: string
+        customproperty49:
+          example: value49
+          type: string
+        customproperty50:
+          example: value50
+          type: string
+        customproperty51:
+          example: value51
+          type: string
+        customproperty52:
+          example: value52
+          type: string
+        customproperty53:
+          example: value53
+          type: string
+        customproperty54:
+          example: value54
+          type: string
+        customproperty55:
+          example: value55
+          type: string
+        customproperty56:
+          example: value56
+          type: string
+        accountID:
+          example: ACCT123456
+          type: string
+        displayName:
+          example: IT Service Account
+          type: string
+        name:
+          example: svcIT123
+          type: string
+        creator:
+          example: admin
+          type: string
+        updateuser:
+          example: admin
+          type: string
+        validfromDate:
+          example: 2022-01-01
+          type: string
+        validthrough:
+          example: 2022-12-31
+          type: string
+        createdon:
+          example: 2020-07-10
+          type: string
+        lastlogondate:
+          example: 2020-07-09
+          type: string
+        lastpasswordchange:
+          example: 2020-07-08
+          type: string
+        updatedate:
+          example: 2020-07-11
+          type: string
+        orphan:
+          example: true
+          type: boolean
+        accountowner:
+          description: List of account owner objects.
+          items:
+            $ref: '#/components/schemas/exportAccount_request_advsearchcriteria_accountowner_inner'
+          type: array
+      type: object
+    exportAccount_request:
+      properties:
+        securitysystem:
+          description: The security system (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: The endpoint (not the display name).
+          example: System1
+          type: string
+        username:
+          description: Optional username filter.
+          example: admin
+          type: string
+        max:
+          description: Maximum number of records to return.
+          example: "10"
+          type: string
+        offset:
+          description: Pagination offset.
+          example: "0"
+          type: string
+        accountQuery:
+          description: A query string to filter accounts.
+          example: acc.status='1'
+          type: string
+        advsearchcriteria:
+          $ref: '#/components/schemas/exportAccount_request_advsearchcriteria'
+      required:
+      - endpoint
+      - securitysystem
+      type: object
+    updateAccount_200_response:
+      example:
+        errorCode: "0"
+        message: Account Updated Successfully
+      properties:
+        errorCode:
+          example: "0"
+          type: string
+        message:
+          example: Account Updated Successfully
+          type: string
+      type: object
+    assignAccountToEntitlement_request:
+      properties:
+        securitysystem:
+          description: Name of the Security System (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: Name of the Endpoint corresponding to the Security System (not
+            the display name).
+          example: System1
+          type: string
+        accountname:
+          description: Account name to which entitlements should be provisioned.
+          example: johnWS
+          type: string
+        entitlementtype:
+          description: "Entitlement type (e.g., AD Groups, EBS Responsibilities, SAP\
+            \ Roles)."
+          example: Access
+          type: string
+        entitlementvalue:
+          description: Name(s) of the entitlement(s) to be provisioned.
+          example: Entitlement1
+          type: string
+        startdate:
+          description: Start date for the access period in MM-DD-YYYY format.
+          example: 12-23-2022
+          type: string
+      required:
+      - accountname
+      - endpoint
+      - entitlementtype
+      - entitlementvalue
+      - securitysystem
+      - startdate
+      type: object
+    removeAccountToEntitlement_default_response:
+      example:
+        errorCode: "1"
+        message: Account (johnWS) has NO Entitlement (Entitlement1)
+      properties:
+        errorCode:
+          example: "1"
+          type: string
+        message:
+          example: Account (johnWS) has NO Entitlement (Entitlement1)
+          type: string
+      type: object
+    exportAccount_200_response_result:
+      example:
+        total: "6"
+        accounts:
+        - accountID: "null"
+          endpoint: System1
+          systemname: System1
+          name: smarquez
+          accounttype: A
+          status: "1"
+        - accountID: "null"
+          endpoint: System1
+          systemname: System1
+          name: smarquez
+          accounttype: A
+          status: "1"
+      properties:
+        total:
+          example: "6"
+          type: string
+        accounts:
+          items:
+            $ref: '#/components/schemas/exportAccount_200_response_result_accounts_inner'
+          type: array
+      type: object
+    createAccount_request_accountowner_inner:
+      properties:
+        type:
+          description: "Type of owner, e.g., \"user\" or \"usergroup\"."
+          example: user
+          type: string
+        value:
+          description: Username or usergroup name.
+          example: dbailey
+          type: string
+        rank:
+          description: Optional rank from "1" to "5". Default is "1".
+          example: "1"
+          type: string
+      required:
+      - type
+      - value
+      type: object
+    assignAccountToUser_request:
+      properties:
+        securitysystem:
+          description: Name of the Security System (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: Name of the Endpoint corresponding to the Security System (not
+            the display name).
+          example: System1
+          type: string
+        accountname:
+          description: Account name for the provisioned account.
+          example: johnWS
+          type: string
+        username:
+          description: Username of the user to whom the account is to be provisioned.
+          example: johndoe
+          type: string
+      required:
+      - accountname
+      - endpoint
+      - securitysystem
+      - username
+      type: object
+    exportAccount_200_response:
+      example:
+        result:
+          total: "6"
+          accounts:
+          - accountID: "null"
+            endpoint: System1
+            systemname: System1
+            name: smarquez
+            accounttype: A
+            status: "1"
+          - accountID: "null"
+            endpoint: System1
+            systemname: System1
+            name: smarquez
+            accounttype: A
+            status: "1"
+        errorCode: "0"
+        message: SUCCESS
+      properties:
+        result:
+          $ref: '#/components/schemas/exportAccount_200_response_result'
+        errorCode:
+          example: "0"
+          type: string
+        message:
+          example: SUCCESS
+          type: string
+      type: object
+    removeAccountToEntitlement_request:
+      properties:
+        securitysystem:
+          description: Name of the Security System (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: Name of the Endpoint corresponding to the Security System (not
+            the display name).
+          example: System1
+          type: string
+        accountname:
+          description: Account name from which entitlements should be deprovisioned.
+          example: johnWS
+          type: string
+        entitlementtype:
+          description: "Entitlement type (e.g., AD Groups, EBS Responsibilities, SAP\
+            \ Roles)."
+          example: Access
+          type: string
+        entitlementvalue:
+          description: Names of the entitlement(s) to be deprovisioned.
+          example: Entitlement1
+          type: string
+      required:
+      - accountname
+      - endpoint
+      - entitlementtype
+      - entitlementvalue
+      - securitysystem
+      type: object
+    exportAccount_200_response_result_accounts_inner:
+      example:
+        accountID: "null"
+        endpoint: System1
+        systemname: System1
+        name: smarquez
+        accounttype: A
+        status: "1"
+      properties:
+        accountID:
+          example: "null"
+          type: string
+        endpoint:
+          example: System1
+          type: string
+        systemname:
+          example: System1
+          type: string
+        name:
+          example: smarquez
+          type: string
+        accounttype:
+          example: A
+          type: string
+        status:
+          example: "1"
+          type: string
+      type: object
+    getAccounts_request_advsearchcriteria_accountowner_inner:
+      properties:
+        type:
+          description: "Type of owner, e.g., user or usergroup"
+          example: user
+          type: string
+        value:
+          description: Username or usergroup name
+          example: janedoe
+          type: string
+        rank:
+          description: "Optional rank (e.g., '1' to '5')"
+          example: "1"
+          type: string
+      required:
+      - type
+      - value
+      type: object
+    assignAccountToEntitlement_default_response:
+      example:
+        errorCode: "1"
+        message: Failed to assign entitlements
+      properties:
+        errorCode:
+          example: "1"
+          type: string
+        message:
+          example: Failed to assign entitlements
+          type: string
+      type: object
+    createAccount_200_response:
+      example:
+        errorCode: "0"
+        message: SUCCESS
+      properties:
+        errorCode:
+          example: "0"
+          type: string
+        message:
+          example: SUCCESS
+          type: string
+      type: object
+    getAccounts_200_response_Accountdetails_inner:
+      example:
+        customproperty10: value10
+        customproperty54: value54
+        customproperty53: value53
+        customproperty12: value12
+        customproperty56: value56
+        customproperty11: value11
+        customproperty55: value55
+        customproperty50: value50
+        customproperty52: value52
+        customproperty51: value51
+        customproperty18: value18
+        customproperty17: value17
+        customproperty19: value19
+        customproperty14: value14
+        customproperty13: value13
+        customproperty16: value16
+        customproperty15: value15
+        accountID: "CN=svcIT62341,OU=SaviyntPoC,DC=corpAD,DC=saviynt,DC=com"
+        updatedate: 07/10/2020
+        customproperty43: value43
+        customproperty42: value42
+        customproperty45: value45
+        customproperty44: value44
+        customproperty41: value41
+        customproperty40: value40
+        customproperty47: value47
+        customproperty46: value46
+        customproperty49: value49
+        customproperty48: value48
+        name: svcIT62341
+        status: "1"
+        customproperty4: value4
+        customproperty32: value32
+        customproperty5: value5
+        customproperty31: value31
+        customproperty2: value2
+        customproperty34: value34
+        customproperty3: value3
+        customproperty33: value33
+        customproperty1: value1
+        customproperty30: value30
+        customproperty39: value39
+        customproperty36: value36
+        customproperty35: value35
+        customproperty38: value38
+        lastpasswordchange: 07/10/2020
+        customproperty37: value37
+        accountowner:
+        - rank: "1"
+          type: user
+          value: admin
+        - rank: "1"
+          type: user
+          value: admin
+        customproperty8: value8
+        customproperty9: value9
+        customproperty6: value6
+        customproperty7: value7
+        customproperty21: value21
+        customproperty20: value20
+        customproperty23: value23
+        customproperty22: value22
+        customproperty29: value29
+        customproperty28: value28
+        customproperty25: value25
+        createdon: 07/10/2020
+        customproperty24: value24
+        customproperty27: value27
+        accountKey: 541341
+        customproperty26: value26
+      properties:
+        accountKey:
+          example: 541341
+          type: integer
+        accountID:
+          example: "CN=svcIT62341,OU=SaviyntPoC,DC=corpAD,DC=saviynt,DC=com"
+          type: string
+        name:
+          example: svcIT62341
+          type: string
+        status:
+          example: "1"
+          type: string
+        createdon:
+          example: 07/10/2020
+          type: string
+        lastpasswordchange:
+          example: 07/10/2020
+          type: string
+        updatedate:
+          example: 07/10/2020
+          type: string
+        accountowner:
+          items:
+            $ref: '#/components/schemas/getAccounts_200_response_Accountdetails_inner_accountowner_inner'
+          type: array
+        customproperty1:
+          example: value1
+          type: string
+        customproperty2:
+          example: value2
+          type: string
+        customproperty3:
+          example: value3
+          type: string
+        customproperty4:
+          example: value4
+          type: string
+        customproperty5:
+          example: value5
+          type: string
+        customproperty6:
+          example: value6
+          type: string
+        customproperty7:
+          example: value7
+          type: string
+        customproperty8:
+          example: value8
+          type: string
+        customproperty9:
+          example: value9
+          type: string
+        customproperty10:
+          example: value10
+          type: string
+        customproperty11:
+          example: value11
+          type: string
+        customproperty12:
+          example: value12
+          type: string
+        customproperty13:
+          example: value13
+          type: string
+        customproperty14:
+          example: value14
+          type: string
+        customproperty15:
+          example: value15
+          type: string
+        customproperty16:
+          example: value16
+          type: string
+        customproperty17:
+          example: value17
+          type: string
+        customproperty18:
+          example: value18
+          type: string
+        customproperty19:
+          example: value19
+          type: string
+        customproperty20:
+          example: value20
+          type: string
+        customproperty21:
+          example: value21
+          type: string
+        customproperty22:
+          example: value22
+          type: string
+        customproperty23:
+          example: value23
+          type: string
+        customproperty24:
+          example: value24
+          type: string
+        customproperty25:
+          example: value25
+          type: string
+        customproperty26:
+          example: value26
+          type: string
+        customproperty27:
+          example: value27
+          type: string
+        customproperty28:
+          example: value28
+          type: string
+        customproperty29:
+          example: value29
+          type: string
+        customproperty30:
+          example: value30
+          type: string
+        customproperty31:
+          example: value31
+          type: string
+        customproperty32:
+          example: value32
+          type: string
+        customproperty33:
+          example: value33
+          type: string
+        customproperty34:
+          example: value34
+          type: string
+        customproperty35:
+          example: value35
+          type: string
+        customproperty36:
+          example: value36
+          type: string
+        customproperty37:
+          example: value37
+          type: string
+        customproperty38:
+          example: value38
+          type: string
+        customproperty39:
+          example: value39
+          type: string
+        customproperty40:
+          example: value40
+          type: string
+        customproperty41:
+          example: value41
+          type: string
+        customproperty42:
+          example: value42
+          type: string
+        customproperty43:
+          example: value43
+          type: string
+        customproperty44:
+          example: value44
+          type: string
+        customproperty45:
+          example: value45
+          type: string
+        customproperty46:
+          example: value46
+          type: string
+        customproperty47:
+          example: value47
+          type: string
+        customproperty48:
+          example: value48
+          type: string
+        customproperty49:
+          example: value49
+          type: string
+        customproperty50:
+          example: value50
+          type: string
+        customproperty51:
+          example: value51
+          type: string
+        customproperty52:
+          example: value52
+          type: string
+        customproperty53:
+          example: value53
+          type: string
+        customproperty54:
+          example: value54
+          type: string
+        customproperty55:
+          example: value55
+          type: string
+        customproperty56:
+          example: value56
+          type: string
+      type: object
+    updateAccount_default_response:
+      example:
+        errorCode: "1"
+        message: Failed to update account
+      properties:
+        errorCode:
+          example: "1"
+          type: string
+        message:
+          example: Failed to update account
+          type: string
+      type: object
+    createAccount_default_response:
+      example:
+        errorCode: "1"
+        message: Account with name johnWS already exists.
+      properties:
+        errorCode:
+          example: "1"
+          type: string
+        message:
+          example: Account with name johnWS already exists.
+          type: string
+      type: object
+    getAccounts_request_advsearchcriteria:
+      description: Advanced search criteria for accounts. Custom properties (customproperty1
+        to customproperty56) can be included as needed.
+      properties:
+        accountKey:
+          example: "12345"
+          type: string
+        description:
+          example: Service Account for IT
+          type: string
+        comments:
+          example: Managed by IT team
+          type: string
+        accounttype:
+          example: Service Account
+          type: string
+        status:
+          example: ACTIVE
+          type: string
+        customproperty1:
+          example: value1
+          type: string
+        customproperty2:
+          example: value2
+          type: string
+        customproperty3:
+          example: value3
+          type: string
+        customproperty4:
+          example: value4
+          type: string
+        customproperty5:
+          example: value5
+          type: string
+        customproperty6:
+          example: value6
+          type: string
+        customproperty7:
+          example: value7
+          type: string
+        customproperty8:
+          example: value8
+          type: string
+        customproperty9:
+          example: value9
+          type: string
+        customproperty10:
+          example: value10
+          type: string
+        customproperty11:
+          example: value11
+          type: string
+        customproperty12:
+          example: value12
+          type: string
+        customproperty13:
+          example: value13
+          type: string
+        customproperty14:
+          example: value14
+          type: string
+        customproperty15:
+          example: value15
+          type: string
+        customproperty16:
+          example: value16
+          type: string
+        customproperty17:
+          example: value17
+          type: string
+        customproperty18:
+          example: value18
+          type: string
+        customproperty19:
+          example: value19
+          type: string
+        customproperty20:
+          example: value20
+          type: string
+        customproperty21:
+          example: value21
+          type: string
+        customproperty22:
+          example: value22
+          type: string
+        customproperty23:
+          example: value23
+          type: string
+        customproperty24:
+          example: value24
+          type: string
+        customproperty25:
+          example: value25
+          type: string
+        customproperty26:
+          example: value26
+          type: string
+        customproperty27:
+          example: value27
+          type: string
+        customproperty28:
+          example: value28
+          type: string
+        customproperty29:
+          example: value29
+          type: string
+        customproperty30:
+          example: value30
+          type: string
+        customproperty31:
+          example: value31
+          type: string
+        customproperty32:
+          example: value32
+          type: string
+        customproperty33:
+          example: value33
+          type: string
+        customproperty34:
+          example: value34
+          type: string
+        customproperty35:
+          example: value35
+          type: string
+        customproperty36:
+          example: value36
+          type: string
+        customproperty37:
+          example: value37
+          type: string
+        customproperty38:
+          example: value38
+          type: string
+        customproperty39:
+          example: value39
+          type: string
+        customproperty40:
+          example: value40
+          type: string
+        customproperty41:
+          example: value41
+          type: string
+        customproperty42:
+          example: value42
+          type: string
+        customproperty43:
+          example: value43
+          type: string
+        customproperty44:
+          example: value44
+          type: string
+        customproperty45:
+          example: value45
+          type: string
+        customproperty46:
+          example: value46
+          type: string
+        customproperty47:
+          example: value47
+          type: string
+        customproperty48:
+          example: value48
+          type: string
+        customproperty49:
+          example: value49
+          type: string
+        customproperty50:
+          example: value50
+          type: string
+        customproperty51:
+          example: value51
+          type: string
+        customproperty52:
+          example: value52
+          type: string
+        customproperty53:
+          example: value53
+          type: string
+        customproperty54:
+          example: value54
+          type: string
+        customproperty55:
+          example: value55
+          type: string
+        customproperty56:
+          example: value56
+          type: string
+        accountID:
+          example: ACCT123456
+          type: string
+        displayName:
+          example: IT Service Account
+          type: string
+        name:
+          example: svcIT123
+          type: string
+        creator:
+          example: admin
+          type: string
+        updateuser:
+          example: admin
+          type: string
+        validfromDate:
+          example: 2022-01-01
+          type: string
+        validthrough:
+          example: 2022-12-31
+          type: string
+        createdon:
+          example: 2020-07-10
+          type: string
+        lastlogondate:
+          example: 2020-07-09
+          type: string
+        lastpasswordchange:
+          example: 2020-07-08
+          type: string
+        updatedate:
+          example: 2020-07-11
+          type: string
+        orphan:
+          example: true
+          type: boolean
+        accountowner:
+          description: List of account owner objects
+          items:
+            $ref: '#/components/schemas/getAccounts_request_advsearchcriteria_accountowner_inner'
+          type: array
+      type: object
+    updateAccount_request_accountowner_inner:
+      properties:
+        type:
+          description: Owner type (user or usergroup).
+          example: user
+          type: string
+        value:
+          description: Username or usergroup name.
+          example: dbailey
+          type: string
+        rank:
+          description: "Optional rank. Allowed values: '1'-'5', '26' (for primary\
+            \ certifier), '27' (for secondary certifier)."
+          example: "1"
+          type: string
+        action:
+          description: "Action to perform, either 'add' or 'remove'."
+          enum:
+          - add
+          - remove
+          example: remove
+          type: string
+      required:
+      - action
+      - type
+      - value
+      type: object
+    getAccounts_200_response:
+      example:
+        msg: Successful
+        displaycount: 1
+        total: 1
+        Accountdetails:
+        - customproperty10: value10
+          customproperty54: value54
+          customproperty53: value53
+          customproperty12: value12
+          customproperty56: value56
+          customproperty11: value11
+          customproperty55: value55
+          customproperty50: value50
+          customproperty52: value52
+          customproperty51: value51
+          customproperty18: value18
+          customproperty17: value17
+          customproperty19: value19
+          customproperty14: value14
+          customproperty13: value13
+          customproperty16: value16
+          customproperty15: value15
+          accountID: "CN=svcIT62341,OU=SaviyntPoC,DC=corpAD,DC=saviynt,DC=com"
+          updatedate: 07/10/2020
+          customproperty43: value43
+          customproperty42: value42
+          customproperty45: value45
+          customproperty44: value44
+          customproperty41: value41
+          customproperty40: value40
+          customproperty47: value47
+          customproperty46: value46
+          customproperty49: value49
+          customproperty48: value48
+          name: svcIT62341
+          status: "1"
+          customproperty4: value4
+          customproperty32: value32
+          customproperty5: value5
+          customproperty31: value31
+          customproperty2: value2
+          customproperty34: value34
+          customproperty3: value3
+          customproperty33: value33
+          customproperty1: value1
+          customproperty30: value30
+          customproperty39: value39
+          customproperty36: value36
+          customproperty35: value35
+          customproperty38: value38
+          lastpasswordchange: 07/10/2020
+          customproperty37: value37
+          accountowner:
+          - rank: "1"
+            type: user
+            value: admin
+          - rank: "1"
+            type: user
+            value: admin
+          customproperty8: value8
+          customproperty9: value9
+          customproperty6: value6
+          customproperty7: value7
+          customproperty21: value21
+          customproperty20: value20
+          customproperty23: value23
+          customproperty22: value22
+          customproperty29: value29
+          customproperty28: value28
+          customproperty25: value25
+          createdon: 07/10/2020
+          customproperty24: value24
+          customproperty27: value27
+          accountKey: 541341
+          customproperty26: value26
+        - customproperty10: value10
+          customproperty54: value54
+          customproperty53: value53
+          customproperty12: value12
+          customproperty56: value56
+          customproperty11: value11
+          customproperty55: value55
+          customproperty50: value50
+          customproperty52: value52
+          customproperty51: value51
+          customproperty18: value18
+          customproperty17: value17
+          customproperty19: value19
+          customproperty14: value14
+          customproperty13: value13
+          customproperty16: value16
+          customproperty15: value15
+          accountID: "CN=svcIT62341,OU=SaviyntPoC,DC=corpAD,DC=saviynt,DC=com"
+          updatedate: 07/10/2020
+          customproperty43: value43
+          customproperty42: value42
+          customproperty45: value45
+          customproperty44: value44
+          customproperty41: value41
+          customproperty40: value40
+          customproperty47: value47
+          customproperty46: value46
+          customproperty49: value49
+          customproperty48: value48
+          name: svcIT62341
+          status: "1"
+          customproperty4: value4
+          customproperty32: value32
+          customproperty5: value5
+          customproperty31: value31
+          customproperty2: value2
+          customproperty34: value34
+          customproperty3: value3
+          customproperty33: value33
+          customproperty1: value1
+          customproperty30: value30
+          customproperty39: value39
+          customproperty36: value36
+          customproperty35: value35
+          customproperty38: value38
+          lastpasswordchange: 07/10/2020
+          customproperty37: value37
+          accountowner:
+          - rank: "1"
+            type: user
+            value: admin
+          - rank: "1"
+            type: user
+            value: admin
+          customproperty8: value8
+          customproperty9: value9
+          customproperty6: value6
+          customproperty7: value7
+          customproperty21: value21
+          customproperty20: value20
+          customproperty23: value23
+          customproperty22: value22
+          customproperty29: value29
+          customproperty28: value28
+          customproperty25: value25
+          createdon: 07/10/2020
+          customproperty24: value24
+          customproperty27: value27
+          accountKey: 541341
+          customproperty26: value26
+        errorCode: "0"
+      properties:
+        msg:
+          example: Successful
+          type: string
+        errorCode:
+          example: "0"
+          type: string
+        displaycount:
+          example: 1
+          type: integer
+        total:
+          example: 1
+          type: integer
+        Accountdetails:
+          items:
+            $ref: '#/components/schemas/getAccounts_200_response_Accountdetails_inner'
+          type: array
+      type: object
+    exportAccount_request_advsearchcriteria_accountowner_inner:
+      properties:
+        type:
+          description: "Type of owner, e.g., user or usergroup."
+          example: user
+          type: string
+        value:
+          description: Username or usergroup name.
+          example: janedoe
+          type: string
+        rank:
+          description: "Optional rank (e.g., \"1\" to \"5\")."
+          example: "1"
+          type: string
+      required:
+      - type
+      - value
+      type: object
+    createAccount_request:
+      properties:
+        securitysystem:
+          description: The security system (not the display name).
+          example: System1
+          type: string
+        endpoint:
+          description: The endpoint (not the display name).
+          example: System1
+          type: string
+        name:
+          description: The account name to be created.
+          example: johnWS
+          type: string
+        username:
+          description: The user for whom the account is created.
+          example: johndoe
+          type: string
+        requestor:
+          description: The user who is creating the account.
+          example: admin
+          type: string
+        accountowner:
+          description: Owner(s) of the account.
+          items:
+            $ref: '#/components/schemas/createAccount_request_accountowner_inner'
+          type: array
+        description:
+          example: test
+          type: string
+        displayname:
+          example: testaccc
+          type: string
+        comments:
+          example: "10282"
+          type: string
+        accountid:
+          example: "123"
+          type: string
+        customproperty1:
+          example: value1
+          type: string
+        customproperty2:
+          example: value2
+          type: string
+        customproperty3:
+          example: value3
+          type: string
+        customproperty4:
+          example: value4
+          type: string
+        customproperty5:
+          example: value5
+          type: string
+        customproperty6:
+          example: value6
+          type: string
+        customproperty7:
+          example: value7
+          type: string
+        customproperty8:
+          example: value8
+          type: string
+        customproperty9:
+          example: value9
+          type: string
+        customproperty10:
+          example: value10
+          type: string
+        customproperty11:
+          example: value11
+          type: string
+        customproperty12:
+          example: value12
+          type: string
+        customproperty13:
+          example: value13
+          type: string
+        customproperty14:
+          example: value14
+          type: string
+        customproperty15:
+          example: value15
+          type: string
+        customproperty16:
+          example: value16
+          type: string
+        customproperty17:
+          example: value17
+          type: string
+        customproperty18:
+          example: value18
+          type: string
+        customproperty19:
+          example: value19
+          type: string
+        customproperty20:
+          example: value20
+          type: string
+        customproperty21:
+          example: value21
+          type: string
+        customproperty22:
+          example: value22
+          type: string
+        customproperty23:
+          example: value23
+          type: string
+        customproperty24:
+          example: value24
+          type: string
+        customproperty25:
+          example: value25
+          type: string
+        customproperty26:
+          example: value26
+          type: string
+        customproperty27:
+          example: value27
+          type: string
+        customproperty28:
+          example: value28
+          type: string
+        customproperty29:
+          example: value29
+          type: string
+        customproperty30:
+          example: value30
+          type: string
+        customproperty31:
+          example: value31
+          type: string
+        customproperty32:
+          example: value32
+          type: string
+        customproperty33:
+          example: value33
+          type: string
+        customproperty34:
+          example: value34
+          type: string
+        customproperty35:
+          example: value35
+          type: string
+        customproperty36:
+          example: value36
+          type: string
+        customproperty37:
+          example: value37
+          type: string
+        customproperty38:
+          example: value38
+          type: string
+        customproperty39:
+          example: value39
+          type: string
+        customproperty40:
+          example: value40
+          type: string
+        customproperty41:
+          example: value41
+          type: string
+        customproperty42:
+          example: value42
+          type: string
+        customproperty43:
+          example: value43
+          type: string
+        customproperty44:
+          example: value44
+          type: string
+        customproperty45:
+          example: value45
+          type: string
+        customproperty46:
+          example: value46
+          type: string
+        customproperty47:
+          example: value47
+          type: string
+        customproperty48:
+          example: value48
+          type: string
+        customproperty49:
+          example: value49
+          type: string
+        customproperty50:
+          example: value50
+          type: string
+        customproperty51:
+          example: value51
+          type: string
+        customproperty52:
+          example: value52
+          type: string
+        customproperty53:
+          example: value53
+          type: string
+        customproperty54:
+          example: value54
+          type: string
+        customproperty55:
+          example: value55
+          type: string
+        customproperty56:
+          example: value56
+          type: string
+        passwordchangestatus:
+          example: changed
+          type: string
+        privileged:
+          example: "true"
+          type: string
+        usergroup:
+          example: testgroup
+          type: string
+        status:
+          description: "Account status (e.g., Manually Suspended, Manually Provisioned,\
+            \ SUSPENDED FROM IMPORT SERVICE, or numeric value such as 1, 2, 3, 4).\
+            \ Default is 1."
+          example: "1"
+          type: string
+        accounttype:
+          example: service account
+          type: string
+        incorrectlogons:
+          example: "12"
+          type: string
+        orphan:
+          example: "true"
+          type: string
+        validfrom:
+          example: 11-03-2019
+          type: string
+        validthrough:
+          example: 10-03-2019
+          type: string
+        lastlogondate:
+          example: 10-03-2019
+          type: string
+        passwordlockdate:
+          example: 10-03-2019
+          type: string
+        lastpasswordchange:
+          example: 10-03-2019
+          type: string
+      required:
+      - endpoint
+      - name
+      - securitysystem
+      type: object
