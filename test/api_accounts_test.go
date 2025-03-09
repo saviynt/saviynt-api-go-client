@@ -11,7 +11,6 @@ import (
 )
 
 func Test_openapi_AccountsAPIService(t *testing.T) {
-
 	apiClient, _, skipTests, skipMsg, err := client()
 	require.NoError(t, err, "Failed to initialize API client")
 	if !skipTests {
