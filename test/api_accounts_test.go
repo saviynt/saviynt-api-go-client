@@ -78,7 +78,7 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			Comments:       &comment,
 			Requestor:      &requestor,
 		}
-		resp, httpRes, err := apiClient.Accounts.CreateAccount(ctx).CreateAccountRequest(*&createAccountsReq).Execute()
+		resp, httpRes, err := apiClient.Accounts.CreateAccount(ctx).CreateAccountRequest(createAccountsReq).Execute()
 		require.NoError(t, err, "Unexpected error in CreateAccount")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
@@ -172,7 +172,7 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			Name:           "Rose Shukla",
 			Comments:       &comment,
 		}
-		resp, httpRes, err := apiClient.Accounts.UpdateAccount(ctx).UpdateAccountRequest(*&updateAccountReq).Execute()
+		resp, httpRes, err := apiClient.Accounts.UpdateAccount(ctx).UpdateAccountRequest(updateAccountReq).Execute()
 
 		require.NoError(t, err, "Unexpected error in RemoveAccountToEntitlement")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
