@@ -35,7 +35,6 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
 
 	t.Run("Test AccountsAPIService AssignAccountToUser", func(t *testing.T) {
@@ -65,7 +64,6 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			}
 		}
 		require.NotNil(t, apiClient.Accounts, "apiClient.Accounts is nil, skipping test")
-
 		username := "Rose Shukla"
 		comment := "This is created using go api client code"
 		requestor := "admin"
@@ -83,7 +81,6 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
 
 	t.Run("Test AccountsAPIService ExportAccount", func(t *testing.T) {
@@ -95,7 +92,6 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			}
 		}
 		require.NotNil(t, apiClient.Accounts, "aapiClient.Accounts is nil, skipping test")
-
 		exportReq := apiClient.Accounts.ExportAccount(ctx).
 			Securitysystem("ADSystem").
 			Endpoint("ADEndpoint")
@@ -105,7 +101,6 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
 
 	t.Run("Test AccountsAPIService GetAccounts", func(t *testing.T) {
@@ -124,13 +119,11 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 		resp, httpRes, err := apiClient.Accounts.GetAccounts(ctx).
 			GetAccountsRequest(getAccountsReq).
 			Execute()
-
 		require.NoError(t, err, "Unexpected error in GetAccounts")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
 
 	t.Run("Test AccountsAPIService RemoveAccountToEntitlement", func(t *testing.T) {
@@ -142,20 +135,16 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			}
 		}
 		require.NotNil(t, apiClient.Accounts, "apiClient.Accounts is nil, skipping test")
-
 		req := apiClient.Accounts.RemoveAccountToEntitlement(ctx).Securitysystem("AD_Rashid").Endpoint("AD_Rashid").Accountname("Rose Shukla").Entitlementtype("memberOf").Entitlementvalue("CN=adtestrequest123,OU=DocTeamOU,OU=SaviyntTeams,DC=saviyntlabs,DC=org")
 		resp, httpRes, err := req.Execute()
-
 		require.NoError(t, err, "Unexpected error in RemoveAccountToEntitlement")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
 
 	t.Run("Test AccountsAPIService UpdateAccount", func(t *testing.T) {
-
 		if skipTests {
 			if skipMsg != "" {
 				t.Skip(skipMsg)
@@ -172,13 +161,10 @@ func Test_openapi_AccountsAPIService(t *testing.T) {
 			Comments:       &comment,
 		}
 		resp, httpRes, err := apiClient.Accounts.UpdateAccount(ctx).UpdateAccountRequest(updateAccountReq).Execute()
-
 		require.NoError(t, err, "Unexpected error in RemoveAccountToEntitlement")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
 		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
 		require.NotNil(t, resp, "Response should not be nil")
 		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
-
 	})
-
 }
