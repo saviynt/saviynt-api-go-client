@@ -18,10 +18,10 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/email"
 	"github.com/saviynt/saviynt-api-go-client/endpoints"
 	entitlements "github.com/saviynt/saviynt-api-go-client/entitlements"
-	organizations"github.com/saviynt/saviynt-api-go-client/organization"
 	"github.com/saviynt/saviynt-api-go-client/filedirectory"
 	"github.com/saviynt/saviynt-api-go-client/jobcontrol"
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
+	organizations "github.com/saviynt/saviynt-api-go-client/organization"
 	"github.com/saviynt/saviynt-api-go-client/savroles"
 	"github.com/saviynt/saviynt-api-go-client/tasks"
 	"github.com/saviynt/saviynt-api-go-client/transport"
@@ -66,7 +66,7 @@ type Client struct {
 	Entitlements                  *entitlements.EntitlementsAPIService
 	entitlementsClient            *entitlements.APIClient
 	Organizations                 *organizations.OrganizationsAPIService
-    organizationsClient           *organizations.APIClient
+	organizationsClient           *organizations.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
