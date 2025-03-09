@@ -10,9 +10,7 @@ package test
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"log"
 	"testing"
 
 	openapi "github.com/saviynt/saviynt-api-go-client/organization"
@@ -26,25 +24,32 @@ var (
 	comment         = "Hello this is from test connections"
 )
 
-func marshalResp(v interface{}) []byte {
-	b, err := json.MarshalIndent(v, "", "  ")
-	if err != nil {
-		log.Fatalf("Error marshalling response: %v", err)
-	}
-	return b
-}
+// func marshalResp(v interface{}) []byte {
+// 	b, err := json.MarshalIndent(v, "", "  ")
+// 	if err != nil {
+// 		log.Fatalf("Error marshalling response: %v", err)
+// 	}
+// 	return b
+// }
 
 func Test_openapi_OrganizationsAPIService(t *testing.T) {
-	apiClient, _, _, _, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.NoError(t, err, "Failed to initialize API client")
-	require.NotNil(t, apiClient, "apiClient should not be nil")
-	require.NotNil(t, apiClient.Organizations, "apiClient.Organizations should not be nil")
+	if !skipTests {
+		require.NotNil(t, apiClient, "apiClient should not be nil")
+		require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements should not be nil")
+	}
 
 	ctx := context.Background()
 	t.Run("Test OrganizationsAPIService CreateOrganization", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		createReq := openapi.CreateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -56,19 +61,25 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			CreateOrganization(ctx).
 			CreateOrganizationRequest(createReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in CreateOrganization")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
-		fmt.Println("CreateOrganization Response:")
-		fmt.Println(string(marshalResp(resp)))
+		// fmt.Println("CreateOrganization Response:")
+		// fmt.Println(string(marshalResp(resp)))
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganization", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		updateReq := openapi.UpdateOrganizationRequest{
 			Organizationname: defaultOrgName,
 			Username:         defaultUsername,
@@ -79,43 +90,52 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			UpdateOrganization(ctx).
 			UpdateOrganizationRequest(updateReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in UpdateOrganization")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
-		fmt.Println("UpdateOrganization Response:")
-		fmt.Println(string(marshalResp(resp)))
+		// fmt.Println("UpdateOrganization Response:")
+		// fmt.Println(string(marshalResp(resp)))
 	})
 	t.Run("Test OrganizationsAPIService GetOrganization", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		getReq := openapi.GetOrganizationRequest{
 			Organizationname: &defaultOrgName,
 		}
-
 		// Call the GetOrganization API endpoint.
 		resp, httpRes, err := apiClient.Organizations.
 			GetOrganization(ctx).
 			GetOrganizationRequest(getReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in GetOrganization")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
 		// Marshal the response for readability and print it.
-		respJSON, err := json.MarshalIndent(resp, "", "  ")
-		require.NoError(t, err)
-		fmt.Printf("HTTP status: %d\nResponse JSON:\n%s\n", httpRes.StatusCode, string(respJSON))
+		// respJSON, err := json.MarshalIndent(resp, "", "  ")
+		// fmt.Printf("HTTP status: %d\nResponse JSON:\n%s\n", httpRes.StatusCode, string(respJSON))
 	})
 
 	t.Run("Test OrganizationsAPIService GetOrganizationUserDetails", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
-
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		getDetailsReq := openapi.GetOrganizationUserDetailsRequest{
 			Username: defaultUsername,
 		}
@@ -123,19 +143,25 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			GetOrganizationUserDetails(ctx).
 			GetOrganizationUserDetailsRequest(getDetailsReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in GetOrganizationUserDetails")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
-		fmt.Println("GetOrganizationUserDetails Response:")
-		fmt.Println(string(marshalResp(resp)))
+		// fmt.Println("GetOrganizationUserDetails Response:")
+		// fmt.Println(string(marshalResp(resp)))
 	})
 
 	t.Run("Test OrganizationsAPIService DeleteOrganization", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		deleteReq := openapi.DeleteOrganizationRequest{
 			Organizationname: &defaultOrgName,
 			Username:         &defaultUsername,
@@ -144,19 +170,25 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			DeleteOrganization(ctx).
 			DeleteOrganizationRequest(deleteReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in DeleteOrganization")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
-		fmt.Println("DeleteOrganization Response:")
-		fmt.Println(string(marshalResp(resp)))
+		// fmt.Println("DeleteOrganization Response:")
+		// fmt.Println(string(marshalResp(resp)))
 	})
 
 	t.Run("Test OrganizationsAPIService UpdateOrganizationUsers", func(t *testing.T) {
-		if apiClient.Organizations == nil {
-			t.Fatal("apiClient.Organizations is nil, skipping test")
+		if skipTests {
+			if skipMsg != "" {
+				t.Skip(skipMsg)
+			} else {
+				t.Skip(MsgSkipTest)
+			}
 		}
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations is nil, skipping test")
 		organizationName := "TestOrg5"
 		username := "User_spc$%^&"
 		updatetype := "remove"
@@ -174,13 +206,14 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 			UpdateOrganizationUsers(ctx).
 			UpdateOrganizationUsersRequest(updateUsersReq).
 			Execute()
-		require.NoError(t, err)
+		require.NoError(t, err, "Unexpected error in UpdateOrganizationUsers")
 		require.NotNil(t, httpRes, "httpRes should not be nil")
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
+		fmt.Printf("HTTP Status: %d\n", httpRes.StatusCode)
+		require.NotNil(t, resp, "Response should not be nil")
+		assert.Equal(t, 200, httpRes.StatusCode, "Expected HTTP status 200")
 
-		fmt.Println("UpdateOrganizationUsers Response:")
-		fmt.Println(string(marshalResp(resp)))
+		// fmt.Println("UpdateOrganizationUsers Response:")
+		// fmt.Println(string(marshalResp(resp)))
 	})
 
 }
