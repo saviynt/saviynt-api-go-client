@@ -37,7 +37,7 @@ func Test_openapi_OrganizationsAPIService(t *testing.T) {
 	require.NoError(t, err, "Failed to initialize API client")
 	if !skipTests {
 		require.NotNil(t, apiClient, "apiClient should not be nil")
-		require.NotNil(t, apiClient.Entitlements, "apiClient.Entitlements should not be nil")
+		require.NotNil(t, apiClient.Organizations, "apiClient.Organizations should not be nil")
 	}
 
 	ctx := context.Background()
