@@ -812,6 +812,7 @@
             "type": "string"
           },
           "PASSWORD": {
+            "example": "{{password}}",
             "type": "string",
             "x-stoplight": {
               "id": "l7myxh12vypcr"
@@ -869,18 +870,21 @@
             "type": "string"
           },
           "URL": {
+            "example": "LDAP://3.19.17.34:386",
             "type": "string",
             "x-stoplight": {
               "id": "yuoozvp6ihpcz"
             }
           },
           "USERNAME": {
+            "example": "CN=Doc Admin,OU=SaviyntAdmins,DC=saviyntlabs,DC=org",
             "type": "string",
             "x-stoplight": {
               "id": "1zlvwawhijk3x"
             }
           },
           "connectionName": {
+            "description": "Specify the name to identify the connection.",
             "example": "Active_Directory_Doc",
             "type": "string",
             "x-stoplight": {
@@ -894,12 +898,19 @@
             }
           },
           "connectiontype": {
+            "description": "Specify a connection type. For example, if your target application is Active Directory, specify the connection type as `AD`.",
+            "example": "AD",
             "type": "string",
             "x-stoplight": {
               "id": "wuk6vl9fxl2fz"
             }
           },
           "description": {
+            "description": "Specify the description for the connection.",
+            "type": "string"
+          },
+          "emailTemplate": {
+            "description": "Specify the email template applicable for notifications.",
             "type": "string"
           },
           "groupSearchBaseDN": {
@@ -912,7 +923,26 @@
               "id": "1t0b3va60lisy"
             }
           },
+          "saveinvault": {
+            "enum": [
+              "true",
+              "false"
+            ],
+            "type": "string"
+          },
+          "sslCertificate": {
+            "description": "Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them.",
+            "type": "string"
+          },
           "systemname": {
+            "type": "string"
+          },
+          "vaultConfiguration": {
+            "$ref": "#/components/schemas/VaultConfiguration"
+          },
+          "vaultconnection": {
+            "description": "Vault connection identifier.",
+            "example": "hashicorp\\_dev",
             "type": "string"
           }
         },
@@ -1779,6 +1809,9 @@
             "type": "string"
           }
         },
+        "required": [
+          "endpointname"
+        ],
         "type": "object",
         "x-stoplight": {
           "id": "c89f42523dee7"
@@ -2090,12 +2123,14 @@
       "GetConnectionDetailsRequest": {
         "properties": {
           "connectionkey": {
+            "example": "'120'",
             "type": "string",
             "x-stoplight": {
               "id": "k0y09wqiczm23"
             }
           },
           "connectionname": {
+            "example": "Workday",
             "type": "string",
             "x-stoplight": {
               "id": "vldqcll61vb19"
@@ -3437,6 +3472,83 @@
         "type": "object",
         "x-stoplight": {
           "id": "uhnhmn93bi53q"
+        }
+      },
+      "VaultConfiguration": {
+        "properties": {
+          "keyMapping": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMapping"
+          },
+          "path": {
+            "description": "Vault secret path.",
+            "example": "/secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/\u003cConnectionName\u003e\\_externalconnection",
+            "type": "string",
+            "x-stoplight": {
+              "id": "xzo4eglvt2fex"
+            }
+          }
+        },
+        "title": "VaultConfiguration",
+        "type": "object",
+        "x-stoplight": {
+          "id": "619fvo66n2azf"
+        }
+      },
+      "VaultConfigurationKeyMapping": {
+        "properties": {
+          "PASSWORD": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMappingPassword"
+          }
+        },
+        "title": "VaultConfigurationKeyMapping",
+        "type": "object",
+        "x-stoplight": {
+          "id": "8r2cuk5xlxx2f"
+        }
+      },
+      "VaultConfigurationKeyMappingPassword": {
+        "properties": {
+          "encryptionmechanism": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vcg7q9mva79xi"
+            }
+          },
+          "groupName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "xuea1kvnqtrdz"
+            }
+          },
+          "ignoreMapping": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMappingPasswordIgnoreMapping"
+          },
+          "keyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "iwodcp3y332d3"
+            }
+          }
+        },
+        "title": "VaultConfigurationKeyMappingPassword",
+        "type": "object",
+        "x-stoplight": {
+          "id": "5ftwxo54l3sfx"
+        }
+      },
+      "VaultConfigurationKeyMappingPasswordIgnoreMapping": {
+        "properties": {
+          "groupName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "o61c4uk4fy5lw"
+            }
+          }
+        },
+        "title": "VaultConfigurationKeyMappingPasswordIgnoreMapping",
+        "type": "object",
+        "x-stoplight": {
+          "id": "58opztukw8ieh"
         }
       }
     }

@@ -4,13 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionName** | Pointer to **string** |  | [optional] 
-**Connectiontype** | **string** |  | 
+**ConnectionName** | Pointer to **string** | Specify the name to identify the connection. | [optional] 
+**Connectiontype** | **string** | Specify a connection type. For example, if your target application is Active Directory, specify the connection type as &#x60;AD&#x60;. | 
 **Connectionkey** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** | Specify the description for the connection. | [optional] 
+**EmailTemplate** | Pointer to **string** | Specify the email template applicable for notifications. | [optional] 
 **GroupSearchBaseDN** | Pointer to **string** |  | [optional] 
 **Saveconnection** | Pointer to **string** |  | [optional] 
+**Saveinvault** | Pointer to **string** |  | [optional] 
+**SslCertificate** | Pointer to **string** | Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them. | [optional] 
 **Systemname** | Pointer to **string** |  | [optional] 
+**Vaultconnection** | Pointer to **string** | Vault connection identifier. | [optional] 
+**VaultConfiguration** | Pointer to [**VaultConfiguration**](VaultConfiguration.md) | Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. | [optional] 
 **ACCOUNT_ATTRIBUTE** | Pointer to **string** |  | [optional] 
 **ACCOUNTNAMERULE** | Pointer to **string** |  | [optional] 
 **BASE** | Pointer to **string** |  | [optional] 
@@ -167,6 +172,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetEmailTemplate
+
+`func (o *CreateOrUpdateConnectionRequest) GetEmailTemplate() string`
+
+GetEmailTemplate returns the EmailTemplate field if non-nil, zero value otherwise.
+
+### GetEmailTemplateOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetEmailTemplateOk() (*string, bool)`
+
+GetEmailTemplateOk returns a tuple with the EmailTemplate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailTemplate
+
+`func (o *CreateOrUpdateConnectionRequest) SetEmailTemplate(v string)`
+
+SetEmailTemplate sets EmailTemplate field to given value.
+
+### HasEmailTemplate
+
+`func (o *CreateOrUpdateConnectionRequest) HasEmailTemplate() bool`
+
+HasEmailTemplate returns a boolean if a field has been set.
+
 ### GetGroupSearchBaseDN
 
 `func (o *CreateOrUpdateConnectionRequest) GetGroupSearchBaseDN() string`
@@ -217,6 +247,56 @@ SetSaveconnection sets Saveconnection field to given value.
 
 HasSaveconnection returns a boolean if a field has been set.
 
+### GetSaveinvault
+
+`func (o *CreateOrUpdateConnectionRequest) GetSaveinvault() string`
+
+GetSaveinvault returns the Saveinvault field if non-nil, zero value otherwise.
+
+### GetSaveinvaultOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetSaveinvaultOk() (*string, bool)`
+
+GetSaveinvaultOk returns a tuple with the Saveinvault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSaveinvault
+
+`func (o *CreateOrUpdateConnectionRequest) SetSaveinvault(v string)`
+
+SetSaveinvault sets Saveinvault field to given value.
+
+### HasSaveinvault
+
+`func (o *CreateOrUpdateConnectionRequest) HasSaveinvault() bool`
+
+HasSaveinvault returns a boolean if a field has been set.
+
+### GetSslCertificate
+
+`func (o *CreateOrUpdateConnectionRequest) GetSslCertificate() string`
+
+GetSslCertificate returns the SslCertificate field if non-nil, zero value otherwise.
+
+### GetSslCertificateOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetSslCertificateOk() (*string, bool)`
+
+GetSslCertificateOk returns a tuple with the SslCertificate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslCertificate
+
+`func (o *CreateOrUpdateConnectionRequest) SetSslCertificate(v string)`
+
+SetSslCertificate sets SslCertificate field to given value.
+
+### HasSslCertificate
+
+`func (o *CreateOrUpdateConnectionRequest) HasSslCertificate() bool`
+
+HasSslCertificate returns a boolean if a field has been set.
+
 ### GetSystemname
 
 `func (o *CreateOrUpdateConnectionRequest) GetSystemname() string`
@@ -241,6 +321,56 @@ SetSystemname sets Systemname field to given value.
 `func (o *CreateOrUpdateConnectionRequest) HasSystemname() bool`
 
 HasSystemname returns a boolean if a field has been set.
+
+### GetVaultconnection
+
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconnection() string`
+
+GetVaultconnection returns the Vaultconnection field if non-nil, zero value otherwise.
+
+### GetVaultconnectionOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconnectionOk() (*string, bool)`
+
+GetVaultconnectionOk returns a tuple with the Vaultconnection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVaultconnection
+
+`func (o *CreateOrUpdateConnectionRequest) SetVaultconnection(v string)`
+
+SetVaultconnection sets Vaultconnection field to given value.
+
+### HasVaultconnection
+
+`func (o *CreateOrUpdateConnectionRequest) HasVaultconnection() bool`
+
+HasVaultconnection returns a boolean if a field has been set.
+
+### GetVaultConfiguration
+
+`func (o *CreateOrUpdateConnectionRequest) GetVaultConfiguration() VaultConfiguration`
+
+GetVaultConfiguration returns the VaultConfiguration field if non-nil, zero value otherwise.
+
+### GetVaultConfigurationOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetVaultConfigurationOk() (*VaultConfiguration, bool)`
+
+GetVaultConfigurationOk returns a tuple with the VaultConfiguration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVaultConfiguration
+
+`func (o *CreateOrUpdateConnectionRequest) SetVaultConfiguration(v VaultConfiguration)`
+
+SetVaultConfiguration sets VaultConfiguration field to given value.
+
+### HasVaultConfiguration
+
+`func (o *CreateOrUpdateConnectionRequest) HasVaultConfiguration() bool`
+
+HasVaultConfiguration returns a boolean if a field has been set.
 
 ### GetACCOUNT_ATTRIBUTE
 

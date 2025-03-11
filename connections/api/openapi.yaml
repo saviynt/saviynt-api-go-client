@@ -118,6 +118,33 @@ paths:
       - Connections
 components:
   schemas:
+    GetConnectionsRequest:
+      example:
+        offset: offset
+        max: max
+        connectionname: AD Test
+        connectiontype: AD
+      properties:
+        connectionname:
+          example: AD Test
+          type: string
+          x-stoplight:
+            id: 4yy42vvf9dd4s
+        connectiontype:
+          example: AD
+          type: string
+          x-stoplight:
+            id: jn0p6wgfwjlkf
+        max:
+          type: string
+          x-stoplight:
+            id: 0brloqpqd7v6r
+        offset:
+          type: string
+          x-stoplight:
+            id: aej6n9yegpufu
+      x-stoplight:
+        id: 49262a7b0d012
     GetConnectionsResponse:
       example:
         msg: Successful
@@ -167,33 +194,6 @@ components:
       - msg
       x-stoplight:
         id: 49262a7b0d012
-    GetConnectionsRequest:
-      example:
-        offset: offset
-        max: max
-        connectionname: AD Test
-        connectiontype: AD
-      properties:
-        connectionname:
-          example: AD Test
-          type: string
-          x-stoplight:
-            id: 4yy42vvf9dd4s
-        connectiontype:
-          example: AD
-          type: string
-          x-stoplight:
-            id: jn0p6wgfwjlkf
-        max:
-          type: string
-          x-stoplight:
-            id: 0brloqpqd7v6r
-        offset:
-          type: string
-          x-stoplight:
-            id: aej6n9yegpufu
-      x-stoplight:
-        id: 49262a7b0d012
     Connection:
       properties:
         CONNECTIONDESCRIPTION:
@@ -229,14 +229,16 @@ components:
       - STATUS
     GetConnectionDetailsRequest:
       example:
-        connectionkey: connectionkey
-        connectionname: connectionname
+        connectionkey: '''120'''
+        connectionname: Workday
       properties:
         connectionkey:
+          example: '''120'''
           type: string
           x-stoplight:
             id: k0y09wqiczm23
         connectionname:
+          example: Workday
           type: string
           x-stoplight:
             id: vldqcll61vb19
@@ -769,61 +771,78 @@ components:
           connectionTimeout: 10
     CreateOrUpdateConnectionRequest:
       example:
+        groupSearchBaseDN: groupSearchBaseDN
+        PASSWORD_NOOFSPLCHARS: PASSWORD_NOOFSPLCHARS
+        STATUSKEYJSON: STATUSKEYJSON
+        CREATEORGJSON: CREATEORGJSON
+        ConfigJSON: ConfigJSON
+        REMOVEACCOUNTACTION: REMOVEACCOUNTACTION
+        USERNAME: "CN=Doc Admin,OU=SaviyntAdmins,DC=saviyntlabs,DC=org"
+        ACCOUNTNAMERULE: ACCOUNTNAMERULE
+        SETDEFAULTPAGESIZE: SETDEFAULTPAGESIZE
+        SETRANDOMPASSWORD: SETRANDOMPASSWORD
+        emailTemplate: emailTemplate
+        connectionkey: connectionkey
+        REUSEINACTIVEACCOUNT: REUSEINACTIVEACCOUNT
+        JCO_ASHOST: JCO_ASHOST
+        PASSWORD_NOOFDIGITS: PASSWORD_NOOFDIGITS
+        IMPORTJSON: IMPORTJSON
+        saveconnection: "Y"
+        ACCOUNT_ATTRIBUTE: ACCOUNT_ATTRIBUTE
+        PASSWORD: "{{password}}"
+        ORGIMPORTJSON: ORGIMPORTJSON
+        PAM_CONFIG: PAM_CONFIG
+        PAGE_SIZE: PAGE_SIZE
+        SEARCHFILTER: SEARCHFILTER
+        connectionName: Active_Directory_Doc
+        JCO_USER: JCO_USER
         PASSWORD_MIN_LENGTH: PASSWORD_MIN_LENGTH
         ENTITLEMENT_ATTRIBUTE: ENTITLEMENT_ATTRIBUTE
         JCO_CLIENT: JCO_CLIENT
         CHECKFORUNIQUE: CHECKFORUNIQUE
         description: description
-        groupSearchBaseDN: groupSearchBaseDN
-        PASSWORD_NOOFSPLCHARS: PASSWORD_NOOFSPLCHARS
+        vaultConfiguration:
+          path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
+          keyMapping:
+            PASSWORD:
+              groupName: groupName
+              encryptionmechanism: encryptionmechanism
+              ignoreMapping:
+                groupName: groupName
+              keyName: keyName
         READ_OPERATIONAL_ATTRIBUTES: READ_OPERATIONAL_ATTRIBUTES
-        URL: URL
+        URL: LDAP://3.19.17.34:386
         BASE: BASE
-        STATUSKEYJSON: STATUSKEYJSON
         LDAP_OR_AD: LDAP_OR_AD
         ORG_BASE: ORG_BASE
-        CREATEORGJSON: CREATEORGJSON
-        ConfigJSON: ConfigJSON
+        saveinvault: "true"
+        sslCertificate: sslCertificate
         STATUS_THRESHOLD_CONFIG: STATUS_THRESHOLD_CONFIG
         UPDATEORGJSON: UPDATEORGJSON
-        REMOVEACCOUNTACTION: REMOVEACCOUNTACTION
-        USERNAME: USERNAME
-        connectiontype: connectiontype
-        ACCOUNTNAMERULE: ACCOUNTNAMERULE
-        SETDEFAULTPAGESIZE: SETDEFAULTPAGESIZE
-        SETRANDOMPASSWORD: SETRANDOMPASSWORD
+        connectiontype: AD
         systemname: systemname
         RESETANDCHANGEPASSWRDJSON: RESETANDCHANGEPASSWRDJSON
-        connectionkey: connectionkey
-        REUSEINACTIVEACCOUNT: REUSEINACTIVEACCOUNT
-        JCO_ASHOST: JCO_ASHOST
         PASSWORD_NOOFCAPSALPHA: PASSWORD_NOOFCAPSALPHA
-        PASSWORD_NOOFDIGITS: PASSWORD_NOOFDIGITS
-        IMPORTJSON: IMPORTJSON
         SUPPORTEMPTYSTRING: SUPPORTEMPTYSTRING
         UNLOCKACCOUNTJSON: UNLOCKACCOUNTJSON
         JCO_SYSNR: JCO_SYSNR
-        saveconnection: "Y"
-        ACCOUNT_ATTRIBUTE: ACCOUNT_ATTRIBUTE
-        PASSWORD: PASSWORD
-        ORGIMPORTJSON: ORGIMPORTJSON
-        PAM_CONFIG: PAM_CONFIG
+        vaultconnection: hashicorp\_dev
         ENABLEACCOUNTJSON: ENABLEACCOUNTJSON
-        PAGE_SIZE: PAGE_SIZE
-        SEARCHFILTER: SEARCHFILTER
         ENFORCE_TREE_DELETION: ENFORCE_TREE_DELETION
         PASSWORD_MAX_LENGTH: PASSWORD_MAX_LENGTH
-        connectionName: Active_Directory_Doc
-        JCO_USER: JCO_USER
         OBJECTFILTER: OBJECTFILTER
         ORGANIZATION_ATTRIBUTE: ORGANIZATION_ATTRIBUTE
       properties:
         connectionName:
+          description: Specify the name to identify the connection.
           example: Active_Directory_Doc
           type: string
           x-stoplight:
             id: kpzefbwhy0oua
         connectiontype:
+          description: "Specify a connection type. For example, if your target application\
+            \ is Active Directory, specify the connection type as `AD`."
+          example: AD
           type: string
           x-stoplight:
             id: wuk6vl9fxl2fz
@@ -832,6 +851,10 @@ components:
           x-stoplight:
             id: k5iuq3jqkuwfn
         description:
+          description: Specify the description for the connection.
+          type: string
+        emailTemplate:
+          description: Specify the email template applicable for notifications.
           type: string
         groupSearchBaseDN:
           type: string
@@ -840,8 +863,24 @@ components:
           type: string
           x-stoplight:
             id: 1t0b3va60lisy
+        saveinvault:
+          enum:
+          - "true"
+          - "false"
+          type: string
+        sslCertificate:
+          description: Specify the SSL certificates to use for securing the connection
+            between EIC and the target application to encrypt the data shared between
+            them.
+          type: string
         systemname:
           type: string
+        vaultconnection:
+          description: Vault connection identifier.
+          example: hashicorp\_dev
+          type: string
+        vaultConfiguration:
+          $ref: '#/components/schemas/VaultConfiguration'
         ACCOUNT_ATTRIBUTE:
           type: string
         ACCOUNTNAMERULE:
@@ -893,6 +932,7 @@ components:
         PAM_CONFIG:
           type: string
         PASSWORD:
+          example: "{{password}}"
           type: string
           x-stoplight:
             id: l7myxh12vypcr
@@ -931,10 +971,12 @@ components:
         UPDATEORGJSON:
           type: string
         URL:
+          example: LDAP://3.19.17.34:386
           type: string
           x-stoplight:
             id: yuoozvp6ihpcz
         USERNAME:
+          example: "CN=Doc Admin,OU=SaviyntAdmins,DC=saviyntlabs,DC=org"
           type: string
           x-stoplight:
             id: 1zlvwawhijk3x
@@ -1010,5 +1052,77 @@ components:
       title: DeleteConnectionResponse
       x-stoplight:
         id: 2ejl6du4vhzey
+    VaultConfiguration:
+      example:
+        path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
+        keyMapping:
+          PASSWORD:
+            groupName: groupName
+            encryptionmechanism: encryptionmechanism
+            ignoreMapping:
+              groupName: groupName
+            keyName: keyName
+      properties:
+        path:
+          description: Vault secret path.
+          example: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
+          type: string
+          x-stoplight:
+            id: xzo4eglvt2fex
+        keyMapping:
+          $ref: '#/components/schemas/VaultConfigurationKeyMapping'
+      title: VaultConfiguration
+      x-stoplight:
+        id: 619fvo66n2azf
+    VaultConfigurationKeyMapping:
+      example:
+        PASSWORD:
+          groupName: groupName
+          encryptionmechanism: encryptionmechanism
+          ignoreMapping:
+            groupName: groupName
+          keyName: keyName
+      properties:
+        PASSWORD:
+          $ref: '#/components/schemas/VaultConfigurationKeyMappingPassword'
+      title: VaultConfigurationKeyMapping
+      x-stoplight:
+        id: 8r2cuk5xlxx2f
+    VaultConfigurationKeyMappingPassword:
+      example:
+        groupName: groupName
+        encryptionmechanism: encryptionmechanism
+        ignoreMapping:
+          groupName: groupName
+        keyName: keyName
+      properties:
+        keyName:
+          type: string
+          x-stoplight:
+            id: iwodcp3y332d3
+        groupName:
+          type: string
+          x-stoplight:
+            id: xuea1kvnqtrdz
+        encryptionmechanism:
+          type: string
+          x-stoplight:
+            id: vcg7q9mva79xi
+        ignoreMapping:
+          $ref: '#/components/schemas/VaultConfigurationKeyMappingPasswordIgnoreMapping'
+      title: VaultConfigurationKeyMappingPassword
+      x-stoplight:
+        id: 5ftwxo54l3sfx
+    VaultConfigurationKeyMappingPasswordIgnoreMapping:
+      example:
+        groupName: groupName
+      properties:
+        groupName:
+          type: string
+          x-stoplight:
+            id: o61c4uk4fy5lw
+      title: VaultConfigurationKeyMappingPasswordIgnoreMapping
+      x-stoplight:
+        id: 58opztukw8ieh
 x-stoplight:
   id: 11gpcfoz001w2

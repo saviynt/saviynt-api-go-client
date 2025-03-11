@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-	createOrUpdateConnectionRequest := *openapiclient.NewCreateOrUpdateConnectionRequest("Connectiontype_example") // CreateOrUpdateConnectionRequest |  (optional)
+	createOrUpdateConnectionRequest := *openapiclient.NewCreateOrUpdateConnectionRequest("AD") // CreateOrUpdateConnectionRequest |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

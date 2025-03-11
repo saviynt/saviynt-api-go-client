@@ -22,13 +22,25 @@ var _ MappedNullable = &CreateOrUpdateConnectionRequest{}
 
 // CreateOrUpdateConnectionRequest struct for CreateOrUpdateConnectionRequest
 type CreateOrUpdateConnectionRequest struct {
+	// Specify the name to identify the connection.
 	ConnectionName *string `json:"connectionName,omitempty"`
+	// Specify a connection type. For example, if your target application is Active Directory, specify the connection type as `AD`.
 	Connectiontype string `json:"connectiontype"`
 	Connectionkey *string `json:"connectionkey,omitempty"`
+	// Specify the description for the connection.
 	Description *string `json:"description,omitempty"`
+	// Specify the email template applicable for notifications.
+	EmailTemplate *string `json:"emailTemplate,omitempty"`
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
 	Saveconnection *string `json:"saveconnection,omitempty"`
+	Saveinvault *string `json:"saveinvault,omitempty"`
+	// Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them.
+	SslCertificate *string `json:"sslCertificate,omitempty"`
 	Systemname *string `json:"systemname,omitempty"`
+	// Vault connection identifier.
+	Vaultconnection *string `json:"vaultconnection,omitempty"`
+	// Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector.
+	VaultConfiguration *VaultConfiguration `json:"vaultConfiguration,omitempty"`
 	ACCOUNT_ATTRIBUTE *string `json:"ACCOUNT_ATTRIBUTE,omitempty"`
 	ACCOUNTNAMERULE *string `json:"ACCOUNTNAMERULE,omitempty"`
 	BASE *string `json:"BASE,omitempty"`
@@ -212,6 +224,38 @@ func (o *CreateOrUpdateConnectionRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetEmailTemplate returns the EmailTemplate field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetEmailTemplate() string {
+	if o == nil || IsNil(o.EmailTemplate) {
+		var ret string
+		return ret
+	}
+	return *o.EmailTemplate
+}
+
+// GetEmailTemplateOk returns a tuple with the EmailTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetEmailTemplateOk() (*string, bool) {
+	if o == nil || IsNil(o.EmailTemplate) {
+		return nil, false
+	}
+	return o.EmailTemplate, true
+}
+
+// HasEmailTemplate returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasEmailTemplate() bool {
+	if o != nil && !IsNil(o.EmailTemplate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailTemplate gets a reference to the given string and assigns it to the EmailTemplate field.
+func (o *CreateOrUpdateConnectionRequest) SetEmailTemplate(v string) {
+	o.EmailTemplate = &v
+}
+
 // GetGroupSearchBaseDN returns the GroupSearchBaseDN field value if set, zero value otherwise.
 func (o *CreateOrUpdateConnectionRequest) GetGroupSearchBaseDN() string {
 	if o == nil || IsNil(o.GroupSearchBaseDN) {
@@ -276,6 +320,70 @@ func (o *CreateOrUpdateConnectionRequest) SetSaveconnection(v string) {
 	o.Saveconnection = &v
 }
 
+// GetSaveinvault returns the Saveinvault field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetSaveinvault() string {
+	if o == nil || IsNil(o.Saveinvault) {
+		var ret string
+		return ret
+	}
+	return *o.Saveinvault
+}
+
+// GetSaveinvaultOk returns a tuple with the Saveinvault field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetSaveinvaultOk() (*string, bool) {
+	if o == nil || IsNil(o.Saveinvault) {
+		return nil, false
+	}
+	return o.Saveinvault, true
+}
+
+// HasSaveinvault returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasSaveinvault() bool {
+	if o != nil && !IsNil(o.Saveinvault) {
+		return true
+	}
+
+	return false
+}
+
+// SetSaveinvault gets a reference to the given string and assigns it to the Saveinvault field.
+func (o *CreateOrUpdateConnectionRequest) SetSaveinvault(v string) {
+	o.Saveinvault = &v
+}
+
+// GetSslCertificate returns the SslCertificate field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetSslCertificate() string {
+	if o == nil || IsNil(o.SslCertificate) {
+		var ret string
+		return ret
+	}
+	return *o.SslCertificate
+}
+
+// GetSslCertificateOk returns a tuple with the SslCertificate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetSslCertificateOk() (*string, bool) {
+	if o == nil || IsNil(o.SslCertificate) {
+		return nil, false
+	}
+	return o.SslCertificate, true
+}
+
+// HasSslCertificate returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasSslCertificate() bool {
+	if o != nil && !IsNil(o.SslCertificate) {
+		return true
+	}
+
+	return false
+}
+
+// SetSslCertificate gets a reference to the given string and assigns it to the SslCertificate field.
+func (o *CreateOrUpdateConnectionRequest) SetSslCertificate(v string) {
+	o.SslCertificate = &v
+}
+
 // GetSystemname returns the Systemname field value if set, zero value otherwise.
 func (o *CreateOrUpdateConnectionRequest) GetSystemname() string {
 	if o == nil || IsNil(o.Systemname) {
@@ -306,6 +414,70 @@ func (o *CreateOrUpdateConnectionRequest) HasSystemname() bool {
 // SetSystemname gets a reference to the given string and assigns it to the Systemname field.
 func (o *CreateOrUpdateConnectionRequest) SetSystemname(v string) {
 	o.Systemname = &v
+}
+
+// GetVaultconnection returns the Vaultconnection field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetVaultconnection() string {
+	if o == nil || IsNil(o.Vaultconnection) {
+		var ret string
+		return ret
+	}
+	return *o.Vaultconnection
+}
+
+// GetVaultconnectionOk returns a tuple with the Vaultconnection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetVaultconnectionOk() (*string, bool) {
+	if o == nil || IsNil(o.Vaultconnection) {
+		return nil, false
+	}
+	return o.Vaultconnection, true
+}
+
+// HasVaultconnection returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasVaultconnection() bool {
+	if o != nil && !IsNil(o.Vaultconnection) {
+		return true
+	}
+
+	return false
+}
+
+// SetVaultconnection gets a reference to the given string and assigns it to the Vaultconnection field.
+func (o *CreateOrUpdateConnectionRequest) SetVaultconnection(v string) {
+	o.Vaultconnection = &v
+}
+
+// GetVaultConfiguration returns the VaultConfiguration field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetVaultConfiguration() VaultConfiguration {
+	if o == nil || IsNil(o.VaultConfiguration) {
+		var ret VaultConfiguration
+		return ret
+	}
+	return *o.VaultConfiguration
+}
+
+// GetVaultConfigurationOk returns a tuple with the VaultConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetVaultConfigurationOk() (*VaultConfiguration, bool) {
+	if o == nil || IsNil(o.VaultConfiguration) {
+		return nil, false
+	}
+	return o.VaultConfiguration, true
+}
+
+// HasVaultConfiguration returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasVaultConfiguration() bool {
+	if o != nil && !IsNil(o.VaultConfiguration) {
+		return true
+	}
+
+	return false
+}
+
+// SetVaultConfiguration gets a reference to the given VaultConfiguration and assigns it to the VaultConfiguration field.
+func (o *CreateOrUpdateConnectionRequest) SetVaultConfiguration(v VaultConfiguration) {
+	o.VaultConfiguration = &v
 }
 
 // GetACCOUNT_ATTRIBUTE returns the ACCOUNT_ATTRIBUTE field value if set, zero value otherwise.
@@ -1640,14 +1812,29 @@ func (o CreateOrUpdateConnectionRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.EmailTemplate) {
+		toSerialize["emailTemplate"] = o.EmailTemplate
+	}
 	if !IsNil(o.GroupSearchBaseDN) {
 		toSerialize["groupSearchBaseDN"] = o.GroupSearchBaseDN
 	}
 	if !IsNil(o.Saveconnection) {
 		toSerialize["saveconnection"] = o.Saveconnection
 	}
+	if !IsNil(o.Saveinvault) {
+		toSerialize["saveinvault"] = o.Saveinvault
+	}
+	if !IsNil(o.SslCertificate) {
+		toSerialize["sslCertificate"] = o.SslCertificate
+	}
 	if !IsNil(o.Systemname) {
 		toSerialize["systemname"] = o.Systemname
+	}
+	if !IsNil(o.Vaultconnection) {
+		toSerialize["vaultconnection"] = o.Vaultconnection
+	}
+	if !IsNil(o.VaultConfiguration) {
+		toSerialize["vaultConfiguration"] = o.VaultConfiguration
 	}
 	if !IsNil(o.ACCOUNT_ATTRIBUTE) {
 		toSerialize["ACCOUNT_ATTRIBUTE"] = o.ACCOUNT_ATTRIBUTE

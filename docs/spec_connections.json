@@ -172,6 +172,40 @@
   },
   "components": {
     "schemas": {
+      "GetConnectionsRequest": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "49262a7b0d012"
+        },
+        "properties": {
+          "connectionname": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4yy42vvf9dd4s"
+            },
+            "example": "AD Test"
+          },
+          "connectiontype": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "jn0p6wgfwjlkf"
+            },
+            "example": "AD"
+          },
+          "max": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "0brloqpqd7v6r"
+            }
+          },
+          "offset": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "aej6n9yegpufu"
+            }
+          }
+        }
+      },
       "GetConnectionsResponse": {
         "type": "object",
         "x-stoplight": {
@@ -225,40 +259,6 @@
           "errorCode",
           "msg"
         ]
-      },
-      "GetConnectionsRequest": {
-        "type": "object",
-        "x-stoplight": {
-          "id": "49262a7b0d012"
-        },
-        "properties": {
-          "connectionname": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "4yy42vvf9dd4s"
-            },
-            "example": "AD Test"
-          },
-          "connectiontype": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "jn0p6wgfwjlkf"
-            },
-            "example": "AD"
-          },
-          "max": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "0brloqpqd7v6r"
-            }
-          },
-          "offset": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "aej6n9yegpufu"
-            }
-          }
-        }
       },
       "Connection": {
         "type": "object",
@@ -316,13 +316,15 @@
             "type": "string",
             "x-stoplight": {
               "id": "k0y09wqiczm23"
-            }
+            },
+            "example": "'120'"
           },
           "connectionname": {
             "type": "string",
             "x-stoplight": {
               "id": "vldqcll61vb19"
-            }
+            },
+            "example": "Workday"
           }
         }
       },
@@ -774,13 +776,16 @@
             "x-stoplight": {
               "id": "kpzefbwhy0oua"
             },
-            "example": "Active_Directory_Doc"
+            "example": "Active_Directory_Doc",
+            "description": "Specify the name to identify the connection."
           },
           "connectiontype": {
             "type": "string",
             "x-stoplight": {
               "id": "wuk6vl9fxl2fz"
-            }
+            },
+            "example": "AD",
+            "description": "Specify a connection type. For example, if your target application is Active Directory, specify the connection type as `AD`."
           },
           "connectionkey": {
             "type": "string",
@@ -789,7 +794,12 @@
             }
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "description": "Specify the description for the connection."
+          },
+          "emailTemplate": {
+            "type": "string",
+            "description": "Specify the email template applicable for notifications."
           },
           "groupSearchBaseDN": {
             "type": "string"
@@ -801,8 +811,28 @@
             },
             "example": "Y"
           },
+          "saveinvault": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          "sslCertificate": {
+            "type": "string",
+            "description": "Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them."
+          },
           "systemname": {
             "type": "string"
+          },
+          "vaultconnection": {
+            "type": "string",
+            "description": "Vault connection identifier.",
+            "example": "hashicorp\\_dev"
+          },
+          "vaultConfiguration": {
+            "$ref": "#/components/schemas/VaultConfiguration",
+            "description": "Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector."
           },
           "ACCOUNT_ATTRIBUTE": {
             "type": "string"
@@ -883,7 +913,8 @@
             "type": "string",
             "x-stoplight": {
               "id": "l7myxh12vypcr"
-            }
+            },
+            "example": "{{password}}"
           },
           "PASSWORD_MAX_LENGTH": {
             "type": "string"
@@ -940,13 +971,15 @@
             "type": "string",
             "x-stoplight": {
               "id": "yuoozvp6ihpcz"
-            }
+            },
+            "example": "LDAP://3.19.17.34:386"
           },
           "USERNAME": {
             "type": "string",
             "x-stoplight": {
               "id": "1zlvwawhijk3x"
-            }
+            },
+            "example": "CN=Doc Admin,OU=SaviyntAdmins,DC=saviyntlabs,DC=org"
           }
         },
         "required": [
@@ -1037,6 +1070,92 @@
           "msg",
           "errorcode"
         ]
+      },
+      "VaultConfiguration": {
+        "title": "VaultConfiguration",
+        "x-stoplight": {
+          "id": "619fvo66n2azf"
+        },
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "xzo4eglvt2fex"
+            },
+            "description": "Vault secret path.",
+            "example": "/secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\\_externalconnection"
+          },
+          "keyMapping": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMapping",
+            "x-stoplight": {
+              "id": "qqan3ena6hgf4"
+            }
+          }
+        }
+      },
+      "VaultConfigurationKeyMapping": {
+        "title": "VaultConfigurationKeyMapping",
+        "x-stoplight": {
+          "id": "8r2cuk5xlxx2f"
+        },
+        "type": "object",
+        "properties": {
+          "PASSWORD": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMappingPassword",
+            "x-stoplight": {
+              "id": "iolk9y3qvlabh"
+            }
+          }
+        }
+      },
+      "VaultConfigurationKeyMappingPassword": {
+        "title": "VaultConfigurationKeyMappingPassword",
+        "x-stoplight": {
+          "id": "5ftwxo54l3sfx"
+        },
+        "type": "object",
+        "properties": {
+          "keyName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "iwodcp3y332d3"
+            }
+          },
+          "groupName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "xuea1kvnqtrdz"
+            }
+          },
+          "encryptionmechanism": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vcg7q9mva79xi"
+            }
+          },
+          "ignoreMapping": {
+            "$ref": "#/components/schemas/VaultConfigurationKeyMappingPasswordIgnoreMapping",
+            "x-stoplight": {
+              "id": "ap6g4hm3xk77t"
+            }
+          }
+        }
+      },
+      "VaultConfigurationKeyMappingPasswordIgnoreMapping": {
+        "title": "VaultConfigurationKeyMappingPasswordIgnoreMapping",
+        "x-stoplight": {
+          "id": "58opztukw8ieh"
+        },
+        "type": "object",
+        "properties": {
+          "groupName": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "o61c4uk4fy5lw"
+            }
+          }
+        }
       }
     }
   }
