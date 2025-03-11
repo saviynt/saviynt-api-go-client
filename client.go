@@ -24,6 +24,7 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
 	organizations "github.com/saviynt/saviynt-api-go-client/organization"
 	"github.com/saviynt/saviynt-api-go-client/savroles"
+	securitysystems "github.com/saviynt/saviynt-api-go-client/securitysystems"
 	"github.com/saviynt/saviynt-api-go-client/tasks"
 	"github.com/saviynt/saviynt-api-go-client/transport"
 	"github.com/saviynt/saviynt-api-go-client/users"
@@ -70,6 +71,8 @@ type Client struct {
 	organizationsClient           *organizations.APIClient
 	Accounts                      *accounts.AccountsAPIService
 	accountsClient                *accounts.APIClient
+	SecuritySystems               *securitysystems.SecuritySystemsAPIService
+	securityClient                *securitysystems.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
@@ -107,6 +110,8 @@ func newClientHTTPClient(serverURL string, username *string, httpClient *http.Cl
 	c.Organizations = c.organizationsClient.OrganizationsAPI
 	c.accountsClient = newClientAccounts(c.APIBaseURL(), c.httpClient)
 	c.Accounts = c.accountsClient.AccountsAPI
+	c.securityClient = newClientSecuritySystems(c.APIBaseURL(), c.httpClient)
+	c.SecuritySystems = c.securityClient.SecuritySystemsAPI
 	return c
 }
 
@@ -248,6 +253,12 @@ func newClientAccounts(apiBaseURL string, httpClient *http.Client) *accounts.API
 	cfg.HTTPClient = httpClient
 	cfg.Servers = accounts.ServerConfigurations{{URL: apiBaseURL}}
 	return accounts.NewAPIClient(cfg)
+}
+func newClientSecuritySystems(apiBaseURL string, httpClient *http.Client) *securitysystems.APIClient {
+	cfg := securitysystems.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = securitysystems.ServerConfigurations{{URL: apiBaseURL}}
+	return securitysystems.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {

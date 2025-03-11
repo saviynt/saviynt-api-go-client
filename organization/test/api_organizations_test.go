@@ -16,7 +16,7 @@ import (
 	"log"
 	"testing"
 
-	openapi "example.com/generated-client"
+	openapi "github.com/saviynt/saviynt-api-go-client/organization"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
