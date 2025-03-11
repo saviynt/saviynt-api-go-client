@@ -23,7 +23,8 @@ type VaultConfigurationKeyMappingPassword struct {
 	KeyName *string `json:"keyName,omitempty"`
 	GroupName *string `json:"groupName,omitempty"`
 	Encryptionmechanism *string `json:"encryptionmechanism,omitempty"`
-	IgnoreMapping *VaultConfigurationKeyMappingPasswordIgnoreMapping `json:"ignoreMapping,omitempty"`
+	// Use mappings like `groupName` and `keyName`.
+	IgnoreMapping []string `json:"ignoreMapping,omitempty"`
 }
 
 // NewVaultConfigurationKeyMappingPassword instantiates a new VaultConfigurationKeyMappingPassword object
@@ -140,17 +141,17 @@ func (o *VaultConfigurationKeyMappingPassword) SetEncryptionmechanism(v string) 
 }
 
 // GetIgnoreMapping returns the IgnoreMapping field value if set, zero value otherwise.
-func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMapping() VaultConfigurationKeyMappingPasswordIgnoreMapping {
+func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMapping() []string {
 	if o == nil || IsNil(o.IgnoreMapping) {
-		var ret VaultConfigurationKeyMappingPasswordIgnoreMapping
+		var ret []string
 		return ret
 	}
-	return *o.IgnoreMapping
+	return o.IgnoreMapping
 }
 
 // GetIgnoreMappingOk returns a tuple with the IgnoreMapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMappingOk() (*VaultConfigurationKeyMappingPasswordIgnoreMapping, bool) {
+func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMappingOk() ([]string, bool) {
 	if o == nil || IsNil(o.IgnoreMapping) {
 		return nil, false
 	}
@@ -166,9 +167,9 @@ func (o *VaultConfigurationKeyMappingPassword) HasIgnoreMapping() bool {
 	return false
 }
 
-// SetIgnoreMapping gets a reference to the given VaultConfigurationKeyMappingPasswordIgnoreMapping and assigns it to the IgnoreMapping field.
-func (o *VaultConfigurationKeyMappingPassword) SetIgnoreMapping(v VaultConfigurationKeyMappingPasswordIgnoreMapping) {
-	o.IgnoreMapping = &v
+// SetIgnoreMapping gets a reference to the given []string and assigns it to the IgnoreMapping field.
+func (o *VaultConfigurationKeyMappingPassword) SetIgnoreMapping(v []string) {
+	o.IgnoreMapping = v
 }
 
 func (o VaultConfigurationKeyMappingPassword) MarshalJSON() ([]byte, error) {

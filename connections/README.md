@@ -100,7 +100,6 @@ Class | Method | HTTP request | Description
  - [VaultConfiguration](docs/VaultConfiguration.md)
  - [VaultConfigurationKeyMapping](docs/VaultConfigurationKeyMapping.md)
  - [VaultConfigurationKeyMappingPassword](docs/VaultConfigurationKeyMappingPassword.md)
- - [VaultConfigurationKeyMappingPasswordIgnoreMapping](docs/VaultConfigurationKeyMappingPasswordIgnoreMapping.md)
 
 
 ## Documentation For Authorization

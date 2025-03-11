@@ -21,7 +21,6 @@ docs/GetConnectionsResponse.md
 docs/VaultConfiguration.md
 docs/VaultConfigurationKeyMapping.md
 docs/VaultConfigurationKeyMappingPassword.md
-docs/VaultConfigurationKeyMappingPasswordIgnoreMapping.md
 git_push.sh
 go.mod
 go.sum
@@ -39,7 +38,6 @@ model_get_connections_response.go
 model_vault_configuration.go
 model_vault_configuration_key_mapping.go
 model_vault_configuration_key_mapping_password.go
-model_vault_configuration_key_mapping_password_ignore_mapping.go
 response.go
 test/api_connections_test.go
 utils.go

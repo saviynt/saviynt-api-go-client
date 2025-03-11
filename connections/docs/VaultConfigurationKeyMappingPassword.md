@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **KeyName** | Pointer to **string** |  | [optional] 
 **GroupName** | Pointer to **string** |  | [optional] 
 **Encryptionmechanism** | Pointer to **string** |  | [optional] 
-**IgnoreMapping** | Pointer to [**VaultConfigurationKeyMappingPasswordIgnoreMapping**](VaultConfigurationKeyMappingPasswordIgnoreMapping.md) |  | [optional] 
+**IgnoreMapping** | Pointer to **[]string** | Use mappings like &#x60;groupName&#x60; and &#x60;keyName&#x60;. | [optional] 
 
 ## Methods
 
@@ -105,20 +105,20 @@ HasEncryptionmechanism returns a boolean if a field has been set.
 
 ### GetIgnoreMapping
 
-`func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMapping() VaultConfigurationKeyMappingPasswordIgnoreMapping`
+`func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMapping() []string`
 
 GetIgnoreMapping returns the IgnoreMapping field if non-nil, zero value otherwise.
 
 ### GetIgnoreMappingOk
 
-`func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMappingOk() (*VaultConfigurationKeyMappingPasswordIgnoreMapping, bool)`
+`func (o *VaultConfigurationKeyMappingPassword) GetIgnoreMappingOk() (*[]string, bool)`
 
 GetIgnoreMappingOk returns a tuple with the IgnoreMapping field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIgnoreMapping
 
-`func (o *VaultConfigurationKeyMappingPassword) SetIgnoreMapping(v VaultConfigurationKeyMappingPasswordIgnoreMapping)`
+`func (o *VaultConfigurationKeyMappingPassword) SetIgnoreMapping(v []string)`
 
 SetIgnoreMapping sets IgnoreMapping field to given value.
 

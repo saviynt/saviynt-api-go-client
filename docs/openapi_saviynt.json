@@ -3521,7 +3521,17 @@
             }
           },
           "ignoreMapping": {
-            "$ref": "#/components/schemas/VaultConfigurationKeyMappingPasswordIgnoreMapping"
+            "description": "Use mappings like `groupName` and `keyName`.",
+            "items": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "qbmddkv5bzydu"
+              }
+            },
+            "type": "array",
+            "x-stoplight": {
+              "id": "ap6g4hm3xk77t"
+            }
           },
           "keyName": {
             "type": "string",
@@ -3534,21 +3544,6 @@
         "type": "object",
         "x-stoplight": {
           "id": "5ftwxo54l3sfx"
-        }
-      },
-      "VaultConfigurationKeyMappingPasswordIgnoreMapping": {
-        "properties": {
-          "groupName": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "o61c4uk4fy5lw"
-            }
-          }
-        },
-        "title": "VaultConfigurationKeyMappingPasswordIgnoreMapping",
-        "type": "object",
-        "x-stoplight": {
-          "id": "58opztukw8ieh"
         }
       }
     }

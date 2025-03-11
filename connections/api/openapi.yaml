@@ -808,7 +808,8 @@ components:
               groupName: groupName
               encryptionmechanism: encryptionmechanism
               ignoreMapping:
-                groupName: groupName
+              - ignoreMapping
+              - ignoreMapping
               keyName: keyName
         READ_OPERATIONAL_ATTRIBUTES: READ_OPERATIONAL_ATTRIBUTES
         URL: LDAP://3.19.17.34:386
@@ -1060,7 +1061,8 @@ components:
             groupName: groupName
             encryptionmechanism: encryptionmechanism
             ignoreMapping:
-              groupName: groupName
+            - ignoreMapping
+            - ignoreMapping
             keyName: keyName
       properties:
         path:
@@ -1080,7 +1082,8 @@ components:
           groupName: groupName
           encryptionmechanism: encryptionmechanism
           ignoreMapping:
-            groupName: groupName
+          - ignoreMapping
+          - ignoreMapping
           keyName: keyName
       properties:
         PASSWORD:
@@ -1093,7 +1096,8 @@ components:
         groupName: groupName
         encryptionmechanism: encryptionmechanism
         ignoreMapping:
-          groupName: groupName
+        - ignoreMapping
+        - ignoreMapping
         keyName: keyName
       properties:
         keyName:
@@ -1109,20 +1113,16 @@ components:
           x-stoplight:
             id: vcg7q9mva79xi
         ignoreMapping:
-          $ref: '#/components/schemas/VaultConfigurationKeyMappingPasswordIgnoreMapping'
+          description: Use mappings like `groupName` and `keyName`.
+          items:
+            type: string
+            x-stoplight:
+              id: qbmddkv5bzydu
+          type: array
+          x-stoplight:
+            id: ap6g4hm3xk77t
       title: VaultConfigurationKeyMappingPassword
       x-stoplight:
         id: 5ftwxo54l3sfx
-    VaultConfigurationKeyMappingPasswordIgnoreMapping:
-      example:
-        groupName: groupName
-      properties:
-        groupName:
-          type: string
-          x-stoplight:
-            id: o61c4uk4fy5lw
-      title: VaultConfigurationKeyMappingPasswordIgnoreMapping
-      x-stoplight:
-        id: 58opztukw8ieh
 x-stoplight:
   id: 11gpcfoz001w2
