@@ -772,6 +772,17 @@ components:
     CreateOrUpdateConnectionRequest:
       example:
         groupSearchBaseDN: groupSearchBaseDN
+        vaultconfiguration:
+          path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
+          keyMapping:
+            AUTHTOKEN: AUTHTOKEN
+            PASSWORD:
+              groupName: groupName
+              encryptionmechanism: None
+              ignoreMapping:
+              - ignoreMapping
+              - ignoreMapping
+              keyName: keyName
         PASSWORD_NOOFSPLCHARS: PASSWORD_NOOFSPLCHARS
         STATUSKEYJSON: STATUSKEYJSON
         CREATEORGJSON: CREATEORGJSON
@@ -801,16 +812,6 @@ components:
         JCO_CLIENT: JCO_CLIENT
         CHECKFORUNIQUE: CHECKFORUNIQUE
         description: description
-        vaultConfiguration:
-          path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
-          keyMapping:
-            PASSWORD:
-              groupName: groupName
-              encryptionmechanism: encryptionmechanism
-              ignoreMapping:
-              - ignoreMapping
-              - ignoreMapping
-              keyName: keyName
         READ_OPERATIONAL_ATTRIBUTES: READ_OPERATIONAL_ATTRIBUTES
         URL: LDAP://3.19.17.34:386
         BASE: BASE
@@ -826,6 +827,7 @@ components:
         PASSWORD_NOOFCAPSALPHA: PASSWORD_NOOFCAPSALPHA
         SUPPORTEMPTYSTRING: SUPPORTEMPTYSTRING
         UNLOCKACCOUNTJSON: UNLOCKACCOUNTJSON
+        defaultSavRole: defaultSavRole
         JCO_SYSNR: JCO_SYSNR
         vaultconnection: hashicorp\_dev
         ENABLEACCOUNTJSON: ENABLEACCOUNTJSON
@@ -851,6 +853,12 @@ components:
           type: string
           x-stoplight:
             id: k5iuq3jqkuwfn
+        defaultSavRole:
+          description: "Sepcfiy the SAV role or combination of SAV roles. This SAV\
+            \ roles must hvae permissions that the users need for managing this connection\
+            \ along with its associated security systems, endpoints, accounts, and\
+            \ entitlements."
+          type: string
         description:
           description: Specify the description for the connection.
           type: string
@@ -865,6 +873,8 @@ components:
           x-stoplight:
             id: 1t0b3va60lisy
         saveinvault:
+          description: Specify `true` to save the encrypted attribute in the vault
+            configured with the connector.
           enum:
           - "true"
           - "false"
@@ -880,7 +890,7 @@ components:
           description: Vault connection identifier.
           example: hashicorp\_dev
           type: string
-        vaultConfiguration:
+        vaultconfiguration:
           $ref: '#/components/schemas/VaultConfiguration'
         ACCOUNT_ATTRIBUTE:
           type: string
@@ -1057,9 +1067,10 @@ components:
       example:
         path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
         keyMapping:
+          AUTHTOKEN: AUTHTOKEN
           PASSWORD:
             groupName: groupName
-            encryptionmechanism: encryptionmechanism
+            encryptionmechanism: None
             ignoreMapping:
             - ignoreMapping
             - ignoreMapping
@@ -1078,14 +1089,19 @@ components:
         id: 619fvo66n2azf
     VaultConfigurationKeyMapping:
       example:
+        AUTHTOKEN: AUTHTOKEN
         PASSWORD:
           groupName: groupName
-          encryptionmechanism: encryptionmechanism
+          encryptionmechanism: None
           ignoreMapping:
           - ignoreMapping
           - ignoreMapping
           keyName: keyName
       properties:
+        AUTHTOKEN:
+          type: string
+          x-stoplight:
+            id: xflvoo59ydvif
         PASSWORD:
           $ref: '#/components/schemas/VaultConfigurationKeyMappingPassword'
       title: VaultConfigurationKeyMapping
@@ -1094,7 +1110,7 @@ components:
     VaultConfigurationKeyMappingPassword:
       example:
         groupName: groupName
-        encryptionmechanism: encryptionmechanism
+        encryptionmechanism: None
         ignoreMapping:
         - ignoreMapping
         - ignoreMapping
@@ -1109,11 +1125,12 @@ components:
           x-stoplight:
             id: xuea1kvnqtrdz
         encryptionmechanism:
+          example: None
           type: string
           x-stoplight:
             id: vcg7q9mva79xi
         ignoreMapping:
-          description: Use mappings like `groupName` and `keyName`.
+          description: Use mappings such as `groupName` and `keyName`.
           items:
             type: string
             x-stoplight:

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AUTHTOKEN** | Pointer to **string** |  | [optional] 
 **PASSWORD** | Pointer to [**VaultConfigurationKeyMappingPassword**](VaultConfigurationKeyMappingPassword.md) |  | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewVaultConfigurationKeyMappingWithDefaults instantiates a new VaultConfigurationKeyMapping object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAUTHTOKEN
+
+`func (o *VaultConfigurationKeyMapping) GetAUTHTOKEN() string`
+
+GetAUTHTOKEN returns the AUTHTOKEN field if non-nil, zero value otherwise.
+
+### GetAUTHTOKENOk
+
+`func (o *VaultConfigurationKeyMapping) GetAUTHTOKENOk() (*string, bool)`
+
+GetAUTHTOKENOk returns a tuple with the AUTHTOKEN field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAUTHTOKEN
+
+`func (o *VaultConfigurationKeyMapping) SetAUTHTOKEN(v string)`
+
+SetAUTHTOKEN sets AUTHTOKEN field to given value.
+
+### HasAUTHTOKEN
+
+`func (o *VaultConfigurationKeyMapping) HasAUTHTOKEN() bool`
+
+HasAUTHTOKEN returns a boolean if a field has been set.
 
 ### GetPASSWORD
 

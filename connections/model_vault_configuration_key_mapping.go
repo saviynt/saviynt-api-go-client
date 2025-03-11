@@ -20,6 +20,7 @@ var _ MappedNullable = &VaultConfigurationKeyMapping{}
 
 // VaultConfigurationKeyMapping struct for VaultConfigurationKeyMapping
 type VaultConfigurationKeyMapping struct {
+	AUTHTOKEN *string `json:"AUTHTOKEN,omitempty"`
 	PASSWORD *VaultConfigurationKeyMappingPassword `json:"PASSWORD,omitempty"`
 }
 
@@ -38,6 +39,38 @@ func NewVaultConfigurationKeyMapping() *VaultConfigurationKeyMapping {
 func NewVaultConfigurationKeyMappingWithDefaults() *VaultConfigurationKeyMapping {
 	this := VaultConfigurationKeyMapping{}
 	return &this
+}
+
+// GetAUTHTOKEN returns the AUTHTOKEN field value if set, zero value otherwise.
+func (o *VaultConfigurationKeyMapping) GetAUTHTOKEN() string {
+	if o == nil || IsNil(o.AUTHTOKEN) {
+		var ret string
+		return ret
+	}
+	return *o.AUTHTOKEN
+}
+
+// GetAUTHTOKENOk returns a tuple with the AUTHTOKEN field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VaultConfigurationKeyMapping) GetAUTHTOKENOk() (*string, bool) {
+	if o == nil || IsNil(o.AUTHTOKEN) {
+		return nil, false
+	}
+	return o.AUTHTOKEN, true
+}
+
+// HasAUTHTOKEN returns a boolean if a field has been set.
+func (o *VaultConfigurationKeyMapping) HasAUTHTOKEN() bool {
+	if o != nil && !IsNil(o.AUTHTOKEN) {
+		return true
+	}
+
+	return false
+}
+
+// SetAUTHTOKEN gets a reference to the given string and assigns it to the AUTHTOKEN field.
+func (o *VaultConfigurationKeyMapping) SetAUTHTOKEN(v string) {
+	o.AUTHTOKEN = &v
 }
 
 // GetPASSWORD returns the PASSWORD field value if set, zero value otherwise.
@@ -82,6 +115,9 @@ func (o VaultConfigurationKeyMapping) MarshalJSON() ([]byte, error) {
 
 func (o VaultConfigurationKeyMapping) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AUTHTOKEN) {
+		toSerialize["AUTHTOKEN"] = o.AUTHTOKEN
+	}
 	if !IsNil(o.PASSWORD) {
 		toSerialize["PASSWORD"] = o.PASSWORD
 	}

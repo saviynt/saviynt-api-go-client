@@ -793,6 +793,10 @@
               "id": "k5iuq3jqkuwfn"
             }
           },
+          "defaultSavRole": {
+            "type": "string",
+            "description": "Sepcfiy the SAV role or combination of SAV roles. This SAV roles must hvae permissions that the users need for managing this connection along with its associated security systems, endpoints, accounts, and entitlements."
+          },
           "description": {
             "type": "string",
             "description": "Specify the description for the connection."
@@ -816,7 +820,8 @@
             "enum": [
               "true",
               "false"
-            ]
+            ],
+            "description": "Specify `true` to save the encrypted attribute in the vault configured with the connector."
           },
           "sslCertificate": {
             "type": "string",
@@ -830,9 +835,12 @@
             "description": "Vault connection identifier.",
             "example": "hashicorp\\_dev"
           },
-          "vaultConfiguration": {
+          "vaultconfiguration": {
             "$ref": "#/components/schemas/VaultConfiguration",
-            "description": "Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector."
+            "description": "Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector.",
+            "x-stoplight": {
+              "id": "lljr6c8suzjmy"
+            }
           },
           "ACCOUNT_ATTRIBUTE": {
             "type": "string"
@@ -1101,6 +1109,12 @@
         },
         "type": "object",
         "properties": {
+          "AUTHTOKEN": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "xflvoo59ydvif"
+            }
+          },
           "PASSWORD": {
             "$ref": "#/components/schemas/VaultConfigurationKeyMappingPassword",
             "x-stoplight": {
@@ -1132,14 +1146,15 @@
             "type": "string",
             "x-stoplight": {
               "id": "vcg7q9mva79xi"
-            }
+            },
+            "example": "None"
           },
           "ignoreMapping": {
             "x-stoplight": {
               "id": "ap6g4hm3xk77t"
             },
             "type": "array",
-            "description": "Use mappings like `groupName` and `keyName`.",
+            "description": "Use mappings such as `groupName` and `keyName`.",
             "items": {
               "x-stoplight": {
                 "id": "qbmddkv5bzydu"

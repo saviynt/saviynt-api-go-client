@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **KeyName** | Pointer to **string** |  | [optional] 
 **GroupName** | Pointer to **string** |  | [optional] 
 **Encryptionmechanism** | Pointer to **string** |  | [optional] 
-**IgnoreMapping** | Pointer to **[]string** | Use mappings like &#x60;groupName&#x60; and &#x60;keyName&#x60;. | [optional] 
+**IgnoreMapping** | Pointer to **[]string** | Use mappings such as &#x60;groupName&#x60; and &#x60;keyName&#x60;. | [optional] 
 
 ## Methods
 

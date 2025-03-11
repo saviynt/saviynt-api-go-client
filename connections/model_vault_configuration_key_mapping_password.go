@@ -23,7 +23,7 @@ type VaultConfigurationKeyMappingPassword struct {
 	KeyName *string `json:"keyName,omitempty"`
 	GroupName *string `json:"groupName,omitempty"`
 	Encryptionmechanism *string `json:"encryptionmechanism,omitempty"`
-	// Use mappings like `groupName` and `keyName`.
+	// Use mappings such as `groupName` and `keyName`.
 	IgnoreMapping []string `json:"ignoreMapping,omitempty"`
 }
 

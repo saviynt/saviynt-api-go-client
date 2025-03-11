@@ -27,12 +27,15 @@ type CreateOrUpdateConnectionRequest struct {
 	// Specify a connection type. For example, if your target application is Active Directory, specify the connection type as `AD`.
 	Connectiontype string `json:"connectiontype"`
 	Connectionkey *string `json:"connectionkey,omitempty"`
+	// Sepcfiy the SAV role or combination of SAV roles. This SAV roles must hvae permissions that the users need for managing this connection along with its associated security systems, endpoints, accounts, and entitlements.
+	DefaultSavRole *string `json:"defaultSavRole,omitempty"`
 	// Specify the description for the connection.
 	Description *string `json:"description,omitempty"`
 	// Specify the email template applicable for notifications.
 	EmailTemplate *string `json:"emailTemplate,omitempty"`
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
 	Saveconnection *string `json:"saveconnection,omitempty"`
+	// Specify `true` to save the encrypted attribute in the vault configured with the connector.
 	Saveinvault *string `json:"saveinvault,omitempty"`
 	// Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them.
 	SslCertificate *string `json:"sslCertificate,omitempty"`
@@ -40,7 +43,7 @@ type CreateOrUpdateConnectionRequest struct {
 	// Vault connection identifier.
 	Vaultconnection *string `json:"vaultconnection,omitempty"`
 	// Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector.
-	VaultConfiguration *VaultConfiguration `json:"vaultConfiguration,omitempty"`
+	Vaultconfiguration *VaultConfiguration `json:"vaultconfiguration,omitempty"`
 	ACCOUNT_ATTRIBUTE *string `json:"ACCOUNT_ATTRIBUTE,omitempty"`
 	ACCOUNTNAMERULE *string `json:"ACCOUNTNAMERULE,omitempty"`
 	BASE *string `json:"BASE,omitempty"`
@@ -190,6 +193,38 @@ func (o *CreateOrUpdateConnectionRequest) HasConnectionkey() bool {
 // SetConnectionkey gets a reference to the given string and assigns it to the Connectionkey field.
 func (o *CreateOrUpdateConnectionRequest) SetConnectionkey(v string) {
 	o.Connectionkey = &v
+}
+
+// GetDefaultSavRole returns the DefaultSavRole field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetDefaultSavRole() string {
+	if o == nil || IsNil(o.DefaultSavRole) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultSavRole
+}
+
+// GetDefaultSavRoleOk returns a tuple with the DefaultSavRole field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrUpdateConnectionRequest) GetDefaultSavRoleOk() (*string, bool) {
+	if o == nil || IsNil(o.DefaultSavRole) {
+		return nil, false
+	}
+	return o.DefaultSavRole, true
+}
+
+// HasDefaultSavRole returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasDefaultSavRole() bool {
+	if o != nil && !IsNil(o.DefaultSavRole) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultSavRole gets a reference to the given string and assigns it to the DefaultSavRole field.
+func (o *CreateOrUpdateConnectionRequest) SetDefaultSavRole(v string) {
+	o.DefaultSavRole = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -448,36 +483,36 @@ func (o *CreateOrUpdateConnectionRequest) SetVaultconnection(v string) {
 	o.Vaultconnection = &v
 }
 
-// GetVaultConfiguration returns the VaultConfiguration field value if set, zero value otherwise.
-func (o *CreateOrUpdateConnectionRequest) GetVaultConfiguration() VaultConfiguration {
-	if o == nil || IsNil(o.VaultConfiguration) {
+// GetVaultconfiguration returns the Vaultconfiguration field value if set, zero value otherwise.
+func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() VaultConfiguration {
+	if o == nil || IsNil(o.Vaultconfiguration) {
 		var ret VaultConfiguration
 		return ret
 	}
-	return *o.VaultConfiguration
+	return *o.Vaultconfiguration
 }
 
-// GetVaultConfigurationOk returns a tuple with the VaultConfiguration field value if set, nil otherwise
+// GetVaultconfigurationOk returns a tuple with the Vaultconfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateConnectionRequest) GetVaultConfigurationOk() (*VaultConfiguration, bool) {
-	if o == nil || IsNil(o.VaultConfiguration) {
+func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*VaultConfiguration, bool) {
+	if o == nil || IsNil(o.Vaultconfiguration) {
 		return nil, false
 	}
-	return o.VaultConfiguration, true
+	return o.Vaultconfiguration, true
 }
 
-// HasVaultConfiguration returns a boolean if a field has been set.
-func (o *CreateOrUpdateConnectionRequest) HasVaultConfiguration() bool {
-	if o != nil && !IsNil(o.VaultConfiguration) {
+// HasVaultconfiguration returns a boolean if a field has been set.
+func (o *CreateOrUpdateConnectionRequest) HasVaultconfiguration() bool {
+	if o != nil && !IsNil(o.Vaultconfiguration) {
 		return true
 	}
 
 	return false
 }
 
-// SetVaultConfiguration gets a reference to the given VaultConfiguration and assigns it to the VaultConfiguration field.
-func (o *CreateOrUpdateConnectionRequest) SetVaultConfiguration(v VaultConfiguration) {
-	o.VaultConfiguration = &v
+// SetVaultconfiguration gets a reference to the given VaultConfiguration and assigns it to the Vaultconfiguration field.
+func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v VaultConfiguration) {
+	o.Vaultconfiguration = &v
 }
 
 // GetACCOUNT_ATTRIBUTE returns the ACCOUNT_ATTRIBUTE field value if set, zero value otherwise.
@@ -1809,6 +1844,9 @@ func (o CreateOrUpdateConnectionRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Connectionkey) {
 		toSerialize["connectionkey"] = o.Connectionkey
 	}
+	if !IsNil(o.DefaultSavRole) {
+		toSerialize["defaultSavRole"] = o.DefaultSavRole
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -1833,8 +1871,8 @@ func (o CreateOrUpdateConnectionRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Vaultconnection) {
 		toSerialize["vaultconnection"] = o.Vaultconnection
 	}
-	if !IsNil(o.VaultConfiguration) {
-		toSerialize["vaultConfiguration"] = o.VaultConfiguration
+	if !IsNil(o.Vaultconfiguration) {
+		toSerialize["vaultconfiguration"] = o.Vaultconfiguration
 	}
 	if !IsNil(o.ACCOUNT_ATTRIBUTE) {
 		toSerialize["ACCOUNT_ATTRIBUTE"] = o.ACCOUNT_ATTRIBUTE

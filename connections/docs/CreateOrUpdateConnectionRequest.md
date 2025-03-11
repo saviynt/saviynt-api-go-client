@@ -7,15 +7,16 @@ Name | Type | Description | Notes
 **ConnectionName** | Pointer to **string** | Specify the name to identify the connection. | [optional] 
 **Connectiontype** | **string** | Specify a connection type. For example, if your target application is Active Directory, specify the connection type as &#x60;AD&#x60;. | 
 **Connectionkey** | Pointer to **string** |  | [optional] 
+**DefaultSavRole** | Pointer to **string** | Sepcfiy the SAV role or combination of SAV roles. This SAV roles must hvae permissions that the users need for managing this connection along with its associated security systems, endpoints, accounts, and entitlements. | [optional] 
 **Description** | Pointer to **string** | Specify the description for the connection. | [optional] 
 **EmailTemplate** | Pointer to **string** | Specify the email template applicable for notifications. | [optional] 
 **GroupSearchBaseDN** | Pointer to **string** |  | [optional] 
 **Saveconnection** | Pointer to **string** |  | [optional] 
-**Saveinvault** | Pointer to **string** |  | [optional] 
+**Saveinvault** | Pointer to **string** | Specify &#x60;true&#x60; to save the encrypted attribute in the vault configured with the connector. | [optional] 
 **SslCertificate** | Pointer to **string** | Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them. | [optional] 
 **Systemname** | Pointer to **string** |  | [optional] 
 **Vaultconnection** | Pointer to **string** | Vault connection identifier. | [optional] 
-**VaultConfiguration** | Pointer to [**VaultConfiguration**](VaultConfiguration.md) | Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. | [optional] 
+**Vaultconfiguration** | Pointer to [**VaultConfiguration**](VaultConfiguration.md) | Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. | [optional] 
 **ACCOUNT_ATTRIBUTE** | Pointer to **string** |  | [optional] 
 **ACCOUNTNAMERULE** | Pointer to **string** |  | [optional] 
 **BASE** | Pointer to **string** |  | [optional] 
@@ -146,6 +147,31 @@ SetConnectionkey sets Connectionkey field to given value.
 `func (o *CreateOrUpdateConnectionRequest) HasConnectionkey() bool`
 
 HasConnectionkey returns a boolean if a field has been set.
+
+### GetDefaultSavRole
+
+`func (o *CreateOrUpdateConnectionRequest) GetDefaultSavRole() string`
+
+GetDefaultSavRole returns the DefaultSavRole field if non-nil, zero value otherwise.
+
+### GetDefaultSavRoleOk
+
+`func (o *CreateOrUpdateConnectionRequest) GetDefaultSavRoleOk() (*string, bool)`
+
+GetDefaultSavRoleOk returns a tuple with the DefaultSavRole field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultSavRole
+
+`func (o *CreateOrUpdateConnectionRequest) SetDefaultSavRole(v string)`
+
+SetDefaultSavRole sets DefaultSavRole field to given value.
+
+### HasDefaultSavRole
+
+`func (o *CreateOrUpdateConnectionRequest) HasDefaultSavRole() bool`
+
+HasDefaultSavRole returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -347,30 +373,30 @@ SetVaultconnection sets Vaultconnection field to given value.
 
 HasVaultconnection returns a boolean if a field has been set.
 
-### GetVaultConfiguration
+### GetVaultconfiguration
 
-`func (o *CreateOrUpdateConnectionRequest) GetVaultConfiguration() VaultConfiguration`
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() VaultConfiguration`
 
-GetVaultConfiguration returns the VaultConfiguration field if non-nil, zero value otherwise.
+GetVaultconfiguration returns the Vaultconfiguration field if non-nil, zero value otherwise.
 
-### GetVaultConfigurationOk
+### GetVaultconfigurationOk
 
-`func (o *CreateOrUpdateConnectionRequest) GetVaultConfigurationOk() (*VaultConfiguration, bool)`
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*VaultConfiguration, bool)`
 
-GetVaultConfigurationOk returns a tuple with the VaultConfiguration field if it's non-nil, zero value otherwise
+GetVaultconfigurationOk returns a tuple with the Vaultconfiguration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVaultConfiguration
+### SetVaultconfiguration
 
-`func (o *CreateOrUpdateConnectionRequest) SetVaultConfiguration(v VaultConfiguration)`
+`func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v VaultConfiguration)`
 
-SetVaultConfiguration sets VaultConfiguration field to given value.
+SetVaultconfiguration sets Vaultconfiguration field to given value.
 
-### HasVaultConfiguration
+### HasVaultconfiguration
 
-`func (o *CreateOrUpdateConnectionRequest) HasVaultConfiguration() bool`
+`func (o *CreateOrUpdateConnectionRequest) HasVaultconfiguration() bool`
 
-HasVaultConfiguration returns a boolean if a field has been set.
+HasVaultconfiguration returns a boolean if a field has been set.
 
 ### GetACCOUNT_ATTRIBUTE
 
