@@ -1,0 +1,1489 @@
+openapi: 3.0.3
+info:
+  description: "API for creating, updating, retrieving, and deleting organization\
+    \ data in EIC"
+  title: Organization Management API
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /ECM/api/v5/createOrganization:
+    post:
+      description: |-
+        This API creates an organization in SSM.
+        The `Authorization header must contain "Bearer {token}.
+        **Mandatory Parameters:**
+        - organizationname: Specify a unique name for the organization.
+        - username: Specify the user who is creating the organization.
+
+        **Optional Parameters:**
+        - parentorganization
+        - primarycontact
+        - customproperty1 (or customproperty1 to customproperty20)
+        - organizationtype: Allowed values are DATA, SECURITY, GROUPING, or REQUEST RULES.
+        - endpoints: Each with an endpointname and optional cp1...cp5.
+        - roles: Each with a rolename.
+        - rules: Each with a name and type (BUISNESS, TECH, USERUPDATE, NEWUSER, REMOVEUSER, UPDATE_ENTITLEMENT, NEW_ENTITLEMENT, REMOVE_ENTITLEMENT, or REQUEST).
+        - entitlements: Each with entitlementvalue, entitlementtype, and endpoint.
+        - users: A list of user objects (with username).
+        - owners: Each with owner, rank, and policy (SUPERADMIN, ADMIN, BULKADMIN, USERADMIN, CAMPAIGNADMIN, or READONLY).
+        - attributes: Each with attributegroupname, attributes, value, and attributevalues.
+      operationId: createOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              CreateOrganization:
+                value:
+                  organizationname: TestOrg5
+                  username: awsadmin
+                  primarycontact: awsadmin
+                  comments: comment
+                  status: ACTIVE
+                  customproperty5: cp5
+                  customproperty10: cp10
+                  organizationtype: request rules
+                  parentorganization: Globex
+                  location: los angeles
+                  endpoints:
+                  - endpointname: Office365
+                    cp1: cp1
+                    cp2: cp2
+                    cp3: cp3
+                    cp4: cp4
+                    cp5: cp5
+                  - endpointname: Salesforce
+                  roles:
+                  - rolename: ADT_AdmitSuperv_MCL
+                  - rolename: ADT_AdmitSuperv_MVH
+                  rules:
+                  - name: Step10 - Test
+                    type: REQUEST
+                  entitlements:
+                  - entitlementvalue: AzureADSP
+                    entitlementtype: O365-ADGroup
+                    endpoint: Office365
+                  - entitlementvalue: DepartmentDynamicGroup
+                    entitlementtype: O365-ADGroup
+                    endpoint: Office365
+                  users:
+                  - username: "1000003"
+                  - username: "1000005"
+                  owners:
+                  - owner: admin
+                    rank: 2
+                  - owner: awsadmin
+                    rank: 2
+                  attributes:
+                  - attributegroupname: dfdf
+                    attributes: "street,pincode"
+                    value: group val
+                    attributevalues:
+                      street: treee
+                      pincode: "123456"
+            schema:
+              $ref: '#/components/schemas/createOrganization_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                Create Organization 2:
+                  value:
+                    errorCode: "0"
+                    msg: Success
+                createOrganization:
+                  value:
+                    errorCode: "0"
+                    msg: Success
+              schema:
+                $ref: '#/components/schemas/createOrganization_200_response'
+          description: createOrganization / Create Organization 2
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 30 Dec 2020 02:37:06 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=2e50304d-88ee-406e-a9dc-db97315cfe66; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Create Organization
+      tags:
+      - organizations
+  /ECM/api/v5/updateOrganization:
+    put:
+      description: |-
+        This API updates an organization in EIC.
+        The `Authorization` must have `Bearer` followed by `Token`.
+        **Mandatory Parameters:**
+        - `organizationname`: Specify a unique name of the organization.
+        - `username`: Specify the user who is updating the organization.
+
+        **Optional Parameters:**
+        - `updatedorgname` - parameter to update the organization name.
+        - `parentorganization`
+        - `primarycontact`
+        - `endpoints` - List of endpoints with:
+            - `endpointname`
+            - `updatetype`: ADD or REMOVE
+        - `roles` - List of roles with:
+            - `rolename`
+            - `updatetype`: ADD or REMOVE
+        - `rules` - List of rules with:
+            - `name`
+            - `type`: BUISNESS, TECH, USERUPDATE, NEWUSER, REMOVEUSER, UPDATE_ENTITLEMENT, NEW_ENTITLEMENT, REMOVE_ENTITLEMENT, or REQUEST.
+            - `updatetype`: ADD or REMOVE
+        - `entitlements` - List of entitlements with:
+            - `entitlementvalue`
+            - `entitlementtype`
+            - `endpoint`
+            - `updatetype`: add or remove
+        - `users` - List of users with:
+            - `username`
+            - `updatetype`: add or remove
+        - `owners` - List with:
+            - `owner`
+            - `rank`
+            - `updatetype`: add, update, or remove
+            - `policy`: SUPERADMIN, ADMIN, BULKADMIN, USERADMIN, CAMPAIGNADMIN, or READONLY.
+        - `attributes` - List with:
+            - `attributegroupname`
+            - `attributes`
+            - `value`
+            - `attributevalues`
+            - `updatetype`: addgroup, deletegroup, or updategroup.
+      operationId: updateOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              UpdateOrganization:
+                value:
+                  organizationname: TestOrg5
+                  username: awsadmin
+                  updatedorgname: NewTestOrg5
+                  primarycontact: awsadmin
+                  comments: comment
+                  status: ACTIVE
+                  customproperty5: cp5
+                  customproperty10: cp10
+                  organizationtype: request rules
+                  parentorganization: Globex
+                  location: los angeles
+                  endpoints:
+                  - endpointname: CyberArk
+                    cp1: cp1
+                    cp2: cp2
+                    cp3: cp3
+                    cp4: cp4
+                    cp5: cp5
+                    updatetype: add
+                  - endpointname: Salesforce
+                    updatetype: remove
+                  roles:
+                  - rolename: ADT_AdmitSuperv_MVH
+                    updatetype: remove
+                  rules:
+                  - name: Step10 - Test
+                    type: REQUEST
+                    updatetype: add
+                  entitlements:
+                  - endpoint: Office365
+                    entitlementtype: O365-ADGroup
+                    entitlementvalue: DepartmentDynamicGroup
+                    updatetype: remove
+                  users:
+                  - username: "1000005"
+                    updatetype: add
+                  owners:
+                  - owner: "1000003"
+                    rank: 2
+                    updatetype: add
+                  - owner: awsadmin
+                    rank: 2
+                    updatetype: remove
+                  attributes:
+                  - attributegroupname: dfdf
+                    attributes: "street,pincode"
+                    value: group val
+                    attributevalues:
+                      street: treee1
+                      pincode: "1234567"
+                    updatetype: updategroup
+            schema:
+              $ref: '#/components/schemas/updateOrganization_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                UpdateOrganization:
+                  value:
+                    errorCode: "0"
+                    msg: Success
+              schema:
+                $ref: '#/components/schemas/createOrganization_200_response'
+          description: Update Organization
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 30 Dec 2020 03:14:25 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=3efde15c-25dd-4b66-b61d-a1a9303caee1; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Update Organization
+      tags:
+      - organizations
+  /ECM/api/v5/getOrganization:
+    get:
+      description: |-
+        Use this API to fetch a list of all organizations in EIC.
+        The `Authorization` must have `Bearer` followed by a valid token.
+
+        **Optional Parameters:**
+        - `organizationname`
+        - `max`
+        - `offset`
+        - `filtercriteria` – one of: organizationname, organizationtype (possible values: Data Security, Request Rules, Grouping, 1, 2, 3), status ("ACTIVE"/"INACTIVE"), updateuser (username), createuser (username), parentorganization, customproperty1–20, description, primarycontact (username), vendormanager (username), location, risk, score.
+
+        _OR_
+
+        - `orgQuery` (e.g., `c.organizationname like '%example_orgname%'`)
+      operationId: getOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetOrganization:
+                value:
+                  max: "2"
+                  offset: "0"
+                  orgQuery: c.organizationname like '%TestOrg5%'
+            schema:
+              $ref: '#/components/schemas/getOrganization_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                GetOrganization:
+                  value:
+                    displaycount: 1
+                    errorCode: "0"
+                    msg: Success
+                    organizations:
+                    - createdate: 2019-08-20 18:31:38
+                      createuser: admin
+                      customproperty17: Compliance
+                      description: testorg
+                      endpoints: []
+                      entitlements: []
+                      location: Bangalore
+                      organizationname: testorg
+                      organizationtype: Data Security
+                      parentorganization: orgNameSav
+                      primaryvendorcontact: lmcneil
+                      risk: "0"
+                      roles: []
+                      rules: []
+                      score: "0"
+                      status: Active
+                      updatedate: 2020-07-23 20:19:59
+                      updateuser: admin
+                      users: []
+                    totalcount: 1
+              schema:
+                $ref: '#/components/schemas/getOrganization_200_response'
+          description: Get Organization / Get Organization 2
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 30 Dec 2020 04:19:30 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=406488b2-e5a1-4a1b-8c87-ccf8177ef29e; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Get Organization
+      tags:
+      - organizations
+  /ECM/api/v5/deleteOrganization:
+    post:
+      description: |-
+        Use this API to delete an organization in EIC.
+
+        The **Authorization** header must have `Bearer` followed by the token.
+
+        **Mandatory Parameters:**
+        - `organizationname`: The unique name of the organization to delete.
+        - `username`: The user performing the delete action.
+      operationId: deleteOrganization
+      requestBody:
+        content:
+          application/json:
+            examples:
+              DeleteOrganization:
+                value:
+                  organizationname: testorg1
+                  username: admin
+            schema:
+              $ref: '#/components/schemas/deleteOrganization_request'
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                DeleteOrganization:
+                  value:
+                    errorcode: "0"
+                    msg: success
+              schema:
+                $ref: '#/components/schemas/deleteOrganization_200_response'
+          description: Delete Organization
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Thu, 23 Jul 2020 19:37:04 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=94589b88-cb05-4e05-a11d-dc62e85bb238; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+      summary: Delete Organization
+      tags:
+      - organizations
+  /ECM/api/v5/updateOrganizationUsers:
+    post:
+      description: |-
+        Use this API to add or remove multiple users from the secondary organization in EIC.
+
+        **Note**: You must enable the **Enable Multiple Organizations for a User** option in the Global Configurations page of the EIC UI.
+
+        The **Authorization** header must contain `Bearer` followed by the token.
+
+        **Mandatory Parameters:**
+        - `organizationname`: The name of the secondary organization whose associated users are to be fetched.
+        - `users`: A list of user objects to add or remove. Each user object must include:
+            - `username`: The username of the user to add or remove.
+            - `updatetype`: The action to perform. Use `add` for adding a user and `remove` for removing a user.
+      operationId: updateOrganizationUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateOrganizationUsers_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                UpdateOrganizationUsers:
+                  value:
+                    msg: Success
+                    errorCode: "0"
+              schema:
+                $ref: '#/components/schemas/updateOrganizationUsers_200_response'
+          description: Update Organization Users
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+            Cache-Control:
+              explode: false
+              schema:
+                example: "post-check=0, pre-check=0"
+                type: string
+              style: simple
+            Date:
+              explode: false
+              schema:
+                example: "Wed, 30 Dec 2020 03:14:25 GMT"
+                type: string
+              style: simple
+            Expires:
+              explode: false
+              schema:
+                example: "Sun, 7 May 1995 12:00:00 GMT"
+                type: string
+              style: simple
+            Pragma:
+              explode: false
+              schema:
+                example: no-cache
+                type: string
+              style: simple
+            Referrer-Policy:
+              explode: false
+              schema:
+                example: same-origin
+                type: string
+              style: simple
+            Server:
+              explode: false
+              schema:
+                example: Apache-Coyote/1.1
+                type: string
+              style: simple
+            Set-Cookie:
+              explode: false
+              schema:
+                example: CCSRF-TOKEN=3efde15c-25dd-4b66-b61d-a1a9303caee1; Path=/
+                type: string
+              style: simple
+            Strict-Transport-Security:
+              explode: false
+              schema:
+                example: max-age=31536000; includeSubdomains
+                type: string
+              style: simple
+            X-Content-Type-Options:
+              explode: false
+              schema:
+                example: nosniff
+                type: string
+              style: simple
+            X-Frame-Options:
+              explode: false
+              schema:
+                example: DENY
+                type: string
+              style: simple
+            X-XSS-Protection:
+              explode: false
+              schema:
+                example: 1; mode=block
+                type: string
+              style: simple
+      summary: Update Organization Users
+      tags:
+      - organizations
+  /ECM/api/v5/getOrganizationUserDetails:
+    post:
+      description: |
+        Use this API to fetch all organizations (both primary and secondary) associated with a user.
+
+        **Note:**
+        - You must enable the **Enable Multiple Organizations for a User** option from the Global Configurations page in the EIC user interface to fetch the organizations associated with a user.
+        - Starting with Release v24.7, this API now also retrieves the start date and end date for new or existing users that belong to the secondary organization.
+
+        The `Authorization` header must have `Bearer` followed by a valid token.
+
+        **Mandatory Parameter:**
+        - **username**: The name of the user whose associated organization details you want to fetch.
+
+        **Optional Parameters:**
+        - **max**: The maximum number of records to return.
+        - **offset**: The offset value for pagination.
+        - **orgQuery**: A query string to filter organizations (e.g. `c.organizationname like '%example%'`).
+        - **verbose**: Set to `true` to retrieve additional information (e.g. organizationname, displayname, description, or status).
+        - **fetchonlycount**: Set to `true` or `false` to indicate if only the total count is required.
+        - **orgmemebership**: Specify if you want details for a particular type of organization (for example, `primary` or `secondary`).
+      operationId: getOrganizationUserDetails
+      requestBody:
+        content:
+          application/json:
+            examples:
+              GetOrganizationUserDetails:
+                value:
+                  username: smith
+                  max: "2"
+                  offset: "0"
+                  orgQuery: c.organizationname like '%TestOrg5%'
+                  verbose: false
+                  fetchonlycount: false
+                  orgmemebership: primary
+            schema:
+              $ref: '#/components/schemas/getOrganizationUserDetails_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                GetOrganizationUserDetails:
+                  value:
+                    displaycount: 4
+                    msg: Success
+                    totalcount: 4
+                    offset: 0
+                    max: 17
+                    organizations:
+                    - organizationname: abcorg
+                      orgmembership: secondary
+                      userstartdate: 04/09/2014
+                      userenddate: 12/30/2044
+                    - organizationname: xyzorg
+                      orgmembership: primary
+                      userstartdate: ""
+                      userenddate: ""
+                    errorCode: "0"
+                    username: smith
+              schema:
+                $ref: '#/components/schemas/getOrganizationUserDetails_200_response'
+          description: Successful Response
+      summary: Get User Organization
+      tags:
+      - organizations
+components:
+  schemas:
+    updateOrganization_request_attributes_inner:
+      properties:
+        attributegroupname:
+          example: dfdf
+          type: string
+        attributes:
+          example: "street,pincode"
+          type: string
+        value:
+          example: group val
+          type: string
+        attributevalues:
+          additionalProperties:
+            type: string
+          example:
+            street: treee1
+            pincode: "1234567"
+          type: object
+        updatetype:
+          example: updategroup
+          type: string
+      type: object
+    updateOrganization_request_roles_inner:
+      properties:
+        rolename:
+          example: ADT_AdmitSuperv_MVH
+          type: string
+        updatetype:
+          example: remove
+          type: string
+      type: object
+    createOrganization_request_users_inner:
+      properties:
+        username:
+          example: "1000003"
+          type: string
+      type: object
+    updateOrganization_request_entitlements_inner:
+      properties:
+        entitlementvalue:
+          example: DepartmentDynamicGroup
+          type: string
+        entitlementtype:
+          example: O365-ADGroup
+          type: string
+        endpoint:
+          example: Office365
+          type: string
+        updatetype:
+          example: remove
+          type: string
+      type: object
+    updateOrganization_request_endpoints_inner:
+      properties:
+        endpointname:
+          example: CyberArk
+          type: string
+        cp1:
+          example: cp1
+          type: string
+        cp2:
+          example: cp2
+          type: string
+        cp3:
+          example: cp3
+          type: string
+        cp4:
+          example: cp4
+          type: string
+        cp5:
+          example: cp5
+          type: string
+        updatetype:
+          example: add
+          type: string
+      type: object
+    createOrganization_request_owners_inner:
+      properties:
+        owner:
+          example: admin
+          type: string
+        rank:
+          example: 2
+          type: integer
+      type: object
+    getOrganizationUserDetails_request:
+      properties:
+        username:
+          description: The name of the user to fetch organization details for.
+          example: smith
+          type: string
+        max:
+          description: The maximum number of records to return.
+          example: "2"
+          type: string
+        offset:
+          description: The starting offset of records.
+          example: "0"
+          type: string
+        orgQuery:
+          description: A query to filter organizations (e.g. c.organizationname like
+            '%TestOrg5%').
+          example: c.organizationname like '%TestOrg5%'
+          type: string
+        verbose:
+          description: Set to true to get additional user details.
+          example: false
+          type: boolean
+        fetchonlycount:
+          description: Set to true to fetch only the count.
+          example: false
+          type: boolean
+        orgmemebership:
+          description: Specify if you want only details for a particular organization
+            type (e.g. primary or secondary).
+          example: primary
+          type: string
+      required:
+      - username
+      type: object
+    deleteOrganization_200_response:
+      example:
+        msg: success
+        errorcode: "0"
+      properties:
+        errorcode:
+          example: "0"
+          type: string
+        msg:
+          example: success
+          type: string
+      type: object
+    createOrganization_request_endpoints_inner:
+      properties:
+        endpointname:
+          example: Office365
+          type: string
+        cp1:
+          example: cp1
+          type: string
+        cp2:
+          example: cp2
+          type: string
+        cp3:
+          example: cp3
+          type: string
+        cp4:
+          example: cp4
+          type: string
+        cp5:
+          example: cp5
+          type: string
+      type: object
+    updateOrganization_request_users_inner:
+      properties:
+        username:
+          example: "1000005"
+          type: string
+        updatetype:
+          example: add
+          type: string
+      type: object
+    updateOrganizationUsers_request_users_inner:
+      properties:
+        username:
+          description: The user to add or remove.
+          example: jdoe
+          type: string
+        updatetype:
+          description: "The action to perform. Allowed values add, remove."
+          enum:
+          - add
+          - remove
+          example: remove
+          type: string
+      type: object
+    createOrganization_200_response:
+      example:
+        msg: Success
+        errorCode: "0"
+      properties:
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Success
+          type: string
+      type: object
+    deleteOrganization_request:
+      properties:
+        organizationname:
+          description: The name of the organization to delete.
+          example: testorg1
+          type: string
+        username:
+          description: The username of the user deleting the organization.
+          example: admin
+          type: string
+      type: object
+    getOrganizationUserDetails_200_response_organizations_inner:
+      example:
+        organizationname: abcorg
+        orgmembership: secondary
+        userenddate: 12/30/2044
+        userstartdate: 04/09/2014
+      properties:
+        organizationname:
+          example: abcorg
+          type: string
+        orgmembership:
+          example: secondary
+          type: string
+        userstartdate:
+          example: 04/09/2014
+          type: string
+        userenddate:
+          example: 12/30/2044
+          type: string
+      type: object
+    updateOrganizationUsers_request:
+      properties:
+        organizationname:
+          description: The secondary organization name.
+          example: myorg
+          type: string
+        users:
+          description: A list of users with their update actions.
+          items:
+            $ref: '#/components/schemas/updateOrganizationUsers_request_users_inner'
+          type: array
+      type: object
+    getOrganization_200_response:
+      example:
+        displaycount: 1
+        msg: Success
+        organizations:
+          displaycount: 1
+          errorCode: "0"
+          msg: Success
+          organizations:
+          - createdate: 2019-08-20 18:31:38
+            createuser: admin
+            customproperty17: Compliance
+            description: testorg
+            endpoints: []
+            entitlements: []
+            location: Bangalore
+            organizationname: testorg
+            organizationtype: Data Security
+            parentorganization: orgNameSav
+            primaryvendorcontact: lmcneil
+            risk: "0"
+            roles: []
+            rules: []
+            score: "0"
+            status: Active
+            updatedate: 2020-07-23 20:19:59
+            updateuser: admin
+            users: []
+          totalcount: 1
+        errorCode: "0"
+      properties:
+        displaycount:
+          example: 1
+          type: number
+        errorCode:
+          example: "0"
+          type: string
+        msg:
+          example: Success
+          type: string
+        organizations:
+          example:
+            displaycount: 1
+            errorCode: "0"
+            msg: Success
+            organizations:
+            - createdate: 2019-08-20 18:31:38
+              createuser: admin
+              customproperty17: Compliance
+              description: testorg
+              endpoints: []
+              entitlements: []
+              location: Bangalore
+              organizationname: testorg
+              organizationtype: Data Security
+              parentorganization: orgNameSav
+              primaryvendorcontact: lmcneil
+              risk: "0"
+              roles: []
+              rules: []
+              score: "0"
+              status: Active
+              updatedate: 2020-07-23 20:19:59
+              updateuser: admin
+              users: []
+            totalcount: 1
+          items:
+            $ref: '#/components/schemas/getOrganization_200_response_organizations_inner'
+          type: array
+      type: object
+    createOrganization_request:
+      properties:
+        organizationname:
+          description: Unique name of the organization.
+          example: TestOrg5
+          type: string
+        username:
+          description: User creating the organization.
+          example: awsadmin
+          type: string
+        primarycontact:
+          example: awsadmin
+          type: string
+        comments:
+          example: comment
+          type: string
+        status:
+          example: ACTIVE
+          type: string
+        customproperty1:
+          example: cp1
+          type: string
+        customproperty5:
+          example: cp5
+          type: string
+        customproperty10:
+          example: cp10
+          type: string
+        organizationtype:
+          example: request rules
+          type: string
+        parentorganization:
+          example: Globex
+          type: string
+        location:
+          example: los angeles
+          type: string
+        endpoints:
+          example:
+          - endpointname: Office365
+            cp1: cp1
+            cp2: cp2
+            cp3: cp3
+            cp4: cp4
+            cp5: cp5
+          - endpointname: Salesforce
+          items:
+            $ref: '#/components/schemas/createOrganization_request_endpoints_inner'
+          type: array
+        roles:
+          example:
+          - rolename: ADT_AdmitSuperv_MCL
+          - rolename: ADT_AdmitSuperv_MVH
+          items:
+            $ref: '#/components/schemas/createOrganization_request_roles_inner'
+          type: array
+        rules:
+          items:
+            $ref: '#/components/schemas/createOrganization_request_rules_inner'
+          type: array
+        entitlements:
+          example:
+          - entitlementvalue: AzureADSP
+            entitlementtype: O365-ADGroup
+            endpoint: Office365
+          - entitlementvalue: DepartmentDynamicGroup
+            entitlementtype: O365-ADGroup
+            endpoint: Office365
+          items:
+            $ref: '#/components/schemas/createOrganization_request_entitlements_inner'
+          type: array
+        users:
+          example:
+          - username: "1000003"
+          - username: "1000005"
+          items:
+            $ref: '#/components/schemas/createOrganization_request_users_inner'
+          type: array
+        owners:
+          example:
+          - owner: admin
+            rank: 2
+          - owner: awsadmin
+            rank: 2
+          items:
+            $ref: '#/components/schemas/createOrganization_request_owners_inner'
+          type: array
+        attributes:
+          items:
+            $ref: '#/components/schemas/createOrganization_request_attributes_inner'
+          type: array
+      required:
+      - organizationname
+      - username
+      type: object
+    updateOrganizationUsers_200_response:
+      example:
+        msg: Success
+        errorCode: "0"
+      properties:
+        msg:
+          example: Success
+          type: string
+        errorCode:
+          example: "0"
+          type: string
+      type: object
+    getOrganization_request:
+      properties:
+        organizationname:
+          description: Filter organizations by name.
+          example: TestOrg5
+          type: string
+        max:
+          description: Maximum number of records to return.
+          example: "2"
+          type: string
+        offset:
+          description: Offset for pagination.
+          example: "0"
+          type: string
+        filtercriteria:
+          description: A comma‐separated list of criteria to filter organizations.
+          example: "organizationname,organizationtype,status,updateuser"
+          type: string
+        orgQuery:
+          description: "A SQL-like query (e.g., c.organizationname like '%TestOrg5%')."
+          example: c.organizationname like '%TestOrg5%'
+          type: string
+      type: object
+    updateOrganization_request_owners_inner:
+      example:
+      - owner: "1000003"
+        rank: 2
+        updatetype: add
+      - owner: awsadmin
+        rank: 2
+        updatetype: remove
+      properties:
+        owner:
+          example: "1000003"
+          type: string
+        rank:
+          example: 2
+          type: integer
+        updatetype:
+          example: add
+          type: string
+      type: object
+    createOrganization_request_rules_inner:
+      properties:
+        name:
+          example: Step10 - Test
+          type: string
+        type:
+          example: REQUEST
+          type: string
+      type: object
+    createOrganization_request_entitlements_inner:
+      properties:
+        entitlementvalue:
+          example: AzureADSP
+          type: string
+        entitlementtype:
+          example: O365-ADGroup
+          type: string
+        endpoint:
+          example: Office365
+          type: string
+      type: object
+    createOrganization_request_attributes_inner:
+      properties:
+        attributegroupname:
+          example: dfdf
+          type: string
+        attributes:
+          example: "street,pincode"
+          type: string
+        value:
+          example: group val
+          type: string
+        attributevalues:
+          additionalProperties:
+            type: string
+          example:
+            street: treee
+            pincode: "123456"
+          type: object
+      type: object
+    updateOrganization_request:
+      properties:
+        organizationname:
+          example: TestOrg5
+          type: string
+        username:
+          example: awsadmin
+          type: string
+        updatedorgname:
+          example: NewTestOrgName
+          type: string
+        primarycontact:
+          example: awsadmin
+          type: string
+        comments:
+          example: comment
+          type: string
+        status:
+          example: ACTIVE
+          type: string
+        customproperty5:
+          example: cp5
+          type: string
+        customproperty10:
+          example: cp10
+          type: string
+        organizationtype:
+          example: request rules
+          type: string
+        parentorganization:
+          example: Globex
+          type: string
+        location:
+          example: los angeles
+          type: string
+        endpoints:
+          example:
+          - endpointname: CyberArk
+            cp1: cp1
+            cp2: cp2
+            cp3: cp3
+            cp4: cp4
+            cp5: cp5
+            updatetype: add
+          - endpointname: Salesforce
+            updatetype: remove
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_endpoints_inner'
+          type: array
+        roles:
+          example:
+          - rolename: ADT_AdmitSuperv_MVH
+            updatetype: remove
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_roles_inner'
+          type: array
+        rules:
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_rules_inner'
+          type: array
+        entitlements:
+          example:
+          - endpoint: Office365
+            entitlementtype: O365-ADGroup
+            entitlementvalue: DepartmentDynamicGroup
+            updatetype: remove
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_entitlements_inner'
+          type: array
+        users:
+          example:
+          - username: "1000005"
+            updatetype: add
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_users_inner'
+          type: array
+        owners:
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_owners_inner'
+          type: array
+        attributes:
+          example:
+          - attributegroupname: dfdf
+            attributes: "street,pincode"
+            value: group val
+            attributevalues:
+              street: treee1
+              pincode: "1234567"
+            updatetype: updategroup
+          items:
+            $ref: '#/components/schemas/updateOrganization_request_attributes_inner'
+          type: array
+      required:
+      - organizationname
+      - username
+      type: object
+    getOrganization_200_response_organizations_inner:
+      properties:
+        createdate:
+          example: 2019-08-20 18:31:38
+          type: string
+        createuser:
+          example: admin
+          type: string
+        customproperty17:
+          example: Compliance
+          type: string
+        description:
+          example: testorg
+          type: string
+        endpoints:
+          example: []
+          items: {}
+          type: array
+        entitlements:
+          example: []
+          items: {}
+          type: array
+        location:
+          example: Bangalore
+          type: string
+        organizationname:
+          example: testorg
+          type: string
+        organizationtype:
+          example: Data Security
+          type: string
+        parentorganization:
+          example: orgNameSav
+          type: string
+        primaryvendorcontact:
+          example: lmcneil
+          type: string
+        risk:
+          example: "0"
+          type: string
+        roles:
+          example: []
+          items: {}
+          type: array
+        rules:
+          example: []
+          items: {}
+          type: array
+        score:
+          example: "0"
+          type: string
+        status:
+          example: Active
+          type: string
+        updatedate:
+          example: 2020-07-23 20:19:59
+          type: string
+        updateuser:
+          example: admin
+          type: string
+        users:
+          example: []
+          items: {}
+          type: array
+      type: object
+    updateOrganization_request_rules_inner:
+      properties:
+        name:
+          example: Step10 - Test
+          type: string
+        type:
+          example: REQUEST
+          type: string
+        updatetype:
+          example: add
+          type: string
+      type: object
+    createOrganization_request_roles_inner:
+      properties:
+        rolename:
+          example: ADT_AdmitSuperv_MCL
+          type: string
+      type: object
+    getOrganizationUserDetails_200_response:
+      example:
+        displaycount: 4
+        msg: Success
+        totalcount: 4
+        offset: 0
+        max: 17
+        organizations:
+        - organizationname: abcorg
+          orgmembership: secondary
+          userenddate: 12/30/2044
+          userstartdate: 04/09/2014
+        - organizationname: abcorg
+          orgmembership: secondary
+          userenddate: 12/30/2044
+          userstartdate: 04/09/2014
+        errorCode: "0"
+        username: smith
+      properties:
+        displaycount:
+          example: 4
+          type: integer
+        msg:
+          example: Success
+          type: string
+        totalcount:
+          example: 4
+          type: integer
+        offset:
+          example: 0
+          type: integer
+        max:
+          example: 17
+          type: integer
+        organizations:
+          items:
+            $ref: '#/components/schemas/getOrganizationUserDetails_200_response_organizations_inner'
+          type: array
+        errorCode:
+          example: "0"
+          type: string
+        username:
+          example: smith
+          type: string
+      type: object
