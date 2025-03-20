@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **SslCertificate** | Pointer to **string** | Specify the SSL certificates to use for securing the connection between EIC and the target application to encrypt the data shared between them. | [optional] 
 **Systemname** | Pointer to **string** |  | [optional] 
 **Vaultconnection** | Pointer to **string** | Vault connection identifier. | [optional] 
-**Vaultconfiguration** | Pointer to [**VaultConfiguration**](VaultConfiguration.md) | Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. | [optional] 
+**Vaultconfiguration** | Pointer to **string** | Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. Note: The format of this string is a JSON string of the VaultConfiguration model. | [optional] 
 **ACCOUNT_ATTRIBUTE** | Pointer to **string** |  | [optional] 
 **ACCOUNTNAMERULE** | Pointer to **string** |  | [optional] 
 **BASE** | Pointer to **string** |  | [optional] 
@@ -375,20 +375,20 @@ HasVaultconnection returns a boolean if a field has been set.
 
 ### GetVaultconfiguration
 
-`func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() VaultConfiguration`
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() string`
 
 GetVaultconfiguration returns the Vaultconfiguration field if non-nil, zero value otherwise.
 
 ### GetVaultconfigurationOk
 
-`func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*VaultConfiguration, bool)`
+`func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*string, bool)`
 
 GetVaultconfigurationOk returns a tuple with the Vaultconfiguration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVaultconfiguration
 
-`func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v VaultConfiguration)`
+`func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v string)`
 
 SetVaultconfiguration sets Vaultconfiguration field to given value.
 

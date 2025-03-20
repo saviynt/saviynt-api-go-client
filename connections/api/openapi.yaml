@@ -772,17 +772,7 @@ components:
     CreateOrUpdateConnectionRequest:
       example:
         groupSearchBaseDN: groupSearchBaseDN
-        vaultconfiguration:
-          path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
-          keyMapping:
-            AUTHTOKEN: AUTHTOKEN
-            PASSWORD:
-              groupName: groupName
-              encryptionmechanism: None
-              ignoreMapping:
-              - ignoreMapping
-              - ignoreMapping
-              keyName: keyName
+        vaultconfiguration: vaultconfiguration
         PASSWORD_NOOFSPLCHARS: PASSWORD_NOOFSPLCHARS
         STATUSKEYJSON: STATUSKEYJSON
         CREATEORGJSON: CREATEORGJSON
@@ -891,7 +881,13 @@ components:
           example: hashicorp\_dev
           type: string
         vaultconfiguration:
-          $ref: '#/components/schemas/VaultConfiguration'
+          description: "Specify the path of the vault to obtain the secret data. Suffix\
+            \ the name of the connector to this path to make it unique for the connector.\
+            \ Note: The format of this string is a JSON string of the VaultConfiguration\
+            \ model."
+          type: string
+          x-stoplight:
+            id: lljr6c8suzjmy
         ACCOUNT_ATTRIBUTE:
           type: string
         ACCOUNTNAMERULE:
@@ -1064,17 +1060,6 @@ components:
       x-stoplight:
         id: 2ejl6du4vhzey
     VaultConfiguration:
-      example:
-        path: /secrets/data/kv-dev-intgn1/aob1/-5MAY23-TEST1/<ConnectionName>\_externalconnection
-        keyMapping:
-          AUTHTOKEN: AUTHTOKEN
-          PASSWORD:
-            groupName: groupName
-            encryptionmechanism: None
-            ignoreMapping:
-            - ignoreMapping
-            - ignoreMapping
-            keyName: keyName
       properties:
         path:
           description: Vault secret path.
@@ -1088,15 +1073,6 @@ components:
       x-stoplight:
         id: 619fvo66n2azf
     VaultConfigurationKeyMapping:
-      example:
-        AUTHTOKEN: AUTHTOKEN
-        PASSWORD:
-          groupName: groupName
-          encryptionmechanism: None
-          ignoreMapping:
-          - ignoreMapping
-          - ignoreMapping
-          keyName: keyName
       properties:
         AUTHTOKEN:
           type: string
@@ -1108,13 +1084,6 @@ components:
       x-stoplight:
         id: 8r2cuk5xlxx2f
     VaultConfigurationKeyMappingPassword:
-      example:
-        groupName: groupName
-        encryptionmechanism: None
-        ignoreMapping:
-        - ignoreMapping
-        - ignoreMapping
-        keyName: keyName
       properties:
         keyName:
           type: string

@@ -42,8 +42,8 @@ type CreateOrUpdateConnectionRequest struct {
 	Systemname *string `json:"systemname,omitempty"`
 	// Vault connection identifier.
 	Vaultconnection *string `json:"vaultconnection,omitempty"`
-	// Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector.
-	Vaultconfiguration *VaultConfiguration `json:"vaultconfiguration,omitempty"`
+	// Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. Note: The format of this string is a JSON string of the VaultConfiguration model.
+	Vaultconfiguration *string `json:"vaultconfiguration,omitempty"`
 	ACCOUNT_ATTRIBUTE *string `json:"ACCOUNT_ATTRIBUTE,omitempty"`
 	ACCOUNTNAMERULE *string `json:"ACCOUNTNAMERULE,omitempty"`
 	BASE *string `json:"BASE,omitempty"`
@@ -484,9 +484,9 @@ func (o *CreateOrUpdateConnectionRequest) SetVaultconnection(v string) {
 }
 
 // GetVaultconfiguration returns the Vaultconfiguration field value if set, zero value otherwise.
-func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() VaultConfiguration {
+func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() string {
 	if o == nil || IsNil(o.Vaultconfiguration) {
-		var ret VaultConfiguration
+		var ret string
 		return ret
 	}
 	return *o.Vaultconfiguration
@@ -494,7 +494,7 @@ func (o *CreateOrUpdateConnectionRequest) GetVaultconfiguration() VaultConfigura
 
 // GetVaultconfigurationOk returns a tuple with the Vaultconfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*VaultConfiguration, bool) {
+func (o *CreateOrUpdateConnectionRequest) GetVaultconfigurationOk() (*string, bool) {
 	if o == nil || IsNil(o.Vaultconfiguration) {
 		return nil, false
 	}
@@ -510,8 +510,8 @@ func (o *CreateOrUpdateConnectionRequest) HasVaultconfiguration() bool {
 	return false
 }
 
-// SetVaultconfiguration gets a reference to the given VaultConfiguration and assigns it to the Vaultconfiguration field.
-func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v VaultConfiguration) {
+// SetVaultconfiguration gets a reference to the given string and assigns it to the Vaultconfiguration field.
+func (o *CreateOrUpdateConnectionRequest) SetVaultconfiguration(v string) {
 	o.Vaultconfiguration = &v
 }
 

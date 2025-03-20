@@ -836,11 +836,11 @@
             "example": "hashicorp\\_dev"
           },
           "vaultconfiguration": {
-            "$ref": "#/components/schemas/VaultConfiguration",
-            "description": "Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector.",
+            "description": "Specify the path of the vault to obtain the secret data. Suffix the name of the connector to this path to make it unique for the connector. Note: The format of this string is a JSON string of the VaultConfiguration model.",
             "x-stoplight": {
               "id": "lljr6c8suzjmy"
-            }
+            },
+            "type": "string"
           },
           "ACCOUNT_ATTRIBUTE": {
             "type": "string"
