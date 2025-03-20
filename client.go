@@ -13,14 +13,18 @@ import (
 	"strings"
 	"time"
 
+	accounts "github.com/saviynt/saviynt-api-go-client/accounts"
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
 	"github.com/saviynt/saviynt-api-go-client/endpoints"
+	entitlements "github.com/saviynt/saviynt-api-go-client/entitlements"
 	"github.com/saviynt/saviynt-api-go-client/filedirectory"
 	"github.com/saviynt/saviynt-api-go-client/jobcontrol"
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
+	organizations "github.com/saviynt/saviynt-api-go-client/organization"
 	"github.com/saviynt/saviynt-api-go-client/savroles"
+	securitysystems "github.com/saviynt/saviynt-api-go-client/securitysystems"
 	"github.com/saviynt/saviynt-api-go-client/tasks"
 	"github.com/saviynt/saviynt-api-go-client/transport"
 	"github.com/saviynt/saviynt-api-go-client/users"
@@ -61,6 +65,14 @@ type Client struct {
 	transportClient               *transport.APIClient
 	Users                         *users.UsersAPIService
 	usersClient                   *users.APIClient
+	Entitlements                  *entitlements.EntitlementsAPIService
+	entitlementsClient            *entitlements.APIClient
+	Organizations                 *organizations.OrganizationsAPIService
+	organizationsClient           *organizations.APIClient
+	Accounts                      *accounts.AccountsAPIService
+	accountsClient                *accounts.APIClient
+	SecuritySystems               *securitysystems.SecuritySystemsAPIService
+	securityClient                *securitysystems.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
@@ -92,6 +104,14 @@ func newClientHTTPClient(serverURL string, username *string, httpClient *http.Cl
 	c.Transport = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
 	c.Users = c.usersClient.UsersAPI
+	c.entitlementsClient = newClientEntitlements(c.APIBaseURL(), c.httpClient)
+	c.Entitlements = c.entitlementsClient.EntitlementsAPI
+	c.organizationsClient = newClientOrganizations(c.APIBaseURL(), c.httpClient)
+	c.Organizations = c.organizationsClient.OrganizationsAPI
+	c.accountsClient = newClientAccounts(c.APIBaseURL(), c.httpClient)
+	c.Accounts = c.accountsClient.AccountsAPI
+	c.securityClient = newClientSecuritySystems(c.APIBaseURL(), c.httpClient)
+	c.SecuritySystems = c.securityClient.SecuritySystemsAPI
 	return c
 }
 
@@ -215,6 +235,30 @@ func newClientUsers(apiBaseURL string, httpClient *http.Client) *users.APIClient
 	cfg.HTTPClient = httpClient
 	cfg.Servers = users.ServerConfigurations{{URL: apiBaseURL}}
 	return users.NewAPIClient(cfg)
+}
+func newClientEntitlements(apiBaseURL string, httpClient *http.Client) *entitlements.APIClient {
+	cfg := entitlements.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = entitlements.ServerConfigurations{{URL: apiBaseURL}}
+	return entitlements.NewAPIClient(cfg)
+}
+func newClientOrganizations(apiBaseURL string, httpClient *http.Client) *organizations.APIClient {
+	cfg := organizations.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = organizations.ServerConfigurations{{URL: apiBaseURL}}
+	return organizations.NewAPIClient(cfg)
+}
+func newClientAccounts(apiBaseURL string, httpClient *http.Client) *accounts.APIClient {
+	cfg := accounts.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = accounts.ServerConfigurations{{URL: apiBaseURL}}
+	return accounts.NewAPIClient(cfg)
+}
+func newClientSecuritySystems(apiBaseURL string, httpClient *http.Client) *securitysystems.APIClient {
+	cfg := securitysystems.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = securitysystems.ServerConfigurations{{URL: apiBaseURL}}
+	return securitysystems.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {
