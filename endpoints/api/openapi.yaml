@@ -253,6 +253,7 @@ components:
           parentAccountPattern: parentAccountPattern
           Account Custom Property 19 Label: Account Custom Property 19 Label
           Account Custom Property 24 Label: Account Custom Property 24 Label
+          primaryAccountType: primaryAccountType
           customproperty32: customproperty32
           customproperty31: customproperty31
           Account Custom Property 26 Label: Account Custom Property 26 Label
@@ -265,6 +266,7 @@ components:
           customproperty39: customproperty39
           customproperty36: customproperty36
           customproperty53Label: customproperty53Label
+          serviceAccountAccessQuery: serviceAccountAccessQuery
           customproperty35: customproperty35
           customproperty38: customproperty38
           customproperty58Label: customproperty58Label
@@ -422,6 +424,7 @@ components:
           parentAccountPattern: parentAccountPattern
           Account Custom Property 19 Label: Account Custom Property 19 Label
           Account Custom Property 24 Label: Account Custom Property 24 Label
+          primaryAccountType: primaryAccountType
           customproperty32: customproperty32
           customproperty31: customproperty31
           Account Custom Property 26 Label: Account Custom Property 26 Label
@@ -434,6 +437,7 @@ components:
           customproperty39: customproperty39
           customproperty36: customproperty36
           customproperty53Label: customproperty53Label
+          serviceAccountAccessQuery: serviceAccountAccessQuery
           customproperty35: customproperty35
           customproperty38: customproperty38
           customproperty58Label: customproperty58Label
@@ -574,24 +578,11 @@ components:
         errorCode:
           description: Error code (0 indicates success)
           type: string
+      required:
+      - errorCode
+      - msg
       x-stoplight:
         id: 84af8425b9be9
-    UpdateEndpointResponse:
-      example:
-        msg: msg
-        errorCode: errorCode
-      properties:
-        msg:
-          type: string
-          x-stoplight:
-            id: f1khdm6trvs9a
-        errorCode:
-          type: string
-          x-stoplight:
-            id: gart4xtpgbzb7
-      title: UpdateEndpointResponse
-      x-stoplight:
-        id: b26jc7jdirrls
     UpdateEndpointRequest:
       example:
         disableModifyAccount: disableModifyAccount
@@ -709,6 +700,25 @@ components:
           type: string
       required:
       - endpointname
+    UpdateEndpointResponse:
+      example:
+        msg: msg
+        errorCode: errorCode
+      properties:
+        msg:
+          type: string
+          x-stoplight:
+            id: f1khdm6trvs9a
+        errorCode:
+          type: string
+          x-stoplight:
+            id: gart4xtpgbzb7
+      required:
+      - errorCode
+      - msg
+      title: UpdateEndpointResponse
+      x-stoplight:
+        id: b26jc7jdirrls
     Endpoint:
       example:
         statusForUniqueAccount: statusForUniqueAccount
@@ -842,6 +852,7 @@ components:
         parentAccountPattern: parentAccountPattern
         Account Custom Property 19 Label: Account Custom Property 19 Label
         Account Custom Property 24 Label: Account Custom Property 24 Label
+        primaryAccountType: primaryAccountType
         customproperty32: customproperty32
         customproperty31: customproperty31
         Account Custom Property 26 Label: Account Custom Property 26 Label
@@ -854,6 +865,7 @@ components:
         customproperty39: customproperty39
         customproperty36: customproperty36
         customproperty53Label: customproperty53Label
+        serviceAccountAccessQuery: serviceAccountAccessQuery
         customproperty35: customproperty35
         customproperty38: customproperty38
         customproperty58Label: customproperty58Label
@@ -904,11 +916,11 @@ components:
         createDate:
           description: date time in `YYYY-MM-DD HH:MM:SS` format
           type: string
+        createEntTaskforRemoveAcc:
+          type: string
         createdBy:
           type: string
         createdFrom:
-          type: string
-        createEntTaskforRemoveAcc:
           type: string
         customproperty1:
           type: string
@@ -942,15 +954,17 @@ components:
           type: string
         lastReviewedDate:
           type: string
-        ownerkey:
-          type: string
         ownerType:
+          type: string
+        ownerkey:
           type: string
         parentAccountPattern:
           type: string
         parentEndpoint:
           type: string
         pluginConfigs:
+          type: string
+        primaryAccountType:
           type: string
         requestable:
           type: string
@@ -963,6 +977,8 @@ components:
         roleTypeAsJson:
           type: string
         securitySystem:
+          type: string
+        serviceAccountAccessQuery:
           type: string
         serviceAccountNameRule:
           type: string

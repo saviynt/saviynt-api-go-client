@@ -34,9 +34,9 @@ type Endpoint struct {
 	ConnectionconfigAsJson *string `json:"connectionconfig_as_json,omitempty"`
 	// date time in `YYYY-MM-DD HH:MM:SS` format
 	CreateDate *string `json:"createDate,omitempty"`
+	CreateEntTaskforRemoveAcc *string `json:"createEntTaskforRemoveAcc,omitempty"`
 	CreatedBy *string `json:"createdBy,omitempty"`
 	CreatedFrom *string `json:"createdFrom,omitempty"`
-	CreateEntTaskforRemoveAcc *string `json:"createEntTaskforRemoveAcc,omitempty"`
 	Customproperty1 *string `json:"customproperty1,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Disableaccountrequest *string `json:"disableaccountrequest,omitempty"`
@@ -53,17 +53,19 @@ type Endpoint struct {
 	LastReviewedBy *string `json:"lastReviewedBy,omitempty"`
 	LastReviewedCampaignName *string `json:"lastReviewedCampaignName,omitempty"`
 	LastReviewedDate *string `json:"lastReviewedDate,omitempty"`
-	Ownerkey *string `json:"ownerkey,omitempty"`
 	OwnerType *string `json:"ownerType,omitempty"`
+	Ownerkey *string `json:"ownerkey,omitempty"`
 	ParentAccountPattern *string `json:"parentAccountPattern,omitempty"`
 	ParentEndpoint *string `json:"parentEndpoint,omitempty"`
 	PluginConfigs *string `json:"pluginConfigs,omitempty"`
+	PrimaryAccountType *string `json:"primaryAccountType,omitempty"`
 	Requestable *string `json:"requestable,omitempty"`
 	Requestableapplication *string `json:"requestableapplication,omitempty"`
 	Requestowner *string `json:"requestowner,omitempty"`
 	Requestownertype *string `json:"requestownertype,omitempty"`
 	RoleTypeAsJson *string `json:"roleTypeAsJson,omitempty"`
 	SecuritySystem *string `json:"securitySystem,omitempty"`
+	ServiceAccountAccessQuery *string `json:"serviceAccountAccessQuery,omitempty"`
 	ServiceAccountNameRule *string `json:"serviceAccountNameRule,omitempty"`
 	Status *string `json:"status,omitempty"`
 	StatusConfig *string `json:"statusConfig,omitempty"`
@@ -567,6 +569,38 @@ func (o *Endpoint) SetCreateDate(v string) {
 	o.CreateDate = &v
 }
 
+// GetCreateEntTaskforRemoveAcc returns the CreateEntTaskforRemoveAcc field value if set, zero value otherwise.
+func (o *Endpoint) GetCreateEntTaskforRemoveAcc() string {
+	if o == nil || IsNil(o.CreateEntTaskforRemoveAcc) {
+		var ret string
+		return ret
+	}
+	return *o.CreateEntTaskforRemoveAcc
+}
+
+// GetCreateEntTaskforRemoveAccOk returns a tuple with the CreateEntTaskforRemoveAcc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetCreateEntTaskforRemoveAccOk() (*string, bool) {
+	if o == nil || IsNil(o.CreateEntTaskforRemoveAcc) {
+		return nil, false
+	}
+	return o.CreateEntTaskforRemoveAcc, true
+}
+
+// HasCreateEntTaskforRemoveAcc returns a boolean if a field has been set.
+func (o *Endpoint) HasCreateEntTaskforRemoveAcc() bool {
+	if o != nil && !IsNil(o.CreateEntTaskforRemoveAcc) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateEntTaskforRemoveAcc gets a reference to the given string and assigns it to the CreateEntTaskforRemoveAcc field.
+func (o *Endpoint) SetCreateEntTaskforRemoveAcc(v string) {
+	o.CreateEntTaskforRemoveAcc = &v
+}
+
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *Endpoint) GetCreatedBy() string {
 	if o == nil || IsNil(o.CreatedBy) {
@@ -629,38 +663,6 @@ func (o *Endpoint) HasCreatedFrom() bool {
 // SetCreatedFrom gets a reference to the given string and assigns it to the CreatedFrom field.
 func (o *Endpoint) SetCreatedFrom(v string) {
 	o.CreatedFrom = &v
-}
-
-// GetCreateEntTaskforRemoveAcc returns the CreateEntTaskforRemoveAcc field value if set, zero value otherwise.
-func (o *Endpoint) GetCreateEntTaskforRemoveAcc() string {
-	if o == nil || IsNil(o.CreateEntTaskforRemoveAcc) {
-		var ret string
-		return ret
-	}
-	return *o.CreateEntTaskforRemoveAcc
-}
-
-// GetCreateEntTaskforRemoveAccOk returns a tuple with the CreateEntTaskforRemoveAcc field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetCreateEntTaskforRemoveAccOk() (*string, bool) {
-	if o == nil || IsNil(o.CreateEntTaskforRemoveAcc) {
-		return nil, false
-	}
-	return o.CreateEntTaskforRemoveAcc, true
-}
-
-// HasCreateEntTaskforRemoveAcc returns a boolean if a field has been set.
-func (o *Endpoint) HasCreateEntTaskforRemoveAcc() bool {
-	if o != nil && !IsNil(o.CreateEntTaskforRemoveAcc) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreateEntTaskforRemoveAcc gets a reference to the given string and assigns it to the CreateEntTaskforRemoveAcc field.
-func (o *Endpoint) SetCreateEntTaskforRemoveAcc(v string) {
-	o.CreateEntTaskforRemoveAcc = &v
 }
 
 // GetCustomproperty1 returns the Customproperty1 field value if set, zero value otherwise.
@@ -1167,38 +1169,6 @@ func (o *Endpoint) SetLastReviewedDate(v string) {
 	o.LastReviewedDate = &v
 }
 
-// GetOwnerkey returns the Ownerkey field value if set, zero value otherwise.
-func (o *Endpoint) GetOwnerkey() string {
-	if o == nil || IsNil(o.Ownerkey) {
-		var ret string
-		return ret
-	}
-	return *o.Ownerkey
-}
-
-// GetOwnerkeyOk returns a tuple with the Ownerkey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Endpoint) GetOwnerkeyOk() (*string, bool) {
-	if o == nil || IsNil(o.Ownerkey) {
-		return nil, false
-	}
-	return o.Ownerkey, true
-}
-
-// HasOwnerkey returns a boolean if a field has been set.
-func (o *Endpoint) HasOwnerkey() bool {
-	if o != nil && !IsNil(o.Ownerkey) {
-		return true
-	}
-
-	return false
-}
-
-// SetOwnerkey gets a reference to the given string and assigns it to the Ownerkey field.
-func (o *Endpoint) SetOwnerkey(v string) {
-	o.Ownerkey = &v
-}
-
 // GetOwnerType returns the OwnerType field value if set, zero value otherwise.
 func (o *Endpoint) GetOwnerType() string {
 	if o == nil || IsNil(o.OwnerType) {
@@ -1229,6 +1199,38 @@ func (o *Endpoint) HasOwnerType() bool {
 // SetOwnerType gets a reference to the given string and assigns it to the OwnerType field.
 func (o *Endpoint) SetOwnerType(v string) {
 	o.OwnerType = &v
+}
+
+// GetOwnerkey returns the Ownerkey field value if set, zero value otherwise.
+func (o *Endpoint) GetOwnerkey() string {
+	if o == nil || IsNil(o.Ownerkey) {
+		var ret string
+		return ret
+	}
+	return *o.Ownerkey
+}
+
+// GetOwnerkeyOk returns a tuple with the Ownerkey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetOwnerkeyOk() (*string, bool) {
+	if o == nil || IsNil(o.Ownerkey) {
+		return nil, false
+	}
+	return o.Ownerkey, true
+}
+
+// HasOwnerkey returns a boolean if a field has been set.
+func (o *Endpoint) HasOwnerkey() bool {
+	if o != nil && !IsNil(o.Ownerkey) {
+		return true
+	}
+
+	return false
+}
+
+// SetOwnerkey gets a reference to the given string and assigns it to the Ownerkey field.
+func (o *Endpoint) SetOwnerkey(v string) {
+	o.Ownerkey = &v
 }
 
 // GetParentAccountPattern returns the ParentAccountPattern field value if set, zero value otherwise.
@@ -1325,6 +1327,38 @@ func (o *Endpoint) HasPluginConfigs() bool {
 // SetPluginConfigs gets a reference to the given string and assigns it to the PluginConfigs field.
 func (o *Endpoint) SetPluginConfigs(v string) {
 	o.PluginConfigs = &v
+}
+
+// GetPrimaryAccountType returns the PrimaryAccountType field value if set, zero value otherwise.
+func (o *Endpoint) GetPrimaryAccountType() string {
+	if o == nil || IsNil(o.PrimaryAccountType) {
+		var ret string
+		return ret
+	}
+	return *o.PrimaryAccountType
+}
+
+// GetPrimaryAccountTypeOk returns a tuple with the PrimaryAccountType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetPrimaryAccountTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.PrimaryAccountType) {
+		return nil, false
+	}
+	return o.PrimaryAccountType, true
+}
+
+// HasPrimaryAccountType returns a boolean if a field has been set.
+func (o *Endpoint) HasPrimaryAccountType() bool {
+	if o != nil && !IsNil(o.PrimaryAccountType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryAccountType gets a reference to the given string and assigns it to the PrimaryAccountType field.
+func (o *Endpoint) SetPrimaryAccountType(v string) {
+	o.PrimaryAccountType = &v
 }
 
 // GetRequestable returns the Requestable field value if set, zero value otherwise.
@@ -1517,6 +1551,38 @@ func (o *Endpoint) HasSecuritySystem() bool {
 // SetSecuritySystem gets a reference to the given string and assigns it to the SecuritySystem field.
 func (o *Endpoint) SetSecuritySystem(v string) {
 	o.SecuritySystem = &v
+}
+
+// GetServiceAccountAccessQuery returns the ServiceAccountAccessQuery field value if set, zero value otherwise.
+func (o *Endpoint) GetServiceAccountAccessQuery() string {
+	if o == nil || IsNil(o.ServiceAccountAccessQuery) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceAccountAccessQuery
+}
+
+// GetServiceAccountAccessQueryOk returns a tuple with the ServiceAccountAccessQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetServiceAccountAccessQueryOk() (*string, bool) {
+	if o == nil || IsNil(o.ServiceAccountAccessQuery) {
+		return nil, false
+	}
+	return o.ServiceAccountAccessQuery, true
+}
+
+// HasServiceAccountAccessQuery returns a boolean if a field has been set.
+func (o *Endpoint) HasServiceAccountAccessQuery() bool {
+	if o != nil && !IsNil(o.ServiceAccountAccessQuery) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountAccessQuery gets a reference to the given string and assigns it to the ServiceAccountAccessQuery field.
+func (o *Endpoint) SetServiceAccountAccessQuery(v string) {
+	o.ServiceAccountAccessQuery = &v
 }
 
 // GetServiceAccountNameRule returns the ServiceAccountNameRule field value if set, zero value otherwise.
@@ -5658,14 +5724,14 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreateDate) {
 		toSerialize["createDate"] = o.CreateDate
 	}
+	if !IsNil(o.CreateEntTaskforRemoveAcc) {
+		toSerialize["createEntTaskforRemoveAcc"] = o.CreateEntTaskforRemoveAcc
+	}
 	if !IsNil(o.CreatedBy) {
 		toSerialize["createdBy"] = o.CreatedBy
 	}
 	if !IsNil(o.CreatedFrom) {
 		toSerialize["createdFrom"] = o.CreatedFrom
-	}
-	if !IsNil(o.CreateEntTaskforRemoveAcc) {
-		toSerialize["createEntTaskforRemoveAcc"] = o.CreateEntTaskforRemoveAcc
 	}
 	if !IsNil(o.Customproperty1) {
 		toSerialize["customproperty1"] = o.Customproperty1
@@ -5713,11 +5779,11 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.LastReviewedDate) {
 		toSerialize["lastReviewedDate"] = o.LastReviewedDate
 	}
-	if !IsNil(o.Ownerkey) {
-		toSerialize["ownerkey"] = o.Ownerkey
-	}
 	if !IsNil(o.OwnerType) {
 		toSerialize["ownerType"] = o.OwnerType
+	}
+	if !IsNil(o.Ownerkey) {
+		toSerialize["ownerkey"] = o.Ownerkey
 	}
 	if !IsNil(o.ParentAccountPattern) {
 		toSerialize["parentAccountPattern"] = o.ParentAccountPattern
@@ -5727,6 +5793,9 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PluginConfigs) {
 		toSerialize["pluginConfigs"] = o.PluginConfigs
+	}
+	if !IsNil(o.PrimaryAccountType) {
+		toSerialize["primaryAccountType"] = o.PrimaryAccountType
 	}
 	if !IsNil(o.Requestable) {
 		toSerialize["requestable"] = o.Requestable
@@ -5745,6 +5814,9 @@ func (o Endpoint) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.SecuritySystem) {
 		toSerialize["securitySystem"] = o.SecuritySystem
+	}
+	if !IsNil(o.ServiceAccountAccessQuery) {
+		toSerialize["serviceAccountAccessQuery"] = o.ServiceAccountAccessQuery
 	}
 	if !IsNil(o.ServiceAccountNameRule) {
 		toSerialize["serviceAccountNameRule"] = o.ServiceAccountNameRule

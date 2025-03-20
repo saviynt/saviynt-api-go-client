@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **Connectionconfig** | Pointer to **string** |  | [optional] 
 **ConnectionconfigAsJson** | Pointer to **string** |  | [optional] 
 **CreateDate** | Pointer to **string** | date time in &#x60;YYYY-MM-DD HH:MM:SS&#x60; format | [optional] 
+**CreateEntTaskforRemoveAcc** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **CreatedFrom** | Pointer to **string** |  | [optional] 
-**CreateEntTaskforRemoveAcc** | Pointer to **string** |  | [optional] 
 **Customproperty1** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Disableaccountrequest** | Pointer to **string** |  | [optional] 
@@ -34,17 +34,19 @@ Name | Type | Description | Notes
 **LastReviewedBy** | Pointer to **string** |  | [optional] 
 **LastReviewedCampaignName** | Pointer to **string** |  | [optional] 
 **LastReviewedDate** | Pointer to **string** |  | [optional] 
-**Ownerkey** | Pointer to **string** |  | [optional] 
 **OwnerType** | Pointer to **string** |  | [optional] 
+**Ownerkey** | Pointer to **string** |  | [optional] 
 **ParentAccountPattern** | Pointer to **string** |  | [optional] 
 **ParentEndpoint** | Pointer to **string** |  | [optional] 
 **PluginConfigs** | Pointer to **string** |  | [optional] 
+**PrimaryAccountType** | Pointer to **string** |  | [optional] 
 **Requestable** | Pointer to **string** |  | [optional] 
 **Requestableapplication** | Pointer to **string** |  | [optional] 
 **Requestowner** | Pointer to **string** |  | [optional] 
 **Requestownertype** | Pointer to **string** |  | [optional] 
 **RoleTypeAsJson** | Pointer to **string** |  | [optional] 
 **SecuritySystem** | Pointer to **string** |  | [optional] 
+**ServiceAccountAccessQuery** | Pointer to **string** |  | [optional] 
 **ServiceAccountNameRule** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **StatusConfig** | Pointer to **string** |  | [optional] 
@@ -468,6 +470,31 @@ SetCreateDate sets CreateDate field to given value.
 
 HasCreateDate returns a boolean if a field has been set.
 
+### GetCreateEntTaskforRemoveAcc
+
+`func (o *Endpoint) GetCreateEntTaskforRemoveAcc() string`
+
+GetCreateEntTaskforRemoveAcc returns the CreateEntTaskforRemoveAcc field if non-nil, zero value otherwise.
+
+### GetCreateEntTaskforRemoveAccOk
+
+`func (o *Endpoint) GetCreateEntTaskforRemoveAccOk() (*string, bool)`
+
+GetCreateEntTaskforRemoveAccOk returns a tuple with the CreateEntTaskforRemoveAcc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateEntTaskforRemoveAcc
+
+`func (o *Endpoint) SetCreateEntTaskforRemoveAcc(v string)`
+
+SetCreateEntTaskforRemoveAcc sets CreateEntTaskforRemoveAcc field to given value.
+
+### HasCreateEntTaskforRemoveAcc
+
+`func (o *Endpoint) HasCreateEntTaskforRemoveAcc() bool`
+
+HasCreateEntTaskforRemoveAcc returns a boolean if a field has been set.
+
 ### GetCreatedBy
 
 `func (o *Endpoint) GetCreatedBy() string`
@@ -517,31 +544,6 @@ SetCreatedFrom sets CreatedFrom field to given value.
 `func (o *Endpoint) HasCreatedFrom() bool`
 
 HasCreatedFrom returns a boolean if a field has been set.
-
-### GetCreateEntTaskforRemoveAcc
-
-`func (o *Endpoint) GetCreateEntTaskforRemoveAcc() string`
-
-GetCreateEntTaskforRemoveAcc returns the CreateEntTaskforRemoveAcc field if non-nil, zero value otherwise.
-
-### GetCreateEntTaskforRemoveAccOk
-
-`func (o *Endpoint) GetCreateEntTaskforRemoveAccOk() (*string, bool)`
-
-GetCreateEntTaskforRemoveAccOk returns a tuple with the CreateEntTaskforRemoveAcc field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreateEntTaskforRemoveAcc
-
-`func (o *Endpoint) SetCreateEntTaskforRemoveAcc(v string)`
-
-SetCreateEntTaskforRemoveAcc sets CreateEntTaskforRemoveAcc field to given value.
-
-### HasCreateEntTaskforRemoveAcc
-
-`func (o *Endpoint) HasCreateEntTaskforRemoveAcc() bool`
-
-HasCreateEntTaskforRemoveAcc returns a boolean if a field has been set.
 
 ### GetCustomproperty1
 
@@ -938,31 +940,6 @@ SetLastReviewedDate sets LastReviewedDate field to given value.
 
 HasLastReviewedDate returns a boolean if a field has been set.
 
-### GetOwnerkey
-
-`func (o *Endpoint) GetOwnerkey() string`
-
-GetOwnerkey returns the Ownerkey field if non-nil, zero value otherwise.
-
-### GetOwnerkeyOk
-
-`func (o *Endpoint) GetOwnerkeyOk() (*string, bool)`
-
-GetOwnerkeyOk returns a tuple with the Ownerkey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOwnerkey
-
-`func (o *Endpoint) SetOwnerkey(v string)`
-
-SetOwnerkey sets Ownerkey field to given value.
-
-### HasOwnerkey
-
-`func (o *Endpoint) HasOwnerkey() bool`
-
-HasOwnerkey returns a boolean if a field has been set.
-
 ### GetOwnerType
 
 `func (o *Endpoint) GetOwnerType() string`
@@ -987,6 +964,31 @@ SetOwnerType sets OwnerType field to given value.
 `func (o *Endpoint) HasOwnerType() bool`
 
 HasOwnerType returns a boolean if a field has been set.
+
+### GetOwnerkey
+
+`func (o *Endpoint) GetOwnerkey() string`
+
+GetOwnerkey returns the Ownerkey field if non-nil, zero value otherwise.
+
+### GetOwnerkeyOk
+
+`func (o *Endpoint) GetOwnerkeyOk() (*string, bool)`
+
+GetOwnerkeyOk returns a tuple with the Ownerkey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOwnerkey
+
+`func (o *Endpoint) SetOwnerkey(v string)`
+
+SetOwnerkey sets Ownerkey field to given value.
+
+### HasOwnerkey
+
+`func (o *Endpoint) HasOwnerkey() bool`
+
+HasOwnerkey returns a boolean if a field has been set.
 
 ### GetParentAccountPattern
 
@@ -1062,6 +1064,31 @@ SetPluginConfigs sets PluginConfigs field to given value.
 `func (o *Endpoint) HasPluginConfigs() bool`
 
 HasPluginConfigs returns a boolean if a field has been set.
+
+### GetPrimaryAccountType
+
+`func (o *Endpoint) GetPrimaryAccountType() string`
+
+GetPrimaryAccountType returns the PrimaryAccountType field if non-nil, zero value otherwise.
+
+### GetPrimaryAccountTypeOk
+
+`func (o *Endpoint) GetPrimaryAccountTypeOk() (*string, bool)`
+
+GetPrimaryAccountTypeOk returns a tuple with the PrimaryAccountType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrimaryAccountType
+
+`func (o *Endpoint) SetPrimaryAccountType(v string)`
+
+SetPrimaryAccountType sets PrimaryAccountType field to given value.
+
+### HasPrimaryAccountType
+
+`func (o *Endpoint) HasPrimaryAccountType() bool`
+
+HasPrimaryAccountType returns a boolean if a field has been set.
 
 ### GetRequestable
 
@@ -1212,6 +1239,31 @@ SetSecuritySystem sets SecuritySystem field to given value.
 `func (o *Endpoint) HasSecuritySystem() bool`
 
 HasSecuritySystem returns a boolean if a field has been set.
+
+### GetServiceAccountAccessQuery
+
+`func (o *Endpoint) GetServiceAccountAccessQuery() string`
+
+GetServiceAccountAccessQuery returns the ServiceAccountAccessQuery field if non-nil, zero value otherwise.
+
+### GetServiceAccountAccessQueryOk
+
+`func (o *Endpoint) GetServiceAccountAccessQueryOk() (*string, bool)`
+
+GetServiceAccountAccessQueryOk returns a tuple with the ServiceAccountAccessQuery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountAccessQuery
+
+`func (o *Endpoint) SetServiceAccountAccessQuery(v string)`
+
+SetServiceAccountAccessQuery sets ServiceAccountAccessQuery field to given value.
+
+### HasServiceAccountAccessQuery
+
+`func (o *Endpoint) HasServiceAccountAccessQuery() bool`
+
+HasServiceAccountAccessQuery returns a boolean if a field has been set.
 
 ### GetServiceAccountNameRule
 

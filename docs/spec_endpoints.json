@@ -302,28 +302,11 @@
             "type": "string",
             "description": "Error code (0 indicates success)"
           }
-        }
-      },
-      "UpdateEndpointResponse": {
-        "title": "UpdateEndpointResponse",
-        "x-stoplight": {
-          "id": "b26jc7jdirrls"
         },
-        "type": "object",
-        "properties": {
-          "msg": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "f1khdm6trvs9a"
-            }
-          },
-          "errorCode": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "gart4xtpgbzb7"
-            }
-          }
-        }
+        "required": [
+          "msg",
+          "errorCode"
+        ]
       },
       "UpdateEndpointRequest": {
         "type": "object",
@@ -452,6 +435,31 @@
           }
         }
       },
+      "UpdateEndpointResponse": {
+        "title": "UpdateEndpointResponse",
+        "x-stoplight": {
+          "id": "b26jc7jdirrls"
+        },
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "f1khdm6trvs9a"
+            }
+          },
+          "errorCode": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "gart4xtpgbzb7"
+            }
+          }
+        },
+        "required": [
+          "msg",
+          "errorCode"
+        ]
+      },
       "Endpoint": {
         "type": "object",
         "x-stoplight": {
@@ -492,13 +500,13 @@
             "type": "string",
             "description": "date time in `YYYY-MM-DD HH:MM:SS` format"
           },
+          "createEntTaskforRemoveAcc": {
+            "type": "string"
+          },
           "createdBy": {
             "type": "string"
           },
           "createdFrom": {
-            "type": "string"
-          },
-          "createEntTaskforRemoveAcc": {
             "type": "string"
           },
           "customproperty1": {
@@ -549,10 +557,10 @@
           "lastReviewedDate": {
             "type": "string"
           },
-          "ownerkey": {
+          "ownerType": {
             "type": "string"
           },
-          "ownerType": {
+          "ownerkey": {
             "type": "string"
           },
           "parentAccountPattern": {
@@ -562,6 +570,9 @@
             "type": "string"
           },
           "pluginConfigs": {
+            "type": "string"
+          },
+          "primaryAccountType": {
             "type": "string"
           },
           "requestable": {
@@ -580,6 +591,9 @@
             "type": "string"
           },
           "securitySystem": {
+            "type": "string"
+          },
+          "serviceAccountAccessQuery": {
             "type": "string"
           },
           "serviceAccountNameRule": {

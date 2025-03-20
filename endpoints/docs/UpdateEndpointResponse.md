@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Msg** | Pointer to **string** |  | [optional] 
-**ErrorCode** | Pointer to **string** |  | [optional] 
+**Msg** | **string** |  | 
+**ErrorCode** | **string** |  | 
 
 ## Methods
 
 ### NewUpdateEndpointResponse
 
-`func NewUpdateEndpointResponse() *UpdateEndpointResponse`
+`func NewUpdateEndpointResponse(msg string, errorCode string, ) *UpdateEndpointResponse`
 
 NewUpdateEndpointResponse instantiates a new UpdateEndpointResponse object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetMsg sets Msg field to given value.
 
-### HasMsg
-
-`func (o *UpdateEndpointResponse) HasMsg() bool`
-
-HasMsg returns a boolean if a field has been set.
 
 ### GetErrorCode
 
@@ -70,11 +65,6 @@ and a boolean to check if the value has been set.
 
 SetErrorCode sets ErrorCode field to given value.
 
-### HasErrorCode
-
-`func (o *UpdateEndpointResponse) HasErrorCode() bool`
-
-HasErrorCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -729,6 +729,10 @@
             "type": "string"
           }
         },
+        "required": [
+          "msg",
+          "errorCode"
+        ],
         "type": "object",
         "x-stoplight": {
           "id": "84af8425b9be9"
@@ -1770,6 +1774,9 @@
           "pluginConfigs": {
             "type": "string"
           },
+          "primaryAccountType": {
+            "type": "string"
+          },
           "requestable": {
             "type": "string"
           },
@@ -1786,6 +1793,9 @@
             "type": "string"
           },
           "securitySystem": {
+            "type": "string"
+          },
+          "serviceAccountAccessQuery": {
             "type": "string"
           },
           "serviceAccountNameRule": {
@@ -3237,6 +3247,10 @@
             }
           }
         },
+        "required": [
+          "msg",
+          "errorCode"
+        ],
         "title": "UpdateEndpointResponse",
         "type": "object",
         "x-stoplight": {
