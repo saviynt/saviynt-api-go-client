@@ -66,15 +66,3 @@ func getEndpointsMulti(ctx context.Context, api *endpoints.EndpointsAPIService, 
 func GetAllEndpoints(ctx context.Context, api *endpoints.EndpointsAPIService) (Endpoints, error) {
 	return getEndpointsMulti(ctx, api, "")
 }
-
-func GetEndpoint(ctx context.Context, api *endpoints.EndpointsAPIService, endpointname string) (*endpoints.Endpoint, error) {
-	if eps, err := getEndpointsMulti(ctx, api, endpointname); err != nil {
-		return nil, err
-	} else if len(eps) == 0 {
-		return nil, fmt.Errorf("endpoint for endpoint name not found (%s)", endpointname)
-	} else if len(eps) == 1 {
-		return saviyntapigoclient.Pointer(eps[0]), nil
-	} else {
-		return nil, fmt.Errorf("endpoint for endpoint name (%s) resulted in multiple matches (%d)", endpointname, len(eps))
-	}
-}

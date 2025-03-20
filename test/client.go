@@ -16,11 +16,20 @@ const (
 	EnvSaviyntTestData        = "SAVIYNT_TEST_DATA"        // #nosec G101
 
 	MsgSkipTest                         = "skip test"
+	MsgSkipTestUnimplemented            = "skip test: unimplemented"
 	MsgSkipTestErrorInstantiatingClient = "skip test: error instantiating client (%s)"
 	MsgSkipTestCredentialsNotSet        = "skip test: credentials env var not set" // #nosec G101
 	MsgSkipTestClientNotConfigured      = "skip test: client not configured"
 	MsgSkipTestPrereqNotSet             = "skip test: test pre-req not set from (%s)"
 )
+
+func skipTestMessage(msg string) string {
+	if msg = strings.TrimSpace(msg); msg == "" {
+		return MsgSkipTest
+	} else {
+		return MsgSkipTest + ": " + msg
+	}
+}
 
 func client() (*saviyntapigoclient.Client, saviyntapigoclient.Credentials, bool, string, error) {
 	creds := saviyntapigoclient.Credentials{}

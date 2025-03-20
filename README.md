@@ -52,8 +52,8 @@ The following Saviynt APIs are covered by this SDK.
 | 7 | Delegated Administration | Edit Delegate | `POST /ECM/api/v5/editDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 8 | Delegated Administration | Delete Delegate | `POST /ECM/api/v5/deleteDelegate` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 9 | Email | Send Email | `POST /ECM/api/v5/sendEmail` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| 10 | Endpoints | Create Endpoint | `POST /ECM/api/v5/createEndpoint` | :white_check_mark: | :white_check_mark: | :x: | :x: |
-| 11 | Endpoints | Update Endpoint | `PUT /ECM/api/v5/updateEndpoint` | :white_check_mark: | :white_check_mark: | :x: | :x: |
+| 10 | Endpoints | Create Endpoint | `POST /ECM/api/v5/createEndpoint` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| 11 | Endpoints | Update Endpoint | `PUT /ECM/api/v5/updateEndpoint` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 12 | Endpoints | Get List of Endpoints | `POST /ECM/api/v5/getEndpoints` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 13 | File Directory | Upload New File | `POST /ECM/api/v5/uploadSchemaFile` | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | 14 | Job Control | Create and Update Trigger | `POST /ECM/api/v5/createUpdateTrigger` | :white_check_mark: | :white_check_mark: | :x: | :x: |
