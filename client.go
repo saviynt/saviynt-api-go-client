@@ -12,7 +12,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
