@@ -13,6 +13,7 @@ import (
 	"strings"
 	"time"
 
+
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
@@ -21,6 +22,7 @@ import (
 	"github.com/saviynt/saviynt-api-go-client/jobcontrol"
 	"github.com/saviynt/saviynt-api-go-client/mtlsauthentication"
 	"github.com/saviynt/saviynt-api-go-client/savroles"
+	"github.com/saviynt/saviynt-api-go-client/securitysystems"
 	"github.com/saviynt/saviynt-api-go-client/tasks"
 	"github.com/saviynt/saviynt-api-go-client/transport"
 	"github.com/saviynt/saviynt-api-go-client/users"
@@ -61,6 +63,8 @@ type Client struct {
 	transportClient               *transport.APIClient
 	Users                         *users.UsersAPIService
 	usersClient                   *users.APIClient
+	SecuritySystems               *securitysystems.SecuritySystemsAPIService
+	securitySystemsClient         *securitysystems.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
@@ -92,6 +96,8 @@ func newClientHTTPClient(serverURL string, username *string, httpClient *http.Cl
 	c.Transport = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
 	c.Users = c.usersClient.UsersAPI
+	c.securitySystemsClient=newClientSecuritySystems(c.APIBaseURL(), c.httpClient)
+	c.SecuritySystems=c.securitySystemsClient.SecuritySystemsAPI
 	return c
 }
 
@@ -215,6 +221,13 @@ func newClientUsers(apiBaseURL string, httpClient *http.Client) *users.APIClient
 	cfg.HTTPClient = httpClient
 	cfg.Servers = users.ServerConfigurations{{URL: apiBaseURL}}
 	return users.NewAPIClient(cfg)
+}
+
+func newClientSecuritySystems(apiBaseURL string, httpClient *http.Client) *securitysystems.APIClient {
+	cfg := securitysystems.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = securitysystems.ServerConfigurations{{URL: apiBaseURL}}
+	return securitysystems.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {

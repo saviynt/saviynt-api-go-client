@@ -7,6 +7,10 @@ require (
 	golang.org/x/oauth2 v0.28.0
 )
 
+require securitysystems v0.0.0
+
+replace securitysystems => /Users/nandini.choukimath/Downloads/test_security/securitysystems
+
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
