@@ -4,19 +4,17 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateEndpoint**](EndpointsAPI.md#CreateEndpoint) | **Post** /ECM/api/v5/createEndpoint | Create Endpoint
-[**GetEndpoints**](EndpointsAPI.md#GetEndpoints) | **Post** /ECM/api/v5/getEndpoints | Get List of Endpoints
-[**UpdateEndpoint**](EndpointsAPI.md#UpdateEndpoint) | **Put** /ECM/api/v5/updateEndpoint | Update Endpoint
+[**CreateEndpoint**](EndpointsAPI.md#CreateEndpoint) | **Post** /ECM/api/v5/createEndpoint | Create endpoint
+[**GetEndpoints**](EndpointsAPI.md#GetEndpoints) | **Post** /ECM/api/v5/getEndpoints | Get list of endpoints
+[**UpdateEndpoint**](EndpointsAPI.md#UpdateEndpoint) | **Put** /ECM/api/v5/updateEndpoint | Update endpoint
 
 
 
 ## CreateEndpoint
 
-> CreateEndpointResponse CreateEndpoint(ctx).CreateEndpointRequest(createEndpointRequest).Execute()
+> UpdateEndpoint200Response CreateEndpoint(ctx).CreateEndpointRequest(createEndpointRequest).Execute()
 
-Create Endpoint
-
-
+Create endpoint
 
 ### Example
 
@@ -31,7 +29,7 @@ import (
 )
 
 func main() {
-	createEndpointRequest := *openapiclient.NewCreateEndpointRequest("DisplayName_example", "Endpointname_example", "Securitysystem_example") // CreateEndpointRequest | 
+	createEndpointRequest := *openapiclient.NewCreateEndpointRequest("Create-an-endpoint", "new-endpoint", "connectiontest") // CreateEndpointRequest | Request payload for creating an endpoint.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -40,7 +38,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EndpointsAPI.CreateEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateEndpoint`: CreateEndpointResponse
+	// response from `CreateEndpoint`: UpdateEndpoint200Response
 	fmt.Fprintf(os.Stdout, "Response from `EndpointsAPI.CreateEndpoint`: %v\n", resp)
 }
 ```
@@ -56,11 +54,11 @@ Other parameters are passed through a pointer to a apiCreateEndpointRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createEndpointRequest** | [**CreateEndpointRequest**](CreateEndpointRequest.md) |  | 
+ **createEndpointRequest** | [**CreateEndpointRequest**](CreateEndpointRequest.md) | Request payload for creating an endpoint. | 
 
 ### Return type
 
-[**CreateEndpointResponse**](CreateEndpointResponse.md)
+[**UpdateEndpoint200Response**](UpdateEndpoint200Response.md)
 
 ### Authorization
 
@@ -78,11 +76,9 @@ No authorization required
 
 ## GetEndpoints
 
-> GetEndpointsResponse GetEndpoints(ctx).GetEndpointsRequest(getEndpointsRequest).Execute()
+> GetEndpoints200Response GetEndpoints(ctx).GetEndpointsRequest(getEndpointsRequest).Execute()
 
-Get List of Endpoints
-
-
+Get list of endpoints
 
 ### Example
 
@@ -97,7 +93,7 @@ import (
 )
 
 func main() {
-	getEndpointsRequest := *openapiclient.NewGetEndpointsRequest() // GetEndpointsRequest | 
+	getEndpointsRequest := *openapiclient.NewGetEndpointsRequest() // GetEndpointsRequest | Request payload for listing enpoints.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -106,7 +102,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EndpointsAPI.GetEndpoints``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetEndpoints`: GetEndpointsResponse
+	// response from `GetEndpoints`: GetEndpoints200Response
 	fmt.Fprintf(os.Stdout, "Response from `EndpointsAPI.GetEndpoints`: %v\n", resp)
 }
 ```
@@ -122,11 +118,11 @@ Other parameters are passed through a pointer to a apiGetEndpointsRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **getEndpointsRequest** | [**GetEndpointsRequest**](GetEndpointsRequest.md) |  | 
+ **getEndpointsRequest** | [**GetEndpointsRequest**](GetEndpointsRequest.md) | Request payload for listing enpoints. | 
 
 ### Return type
 
-[**GetEndpointsResponse**](GetEndpointsResponse.md)
+[**GetEndpoints200Response**](GetEndpoints200Response.md)
 
 ### Authorization
 
@@ -144,11 +140,9 @@ No authorization required
 
 ## UpdateEndpoint
 
-> UpdateEndpointResponse UpdateEndpoint(ctx).UpdateEndpointRequest(updateEndpointRequest).Execute()
+> UpdateEndpoint200Response UpdateEndpoint(ctx).UpdateEndpointRequest(updateEndpointRequest).Execute()
 
-Update Endpoint
-
-
+Update endpoint
 
 ### Example
 
@@ -163,7 +157,7 @@ import (
 )
 
 func main() {
-	updateEndpointRequest := *openapiclient.NewUpdateEndpointRequest("Endpointname_example") // UpdateEndpointRequest | 
+	updateEndpointRequest := *openapiclient.NewUpdateEndpointRequest("Create-an-endpoint") // UpdateEndpointRequest | Request payload for updating an endpoint.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -172,7 +166,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EndpointsAPI.UpdateEndpoint``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `UpdateEndpoint`: UpdateEndpointResponse
+	// response from `UpdateEndpoint`: UpdateEndpoint200Response
 	fmt.Fprintf(os.Stdout, "Response from `EndpointsAPI.UpdateEndpoint`: %v\n", resp)
 }
 ```
@@ -188,11 +182,11 @@ Other parameters are passed through a pointer to a apiUpdateEndpointRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **updateEndpointRequest** | [**UpdateEndpointRequest**](UpdateEndpointRequest.md) |  | 
+ **updateEndpointRequest** | [**UpdateEndpointRequest**](UpdateEndpointRequest.md) | Request payload for updating an endpoint. | 
 
 ### Return type
 
-[**UpdateEndpointResponse**](UpdateEndpointResponse.md)
+[**UpdateEndpoint200Response**](UpdateEndpoint200Response.md)
 
 ### Authorization
 

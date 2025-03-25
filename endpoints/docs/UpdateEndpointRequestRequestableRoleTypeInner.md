@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RoleType** | Pointer to **string** | Type of role (e.g., Application, Enterprise, Enabler, Transactional, EmergencyAccess) | [optional] 
-**RequestOption** | Pointer to **string** | How roles are displayed (e.g., None, DropDownSingle, Table, TableOnlyAdd) | [optional] 
-**Required** | Pointer to **bool** | Whether role selection is required | [optional] 
-**RequestedQuery** | Pointer to **string** | Query for filtering requested roles | [optional] 
-**SelectedQuery** | Pointer to **string** | Query for filtering selected roles | [optional] 
-**ShowOn** | Pointer to **string** | Specifies where to display roles (e.g., All, ShowOnApplicationRequest, ShowOnServiceAccountRequest) | [optional] 
+**RoleType** | Pointer to **string** |  | [optional] 
+**RequestOption** | Pointer to **string** |  | [optional] 
+**Required** | Pointer to **bool** |  | [optional] 
+**RequestedQuery** | Pointer to **string** |  | [optional] 
+**SelectedQuery** | Pointer to **string** |  | [optional] 
+**ShowOn** | Pointer to **string** |  | [optional] 
 
 ## Methods
 

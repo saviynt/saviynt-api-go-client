@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionType** | Pointer to **string** | Filter by connection type | [optional] 
-**Endpointkey** | Pointer to **[]int32** | Filter by endpoint key(s) | [optional] 
-**Endpointname** | Pointer to **string** | Filter by endpoint name | [optional] 
-**Max** | Pointer to **int32** | Maximum number of results to return. Maximium is 500. | [optional] 
-**Offset** | Pointer to **int32** | Pagination offset | [optional] 
-**FilterCriteria** | Pointer to **map[string]interface{}** | Custom filter criteria | [optional] 
+**Endpointname** | Pointer to **string** | Specify a name for the endpoint. Provide a logical name that will help you easily identify it. | [optional] 
+**DisplayName** | Pointer to **string** |  Enter a user-friendly display name for the endpoint that will be displayed in the user interface. Display Name can be different from Endpoint Name. | [optional] 
+**ConnectionType** | Pointer to **string** | Specify the Security system for which you want to create an endpoint. | [optional] 
+**Endpointkey** | Pointer to **string** | Endpoint key. Spcify the key(s) in array  | [optional] 
+**Max** | Pointer to **string** | Description for the endpoint. | [optional] 
+**Owner** | Pointer to **string** | Owner of the endpoint. If ownerType is User, specify the username of the owner. If ownerType is Usergroup, sepecify the name of the User group | [optional] 
+**FilterCriteria** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -29,6 +30,56 @@ will change when the set of required properties is changed
 NewGetEndpointsRequestWithDefaults instantiates a new GetEndpointsRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEndpointname
+
+`func (o *GetEndpointsRequest) GetEndpointname() string`
+
+GetEndpointname returns the Endpointname field if non-nil, zero value otherwise.
+
+### GetEndpointnameOk
+
+`func (o *GetEndpointsRequest) GetEndpointnameOk() (*string, bool)`
+
+GetEndpointnameOk returns a tuple with the Endpointname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpointname
+
+`func (o *GetEndpointsRequest) SetEndpointname(v string)`
+
+SetEndpointname sets Endpointname field to given value.
+
+### HasEndpointname
+
+`func (o *GetEndpointsRequest) HasEndpointname() bool`
+
+HasEndpointname returns a boolean if a field has been set.
+
+### GetDisplayName
+
+`func (o *GetEndpointsRequest) GetDisplayName() string`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *GetEndpointsRequest) GetDisplayNameOk() (*string, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *GetEndpointsRequest) SetDisplayName(v string)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *GetEndpointsRequest) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetConnectionType
 
@@ -57,20 +108,20 @@ HasConnectionType returns a boolean if a field has been set.
 
 ### GetEndpointkey
 
-`func (o *GetEndpointsRequest) GetEndpointkey() []int32`
+`func (o *GetEndpointsRequest) GetEndpointkey() string`
 
 GetEndpointkey returns the Endpointkey field if non-nil, zero value otherwise.
 
 ### GetEndpointkeyOk
 
-`func (o *GetEndpointsRequest) GetEndpointkeyOk() (*[]int32, bool)`
+`func (o *GetEndpointsRequest) GetEndpointkeyOk() (*string, bool)`
 
 GetEndpointkeyOk returns a tuple with the Endpointkey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndpointkey
 
-`func (o *GetEndpointsRequest) SetEndpointkey(v []int32)`
+`func (o *GetEndpointsRequest) SetEndpointkey(v string)`
 
 SetEndpointkey sets Endpointkey field to given value.
 
@@ -80,47 +131,22 @@ SetEndpointkey sets Endpointkey field to given value.
 
 HasEndpointkey returns a boolean if a field has been set.
 
-### GetEndpointname
-
-`func (o *GetEndpointsRequest) GetEndpointname() string`
-
-GetEndpointname returns the Endpointname field if non-nil, zero value otherwise.
-
-### GetEndpointnameOk
-
-`func (o *GetEndpointsRequest) GetEndpointnameOk() (*string, bool)`
-
-GetEndpointnameOk returns a tuple with the Endpointname field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpointname
-
-`func (o *GetEndpointsRequest) SetEndpointname(v string)`
-
-SetEndpointname sets Endpointname field to given value.
-
-### HasEndpointname
-
-`func (o *GetEndpointsRequest) HasEndpointname() bool`
-
-HasEndpointname returns a boolean if a field has been set.
-
 ### GetMax
 
-`func (o *GetEndpointsRequest) GetMax() int32`
+`func (o *GetEndpointsRequest) GetMax() string`
 
 GetMax returns the Max field if non-nil, zero value otherwise.
 
 ### GetMaxOk
 
-`func (o *GetEndpointsRequest) GetMaxOk() (*int32, bool)`
+`func (o *GetEndpointsRequest) GetMaxOk() (*string, bool)`
 
 GetMaxOk returns a tuple with the Max field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMax
 
-`func (o *GetEndpointsRequest) SetMax(v int32)`
+`func (o *GetEndpointsRequest) SetMax(v string)`
 
 SetMax sets Max field to given value.
 
@@ -130,30 +156,30 @@ SetMax sets Max field to given value.
 
 HasMax returns a boolean if a field has been set.
 
-### GetOffset
+### GetOwner
 
-`func (o *GetEndpointsRequest) GetOffset() int32`
+`func (o *GetEndpointsRequest) GetOwner() string`
 
-GetOffset returns the Offset field if non-nil, zero value otherwise.
+GetOwner returns the Owner field if non-nil, zero value otherwise.
 
-### GetOffsetOk
+### GetOwnerOk
 
-`func (o *GetEndpointsRequest) GetOffsetOk() (*int32, bool)`
+`func (o *GetEndpointsRequest) GetOwnerOk() (*string, bool)`
 
-GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
+GetOwnerOk returns a tuple with the Owner field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetOffset
+### SetOwner
 
-`func (o *GetEndpointsRequest) SetOffset(v int32)`
+`func (o *GetEndpointsRequest) SetOwner(v string)`
 
-SetOffset sets Offset field to given value.
+SetOwner sets Owner field to given value.
 
-### HasOffset
+### HasOwner
 
-`func (o *GetEndpointsRequest) HasOffset() bool`
+`func (o *GetEndpointsRequest) HasOwner() bool`
 
-HasOffset returns a boolean if a field has been set.
+HasOwner returns a boolean if a field has been set.
 
 ### GetFilterCriteria
 
