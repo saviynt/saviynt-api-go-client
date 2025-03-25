@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/saviynt/saviynt-api-go-client/delegatedadministration"
 	"github.com/saviynt/saviynt-api-go-client/email"
@@ -55,14 +56,14 @@ type Client struct {
 	mtlsAuthenticationClient      *mtlsauthentication.APIClient
 	SAVRoles                      *savroles.SAVRolesAPIService
 	savRolesClient                *savroles.APIClient
+	SecuritySystems               *securitysystems.SecuritySystemsAPIService
+	securitySystemsClient         *securitysystems.APIClient
 	Tasks                         *tasks.TasksAPIService
 	tasksClient                   *tasks.APIClient
 	Transport                     *transport.TransportAPIService
 	transportClient               *transport.APIClient
 	Users                         *users.UsersAPIService
 	usersClient                   *users.APIClient
-	SecuritySystems               *securitysystems.SecuritySystemsAPIService
-	securitySystemsClient         *securitysystems.APIClient
 }
 
 func newClientHTTPClient(serverURL string, username *string, httpClient *http.Client) *Client {
@@ -88,14 +89,14 @@ func newClientHTTPClient(serverURL string, username *string, httpClient *http.Cl
 	c.MTLSAuthentication = c.mtlsAuthenticationClient.MTLSAuthenticationAPI
 	c.savRolesClient = newClientSAVRoles(c.APIBaseURL(), c.httpClient)
 	c.SAVRoles = c.savRolesClient.SAVRolesAPI
+	c.securitySystemsClient = newClientSecuritySystems(c.APIBaseURL(), c.httpClient)
+	c.SecuritySystems = c.securitySystemsClient.SecuritySystemsAPI
 	c.tasksClient = newClientTasks(c.APIBaseURL(), c.httpClient)
 	c.Tasks = c.tasksClient.TasksAPI
 	c.transportClient = newClientTransport(c.APIBaseURL(), c.httpClient)
 	c.Transport = c.transportClient.TransportAPI
 	c.usersClient = newClientUsers(c.APIBaseURL(), c.httpClient)
 	c.Users = c.usersClient.UsersAPI
-	c.securitySystemsClient=newClientSecuritySystems(c.APIBaseURL(), c.httpClient)
-	c.SecuritySystems=c.securitySystemsClient.SecuritySystemsAPI
 	return c
 }
 
@@ -200,6 +201,13 @@ func newClientSAVRoles(apiBaseURL string, httpClient *http.Client) *savroles.API
 	return savroles.NewAPIClient(cfg)
 }
 
+func newClientSecuritySystems(apiBaseURL string, httpClient *http.Client) *securitysystems.APIClient {
+	cfg := securitysystems.NewConfiguration()
+	cfg.HTTPClient = httpClient
+	cfg.Servers = securitysystems.ServerConfigurations{{URL: apiBaseURL}}
+	return securitysystems.NewAPIClient(cfg)
+}
+
 func newClientTasks(apiBaseURL string, httpClient *http.Client) *tasks.APIClient {
 	cfg := tasks.NewConfiguration()
 	cfg.HTTPClient = httpClient
@@ -219,13 +227,6 @@ func newClientUsers(apiBaseURL string, httpClient *http.Client) *users.APIClient
 	cfg.HTTPClient = httpClient
 	cfg.Servers = users.ServerConfigurations{{URL: apiBaseURL}}
 	return users.NewAPIClient(cfg)
-}
-
-func newClientSecuritySystems(apiBaseURL string, httpClient *http.Client) *securitysystems.APIClient {
-	cfg := securitysystems.NewConfiguration()
-	cfg.HTTPClient = httpClient
-	cfg.Servers = securitysystems.ServerConfigurations{{URL: apiBaseURL}}
-	return securitysystems.NewAPIClient(cfg)
 }
 
 func newOAuth2TokenBasicAuth(tokenURL, username, password string) (*oauth2.Token, error) {

@@ -1,5 +1,5 @@
 /*
-Saviynt Connections API
+testConnection Management API
 
 Testing ConnectionsAPIService
 
@@ -11,11 +11,10 @@ package connections
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
@@ -23,47 +22,11 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ConnectionsAPIService CreateOrUpdateConnection", func(t *testing.T) {
+	t.Run("Test ConnectionsAPIService TestConnection", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdateConnection(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConnectionsAPIService DeleteConnection", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.ConnectionsAPI.DeleteConnection(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConnectionsAPIService GetConnections", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ConnectionsAPI.TestConnection(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
