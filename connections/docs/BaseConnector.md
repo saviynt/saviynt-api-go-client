@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionName** | Pointer to **string** | Name of the connection | [optional] 
+**ConnectionName** | **string** | Name of the connection | 
 **Connectiontype** | **string** | Connection type (e.g., &#39;AD&#39; for Active Directory). | 
 **Description** | Pointer to **string** | Description for the connection. | [optional] 
 **Defaultsavroles** | Pointer to **string** | Default SAV roles for managing the connection. | [optional] 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewBaseConnector
 
-`func NewBaseConnector(connectiontype string, ) *BaseConnector`
+`func NewBaseConnector(connectionName string, connectiontype string, ) *BaseConnector`
 
 NewBaseConnector instantiates a new BaseConnector object
 This constructor will assign default values to properties that have it defined,
@@ -52,11 +52,6 @@ and a boolean to check if the value has been set.
 
 SetConnectionName sets ConnectionName field to given value.
 
-### HasConnectionName
-
-`func (o *BaseConnector) HasConnectionName() bool`
-
-HasConnectionName returns a boolean if a field has been set.
 
 ### GetConnectiontype
 

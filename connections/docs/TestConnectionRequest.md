@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionName** | Pointer to **string** | Name of the connection | [optional] 
+**ConnectionName** | **string** | Name of the connection | 
 **Connectiontype** | **string** | Connection type (e.g., &#39;AD&#39; for Active Directory). | 
 **Description** | Pointer to **string** | Description for the connection. | [optional] 
 **Defaultsavroles** | Pointer to **string** | Default SAV roles for managing the connection. | [optional] 
@@ -126,7 +126,7 @@ Name | Type | Description | Notes
 **ACCOUNT_FIELD_QUERY** | Pointer to **string** |  | [optional] 
 **FIELD_MAPPING_JSON** | Pointer to **string** |  | [optional] 
 **MODIFYACCOUNTJSON** | Pointer to **string** |  | [optional] 
-**ConnectionJSON** | Pointer to **string** |  | [optional] 
+**ConnectionJSON** | Pointer to **map[string]interface{}** |  | [optional] 
 **ImportUserJSON** | Pointer to **string** | Property for ImportUserJSON | [optional] 
 **ImportAccountEntJSON** | Pointer to **string** |  | [optional] 
 **CreateAccountJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Create the New Account | [optional] 
@@ -185,7 +185,7 @@ Name | Type | Description | Notes
 
 ### NewTestConnectionRequest
 
-`func NewTestConnectionRequest(connectiontype string, uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, cLIENTID string, cLIENTSECRET string, bASEURL string, tENANTID string, lOGINURL string, uSEOAUTH string, ) *TestConnectionRequest`
+`func NewTestConnectionRequest(connectionName string, connectiontype string, uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, cLIENTID string, cLIENTSECRET string, bASEURL string, tENANTID string, lOGINURL string, uSEOAUTH string, ) *TestConnectionRequest`
 
 NewTestConnectionRequest instantiates a new TestConnectionRequest object
 This constructor will assign default values to properties that have it defined,
@@ -219,11 +219,6 @@ and a boolean to check if the value has been set.
 
 SetConnectionName sets ConnectionName field to given value.
 
-### HasConnectionName
-
-`func (o *TestConnectionRequest) HasConnectionName() bool`
-
-HasConnectionName returns a boolean if a field has been set.
 
 ### GetConnectiontype
 
@@ -3212,20 +3207,20 @@ HasMODIFYACCOUNTJSON returns a boolean if a field has been set.
 
 ### GetConnectionJSON
 
-`func (o *TestConnectionRequest) GetConnectionJSON() string`
+`func (o *TestConnectionRequest) GetConnectionJSON() map[string]interface{}`
 
 GetConnectionJSON returns the ConnectionJSON field if non-nil, zero value otherwise.
 
 ### GetConnectionJSONOk
 
-`func (o *TestConnectionRequest) GetConnectionJSONOk() (*string, bool)`
+`func (o *TestConnectionRequest) GetConnectionJSONOk() (*map[string]interface{}, bool)`
 
 GetConnectionJSONOk returns a tuple with the ConnectionJSON field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionJSON
 
-`func (o *TestConnectionRequest) SetConnectionJSON(v string)`
+`func (o *TestConnectionRequest) SetConnectionJSON(v map[string]interface{})`
 
 SetConnectionJSON sets ConnectionJSON field to given value.
 

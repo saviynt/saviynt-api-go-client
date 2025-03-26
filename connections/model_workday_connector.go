@@ -100,8 +100,9 @@ type _WorkdayConnector WorkdayConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWorkdayConnector(uSEOAUTH string, connectiontype string) *WorkdayConnector {
+func NewWorkdayConnector(uSEOAUTH string, connectionName string, connectiontype string) *WorkdayConnector {
 	this := WorkdayConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	this.USE_OAUTH = uSEOAUTH
 	return &this
@@ -1462,6 +1463,7 @@ func (o *WorkdayConnector) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"USE_OAUTH",
+		"connectionName",
 		"connectiontype",
 	}
 

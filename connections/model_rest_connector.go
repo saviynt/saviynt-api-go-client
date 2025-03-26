@@ -22,7 +22,7 @@ var _ MappedNullable = &RESTConnector{}
 // RESTConnector struct for RESTConnector
 type RESTConnector struct {
 	BaseConnector
-	ConnectionJSON *string `json:"ConnectionJSON,omitempty"`
+	ConnectionJSON map[string]interface{} `json:"ConnectionJSON,omitempty"`
 	// Property for ImportUserJSON
 	ImportUserJSON *string `json:"ImportUserJSON,omitempty"`
 	ImportAccountEntJSON *string `json:"ImportAccountEntJSON,omitempty"`
@@ -57,8 +57,9 @@ type _RESTConnector RESTConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRESTConnector(connectiontype string) *RESTConnector {
+func NewRESTConnector(connectionName string, connectiontype string) *RESTConnector {
 	this := RESTConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	return &this
 }
@@ -72,19 +73,19 @@ func NewRESTConnectorWithDefaults() *RESTConnector {
 }
 
 // GetConnectionJSON returns the ConnectionJSON field value if set, zero value otherwise.
-func (o *RESTConnector) GetConnectionJSON() string {
+func (o *RESTConnector) GetConnectionJSON() map[string]interface{} {
 	if o == nil || IsNil(o.ConnectionJSON) {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.ConnectionJSON
+	return o.ConnectionJSON
 }
 
 // GetConnectionJSONOk returns a tuple with the ConnectionJSON field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnector) GetConnectionJSONOk() (*string, bool) {
+func (o *RESTConnector) GetConnectionJSONOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.ConnectionJSON) {
-		return nil, false
+		return map[string]interface{}{}, false
 	}
 	return o.ConnectionJSON, true
 }
@@ -98,9 +99,9 @@ func (o *RESTConnector) HasConnectionJSON() bool {
 	return false
 }
 
-// SetConnectionJSON gets a reference to the given string and assigns it to the ConnectionJSON field.
-func (o *RESTConnector) SetConnectionJSON(v string) {
-	o.ConnectionJSON = &v
+// SetConnectionJSON gets a reference to the given map[string]interface{} and assigns it to the ConnectionJSON field.
+func (o *RESTConnector) SetConnectionJSON(v map[string]interface{}) {
+	o.ConnectionJSON = v
 }
 
 // GetImportUserJSON returns the ImportUserJSON field value if set, zero value otherwise.
@@ -937,6 +938,7 @@ func (o *RESTConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"connectionName",
 		"connectiontype",
 	}
 

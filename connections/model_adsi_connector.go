@@ -118,8 +118,9 @@ type _ADSIConnector ADSIConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewADSIConnector(uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, connectiontype string) *ADSIConnector {
+func NewADSIConnector(uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, connectionName string, connectiontype string) *ADSIConnector {
 	this := ADSIConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	this.URL = uRL
 	this.USERNAME = uSERNAME
@@ -1798,6 +1799,7 @@ func (o *ADSIConnector) UnmarshalJSON(data []byte) (err error) {
 		"PASSWORD",
 		"CONNECTION_URL",
 		"FORESTLIST",
+		"connectionName",
 		"connectiontype",
 	}
 

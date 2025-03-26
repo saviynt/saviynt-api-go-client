@@ -47,8 +47,9 @@ type _SalesforceConnector SalesforceConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSalesforceConnector(connectiontype string) *SalesforceConnector {
+func NewSalesforceConnector(connectionName string, connectiontype string) *SalesforceConnector {
 	this := SalesforceConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	return &this
 }
@@ -647,6 +648,7 @@ func (o *SalesforceConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"connectionName",
 		"connectiontype",
 	}
 

@@ -22,7 +22,7 @@ var _ MappedNullable = &BaseConnector{}
 // BaseConnector struct for BaseConnector
 type BaseConnector struct {
 	// Name of the connection
-	ConnectionName *string `json:"connectionName,omitempty"`
+	ConnectionName string `json:"connectionName"`
 	// Connection type (e.g., 'AD' for Active Directory).
 	Connectiontype string `json:"connectiontype"`
 	// Description for the connection.
@@ -47,8 +47,9 @@ type _BaseConnector BaseConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBaseConnector(connectiontype string) *BaseConnector {
+func NewBaseConnector(connectionName string, connectiontype string) *BaseConnector {
 	this := BaseConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	return &this
 }
@@ -61,36 +62,28 @@ func NewBaseConnectorWithDefaults() *BaseConnector {
 	return &this
 }
 
-// GetConnectionName returns the ConnectionName field value if set, zero value otherwise.
+// GetConnectionName returns the ConnectionName field value
 func (o *BaseConnector) GetConnectionName() string {
-	if o == nil || IsNil(o.ConnectionName) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConnectionName
+
+	return o.ConnectionName
 }
 
-// GetConnectionNameOk returns a tuple with the ConnectionName field value if set, nil otherwise
+// GetConnectionNameOk returns a tuple with the ConnectionName field value
 // and a boolean to check if the value has been set.
 func (o *BaseConnector) GetConnectionNameOk() (*string, bool) {
-	if o == nil || IsNil(o.ConnectionName) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ConnectionName, true
+	return &o.ConnectionName, true
 }
 
-// HasConnectionName returns a boolean if a field has been set.
-func (o *BaseConnector) HasConnectionName() bool {
-	if o != nil && !IsNil(o.ConnectionName) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionName gets a reference to the given string and assigns it to the ConnectionName field.
+// SetConnectionName sets field value
 func (o *BaseConnector) SetConnectionName(v string) {
-	o.ConnectionName = &v
+	o.ConnectionName = v
 }
 
 // GetConnectiontype returns the Connectiontype field value
@@ -351,9 +344,7 @@ func (o BaseConnector) MarshalJSON() ([]byte, error) {
 
 func (o BaseConnector) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConnectionName) {
-		toSerialize["connectionName"] = o.ConnectionName
-	}
+	toSerialize["connectionName"] = o.ConnectionName
 	toSerialize["connectiontype"] = o.Connectiontype
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
@@ -384,6 +375,7 @@ func (o *BaseConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"connectionName",
 		"connectiontype",
 	}
 

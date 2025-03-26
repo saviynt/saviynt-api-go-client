@@ -102,6 +102,7 @@ components:
           example: false
           type: string
       required:
+      - connectionName
       - connectiontype
     ADConnector:
       allOf:
@@ -1230,9 +1231,10 @@ components:
       - $ref: '#/components/schemas/BaseConnector'
       - properties:
           ConnectionJSON:
+            additionalProperties: true
             example: |
               {'authentications': {'Slack': {'authType': 'oauth2', 'url': 'https://api.slack.com', 'httpMethod': 'POST', 'httpParams': {}, 'httpHeaders': {'contentType': 'application/x-www-form-urlencoded'}, 'httpContentType': 'application/x-www-form-urlencoded', 'expiryError': 'ExpiredAuthenticationToken', 'authError': ['InvalidAuthenticationToken', 'AuthenticationFailed'], 'timeOutError': 'Read timed out', 'errorPath': 'error.code', 'maxRefreshTryCount': 5, 'tokenResponsePath': 'access_token', 'tokenType': 'Bearer', 'accessToken': 'Bearer @ACCESS_TOKEN@', 'testConnectionParams': {'http': {'url': 'https://api.slack.com/scim/v1/Users?startIndex=1&count=1', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/x-www-form-urlencoded', 'httpMethod': 'GET'}, 'successResponses': {'statusCode': [200]}, 'errors': ['invalid_authentication'], 'errorPath': 'Errors.description'}}}}
-            type: string
+            type: object
           ImportUserJSON:
             description: Property for ImportUserJSON
             type: string
@@ -1357,8 +1359,18 @@ components:
               {'disableAccountForRevokeTask': False, 'defaultEntitlementId': '', 'connectionTimeoutConfig': {'connectionTimeout': 10, 'readTimeout': 120, 'writeTimeout': 120, 'retryWait': 10, 'retryCount': 5}}
             type: string
           PAM_CONFIG:
-            example: |
-              {'Connection': 'SalesForce', 'encryptionMechanism': 'ENCRYPTED', 'CONSOLE': {'maxCredSessionRequestTime': '36000', 'maxCredlessSessionRequestTime': '36000', 'maxIDRequestableTime': '2592000', 'shareableAccounts': {'IDQueryCredentials': "acc.name in ('cpamuser1')", 'IDQueryCredentialless': "acc.name in ('cpamuser2', 'cpamuser3')"}, 'endpointAttributeMappings': [{'column': 'accessquery', 'value': 'where users.USERNAME is not null', 'feature': 'endpointAccessQuery'}, {'column': 'customproperty43', 'value': 'PAMDefaultUserAccountAccessControl', 'feature': 'accountVisibilityControl'}], 'endpointPamConfig': {'maxConcurrentSession': '50'}, 'accountVisibilityConfig': {'accountCustomProperty': 'customproperty55', 'accountMappingConfig': [{'accountPattern': 'cpamuser*', 'mappingData': 'roletest1', 'override': 'false'}, {'accountPattern': 'cpamuser1,cpamuser2', 'mappingData': 'roletest2', 'override': 'false'}]}}}
+            example: "{'Connection': 'SalesForce', 'encryptionMechanism': 'ENCRYPTED',\
+              \ 'CONSOLE': {'maxCredSessionRequestTime': '36000', 'maxCredlessSessionRequestTime':\
+              \ '36000', 'maxIDRequestableTime': '2592000', 'shareableAccounts': {'IDQueryCredentials':\
+              \ \"acc.name in ('cpamuser1')\", 'IDQueryCredentialless': \"acc.name\
+              \ in ('cpamuser2', 'cpamuser3')\"}, 'endpointAttributeMappings': [{'column':\
+              \ 'accessquery', 'value': 'where users.USERNAME is not null', 'feature':\
+              \ 'endpointAccessQuery'}, {'column': 'customproperty43', 'value': 'PAMDefaultUserAccountAccessControl',\
+              \ 'feature': 'accountVisibilityControl'}], 'endpointPamConfig': {'maxConcurrentSession':\
+              \ '50'}, 'accountVisibilityConfig': {'accountCustomProperty': 'customproperty55',\
+              \ 'accountMappingConfig': [{'accountPattern': 'cpamuser*', 'mappingData':\
+              \ 'roletest1', 'override': 'false'}, {'accountPattern': 'cpamuser1,cpamuser2',\
+              \ 'mappingData': 'roletest2', 'override': 'false'}]}}}"
             type: string
     testConnection_request:
       discriminator:

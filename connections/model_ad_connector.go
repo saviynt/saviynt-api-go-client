@@ -144,8 +144,9 @@ type _ADConnector ADConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewADConnector(pASSWORD string, connectiontype string) *ADConnector {
+func NewADConnector(pASSWORD string, connectionName string, connectiontype string) *ADConnector {
 	this := ADConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	this.PASSWORD = pASSWORD
 	return &this
@@ -2241,6 +2242,7 @@ func (o *ADConnector) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"PASSWORD",
+		"connectionName",
 		"connectiontype",
 	}
 

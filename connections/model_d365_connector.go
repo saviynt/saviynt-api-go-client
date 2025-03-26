@@ -59,8 +59,9 @@ type _D365Connector D365Connector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewD365Connector(bASEURL string, tENANTID string, lOGINURL string, cLIENTID string, cLIENTSECRET string, connectiontype string) *D365Connector {
+func NewD365Connector(bASEURL string, tENANTID string, lOGINURL string, cLIENTID string, cLIENTSECRET string, connectionName string, connectiontype string) *D365Connector {
 	this := D365Connector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	this.BASEURL = bASEURL
 	this.TENANT_ID = tENANTID
@@ -724,6 +725,7 @@ func (o *D365Connector) UnmarshalJSON(data []byte) (err error) {
 		"LOGIN_URL",
 		"CLIENT_ID",
 		"CLIENT_SECRET",
+		"connectionName",
 		"connectiontype",
 	}
 

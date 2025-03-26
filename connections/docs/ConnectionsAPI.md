@@ -27,7 +27,7 @@ import (
 )
 
 func main() {
-	testConnectionRequest := openapiclient.testConnection_request{ADConnector: openapiclient.NewADConnector("PASSWORD_example", "AD")} // TestConnectionRequest | 
+	testConnectionRequest := openapiclient.testConnection_request{ADConnector: openapiclient.NewADConnector("PASSWORD_example", "Active Directory_Doc", "AD")} // TestConnectionRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

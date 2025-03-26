@@ -149,8 +149,9 @@ type _SAPConnector SAPConnector
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSAPConnector(connectiontype string) *SAPConnector {
+func NewSAPConnector(connectionName string, connectiontype string) *SAPConnector {
 	this := SAPConnector{}
+	this.ConnectionName = connectionName
 	this.Connectiontype = connectiontype
 	return &this
 }
@@ -2289,6 +2290,7 @@ func (o *SAPConnector) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"connectionName",
 		"connectiontype",
 	}
 
