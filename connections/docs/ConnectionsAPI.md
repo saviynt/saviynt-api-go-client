@@ -4,13 +4,15 @@ All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TestConnection**](ConnectionsAPI.md#TestConnection) | **Post** /ECM/api/v5/testConnection | Create a connection
+[**CreateOrUpdate**](ConnectionsAPI.md#CreateOrUpdate) | **Post** /ECM/api/v5/testConnection | Create a connection
+[**GetConnectionDetails**](ConnectionsAPI.md#GetConnectionDetails) | **Post** /ECM/api/v5/getConnectionDetails | Get connection details
+[**GetConnections**](ConnectionsAPI.md#GetConnections) | **Post** /ECM/api/v5/getConnections | Get list of connections
 
 
 
-## TestConnection
+## CreateOrUpdate
 
-> TestConnection200Response TestConnection(ctx).TestConnectionRequest(testConnectionRequest).Execute()
+> CreateOrUpdateResponse CreateOrUpdate(ctx).CreateOrUpdateRequest(createOrUpdateRequest).Execute()
 
 Create a connection
 
@@ -27,17 +29,17 @@ import (
 )
 
 func main() {
-	testConnectionRequest := openapiclient.testConnection_request{ADConnector: openapiclient.NewADConnector("PASSWORD_example", "Active Directory_Doc", "AD")} // TestConnectionRequest | 
+	createOrUpdateRequest := openapiclient.createOrUpdate_request{ADConnector: openapiclient.NewADConnector("PASSWORD_example", "Active Directory_Doc", "AD")} // CreateOrUpdateRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectionsAPI.TestConnection(context.Background()).TestConnectionRequest(testConnectionRequest).Execute()
+	resp, r, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).CreateOrUpdateRequest(createOrUpdateRequest).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.TestConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.CreateOrUpdate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TestConnection`: TestConnection200Response
-	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.TestConnection`: %v\n", resp)
+	// response from `CreateOrUpdate`: CreateOrUpdateResponse
+	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.CreateOrUpdate`: %v\n", resp)
 }
 ```
 
@@ -47,16 +49,146 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTestConnectionRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateOrUpdateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **testConnectionRequest** | [**TestConnectionRequest**](TestConnectionRequest.md) |  | 
+ **createOrUpdateRequest** | [**CreateOrUpdateRequest**](CreateOrUpdateRequest.md) |  | 
 
 ### Return type
 
-[**TestConnection200Response**](TestConnection200Response.md)
+[**CreateOrUpdateResponse**](CreateOrUpdateResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetConnectionDetails
+
+> GetConnectionDetails GetConnectionDetails(ctx).Connectionname(connectionname).Connectionkey(connectionkey).Execute()
+
+Get connection details
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	connectionname := "connectionname_example" // string | Name of the connection (optional)
+	connectionkey := "connectionkey_example" // string | Connection key (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Connectionname(connectionname).Connectionkey(connectionkey).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.GetConnectionDetails``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetConnectionDetails`: GetConnectionDetails
+	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.GetConnectionDetails`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetConnectionDetailsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **connectionname** | **string** | Name of the connection | 
+ **connectionkey** | **string** | Connection key | 
+
+### Return type
+
+[**GetConnectionDetails**](GetConnectionDetails.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetConnections
+
+> GetConnectionsResponse GetConnections(ctx).GetConnectionsRequest(getConnectionsRequest).Execute()
+
+Get list of connections
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+)
+
+func main() {
+	getConnectionsRequest := *openapiclient.NewGetConnectionsRequest() // GetConnectionsRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).GetConnectionsRequest(getConnectionsRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.GetConnections``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetConnections`: GetConnectionsResponse
+	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.GetConnections`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetConnectionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getConnectionsRequest** | [**GetConnectionsRequest**](GetConnectionsRequest.md) |  | 
+
+### Return type
+
+[**GetConnectionsResponse**](GetConnectionsResponse.md)
 
 ### Authorization
 

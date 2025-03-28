@@ -1,5 +1,5 @@
 /*
-testConnection Management API
+Connection Management API
 
 Use this API to create a connection in Saviynt Identity Cloud.  The Authorization header must have \"Bearer {token}\".  **Mandatory Parameters:** - **connectionname**: Specify the name to identify the connection. - **connectiontype**: Specify a connection type. For example, if your target application is Active Directory, specify the connection type as \"AD\".  **Optional Parameters:** - **description**: Provide a description for the connection. - **defaultsavroles**: Specify the SAV role(s) required for managing this connection along with its associated security systems, endpoints, accounts, and entitlements. - **emailTemplate**: Specify the email template applicable for notifications. - **sslCertificate**: Specify the SSL certificate(s) to secure the connection between EIC and the target application. - **vaultConfiguration**: Specify the path of the vault to obtain secret data (suffix the connector name to make it unique). - **saveinvault**: Set to true to save the encrypted attribute in the configured vault.
 
@@ -14,35 +14,35 @@ import (
 	"encoding/json"
 )
 
-// checks if the TestConnection200Response type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &TestConnection200Response{}
+// checks if the CreateOrUpdateResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrUpdateResponse{}
 
-// TestConnection200Response struct for TestConnection200Response
-type TestConnection200Response struct {
+// CreateOrUpdateResponse struct for CreateOrUpdateResponse
+type CreateOrUpdateResponse struct {
 	ConnectionKey *int32  `json:"connectionKey,omitempty"`
 	Msg           *string `json:"msg,omitempty"`
 	ErrorCode     *string `json:"errorCode,omitempty"`
 }
 
-// NewTestConnection200Response instantiates a new TestConnection200Response object
+// NewCreateOrUpdateResponse instantiates a new CreateOrUpdateResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTestConnection200Response() *TestConnection200Response {
-	this := TestConnection200Response{}
+func NewCreateOrUpdateResponse() *CreateOrUpdateResponse {
+	this := CreateOrUpdateResponse{}
 	return &this
 }
 
-// NewTestConnection200ResponseWithDefaults instantiates a new TestConnection200Response object
+// NewCreateOrUpdateResponseWithDefaults instantiates a new CreateOrUpdateResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewTestConnection200ResponseWithDefaults() *TestConnection200Response {
-	this := TestConnection200Response{}
+func NewCreateOrUpdateResponseWithDefaults() *CreateOrUpdateResponse {
+	this := CreateOrUpdateResponse{}
 	return &this
 }
 
 // GetConnectionKey returns the ConnectionKey field value if set, zero value otherwise.
-func (o *TestConnection200Response) GetConnectionKey() int32 {
+func (o *CreateOrUpdateResponse) GetConnectionKey() int32 {
 	if o == nil || IsNil(o.ConnectionKey) {
 		var ret int32
 		return ret
@@ -52,7 +52,7 @@ func (o *TestConnection200Response) GetConnectionKey() int32 {
 
 // GetConnectionKeyOk returns a tuple with the ConnectionKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TestConnection200Response) GetConnectionKeyOk() (*int32, bool) {
+func (o *CreateOrUpdateResponse) GetConnectionKeyOk() (*int32, bool) {
 	if o == nil || IsNil(o.ConnectionKey) {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *TestConnection200Response) GetConnectionKeyOk() (*int32, bool) {
 }
 
 // HasConnectionKey returns a boolean if a field has been set.
-func (o *TestConnection200Response) HasConnectionKey() bool {
+func (o *CreateOrUpdateResponse) HasConnectionKey() bool {
 	if o != nil && !IsNil(o.ConnectionKey) {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *TestConnection200Response) HasConnectionKey() bool {
 }
 
 // SetConnectionKey gets a reference to the given int32 and assigns it to the ConnectionKey field.
-func (o *TestConnection200Response) SetConnectionKey(v int32) {
+func (o *CreateOrUpdateResponse) SetConnectionKey(v int32) {
 	o.ConnectionKey = &v
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *TestConnection200Response) GetMsg() string {
+func (o *CreateOrUpdateResponse) GetMsg() string {
 	if o == nil || IsNil(o.Msg) {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *TestConnection200Response) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TestConnection200Response) GetMsgOk() (*string, bool) {
+func (o *CreateOrUpdateResponse) GetMsgOk() (*string, bool) {
 	if o == nil || IsNil(o.Msg) {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *TestConnection200Response) GetMsgOk() (*string, bool) {
 }
 
 // HasMsg returns a boolean if a field has been set.
-func (o *TestConnection200Response) HasMsg() bool {
+func (o *CreateOrUpdateResponse) HasMsg() bool {
 	if o != nil && !IsNil(o.Msg) {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *TestConnection200Response) HasMsg() bool {
 }
 
 // SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *TestConnection200Response) SetMsg(v string) {
+func (o *CreateOrUpdateResponse) SetMsg(v string) {
 	o.Msg = &v
 }
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
-func (o *TestConnection200Response) GetErrorCode() string {
+func (o *CreateOrUpdateResponse) GetErrorCode() string {
 	if o == nil || IsNil(o.ErrorCode) {
 		var ret string
 		return ret
@@ -116,7 +116,7 @@ func (o *TestConnection200Response) GetErrorCode() string {
 
 // GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TestConnection200Response) GetErrorCodeOk() (*string, bool) {
+func (o *CreateOrUpdateResponse) GetErrorCodeOk() (*string, bool) {
 	if o == nil || IsNil(o.ErrorCode) {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *TestConnection200Response) GetErrorCodeOk() (*string, bool) {
 }
 
 // HasErrorCode returns a boolean if a field has been set.
-func (o *TestConnection200Response) HasErrorCode() bool {
+func (o *CreateOrUpdateResponse) HasErrorCode() bool {
 	if o != nil && !IsNil(o.ErrorCode) {
 		return true
 	}
@@ -133,11 +133,11 @@ func (o *TestConnection200Response) HasErrorCode() bool {
 }
 
 // SetErrorCode gets a reference to the given string and assigns it to the ErrorCode field.
-func (o *TestConnection200Response) SetErrorCode(v string) {
+func (o *CreateOrUpdateResponse) SetErrorCode(v string) {
 	o.ErrorCode = &v
 }
 
-func (o TestConnection200Response) MarshalJSON() ([]byte, error) {
+func (o CreateOrUpdateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -145,7 +145,7 @@ func (o TestConnection200Response) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o TestConnection200Response) ToMap() (map[string]interface{}, error) {
+func (o CreateOrUpdateResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ConnectionKey) {
 		toSerialize["connectionKey"] = o.ConnectionKey
@@ -159,38 +159,38 @@ func (o TestConnection200Response) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableTestConnection200Response struct {
-	value *TestConnection200Response
+type NullableCreateOrUpdateResponse struct {
+	value *CreateOrUpdateResponse
 	isSet bool
 }
 
-func (v NullableTestConnection200Response) Get() *TestConnection200Response {
+func (v NullableCreateOrUpdateResponse) Get() *CreateOrUpdateResponse {
 	return v.value
 }
 
-func (v *NullableTestConnection200Response) Set(val *TestConnection200Response) {
+func (v *NullableCreateOrUpdateResponse) Set(val *CreateOrUpdateResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTestConnection200Response) IsSet() bool {
+func (v NullableCreateOrUpdateResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTestConnection200Response) Unset() {
+func (v *NullableCreateOrUpdateResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTestConnection200Response(val *TestConnection200Response) *NullableTestConnection200Response {
-	return &NullableTestConnection200Response{value: val, isSet: true}
+func NewNullableCreateOrUpdateResponse(val *CreateOrUpdateResponse) *NullableCreateOrUpdateResponse {
+	return &NullableCreateOrUpdateResponse{value: val, isSet: true}
 }
 
-func (v NullableTestConnection200Response) MarshalJSON() ([]byte, error) {
+func (v NullableCreateOrUpdateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTestConnection200Response) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateOrUpdateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -16,26 +16,26 @@ info:
     - **sslCertificate**: Specify the SSL certificate(s) to secure the connection between EIC and the target application.
     - **vaultConfiguration**: Specify the path of the vault to obtain secret data (suffix the connector name to make it unique).
     - **saveinvault**: Set to true to save the encrypted attribute in the configured vault.
-  title: testConnection Management API
+  title: Connection Management API
   version: 1.0.0
 servers:
 - url: http://localhost:3000
 paths:
   /ECM/api/v5/testConnection:
     post:
-      operationId: testConnection
+      operationId: createOrUpdate
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/testConnection_request'
+              $ref: '#/components/schemas/createOrUpdate_request'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/testConnection_200_response'
+                $ref: '#/components/schemas/CreateOrUpdateResponse'
           description: Connection Successful
           headers:
             Access-Control-Allow-Credentials:
@@ -50,7 +50,59 @@ paths:
                 example: http://localhost
                 type: string
               style: simple
+          x-codegen-response-body-name: CreateOrUpdateConnectionResponse
       summary: Create a connection
+      tags:
+      - connections
+  /ECM/api/v5/getConnections:
+    post:
+      operationId: getConnections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/getConnections_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getConnectionsResponse'
+          description: Connection retreival successful
+          headers:
+            Access-Control-Allow-Credentials:
+              explode: false
+              schema:
+                example: "true"
+                type: string
+              style: simple
+            Access-Control-Allow-Origin:
+              explode: false
+              schema:
+                example: http://localhost
+                type: string
+              style: simple
+      summary: Get list of connections
+      tags:
+      - connections
+  /ECM/api/v5/getConnectionDetails:
+    post:
+      operationId: getConnectionDetails
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/getConnectionDetails_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getConnectionDetails'
+          description: Connection details retrieved successfully.
+      summary: Get connection details
       tags:
       - connections
 components:
@@ -424,75 +476,53 @@ components:
       - $ref: '#/components/schemas/BaseConnector'
       - properties:
           URL:
-            description: Domain URL list (comma Separated)
-            example: LDAP://@HOST@:@PORT@
-            type: string
-          domain:
-            description: Domain for ADSI authentication
-            example: saviynt.local
+            description: Primary/root domain URL list (comma Separated)
+            example: "LDAP://dc01.domain1.com:636,LDAP://dc01.child.domain1.com:636"
             type: string
           USERNAME:
-            description: userPrincipalName of privileged Service account with `Domain
-              Admin` rights
-            example: administrator@saviyntlabs.com
+            description: Service account username
+            example: adminuser@domain1.com
             type: string
           PASSWORD:
-            description: Password for the Connection
+            description: Service account password
             format: password
             type: string
           CONNECTION_URL:
-            description: Server URL where ADSI agent is deployed on IIS. You could
-              have http/https URL with actual port information. Used only to save
-              and test connection and retrieve forest information
-            example: http://saviyntdc01.saviyntlabs.com:8090/api/v1/discover
+            description: ADSI remote agent Connection URL
+            example: http://dc01.domain1.com:8090/api/v1/discover
             type: string
           PROVISIONING_URL:
-            description: Server URL with specific provisioning URL where ADSI agent
-              is deployed on IIS. You could have http/https URL with actual port information.
-            example: http://saviyntdc01.saviyntlabs.org:8090/api/v1/objects
+            description: ADSI remote agent Provisioning URL
+            example: http://dc01.domain1.com:8090/api/v1/objects
             type: string
           FORESTLIST:
-            description: Forest List (Comma Separated) which we need to connect using
-              ADSI connector.
-            example: "saviyntlabs.com,saviyntcloud.com"
+            description: Forest List (Comma Separated) which we need to manage
+            example: "domain1.com,child.domain1.com"
             type: string
           DEFAULT_USER_ROLE:
             description: Default SAV Role to be assigned to all the new users that
-              gets imported - only valid for User Import
-            example: ""
+              gets imported via User Import
+            example: ROLE_TASK_ADMIN
             type: string
           UPDATEUSERJSON:
-            description: JSON to specify the Field Value which will be used to Update
+            description: Specify the attribute Value which will be used to Update
               existing User
-            example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
-              :\"${account.accountID?.replace('\\', '\\\\')?.replace('/','\\/')}\"\
-              ,\"moveObjectToOU\":\"${if (user?.street.equals('US') &&user?.customproperty29.equals('saviyntlabs.org'))'OU=TestContainer,DC=saviyntlabs,DC=org'\
-              \ else if(user?.street.equals('US') &&user?.customproperty29.equals('child.saviyntlabs.org'))'OU=TestContainer,DC=child,DC=saviyntlabs,DC=org'\
-              \ else if(!user?.street.equals('US') &&user?.customproperty29.equals('child.saviyntlabs.org'))'CN=Users,DC=child,DC=saviyntlabs,DC=org'\
-              \ else'CN=Users,DC=saviyntlabs,DC=org'}\",\"attributes\":{\"displayName\"\
+            example: " {\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
+              :\"${account.COMMENTS?.replace('', '\\')?.replace('/','/')}\",\"moveObjectToOU\"\
+              :\"OU=TestContainer,DC=domain1,DC=com'}\",\"attributes\":{\"displayName\"\
               :\"${user.displayname}\",\"streetaddress\":\"${user.street}\"}}]}"
             type: string
-          FOREST_DETAILS:
-            type: string
-          ENABLEGROUPMANAGEMENT:
-            type: string
-          createUpdateMappings:
-            type: string
-          IMPORTDATACOOKIES:
-            type: string
-          PASSWDPOLICYJSON:
-            type: string
           ENDPOINTS_FILTER:
-            description: This field provides details as to which endpoint in Saviynt
-              should the AD accounts be associated to after the accounts have been
-              imported
-            example: ""
+            description: Provide the configuration to create Child Endpoints and import
+              associated accounts and entitlements
+            example: "{\"ADSI_Child_Endpoint\":[{\"memberOf\":[\"CN=ADGroup15,OU=Groups,DC=domain1,DC=com\"\
+              ]}]}"
             type: string
           SEARCHFILTER:
-            description: "Search Filter can be used to specify the BaseDN of the directory\
-              \ from where the data needs to be imported. You can have multiple BaseDNs\
-              \ here separated by ###."
-            example: "DC=saviyntlabs,DC=com###DC=child,DC=saviyntlabs,DC=com"
+            description: "Account Search Filter to specify the starting point of the\
+              \ directory from where the accounts needs to be imported. You can have\
+              \ multiple BaseDNs here separated by ###."
+            example: "DC=domain1,DC=com###DC=child,DC=domain1,DC=com"
             type: string
           OBJECTFILTER:
             description: Object Filter is used to filter the objects that will be
@@ -500,62 +530,73 @@ components:
             example: (&(objectCategory=person)(objectClass=user))
             type: string
           ACCOUNT_ATTRIBUTE:
-            description: Controls the AD Attribute to Saviynt Account Mapping (AD
-              attributes must be in lower case)
-            example: "[name::samaccountname#String,accountid::distinguishedname#String,displayname::cn#String,comments::distinguishedname#String,description::description#String,validthrough::accountexpires#millisec,updatedate::whenchanged#date,lastpasswordchange::pwdlastset#millisec,lastlogondate::lastlogon#millisec,accountclass::objectclass#String,customproperty1::samaccountname#String,customproperty2::userprincipalname#String,customproperty3::sn#String,customproperty4::co#String,customproperty5::givenname#String,customproperty6::title#String,customproperty7::telephonenumber#String,customproperty8::c#String,customproperty9::usncreated#String,customproperty10::logoncount#String,customproperty11::physicaldeliveryofficename#String,customproperty12::streetaddress#String,customproperty13::mailnickname#String,customproperty14::department#String,customproperty15::countrycode#String,customproperty16::manager#String,customproperty17::homephone#String,customproperty18::mobile#String,customproperty19::useraccountcontrol#String,customproperty21::company#String,customproperty22::objectguid#String,customproperty23::displayname#String,RECONCILATION_FIELD::customproperty22]"
+            description: Map EIC and AD attributes for account import (AD attributes
+              must be in lower case)
+            example: "[name::samaccountname#String,accountid::objectguid#String,displayname::cn#String,comments::distinguishedname#String,description::description#String,validthrough::accountexpires#millisec,updatedate::whenchanged#date,lastpasswordchange::pwdlastset#millisec,lastlogondate::lastlogon#millisec,accountclass::objectclass#String,customproperty1::samaccountname#String,customproperty2::userprincipalname#String,customproperty3::sn#String,customproperty4::co#String,customproperty5::givenname#String,customproperty6::title#String,customproperty7::telephonenumber#String,customproperty8::c#String,customproperty9::usncreated#String,customproperty10::logoncount#String,customproperty11::physicaldeliveryofficename#String,customproperty12::streetaddress#String,customproperty13::mailnickname#String,customproperty14::department#String,customproperty15::countrycode#String,customproperty16::manager#String,customproperty17::homephone#String,customproperty18::mobile#String,customproperty19::useraccountcontrol#String,customproperty21::company#String,customproperty22::objectguid#String,customproperty23::displayname#String,RECONCILATION_FIELD::accountid]"
             type: string
           STATUS_THRESHOLD_CONFIG:
-            description: "The attributes of statusAndThresholdConfig json are:statusColumn:Property\
-              \ in saviynt which stores the status of target system.activeStatus:\
-              \ All possible values that denotes the Active status of the target system.accountThresholdValue:\
-              \ No. of accounts to be deleted in Saviynt >= accountThresholdValue,\
-              \ it performs NO ACTION,else it disables the accounts.inactivateAccountsNotInFile:\
-              \ If true, accounts not in file are marked as Inactive. If false, accounts\
-              \ not in file are marked as SUSPENDED FROM IMPORT SERVICE.CorrelateInactiveAccounts:\
-              \ If true, correlates disabled accounts as well with the users."
-            example: "{\"statusAndThresholdConfig\": \"{ \"statusColumn\": \"customproperty19\"\
-              , \"activeStatus\": [\"512\", \"544\", \"66048\"], \"deleteLinks\":\
-              \ true, \"accountThresholdValue\": 1000, \"correlateInactiveAccounts\"\
-              : true, \"inactivateAccountsNotInFile\": true }}"
+            description: Account status and threshold related config
+            example: "{\"statusAndThresholdConfig\":{\"statusColumn\":\"customproperty24\"\
+              ,\"activeStatus\":[\"512\",\"544\",\"66048\"],\"deleteLinks\":true,\"\
+              accountThresholdValue\":1000,\"correlateInactiveAccounts\":true,\"inactivateAccountsNotInFile\"\
+              :false}}"
             type: string
           ENTITLEMENT_ATTRIBUTE:
-            description: This field provides details as to which endpoint in Saviynt
-              should the AD accounts be associated to after the accounts have been
-              imported
+            description: Account attribute that contains group membership
             example: memberOf
             type: string
           USER_ATTRIBUTE:
-            description: Controls the AD Attribute to Saviynt Account Mapping (AD
-              attributes must be in lower case)
-            example: |
-              '[FIRSTNAME::givenname#String,LASTNAME::sn#String,CUSTOMPROPERTY1::samaccountname#String,USERNAME::distinguishedname#String,DISPLAYNAME::cn#String,CUSTOMPROPERTY25::description#String,CUSTOMPROPERTY3::sn#String,COMMENTS::distinguishedname#String,CUSTOMPROPERTY4::homedirectory#String,CUSTOMPROPERTY5::co#String,CUSTOMPROPERTY6::cn#String,CUSTOMPROPERTY7::givenname#String,CUSTOMPROPERTY8::title#String,CUSTOMPROPERTY9::telephonenumber#String,CUSTOMPROPERTY10::c#String,CUSTOMPROPERTY11::uSNCreated#String,ENDDATE::accountExpires#millisec,CUSTOMPROPERTY12::logonCount#String,CUSTOMPROPERTY13::physicaldeliveryofficenameute1#String,CUSTOMPROPERTY15::extensionattribute2#String,CUSTOMPROPERTY16::streetaddress#String,CUSTOMPROPERTY17::mailnickname#String,CUSTOMPROPERTY18::department#String,CUSTOMPROPERTY19::countrycode#String,CUSTOMPROPERTY2::samaccountname#String,CUSTOMPROPERTY20::userprincipalname#String,CUSTOMPROPERTY21::manager#String,CUSTOMPROPERTY22::homephone#String,CUSTOMPROPERTY23::mobile#String,CREATEDATE::whencreated#date,cstomproperty24::useraccountcontrol#String,CUSTOMPROPERTY26::distinguishedname#String,statuskey::useraccountcontrol#String,CUSTOMPROPERTY27::objectguid#String,RECONCILATION_FIELD::CUSTOMPROPERTY27,CUSTOMPROPERTY28::forest#String,CUSTOMPROPERTY29::domain#string]'
+            description: Map EIC and AD attributes for user import (AD attributes
+              must be in lower case)
+            example: "[\"FIRSTNAME::givenname#String\",\"LASTNAME::sn#String\",\"\
+              CUSTOMPROPERTY1::samaccountname#String\",\"USERNAME::distinguishedname#String\"\
+              ,\"DISPLAYNAME::cn#String\",\"CUSTOMPROPERTY25::description#String\"\
+              ,\"CUSTOMPROPERTY3::sn#String\",\"COMMENTS::distinguishedname#String\"\
+              ,\"CUSTOMPROPERTY4::homedirectory#String\",\"CUSTOMPROPERTY5::co#String\"\
+              ,\"CUSTOMPROPERTY6::cn#String\",\"CUSTOMPROPERTY7::givenname#String\"\
+              ,\"CUSTOMPROPERTY8::title#String\",\"CUSTOMPROPERTY9::telephonenumber#String\"\
+              ,\"CUSTOMPROPERTY10::c#String\",\"CUSTOMPROPERTY11::uSNCreated#String\"\
+              ,\"ENDDATE::accountExpires#millisec\",\"CUSTOMPROPERTY12::logonCount#String\"\
+              ,\"CUSTOMPROPERTY13::physicaldeliveryofficenameute1#String\",\"CUSTOMPROPERTY15::extensionattribute2#String\"\
+              ,\"CUSTOMPROPERTY16::streetaddress#String\",\"CUSTOMPROPERTY17::mailnickname#String\"\
+              ,\"CUSTOMPROPERTY18::department#String\",\"CUSTOMPROPERTY19::countrycode#String\"\
+              ,\"CUSTOMPROPERTY2::samaccountname#String\",\"CUSTOMPROPERTY20::userprincipalname#String\"\
+              ,\"CUSTOMPROPERTY21::manager#String\",\"CUSTOMPROPERTY22::homephone#String\"\
+              ,\"CUSTOMPROPERTY23::mobile#String\",\"CREATEDATE::whencreated#date\"\
+              ,\"cstomproperty24::useraccountcontrol#String\",\"CUSTOMPROPERTY26::distinguishedname#String\"\
+              ,\"statuskey::useraccountcontrol#String\",\"CUSTOMPROPERTY27::objectguid#String\"\
+              ,\"RECONCILATION_FIELD::CUSTOMPROPERTY27\",\"CUSTOMPROPERTY28::forest#String\"\
+              ,\"CUSTOMPROPERTY29::domain#string\"]"
             type: string
           groupSearchBaseDN:
-            description: "The DN from which the search for all the groups begins.\
-              \ You can have multiple BaseDNs here separated by ###."
-            example: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+            description: "Group Search Filter to specify the starting point of the\
+              \ directory from where the groups needs to be imported. You can have\
+              \ multiple BaseDNs here separated by ###."
+            example: "OU=Groups,DC=domain1,DC=Com"
             type: string
           CHECKFORUNIQUE:
+            description: Evaluate the uniqueness of an attribute
+            example: "{\"CheckForUnique\":{\"Attributes\":[{\"sAMAccountName\":\"\
+              customproperty1\",\"RuleCheck\":\"${user.username}###${user.username}1###${user.username}2###${user.username}3\"\
+              },{\"userPrincipalName\":\"customproperty2\",\"RuleCheck\":\"${user.username}@domain1.com###${user.username}1@domain1.com\"\
+              }]}}"
             type: string
           STATUSKEYJSON:
-            description: JSON to specify Users status
-            example: "{\"STATUS_ACTIVE\":[\"1\",\"ACTIVE\",\"true\",\"512\" ],\"STATUS_INACTIVE\"\
-              :[\"0\",\"INACTIVE\",\"false\",\"546\",\"514\" ] }"
+            description: JSON configuration to specify Users status
+            example: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\":[\"\
+              546\",\"514\"]}"
             type: string
           groupImportMapping:
-            description: Mapping used during accessimport to specify which attribute
-              of a group maps to which attribute on Saviynt
+            description: Map AD group attribute to EIC entitlement attribute for import
             example: "{\"importGroupHierarchy\":\"true\",\"entitlementTypeName\":\"\
               \",\"performGroupAccountLinking\":\"true\",\"groupObjectClass\":\"(objectclass=group)\"\
               ,\"entitlementOwnerAttribute\":\"managedby\",\"tableFieldAttribute\"\
-              :\"accountID\",\"mapping\":\"memberHash:memberof_char,customProperty1:samaccounttype_char,customProperty2:instancetype_char,customProperty3:usncreated_char,customProperty4:grouptype_char,customProperty5:dscorepropagationdata_char,customProperty12:dn_char,customProperty13:cn_char,lastscandate:whencreated_date,customProperty15:managedBy_char,entitlement_glossary:description_char,description:description_char,displayname:name_char,customProperty9:name_char,customProperty10:objectcategory_char,customProperty11:samaccounttype_char,entitlement_value:distinguishedname_char,entitlementid:distinguishedname_char,customProperty14:objectclass_char,updatedate:whenchanged_date,customProperty17:distinguishedname_char,RECONCILATION_FIELD:customProperty18,customProperty18:objectguid_char\"\
+              :\"COMMENTS\",\"mapping\":\"memberHash:memberof_char,customProperty1:samaccounttype_char,customProperty2:instancetype_char,customProperty3:usncreated_char,customProperty4:grouptype_char,customProperty5:dscorepropagationdata_char,customProperty12:dn_char,customProperty13:cn_char,lastscandate:whencreated_date,customProperty15:managedBy_char,entitlement_glossary:description_char,description:description_char,displayname:name_char,customProperty9:name_char,customProperty10:objectcategory_char,customProperty11:samaccounttype_char,entitlement_value:distinguishedname_char,entitlementid:objectguid_char,customProperty14:objectclass_char,updatedate:whenchanged_date,customProperty17:distinguishedname_char,RECONCILATION_FIELD:entitlementid,customProperty18:objectguid_char\"\
               }"
             type: string
           importNestedMembership:
-            description: "Brings all indirect/nested membership of an account/group\
-              \ during Account/Access import. By Default, it is FALSE. Once true,\
-              \ it will return value in an array with key name \"nestedEntitlementList\"\
-              . Recommended to map this value in a column with datatype LONGTEXT."
+            description: Specify if you want the connector to import all indirect
+              or nested membership of an account or a group during access import
             example: "FALSE"
             type: string
           PAGE_SIZE:
@@ -566,82 +607,77 @@ components:
           ACCOUNTNAMERULE:
             description: Rule to generate account name.
             example: "{\"AccountNameRule\":{\"Attributes\":[{\"cn\":\"ACCOUNTID\"\
-              ,\"baseDN\":\"${'CN=Users,'+'@BASEDN@'.split('###')[0]}\",\"RuleCheck\"\
-              :\"${user.lastname}, ${user.firstname}###${user.lastname}, ${user.firstname}1###${user.lastname},\
+              ,\"baseDN\":\"${'CN=Users,DC=domain1,DC=com'}\",\"RuleCheck\":\"${user.lastname},\
+              \ ${user.firstname}###${user.lastname}, ${user.firstname}1###${user.lastname},\
               \ ${user.firstname}2###${user.lastname}, ${user.firstname}3###${user.lastname},\
               \ ${user.firstname}4\"}]}}"
             type: string
           CREATEACCOUNTJSON:
-            description: JSON to specify the Field Value which will be used to Create
+            description: Specify the attributes values which will be used to Create
               the New Account.
             example: "{\"objects\":[{\"objectClasses\":[\"user\",\"top\",\"Person\"\
               ,\"OrganizationalPerson\"],\"attributes\":{\"sn\":\"${user.lastname}\"\
               ,\"sAMAccountName\":\"${task.accountName}\",\"cn\":\"${cn.replace(',',\
-              \ '\\\\\\\\,')}\",\"userAccountControl\":512,\"co\":\"${user.country}\"\
+              \ '\\\\,')}\",\"userAccountControl\":512,\"co\":\"${user.country}\"\
               ,\"department\":\"${user.departmentname}\",\"displayName\":\"${user.displayname}\"\
               ,\"employeeID\":\"${user.employeeid}\",\"employeeType\":\"${user.employeeType}\"\
               ,\"givenName\":\"${user.firstname}\",\"l\":\"${user.city}\",\"mail\"\
-              :\"${user.email}\"},\"baseDn\":\"${'CN=Users,'+'@BASEDN@'.split('###')[0]}\"\
-              ,\"password\":\"${password}\"}]}"
+              :\"${user.email}\"},\"baseDn\":\"${'CN=Users,DC=domain1,DC=com'}\",\"\
+              password\":\"${password}\"}]}"
             type: string
           UPDATEACCOUNTJSON:
-            description: JSON to specify the Field Value which will be used to Update
+            description: Specify the attributes values which will be used to Update
               existing Account.
             example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
-              :\"${account.accountID.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\
-              \\/')}\",\"attributes\":{\"displayName\":\"${user.displayname}\",\"\
-              streetAddress\":\"${user.street}\"}}]}"
+              :\"${account.COMMENTS.replace('\\', '\\\\')?.replace('/', '\\/')}\"\
+              ,\"attributes\":{\"displayName\":\"${user.displayname}\",\"streetAddress\"\
+              :\"${user.street}\"}}]}"
             type: string
           ENABLEACCOUNTJSON:
-            description: JSON to specify the different attributes to be checked and
-              action to be performed for enabling a disabled account.
+            description: Specify the actions and attribute updates to be performed
+              for enabling an account.
             example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
-              :\"${account.accountID.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\
-              \\/')}\",\"deleteAllGroups\":false,\"attributes\":{\"userAccountControl\"\
-              :512}}]}"
+              :\"${account.COMMENTS.replace('\\', '\\\\')?.replace('/', '\\/')}\"\
+              ,\"deleteAllGroups\":false,\"attributes\":{\"userAccountControl\":512}}]}"
             type: string
           DISABLEACCOUNTJSON:
-            description: JSON to specify the different attributes to be checked and
-              action to be performed for disabling an active account.
+            description: Specify the actions and attributes updates to be performed
+              for disabling an account.
             example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
-              :\"${account.accountID.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\
-              \\/')}\",\"deleteAllGroups\":false,\"attributes\":{\"userAccountControl\"\
-              :514}}]}"
+              :\"${account.COMMENTS.replace('\\', '\\\\')?.replace('/', '\\/')}\"\
+              ,\"deleteAllGroups\":true,\"attributes\":{\"userAccountControl\":514}}]}"
             type: string
           REMOVEACCOUNTJSON:
-            description: JSON to specify the different attributes to be checked and
-              action to be performed for deleting/suspending an account.
-            example: "{\"objects\":[{\"distinguishedName\":\"${account.accountID.replace('\\\
-              \\', '\\\\\\\\')?.replace('/', '\\\\/')}\",\"removeAction\":\"DELETE\"\
-              ,\"deleteChildObjects\":false}]}"
+            description: Specify the actions to be performed for deleting an account.
+            example: "{\"objects\":[{\"distinguishedName\":\"${account.COMMENTS.replace('\\\
+              ', '\\\\')?.replace('/', '\\/')}\",\"removeAction\":\"DELETE\",\"deleteChildObjects\"\
+              :false}]}"
             type: string
           ADDACCESSJSON:
-            description: JSON to ADD Access (cross domain/forest group membership)
+            description: Configuration to ADD Access (cross domain/forest group membership)
               to an account.
             example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
-              :\"${accountID?.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\\/')}\"\
+              :\"${account.COMMENTS?.replace('\\', '\\\\')?.replace('/', '\\/')}\"\
               ,\"addGroup\":\"${entitlement_values}\"}],\"requestConfiguration\":{\"\
               grpMemExistenceChk\":{\"enable\":true}}}"
             type: string
           REMOVEACCESSJSON:
-            description: JSON to REMOVE Access (cross domain/forest group membership)
-              to an account.
+            description: Configuration to REMOVE Access (cross domain/forest group
+              membership) to an account.
             example: "{\"objects\":[{\"objectClasses\":[\"group\"],\"distinguishedName\"\
-              :\"${accountID?.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\\/')}\"\
+              :\"${account.COMMENTS?.replace('\\', '\\\\')?.replace('/', '\\/')}\"\
               ,\"removeGroup\":\"${entitlement_values}\"}],\"requestConfiguration\"\
               :{\"grpMemExistenceChk\":{\"enable\":true}}}"
             type: string
           RESETANDCHANGEPASSWRDJSON:
-            description: JSON to Reset and Change Password.
+            description: Configuration to Reset and Change Password.
             example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"password\":\"\
-              ${password}\",\"distinguishedName\":\"${account.accountID.replace('\\\
-              \\', '\\\\\\\\')?.replace('/', '\\\\/')}\",\"attributes\":{\"pwdLastSet\"\
-              :\"0\"}}]}"
-            type: string
-          MOVEACCOUNTJSON:
+              ${password}\",\"distinguishedName\":\"${account.COMMENTS.replace('\\\
+              ', '\\\\')?.replace('/', '\\/')}\",\"attributes\":{\"pwdLastSet\":\"\
+              0\"}}]}"
             type: string
           CREATEGROUPJSON:
-            description: JSON to Create Group in a multi-domain/forest Setup.
+            description: Configuration to Create a Group
             example: "{\"objects\":[{\"objectClasses\":[\"group\"],\"baseDn\":\"${role.customproperty24}\"\
               ,\"attributes\":{\"cn\":\"${role.displayname}\",\"name\":\"${role.displayname}\"\
               ,\"description\":\"${role.description}\",\"displayName\":\"${role.displayname}\"\
@@ -655,18 +691,18 @@ components:
               \ role?.customproperty22 == 'Domain Local' ? '4' : ''}\"}}]}"
             type: string
           UPDATEGROUPJSON:
-            description: JSON to Update Group in a multi-domain/forest Setup.
-            example: "{\"objects\":[{\"objectClasses\":[\"group\"],\"distinguishedName\"\
+            description: Configuration to Update a Group
+            example: "\"objects\":[{\"objectClasses\":[\"group\"],\"distinguishedName\"\
               :\"${role.role_name}\",\"attributes\":{\"description\":\"${role.description}\"\
-              }}]}"
+              }}]})"
             type: string
           REMOVEGROUPJSON:
-            description: JSON to Update Group in a multi-domain/forest Setup.
+            description: Configuration to Delete a Group
             example: "{\"objects\":[{\"distinguishedName\":\"${role.role_name}\",\"\
               removeAction\":\"DELETE\",\"deleteChildObjects\":false}]}"
             type: string
           ADDACCESSENTITLEMENTJSON:
-            description: JSON to Add Group to a Group.
+            description: Configuration to Add nested group hierarchy
             example: "{\"objects\":[{\"objectClasses\":[\"group\"],\"distinguishedName\"\
               :\"${ent1Value.entitlement_value?.replace('\\\\', '\\\\\\\\')?.replace('/',\
               \ '\\\\/')}\",\"addGroup\":\"${ent2Value.entitlement_value?.replace('\\\
@@ -676,7 +712,7 @@ components:
           CUSTOMCONFIGJSON:
             type: string
           REMOVEACCESSENTITLEMENTJSON:
-            description: JSON to Remove Group from a Group.
+            description: Configuration to Remove nested group hierarchy
             example: "{\"objects\":[{\"objectClasses\":[\"group\"],\"distinguishedName\"\
               :\"${ent1Value.entitlement_value?.replace('\\\\', '\\\\\\\\')?.replace('/',\
               \ '\\\\/')}\",\"addGroup\":\"${ent2Value.entitlement_value?.replace('\\\
@@ -684,27 +720,27 @@ components:
               :{\"grpMemExistenceChk\":{\"enable\":true}}}"
             type: string
           CREATESERVICEACCOUNTJSON:
-            description: JSON to specify the Field Value which will be used to Create
-              the New Service Account.
+            description: Specify the Field Value which will be used to Create the
+              New Service Account.
             example: "{\"objects\":[{\"objectClasses\":[\"msDS-GroupManagedServiceAccount\"\
-              ],\"baseDn\":\"${'CN=Managed Service Accounts,'+'@BASEDN@'.split('###')[0]}\"\
+              ],\"baseDn\":\"${'CN=Managed Service Accounts,DC=domain1,DC=com'}\"\
               ,\"attributes\":{\"sAMAccountName\":\"${task.accountName}\",\"cn\":\"\
               ${task.accountName}\",\"msDS-ManagedPasswordInterval\":\"10\",\"userAccountControl\"\
               :4096}}]}"
             type: string
           UPDATESERVICEACCOUNTJSON:
-            description: JSON to specify the Field Value which will be used to Update
+            description: Specify the Field Value which will be used to update the
               existing Service Account.
             example: "{\"objects\":[{\"objectClasses\":[\"msDS-GroupManagedServiceAccount\"\
-              ],\"distinguishedName\":\"${account.accountID?.replace('\\\\', '\\\\\
-              \\\\')?.replace('/', '\\\\/')}\"}]}"
+              ],\"distinguishedName\":\"${account.COMMENTS?.replace('\\', '\\\\')?.replace('/',\
+              \ '\\/')}\"}]}"
             type: string
           REMOVESERVICEACCOUNTJSON:
-            description: JSON to specify the different attributes to be checked and
-              action to be performed to delete an existing service account.
-            example: "{\"objects\":[{\"distinguishedName\":\"${account.accountID?.replace('\\\
-              \\', '\\\\\\\\')?.replace('/', '\\\\/')}\",\"removeAction\":\"DELETE\"\
-              ,\"deleteChildObjects\":false}]}"
+            description: Specify the actions to be performed while deleting a service
+              account.
+            example: "{\"objects\":[{\"distinguishedName\":\"${account.COMMENTS?.replace('\\\
+              ', '\\\\')?.replace('/', '\\/')}\",\"removeAction\":\"DELETE\",\"deleteChildObjects\"\
+              :false}]}"
             type: string
           PAM_CONFIG:
             description: JSON to specify Bootstrap Config.
@@ -723,8 +759,10 @@ components:
               mappingData\":\"roletest2\",\"override\":\"false\"}]}}}"
             type: string
           MODIFYUSERDATAJSON:
-            description: Specify this parameter to use the inline processor for transforming
-              the data during user import.
+            description: Specify this parameter to transform the data during user
+              import.
+            example: "{\"COMPUTEDCOLUMNS\":[\"DISPLAYNAME\"],\"PREPROCESSQUERIES\"\
+              :[\"UPDATE NEWUSERDATA SET DISPLAYNAME=city\"]}"
             type: string
         required:
         - CONNECTION_URL
@@ -1359,39 +1397,189 @@ components:
               {'disableAccountForRevokeTask': False, 'defaultEntitlementId': '', 'connectionTimeoutConfig': {'connectionTimeout': 10, 'readTimeout': 120, 'writeTimeout': 120, 'retryWait': 10, 'retryCount': 5}}
             type: string
           PAM_CONFIG:
-            example: "{'Connection': 'SalesForce', 'encryptionMechanism': 'ENCRYPTED',\
-              \ 'CONSOLE': {'maxCredSessionRequestTime': '36000', 'maxCredlessSessionRequestTime':\
-              \ '36000', 'maxIDRequestableTime': '2592000', 'shareableAccounts': {'IDQueryCredentials':\
-              \ \"acc.name in ('cpamuser1')\", 'IDQueryCredentialless': \"acc.name\
-              \ in ('cpamuser2', 'cpamuser3')\"}, 'endpointAttributeMappings': [{'column':\
-              \ 'accessquery', 'value': 'where users.USERNAME is not null', 'feature':\
-              \ 'endpointAccessQuery'}, {'column': 'customproperty43', 'value': 'PAMDefaultUserAccountAccessControl',\
-              \ 'feature': 'accountVisibilityControl'}], 'endpointPamConfig': {'maxConcurrentSession':\
-              \ '50'}, 'accountVisibilityConfig': {'accountCustomProperty': 'customproperty55',\
-              \ 'accountMappingConfig': [{'accountPattern': 'cpamuser*', 'mappingData':\
-              \ 'roletest1', 'override': 'false'}, {'accountPattern': 'cpamuser1,cpamuser2',\
-              \ 'mappingData': 'roletest2', 'override': 'false'}]}}}"
+            example: |
+              {'Connection': 'SalesForce', 'encryptionMechanism': 'ENCRYPTED', 'CONSOLE': {'maxCredSessionRequestTime': '36000', 'maxCredlessSessionRequestTime': '36000', 'maxIDRequestableTime': '2592000', 'shareableAccounts': {'IDQueryCredentials': "acc.name in ('cpamuser1')", 'IDQueryCredentialless': "acc.name in ('cpamuser2', 'cpamuser3')"}, 'endpointAttributeMappings': [{'column': 'accessquery', 'value': 'where users.USERNAME is not null', 'feature': 'endpointAccessQuery'}, {'column': 'customproperty43', 'value': 'PAMDefaultUserAccountAccessControl', 'feature': 'accountVisibilityControl'}], 'endpointPamConfig': {'maxConcurrentSession': '50'}, 'accountVisibilityConfig': {'accountCustomProperty': 'customproperty55', 'accountMappingConfig': [{'accountPattern': 'cpamuser*', 'mappingData': 'roletest1', 'override': 'false'}, {'accountPattern': 'cpamuser1,cpamuser2', 'mappingData': 'roletest2', 'override': 'false'}]}}}
             type: string
-    testConnection_request:
-      discriminator:
-        mapping:
-          AD: '#/components/schemas/ADConnector'
-          ADSI: '#/components/schemas/ADSIConnector'
-          SAP: '#/components/schemas/SAPConnector'
-          Salesforce: '''#/components/schemas/SalesforceConnector'
-          REST: '#/components/schemas/RESTConnector'
-          D365: '#/components/schemas/D365Connector'
-          Workday: '#/components/schemas/WorkdayConnector'
-        propertyName: connectiontype
-      oneOf:
-      - $ref: '#/components/schemas/ADConnector'
-      - $ref: '#/components/schemas/ADSIConnector'
-      - $ref: '#/components/schemas/SAPConnector'
-      - $ref: '#/components/schemas/SalesforceConnector'
-      - $ref: '#/components/schemas/RESTConnector'
-      - $ref: '#/components/schemas/D365Connector'
-      - $ref: '#/components/schemas/WorkdayConnector'
-    testConnection_200_response:
+    DBConnector:
+      allOf:
+      - $ref: '#/components/schemas/BaseConnector'
+      - properties:
+          URL:
+            description: Host Name for connection
+            example: ""
+            type: string
+          USERNAME:
+            description: Username for connection
+            example: ""
+            type: string
+          PASSWORD:
+            description: Password for connection
+            example: ""
+            type: string
+          DRIVERNAME:
+            description: Driver name for the connection
+            example: oracle.jdbc.OracleDriver
+            type: string
+          CONNECTIONPROPERTIES:
+            description: Properties that needs to be added when connecting to the
+              database
+            example: |
+              {'sslConnection': 'false'}
+            type: string
+          PASSWORD_MIN_LENGTH:
+            description: Specify the Min length for the random password
+            example: oracle.jdbc.OracleDriver
+            type: string
+          PASSWORD_MAX_LENGTH:
+            description: Specify the Max length for the random password
+            example: oracle.jdbc.OracleDriver
+            type: string
+          PASSWORD_NOOFCAPSALPHA:
+            description: Specify the Number of Upper case alphabets required for the
+              random password
+            example: oracle.jdbc.OracleDriver
+            type: string
+          PASSWORD_NOOFDIGITS:
+            description: Specify the Number of digits required for the random password
+            example: oracle.jdbc.OracleDriver
+            type: string
+          PASSWORD_NOOFSPLCHARS:
+            description: Specify the Number of special chars required for the random
+              password
+            example: oracle.jdbc.OracleDriver
+            type: string
+          CREATEACCOUNTJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to Create the New Account,Objects Exposed-(randomPassword,task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )"
+            example: |
+              {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
+            type: string
+          UPDATEACCOUNTJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to Update an existing Account,Objects Exposed-(randomPassword,task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'updateaccountqry': "update users set displayname = '${user.displayname}' , email = '${user.email}', employeeid = '${user.employeeid}' , username='${user.username}' ,firstname='${user.firstname}' where userkey='${user.id}'"}
+            type: string
+          GRANTACCESSJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to provide acccess,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes ). "
+            example: |
+              {'entitlement_type1': "call grantent1('${accountname}', '${task.entitlement_valuekey.customproperty7}', '${task.entitlement_valuekey.entitlement_value}')", 'entitlement_type2': "call grantent2('${accountname}', '${task.entitlement_valuekey.customproperty7}', '${task.entitlement_valuekey.entitlement_value}')"}
+            type: string
+          REVOKEACCESSJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to revoke access,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'entitlement_type1': "call revokeent1('${accountname}', '${task.entitlement_valuekey.customproperty7}', '${task.entitlement_valuekey.entitlement_value}')", 'entitlement_type2': "call revokeent2('${accountname}', '${task.entitlement_valuekey.customproperty7}', '${task.entitlement_valuekey.entitlement_value}')"}
+            type: string
+          CHANGEPASSJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to change password,Objects Exposed-(randomPassword,task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes ). "
+            example: |
+              {'changepasswordqry': "update users set password='${task.password}' where userkey = ${user.id}"}
+            type: string
+          DELETEACCOUNTJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to delete an account,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'deleteaccountqry': "call deleteaccount('${accountName}')"}
+            type: string
+          ENABLEACCOUNTJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to Enable,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'enableaccountqry': 'update users set enabled = 1 where userkey = ${user.id}'}
+            type: string
+          DISABLEACCOUNTJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to Disable Account,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'disableaccountqry': 'update users set enabled = 0 where userkey = ${user.id}'}
+            type: string
+          ACCOUNTEXISTSJSON:
+            description: "JSON to specify the Query which will be used to check whether\
+              \ an account exists,Objects Exposed-(task,user,accountName,role,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: |
+              {'AccountExistQry': 'SELECT * FROM USERS where USERKEY =${user.id}'}
+            type: string
+          UPDATEUSERJSON:
+            description: "JSON to specify the Queries/stored procedures which will\
+              \ be used to Update an existing Account,Objects Exposed-(randomPassword,task,user,accountName,role,updatetaskuser,endpoint\
+              \ and all the objects defined in Dynamic Attributes )."
+            example: oracle.jdbc.OracleDriver
+            type: string
+          ACCOUNTSIMPORT:
+            description: Accounts Import XML file content
+            example: |
+              <dataMapping><sql-query description="This is the Source DB Query" uniquecolumnsascommaseparated="name" ><![CDATA[select accountname,securitysystem,endpoint,entitlementtype,entitlementvalue,status from accounts]]></sql-query><mapper description="This is the mapping field for Saviynt Field name" accountnotinfileaction="Suspend" deleteaccountentitlement="true" ifusernotexists="noaction"><mapfield saviyntproperty="accounts.name" sourceproperty="accountname" type="character"/><mapfield saviyntproperty="securitysystems.systemname" sourceproperty="securitysystem" type="character"/><mapfield saviyntproperty="endpoints.endpointname" sourceproperty="endpoint" type="character"/><mapfield saviyntproperty="entitlementtypes.entitlementname" sourceproperty="entitlementtype" type="character"/><mapfield saviyntproperty="entitlementvalues.entitlementvalue" sourceproperty="entitlementvalue" type="character"/><mapfield saviyntproperty="accounts.status" sourceproperty="status" type="character"/></mapper></dataMapping>
+            type: string
+          ENTITLEMENTVALUEIMPORT:
+            description: Entitlement Value Import XML file content
+            example: |
+              <dataMapping><sql-query description="This is the Source Database Query"><![CDATA[select applicationname,endpointname,entitlementtype,entitlementvalue,entID,glossary,dataowner1,dataowner2,dataowner3,soxcritical,syscritical,status,description from db_import_ent]]></sql-query><mapper description="This is the mapping field for Saviynt Field name" deleteentitlementowner="true" entnotpresentaction="noaction" createentitlementtype="true"><mapfield saviyntproperty="securitysystems.systemname" sourceproperty="applicationname" type="character"/><mapfield saviyntproperty="endpoints.endpointname" sourceproperty="endpointname" type="character"/><mapfield saviyntproperty="entitlementtypes.entitlementname" sourceproperty="entitlementtype" type="character"/><mapfield saviyntproperty="entitlementvalues.entitlement_value" sourceproperty="entitlementvalue" type="character"/><mapfield saviyntproperty="entitlementvalues.entitlementID" sourceproperty="entID" type="character"/><mapfield saviyntproperty="entitlementvalues.entitlement_glossary" sourceproperty="glossary" type="character"/><mapfield saviyntproperty="entitlementvalues.description" sourceproperty="description" type="character"/><mapfield saviyntproperty="entitlementvalues.entowner1" sourceproperty="dataowner1" type="character"/><mapfield saviyntproperty="entitlementvalues.entowner2" sourceproperty="dataowner2" type="character"/><mapfield saviyntproperty="entitlementvalues.entowner3" sourceproperty="dataowner3" type="character"/><mapfield saviyntproperty="entitlementvalues.sox_critical" sourceproperty="soxcritical" type="character"/><mapfield saviyntproperty="entitlementvalues.sys_critical" sourceproperty="syscritical" type="character"/><mapfield saviyntproperty="entitlementvalues.status" sourceproperty="status" type="number"/></mapper></dataMapping>
+            type: string
+          ROLEOWNERIMPORT:
+            description: Role Owner Import XML file contentT
+            example: oracle.jdbc.OracleDriver
+            type: string
+          ROLESIMPORT:
+            description: Roles Import XML file content
+            example: oracle.jdbc.OracleDriver
+            type: string
+          SYSTEMIMPORT:
+            description: System Import XML file content
+            example: oracle.jdbc.OracleDriver
+            type: string
+          USERIMPORT:
+            description: User Import XML file content
+            example: oracle.jdbc.OracleDriver
+            type: string
+          MODIFYUSERDATAJSON:
+            description: Property for MODIFYUSERDATAJSON
+            example: oracle.jdbc.OracleDriver
+            type: string
+          STATUS_THRESHOLD_CONFIG:
+            description: "Applicable for Accounts full import only.If this config\
+              \ isdefined with status/threshold values, it will take precedence over\
+              \ account_not_in_file_action defined in ACCOUNTIMPORT xml.If this config\
+              \ is defined with only correlateInactiveAccounts, then account_not_in_file_action\
+              \ will used as normal.The attributes of statusAndThresholdConfig json\
+              \ are:statusColumn: Property in saviynt which stores the status of target\
+              \ system.activeStatus:All possible values that denotes the Active status\
+              \ of the target system.accountThresholdValue: No. of accounts to be\
+              \ deleted in Saviynt >= accountThresholdValue, it performs NO ACTION,\
+              \ else it disables the accounts.inactivateAccountsNotInFile: If true,accounts\
+              \ not in file are marked as Inactive. If false, accounts not in file\
+              \ are marked as SUSPENDED FROM IMPORT SERVICE.CorrelateInactiveAccounts:\
+              \ If true, correlates disabled accounts as well with the users."
+            example: |
+              {'statusAndThresholdConfig': {'accountThresholdValue': 1000, 'accountEntThresholdValue': 1000, 'entThresholdValue': 1000, 'deleteAccEntForActiveAccounts': True, 'statusColumn': 'status', 'deleteLinks': False, 'correlateInactiveAccounts': True, 'inactivateAccountsNotInFile': False, 'inactivateEntsNotInFeed': True, 'activeStatus': ['1', 'Active'], 'inactiveStatus': ['0', 'Inactive'], 'lockedStatusColumn': 'userlock', 'lockedStatusMapping': {'Locked': ['1'], 'Unlocked': ['0']}}}
+            type: string
+          MAX_PAGINATION_SIZE:
+            description: Defines the max number of records from the target to be processed
+              in each page
+            example: oracle.jdbc.OracleDriver
+            type: string
+          CLI_COMMAND_JSON:
+            description: JSON to specify the commands which can be executed in target
+              server.
+            example: oracle.jdbc.OracleDriver
+            type: string
+        required:
+        - DRIVERNAME
+        - PASSWORD
+        - URL
+        - USERNAME
+    CreateOrUpdateResponse:
       example:
         msg: Connection Successful
         connectionKey: 1909
@@ -1406,3 +1594,865 @@ components:
         errorCode:
           example: "0"
           type: string
+    getConnectionsResponse:
+      example:
+        msg: Successful
+        ConnectionList:
+        - CONNECTIONTYPE: AD
+          STATUS: 1
+          UPDATEDON: 2017-03-23T00:48:28Z
+          CREATEDON: 2017-03-23T00:48:28Z
+          UPDATEDBY: admin
+          CREATEDBY: admin
+          CONNECTIONNAME: test-conn
+          CONNECTIONDESCRIPTION: Description of the connection
+        - CONNECTIONTYPE: AD
+          STATUS: 1
+          UPDATEDON: 2017-03-23T00:48:28Z
+          CREATEDON: 2017-03-23T00:48:28Z
+          UPDATEDBY: admin
+          CREATEDBY: admin
+          CONNECTIONNAME: test-conn
+          CONNECTIONDESCRIPTION: Description of the connection
+        displayCount: 50
+        errorCode: "0"
+        totalCount: 130
+      properties:
+        msg:
+          example: Successful
+          type: string
+        errorCode:
+          example: "0"
+          type: string
+        displayCount:
+          example: 50
+          type: integer
+        totalCount:
+          example: 130
+          type: integer
+        ConnectionList:
+          description: A list of connections.
+          items:
+            $ref: '#/components/schemas/getConnectionsResponse_ConnectionList_inner'
+          type: array
+    getConnectionDetails:
+      example:
+        msg: success
+        emailtemplate: ""
+        updatedby: admin(adminfname adminlname)
+        connectionname: Workday
+        connectionkey: 120
+        description: Workday
+        connectionattributes:
+          ASSWORD_NOOFSPLCHARS: "1"
+          LAST_IMPORT_TIME: 2017-03-23T00:48:28Z
+          CREATEACCOUNTJSON: |
+            {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
+          ENDPOINTS_FILTER: ENDPOINTS_FILTER
+          DISABLEACCOUNTJSON: "{\"userAccountControl\":\"546\",\"deleteAllGroups\"\
+            :\"No\"}"
+          groupSearchBaseDN: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          connectionType: AD
+          PASSWORD_NOOFSPLCHARS: "1"
+          STATUSKEYJSON: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\"\
+            :[\"514\",\"546\"]}"
+          DEFAULT_USER_ROLE: ROLE_TASK_ADMIN
+          ConfigJSON: "{\"connectionTimeoutConfig\":{\"connectionTimeout\":10,\"readTimeout\"\
+            :50,\"retryWait\":2,\"retryCount\":3}}"
+          CREATEORGJSON: CREATEORGJSON
+          REMOVEACCOUNTACTION: "{\"removeAction\":\"DELETE\"}"
+          USERNAME: administrator@saviyntlabs.com
+          ACCOUNTNAMERULE: "uid=${task.accountName.toString().toLowerCase()},ou=People,dc=racf,dc=com"
+          SETRANDOMPASSWORD: SETRANDOMPASSWORD
+          SETDEFAULTPAGESIZE: SETDEFAULTPAGESIZE
+          isTimeoutSupported: true
+          REUSEINACTIVEACCOUNT: "true"
+          PASSWORD_NOOFDIGITS: "5"
+          IMPORTJSON: "{\"envproperties\":{\"com.sun.jndi.ldap.connect.timeout\":\"\
+            10000\",\"com.sun.jndi.ldap.read.timeout\":\"50000\"}}"
+          createUpdateMappings: "{\"cn\":\"${role?.customproperty27}\",\"objectCategory\"\
+            :\"CN=Group,CN=Schema,CN=Configuration,@DOMCONTRDN@\",\"displayName\"\
+            :\"${role?.displayname}\",\"SamAccountName\":\"${role?.customproperty27}\"\
+            ,\"description\":\"${role?.description}\",\"objectClass\":\"group\",\"\
+            name\":\"${role?.customproperty27}\"}"
+          ACCOUNT_ATTRIBUTE: "[\"ACCOUNTID::objectGUID#Binary\",\"NAME::sAMAccountName#String\"\
+            ,\"ACCOUNTCLASS::objectClass#String\",\"DISPLAYNAME::name#String\",\"\
+            DESCRIPTION::description#String\",\"LASTLOGONDATE::lastLogon#millisec\"\
+            ,\"VALIDTHROUGH::accountExpires#millisec\",\"COMMENTS::distinguishedName#String\"\
+            ,\"UPDATEDATE::whenChanged#date\",\"LASTPASSWORDCHANGE::pwdLastSet#millisec\"\
+            ,\"CREATED_ON::whenCreated#date\",\"CUSTOMPROPERTY1::cn#String\",\"CUSTOMPROPERTY2::userPrincipalName#String\"\
+            ,\"CUSTOMPROPERTY3::sn#String\",\"CUSTOMPROPERTY4::homeDirectory#String\"\
+            ,\"CUSTOMPROPERTY5::co#String\",\"CUSTOMPROPERTY6::employeeNumber#String\"\
+            ,\"CUSTOMPROPERTY7::givenName#String\",\"CUSTOMPROPERTY8::title#String\"\
+            ,\"CUSTOMPROPERTY9::telephoneNumber#String\",\"CUSTOMPROPERTY10::c#String\"\
+            ,\"CUSTOMPROPERTY11::uSNCreated#String\",\"CUSTOMPROPERTY12::logonCount#String\"\
+            ,\"CUSTOMPROPERTY13::physicalDeliveryOfficeName#String\",\"CUSTOMPROPERTY30::userAccountControl#String\"\
+            ,\"CUSTOMPROPERTY28::primaryGroupID#String\",\"CUSTOMPROPERTY25::company#String\"\
+            ,\"CUSTOMPROPERTY16::streetAddress#String\",\"CUSTOMPROPERTY18::department#String\"\
+            ,\"CUSTOMPROPERTY19::countryCode#String\",\"CUSTOMPROPERTY21::manager#String\"\
+            ,\"CUSTOMPROPERTY22::homePhone#String\",\"CUSTOMPROPERTY23::mobile#String\"\
+            ,\"CUSTOMPROPERTY24::userAccountControl#String\",\"CUSTOMPROPERTY27::objectSid#Binary\"\
+            ,\"CUSTOMPROPERTY26::objectGUID#Binary\",\"RECONCILATION_FIELD::CUSTOMPROPERTY26\"\
+            ]"
+          saveconnection: "N"
+          PASSWORD: password
+          ADVANCE_FILTER_JSON: ADVANCE_FILTER_JSON
+          ORGIMPORTJSON: ORGIMPORTJSON
+          PAM_CONFIG: "{\"Connection\":\"AD\",\"encryptionMechanism\":\"ENCRYPTED\"\
+            ,\"CONSOLE\":{\"maxCredSessionRequestTime\":\"36000\",\"maxCredlessSessionRequestTime\"\
+            :\"36000\",\"shareableAccounts\":{\"IDQueryCredentials\":\"acc.name in\
+            \ ('cpamuser1')\",\"IDQueryCredentialless\":\"acc.name in ('cpamuser2',\
+            \ 'cpamuser3')\",\"IDQueryCredentiallessViewPwd\":\"acc.name in ('cpamuser2')\"\
+            },\"endpointAttributeMappings\":[{\"column\":\"accessquery\",\"value\"\
+            :\"where users.USERNAME is not null\",\"feature\":\"endpointAccessQuery\"\
+            },{\"column\":\"customproperty43\",\"value\":\"PAMDefaultUserAccountAccessControl\"\
+            ,\"feature\":\"accountVisibilityControl\"}],\"endpointPamConfig\":{\"\
+            maxConcurrentSession\":\"50\"},\"accountVisibilityConfig\":{\"accountCustomProperty\"\
+            :\"customproperty55\",\"accountMappingConfig\":[{\"accountPattern\":\"\
+            cpamuser*\",\"mappingData\":\"roletest1\",\"override\":\"false\"},{\"\
+            accountPattern\":\"cpamuser1,cpamuser2\",\"mappingData\":\"roletest2\"\
+            ,\"override\":\"false\"}]}}}"
+          PAGE_SIZE: "1000"
+          SEARCHFILTER: "OU=Users,DC=domainname,DC=com"
+          MAX_CHANGENUMBER: MAX_CHANGENUMBER
+          PASSWORD_MIN_LENGTH: "8"
+          ENTITLEMENT_ATTRIBUTE: memberOf
+          INCREMENTAL_CONFIG: INCREMENTAL_CONFIG
+          CHECKFORUNIQUE: CHECKFORUNIQUE
+          DC_LOCATOR: DC_LOCATOR
+          connectionTimeoutConfig:
+            retryWait: 0
+            tokenRefreshMaxTryCount: 6
+            retryWaitMaxValue: 1
+            retryCount: 5
+            readTimeout: 5
+            connectionTimeout: 2
+          UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\"\
+            ,\"givenName\":\"${user.firstname}\"}"
+          BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          LDAP_OR_AD: AD
+          ORG_BASE: ORG_BASE
+          STATUS_THRESHOLD_CONFIG: "{\"statusAndThresholdConfig\":{\"statusColumn\"\
+            :\"CUSTOMPROPERTY4\",\"activeStatus\":[\"n\"],\"deleteLinks\":false,\"\
+            accountThresholdValue\":1000,\"correlateInactiveAccounts\":true,\"inactivateAccountsNotInFile\"\
+            :false}}"
+          UPDATEORGJSON: UPDATEORGJSON
+          groupImportMapping: "{\"entitlementTypeName\":\"memberOf\", \"performGroupAccountLinking\"\
+            :\"true\", ...}"
+          FILTER: FILTER
+          RESETANDCHANGEPASSWRDJSON: "{\"RESET\":{\"pwdLastSet\":\"0\",\"title\":\"\
+            password reset\"},\"CHANGE\":{\"pwdLastSet\":\"-1\",\"title\":\"password\
+            \ changed\"}}"
+          systemname: Dummyapplication
+          USER_ATTRIBUTE: "[\"USERNAME::sAMAccountName#String\", \"DISPLAYNAME::displayName#String\"\
+            , ...]"
+          PASSWORD_NOOFCAPSALPHA: "2"
+          MODIFYUSERDATAJSON: MODIFYUSERDATAJSON
+          isTimeoutConfigValidated: true
+          ADVSEARCH: ADVSEARCH
+          SUPPORTEMPTYSTRING: "FALSE"
+          UNLOCKACCOUNTJSON: "{\"lockoutTime\":\"0\"}"
+          ENABLEGROUPMANAGEMENT: "TRUE"
+          ENABLEACCOUNTJSON: "{\"USEDNFROMACCOUNT\":\"NO\",\"ENABLEACCOUNTOU\":\"\
+            OU=ActiveUsers,OU=TestUsers,dc=test,dc=com\"}"
+          PASSWORD_MAX_LENGTH: "12"
+          REUSEACCOUNTJSON: "{\"ATTRIBUTESTOCHECK\":{\"userAccountControl\":\"514\"\
+            ,\"sn\":\"${user.lastname}\"},\"REUSEACCOUNTOU\":\"OU=ActiveUsers,DC=domainname,DC=com\"\
+            }"
+          ENFORCE_TREE_DELETION: "TRUE"
+          OBJECTFILTER: (objectClass=inetorgperson)
+          ORGANIZATION_ATTRIBUTE: ORGANIZATION_ATTRIBUTE
+          UPDATEACCOUNTJSON: "{\"uid\":\"${task.accountName.toString().toLowerCase()}\"\
+            ,\"description\":\"AS 400 Integration with Saviynt\"}"
+        createdon: 2020-03-12T11:49:15Z
+        defaultsavroles: ""
+        createdby: admin(null null)
+        connectiontype: Workday-SOAP
+        errorcode: 0
+        status: 1
+      properties:
+        msg:
+          description: API response message
+          example: success
+          type: string
+        emailtemplate:
+          description: Email template for the connection
+          example: ""
+          type: string
+        updatedby:
+          description: Updator account for the connection
+          example: admin(adminfname adminlname)
+          type: string
+        connectionname:
+          description: Name of the connection
+          example: Workday
+          type: string
+        connectionkey:
+          description: Connection key
+          example: 120
+          type: integer
+        description:
+          description: Description for the connection
+          example: Workday
+          type: string
+        connectiontype:
+          description: Connection type
+          example: Workday-SOAP
+          type: string
+        createdon:
+          description: Connection creation time
+          example: 2020-03-12T11:49:15Z
+          type: string
+        createdby:
+          description: Creator account for the connection
+          example: admin(null null)
+          type: string
+        errorcode:
+          description: Error code
+          example: 0
+          type: integer
+        status:
+          example: 1
+          type: integer
+        defaultsavroles:
+          example: ""
+          type: string
+        connectionattributes:
+          $ref: '#/components/schemas/getConnectionDetails_connectionattributes'
+    ADConnectionAttributes:
+      example:
+        ASSWORD_NOOFSPLCHARS: "1"
+        LAST_IMPORT_TIME: 2017-03-23T00:48:28Z
+        CREATEACCOUNTJSON: |
+          {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
+        ENDPOINTS_FILTER: ENDPOINTS_FILTER
+        DISABLEACCOUNTJSON: "{\"userAccountControl\":\"546\",\"deleteAllGroups\":\"\
+          No\"}"
+        groupSearchBaseDN: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+        connectionType: AD
+        PASSWORD_NOOFSPLCHARS: "1"
+        STATUSKEYJSON: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\":[\"\
+          514\",\"546\"]}"
+        DEFAULT_USER_ROLE: ROLE_TASK_ADMIN
+        ConfigJSON: "{\"connectionTimeoutConfig\":{\"connectionTimeout\":10,\"readTimeout\"\
+          :50,\"retryWait\":2,\"retryCount\":3}}"
+        CREATEORGJSON: CREATEORGJSON
+        REMOVEACCOUNTACTION: "{\"removeAction\":\"DELETE\"}"
+        USERNAME: administrator@saviyntlabs.com
+        ACCOUNTNAMERULE: "uid=${task.accountName.toString().toLowerCase()},ou=People,dc=racf,dc=com"
+        SETRANDOMPASSWORD: SETRANDOMPASSWORD
+        SETDEFAULTPAGESIZE: SETDEFAULTPAGESIZE
+        isTimeoutSupported: true
+        REUSEINACTIVEACCOUNT: "true"
+        PASSWORD_NOOFDIGITS: "5"
+        IMPORTJSON: "{\"envproperties\":{\"com.sun.jndi.ldap.connect.timeout\":\"\
+          10000\",\"com.sun.jndi.ldap.read.timeout\":\"50000\"}}"
+        createUpdateMappings: "{\"cn\":\"${role?.customproperty27}\",\"objectCategory\"\
+          :\"CN=Group,CN=Schema,CN=Configuration,@DOMCONTRDN@\",\"displayName\":\"\
+          ${role?.displayname}\",\"SamAccountName\":\"${role?.customproperty27}\"\
+          ,\"description\":\"${role?.description}\",\"objectClass\":\"group\",\"name\"\
+          :\"${role?.customproperty27}\"}"
+        ACCOUNT_ATTRIBUTE: "[\"ACCOUNTID::objectGUID#Binary\",\"NAME::sAMAccountName#String\"\
+          ,\"ACCOUNTCLASS::objectClass#String\",\"DISPLAYNAME::name#String\",\"DESCRIPTION::description#String\"\
+          ,\"LASTLOGONDATE::lastLogon#millisec\",\"VALIDTHROUGH::accountExpires#millisec\"\
+          ,\"COMMENTS::distinguishedName#String\",\"UPDATEDATE::whenChanged#date\"\
+          ,\"LASTPASSWORDCHANGE::pwdLastSet#millisec\",\"CREATED_ON::whenCreated#date\"\
+          ,\"CUSTOMPROPERTY1::cn#String\",\"CUSTOMPROPERTY2::userPrincipalName#String\"\
+          ,\"CUSTOMPROPERTY3::sn#String\",\"CUSTOMPROPERTY4::homeDirectory#String\"\
+          ,\"CUSTOMPROPERTY5::co#String\",\"CUSTOMPROPERTY6::employeeNumber#String\"\
+          ,\"CUSTOMPROPERTY7::givenName#String\",\"CUSTOMPROPERTY8::title#String\"\
+          ,\"CUSTOMPROPERTY9::telephoneNumber#String\",\"CUSTOMPROPERTY10::c#String\"\
+          ,\"CUSTOMPROPERTY11::uSNCreated#String\",\"CUSTOMPROPERTY12::logonCount#String\"\
+          ,\"CUSTOMPROPERTY13::physicalDeliveryOfficeName#String\",\"CUSTOMPROPERTY30::userAccountControl#String\"\
+          ,\"CUSTOMPROPERTY28::primaryGroupID#String\",\"CUSTOMPROPERTY25::company#String\"\
+          ,\"CUSTOMPROPERTY16::streetAddress#String\",\"CUSTOMPROPERTY18::department#String\"\
+          ,\"CUSTOMPROPERTY19::countryCode#String\",\"CUSTOMPROPERTY21::manager#String\"\
+          ,\"CUSTOMPROPERTY22::homePhone#String\",\"CUSTOMPROPERTY23::mobile#String\"\
+          ,\"CUSTOMPROPERTY24::userAccountControl#String\",\"CUSTOMPROPERTY27::objectSid#Binary\"\
+          ,\"CUSTOMPROPERTY26::objectGUID#Binary\",\"RECONCILATION_FIELD::CUSTOMPROPERTY26\"\
+          ]"
+        saveconnection: "N"
+        PASSWORD: password
+        ADVANCE_FILTER_JSON: ADVANCE_FILTER_JSON
+        ORGIMPORTJSON: ORGIMPORTJSON
+        PAM_CONFIG: "{\"Connection\":\"AD\",\"encryptionMechanism\":\"ENCRYPTED\"\
+          ,\"CONSOLE\":{\"maxCredSessionRequestTime\":\"36000\",\"maxCredlessSessionRequestTime\"\
+          :\"36000\",\"shareableAccounts\":{\"IDQueryCredentials\":\"acc.name in ('cpamuser1')\"\
+          ,\"IDQueryCredentialless\":\"acc.name in ('cpamuser2', 'cpamuser3')\",\"\
+          IDQueryCredentiallessViewPwd\":\"acc.name in ('cpamuser2')\"},\"endpointAttributeMappings\"\
+          :[{\"column\":\"accessquery\",\"value\":\"where users.USERNAME is not null\"\
+          ,\"feature\":\"endpointAccessQuery\"},{\"column\":\"customproperty43\",\"\
+          value\":\"PAMDefaultUserAccountAccessControl\",\"feature\":\"accountVisibilityControl\"\
+          }],\"endpointPamConfig\":{\"maxConcurrentSession\":\"50\"},\"accountVisibilityConfig\"\
+          :{\"accountCustomProperty\":\"customproperty55\",\"accountMappingConfig\"\
+          :[{\"accountPattern\":\"cpamuser*\",\"mappingData\":\"roletest1\",\"override\"\
+          :\"false\"},{\"accountPattern\":\"cpamuser1,cpamuser2\",\"mappingData\"\
+          :\"roletest2\",\"override\":\"false\"}]}}}"
+        PAGE_SIZE: "1000"
+        SEARCHFILTER: "OU=Users,DC=domainname,DC=com"
+        MAX_CHANGENUMBER: MAX_CHANGENUMBER
+        PASSWORD_MIN_LENGTH: "8"
+        ENTITLEMENT_ATTRIBUTE: memberOf
+        INCREMENTAL_CONFIG: INCREMENTAL_CONFIG
+        CHECKFORUNIQUE: CHECKFORUNIQUE
+        DC_LOCATOR: DC_LOCATOR
+        connectionTimeoutConfig:
+          retryWait: 0
+          tokenRefreshMaxTryCount: 6
+          retryWaitMaxValue: 1
+          retryCount: 5
+          readTimeout: 5
+          connectionTimeout: 2
+        UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\",\"\
+          givenName\":\"${user.firstname}\"}"
+        BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+        LDAP_OR_AD: AD
+        ORG_BASE: ORG_BASE
+        STATUS_THRESHOLD_CONFIG: "{\"statusAndThresholdConfig\":{\"statusColumn\"\
+          :\"CUSTOMPROPERTY4\",\"activeStatus\":[\"n\"],\"deleteLinks\":false,\"accountThresholdValue\"\
+          :1000,\"correlateInactiveAccounts\":true,\"inactivateAccountsNotInFile\"\
+          :false}}"
+        UPDATEORGJSON: UPDATEORGJSON
+        groupImportMapping: "{\"entitlementTypeName\":\"memberOf\", \"performGroupAccountLinking\"\
+          :\"true\", ...}"
+        FILTER: FILTER
+        RESETANDCHANGEPASSWRDJSON: "{\"RESET\":{\"pwdLastSet\":\"0\",\"title\":\"\
+          password reset\"},\"CHANGE\":{\"pwdLastSet\":\"-1\",\"title\":\"password\
+          \ changed\"}}"
+        systemname: Dummyapplication
+        USER_ATTRIBUTE: "[\"USERNAME::sAMAccountName#String\", \"DISPLAYNAME::displayName#String\"\
+          , ...]"
+        PASSWORD_NOOFCAPSALPHA: "2"
+        MODIFYUSERDATAJSON: MODIFYUSERDATAJSON
+        isTimeoutConfigValidated: true
+        ADVSEARCH: ADVSEARCH
+        SUPPORTEMPTYSTRING: "FALSE"
+        UNLOCKACCOUNTJSON: "{\"lockoutTime\":\"0\"}"
+        ENABLEGROUPMANAGEMENT: "TRUE"
+        ENABLEACCOUNTJSON: "{\"USEDNFROMACCOUNT\":\"NO\",\"ENABLEACCOUNTOU\":\"OU=ActiveUsers,OU=TestUsers,dc=test,dc=com\"\
+          }"
+        PASSWORD_MAX_LENGTH: "12"
+        REUSEACCOUNTJSON: "{\"ATTRIBUTESTOCHECK\":{\"userAccountControl\":\"514\"\
+          ,\"sn\":\"${user.lastname}\"},\"REUSEACCOUNTOU\":\"OU=ActiveUsers,DC=domainname,DC=com\"\
+          }"
+        ENFORCE_TREE_DELETION: "TRUE"
+        OBJECTFILTER: (objectClass=inetorgperson)
+        ORGANIZATION_ATTRIBUTE: ORGANIZATION_ATTRIBUTE
+        UPDATEACCOUNTJSON: "{\"uid\":\"${task.accountName.toString().toLowerCase()}\"\
+          ,\"description\":\"AS 400 Integration with Saviynt\"}"
+      properties:
+        LAST_IMPORT_TIME:
+          description: Timestamp of the last import operation.
+          example: 2017-03-23T00:48:28Z
+          type: string
+        CREATEACCOUNTJSON:
+          description: JSON template for creating an account.
+          example: |
+            {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
+          type: string
+        DISABLEACCOUNTJSON:
+          description: JSON to specify the different attributes to be checked and
+            action to be performed for disabling an active account.
+          example: "{\"userAccountControl\":\"546\",\"deleteAllGroups\":\"No\"}"
+          type: string
+        groupSearchBaseDN:
+          description: Base DN for group search in LDAP.
+          example: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          type: string
+        ASSWORD_NOOFSPLCHARS:
+          description: Number of special characters in password.
+          example: "1"
+          type: string
+        PASSWORD_NOOFDIGITS:
+          description: Specify the Number of digits required for the random password.
+          example: "5"
+          type: string
+        connectionType:
+          description: "Type of connection, e.g., MS_BASED_CONNECTOR."
+          example: AD
+          type: string
+        STATUSKEYJSON:
+          description: JSON configuration for account statuses.
+          example: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\":[\"514\"\
+            ,\"546\"]}"
+          type: string
+        SEARCHFILTER:
+          description: LDAP search filter.
+          example: "OU=Users,DC=domainname,DC=com"
+          type: string
+        ConfigJSON:
+          description: We can use this attribute to define the connectionTimeoutConfig.
+          example: "{\"connectionTimeoutConfig\":{\"connectionTimeout\":10,\"readTimeout\"\
+            :50,\"retryWait\":2,\"retryCount\":3}}"
+          type: string
+        REMOVEACCOUNTACTION:
+          description: Action performed on account removal.
+          example: "{\"removeAction\":\"DELETE\"}"
+          type: string
+        ACCOUNT_ATTRIBUTE:
+          description: Map LDAP user attribute to EIC account attribute for import
+          example: "[\"ACCOUNTID::objectGUID#Binary\",\"NAME::sAMAccountName#String\"\
+            ,\"ACCOUNTCLASS::objectClass#String\",\"DISPLAYNAME::name#String\",\"\
+            DESCRIPTION::description#String\",\"LASTLOGONDATE::lastLogon#millisec\"\
+            ,\"VALIDTHROUGH::accountExpires#millisec\",\"COMMENTS::distinguishedName#String\"\
+            ,\"UPDATEDATE::whenChanged#date\",\"LASTPASSWORDCHANGE::pwdLastSet#millisec\"\
+            ,\"CREATED_ON::whenCreated#date\",\"CUSTOMPROPERTY1::cn#String\",\"CUSTOMPROPERTY2::userPrincipalName#String\"\
+            ,\"CUSTOMPROPERTY3::sn#String\",\"CUSTOMPROPERTY4::homeDirectory#String\"\
+            ,\"CUSTOMPROPERTY5::co#String\",\"CUSTOMPROPERTY6::employeeNumber#String\"\
+            ,\"CUSTOMPROPERTY7::givenName#String\",\"CUSTOMPROPERTY8::title#String\"\
+            ,\"CUSTOMPROPERTY9::telephoneNumber#String\",\"CUSTOMPROPERTY10::c#String\"\
+            ,\"CUSTOMPROPERTY11::uSNCreated#String\",\"CUSTOMPROPERTY12::logonCount#String\"\
+            ,\"CUSTOMPROPERTY13::physicalDeliveryOfficeName#String\",\"CUSTOMPROPERTY30::userAccountControl#String\"\
+            ,\"CUSTOMPROPERTY28::primaryGroupID#String\",\"CUSTOMPROPERTY25::company#String\"\
+            ,\"CUSTOMPROPERTY16::streetAddress#String\",\"CUSTOMPROPERTY18::department#String\"\
+            ,\"CUSTOMPROPERTY19::countryCode#String\",\"CUSTOMPROPERTY21::manager#String\"\
+            ,\"CUSTOMPROPERTY22::homePhone#String\",\"CUSTOMPROPERTY23::mobile#String\"\
+            ,\"CUSTOMPROPERTY24::userAccountControl#String\",\"CUSTOMPROPERTY27::objectSid#Binary\"\
+            ,\"CUSTOMPROPERTY26::objectGUID#Binary\",\"RECONCILATION_FIELD::CUSTOMPROPERTY26\"\
+            ]"
+          type: string
+        ACCOUNTNAMERULE:
+          description: Rule to generate account name.
+          example: "uid=${task.accountName.toString().toLowerCase()},ou=People,dc=racf,dc=com"
+          type: string
+        ADVSEARCH:
+          description: Advanced search criteria.
+          type: string
+        USERNAME:
+          description: LDAP or system admin username.
+          example: administrator@saviyntlabs.com
+          type: string
+        PASSWORD:
+          description: Set the Password
+          example: password
+          type: string
+        LDAP_OR_AD:
+          description: "Type of Endpoint - LDAP or AD, default value is AD"
+          example: AD
+          type: string
+        ENTITLEMENT_ATTRIBUTE:
+          description: Attribute used for entitlements.
+          example: memberOf
+          type: string
+        SETRANDOMPASSWORD:
+          description: Set random password option.
+          type: string
+          example: null
+        PASSWORD_MIN_LENGTH:
+          description: Minimum password length.
+          example: "8"
+          type: string
+        PASSWORD_MAX_LENGTH:
+          description: Maximum password length.
+          example: "12"
+          type: string
+        PASSWORD_NOOFCAPSALPHA:
+          description: Specify the number of special characters required for the random
+            password.
+          example: "2"
+          type: string
+        SETDEFAULTPAGESIZE:
+          description: Default page size for data retrieval.
+          type: string
+        isTimeoutSupported:
+          description: Indicates if timeout is supported.
+          type: boolean
+        REUSEINACTIVEACCOUNT:
+          description: Flag to determine if inactive accounts can be reused.
+          example: "true"
+          type: string
+        IMPORTJSON:
+          description: JSON import configurations.
+          example: "{\"envproperties\":{\"com.sun.jndi.ldap.connect.timeout\":\"10000\"\
+            ,\"com.sun.jndi.ldap.read.timeout\":\"50000\"}}"
+          type: string
+        createUpdateMappings:
+          description: Mapping used during group creation and updation.
+          example: "{\"cn\":\"${role?.customproperty27}\",\"objectCategory\":\"CN=Group,CN=Schema,CN=Configuration,@DOMCONTRDN@\"\
+            ,\"displayName\":\"${role?.displayname}\",\"SamAccountName\":\"${role?.customproperty27}\"\
+            ,\"description\":\"${role?.description}\",\"objectClass\":\"group\",\"\
+            name\":\"${role?.customproperty27}\"}"
+          type: string
+        ADVANCE_FILTER_JSON:
+          description: Advanced filter criteria in JSON format.
+          type: string
+        ORGIMPORTJSON:
+          description: JSON configuration for importing organizations.
+          type: string
+        PAM_CONFIG:
+          description: JSON to specify Bootstrap Config.
+          example: "{\"Connection\":\"AD\",\"encryptionMechanism\":\"ENCRYPTED\",\"\
+            CONSOLE\":{\"maxCredSessionRequestTime\":\"36000\",\"maxCredlessSessionRequestTime\"\
+            :\"36000\",\"shareableAccounts\":{\"IDQueryCredentials\":\"acc.name in\
+            \ ('cpamuser1')\",\"IDQueryCredentialless\":\"acc.name in ('cpamuser2',\
+            \ 'cpamuser3')\",\"IDQueryCredentiallessViewPwd\":\"acc.name in ('cpamuser2')\"\
+            },\"endpointAttributeMappings\":[{\"column\":\"accessquery\",\"value\"\
+            :\"where users.USERNAME is not null\",\"feature\":\"endpointAccessQuery\"\
+            },{\"column\":\"customproperty43\",\"value\":\"PAMDefaultUserAccountAccessControl\"\
+            ,\"feature\":\"accountVisibilityControl\"}],\"endpointPamConfig\":{\"\
+            maxConcurrentSession\":\"50\"},\"accountVisibilityConfig\":{\"accountCustomProperty\"\
+            :\"customproperty55\",\"accountMappingConfig\":[{\"accountPattern\":\"\
+            cpamuser*\",\"mappingData\":\"roletest1\",\"override\":\"false\"},{\"\
+            accountPattern\":\"cpamuser1,cpamuser2\",\"mappingData\":\"roletest2\"\
+            ,\"override\":\"false\"}]}}}"
+          type: string
+        PAGE_SIZE:
+          description: LDAP pagination page size.
+          example: "1000"
+          type: string
+        BASE:
+          description: LDAP base DN.
+          example: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          type: string
+        DC_LOCATOR:
+          description: Domain Controller locator.
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          description: JSON configuration for account status thresholds.
+          example: "{\"statusAndThresholdConfig\":{\"statusColumn\":\"CUSTOMPROPERTY4\"\
+            ,\"activeStatus\":[\"n\"],\"deleteLinks\":false,\"accountThresholdValue\"\
+            :1000,\"correlateInactiveAccounts\":true,\"inactivateAccountsNotInFile\"\
+            :false}}"
+          type: string
+        RESETANDCHANGEPASSWRDJSON:
+          description: JSON actions for password reset/change.
+          example: "{\"RESET\":{\"pwdLastSet\":\"0\",\"title\":\"password reset\"\
+            },\"CHANGE\":{\"pwdLastSet\":\"-1\",\"title\":\"password changed\"}}"
+          type: string
+        SUPPORTEMPTYSTRING:
+          description: Set to TRUE to send an empty value or null string during provisioning.
+          example: "FALSE"
+          type: string
+        ENABLEACCOUNTJSON:
+          description: JSON configuration to enable account actions.
+          example: "{\"USEDNFROMACCOUNT\":\"NO\",\"ENABLEACCOUNTOU\":\"OU=ActiveUsers,OU=TestUsers,dc=test,dc=com\"\
+            }"
+          type: string
+        USER_ATTRIBUTE:
+          description: Map LDAP user attribute to EIC user attribute for import.
+          example: "[\"USERNAME::sAMAccountName#String\", \"DISPLAYNAME::displayName#String\"\
+            , ...]"
+          type: string
+        DEFAULT_USER_ROLE:
+          description: Default SAV Role to be assigned to all the new users imported
+            via User Import.
+          example: ROLE_TASK_ADMIN
+          type: string
+        ENDPOINTS_FILTER:
+          description: Configuration to create Child Endpoints and import associated
+            accounts and entitlements.
+          type: string
+        UPDATEACCOUNTJSON:
+          description: "To update an existing account, specify the value of the UPDATEACCOUNTJSON\
+            \ parameter."
+          example: "{\"uid\":\"${task.accountName.toString().toLowerCase()}\",\"description\"\
+            :\"AS 400 Integration with Saviynt\"}"
+          type: string
+        REUSEACCOUNTJSON:
+          description: "To retain the suspended user accounts, specify the value of\
+            \ the REUSEACCOUNTJSON parameter."
+          example: "{\"ATTRIBUTESTOCHECK\":{\"userAccountControl\":\"514\",\"sn\"\
+            :\"${user.lastname}\"},\"REUSEACCOUNTOU\":\"OU=ActiveUsers,DC=domainname,DC=com\"\
+            }"
+          type: string
+        ENFORCE_TREE_DELETION:
+          description: Enforce tree deletion in LDAP.
+          example: "TRUE"
+          type: string
+        FILTER:
+          description: Filters the objects that will be returned.
+          type: string
+        OBJECTFILTER:
+          description: LDAP object filter.
+          example: (objectClass=inetorgperson)
+          type: string
+        UPDATEUSERJSON:
+          description: JSON template for updating user attributes.
+          example: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\",\"givenName\"\
+            :\"${user.firstname}\"}"
+          type: string
+        saveconnection:
+          description: Flag to save connection permanently.
+          example: "N"
+          type: string
+        systemname:
+          description: Associated system name.
+          example: Dummyapplication
+          type: string
+        PASSWORD_NOOFSPLCHARS:
+          description: Number of special characters in password.
+          example: "1"
+          type: string
+        groupImportMapping:
+          description: Mapping for importing groups.
+          example: "{\"entitlementTypeName\":\"memberOf\", \"performGroupAccountLinking\"\
+            :\"true\", ...}"
+          type: string
+        UNLOCKACCOUNTJSON:
+          description: JSON template for unlocking accounts.
+          example: "{\"lockoutTime\":\"0\"}"
+          type: string
+        ENABLEGROUPMANAGEMENT:
+          description: Specify TRUE to enable Group Management for AD.
+          example: "TRUE"
+          type: string
+        MODIFYUSERDATAJSON:
+          description: JSON template for modifying user data.
+          type: string
+        ORG_BASE:
+          description: Base DN for organization searches.
+          type: string
+        ORGANIZATION_ATTRIBUTE:
+          description: Attribute used for organization management.
+          type: string
+        CREATEORGJSON:
+          description: JSON template for creating an organization.
+          type: string
+        UPDATEORGJSON:
+          description: JSON template for updating an organization.
+          type: string
+        MAX_CHANGENUMBER:
+          description: Maximum change number for incremental syncs.
+          type: string
+        INCREMENTAL_CONFIG:
+          description: Configuration for incremental data sync.
+          type: string
+        CHECKFORUNIQUE:
+          description: Rules for checking unique users in JSON format.
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/ADConnectionAttributes_connectionTimeoutConfig'
+        isTimeoutConfigValidated:
+          description: Indicates if timeout configuration is validated.
+          type: boolean
+    RESTConnectionAttributes:
+      properties:
+        UpdateUserJSON:
+          description: Property for UpdateUserJSON
+          type: string
+        ChangePassJSON:
+          type: string
+        RemoveAccountJSON:
+          example: |
+            {'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users/${account.accountID}', 'httpMethod': 'DELETE', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [200, 204, 201]}}]}
+          type: string
+        TicketStatusJSON:
+          type: string
+        CreateTicketJSON:
+          type: string
+        connectionType:
+          description: "Type of connection, e.g., MS_BASED_CONNECTOR."
+          example: AD
+          type: string
+        ENDPOINTS_FILTER:
+          type: string
+        PasswdPolicyJSON:
+          type: string
+        ConfigJSON:
+          description: "We can use this attribute to define the provisioningLimit,showLogs\
+            \ and connectionTimeoutConfig."
+          example: |
+            {'connectionTimeoutConfig': {'connectionTimeout': 10, 'readTimeout': 60, 'writeTimeout': 60, 'retryCount': 3, 'retryWait': 2}}
+          type: string
+        AddFFIDAccessJSON:
+          type: string
+        RemoveFFIDAccessJSON:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          description: JSON configuration for account status thresholds.
+          example: "{\"statusAndThresholdConfig\":{\"statusColumn\":\"CUSTOMPROPERTY4\"\
+            ,\"activeStatus\":[\"n\"],\"deleteLinks\":false,\"accountThresholdValue\"\
+            :1000,\"correlateInactiveAccounts\":true,\"inactivateAccountsNotInFile\"\
+            :false}}"
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        SendOtpJSON:
+          type: string
+        ValidateOtpJSON:
+          type: string
+        PAM_CONFIG:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        CreateAccountJSON:
+          example: |
+            {'accountIdPath': 'call1.message.id', 'dateFormat': "yyyy-MM-dd'T'HH:mm:ssXXX", 'responseColsToPropsMap': {'name': 'call1.message.username~#~char', 'displayName': 'call1.message.displayName~#~char', 'updatedate': 'call1.message.meta.created~#~date', 'comments': 'call1.message.emails[0].value~#~char'}, 'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users', 'httpMethod': 'POST', 'httpParams': '{"schemas":["urn:scim:schemas:core:1.0"],"userName": "${user.username}","nickName": "${user.firstname}", "name": {"givenName": "${user.firstname}","familyName": "${user.lastname}"},"active": false,"emails": [{"value": "${user.email}", "primary": true}]}', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [201]}, 'unsuccessResponses': {'statusCode': [400, 500]}}]}
+          type: string
+        UpdateAccountJSON:
+          example: |
+            {'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users/${account.accountID}', 'httpMethod': 'PATCH', 'httpParams': '{"schemas":["urn:scim:schemas:core:1.0"],"active":false,"userName":"${user.username}","nickName":"${user.username}","name":{"givenName":"${user.firstname}","familyName":"${user.lastname}"},"displayName":"${user.displayname}","emails":[{"value":"${user.email}","primary":true}]}', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [200]}, 'unsuccessResponses': {'statusCode': [400, 500]}}]}
+          type: string
+        EnableAccountJSON:
+          example: |
+            {'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users/${account.accountID}', 'httpMethod': 'PATCH', 'httpParams': '{"active" : true}', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [200]}, 'unsuccessResponses': {'statusCode': [400, 500]}}]}
+          type: string
+        DisableAccountJSON:
+          example: |
+            {'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users/${account.accountID}', 'httpMethod': 'PATCH', 'httpParams': '{"active" : false}', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [200]}, 'unsuccessResponses': {'statusCode': [400, 500]}}]}
+          type: string
+        AddAccessJSON:
+          example: |
+            {'call': [{'name': 'Group', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Groups/${entitlementValue.entitlementID}', 'httpMethod': 'PATCH', 'httpParams': '{"schemas": ["urn:scim:schemas:core:1.0"],"members": [{"value": "${account.accountID}"}]}', 'httpHeaders': {'Authorization': '${access_token}', 'Accept': 'application/json'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [204]}}, {'name': 'Channels', 'connection': 'Slack', 'url': 'https://slack.com/api/conversations.invite?channel=${entitlementValue.entitlementID}&users=${account.accountID}', 'httpMethod': 'POST', 'httpHeaders': {'Authorization': '${access_token}', 'Accept': 'application/x-www-form-urlencoded'}, 'httpContentType': 'application/x-www-form-urlencoded', 'successResponses': {'statusCode': [200]}}]}
+          type: string
+        RemoveAccessJSON:
+          example: |
+            {'call': [{'name': 'Group', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Groups/${entitlementValue.entitlementID}', 'httpMethod': 'PATCH', 'httpParams': '{"schemas": ["urn:scim:schemas:core:1.0"],"members": [{"value": "${account.accountID}","operation": "delete"}]}', 'httpHeaders': {'Authorization': '${access_token}', 'Accept': 'application/json'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [204]}}, {'name': 'Channels', 'connection': 'Slack', 'url': 'https://slack.com/api/conversations.kick?channel=${entitlementValue.entitlementID}&user=${account.accountID}', 'httpMethod': 'POST', 'httpHeaders': {'Authorization': '${access_token}', 'Accept': 'application/x-www-form-urlencoded'}, 'httpContentType': 'application/x-www-form-urlencoded', 'successResponses': {'statusCode': [200]}}]}
+          type: string
+        ImportUserJSON:
+          type: string
+        isTimeoutSupported:
+          type: boolean
+        ImportAccountEntJSON:
+          type: string
+        isTimeoutConfigValidated:
+          type: boolean
+        ConnectionJSON:
+          additionalProperties: true
+          example: |
+            {'authentications': {'Slack': {'authType': 'oauth2', 'url': 'https://api.slack.com', 'httpMethod': 'POST', 'httpParams': {}, 'httpHeaders': {'contentType': 'application/x-www-form-urlencoded'}, 'httpContentType': 'application/x-www-form-urlencoded', 'expiryError': 'ExpiredAuthenticationToken', 'authError': ['InvalidAuthenticationToken', 'AuthenticationFailed'], 'timeOutError': 'Read timed out', 'errorPath': 'error.code', 'maxRefreshTryCount': 5, 'tokenResponsePath': 'access_token', 'tokenType': 'Bearer', 'accessToken': 'Bearer @ACCESS_TOKEN@', 'testConnectionParams': {'http': {'url': 'https://api.slack.com/scim/v1/Users?startIndex=1&count=1', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/x-www-form-urlencoded', 'httpMethod': 'GET'}, 'successResponses': {'statusCode': [200]}, 'errors': ['invalid_authentication'], 'errorPath': 'Errors.description'}}}}
+          type: object
+    createOrUpdate_request:
+      discriminator:
+        mapping:
+          AD: '#/components/schemas/ADConnector'
+          ADSI: '#/components/schemas/ADSIConnector'
+          SAP: '#/components/schemas/SAPConnector'
+          Salesforce: '''#/components/schemas/SalesforceConnector'
+          REST: '#/components/schemas/RESTConnector'
+          D365: '#/components/schemas/D365Connector'
+          Workday: '#/components/schemas/WorkdayConnector'
+          DB: '#/components/schemas/DBConnector'
+        propertyName: connectiontype
+      oneOf:
+      - $ref: '#/components/schemas/ADConnector'
+      - $ref: '#/components/schemas/ADSIConnector'
+      - $ref: '#/components/schemas/SAPConnector'
+      - $ref: '#/components/schemas/SalesforceConnector'
+      - $ref: '#/components/schemas/RESTConnector'
+      - $ref: '#/components/schemas/D365Connector'
+      - $ref: '#/components/schemas/WorkdayConnector'
+      - $ref: '#/components/schemas/DBConnector'
+    getConnections_request:
+      properties:
+        connectionname:
+          description: Specify the connection name for which you want to view the
+            details.
+          example: testConn
+          type: string
+        connectiontype:
+          description: Specify a connection type to view all the connection in EIC
+            for the connection type.
+          example: AD
+          type: string
+        max:
+          description: Specify the maximum number of results that can be returned
+            in the response.
+          example: "5"
+          type: string
+        offset:
+          description: Specify the number of rows of the result to skip before any
+            rows are retrieved.
+          example: "1"
+          type: string
+    getConnectionDetails_request:
+      nullable: true
+      oneOf: []
+      properties:
+        connectionname:
+          description: Name of the connection
+          example: test-conn
+          type: string
+        connectionkey:
+          description: Connection key
+          example: "1092"
+          type: string
+    getConnectionsResponse_ConnectionList_inner:
+      example:
+        CONNECTIONTYPE: AD
+        STATUS: 1
+        UPDATEDON: 2017-03-23T00:48:28Z
+        CREATEDON: 2017-03-23T00:48:28Z
+        UPDATEDBY: admin
+        CREATEDBY: admin
+        CONNECTIONNAME: test-conn
+        CONNECTIONDESCRIPTION: Description of the connection
+      properties:
+        CONNECTIONNAME:
+          description: Name of the Connection
+          example: test-conn
+          type: string
+        CONNECTIONTYPE:
+          description: Type of the Connection
+          example: AD
+          type: string
+        CONNECTIONDESCRIPTION:
+          description: Connection description
+          example: Description of the connection
+          type: string
+        STATUS:
+          description: Connection status
+          example: 1
+          type: integer
+        CREATEDBY:
+          description: User who created the connection
+          example: admin
+          type: string
+        CREATEDON:
+          description: Connection creation time
+          example: 2017-03-23T00:48:28Z
+          type: string
+        UPDATEDBY:
+          description: User who updated the connection
+          example: admin
+          type: string
+        UPDATEDON:
+          description: Time of connection updation
+          example: 2017-03-23T00:48:28Z
+          type: string
+    getConnectionDetails_connectionattributes:
+      description: Dynamic attributes based on connection type
+      oneOf:
+      - $ref: '#/components/schemas/ADConnectionAttributes'
+      - $ref: '#/components/schemas/RESTConnectionAttributes'
+    ADConnectionAttributes_connectionTimeoutConfig:
+      example:
+        retryWait: 0
+        tokenRefreshMaxTryCount: 6
+        retryWaitMaxValue: 1
+        retryCount: 5
+        readTimeout: 5
+        connectionTimeout: 2
+      properties:
+        retryWait:
+          description: Wait time before retrying a failed connection.
+          type: integer
+        tokenRefreshMaxTryCount:
+          description: Maximum number of retries for token refresh.
+          type: integer
+        retryWaitMaxValue:
+          description: Maximum wait time for retries.
+          type: integer
+        retryCount:
+          description: Number of retry attempts allowed.
+          type: integer
+        readTimeout:
+          description: Read timeout duration (in seconds).
+          type: integer
+        connectionTimeout:
+          description: Connection timeout duration (in seconds).
+          type: integer
+    RESTConnectionAttributes_connectionTimeoutConfig:
+      properties:
+        retryWait:
+          type: integer
+        tokenRefreshMaxTryCount:
+          type: integer
+        retryWaitMaxValue:
+          type: integer
+        retryCount:
+          type: integer
+        readTimeout:
+          type: integer
+        connectionTimeout:
+          type: integer

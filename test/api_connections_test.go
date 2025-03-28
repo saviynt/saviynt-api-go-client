@@ -43,22 +43,21 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 			},
 			URL:      stringPtr("ldap://test-ad.example.com"),
 			USERNAME: stringPtr("admin"),
-			PASSWORD: "MyOffice12#",
+			PASSWORD: "XXXXX",
 		}
 
-		testConnReq := connections.TestConnectionRequest{
+		adConnRequest := connections.CreateOrUpdateRequest{
 			ADConnector: &adConn,
 		}
 
-		req := apiClient.Connections.TestConnection(ctx).TestConnectionRequest(testConnReq)
+		apiResp, httpResp, err := apiClient.Connections.CreateOrUpdate(ctx).CreateOrUpdateRequest(adConnRequest).Execute()
 
-		resp, httpRes, err := req.Execute()
-		fmt.Printf("Response: %+v\n", resp)
+		fmt.Printf("Response: %+v\n", apiResp)
 
 		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		assert.Equal(t, "0", *resp.ErrorCode)
+		require.NotNil(t, httpResp)
+		assert.Equal(t, 200, httpResp.StatusCode)
+		assert.Equal(t, "0", *apiResp.ErrorCode)
 	})
 }
 

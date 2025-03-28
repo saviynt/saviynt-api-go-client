@@ -4,54 +4,47 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**URL** | **string** | Domain URL list (comma Separated) | 
-**Domain** | Pointer to **string** | Domain for ADSI authentication | [optional] 
-**USERNAME** | **string** | userPrincipalName of privileged Service account with &#x60;Domain Admin&#x60; rights | 
-**PASSWORD** | **string** | Password for the Connection | 
-**CONNECTION_URL** | **string** | Server URL where ADSI agent is deployed on IIS. You could have http/https URL with actual port information. Used only to save and test connection and retrieve forest information | 
-**PROVISIONING_URL** | Pointer to **string** | Server URL with specific provisioning URL where ADSI agent is deployed on IIS. You could have http/https URL with actual port information. | [optional] 
-**FORESTLIST** | **string** | Forest List (Comma Separated) which we need to connect using ADSI connector. | 
-**DEFAULT_USER_ROLE** | Pointer to **string** | Default SAV Role to be assigned to all the new users that gets imported - only valid for User Import | [optional] 
-**UPDATEUSERJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Update existing User | [optional] 
-**FOREST_DETAILS** | Pointer to **string** |  | [optional] 
-**ENABLEGROUPMANAGEMENT** | Pointer to **string** |  | [optional] 
-**CreateUpdateMappings** | Pointer to **string** |  | [optional] 
-**IMPORTDATACOOKIES** | Pointer to **string** |  | [optional] 
-**PASSWDPOLICYJSON** | Pointer to **string** |  | [optional] 
-**ENDPOINTS_FILTER** | Pointer to **string** | This field provides details as to which endpoint in Saviynt should the AD accounts be associated to after the accounts have been imported | [optional] 
-**SEARCHFILTER** | Pointer to **string** | Search Filter can be used to specify the BaseDN of the directory from where the data needs to be imported. You can have multiple BaseDNs here separated by ###. | [optional] 
+**URL** | **string** | Primary/root domain URL list (comma Separated) | 
+**USERNAME** | **string** | Service account username | 
+**PASSWORD** | **string** | Service account password | 
+**CONNECTION_URL** | **string** | ADSI remote agent Connection URL | 
+**PROVISIONING_URL** | Pointer to **string** | ADSI remote agent Provisioning URL | [optional] 
+**FORESTLIST** | **string** | Forest List (Comma Separated) which we need to manage | 
+**DEFAULT_USER_ROLE** | Pointer to **string** | Default SAV Role to be assigned to all the new users that gets imported via User Import | [optional] 
+**UPDATEUSERJSON** | Pointer to **string** | Specify the attribute Value which will be used to Update existing User | [optional] 
+**ENDPOINTS_FILTER** | Pointer to **string** | Provide the configuration to create Child Endpoints and import associated accounts and entitlements | [optional] 
+**SEARCHFILTER** | Pointer to **string** | Account Search Filter to specify the starting point of the directory from where the accounts needs to be imported. You can have multiple BaseDNs here separated by ###. | [optional] 
 **OBJECTFILTER** | Pointer to **string** | Object Filter is used to filter the objects that will be returned.This filter will be same for all domains. | [optional] 
-**ACCOUNT_ATTRIBUTE** | Pointer to **string** | Controls the AD Attribute to Saviynt Account Mapping (AD attributes must be in lower case) | [optional] 
-**STATUS_THRESHOLD_CONFIG** | Pointer to **string** | The attributes of statusAndThresholdConfig json are:statusColumn:Property in saviynt which stores the status of target system.activeStatus: All possible values that denotes the Active status of the target system.accountThresholdValue: No. of accounts to be deleted in Saviynt &gt;&#x3D; accountThresholdValue, it performs NO ACTION,else it disables the accounts.inactivateAccountsNotInFile: If true, accounts not in file are marked as Inactive. If false, accounts not in file are marked as SUSPENDED FROM IMPORT SERVICE.CorrelateInactiveAccounts: If true, correlates disabled accounts as well with the users. | [optional] 
-**ENTITLEMENT_ATTRIBUTE** | Pointer to **string** | This field provides details as to which endpoint in Saviynt should the AD accounts be associated to after the accounts have been imported | [optional] 
-**USER_ATTRIBUTE** | Pointer to **string** | Controls the AD Attribute to Saviynt Account Mapping (AD attributes must be in lower case) | [optional] 
-**GroupSearchBaseDN** | Pointer to **string** | The DN from which the search for all the groups begins. You can have multiple BaseDNs here separated by ###. | [optional] 
-**CHECKFORUNIQUE** | Pointer to **string** |  | [optional] 
-**STATUSKEYJSON** | Pointer to **string** | JSON to specify Users status | [optional] 
-**GroupImportMapping** | Pointer to **string** | Mapping used during accessimport to specify which attribute of a group maps to which attribute on Saviynt | [optional] 
-**ImportNestedMembership** | Pointer to **string** | Brings all indirect/nested membership of an account/group during Account/Access import. By Default, it is FALSE. Once true, it will return value in an array with key name \&quot;nestedEntitlementList\&quot;. Recommended to map this value in a column with datatype LONGTEXT. | [optional] 
+**ACCOUNT_ATTRIBUTE** | Pointer to **string** | Map EIC and AD attributes for account import (AD attributes must be in lower case) | [optional] 
+**STATUS_THRESHOLD_CONFIG** | Pointer to **string** | Account status and threshold related config | [optional] 
+**ENTITLEMENT_ATTRIBUTE** | Pointer to **string** | Account attribute that contains group membership | [optional] 
+**USER_ATTRIBUTE** | Pointer to **string** | Map EIC and AD attributes for user import (AD attributes must be in lower case) | [optional] 
+**GroupSearchBaseDN** | Pointer to **string** | Group Search Filter to specify the starting point of the directory from where the groups needs to be imported. You can have multiple BaseDNs here separated by ###. | [optional] 
+**CHECKFORUNIQUE** | Pointer to **string** | Evaluate the uniqueness of an attribute | [optional] 
+**STATUSKEYJSON** | Pointer to **string** | JSON configuration to specify Users status | [optional] 
+**GroupImportMapping** | Pointer to **string** | Map AD group attribute to EIC entitlement attribute for import | [optional] 
+**ImportNestedMembership** | Pointer to **string** | Specify if you want the connector to import all indirect or nested membership of an account or a group during access import | [optional] 
 **PAGE_SIZE** | Pointer to **string** | Page size defines the number of objects to be returned from each AD operation. | [optional] 
 **ACCOUNTNAMERULE** | Pointer to **string** | Rule to generate account name. | [optional] 
-**CREATEACCOUNTJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Create the New Account. | [optional] 
-**UPDATEACCOUNTJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Update existing Account. | [optional] 
-**ENABLEACCOUNTJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for enabling a disabled account. | [optional] 
-**DISABLEACCOUNTJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for disabling an active account. | [optional] 
-**REMOVEACCOUNTJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for deleting/suspending an account. | [optional] 
-**ADDACCESSJSON** | Pointer to **string** | JSON to ADD Access (cross domain/forest group membership) to an account. | [optional] 
-**REMOVEACCESSJSON** | Pointer to **string** | JSON to REMOVE Access (cross domain/forest group membership) to an account. | [optional] 
-**RESETANDCHANGEPASSWRDJSON** | Pointer to **string** | JSON to Reset and Change Password. | [optional] 
-**MOVEACCOUNTJSON** | Pointer to **string** |  | [optional] 
-**CREATEGROUPJSON** | Pointer to **string** | JSON to Create Group in a multi-domain/forest Setup. | [optional] 
-**UPDATEGROUPJSON** | Pointer to **string** | JSON to Update Group in a multi-domain/forest Setup. | [optional] 
-**REMOVEGROUPJSON** | Pointer to **string** | JSON to Update Group in a multi-domain/forest Setup. | [optional] 
-**ADDACCESSENTITLEMENTJSON** | Pointer to **string** | JSON to Add Group to a Group. | [optional] 
+**CREATEACCOUNTJSON** | Pointer to **string** | Specify the attributes values which will be used to Create the New Account. | [optional] 
+**UPDATEACCOUNTJSON** | Pointer to **string** | Specify the attributes values which will be used to Update existing Account. | [optional] 
+**ENABLEACCOUNTJSON** | Pointer to **string** | Specify the actions and attribute updates to be performed for enabling an account. | [optional] 
+**DISABLEACCOUNTJSON** | Pointer to **string** | Specify the actions and attributes updates to be performed for disabling an account. | [optional] 
+**REMOVEACCOUNTJSON** | Pointer to **string** | Specify the actions to be performed for deleting an account. | [optional] 
+**ADDACCESSJSON** | Pointer to **string** | Configuration to ADD Access (cross domain/forest group membership) to an account. | [optional] 
+**REMOVEACCESSJSON** | Pointer to **string** | Configuration to REMOVE Access (cross domain/forest group membership) to an account. | [optional] 
+**RESETANDCHANGEPASSWRDJSON** | Pointer to **string** | Configuration to Reset and Change Password. | [optional] 
+**CREATEGROUPJSON** | Pointer to **string** | Configuration to Create a Group | [optional] 
+**UPDATEGROUPJSON** | Pointer to **string** | Configuration to Update a Group | [optional] 
+**REMOVEGROUPJSON** | Pointer to **string** | Configuration to Delete a Group | [optional] 
+**ADDACCESSENTITLEMENTJSON** | Pointer to **string** | Configuration to Add nested group hierarchy | [optional] 
 **CUSTOMCONFIGJSON** | Pointer to **string** |  | [optional] 
-**REMOVEACCESSENTITLEMENTJSON** | Pointer to **string** | JSON to Remove Group from a Group. | [optional] 
-**CREATESERVICEACCOUNTJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Create the New Service Account. | [optional] 
-**UPDATESERVICEACCOUNTJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Update existing Service Account. | [optional] 
-**REMOVESERVICEACCOUNTJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed to delete an existing service account. | [optional] 
+**REMOVEACCESSENTITLEMENTJSON** | Pointer to **string** | Configuration to Remove nested group hierarchy | [optional] 
+**CREATESERVICEACCOUNTJSON** | Pointer to **string** | Specify the Field Value which will be used to Create the New Service Account. | [optional] 
+**UPDATESERVICEACCOUNTJSON** | Pointer to **string** | Specify the Field Value which will be used to update the existing Service Account. | [optional] 
+**REMOVESERVICEACCOUNTJSON** | Pointer to **string** | Specify the actions to be performed while deleting a service account. | [optional] 
 **PAM_CONFIG** | Pointer to **string** | JSON to specify Bootstrap Config. | [optional] 
-**MODIFYUSERDATAJSON** | Pointer to **string** | Specify this parameter to use the inline processor for transforming the data during user import. | [optional] 
+**MODIFYUSERDATAJSON** | Pointer to **string** | Specify this parameter to transform the data during user import. | [optional] 
 
 ## Methods
 
@@ -91,31 +84,6 @@ and a boolean to check if the value has been set.
 
 SetURL sets URL field to given value.
 
-
-### GetDomain
-
-`func (o *ADSIConnector) GetDomain() string`
-
-GetDomain returns the Domain field if non-nil, zero value otherwise.
-
-### GetDomainOk
-
-`func (o *ADSIConnector) GetDomainOk() (*string, bool)`
-
-GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDomain
-
-`func (o *ADSIConnector) SetDomain(v string)`
-
-SetDomain sets Domain field to given value.
-
-### HasDomain
-
-`func (o *ADSIConnector) HasDomain() bool`
-
-HasDomain returns a boolean if a field has been set.
 
 ### GetUSERNAME
 
@@ -271,131 +239,6 @@ SetUPDATEUSERJSON sets UPDATEUSERJSON field to given value.
 `func (o *ADSIConnector) HasUPDATEUSERJSON() bool`
 
 HasUPDATEUSERJSON returns a boolean if a field has been set.
-
-### GetFOREST_DETAILS
-
-`func (o *ADSIConnector) GetFOREST_DETAILS() string`
-
-GetFOREST_DETAILS returns the FOREST_DETAILS field if non-nil, zero value otherwise.
-
-### GetFOREST_DETAILSOk
-
-`func (o *ADSIConnector) GetFOREST_DETAILSOk() (*string, bool)`
-
-GetFOREST_DETAILSOk returns a tuple with the FOREST_DETAILS field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFOREST_DETAILS
-
-`func (o *ADSIConnector) SetFOREST_DETAILS(v string)`
-
-SetFOREST_DETAILS sets FOREST_DETAILS field to given value.
-
-### HasFOREST_DETAILS
-
-`func (o *ADSIConnector) HasFOREST_DETAILS() bool`
-
-HasFOREST_DETAILS returns a boolean if a field has been set.
-
-### GetENABLEGROUPMANAGEMENT
-
-`func (o *ADSIConnector) GetENABLEGROUPMANAGEMENT() string`
-
-GetENABLEGROUPMANAGEMENT returns the ENABLEGROUPMANAGEMENT field if non-nil, zero value otherwise.
-
-### GetENABLEGROUPMANAGEMENTOk
-
-`func (o *ADSIConnector) GetENABLEGROUPMANAGEMENTOk() (*string, bool)`
-
-GetENABLEGROUPMANAGEMENTOk returns a tuple with the ENABLEGROUPMANAGEMENT field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetENABLEGROUPMANAGEMENT
-
-`func (o *ADSIConnector) SetENABLEGROUPMANAGEMENT(v string)`
-
-SetENABLEGROUPMANAGEMENT sets ENABLEGROUPMANAGEMENT field to given value.
-
-### HasENABLEGROUPMANAGEMENT
-
-`func (o *ADSIConnector) HasENABLEGROUPMANAGEMENT() bool`
-
-HasENABLEGROUPMANAGEMENT returns a boolean if a field has been set.
-
-### GetCreateUpdateMappings
-
-`func (o *ADSIConnector) GetCreateUpdateMappings() string`
-
-GetCreateUpdateMappings returns the CreateUpdateMappings field if non-nil, zero value otherwise.
-
-### GetCreateUpdateMappingsOk
-
-`func (o *ADSIConnector) GetCreateUpdateMappingsOk() (*string, bool)`
-
-GetCreateUpdateMappingsOk returns a tuple with the CreateUpdateMappings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreateUpdateMappings
-
-`func (o *ADSIConnector) SetCreateUpdateMappings(v string)`
-
-SetCreateUpdateMappings sets CreateUpdateMappings field to given value.
-
-### HasCreateUpdateMappings
-
-`func (o *ADSIConnector) HasCreateUpdateMappings() bool`
-
-HasCreateUpdateMappings returns a boolean if a field has been set.
-
-### GetIMPORTDATACOOKIES
-
-`func (o *ADSIConnector) GetIMPORTDATACOOKIES() string`
-
-GetIMPORTDATACOOKIES returns the IMPORTDATACOOKIES field if non-nil, zero value otherwise.
-
-### GetIMPORTDATACOOKIESOk
-
-`func (o *ADSIConnector) GetIMPORTDATACOOKIESOk() (*string, bool)`
-
-GetIMPORTDATACOOKIESOk returns a tuple with the IMPORTDATACOOKIES field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIMPORTDATACOOKIES
-
-`func (o *ADSIConnector) SetIMPORTDATACOOKIES(v string)`
-
-SetIMPORTDATACOOKIES sets IMPORTDATACOOKIES field to given value.
-
-### HasIMPORTDATACOOKIES
-
-`func (o *ADSIConnector) HasIMPORTDATACOOKIES() bool`
-
-HasIMPORTDATACOOKIES returns a boolean if a field has been set.
-
-### GetPASSWDPOLICYJSON
-
-`func (o *ADSIConnector) GetPASSWDPOLICYJSON() string`
-
-GetPASSWDPOLICYJSON returns the PASSWDPOLICYJSON field if non-nil, zero value otherwise.
-
-### GetPASSWDPOLICYJSONOk
-
-`func (o *ADSIConnector) GetPASSWDPOLICYJSONOk() (*string, bool)`
-
-GetPASSWDPOLICYJSONOk returns a tuple with the PASSWDPOLICYJSON field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPASSWDPOLICYJSON
-
-`func (o *ADSIConnector) SetPASSWDPOLICYJSON(v string)`
-
-SetPASSWDPOLICYJSON sets PASSWDPOLICYJSON field to given value.
-
-### HasPASSWDPOLICYJSON
-
-`func (o *ADSIConnector) HasPASSWDPOLICYJSON() bool`
-
-HasPASSWDPOLICYJSON returns a boolean if a field has been set.
 
 ### GetENDPOINTS_FILTER
 
@@ -946,31 +789,6 @@ SetRESETANDCHANGEPASSWRDJSON sets RESETANDCHANGEPASSWRDJSON field to given value
 `func (o *ADSIConnector) HasRESETANDCHANGEPASSWRDJSON() bool`
 
 HasRESETANDCHANGEPASSWRDJSON returns a boolean if a field has been set.
-
-### GetMOVEACCOUNTJSON
-
-`func (o *ADSIConnector) GetMOVEACCOUNTJSON() string`
-
-GetMOVEACCOUNTJSON returns the MOVEACCOUNTJSON field if non-nil, zero value otherwise.
-
-### GetMOVEACCOUNTJSONOk
-
-`func (o *ADSIConnector) GetMOVEACCOUNTJSONOk() (*string, bool)`
-
-GetMOVEACCOUNTJSONOk returns a tuple with the MOVEACCOUNTJSON field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetMOVEACCOUNTJSON
-
-`func (o *ADSIConnector) SetMOVEACCOUNTJSON(v string)`
-
-SetMOVEACCOUNTJSON sets MOVEACCOUNTJSON field to given value.
-
-### HasMOVEACCOUNTJSON
-
-`func (o *ADSIConnector) HasMOVEACCOUNTJSON() bool`
-
-HasMOVEACCOUNTJSON returns a boolean if a field has been set.
 
 ### GetCREATEGROUPJSON
 

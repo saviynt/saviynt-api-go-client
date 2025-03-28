@@ -92,20 +92,32 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ConnectionsAPI* | [**TestConnection**](docs/ConnectionsAPI.md#testconnection) | **Post** /ECM/api/v5/testConnection | Create a connection
+*ConnectionsAPI* | [**CreateOrUpdate**](docs/ConnectionsAPI.md#createorupdate) | **Post** /ECM/api/v5/testConnection | Create a connection
+*ConnectionsAPI* | [**GetConnectionDetails**](docs/ConnectionsAPI.md#getconnectiondetails) | **Post** /ECM/api/v5/getConnectionDetails | Get connection details
+*ConnectionsAPI* | [**GetConnections**](docs/ConnectionsAPI.md#getconnections) | **Post** /ECM/api/v5/getConnections | Get list of connections
 
 
 ## Documentation For Models
 
+ - [ADConnectionAttributes](docs/ADConnectionAttributes.md)
+ - [ADConnectionAttributesConnectionTimeoutConfig](docs/ADConnectionAttributesConnectionTimeoutConfig.md)
  - [ADConnector](docs/ADConnector.md)
  - [ADSIConnector](docs/ADSIConnector.md)
  - [BaseConnector](docs/BaseConnector.md)
+ - [CreateOrUpdateRequest](docs/CreateOrUpdateRequest.md)
+ - [CreateOrUpdateResponse](docs/CreateOrUpdateResponse.md)
  - [D365Connector](docs/D365Connector.md)
+ - [DBConnector](docs/DBConnector.md)
+ - [GetConnectionDetails](docs/GetConnectionDetails.md)
+ - [GetConnectionDetailsConnectionattributes](docs/GetConnectionDetailsConnectionattributes.md)
+ - [GetConnectionsRequest](docs/GetConnectionsRequest.md)
+ - [GetConnectionsResponse](docs/GetConnectionsResponse.md)
+ - [GetConnectionsResponseConnectionListInner](docs/GetConnectionsResponseConnectionListInner.md)
+ - [RESTConnectionAttributes](docs/RESTConnectionAttributes.md)
+ - [RESTConnectionAttributesConnectionTimeoutConfig](docs/RESTConnectionAttributesConnectionTimeoutConfig.md)
  - [RESTConnector](docs/RESTConnector.md)
  - [SAPConnector](docs/SAPConnector.md)
  - [SalesforceConnector](docs/SalesforceConnector.md)
- - [TestConnection200Response](docs/TestConnection200Response.md)
- - [TestConnectionRequest](docs/TestConnectionRequest.md)
  - [WorkdayConnector](docs/WorkdayConnector.md)
 
 

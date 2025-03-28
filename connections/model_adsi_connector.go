@@ -1,5 +1,5 @@
 /*
-testConnection Management API
+Connection Management API
 
 Use this API to create a connection in Saviynt Identity Cloud.  The Authorization header must have \"Bearer {token}\".  **Mandatory Parameters:** - **connectionname**: Specify the name to identify the connection. - **connectiontype**: Specify a connection type. For example, if your target application is Active Directory, specify the connection type as \"AD\".  **Optional Parameters:** - **description**: Provide a description for the connection. - **defaultsavroles**: Specify the SAV role(s) required for managing this connection along with its associated security systems, endpoints, accounts, and entitlements. - **emailTemplate**: Specify the email template applicable for notifications. - **sslCertificate**: Specify the SSL certificate(s) to secure the connection between EIC and the target application. - **vaultConfiguration**: Specify the path of the vault to obtain secret data (suffix the connector name to make it unique). - **saveinvault**: Set to true to save the encrypted attribute in the configured vault.
 
@@ -22,93 +22,86 @@ var _ MappedNullable = &ADSIConnector{}
 // ADSIConnector struct for ADSIConnector
 type ADSIConnector struct {
 	BaseConnector
-	// Domain URL list (comma Separated)
+	// Primary/root domain URL list (comma Separated)
 	URL string `json:"URL"`
-	// Domain for ADSI authentication
-	Domain *string `json:"domain,omitempty"`
-	// userPrincipalName of privileged Service account with `Domain Admin` rights
+	// Service account username
 	USERNAME string `json:"USERNAME"`
-	// Password for the Connection
+	// Service account password
 	PASSWORD string `json:"PASSWORD"`
-	// Server URL where ADSI agent is deployed on IIS. You could have http/https URL with actual port information. Used only to save and test connection and retrieve forest information
+	// ADSI remote agent Connection URL
 	CONNECTION_URL string `json:"CONNECTION_URL"`
-	// Server URL with specific provisioning URL where ADSI agent is deployed on IIS. You could have http/https URL with actual port information.
+	// ADSI remote agent Provisioning URL
 	PROVISIONING_URL *string `json:"PROVISIONING_URL,omitempty"`
-	// Forest List (Comma Separated) which we need to connect using ADSI connector.
+	// Forest List (Comma Separated) which we need to manage
 	FORESTLIST string `json:"FORESTLIST"`
-	// Default SAV Role to be assigned to all the new users that gets imported - only valid for User Import
+	// Default SAV Role to be assigned to all the new users that gets imported via User Import
 	DEFAULT_USER_ROLE *string `json:"DEFAULT_USER_ROLE,omitempty"`
-	// JSON to specify the Field Value which will be used to Update existing User
-	UPDATEUSERJSON        *string `json:"UPDATEUSERJSON,omitempty"`
-	FOREST_DETAILS        *string `json:"FOREST_DETAILS,omitempty"`
-	ENABLEGROUPMANAGEMENT *string `json:"ENABLEGROUPMANAGEMENT,omitempty"`
-	CreateUpdateMappings  *string `json:"createUpdateMappings,omitempty"`
-	IMPORTDATACOOKIES     *string `json:"IMPORTDATACOOKIES,omitempty"`
-	PASSWDPOLICYJSON      *string `json:"PASSWDPOLICYJSON,omitempty"`
-	// This field provides details as to which endpoint in Saviynt should the AD accounts be associated to after the accounts have been imported
+	// Specify the attribute Value which will be used to Update existing User
+	UPDATEUSERJSON *string `json:"UPDATEUSERJSON,omitempty"`
+	// Provide the configuration to create Child Endpoints and import associated accounts and entitlements
 	ENDPOINTS_FILTER *string `json:"ENDPOINTS_FILTER,omitempty"`
-	// Search Filter can be used to specify the BaseDN of the directory from where the data needs to be imported. You can have multiple BaseDNs here separated by ###.
+	// Account Search Filter to specify the starting point of the directory from where the accounts needs to be imported. You can have multiple BaseDNs here separated by ###.
 	SEARCHFILTER *string `json:"SEARCHFILTER,omitempty"`
 	// Object Filter is used to filter the objects that will be returned.This filter will be same for all domains.
 	OBJECTFILTER *string `json:"OBJECTFILTER,omitempty"`
-	// Controls the AD Attribute to Saviynt Account Mapping (AD attributes must be in lower case)
+	// Map EIC and AD attributes for account import (AD attributes must be in lower case)
 	ACCOUNT_ATTRIBUTE *string `json:"ACCOUNT_ATTRIBUTE,omitempty"`
-	// The attributes of statusAndThresholdConfig json are:statusColumn:Property in saviynt which stores the status of target system.activeStatus: All possible values that denotes the Active status of the target system.accountThresholdValue: No. of accounts to be deleted in Saviynt >= accountThresholdValue, it performs NO ACTION,else it disables the accounts.inactivateAccountsNotInFile: If true, accounts not in file are marked as Inactive. If false, accounts not in file are marked as SUSPENDED FROM IMPORT SERVICE.CorrelateInactiveAccounts: If true, correlates disabled accounts as well with the users.
+	// Account status and threshold related config
 	STATUS_THRESHOLD_CONFIG *string `json:"STATUS_THRESHOLD_CONFIG,omitempty"`
-	// This field provides details as to which endpoint in Saviynt should the AD accounts be associated to after the accounts have been imported
+	// Account attribute that contains group membership
 	ENTITLEMENT_ATTRIBUTE *string `json:"ENTITLEMENT_ATTRIBUTE,omitempty"`
-	// Controls the AD Attribute to Saviynt Account Mapping (AD attributes must be in lower case)
+	// Map EIC and AD attributes for user import (AD attributes must be in lower case)
 	USER_ATTRIBUTE *string `json:"USER_ATTRIBUTE,omitempty"`
-	// The DN from which the search for all the groups begins. You can have multiple BaseDNs here separated by ###.
+	// Group Search Filter to specify the starting point of the directory from where the groups needs to be imported. You can have multiple BaseDNs here separated by ###.
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
-	CHECKFORUNIQUE    *string `json:"CHECKFORUNIQUE,omitempty"`
-	// JSON to specify Users status
+	// Evaluate the uniqueness of an attribute
+	CHECKFORUNIQUE *string `json:"CHECKFORUNIQUE,omitempty"`
+	// JSON configuration to specify Users status
 	STATUSKEYJSON *string `json:"STATUSKEYJSON,omitempty"`
-	// Mapping used during accessimport to specify which attribute of a group maps to which attribute on Saviynt
+	// Map AD group attribute to EIC entitlement attribute for import
 	GroupImportMapping *string `json:"groupImportMapping,omitempty"`
-	// Brings all indirect/nested membership of an account/group during Account/Access import. By Default, it is FALSE. Once true, it will return value in an array with key name \"nestedEntitlementList\". Recommended to map this value in a column with datatype LONGTEXT.
+	// Specify if you want the connector to import all indirect or nested membership of an account or a group during access import
 	ImportNestedMembership *string `json:"importNestedMembership,omitempty"`
 	// Page size defines the number of objects to be returned from each AD operation.
 	PAGE_SIZE *string `json:"PAGE_SIZE,omitempty"`
 	// Rule to generate account name.
 	ACCOUNTNAMERULE *string `json:"ACCOUNTNAMERULE,omitempty"`
-	// JSON to specify the Field Value which will be used to Create the New Account.
+	// Specify the attributes values which will be used to Create the New Account.
 	CREATEACCOUNTJSON *string `json:"CREATEACCOUNTJSON,omitempty"`
-	// JSON to specify the Field Value which will be used to Update existing Account.
+	// Specify the attributes values which will be used to Update existing Account.
 	UPDATEACCOUNTJSON *string `json:"UPDATEACCOUNTJSON,omitempty"`
-	// JSON to specify the different attributes to be checked and action to be performed for enabling a disabled account.
+	// Specify the actions and attribute updates to be performed for enabling an account.
 	ENABLEACCOUNTJSON *string `json:"ENABLEACCOUNTJSON,omitempty"`
-	// JSON to specify the different attributes to be checked and action to be performed for disabling an active account.
+	// Specify the actions and attributes updates to be performed for disabling an account.
 	DISABLEACCOUNTJSON *string `json:"DISABLEACCOUNTJSON,omitempty"`
-	// JSON to specify the different attributes to be checked and action to be performed for deleting/suspending an account.
+	// Specify the actions to be performed for deleting an account.
 	REMOVEACCOUNTJSON *string `json:"REMOVEACCOUNTJSON,omitempty"`
-	// JSON to ADD Access (cross domain/forest group membership) to an account.
+	// Configuration to ADD Access (cross domain/forest group membership) to an account.
 	ADDACCESSJSON *string `json:"ADDACCESSJSON,omitempty"`
-	// JSON to REMOVE Access (cross domain/forest group membership) to an account.
+	// Configuration to REMOVE Access (cross domain/forest group membership) to an account.
 	REMOVEACCESSJSON *string `json:"REMOVEACCESSJSON,omitempty"`
-	// JSON to Reset and Change Password.
+	// Configuration to Reset and Change Password.
 	RESETANDCHANGEPASSWRDJSON *string `json:"RESETANDCHANGEPASSWRDJSON,omitempty"`
-	MOVEACCOUNTJSON           *string `json:"MOVEACCOUNTJSON,omitempty"`
-	// JSON to Create Group in a multi-domain/forest Setup.
+	// Configuration to Create a Group
 	CREATEGROUPJSON *string `json:"CREATEGROUPJSON,omitempty"`
-	// JSON to Update Group in a multi-domain/forest Setup.
+	// Configuration to Update a Group
 	UPDATEGROUPJSON *string `json:"UPDATEGROUPJSON,omitempty"`
-	// JSON to Update Group in a multi-domain/forest Setup.
+	// Configuration to Delete a Group
 	REMOVEGROUPJSON *string `json:"REMOVEGROUPJSON,omitempty"`
-	// JSON to Add Group to a Group.
+	// Configuration to Add nested group hierarchy
 	ADDACCESSENTITLEMENTJSON *string `json:"ADDACCESSENTITLEMENTJSON,omitempty"`
 	CUSTOMCONFIGJSON         *string `json:"CUSTOMCONFIGJSON,omitempty"`
-	// JSON to Remove Group from a Group.
+	// Configuration to Remove nested group hierarchy
 	REMOVEACCESSENTITLEMENTJSON *string `json:"REMOVEACCESSENTITLEMENTJSON,omitempty"`
-	// JSON to specify the Field Value which will be used to Create the New Service Account.
+	// Specify the Field Value which will be used to Create the New Service Account.
 	CREATESERVICEACCOUNTJSON *string `json:"CREATESERVICEACCOUNTJSON,omitempty"`
-	// JSON to specify the Field Value which will be used to Update existing Service Account.
+	// Specify the Field Value which will be used to update the existing Service Account.
 	UPDATESERVICEACCOUNTJSON *string `json:"UPDATESERVICEACCOUNTJSON,omitempty"`
-	// JSON to specify the different attributes to be checked and action to be performed to delete an existing service account.
+	// Specify the actions to be performed while deleting a service account.
 	REMOVESERVICEACCOUNTJSON *string `json:"REMOVESERVICEACCOUNTJSON,omitempty"`
 	// JSON to specify Bootstrap Config.
 	PAM_CONFIG *string `json:"PAM_CONFIG,omitempty"`
-	// Specify this parameter to use the inline processor for transforming the data during user import.
+	// Specify this parameter to transform the data during user import.
 	MODIFYUSERDATAJSON *string `json:"MODIFYUSERDATAJSON,omitempty"`
 }
 
@@ -160,38 +153,6 @@ func (o *ADSIConnector) GetURLOk() (*string, bool) {
 // SetURL sets field value
 func (o *ADSIConnector) SetURL(v string) {
 	o.URL = v
-}
-
-// GetDomain returns the Domain field value if set, zero value otherwise.
-func (o *ADSIConnector) GetDomain() string {
-	if o == nil || IsNil(o.Domain) {
-		var ret string
-		return ret
-	}
-	return *o.Domain
-}
-
-// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetDomainOk() (*string, bool) {
-	if o == nil || IsNil(o.Domain) {
-		return nil, false
-	}
-	return o.Domain, true
-}
-
-// HasDomain returns a boolean if a field has been set.
-func (o *ADSIConnector) HasDomain() bool {
-	if o != nil && !IsNil(o.Domain) {
-		return true
-	}
-
-	return false
-}
-
-// SetDomain gets a reference to the given string and assigns it to the Domain field.
-func (o *ADSIConnector) SetDomain(v string) {
-	o.Domain = &v
 }
 
 // GetUSERNAME returns the USERNAME field value
@@ -384,166 +345,6 @@ func (o *ADSIConnector) HasUPDATEUSERJSON() bool {
 // SetUPDATEUSERJSON gets a reference to the given string and assigns it to the UPDATEUSERJSON field.
 func (o *ADSIConnector) SetUPDATEUSERJSON(v string) {
 	o.UPDATEUSERJSON = &v
-}
-
-// GetFOREST_DETAILS returns the FOREST_DETAILS field value if set, zero value otherwise.
-func (o *ADSIConnector) GetFOREST_DETAILS() string {
-	if o == nil || IsNil(o.FOREST_DETAILS) {
-		var ret string
-		return ret
-	}
-	return *o.FOREST_DETAILS
-}
-
-// GetFOREST_DETAILSOk returns a tuple with the FOREST_DETAILS field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetFOREST_DETAILSOk() (*string, bool) {
-	if o == nil || IsNil(o.FOREST_DETAILS) {
-		return nil, false
-	}
-	return o.FOREST_DETAILS, true
-}
-
-// HasFOREST_DETAILS returns a boolean if a field has been set.
-func (o *ADSIConnector) HasFOREST_DETAILS() bool {
-	if o != nil && !IsNil(o.FOREST_DETAILS) {
-		return true
-	}
-
-	return false
-}
-
-// SetFOREST_DETAILS gets a reference to the given string and assigns it to the FOREST_DETAILS field.
-func (o *ADSIConnector) SetFOREST_DETAILS(v string) {
-	o.FOREST_DETAILS = &v
-}
-
-// GetENABLEGROUPMANAGEMENT returns the ENABLEGROUPMANAGEMENT field value if set, zero value otherwise.
-func (o *ADSIConnector) GetENABLEGROUPMANAGEMENT() string {
-	if o == nil || IsNil(o.ENABLEGROUPMANAGEMENT) {
-		var ret string
-		return ret
-	}
-	return *o.ENABLEGROUPMANAGEMENT
-}
-
-// GetENABLEGROUPMANAGEMENTOk returns a tuple with the ENABLEGROUPMANAGEMENT field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetENABLEGROUPMANAGEMENTOk() (*string, bool) {
-	if o == nil || IsNil(o.ENABLEGROUPMANAGEMENT) {
-		return nil, false
-	}
-	return o.ENABLEGROUPMANAGEMENT, true
-}
-
-// HasENABLEGROUPMANAGEMENT returns a boolean if a field has been set.
-func (o *ADSIConnector) HasENABLEGROUPMANAGEMENT() bool {
-	if o != nil && !IsNil(o.ENABLEGROUPMANAGEMENT) {
-		return true
-	}
-
-	return false
-}
-
-// SetENABLEGROUPMANAGEMENT gets a reference to the given string and assigns it to the ENABLEGROUPMANAGEMENT field.
-func (o *ADSIConnector) SetENABLEGROUPMANAGEMENT(v string) {
-	o.ENABLEGROUPMANAGEMENT = &v
-}
-
-// GetCreateUpdateMappings returns the CreateUpdateMappings field value if set, zero value otherwise.
-func (o *ADSIConnector) GetCreateUpdateMappings() string {
-	if o == nil || IsNil(o.CreateUpdateMappings) {
-		var ret string
-		return ret
-	}
-	return *o.CreateUpdateMappings
-}
-
-// GetCreateUpdateMappingsOk returns a tuple with the CreateUpdateMappings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetCreateUpdateMappingsOk() (*string, bool) {
-	if o == nil || IsNil(o.CreateUpdateMappings) {
-		return nil, false
-	}
-	return o.CreateUpdateMappings, true
-}
-
-// HasCreateUpdateMappings returns a boolean if a field has been set.
-func (o *ADSIConnector) HasCreateUpdateMappings() bool {
-	if o != nil && !IsNil(o.CreateUpdateMappings) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreateUpdateMappings gets a reference to the given string and assigns it to the CreateUpdateMappings field.
-func (o *ADSIConnector) SetCreateUpdateMappings(v string) {
-	o.CreateUpdateMappings = &v
-}
-
-// GetIMPORTDATACOOKIES returns the IMPORTDATACOOKIES field value if set, zero value otherwise.
-func (o *ADSIConnector) GetIMPORTDATACOOKIES() string {
-	if o == nil || IsNil(o.IMPORTDATACOOKIES) {
-		var ret string
-		return ret
-	}
-	return *o.IMPORTDATACOOKIES
-}
-
-// GetIMPORTDATACOOKIESOk returns a tuple with the IMPORTDATACOOKIES field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetIMPORTDATACOOKIESOk() (*string, bool) {
-	if o == nil || IsNil(o.IMPORTDATACOOKIES) {
-		return nil, false
-	}
-	return o.IMPORTDATACOOKIES, true
-}
-
-// HasIMPORTDATACOOKIES returns a boolean if a field has been set.
-func (o *ADSIConnector) HasIMPORTDATACOOKIES() bool {
-	if o != nil && !IsNil(o.IMPORTDATACOOKIES) {
-		return true
-	}
-
-	return false
-}
-
-// SetIMPORTDATACOOKIES gets a reference to the given string and assigns it to the IMPORTDATACOOKIES field.
-func (o *ADSIConnector) SetIMPORTDATACOOKIES(v string) {
-	o.IMPORTDATACOOKIES = &v
-}
-
-// GetPASSWDPOLICYJSON returns the PASSWDPOLICYJSON field value if set, zero value otherwise.
-func (o *ADSIConnector) GetPASSWDPOLICYJSON() string {
-	if o == nil || IsNil(o.PASSWDPOLICYJSON) {
-		var ret string
-		return ret
-	}
-	return *o.PASSWDPOLICYJSON
-}
-
-// GetPASSWDPOLICYJSONOk returns a tuple with the PASSWDPOLICYJSON field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetPASSWDPOLICYJSONOk() (*string, bool) {
-	if o == nil || IsNil(o.PASSWDPOLICYJSON) {
-		return nil, false
-	}
-	return o.PASSWDPOLICYJSON, true
-}
-
-// HasPASSWDPOLICYJSON returns a boolean if a field has been set.
-func (o *ADSIConnector) HasPASSWDPOLICYJSON() bool {
-	if o != nil && !IsNil(o.PASSWDPOLICYJSON) {
-		return true
-	}
-
-	return false
-}
-
-// SetPASSWDPOLICYJSON gets a reference to the given string and assigns it to the PASSWDPOLICYJSON field.
-func (o *ADSIConnector) SetPASSWDPOLICYJSON(v string) {
-	o.PASSWDPOLICYJSON = &v
 }
 
 // GetENDPOINTS_FILTER returns the ENDPOINTS_FILTER field value if set, zero value otherwise.
@@ -1250,38 +1051,6 @@ func (o *ADSIConnector) SetRESETANDCHANGEPASSWRDJSON(v string) {
 	o.RESETANDCHANGEPASSWRDJSON = &v
 }
 
-// GetMOVEACCOUNTJSON returns the MOVEACCOUNTJSON field value if set, zero value otherwise.
-func (o *ADSIConnector) GetMOVEACCOUNTJSON() string {
-	if o == nil || IsNil(o.MOVEACCOUNTJSON) {
-		var ret string
-		return ret
-	}
-	return *o.MOVEACCOUNTJSON
-}
-
-// GetMOVEACCOUNTJSONOk returns a tuple with the MOVEACCOUNTJSON field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADSIConnector) GetMOVEACCOUNTJSONOk() (*string, bool) {
-	if o == nil || IsNil(o.MOVEACCOUNTJSON) {
-		return nil, false
-	}
-	return o.MOVEACCOUNTJSON, true
-}
-
-// HasMOVEACCOUNTJSON returns a boolean if a field has been set.
-func (o *ADSIConnector) HasMOVEACCOUNTJSON() bool {
-	if o != nil && !IsNil(o.MOVEACCOUNTJSON) {
-		return true
-	}
-
-	return false
-}
-
-// SetMOVEACCOUNTJSON gets a reference to the given string and assigns it to the MOVEACCOUNTJSON field.
-func (o *ADSIConnector) SetMOVEACCOUNTJSON(v string) {
-	o.MOVEACCOUNTJSON = &v
-}
-
 // GetCREATEGROUPJSON returns the CREATEGROUPJSON field value if set, zero value otherwise.
 func (o *ADSIConnector) GetCREATEGROUPJSON() string {
 	if o == nil || IsNil(o.CREATEGROUPJSON) {
@@ -1653,9 +1422,6 @@ func (o ADSIConnector) ToMap() (map[string]interface{}, error) {
 		return map[string]interface{}{}, errBaseConnector
 	}
 	toSerialize["URL"] = o.URL
-	if !IsNil(o.Domain) {
-		toSerialize["domain"] = o.Domain
-	}
 	toSerialize["USERNAME"] = o.USERNAME
 	toSerialize["PASSWORD"] = o.PASSWORD
 	toSerialize["CONNECTION_URL"] = o.CONNECTION_URL
@@ -1668,21 +1434,6 @@ func (o ADSIConnector) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UPDATEUSERJSON) {
 		toSerialize["UPDATEUSERJSON"] = o.UPDATEUSERJSON
-	}
-	if !IsNil(o.FOREST_DETAILS) {
-		toSerialize["FOREST_DETAILS"] = o.FOREST_DETAILS
-	}
-	if !IsNil(o.ENABLEGROUPMANAGEMENT) {
-		toSerialize["ENABLEGROUPMANAGEMENT"] = o.ENABLEGROUPMANAGEMENT
-	}
-	if !IsNil(o.CreateUpdateMappings) {
-		toSerialize["createUpdateMappings"] = o.CreateUpdateMappings
-	}
-	if !IsNil(o.IMPORTDATACOOKIES) {
-		toSerialize["IMPORTDATACOOKIES"] = o.IMPORTDATACOOKIES
-	}
-	if !IsNil(o.PASSWDPOLICYJSON) {
-		toSerialize["PASSWDPOLICYJSON"] = o.PASSWDPOLICYJSON
 	}
 	if !IsNil(o.ENDPOINTS_FILTER) {
 		toSerialize["ENDPOINTS_FILTER"] = o.ENDPOINTS_FILTER
@@ -1749,9 +1500,6 @@ func (o ADSIConnector) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.RESETANDCHANGEPASSWRDJSON) {
 		toSerialize["RESETANDCHANGEPASSWRDJSON"] = o.RESETANDCHANGEPASSWRDJSON
-	}
-	if !IsNil(o.MOVEACCOUNTJSON) {
-		toSerialize["MOVEACCOUNTJSON"] = o.MOVEACCOUNTJSON
 	}
 	if !IsNil(o.CREATEGROUPJSON) {
 		toSerialize["CREATEGROUPJSON"] = o.CREATEGROUPJSON

@@ -1,5 +1,5 @@
 /*
-testConnection Management API
+Connection Management API
 
 Testing ConnectionsAPIService
 
@@ -22,11 +22,35 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ConnectionsAPIService TestConnection", func(t *testing.T) {
+	t.Run("Test ConnectionsAPIService CreateOrUpdate", func(t *testing.T) {
+
+		t.Skip("skip test")
+
+		resp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.ConnectionsAPI.TestConnection(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConnectionsAPIService GetConnections", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

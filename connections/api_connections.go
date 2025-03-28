@@ -1,5 +1,5 @@
 /*
-testConnection Management API
+Connection Management API
 
 Use this API to create a connection in Saviynt Identity Cloud.  The Authorization header must have \"Bearer {token}\".  **Mandatory Parameters:** - **connectionname**: Specify the name to identify the connection. - **connectiontype**: Specify a connection type. For example, if your target application is Active Directory, specify the connection type as \"AD\".  **Optional Parameters:** - **description**: Provide a description for the connection. - **defaultsavroles**: Specify the SAV role(s) required for managing this connection along with its associated security systems, endpoints, accounts, and entitlements. - **emailTemplate**: Specify the email template applicable for notifications. - **sslCertificate**: Specify the SSL certificate(s) to secure the connection between EIC and the target application. - **vaultConfiguration**: Specify the path of the vault to obtain secret data (suffix the connector name to make it unique). - **saveinvault**: Set to true to save the encrypted attribute in the configured vault.
 
@@ -21,29 +21,29 @@ import (
 // ConnectionsAPIService ConnectionsAPI service
 type ConnectionsAPIService service
 
-type ApiTestConnectionRequest struct {
+type ApiCreateOrUpdateRequest struct {
 	ctx                   context.Context
 	ApiService            *ConnectionsAPIService
-	testConnectionRequest *TestConnectionRequest
+	createOrUpdateRequest *CreateOrUpdateRequest
 }
 
-func (r ApiTestConnectionRequest) TestConnectionRequest(testConnectionRequest TestConnectionRequest) ApiTestConnectionRequest {
-	r.testConnectionRequest = &testConnectionRequest
+func (r ApiCreateOrUpdateRequest) CreateOrUpdateRequest(createOrUpdateRequest CreateOrUpdateRequest) ApiCreateOrUpdateRequest {
+	r.createOrUpdateRequest = &createOrUpdateRequest
 	return r
 }
 
-func (r ApiTestConnectionRequest) Execute() (*TestConnection200Response, *http.Response, error) {
-	return r.ApiService.TestConnectionExecute(r)
+func (r ApiCreateOrUpdateRequest) Execute() (*CreateOrUpdateResponse, *http.Response, error) {
+	return r.ApiService.CreateOrUpdateExecute(r)
 }
 
 /*
-TestConnection Create a connection
+CreateOrUpdate Create a connection
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiTestConnectionRequest
+	@return ApiCreateOrUpdateRequest
 */
-func (a *ConnectionsAPIService) TestConnection(ctx context.Context) ApiTestConnectionRequest {
-	return ApiTestConnectionRequest{
+func (a *ConnectionsAPIService) CreateOrUpdate(ctx context.Context) ApiCreateOrUpdateRequest {
+	return ApiCreateOrUpdateRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -51,16 +51,16 @@ func (a *ConnectionsAPIService) TestConnection(ctx context.Context) ApiTestConne
 
 // Execute executes the request
 //
-//	@return TestConnection200Response
-func (a *ConnectionsAPIService) TestConnectionExecute(r ApiTestConnectionRequest) (*TestConnection200Response, *http.Response, error) {
+//	@return CreateOrUpdateResponse
+func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest) (*CreateOrUpdateResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *TestConnection200Response
+		localVarReturnValue *CreateOrUpdateResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.TestConnection")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.CreateOrUpdate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -70,8 +70,8 @@ func (a *ConnectionsAPIService) TestConnectionExecute(r ApiTestConnectionRequest
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.testConnectionRequest == nil {
-		return localVarReturnValue, nil, reportError("testConnectionRequest is required and must be specified")
+	if r.createOrUpdateRequest == nil {
+		return localVarReturnValue, nil, reportError("createOrUpdateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -92,7 +92,234 @@ func (a *ConnectionsAPIService) TestConnectionExecute(r ApiTestConnectionRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.testConnectionRequest
+	localVarPostBody = r.createOrUpdateRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetConnectionDetailsRequest struct {
+	ctx            context.Context
+	ApiService     *ConnectionsAPIService
+	connectionname *string
+	connectionkey  *string
+}
+
+// Name of the connection
+func (r ApiGetConnectionDetailsRequest) Connectionname(connectionname string) ApiGetConnectionDetailsRequest {
+	r.connectionname = &connectionname
+	return r
+}
+
+// Connection key
+func (r ApiGetConnectionDetailsRequest) Connectionkey(connectionkey string) ApiGetConnectionDetailsRequest {
+	r.connectionkey = &connectionkey
+	return r
+}
+
+func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetails, *http.Response, error) {
+	return r.ApiService.GetConnectionDetailsExecute(r)
+}
+
+/*
+GetConnectionDetails Get connection details
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetConnectionDetailsRequest
+*/
+func (a *ConnectionsAPIService) GetConnectionDetails(ctx context.Context) ApiGetConnectionDetailsRequest {
+	return ApiGetConnectionDetailsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetConnectionDetails
+func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDetailsRequest) (*GetConnectionDetails, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetConnectionDetails
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnectionDetails")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ECM/api/v5/getConnectionDetails"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.connectionname != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "connectionname", r.connectionname, "", "")
+	}
+	if r.connectionkey != nil {
+		parameterAddToHeaderOrQuery(localVarFormParams, "connectionkey", r.connectionkey, "", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetConnectionsRequest struct {
+	ctx                   context.Context
+	ApiService            *ConnectionsAPIService
+	getConnectionsRequest *GetConnectionsRequest
+}
+
+func (r ApiGetConnectionsRequest) GetConnectionsRequest(getConnectionsRequest GetConnectionsRequest) ApiGetConnectionsRequest {
+	r.getConnectionsRequest = &getConnectionsRequest
+	return r
+}
+
+func (r ApiGetConnectionsRequest) Execute() (*GetConnectionsResponse, *http.Response, error) {
+	return r.ApiService.GetConnectionsExecute(r)
+}
+
+/*
+GetConnections Get list of connections
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetConnectionsRequest
+*/
+func (a *ConnectionsAPIService) GetConnections(ctx context.Context) ApiGetConnectionsRequest {
+	return ApiGetConnectionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetConnectionsResponse
+func (a *ConnectionsAPIService) GetConnectionsExecute(r ApiGetConnectionsRequest) (*GetConnectionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetConnectionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnections")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/ECM/api/v5/getConnections"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.getConnectionsRequest == nil {
+		return localVarReturnValue, nil, reportError("getConnectionsRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.getConnectionsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

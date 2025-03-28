@@ -1,5 +1,5 @@
 /*
-testConnection Management API
+Connection Management API
 
 Use this API to create a connection in Saviynt Identity Cloud.  The Authorization header must have \"Bearer {token}\".  **Mandatory Parameters:** - **connectionname**: Specify the name to identify the connection. - **connectiontype**: Specify a connection type. For example, if your target application is Active Directory, specify the connection type as \"AD\".  **Optional Parameters:** - **description**: Provide a description for the connection. - **defaultsavroles**: Specify the SAV role(s) required for managing this connection along with its associated security systems, endpoints, accounts, and entitlements. - **emailTemplate**: Specify the email template applicable for notifications. - **sslCertificate**: Specify the SSL certificate(s) to secure the connection between EIC and the target application. - **vaultConfiguration**: Specify the path of the vault to obtain secret data (suffix the connector name to make it unique). - **saveinvault**: Set to true to save the encrypted attribute in the configured vault.
 
@@ -16,68 +16,76 @@ import (
 	"gopkg.in/validator.v2"
 )
 
-// TestConnectionRequest - struct for TestConnectionRequest
-type TestConnectionRequest struct {
+// CreateOrUpdateRequest - struct for CreateOrUpdateRequest
+type CreateOrUpdateRequest struct {
 	ADConnector         *ADConnector
 	ADSIConnector       *ADSIConnector
 	D365Connector       *D365Connector
+	DBConnector         *DBConnector
 	RESTConnector       *RESTConnector
 	SAPConnector        *SAPConnector
 	SalesforceConnector *SalesforceConnector
 	WorkdayConnector    *WorkdayConnector
 }
 
-// ADConnectorAsTestConnectionRequest is a convenience function that returns ADConnector wrapped in TestConnectionRequest
-func ADConnectorAsTestConnectionRequest(v *ADConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// ADConnectorAsCreateOrUpdateRequest is a convenience function that returns ADConnector wrapped in CreateOrUpdateRequest
+func ADConnectorAsCreateOrUpdateRequest(v *ADConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		ADConnector: v,
 	}
 }
 
-// ADSIConnectorAsTestConnectionRequest is a convenience function that returns ADSIConnector wrapped in TestConnectionRequest
-func ADSIConnectorAsTestConnectionRequest(v *ADSIConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// ADSIConnectorAsCreateOrUpdateRequest is a convenience function that returns ADSIConnector wrapped in CreateOrUpdateRequest
+func ADSIConnectorAsCreateOrUpdateRequest(v *ADSIConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		ADSIConnector: v,
 	}
 }
 
-// D365ConnectorAsTestConnectionRequest is a convenience function that returns D365Connector wrapped in TestConnectionRequest
-func D365ConnectorAsTestConnectionRequest(v *D365Connector) TestConnectionRequest {
-	return TestConnectionRequest{
+// D365ConnectorAsCreateOrUpdateRequest is a convenience function that returns D365Connector wrapped in CreateOrUpdateRequest
+func D365ConnectorAsCreateOrUpdateRequest(v *D365Connector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		D365Connector: v,
 	}
 }
 
-// RESTConnectorAsTestConnectionRequest is a convenience function that returns RESTConnector wrapped in TestConnectionRequest
-func RESTConnectorAsTestConnectionRequest(v *RESTConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// DBConnectorAsCreateOrUpdateRequest is a convenience function that returns DBConnector wrapped in CreateOrUpdateRequest
+func DBConnectorAsCreateOrUpdateRequest(v *DBConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
+		DBConnector: v,
+	}
+}
+
+// RESTConnectorAsCreateOrUpdateRequest is a convenience function that returns RESTConnector wrapped in CreateOrUpdateRequest
+func RESTConnectorAsCreateOrUpdateRequest(v *RESTConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		RESTConnector: v,
 	}
 }
 
-// SAPConnectorAsTestConnectionRequest is a convenience function that returns SAPConnector wrapped in TestConnectionRequest
-func SAPConnectorAsTestConnectionRequest(v *SAPConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// SAPConnectorAsCreateOrUpdateRequest is a convenience function that returns SAPConnector wrapped in CreateOrUpdateRequest
+func SAPConnectorAsCreateOrUpdateRequest(v *SAPConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		SAPConnector: v,
 	}
 }
 
-// SalesforceConnectorAsTestConnectionRequest is a convenience function that returns SalesforceConnector wrapped in TestConnectionRequest
-func SalesforceConnectorAsTestConnectionRequest(v *SalesforceConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// SalesforceConnectorAsCreateOrUpdateRequest is a convenience function that returns SalesforceConnector wrapped in CreateOrUpdateRequest
+func SalesforceConnectorAsCreateOrUpdateRequest(v *SalesforceConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		SalesforceConnector: v,
 	}
 }
 
-// WorkdayConnectorAsTestConnectionRequest is a convenience function that returns WorkdayConnector wrapped in TestConnectionRequest
-func WorkdayConnectorAsTestConnectionRequest(v *WorkdayConnector) TestConnectionRequest {
-	return TestConnectionRequest{
+// WorkdayConnectorAsCreateOrUpdateRequest is a convenience function that returns WorkdayConnector wrapped in CreateOrUpdateRequest
+func WorkdayConnectorAsCreateOrUpdateRequest(v *WorkdayConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
 		WorkdayConnector: v,
 	}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
-func (dst *TestConnectionRequest) UnmarshalJSON(data []byte) error {
+func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into ADConnector
@@ -129,6 +137,23 @@ func (dst *TestConnectionRequest) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		dst.D365Connector = nil
+	}
+
+	// try to unmarshal data into DBConnector
+	err = newStrictDecoder(data).Decode(&dst.DBConnector)
+	if err == nil {
+		jsonDBConnector, _ := json.Marshal(dst.DBConnector)
+		if string(jsonDBConnector) == "{}" { // empty struct
+			dst.DBConnector = nil
+		} else {
+			if err = validator.Validate(dst.DBConnector); err != nil {
+				dst.DBConnector = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.DBConnector = nil
 	}
 
 	// try to unmarshal data into RESTConnector
@@ -204,21 +229,22 @@ func (dst *TestConnectionRequest) UnmarshalJSON(data []byte) error {
 		dst.ADConnector = nil
 		dst.ADSIConnector = nil
 		dst.D365Connector = nil
+		dst.DBConnector = nil
 		dst.RESTConnector = nil
 		dst.SAPConnector = nil
 		dst.SalesforceConnector = nil
 		dst.WorkdayConnector = nil
 
-		return fmt.Errorf("data matches more than one schema in oneOf(TestConnectionRequest)")
+		return fmt.Errorf("data matches more than one schema in oneOf(CreateOrUpdateRequest)")
 	} else if match == 1 {
 		return nil // exactly one match
 	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(TestConnectionRequest)")
+		return fmt.Errorf("data failed to match schemas in oneOf(CreateOrUpdateRequest)")
 	}
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON
-func (src TestConnectionRequest) MarshalJSON() ([]byte, error) {
+func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 	if src.ADConnector != nil {
 		return json.Marshal(&src.ADConnector)
 	}
@@ -229,6 +255,10 @@ func (src TestConnectionRequest) MarshalJSON() ([]byte, error) {
 
 	if src.D365Connector != nil {
 		return json.Marshal(&src.D365Connector)
+	}
+
+	if src.DBConnector != nil {
+		return json.Marshal(&src.DBConnector)
 	}
 
 	if src.RESTConnector != nil {
@@ -251,7 +281,7 @@ func (src TestConnectionRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *TestConnectionRequest) GetActualInstance() interface{} {
+func (obj *CreateOrUpdateRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -265,6 +295,10 @@ func (obj *TestConnectionRequest) GetActualInstance() interface{} {
 
 	if obj.D365Connector != nil {
 		return obj.D365Connector
+	}
+
+	if obj.DBConnector != nil {
+		return obj.DBConnector
 	}
 
 	if obj.RESTConnector != nil {
@@ -288,7 +322,7 @@ func (obj *TestConnectionRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj TestConnectionRequest) GetActualInstanceValue() interface{} {
+func (obj CreateOrUpdateRequest) GetActualInstanceValue() interface{} {
 	if obj.ADConnector != nil {
 		return *obj.ADConnector
 	}
@@ -299,6 +333,10 @@ func (obj TestConnectionRequest) GetActualInstanceValue() interface{} {
 
 	if obj.D365Connector != nil {
 		return *obj.D365Connector
+	}
+
+	if obj.DBConnector != nil {
+		return *obj.DBConnector
 	}
 
 	if obj.RESTConnector != nil {
@@ -321,38 +359,38 @@ func (obj TestConnectionRequest) GetActualInstanceValue() interface{} {
 	return nil
 }
 
-type NullableTestConnectionRequest struct {
-	value *TestConnectionRequest
+type NullableCreateOrUpdateRequest struct {
+	value *CreateOrUpdateRequest
 	isSet bool
 }
 
-func (v NullableTestConnectionRequest) Get() *TestConnectionRequest {
+func (v NullableCreateOrUpdateRequest) Get() *CreateOrUpdateRequest {
 	return v.value
 }
 
-func (v *NullableTestConnectionRequest) Set(val *TestConnectionRequest) {
+func (v *NullableCreateOrUpdateRequest) Set(val *CreateOrUpdateRequest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableTestConnectionRequest) IsSet() bool {
+func (v NullableCreateOrUpdateRequest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableTestConnectionRequest) Unset() {
+func (v *NullableCreateOrUpdateRequest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableTestConnectionRequest(val *TestConnectionRequest) *NullableTestConnectionRequest {
-	return &NullableTestConnectionRequest{value: val, isSet: true}
+func NewNullableCreateOrUpdateRequest(val *CreateOrUpdateRequest) *NullableCreateOrUpdateRequest {
+	return &NullableCreateOrUpdateRequest{value: val, isSet: true}
 }
 
-func (v NullableTestConnectionRequest) MarshalJSON() ([]byte, error) {
+func (v NullableCreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableTestConnectionRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateOrUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

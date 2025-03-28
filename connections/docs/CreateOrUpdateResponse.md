@@ -1,4 +1,4 @@
-# TestConnection200Response
+# CreateOrUpdateResponse
 
 ## Properties
 
@@ -10,95 +10,95 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewTestConnection200Response
+### NewCreateOrUpdateResponse
 
-`func NewTestConnection200Response() *TestConnection200Response`
+`func NewCreateOrUpdateResponse() *CreateOrUpdateResponse`
 
-NewTestConnection200Response instantiates a new TestConnection200Response object
+NewCreateOrUpdateResponse instantiates a new CreateOrUpdateResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewTestConnection200ResponseWithDefaults
+### NewCreateOrUpdateResponseWithDefaults
 
-`func NewTestConnection200ResponseWithDefaults() *TestConnection200Response`
+`func NewCreateOrUpdateResponseWithDefaults() *CreateOrUpdateResponse`
 
-NewTestConnection200ResponseWithDefaults instantiates a new TestConnection200Response object
+NewCreateOrUpdateResponseWithDefaults instantiates a new CreateOrUpdateResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetConnectionKey
 
-`func (o *TestConnection200Response) GetConnectionKey() int32`
+`func (o *CreateOrUpdateResponse) GetConnectionKey() int32`
 
 GetConnectionKey returns the ConnectionKey field if non-nil, zero value otherwise.
 
 ### GetConnectionKeyOk
 
-`func (o *TestConnection200Response) GetConnectionKeyOk() (*int32, bool)`
+`func (o *CreateOrUpdateResponse) GetConnectionKeyOk() (*int32, bool)`
 
 GetConnectionKeyOk returns a tuple with the ConnectionKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionKey
 
-`func (o *TestConnection200Response) SetConnectionKey(v int32)`
+`func (o *CreateOrUpdateResponse) SetConnectionKey(v int32)`
 
 SetConnectionKey sets ConnectionKey field to given value.
 
 ### HasConnectionKey
 
-`func (o *TestConnection200Response) HasConnectionKey() bool`
+`func (o *CreateOrUpdateResponse) HasConnectionKey() bool`
 
 HasConnectionKey returns a boolean if a field has been set.
 
 ### GetMsg
 
-`func (o *TestConnection200Response) GetMsg() string`
+`func (o *CreateOrUpdateResponse) GetMsg() string`
 
 GetMsg returns the Msg field if non-nil, zero value otherwise.
 
 ### GetMsgOk
 
-`func (o *TestConnection200Response) GetMsgOk() (*string, bool)`
+`func (o *CreateOrUpdateResponse) GetMsgOk() (*string, bool)`
 
 GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMsg
 
-`func (o *TestConnection200Response) SetMsg(v string)`
+`func (o *CreateOrUpdateResponse) SetMsg(v string)`
 
 SetMsg sets Msg field to given value.
 
 ### HasMsg
 
-`func (o *TestConnection200Response) HasMsg() bool`
+`func (o *CreateOrUpdateResponse) HasMsg() bool`
 
 HasMsg returns a boolean if a field has been set.
 
 ### GetErrorCode
 
-`func (o *TestConnection200Response) GetErrorCode() string`
+`func (o *CreateOrUpdateResponse) GetErrorCode() string`
 
 GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
 
 ### GetErrorCodeOk
 
-`func (o *TestConnection200Response) GetErrorCodeOk() (*string, bool)`
+`func (o *CreateOrUpdateResponse) GetErrorCodeOk() (*string, bool)`
 
 GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorCode
 
-`func (o *TestConnection200Response) SetErrorCode(v string)`
+`func (o *CreateOrUpdateResponse) SetErrorCode(v string)`
 
 SetErrorCode sets ErrorCode field to given value.
 
 ### HasErrorCode
 
-`func (o *TestConnection200Response) HasErrorCode() bool`
+`func (o *CreateOrUpdateResponse) HasErrorCode() bool`
 
 HasErrorCode returns a boolean if a field has been set.
 
