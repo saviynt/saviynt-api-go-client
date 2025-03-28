@@ -10,6 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
+
 // Test_endpoints_EndpointsAPIService tests the Endpoints APIs.
 func Test_endpoints_EndpointsAPIService(t *testing.T) {
 	apiClient, _, skipTests, skipMsg, err := client()
@@ -42,7 +43,7 @@ func Test_endpoints_EndpointsAPIService(t *testing.T) {
 		assert.Equal(t, "0", *resp.ErrorCode)
 		assert.Equal(t, "Success", *resp.Message)
 	})
-	
+
 	t.Run("Test_EndpointsAPIService_CreateEndpoint", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)

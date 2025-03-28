@@ -35,22 +35,22 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 			t.Skip(MsgSkipTest)
 		}
 		connName := "hellow1"
-		adConn:=connections.ADConnector{
+		adConn := connections.ADConnector{
 			BaseConnector: connections.BaseConnector{
 				Connectiontype: "AD",
 				ConnectionName: connName,
-				Description: saviyntapigoclient.Pointer("Updated at " + time.Now().UTC().Format(time.RFC3339)),
+				Description:    saviyntapigoclient.Pointer("Updated at " + time.Now().UTC().Format(time.RFC3339)),
 			},
 			URL:      stringPtr("ldap://test-ad.example.com"),
 			USERNAME: stringPtr("admin"),
 			PASSWORD: "MyOffice12#",
 		}
 
-		testConnReq:=connections.TestConnectionRequest{
+		testConnReq := connections.TestConnectionRequest{
 			ADConnector: &adConn,
 		}
 
-		req:=apiClient.Connections.TestConnection(ctx).TestConnectionRequest(testConnReq)
+		req := apiClient.Connections.TestConnection(ctx).TestConnectionRequest(testConnReq)
 
 		resp, httpRes, err := req.Execute()
 		fmt.Printf("Response: %+v\n", resp)
