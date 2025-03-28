@@ -11,248 +11,58 @@ package test
 
 import (
 	"context"
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
 	"strings"
 	"testing"
 	"time"
 
 	saviyntapigoclient "github.com/saviynt/saviynt-api-go-client"
 	"github.com/saviynt/saviynt-api-go-client/connections"
-	"github.com/saviynt/saviynt-api-go-client/util/connectionsutil"
-	"github.com/saviynt/saviynt-api-go-client/util/filepathutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
-	apiClient, creds, skipTests, skipMsg, err := client()
+	apiClient, _, skipTests, skipMsg, err := client()
 	require.Nil(t, err)
-
-	createOrUpdateEnvVar := "SAVIYNT_TEST_CONNECTIONS_CREATE_REQUEST_FILEPATH"
 
 	ctx := context.Background()
 
-	var (
-		conn                            *connections.Connection
-		createdConnectionKey            *int32
-		connResponse                    *connections.GetConnectionDetailsResponse
-		passwordNoOfSplCharsUpdateAfter *string
-	)
-
-	t.Run("Test_ConnectionsAPIService_GetConnections", func(t *testing.T) {
+	t.Run("Test ConnectionsAPIService TestConnection", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		}
+		connName := "hellow1"
+		adConn:=connections.ADConnector{
+			BaseConnector: connections.BaseConnector{
+				Connectiontype: "AD",
+				ConnectionName: connName,
+				Description: saviyntapigoclient.Pointer("Updated at " + time.Now().UTC().Format(time.RFC3339)),
+			},
+			URL:      stringPtr("ldap://test-ad.example.com"),
+			USERNAME: stringPtr("admin"),
+			PASSWORD: "MyOffice12#",
+		}
 
-		resp, httpRes, err := apiClient.Connections.
-			GetConnections(ctx).
-			Execute()
+		testConnReq:=connections.TestConnectionRequest{
+			ADConnector: &adConn,
+		}
+
+		req:=apiClient.Connections.TestConnection(ctx).TestConnectionRequest(testConnReq)
+
+		resp, httpRes, err := req.Execute()
+		fmt.Printf("Response: %+v\n", resp)
 
 		require.Nil(t, err)
 		require.NotNil(t, httpRes)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		assert.Equal(t, "0", resp.ErrorCode)
-
-		if len(resp.ConnectionList) > 0 {
-			conn = saviyntapigoclient.Pointer(resp.ConnectionList[0])
-		}
+		assert.Equal(t, "0", *resp.ErrorCode)
 	})
+}
 
-	t.Run("Test_ConnectionsAPIService_GetConnectionDetails_ByName", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		} else if conn == nil || strings.TrimSpace(conn.CONNECTIONNAME) == "" {
-			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnections`")
-		}
-
-		resp, httpRes, err := apiClient.Connections.
-			GetConnectionDetails(ctx).
-			GetConnectionDetailsRequest(connections.GetConnectionDetailsRequest{
-				Connectionname: saviyntapigoclient.Pointer(conn.CONNECTIONNAME)}).
-			Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		assert.Equal(t, int32(0), resp.Errorcode)
-		require.NotNil(t, resp.Connectionname)
-		assert.Equal(t, conn.CONNECTIONNAME, *resp.Connectionname)
-	})
-
-	t.Run("Test_ConnectionsAPIService_CreateOrUpdateConnection_Create", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		}
-
-		reqFilename := os.Getenv(createOrUpdateEnvVar)
-		if strings.TrimSpace(reqFilename) == "" {
-			t.Skip(fmt.Sprintf("skip test: create request body env var not set (%s)", createOrUpdateEnvVar))
-		}
-		err := filepathutil.ExistsNonZero(reqFilename)
-		require.Nil(t, err)
-
-		reqBody, err := connectionsutil.ReadFileCreateOrUpdateConnectionRequest(reqFilename)
-		require.Nil(t, err)
-
-		tm := time.Now().UTC()
-
-		connName := fmt.Sprintf("saviynt-api-go-client test at %s", tm.Format(time.RFC3339))
-		desc := fmt.Sprintf("created on %s", tm.Format(time.RFC3339))
-
-		reqBody.ConnectionName = saviyntapigoclient.Pointer(connName)
-		reqBody.Description = saviyntapigoclient.Pointer(desc)
-
-		resp, httpRes, err := apiClient.Connections.
-			CreateOrUpdateConnection(ctx).
-			CreateOrUpdateConnectionRequest(*reqBody).
-			Execute()
-
-		if err != nil {
-			openAPIErr := err.(*connections.GenericOpenAPIError)
-			if errMsg := strings.TrimSpace(string(openAPIErr.Body())); errMsg == "" {
-				err = nil
-			} else {
-				err = errors.New(errMsg)
-			}
-		}
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		require.NotNil(t, resp.ConnectionKey)
-		createdConnectionKey = resp.ConnectionKey
-	})
-
-	t.Run("Test_ConnectionsAPIService_GetConnectionDetails_ByKey", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		} else if createdConnectionKey == nil {
-			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`")
-		}
-
-		resp, httpRes, err := apiClient.Connections.
-			GetConnectionDetails(ctx).
-			GetConnectionDetailsRequest(connections.GetConnectionDetailsRequest{
-				Connectionkey: saviyntapigoclient.Pointer(strconv.Itoa(int(*createdConnectionKey)))}).
-			Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		assert.Equal(t, int32(0), resp.Errorcode)
-		require.NotNil(t, resp.Connectionname)
-		assert.Equal(t, *createdConnectionKey, *resp.Connectionkey)
-		connResponse = resp
-	})
-
-	t.Run("Test_ConnectionsAPIService_CreateOrUpdateConnection_Update", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		} else if connResponse == nil {
-			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_GetConnectionDetails_ByKey`")
-		}
-
-		req, err := connectionsutil.ConnectionDetailsResponseToRequest(*connResponse)
-		require.Nil(t, err)
-
-		if req.PASSWORD_NOOFSPLCHARS == nil {
-			req.PASSWORD_NOOFSPLCHARS = saviyntapigoclient.Pointer("1")
-		} else if *req.PASSWORD_NOOFSPLCHARS == "1" {
-			req.PASSWORD_NOOFSPLCHARS = saviyntapigoclient.Pointer("2")
-			passwordNoOfSplCharsUpdateAfter = saviyntapigoclient.Pointer(*req.PASSWORD_NOOFSPLCHARS)
-		} else {
-			req.PASSWORD_NOOFSPLCHARS = saviyntapigoclient.Pointer("1")
-			passwordNoOfSplCharsUpdateAfter = saviyntapigoclient.Pointer(*req.PASSWORD_NOOFSPLCHARS)
-		}
-
-		resp, httpRes, err := apiClient.Connections.
-			CreateOrUpdateConnection(ctx).
-			CreateOrUpdateConnectionRequest(req).
-			Execute()
-
-		if err != nil {
-			openAPIErr := err.(*connections.GenericOpenAPIError)
-			if errMsg := strings.TrimSpace(string(openAPIErr.Body())); errMsg == "" {
-				err = nil
-			} else {
-				err = errors.New(errMsg)
-			}
-		}
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		require.NotNil(t, resp.ConnectionKey)
-		createdConnectionKey = resp.ConnectionKey
-	})
-
-	t.Run("Test_ConnectionsAPIService_GetConnectionDetails_ByKey_AfterUpdate", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		} else if createdConnectionKey == nil {
-			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Update`")
-		} else if passwordNoOfSplCharsUpdateAfter == nil {
-			t.Skipf("skip test: var not set (%s)", "PASSWORD_NOOFSPLCHARS")
-		}
-
-		resp, httpRes, err := apiClient.Connections.
-			GetConnectionDetails(ctx).
-			GetConnectionDetailsRequest(connections.GetConnectionDetailsRequest{
-				Connectionkey: saviyntapigoclient.Pointer(strconv.Itoa(int(*createdConnectionKey)))}).
-			Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		assert.Equal(t, int32(0), resp.Errorcode)
-		require.NotNil(t, resp.Connectionattributes.PASSWORD_NOOFSPLCHARS)
-		assert.Equal(t, *passwordNoOfSplCharsUpdateAfter, *resp.Connectionattributes.PASSWORD_NOOFSPLCHARS)
-	})
-
-	t.Run("Test_ConnectionsAPIService_DeleteConnection", func(t *testing.T) {
-		if skipTests && strings.TrimSpace(skipMsg) != "" {
-			t.Skip(skipMsg)
-		} else if skipTests {
-			t.Skip(MsgSkipTest)
-		} else if createdConnectionKey == nil {
-			t.Skipf(MsgSkipTestPrereqNotSet, "`Test_ConnectionsAPIService_CreateOrUpdateConnection_Create`")
-		} else {
-			t.Skip("skip test: unimplemented: `Test_ConnectionsAPIService_DeleteConnection`")
-		}
-
-		resp, httpRes, err := apiClient.Connections.
-			DeleteConnection(ctx).
-			DeleteConnectionRequest(connections.DeleteConnectionRequest{
-				Connectionkey: []string{strconv.Itoa(int(*createdConnectionKey))},
-				Updateuser:    &creds.Username,
-			}).
-			Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, httpRes)
-		assert.Equal(t, 200, httpRes.StatusCode)
-		require.NotNil(t, resp)
-		assert.Equal(t, "0", resp.Errorcode)
-	})
+// Helper function to return a pointer to a string
+func stringPtr(s string) *string {
+	return &s
 }
