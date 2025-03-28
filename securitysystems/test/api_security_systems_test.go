@@ -11,10 +11,10 @@ package securitysystems
 
 import (
 	"context"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/securitysystems"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/saviynt/saviynt-api-go-client/securitysystems"
 )
 
 func Test_securitysystems_SecuritySystemsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_securitysystems_SecuritySystemsAPIService(t *testing.T) {
 
 	t.Run("Test SecuritySystemsAPIService CreateSecuritySystem", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SecuritySystemsAPI.CreateSecuritySystem(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_securitysystems_SecuritySystemsAPIService(t *testing.T) {
 
 	t.Run("Test SecuritySystemsAPIService GetSecuritySystems", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SecuritySystemsAPI.GetSecuritySystems(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_securitysystems_SecuritySystemsAPIService(t *testing.T) {
 
 	t.Run("Test SecuritySystemsAPIService UpdateSecuritySystem", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.SecuritySystemsAPI.UpdateSecuritySystem(context.Background()).Execute()
 

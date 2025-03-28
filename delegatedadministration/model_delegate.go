@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,16 +22,16 @@ var _ MappedNullable = &Delegate{}
 
 // Delegate Delegate represents a Deleate returne dfrom the Fetch Eisting Delegates List API.
 type Delegate struct {
-	Delegatekey string `json:"delegatekey"`
-	Name string `json:"name"`
-	Description string `json:"description"`
-	Parentusername string `json:"parentusername"`
-	ParentFirstName *string `json:"parentFirstName,omitempty"`
-	ParentLastName *string `json:"parentLastName,omitempty"`
+	Delegatekey       string  `json:"delegatekey"`
+	Name              string  `json:"name"`
+	Description       string  `json:"description"`
+	Parentusername    string  `json:"parentusername"`
+	ParentFirstName   *string `json:"parentFirstName,omitempty"`
+	ParentLastName    *string `json:"parentLastName,omitempty"`
 	DelegateFirstName *string `json:"delegateFirstName,omitempty"`
-	DelegateLastName *string `json:"delegateLastName,omitempty"`
-	Status string `json:"status"`
-	Delegateusername string `json:"delegateusername"`
+	DelegateLastName  *string `json:"delegateLastName,omitempty"`
+	Status            string  `json:"status"`
+	Delegateusername  string  `json:"delegateusername"`
 	// date format 07/14/2020
 	Startdate string `json:"startdate"`
 	// date with format 07/14/2020
@@ -386,7 +386,7 @@ func (o *Delegate) SetEnddate(v string) {
 }
 
 func (o Delegate) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -438,10 +438,10 @@ func (o *Delegate) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -497,5 +497,3 @@ func (v *NullableDelegate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

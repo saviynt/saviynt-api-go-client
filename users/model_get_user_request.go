@@ -24,19 +24,19 @@ type GetUserRequest struct {
 	Username *string `json:"username,omitempty"`
 	// User attributes which you want to see in the response(for encrypted values, mention ecp<1-5>, and for hashed values, mention hcp<1-5>)
 	Responsefields []interface{} `json:"responsefields,omitempty"`
-	Max *int32 `json:"max,omitempty"`
-	Offset *int32 `json:"offset,omitempty"`
-	Order *string `json:"order,omitempty"`
+	Max            *int32        `json:"max,omitempty"`
+	Offset         *int32        `json:"offset,omitempty"`
+	Order          *string       `json:"order,omitempty"`
 	// username
 	Manager *string `json:"manager,omitempty"`
 	// userkey OR `secondaryManager` - username
 	Secondarymanager *string `json:"secondarymanager,omitempty"`
 	// \"0\"/\"1\" to display encrypted security answers for the user
-	Showsecurityanswers *string `json:"showsecurityanswers,omitempty"`
-	Filtercriteria map[string]interface{} `json:"filtercriteria,omitempty"`
-	SearchCriteria *string `json:"searchCriteria,omitempty"`
-	Advsearchcriteria *string `json:"advsearchcriteria,omitempty"`
-	UserQuery *string `json:"userQuery,omitempty"`
+	Showsecurityanswers *string                `json:"showsecurityanswers,omitempty"`
+	Filtercriteria      map[string]interface{} `json:"filtercriteria,omitempty"`
+	SearchCriteria      *string                `json:"searchCriteria,omitempty"`
+	Advsearchcriteria   *string                `json:"advsearchcriteria,omitempty"`
+	UserQuery           *string                `json:"userQuery,omitempty"`
 }
 
 // NewGetUserRequest instantiates a new GetUserRequest object
@@ -441,7 +441,7 @@ func (o *GetUserRequest) SetUserQuery(v string) {
 }
 
 func (o GetUserRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -524,5 +524,3 @@ func (v *NullableGetUserRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

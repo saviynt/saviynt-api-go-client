@@ -19,13 +19,12 @@ import (
 	"net/url"
 )
 
-
 // UsersAPIService UsersAPI service
 type UsersAPIService service
 
 type ApiGetUserRequest struct {
-	ctx context.Context
-	ApiService *UsersAPIService
+	ctx            context.Context
+	ApiService     *UsersAPIService
 	getUserRequest *GetUserRequest
 }
 
@@ -43,24 +42,25 @@ GetUser Get User Details
 
 This method returns a List of Users in Saviynt.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetUserRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetUserRequest
 */
 func (a *UsersAPIService) GetUser(ctx context.Context) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetUserResponse
+//
+//	@return GetUserResponse
 func (a *UsersAPIService) GetUserExecute(r ApiGetUserRequest) (*GetUserResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetUserResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetUserResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersAPIService.GetUser")

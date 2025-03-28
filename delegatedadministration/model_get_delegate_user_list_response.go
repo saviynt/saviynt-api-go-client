@@ -20,11 +20,11 @@ var _ MappedNullable = &GetDelegateUserListResponse{}
 
 // GetDelegateUserListResponse struct for GetDelegateUserListResponse
 type GetDelegateUserListResponse struct {
-	Result []DelegateUser `json:"result,omitempty"`
-	Msg *string `json:"msg,omitempty"`
-	DisplayCount *string `json:"displayCount,omitempty"`
-	ErrorCode *string `json:"errorCode,omitempty"`
-	TotalCount *string `json:"totalCount,omitempty"`
+	Result       []DelegateUser `json:"result,omitempty"`
+	Msg          *string        `json:"msg,omitempty"`
+	DisplayCount *string        `json:"displayCount,omitempty"`
+	ErrorCode    *string        `json:"errorCode,omitempty"`
+	TotalCount   *string        `json:"totalCount,omitempty"`
 }
 
 // NewGetDelegateUserListResponse instantiates a new GetDelegateUserListResponse object
@@ -205,7 +205,7 @@ func (o *GetDelegateUserListResponse) SetTotalCount(v string) {
 }
 
 func (o GetDelegateUserListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,5 +267,3 @@ func (v *NullableGetDelegateUserListResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

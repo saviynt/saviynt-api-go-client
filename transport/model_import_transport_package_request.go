@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package transport
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -25,7 +25,7 @@ type ImportTransportPackageRequest struct {
 	// Complete path of the package that needs to be imported
 	Packagetoimport string `json:"packagetoimport"`
 	// username of the user importing the package
-	Updateuser *string `json:"updateuser,omitempty"`
+	Updateuser            *string `json:"updateuser,omitempty"`
 	Businessjustification *string `json:"businessjustification,omitempty"`
 }
 
@@ -138,7 +138,7 @@ func (o *ImportTransportPackageRequest) SetBusinessjustification(v string) {
 }
 
 func (o ImportTransportPackageRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -170,10 +170,10 @@ func (o *ImportTransportPackageRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -229,5 +229,3 @@ func (v *NullableImportTransportPackageRequest) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

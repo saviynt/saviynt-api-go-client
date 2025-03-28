@@ -18,13 +18,13 @@ import (
 
 // TestConnectionRequest - struct for TestConnectionRequest
 type TestConnectionRequest struct {
-	ADConnector *ADConnector
-	ADSIConnector *ADSIConnector
-	D365Connector *D365Connector
-	RESTConnector *RESTConnector
-	SAPConnector *SAPConnector
+	ADConnector         *ADConnector
+	ADSIConnector       *ADSIConnector
+	D365Connector       *D365Connector
+	RESTConnector       *RESTConnector
+	SAPConnector        *SAPConnector
 	SalesforceConnector *SalesforceConnector
-	WorkdayConnector *WorkdayConnector
+	WorkdayConnector    *WorkdayConnector
 }
 
 // ADConnectorAsTestConnectionRequest is a convenience function that returns ADConnector wrapped in TestConnectionRequest
@@ -75,7 +75,6 @@ func WorkdayConnectorAsTestConnectionRequest(v *WorkdayConnector) TestConnection
 		WorkdayConnector: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *TestConnectionRequest) UnmarshalJSON(data []byte) error {
@@ -252,7 +251,7 @@ func (src TestConnectionRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *TestConnectionRequest) GetActualInstance() (interface{}) {
+func (obj *TestConnectionRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -289,7 +288,7 @@ func (obj *TestConnectionRequest) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj TestConnectionRequest) GetActualInstanceValue() (interface{}) {
+func (obj TestConnectionRequest) GetActualInstanceValue() interface{} {
 	if obj.ADConnector != nil {
 		return *obj.ADConnector
 	}
@@ -357,5 +356,3 @@ func (v *NullableTestConnectionRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

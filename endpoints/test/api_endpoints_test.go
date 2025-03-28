@@ -11,10 +11,10 @@ package endpoints
 
 import (
 	"context"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/endpoints"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/saviynt/saviynt-api-go-client/endpoints"
 )
 
 func Test_endpoints_EndpointsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_endpoints_EndpointsAPIService(t *testing.T) {
 
 	t.Run("Test EndpointsAPIService CreateEndpoint", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.EndpointsAPI.CreateEndpoint(context.Background()).Execute()
 
@@ -36,7 +36,7 @@ func Test_endpoints_EndpointsAPIService(t *testing.T) {
 
 	t.Run("Test EndpointsAPIService GetEndpoints", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.EndpointsAPI.GetEndpoints(context.Background()).Execute()
 
@@ -48,7 +48,7 @@ func Test_endpoints_EndpointsAPIService(t *testing.T) {
 
 	t.Run("Test EndpointsAPIService UpdateEndpoint", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.EndpointsAPI.UpdateEndpoint(context.Background()).Execute()
 

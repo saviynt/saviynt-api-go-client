@@ -20,7 +20,7 @@ var _ MappedNullable = &CertificateThumbprint{}
 
 // CertificateThumbprint struct for CertificateThumbprint
 type CertificateThumbprint struct {
-	Expiry *string `json:"expiry,omitempty"`
+	Expiry     *string `json:"expiry,omitempty"`
 	Thumbprint *string `json:"thumbprint,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *CertificateThumbprint) SetThumbprint(v string) {
 }
 
 func (o CertificateThumbprint) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableCertificateThumbprint) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

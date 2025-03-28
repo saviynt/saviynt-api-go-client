@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,7 +23,7 @@ var _ MappedNullable = &DelegateUser{}
 // DelegateUser struct for DelegateUser
 type DelegateUser struct {
 	Firstname string `json:"firstname"`
-	Lastname string `json:"lastname"`
+	Lastname  string `json:"lastname"`
 	// This value is used in the `createDelegate` API.
 	Username string `json:"username"`
 }
@@ -123,7 +123,7 @@ func (o *DelegateUser) SetUsername(v string) {
 }
 
 func (o DelegateUser) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -153,10 +153,10 @@ func (o *DelegateUser) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -212,5 +212,3 @@ func (v *NullableDelegateUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

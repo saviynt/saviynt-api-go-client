@@ -19,13 +19,12 @@ import (
 	"net/url"
 )
 
-
 // EmailAPIService EmailAPI service
 type EmailAPIService service
 
 type ApiSendEmailRequest struct {
-	ctx context.Context
-	ApiService *EmailAPIService
+	ctx              context.Context
+	ApiService       *EmailAPIService
 	sendEmailRequest *SendEmailRequest
 }
 
@@ -43,24 +42,25 @@ SendEmail Send Email
 
 This API can be used send an email from Saviynt.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiSendEmailRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiSendEmailRequest
 */
 func (a *EmailAPIService) SendEmail(ctx context.Context) ApiSendEmailRequest {
 	return ApiSendEmailRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return SendEmailResponse
+//
+//	@return SendEmailResponse
 func (a *EmailAPIService) SendEmailExecute(r ApiSendEmailRequest) (*SendEmailResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SendEmailResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SendEmailResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EmailAPIService.SendEmail")

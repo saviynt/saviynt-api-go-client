@@ -20,34 +20,34 @@ var _ MappedNullable = &SAVRole{}
 
 // SAVRole struct for SAVRole
 type SAVRole struct {
-	UPDATEUSER *string `json:"UPDATEUSER,omitempty"`
+	UPDATEUSER       *string `json:"UPDATEUSER,omitempty"`
 	CUSTOMPROPERTY20 *string `json:"CUSTOMPROPERTY20,omitempty"`
-	ROLENAME *string `json:"ROLENAME,omitempty"`
-	HOMEPAGE *string `json:"HOMEPAGE,omitempty"`
+	ROLENAME         *string `json:"ROLENAME,omitempty"`
+	HOMEPAGE         *string `json:"HOMEPAGE,omitempty"`
 	CUSTOMPROPERTY10 *string `json:"CUSTOMPROPERTY10,omitempty"`
 	CUSTOMPROPERTY12 *string `json:"CUSTOMPROPERTY12,omitempty"`
 	CUSTOMPROPERTY11 *string `json:"CUSTOMPROPERTY11,omitempty"`
 	CUSTOMPROPERTY14 *string `json:"CUSTOMPROPERTY14,omitempty"`
-	CUSTOMPROPERTY4 *string `json:"CUSTOMPROPERTY4,omitempty"`
+	CUSTOMPROPERTY4  *string `json:"CUSTOMPROPERTY4,omitempty"`
 	CUSTOMPROPERTY13 *string `json:"CUSTOMPROPERTY13,omitempty"`
-	CUSTOMPROPERTY5 *string `json:"CUSTOMPROPERTY5,omitempty"`
+	CUSTOMPROPERTY5  *string `json:"CUSTOMPROPERTY5,omitempty"`
 	CUSTOMPROPERTY16 *string `json:"CUSTOMPROPERTY16,omitempty"`
-	CUSTOMPROPERTY2 *string `json:"CUSTOMPROPERTY2,omitempty"`
+	CUSTOMPROPERTY2  *string `json:"CUSTOMPROPERTY2,omitempty"`
 	CUSTOMPROPERTY15 *string `json:"CUSTOMPROPERTY15,omitempty"`
-	CUSTOMPROPERTY3 *string `json:"CUSTOMPROPERTY3,omitempty"`
+	CUSTOMPROPERTY3  *string `json:"CUSTOMPROPERTY3,omitempty"`
 	CUSTOMPROPERTY18 *string `json:"CUSTOMPROPERTY18,omitempty"`
-	CUSTOMPROPERTY1 *string `json:"CUSTOMPROPERTY1,omitempty"`
+	CUSTOMPROPERTY1  *string `json:"CUSTOMPROPERTY1,omitempty"`
 	CUSTOMPROPERTY17 *string `json:"CUSTOMPROPERTY17,omitempty"`
-	ROLEDESCRIPTION *string `json:"ROLEDESCRIPTION,omitempty"`
+	ROLEDESCRIPTION  *string `json:"ROLEDESCRIPTION,omitempty"`
 	CUSTOMPROPERTY19 *string `json:"CUSTOMPROPERTY19,omitempty"`
-	ISOOTB *string `json:"ISOOTB,omitempty"`
-	CUSTOMPROPERTY8 *string `json:"CUSTOMPROPERTY8,omitempty"`
-	CUSTOMPROPERTY9 *string `json:"CUSTOMPROPERTY9,omitempty"`
-	CUSTOMPROPERTY6 *string `json:"CUSTOMPROPERTY6,omitempty"`
-	CUSTOMPROPERTY7 *string `json:"CUSTOMPROPERTY7,omitempty"`
-	UPDATEDATE *string `json:"UPDATEDATE,omitempty"`
-	READONLY *string `json:"READONLY,omitempty"`
-	STATUSKEY *string `json:"STATUSKEY,omitempty"`
+	ISOOTB           *string `json:"ISOOTB,omitempty"`
+	CUSTOMPROPERTY8  *string `json:"CUSTOMPROPERTY8,omitempty"`
+	CUSTOMPROPERTY9  *string `json:"CUSTOMPROPERTY9,omitempty"`
+	CUSTOMPROPERTY6  *string `json:"CUSTOMPROPERTY6,omitempty"`
+	CUSTOMPROPERTY7  *string `json:"CUSTOMPROPERTY7,omitempty"`
+	UPDATEDATE       *string `json:"UPDATEDATE,omitempty"`
+	READONLY         *string `json:"READONLY,omitempty"`
+	STATUSKEY        *string `json:"STATUSKEY,omitempty"`
 }
 
 // NewSAVRole instantiates a new SAVRole object
@@ -964,7 +964,7 @@ func (o *SAVRole) SetSTATUSKEY(v string) {
 }
 
 func (o SAVRole) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1095,5 +1095,3 @@ func (v *NullableSAVRole) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

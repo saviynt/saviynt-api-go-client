@@ -19,17 +19,15 @@ import (
 	"net/url"
 )
 
-
 // DelegatedAdministrationAPIService DelegatedAdministrationAPI service
 type DelegatedAdministrationAPIService service
 
 type ApiCreateDelegateRequest struct {
-	ctx context.Context
-	ApiService *DelegatedAdministrationAPIService
+	ctx                   context.Context
+	ApiService            *DelegatedAdministrationAPIService
 	createDelegateRequest *CreateDelegateRequest
 }
 
-// 
 func (r ApiCreateDelegateRequest) CreateDelegateRequest(createDelegateRequest CreateDelegateRequest) ApiCreateDelegateRequest {
 	r.createDelegateRequest = &createDelegateRequest
 	return r
@@ -44,24 +42,25 @@ CreateDelegate Create Delegate
 
 This method creates a new delegate for a parent User. The input parameters of this method contains the details of the Parent User as well as the one to whom the Delegation is carried out.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateDelegateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateDelegateRequest
 */
 func (a *DelegatedAdministrationAPIService) CreateDelegate(ctx context.Context) ApiCreateDelegateRequest {
 	return ApiCreateDelegateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CreateDelegateResponse
+//
+//	@return CreateDelegateResponse
 func (a *DelegatedAdministrationAPIService) CreateDelegateExecute(r ApiCreateDelegateRequest) (*CreateDelegateResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateDelegateResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateDelegateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.CreateDelegate")
@@ -132,10 +131,10 @@ func (a *DelegatedAdministrationAPIService) CreateDelegateExecute(r ApiCreateDel
 }
 
 type ApiDeleteDelegateRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *DelegatedAdministrationAPIService
-	userName *string
-	key *string
+	userName   *string
+	key        *string
 }
 
 // this is the user who is deleting the delegate
@@ -159,24 +158,25 @@ DeleteDelegate Delete Delegate
 
 This API is used to delete a specific delegate.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteDelegateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteDelegateRequest
 */
 func (a *DelegatedAdministrationAPIService) DeleteDelegate(ctx context.Context) ApiDeleteDelegateRequest {
 	return ApiDeleteDelegateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Response
+//
+//	@return Response
 func (a *DelegatedAdministrationAPIService) DeleteDelegateExecute(r ApiDeleteDelegateRequest) (*Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.DeleteDelegate")
@@ -253,8 +253,8 @@ func (a *DelegatedAdministrationAPIService) DeleteDelegateExecute(r ApiDeleteDel
 }
 
 type ApiEditDelegateRequest struct {
-	ctx context.Context
-	ApiService *DelegatedAdministrationAPIService
+	ctx                 context.Context
+	ApiService          *DelegatedAdministrationAPIService
 	editDelegateRequest *EditDelegateRequest
 }
 
@@ -272,24 +272,25 @@ EditDelegate Edit Delegate
 
 This method is used to edit a specific delegate. The input parameters of this method contain the details of the Parent User as well as the one to whom the Delegation is carried out.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiEditDelegateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiEditDelegateRequest
 */
 func (a *DelegatedAdministrationAPIService) EditDelegate(ctx context.Context) ApiEditDelegateRequest {
 	return ApiEditDelegateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return Response
+//
+//	@return Response
 func (a *DelegatedAdministrationAPIService) EditDelegateExecute(r ApiEditDelegateRequest) (*Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.EditDelegate")
@@ -360,12 +361,11 @@ func (a *DelegatedAdministrationAPIService) EditDelegateExecute(r ApiEditDelegat
 }
 
 type ApiFetchExistingDelegatesListRequest struct {
-	ctx context.Context
-	ApiService *DelegatedAdministrationAPIService
+	ctx                               context.Context
+	ApiService                        *DelegatedAdministrationAPIService
 	fetchExistingDelegatesListRequest *FetchExistingDelegatesListRequest
 }
 
-// 
 func (r ApiFetchExistingDelegatesListRequest) FetchExistingDelegatesListRequest(fetchExistingDelegatesListRequest FetchExistingDelegatesListRequest) ApiFetchExistingDelegatesListRequest {
 	r.fetchExistingDelegatesListRequest = &fetchExistingDelegatesListRequest
 	return r
@@ -380,24 +380,25 @@ FetchExistingDelegatesList Fetch Existing Delegates List
 
 This API is used to retrieve the list of existing delegates and their details. If any optional parameter is not specified then only active delegates are displayed.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchExistingDelegatesListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchExistingDelegatesListRequest
 */
 func (a *DelegatedAdministrationAPIService) FetchExistingDelegatesList(ctx context.Context) ApiFetchExistingDelegatesListRequest {
 	return ApiFetchExistingDelegatesListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchExistingDelegatesListResponse
+//
+//	@return FetchExistingDelegatesListResponse
 func (a *DelegatedAdministrationAPIService) FetchExistingDelegatesListExecute(r ApiFetchExistingDelegatesListRequest) (*FetchExistingDelegatesListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchExistingDelegatesListResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchExistingDelegatesListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.FetchExistingDelegatesList")
@@ -468,8 +469,8 @@ func (a *DelegatedAdministrationAPIService) FetchExistingDelegatesListExecute(r 
 }
 
 type ApiGetDelegateUserListRequest struct {
-	ctx context.Context
-	ApiService *DelegatedAdministrationAPIService
+	ctx                        context.Context
+	ApiService                 *DelegatedAdministrationAPIService
 	getDelegateUserListRequest *GetDelegateUserListRequest
 }
 
@@ -487,24 +488,25 @@ GetDelegateUserList Get Delegate User List
 
 This API returns list of users that are allowed to be added as delegate for a parentuser in SSM.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetDelegateUserListRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetDelegateUserListRequest
 */
 func (a *DelegatedAdministrationAPIService) GetDelegateUserList(ctx context.Context) ApiGetDelegateUserListRequest {
 	return ApiGetDelegateUserListRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetDelegateUserListResponse
+//
+//	@return GetDelegateUserListResponse
 func (a *DelegatedAdministrationAPIService) GetDelegateUserListExecute(r ApiGetDelegateUserListRequest) (*GetDelegateUserListResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetDelegateUserListResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetDelegateUserListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DelegatedAdministrationAPIService.GetDelegateUserList")

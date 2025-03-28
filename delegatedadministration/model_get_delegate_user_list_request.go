@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -23,8 +23,8 @@ var _ MappedNullable = &GetDelegateUserListRequest{}
 // GetDelegateUserListRequest struct for GetDelegateUserListRequest
 type GetDelegateUserListRequest struct {
 	Parentusername string `json:"parentusername"`
-	Max *int32 `json:"max,omitempty"`
-	Offset *int32 `json:"offset,omitempty"`
+	Max            *int32 `json:"max,omitempty"`
+	Offset         *int32 `json:"offset,omitempty"`
 	// example \"t*\" or \"te\" or \"test\" to search in username or firstname or lastname for the delegate user
 	SearchCriteria *string `json:"searchCriteria,omitempty"`
 }
@@ -170,7 +170,7 @@ func (o *GetDelegateUserListRequest) SetSearchCriteria(v string) {
 }
 
 func (o GetDelegateUserListRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -205,10 +205,10 @@ func (o *GetDelegateUserListRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -264,5 +264,3 @@ func (v *NullableGetDelegateUserListRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -20,12 +20,11 @@ import (
 	"strings"
 )
 
-
 // SAVRolesAPIService SAVRolesAPI service
 type SAVRolesAPIService service
 
 type ApiGetAllSAVRolesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *SAVRolesAPIService
 }
 
@@ -38,24 +37,25 @@ GetAllSAVRoles Get All SAV Roles
 
 This API returns all out-of-the-box (OOTB) and custom SAV roles along with their properties.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAllSAVRolesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetAllSAVRolesRequest
 */
 func (a *SAVRolesAPIService) GetAllSAVRoles(ctx context.Context) ApiGetAllSAVRolesRequest {
 	return ApiGetAllSAVRolesRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetAllSAVRolesResponse
+//
+//	@return GetAllSAVRolesResponse
 func (a *SAVRolesAPIService) GetAllSAVRolesExecute(r ApiGetAllSAVRolesRequest) (*GetAllSAVRolesResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetAllSAVRolesResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetAllSAVRolesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SAVRolesAPIService.GetAllSAVRoles")
@@ -124,10 +124,10 @@ func (a *SAVRolesAPIService) GetAllSAVRolesExecute(r ApiGetAllSAVRolesRequest) (
 }
 
 type ApiGetSAVRoleUsersRequest struct {
-	ctx context.Context
-	ApiService *SAVRolesAPIService
-	limit *string
-	offset *string
+	ctx         context.Context
+	ApiService  *SAVRolesAPIService
+	limit       *string
+	offset      *string
 	savRoleName string
 }
 
@@ -152,28 +152,27 @@ GetSAVRoleUsers Get Users Associated with a Particular SAV Role
 
 This API returns a list of users associated with a particular SAV role.
 
-
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param savRoleName The `ROLENAME` field in geAllSAVRoles API
- @return ApiGetSAVRoleUsersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param savRoleName The `ROLENAME` field in geAllSAVRoles API
+	@return ApiGetSAVRoleUsersRequest
 */
 func (a *SAVRolesAPIService) GetSAVRoleUsers(ctx context.Context, savRoleName string) ApiGetSAVRoleUsersRequest {
 	return ApiGetSAVRoleUsersRequest{
-		ApiService: a,
-		ctx: ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		savRoleName: savRoleName,
 	}
 }
 
 // Execute executes the request
-//  @return GetSAVRoleUsersResponse
+//
+//	@return GetSAVRoleUsersResponse
 func (a *SAVRolesAPIService) GetSAVRoleUsersExecute(r ApiGetSAVRoleUsersRequest) (*GetSAVRoleUsersResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetSAVRoleUsersResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetSAVRoleUsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SAVRolesAPIService.GetSAVRoleUsers")

@@ -17,18 +17,17 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
-
 
 // MTLSAuthenticationAPIService MTLSAuthenticationAPI service
 type MTLSAuthenticationAPIService service
 
 type ApiDeleteKeyStoreRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MTLSAuthenticationAPIService
-	alias string
+	alias      string
 }
 
 func (r ApiDeleteKeyStoreRequest) Execute() (*http.Response, error) {
@@ -42,24 +41,24 @@ Introduced in Release v24.7, this API lets administrators delete an mTLS certifi
 
 Note: Ensure that you have specified the name of the alias in the request URL.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param alias
- @return ApiDeleteKeyStoreRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param alias
+	@return ApiDeleteKeyStoreRequest
 */
 func (a *MTLSAuthenticationAPIService) DeleteKeyStore(ctx context.Context, alias string) ApiDeleteKeyStoreRequest {
 	return ApiDeleteKeyStoreRequest{
 		ApiService: a,
-		ctx: ctx,
-		alias: alias,
+		ctx:        ctx,
+		alias:      alias,
 	}
 }
 
 // Execute executes the request
 func (a *MTLSAuthenticationAPIService) DeleteKeyStoreExecute(r ApiDeleteKeyStoreRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MTLSAuthenticationAPIService.DeleteKeyStore")
@@ -120,7 +119,7 @@ func (a *MTLSAuthenticationAPIService) DeleteKeyStoreExecute(r ApiDeleteKeyStore
 }
 
 type ApiGetKeyStoreCertificateDetailsRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *MTLSAuthenticationAPIService
 }
 
@@ -139,24 +138,25 @@ A thumbprint is an unique identification of the certificate. The thumbprints att
 * Intermediate certificate
 * Root certificate
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetKeyStoreCertificateDetailsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetKeyStoreCertificateDetailsRequest
 */
 func (a *MTLSAuthenticationAPIService) GetKeyStoreCertificateDetails(ctx context.Context) ApiGetKeyStoreCertificateDetailsRequest {
 	return ApiGetKeyStoreCertificateDetailsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetKeyStoreCertificateDetailsResponse
+//
+//	@return GetKeyStoreCertificateDetailsResponse
 func (a *MTLSAuthenticationAPIService) GetKeyStoreCertificateDetailsExecute(r ApiGetKeyStoreCertificateDetailsRequest) (*GetKeyStoreCertificateDetailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetKeyStoreCertificateDetailsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetKeyStoreCertificateDetailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MTLSAuthenticationAPIService.GetKeyStoreCertificateDetails")
@@ -225,9 +225,9 @@ func (a *MTLSAuthenticationAPIService) GetKeyStoreCertificateDetailsExecute(r Ap
 }
 
 type ApiUploadKeyStoreRequest struct {
-	ctx context.Context
-	ApiService *MTLSAuthenticationAPIService
-	keyStoreFile *os.File
+	ctx              context.Context
+	ApiService       *MTLSAuthenticationAPIService
+	keyStoreFile     *os.File
 	keyStorePassword *string
 }
 
@@ -250,24 +250,25 @@ UploadKeyStore Upload KeyStore
 
 Introduced in Release v24.7, this API lets administrators upload Mutual Transport Layer Security (mTLS) certificates in the EIC keystore.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUploadKeyStoreRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUploadKeyStoreRequest
 */
 func (a *MTLSAuthenticationAPIService) UploadKeyStore(ctx context.Context) ApiUploadKeyStoreRequest {
 	return ApiUploadKeyStoreRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UploadKeyStoreResponse
+//
+//	@return UploadKeyStoreResponse
 func (a *MTLSAuthenticationAPIService) UploadKeyStoreExecute(r ApiUploadKeyStoreRequest) (*UploadKeyStoreResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UploadKeyStoreResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UploadKeyStoreResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MTLSAuthenticationAPIService.UploadKeyStore")
@@ -299,8 +300,8 @@ func (a *MTLSAuthenticationAPIService) UploadKeyStoreExecute(r ApiUploadKeyStore
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var keyStoreFileLocalVarFormFileName string
-	var keyStoreFileLocalVarFileName     string
-	var keyStoreFileLocalVarFileBytes    []byte
+	var keyStoreFileLocalVarFileName string
+	var keyStoreFileLocalVarFileBytes []byte
 
 	keyStoreFileLocalVarFormFileName = "keyStoreFile"
 	keyStoreFileLocalVarFile := r.keyStoreFile

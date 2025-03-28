@@ -21,10 +21,10 @@ var _ MappedNullable = &User{}
 // User struct for User
 type User struct {
 	Displayname *string `json:"displayname,omitempty"`
-	Firstname *string `json:"firstname,omitempty"`
-	Statuskey *string `json:"statuskey,omitempty"`
-	UserKey *int32 `json:"userKey,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Firstname   *string `json:"firstname,omitempty"`
+	Statuskey   *string `json:"statuskey,omitempty"`
+	UserKey     *int32  `json:"userKey,omitempty"`
+	Username    *string `json:"username,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -205,7 +205,7 @@ func (o *User) SetUsername(v string) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,5 +267,3 @@ func (v *NullableUser) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

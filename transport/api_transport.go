@@ -19,13 +19,12 @@ import (
 	"net/url"
 )
 
-
 // TransportAPIService TransportAPI service
 type TransportAPIService service
 
 type ApiExportTransportPackageRequest struct {
-	ctx context.Context
-	ApiService *TransportAPIService
+	ctx                           context.Context
+	ApiService                    *TransportAPIService
 	exportTransportPackageRequest *ExportTransportPackageRequest
 }
 
@@ -43,24 +42,25 @@ ExportTransportPackage Export Transport Package
 
 This API creates a compressed file containing objects specified for T2P migration.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiExportTransportPackageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiExportTransportPackageRequest
 */
 func (a *TransportAPIService) ExportTransportPackage(ctx context.Context) ApiExportTransportPackageRequest {
 	return ApiExportTransportPackageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ExportTransportPackageResponse
+//
+//	@return ExportTransportPackageResponse
 func (a *TransportAPIService) ExportTransportPackageExecute(r ApiExportTransportPackageRequest) (*ExportTransportPackageResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ExportTransportPackageResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ExportTransportPackageResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransportAPIService.ExportTransportPackage")
@@ -131,8 +131,8 @@ func (a *TransportAPIService) ExportTransportPackageExecute(r ApiExportTransport
 }
 
 type ApiImportTransportPackageRequest struct {
-	ctx context.Context
-	ApiService *TransportAPIService
+	ctx                           context.Context
+	ApiService                    *TransportAPIService
 	importTransportPackageRequest *ImportTransportPackageRequest
 }
 
@@ -154,24 +154,25 @@ Supported objects:
 
 savRoles, emailTemplate, roles, analyticsV1, analyticsV2, globalConfig, workflows, connection, appOnboarding, userGroups, scanRules, organizations, securitySystems
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiImportTransportPackageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiImportTransportPackageRequest
 */
 func (a *TransportAPIService) ImportTransportPackage(ctx context.Context) ApiImportTransportPackageRequest {
 	return ApiImportTransportPackageRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ImportTransportPackageResponse
+//
+//	@return ImportTransportPackageResponse
 func (a *TransportAPIService) ImportTransportPackageExecute(r ApiImportTransportPackageRequest) (*ImportTransportPackageResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ImportTransportPackageResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ImportTransportPackageResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransportAPIService.ImportTransportPackage")
@@ -242,8 +243,8 @@ func (a *TransportAPIService) ImportTransportPackageExecute(r ApiImportTransport
 }
 
 type ApiTransportPackageStatusRequest struct {
-	ctx context.Context
-	ApiService *TransportAPIService
+	ctx                           context.Context
+	ApiService                    *TransportAPIService
 	transportPackageStatusRequest *TransportPackageStatusRequest
 }
 
@@ -263,24 +264,25 @@ This API obtains the status of the transport request (import, export, or transfe
 
 Note: This API returns the status of only those requests that have been processed using the Enhanced Transport feature.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTransportPackageStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTransportPackageStatusRequest
 */
 func (a *TransportAPIService) TransportPackageStatus(ctx context.Context) ApiTransportPackageStatusRequest {
 	return ApiTransportPackageStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TransportPackageStatusResponse
+//
+//	@return TransportPackageStatusResponse
 func (a *TransportAPIService) TransportPackageStatusExecute(r ApiTransportPackageStatusRequest) (*TransportPackageStatusResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TransportPackageStatusResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TransportPackageStatusResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TransportAPIService.TransportPackageStatus")

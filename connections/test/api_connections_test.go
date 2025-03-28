@@ -11,10 +11,10 @@ package connections
 
 import (
 	"context"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
@@ -24,7 +24,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService TestConnection", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.ConnectionsAPI.TestConnection(context.Background()).Execute()
 

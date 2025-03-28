@@ -20,12 +20,12 @@ var _ MappedNullable = &CertificateDetail{}
 
 // CertificateDetail struct for CertificateDetail
 type CertificateDetail struct {
-	Alias *string `json:"alias,omitempty"`
-	CertificateExpiry *string `json:"certificateExpiry,omitempty"`
-	CertificateIssuerName *string `json:"certificateIssuerName,omitempty"`
-	CertificateStatus *string `json:"certificateStatus,omitempty"`
-	CertificateSubjectName *string `json:"certificateSubjectName,omitempty"`
-	Thumbprints []CertificateThumbprint `json:"thumbprints,omitempty"`
+	Alias                  *string                 `json:"alias,omitempty"`
+	CertificateExpiry      *string                 `json:"certificateExpiry,omitempty"`
+	CertificateIssuerName  *string                 `json:"certificateIssuerName,omitempty"`
+	CertificateStatus      *string                 `json:"certificateStatus,omitempty"`
+	CertificateSubjectName *string                 `json:"certificateSubjectName,omitempty"`
+	Thumbprints            []CertificateThumbprint `json:"thumbprints,omitempty"`
 }
 
 // NewCertificateDetail instantiates a new CertificateDetail object
@@ -238,7 +238,7 @@ func (o *CertificateDetail) SetThumbprints(v []CertificateThumbprint) {
 }
 
 func (o CertificateDetail) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -303,5 +303,3 @@ func (v *NullableCertificateDetail) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

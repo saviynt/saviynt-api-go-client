@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package transport
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,10 +22,10 @@ var _ MappedNullable = &ImportTransportPackageResponse{}
 
 // ImportTransportPackageResponse struct for ImportTransportPackageResponse
 type ImportTransportPackageResponse struct {
-	Msg string `json:"msg"`
-	RequestId *string `json:"requestId,omitempty"`
+	Msg            string  `json:"msg"`
+	RequestId      *string `json:"requestId,omitempty"`
 	MsgDescription *string `json:"msgDescription,omitempty"`
-	Errorcode int32 `json:"errorcode"`
+	Errorcode      int32   `json:"errorcode"`
 }
 
 type _ImportTransportPackageResponse ImportTransportPackageResponse
@@ -162,7 +162,7 @@ func (o *ImportTransportPackageResponse) SetErrorcode(v int32) {
 }
 
 func (o ImportTransportPackageResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -196,10 +196,10 @@ func (o *ImportTransportPackageResponse) UnmarshalJSON(data []byte) (err error) 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -255,5 +255,3 @@ func (v *NullableImportTransportPackageResponse) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

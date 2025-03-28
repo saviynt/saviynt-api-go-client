@@ -18,14 +18,14 @@ import (
 // checks if the CheckTaskStatusResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &CheckTaskStatusResponse{}
 
-// CheckTaskStatusResponse 
+// CheckTaskStatusResponse
 type CheckTaskStatusResponse struct {
 	// Can be null or one of the following:  1. `New` 2. `In Progress` 3. `Complete` 4. `Discontinued` 5. `Pending Create` 6. `Pending Provision` 7. `Provisioning Failed` 8. `Error` 9. `No Action Required`
-	Status *string `json:"Status,omitempty"`
-	UpdateDate *string `json:"UpdateDate,omitempty"`
-	Comments *string `json:"Comments,omitempty"`
-	ProvisioningComments *string `json:"ProvisioningComments,omitempty"`
-	UpdateUser *string `json:"UpdateUser,omitempty"`
+	Status               *string                `json:"Status,omitempty"`
+	UpdateDate           *string                `json:"UpdateDate,omitempty"`
+	Comments             *string                `json:"Comments,omitempty"`
+	ProvisioningComments *string                `json:"ProvisioningComments,omitempty"`
+	UpdateUser           *string                `json:"UpdateUser,omitempty"`
 	ProvisioningMetadata map[string]interface{} `json:"ProvisioningMetadata,omitempty"`
 }
 
@@ -239,7 +239,7 @@ func (o *CheckTaskStatusResponse) SetProvisioningMetadata(v map[string]interface
 }
 
 func (o CheckTaskStatusResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -304,5 +304,3 @@ func (v *NullableCheckTaskStatusResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

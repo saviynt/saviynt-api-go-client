@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &CreateDelegateResponse{}
 
 // CreateDelegateResponse struct for CreateDelegateResponse
 type CreateDelegateResponse struct {
-	Msg string `json:"msg"`
+	Msg         string  `json:"msg"`
 	Delegatekey *string `json:"delegatekey,omitempty"`
-	ErrorCode string `json:"errorCode"`
+	ErrorCode   string  `json:"errorCode"`
 }
 
 type _CreateDelegateResponse CreateDelegateResponse
@@ -129,7 +129,7 @@ func (o *CreateDelegateResponse) SetErrorCode(v string) {
 }
 
 func (o CreateDelegateResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -160,10 +160,10 @@ func (o *CreateDelegateResponse) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -219,5 +219,3 @@ func (v *NullableCreateDelegateResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

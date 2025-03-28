@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package email
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,12 +22,12 @@ var _ MappedNullable = &SendEmailRequest{}
 
 // SendEmailRequest struct for SendEmailRequest
 type SendEmailRequest struct {
-	To string `json:"to"`
-	From string `json:"from"`
-	Subject string `json:"subject"`
-	Body string `json:"body"`
-	Cc *string `json:"cc,omitempty"`
-	Bcc *string `json:"bcc,omitempty"`
+	To      string  `json:"to"`
+	From    string  `json:"from"`
+	Subject string  `json:"subject"`
+	Body    string  `json:"body"`
+	Cc      *string `json:"cc,omitempty"`
+	Bcc     *string `json:"bcc,omitempty"`
 }
 
 type _SendEmailRequest SendEmailRequest
@@ -214,7 +214,7 @@ func (o *SendEmailRequest) SetBcc(v string) {
 }
 
 func (o SendEmailRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -252,10 +252,10 @@ func (o *SendEmailRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -311,5 +311,3 @@ func (v *NullableSendEmailRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

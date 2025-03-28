@@ -20,8 +20,8 @@ var _ MappedNullable = &UploadKeyStoreResponse{}
 
 // UploadKeyStoreResponse struct for UploadKeyStoreResponse
 type UploadKeyStoreResponse struct {
-	ErrorCode *int32 `json:"errorCode,omitempty"`
-	Message *string `json:"message,omitempty"`
+	ErrorCode *int32  `json:"errorCode,omitempty"`
+	Message   *string `json:"message,omitempty"`
 }
 
 // NewUploadKeyStoreResponse instantiates a new UploadKeyStoreResponse object
@@ -106,7 +106,7 @@ func (o *UploadKeyStoreResponse) SetMessage(v string) {
 }
 
 func (o UploadKeyStoreResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableUploadKeyStoreResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

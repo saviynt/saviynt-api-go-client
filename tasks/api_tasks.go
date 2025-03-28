@@ -19,14 +19,13 @@ import (
 	"net/url"
 )
 
-
 // TasksAPIService TasksAPI service
 type TasksAPIService service
 
 type ApiCheckTaskStatusRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *TasksAPIService
-	taskid *string
+	taskid     *string
 }
 
 func (r ApiCheckTaskStatusRequest) Taskid(taskid string) ApiCheckTaskStatusRequest {
@@ -43,24 +42,25 @@ CheckTaskStatus Check Task Status
 
 This API can be used to check the task status. Response can return task status as “New/Complete/In Progress/Discontinued”.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckTaskStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCheckTaskStatusRequest
 */
 func (a *TasksAPIService) CheckTaskStatus(ctx context.Context) ApiCheckTaskStatusRequest {
 	return ApiCheckTaskStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CheckTaskStatusResponse
+//
+//	@return CheckTaskStatusResponse
 func (a *TasksAPIService) CheckTaskStatusExecute(r ApiCheckTaskStatusRequest) (*CheckTaskStatusResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CheckTaskStatusResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CheckTaskStatusResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.CheckTaskStatus")
@@ -133,8 +133,8 @@ func (a *TasksAPIService) CheckTaskStatusExecute(r ApiCheckTaskStatusRequest) (*
 }
 
 type ApiUpdateTasksRequest struct {
-	ctx context.Context
-	ApiService *TasksAPIService
+	ctx                context.Context
+	ApiService         *TasksAPIService
 	updateTasksRequest *UpdateTasksRequest
 }
 
@@ -152,24 +152,25 @@ UpdateTasks Update Tasks
 
 It can update certain params of a task as well as complete a task.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUpdateTasksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUpdateTasksRequest
 */
 func (a *TasksAPIService) UpdateTasks(ctx context.Context) ApiUpdateTasksRequest {
 	return ApiUpdateTasksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return map[string]UpdateTaskResponseInfo
+//
+//	@return map[string]UpdateTaskResponseInfo
 func (a *TasksAPIService) UpdateTasksExecute(r ApiUpdateTasksRequest) (*map[string]UpdateTaskResponseInfo, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *map[string]UpdateTaskResponseInfo
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *map[string]UpdateTaskResponseInfo
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.UpdateTasks")

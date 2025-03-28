@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package transport
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &TransportPackageStatusResponse{}
 
 // TransportPackageStatusResponse struct for TransportPackageStatusResponse
 type TransportPackageStatusResponse struct {
-	Msg string `json:"msg"`
+	Msg            string `json:"msg"`
 	MsgDescription string `json:"msgDescription"`
-	ErrorCode int32 `json:"errorCode"`
+	ErrorCode      int32  `json:"errorCode"`
 }
 
 type _TransportPackageStatusResponse TransportPackageStatusResponse
@@ -122,7 +122,7 @@ func (o *TransportPackageStatusResponse) SetErrorCode(v int32) {
 }
 
 func (o TransportPackageStatusResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -152,10 +152,10 @@ func (o *TransportPackageStatusResponse) UnmarshalJSON(data []byte) (err error) 
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -211,5 +211,3 @@ func (v *NullableTransportPackageStatusResponse) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

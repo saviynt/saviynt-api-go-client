@@ -20,7 +20,7 @@ var _ MappedNullable = &ObjectsToExport{}
 
 // ObjectsToExport struct for ObjectsToExport
 type ObjectsToExport struct {
-	SavRoles []string `json:"savRoles,omitempty"`
+	SavRoles      []string `json:"savRoles,omitempty"`
 	EmailTemplate []string `json:"emailTemplate,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *ObjectsToExport) SetEmailTemplate(v []string) {
 }
 
 func (o ObjectsToExport) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableObjectsToExport) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

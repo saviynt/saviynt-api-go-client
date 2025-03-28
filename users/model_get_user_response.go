@@ -20,11 +20,11 @@ var _ MappedNullable = &GetUserResponse{}
 
 // GetUserResponse struct for GetUserResponse
 type GetUserResponse struct {
-	Msg *string `json:"msg,omitempty"`
+	Msg          *string `json:"msg,omitempty"`
 	Displaycount *string `json:"displaycount,omitempty"`
-	Totalcount *string `json:"totalcount,omitempty"`
-	ErrorCode *string `json:"errorCode,omitempty"`
-	Userdetails []User `json:"userdetails,omitempty"`
+	Totalcount   *string `json:"totalcount,omitempty"`
+	ErrorCode    *string `json:"errorCode,omitempty"`
+	Userdetails  []User  `json:"userdetails,omitempty"`
 }
 
 // NewGetUserResponse instantiates a new GetUserResponse object
@@ -205,7 +205,7 @@ func (o *GetUserResponse) SetUserdetails(v []User) {
 }
 
 func (o GetUserResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,5 +267,3 @@ func (v *NullableGetUserResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -20,14 +20,13 @@ import (
 	"os"
 )
 
-
 // FileDirectoryAPIService FileDirectoryAPI service
 type FileDirectoryAPIService service
 
 type ApiUploadNewFileRequest struct {
-	ctx context.Context
-	ApiService *FileDirectoryAPIService
-	file *os.File
+	ctx          context.Context
+	ApiService   *FileDirectoryAPIService
+	file         *os.File
 	pathLocation *string
 }
 
@@ -37,7 +36,7 @@ func (r ApiUploadNewFileRequest) File(file *os.File) ApiUploadNewFileRequest {
 	return r
 }
 
-// Should be set to &#x60;Datafiles&#x60; to upload to &#x60;job.ecm.imp.file.path&#x60; in &#x60;InternalConfig.groovy&#x60;, or &#x60;SAV&#x60; to upload to &#x60;job.ecm.savfile.path&#x60; in &#x60;InternalConfig.groovy&#x60;. 
+// Should be set to &#x60;Datafiles&#x60; to upload to &#x60;job.ecm.imp.file.path&#x60; in &#x60;InternalConfig.groovy&#x60;, or &#x60;SAV&#x60; to upload to &#x60;job.ecm.savfile.path&#x60; in &#x60;InternalConfig.groovy&#x60;.
 func (r ApiUploadNewFileRequest) PathLocation(pathLocation string) ApiUploadNewFileRequest {
 	r.pathLocation = &pathLocation
 	return r
@@ -52,24 +51,25 @@ UploadNewFile Upload File
 
 This API call can be used to upload the file in a specific location based on the property `job.ecm.imp.file.path` or  `job.ecm.savfile.path` in `InternalConfig.groovy`.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiUploadNewFileRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiUploadNewFileRequest
 */
 func (a *FileDirectoryAPIService) UploadNewFile(ctx context.Context) ApiUploadNewFileRequest {
 	return ApiUploadNewFileRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return UploadSchemaFileResponse
+//
+//	@return UploadSchemaFileResponse
 func (a *FileDirectoryAPIService) UploadNewFileExecute(r ApiUploadNewFileRequest) (*UploadSchemaFileResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *UploadSchemaFileResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *UploadSchemaFileResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FileDirectoryAPIService.UploadNewFile")
@@ -107,8 +107,8 @@ func (a *FileDirectoryAPIService) UploadNewFileExecute(r ApiUploadNewFileRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	var fileLocalVarFormFileName string
-	var fileLocalVarFileName     string
-	var fileLocalVarFileBytes    []byte
+	var fileLocalVarFileName string
+	var fileLocalVarFileBytes []byte
 
 	fileLocalVarFormFileName = "file"
 	fileLocalVarFile := r.file

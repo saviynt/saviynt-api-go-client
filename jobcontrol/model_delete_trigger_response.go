@@ -20,7 +20,7 @@ var _ MappedNullable = &DeleteTriggerResponse{}
 
 // DeleteTriggerResponse struct for DeleteTriggerResponse
 type DeleteTriggerResponse struct {
-	Msg *string `json:"msg,omitempty"`
+	Msg       *string `json:"msg,omitempty"`
 	ErrorCode *string `json:"errorCode,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *DeleteTriggerResponse) SetErrorCode(v string) {
 }
 
 func (o DeleteTriggerResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableDeleteTriggerResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,11 +22,11 @@ var _ MappedNullable = &FetchExistingDelegatesListResponse{}
 
 // FetchExistingDelegatesListResponse struct for FetchExistingDelegatesListResponse
 type FetchExistingDelegatesListResponse struct {
-	DelegateList []Delegate `json:"delegateList"`
-	Msg string `json:"msg"`
-	ErrorCode string `json:"errorCode"`
-	TotalCount *string `json:"totalCount,omitempty"`
-	DelegateCount *int32 `json:"delegateCount,omitempty"`
+	DelegateList  []Delegate `json:"delegateList"`
+	Msg           string     `json:"msg"`
+	ErrorCode     string     `json:"errorCode"`
+	TotalCount    *string    `json:"totalCount,omitempty"`
+	DelegateCount *int32     `json:"delegateCount,omitempty"`
 }
 
 type _FetchExistingDelegatesListResponse FetchExistingDelegatesListResponse
@@ -188,7 +188,7 @@ func (o *FetchExistingDelegatesListResponse) SetDelegateCount(v int32) {
 }
 
 func (o FetchExistingDelegatesListResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -224,10 +224,10 @@ func (o *FetchExistingDelegatesListResponse) UnmarshalJSON(data []byte) (err err
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -283,5 +283,3 @@ func (v *NullableFetchExistingDelegatesListResponse) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

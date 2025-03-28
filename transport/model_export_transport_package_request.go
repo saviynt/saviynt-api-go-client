@@ -12,15 +12,15 @@ Contact: https://github.com/saviynt
 package transport
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
 // checks if the ExportTransportPackageRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ExportTransportPackageRequest{}
 
-// ExportTransportPackageRequest 
+// ExportTransportPackageRequest
 type ExportTransportPackageRequest struct {
 	// username of the user exporting the package
 	Updateuser *string `json:"updateuser,omitempty"`
@@ -33,7 +33,7 @@ type ExportTransportPackageRequest struct {
 	// (if exportonline is false) - Local path where export package will be generated
 	Exportpath *string `json:"exportpath,omitempty"`
 	// (if exportonline is true) - Name of the environment which can be created at the following path : Admin -> Global Configurations -> Misc -> Transport -> Add New Transport
-	Environmentname *string `json:"environmentname,omitempty"`
+	Environmentname       *string `json:"environmentname,omitempty"`
 	Businessjustification *string `json:"businessjustification,omitempty"`
 	// Supported objects : savRoles, emailTemplate, roles, analyticsV1, analyticsV2, globalConfig, workflows, connection, appOnboarding, userGroups, scanRules, organizations, securitySystems
 	Objectstoexport ObjectsToExport `json:"objectstoexport"`
@@ -301,7 +301,7 @@ func (o *ExportTransportPackageRequest) SetObjectstoexport(v ObjectsToExport) {
 }
 
 func (o ExportTransportPackageRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,10 +347,10 @@ func (o *ExportTransportPackageRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -406,5 +406,3 @@ func (v *NullableExportTransportPackageRequest) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

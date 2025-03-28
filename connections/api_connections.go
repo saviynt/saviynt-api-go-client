@@ -18,13 +18,12 @@ import (
 	"net/url"
 )
 
-
 // ConnectionsAPIService ConnectionsAPI service
 type ConnectionsAPIService service
 
 type ApiTestConnectionRequest struct {
-	ctx context.Context
-	ApiService *ConnectionsAPIService
+	ctx                   context.Context
+	ApiService            *ConnectionsAPIService
 	testConnectionRequest *TestConnectionRequest
 }
 
@@ -40,24 +39,25 @@ func (r ApiTestConnectionRequest) Execute() (*TestConnection200Response, *http.R
 /*
 TestConnection Create a connection
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiTestConnectionRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiTestConnectionRequest
 */
 func (a *ConnectionsAPIService) TestConnection(ctx context.Context) ApiTestConnectionRequest {
 	return ApiTestConnectionRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return TestConnection200Response
+//
+//	@return TestConnection200Response
 func (a *ConnectionsAPIService) TestConnectionExecute(r ApiTestConnectionRequest) (*TestConnection200Response, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *TestConnection200Response
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *TestConnection200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.TestConnection")

@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package tasks
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &UpdateTaskResponseInfo{}
 
 // UpdateTaskResponseInfo struct for UpdateTaskResponseInfo
 type UpdateTaskResponseInfo struct {
-	Msg string `json:"msg"`
+	Msg       string `json:"msg"`
 	ErrorCode string `json:"errorCode"`
 }
 
@@ -96,7 +96,7 @@ func (o *UpdateTaskResponseInfo) SetErrorCode(v string) {
 }
 
 func (o UpdateTaskResponseInfo) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -124,10 +124,10 @@ func (o *UpdateTaskResponseInfo) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -183,5 +183,3 @@ func (v *NullableUpdateTaskResponseInfo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

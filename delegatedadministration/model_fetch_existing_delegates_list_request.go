@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package delegatedadministration
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -24,8 +24,8 @@ var _ MappedNullable = &FetchExistingDelegatesListRequest{}
 type FetchExistingDelegatesListRequest struct {
 	// this is the parentusername
 	UserName string `json:"userName"`
-	Max *int32 `json:"max,omitempty"`
-	Offset *int32 `json:"offset,omitempty"`
+	Max      *int32 `json:"max,omitempty"`
+	Offset   *int32 `json:"offset,omitempty"`
 	// values can be ACTIVE / INACTIVE
 	Status *string `json:"status,omitempty"`
 }
@@ -171,7 +171,7 @@ func (o *FetchExistingDelegatesListRequest) SetStatus(v string) {
 }
 
 func (o FetchExistingDelegatesListRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -206,10 +206,10 @@ func (o *FetchExistingDelegatesListRequest) UnmarshalJSON(data []byte) (err erro
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -265,5 +265,3 @@ func (v *NullableFetchExistingDelegatesListRequest) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

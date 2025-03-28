@@ -19,9 +19,9 @@ var _ MappedNullable = &TestConnection200Response{}
 
 // TestConnection200Response struct for TestConnection200Response
 type TestConnection200Response struct {
-	ConnectionKey *int32 `json:"connectionKey,omitempty"`
-	Msg *string `json:"msg,omitempty"`
-	ErrorCode *string `json:"errorCode,omitempty"`
+	ConnectionKey *int32  `json:"connectionKey,omitempty"`
+	Msg           *string `json:"msg,omitempty"`
+	ErrorCode     *string `json:"errorCode,omitempty"`
 }
 
 // NewTestConnection200Response instantiates a new TestConnection200Response object
@@ -138,7 +138,7 @@ func (o *TestConnection200Response) SetErrorCode(v string) {
 }
 
 func (o TestConnection200Response) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,5 +194,3 @@ func (v *NullableTestConnection200Response) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

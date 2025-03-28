@@ -19,15 +19,14 @@ import (
 	"net/url"
 )
 
-
 // JobControlAPIService JobControlAPI service
 type JobControlAPIService service
 
 type ApiCheckJobStatusRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *JobControlAPIService
-	jobgroup *string
-	jobname *string
+	jobgroup   *string
+	jobname    *string
 }
 
 func (r ApiCheckJobStatusRequest) Jobgroup(jobgroup string) ApiCheckJobStatusRequest {
@@ -49,24 +48,25 @@ CheckJobStatus Check Job Status
 
 This API is used to fetch the status of any job other than Data Import Job.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCheckJobStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCheckJobStatusRequest
 */
 func (a *JobControlAPIService) CheckJobStatus(ctx context.Context) ApiCheckJobStatusRequest {
 	return ApiCheckJobStatusRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CheckJobStatusResponse
+//
+//	@return CheckJobStatusResponse
 func (a *JobControlAPIService) CheckJobStatusExecute(r ApiCheckJobStatusRequest) (*CheckJobStatusResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CheckJobStatusResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CheckJobStatusResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.CheckJobStatus")
@@ -143,7 +143,7 @@ func (a *JobControlAPIService) CheckJobStatusExecute(r ApiCheckJobStatusRequest)
 }
 
 type ApiCreateTriggersRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *JobControlAPIService
 }
 
@@ -156,22 +156,22 @@ CreateTriggers Create Triggers
 
 This API is used to create job triggers.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateTriggersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateTriggersRequest
 */
 func (a *JobControlAPIService) CreateTriggers(ctx context.Context) ApiCreateTriggersRequest {
 	return ApiCreateTriggersRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *JobControlAPIService) CreateTriggersExecute(r ApiCreateTriggersRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.CreateTriggers")
@@ -231,7 +231,7 @@ func (a *JobControlAPIService) CreateTriggersExecute(r ApiCreateTriggersRequest)
 }
 
 type ApiCreateUpdateTriggerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *JobControlAPIService
 }
 
@@ -255,22 +255,22 @@ Starting with Release v24.7, a new `analysistypes` parameter has been introduced
 * 6 – Compute Model Performance Statistics
 * 7 – Incremental Rule Creation
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateUpdateTriggerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateUpdateTriggerRequest
 */
 func (a *JobControlAPIService) CreateUpdateTrigger(ctx context.Context) ApiCreateUpdateTriggerRequest {
 	return ApiCreateUpdateTriggerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *JobControlAPIService) CreateUpdateTriggerExecute(r ApiCreateUpdateTriggerRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.CreateUpdateTrigger")
@@ -330,7 +330,7 @@ func (a *JobControlAPIService) CreateUpdateTriggerExecute(r ApiCreateUpdateTrigg
 }
 
 type ApiDeleteTriggerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *JobControlAPIService
 }
 
@@ -343,22 +343,22 @@ DeleteTrigger Delete Trigger
 
 This API call can be used to delete a trigger for a particular "jobgroup" in Saviynt.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiDeleteTriggerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiDeleteTriggerRequest
 */
 func (a *JobControlAPIService) DeleteTrigger(ctx context.Context) ApiDeleteTriggerRequest {
 	return ApiDeleteTriggerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *JobControlAPIService) DeleteTriggerExecute(r ApiDeleteTriggerRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.DeleteTrigger")
@@ -418,8 +418,8 @@ func (a *JobControlAPIService) DeleteTriggerExecute(r ApiDeleteTriggerRequest) (
 }
 
 type ApiFetchJobMetadataRequest struct {
-	ctx context.Context
-	ApiService *JobControlAPIService
+	ctx                     context.Context
+	ApiService              *JobControlAPIService
 	fetchJobMetadataRequest *FetchJobMetadataRequest
 }
 
@@ -439,24 +439,25 @@ This API call return job metadata for the last run of a job in Saviynt.
 
 Note: The structure of the result param in response can change based upon the Job History saved in Saviynt
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiFetchJobMetadataRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiFetchJobMetadataRequest
 */
 func (a *JobControlAPIService) FetchJobMetadata(ctx context.Context) ApiFetchJobMetadataRequest {
 	return ApiFetchJobMetadataRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return FetchJobMetadataResponse
+//
+//	@return FetchJobMetadataResponse
 func (a *JobControlAPIService) FetchJobMetadataExecute(r ApiFetchJobMetadataRequest) (*FetchJobMetadataResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *FetchJobMetadataResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *FetchJobMetadataResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.FetchJobMetadata")
@@ -527,8 +528,8 @@ func (a *JobControlAPIService) FetchJobMetadataExecute(r ApiFetchJobMetadataRequ
 }
 
 type ApiResumePauseJobsRequest struct {
-	ctx context.Context
-	ApiService *JobControlAPIService
+	ctx                    context.Context
+	ApiService             *JobControlAPIService
 	resumePauseJobsRequest *ResumePauseJobsRequest
 }
 
@@ -548,24 +549,25 @@ Starting with Release v23.10, the `resumePauseJobs` API enables you to pause job
 
 When a job is paused, its status is displayed as Paused on the Job Control Panel page.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiResumePauseJobsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiResumePauseJobsRequest
 */
 func (a *JobControlAPIService) ResumePauseJobs(ctx context.Context) ApiResumePauseJobsRequest {
 	return ApiResumePauseJobsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return string
+//
+//	@return string
 func (a *JobControlAPIService) ResumePauseJobsExecute(r ApiResumePauseJobsRequest) (string, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  string
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.ResumePauseJobs")
@@ -636,7 +638,7 @@ func (a *JobControlAPIService) ResumePauseJobsExecute(r ApiResumePauseJobsReques
 }
 
 type ApiRunJobTriggerRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService *JobControlAPIService
 }
 
@@ -661,22 +663,22 @@ The following cases illustrate different scenarios on the usage of the `analytic
 * Case 2: When you set the "defaultActionForAnalytics" as "false" to not perform default actions for analytics controls by executing the control from job API, it will override the default action configuration within the job trigger.
 * Case 3: When the defaultActionForAnalytics parameter is not set in the payload, the default action will depend on the configuration provided in the analytics job trigger.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiRunJobTriggerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRunJobTriggerRequest
 */
 func (a *JobControlAPIService) RunJobTrigger(ctx context.Context) ApiRunJobTriggerRequest {
 	return ApiRunJobTriggerRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
 func (a *JobControlAPIService) RunJobTriggerExecute(r ApiRunJobTriggerRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "JobControlAPIService.RunJobTrigger")

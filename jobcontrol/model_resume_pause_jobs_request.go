@@ -12,8 +12,8 @@ Contact: https://github.com/saviynt
 package jobcontrol
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &ResumePauseJobsRequest{}
 
 // ResumePauseJobsRequest struct for ResumePauseJobsRequest
 type ResumePauseJobsRequest struct {
-	Action string `json:"action"`
+	Action      string  `json:"action"`
 	Triggername *string `json:"triggername,omitempty"`
-	Jobname *string `json:"jobname,omitempty"`
+	Jobname     *string `json:"jobname,omitempty"`
 }
 
 type _ResumePauseJobsRequest ResumePauseJobsRequest
@@ -136,7 +136,7 @@ func (o *ResumePauseJobsRequest) SetJobname(v string) {
 }
 
 func (o ResumePauseJobsRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -168,10 +168,10 @@ func (o *ResumePauseJobsRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -227,5 +227,3 @@ func (v *NullableResumePauseJobsRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

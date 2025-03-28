@@ -11,8 +11,8 @@ API version: 1.0.0
 package connections
 
 import (
-	"encoding/json"
 	"bytes"
+	"encoding/json"
 	"fmt"
 )
 
@@ -39,12 +39,12 @@ type ADSIConnector struct {
 	// Default SAV Role to be assigned to all the new users that gets imported - only valid for User Import
 	DEFAULT_USER_ROLE *string `json:"DEFAULT_USER_ROLE,omitempty"`
 	// JSON to specify the Field Value which will be used to Update existing User
-	UPDATEUSERJSON *string `json:"UPDATEUSERJSON,omitempty"`
-	FOREST_DETAILS *string `json:"FOREST_DETAILS,omitempty"`
+	UPDATEUSERJSON        *string `json:"UPDATEUSERJSON,omitempty"`
+	FOREST_DETAILS        *string `json:"FOREST_DETAILS,omitempty"`
 	ENABLEGROUPMANAGEMENT *string `json:"ENABLEGROUPMANAGEMENT,omitempty"`
-	CreateUpdateMappings *string `json:"createUpdateMappings,omitempty"`
-	IMPORTDATACOOKIES *string `json:"IMPORTDATACOOKIES,omitempty"`
-	PASSWDPOLICYJSON *string `json:"PASSWDPOLICYJSON,omitempty"`
+	CreateUpdateMappings  *string `json:"createUpdateMappings,omitempty"`
+	IMPORTDATACOOKIES     *string `json:"IMPORTDATACOOKIES,omitempty"`
+	PASSWDPOLICYJSON      *string `json:"PASSWDPOLICYJSON,omitempty"`
 	// This field provides details as to which endpoint in Saviynt should the AD accounts be associated to after the accounts have been imported
 	ENDPOINTS_FILTER *string `json:"ENDPOINTS_FILTER,omitempty"`
 	// Search Filter can be used to specify the BaseDN of the directory from where the data needs to be imported. You can have multiple BaseDNs here separated by ###.
@@ -61,7 +61,7 @@ type ADSIConnector struct {
 	USER_ATTRIBUTE *string `json:"USER_ATTRIBUTE,omitempty"`
 	// The DN from which the search for all the groups begins. You can have multiple BaseDNs here separated by ###.
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
-	CHECKFORUNIQUE *string `json:"CHECKFORUNIQUE,omitempty"`
+	CHECKFORUNIQUE    *string `json:"CHECKFORUNIQUE,omitempty"`
 	// JSON to specify Users status
 	STATUSKEYJSON *string `json:"STATUSKEYJSON,omitempty"`
 	// Mapping used during accessimport to specify which attribute of a group maps to which attribute on Saviynt
@@ -88,7 +88,7 @@ type ADSIConnector struct {
 	REMOVEACCESSJSON *string `json:"REMOVEACCESSJSON,omitempty"`
 	// JSON to Reset and Change Password.
 	RESETANDCHANGEPASSWRDJSON *string `json:"RESETANDCHANGEPASSWRDJSON,omitempty"`
-	MOVEACCOUNTJSON *string `json:"MOVEACCOUNTJSON,omitempty"`
+	MOVEACCOUNTJSON           *string `json:"MOVEACCOUNTJSON,omitempty"`
 	// JSON to Create Group in a multi-domain/forest Setup.
 	CREATEGROUPJSON *string `json:"CREATEGROUPJSON,omitempty"`
 	// JSON to Update Group in a multi-domain/forest Setup.
@@ -97,7 +97,7 @@ type ADSIConnector struct {
 	REMOVEGROUPJSON *string `json:"REMOVEGROUPJSON,omitempty"`
 	// JSON to Add Group to a Group.
 	ADDACCESSENTITLEMENTJSON *string `json:"ADDACCESSENTITLEMENTJSON,omitempty"`
-	CUSTOMCONFIGJSON *string `json:"CUSTOMCONFIGJSON,omitempty"`
+	CUSTOMCONFIGJSON         *string `json:"CUSTOMCONFIGJSON,omitempty"`
 	// JSON to Remove Group from a Group.
 	REMOVEACCESSENTITLEMENTJSON *string `json:"REMOVEACCESSENTITLEMENTJSON,omitempty"`
 	// JSON to specify the Field Value which will be used to Create the New Service Account.
@@ -1635,7 +1635,7 @@ func (o *ADSIConnector) SetMODIFYUSERDATAJSON(v string) {
 }
 
 func (o ADSIConnector) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1808,10 +1808,10 @@ func (o *ADSIConnector) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err;
+		return err
 	}
 
-	for _, requiredProperty := range(requiredProperties) {
+	for _, requiredProperty := range requiredProperties {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -1867,5 +1867,3 @@ func (v *NullableADSIConnector) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
