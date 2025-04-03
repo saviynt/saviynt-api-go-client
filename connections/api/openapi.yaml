@@ -1640,10 +1640,14 @@ components:
         mapping:
           AD: '#/components/schemas/ADConnectionResponse'
           REST: '#/components/schemas/RESTConnectionResponse'
+          DB: '#/components/schemas/DBConnectionResponse'
+          ADSI: '#/components/schemas/ADSIConnectionResponse'
         propertyName: connectiontype
       oneOf:
       - $ref: '#/components/schemas/ADConnectionResponse'
       - $ref: '#/components/schemas/RESTConnectionResponse'
+      - $ref: '#/components/schemas/DBConnectionResponse'
+      - $ref: '#/components/schemas/ADSIConnectionResponse'
     getConnectionDetails:
       properties:
         msg:
@@ -1790,9 +1794,9 @@ components:
             connectionTimeout: 2
           UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\"\
             ,\"givenName\":\"${user.firstname}\"}"
-          URL: LDAP://saviyntdc01.saviyntlabs.org:389
+          URL: LDAP://sample.com
           READ_OPERATIONAL_ATTRIBUTES: "FALSE"
-          BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          BASE: CN=Users
           LDAP_OR_AD: AD
           ORG_BASE: ORG_BASE
           STATUS_THRESHOLD_CONFIG: "{\"statusAndThresholdConfig\":{\"statusColumn\"\
@@ -1839,6 +1843,18 @@ components:
       - properties:
           connectionattributes:
             $ref: '#/components/schemas/RESTConnectionAttributes'
+    DBConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/DBConnectionAttributes'
+    ADSIConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/ADSIConnectionAttributes'
     ADConnectionAttributes:
       example:
         LAST_IMPORT_TIME: 2017-03-23T00:48:28
@@ -1924,9 +1940,9 @@ components:
           connectionTimeout: 2
         UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\",\"\
           givenName\":\"${user.firstname}\"}"
-        URL: LDAP://saviyntdc01.saviyntlabs.org:389
+        URL: LDAP://sample.com
         READ_OPERATIONAL_ATTRIBUTES: "FALSE"
-        BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+        BASE: CN=Users
         LDAP_OR_AD: AD
         ORG_BASE: ORG_BASE
         STATUS_THRESHOLD_CONFIG: "{\"statusAndThresholdConfig\":{\"statusColumn\"\
@@ -1964,7 +1980,7 @@ components:
       properties:
         URL:
           description: Host Name for connection
-          example: LDAP://saviyntdc01.saviyntlabs.org:389
+          example: LDAP://sample.com
           type: string
         connectionType:
           description: Connection type
@@ -2127,7 +2143,7 @@ components:
           type: string
         BASE:
           description: LDAP base DN.
-          example: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
+          example: CN=Users
           type: string
         DC_LOCATOR:
           description: Domain Controller locator.
@@ -2333,6 +2349,477 @@ components:
         isTimeoutConfigValidated:
           type: boolean
         ConnectionJSON:
+          type: string
+    DBConnectionAttributes:
+      properties:
+        PASSWORD_MIN_LENGTH:
+          description: Minimum length of password
+          example: "8"
+          type: string
+        CHANGEPASSJSON:
+          example: ACp1raw6y9smEJ35WcND7Tzfcckk3YadHA9W12L0W43DtLA0rLFN9ldqbJ5/90oXND6hS0+h0DOPDt5hEutO2lqGC3qqC4MiT88QDXpp/fZSQxq7js5RwDGOfPuVfHZ/lU3HG98UkNaRgeNfRu6daULEU2x9HSoccmgZtNsap6cA9q0T6SLh8ldY8dzTiFedhMRFFFJrDXXKMZKybYXeXA==
+          type: string
+        ACCOUNTEXISTSJSON:
+          example: "{\\\"AccountExistQry\\\":\\\"SELECT username FROM mysqllocal.users\
+            \ WHERE username = ${user.username}\\\"}"
+          type: string
+        ROLESIMPORT:
+          type: string
+        ROLEOWNERIMPORT:
+          type: string
+        CREATEACCOUNTJSON:
+          example: "{\"CreateAccountQry\": [\"INSERT INTO mysqllocal.users(username,\
+            \ firstname, lastname, statuskey, departmentname, displayname, manager,\
+            \ enabled, updatedate) VALUES (\"${user.username}\", \"${user.firstname}\"\
+            , \"${user.lastname}\", \"${user.statuskey}\", \"${user.departmentname}\"\
+            , \"${user.displayname}\", \"${user.manager}\", \"${user.enabled}\", CURRENT_TIMESTAMP)\"\
+            , \"INSERT INTO mysqllocal.accounts(AccountName, EntitlementType, EntitlementValue,\
+            \ Status, UPDATEDATE) VALUES (\"${user.username}\", DEFAULT, BASE_ACCESS,\
+            \ 1, CURRENT_TIMESTAMP)\"]}"
+          type: string
+        USERIMPORT:
+          example: |-
+            <dataMapping>
+                <count-query description="This is the Source Endpoint DB Count Query">
+                    <![CDATA[
+            select count(username) as count from mysqllocal.users;
+            ]]>
+                </count-query>
+                <sql-query description="This is the Source DB Query">
+                    <![CDATA[select username,'Test-DB-Connector-mysql-SS' as endpoint,firstname,lastname, statuskey from mysqllocal.users;]]>
+                </sql-query>
+                <importsettings>
+                    <zeroDayProvisioning>false</zeroDayProvisioning>
+                    <generateEmail>true</generateEmail>
+                    <userNotInFileAction>NOACTION</userNotInFileAction>
+                    <checkRules>false</checkRules>
+                    <buildUserMap>false</buildUserMap>
+                    <generateSystemUsername>false</generateSystemUsername>
+                    <userOperationsAllowed>CREATE,UPDATE</userOperationsAllowed>
+                    <userReconcillationField>username</userReconcillationField>
+                </importsettings>
+                <mapper description="This is the mapping field for Saviynt Field name">
+                    <mapfield saviyntproperty="users.username" sourceproperty="username" type="character"/>
+                    <mapfield saviyntproperty="users.firstname" sourceproperty="firstname" type="character"></mapfield>
+                    <mapfield saviyntproperty="users.lastname" sourceproperty="lastname" type="character"></mapfield>
+                </mapper>
+            </dataMapping>
+          type: string
+        DISABLEACCOUNTJSON:
+          example: "{\"DisableAccountQry\":[\"UPDATE mysqllocal.users SET enabled\
+            \ = 0, updatedate = CURRENT_TIMESTAMP WHERE username = ${user.username}\"\
+            ,\"UPDATE mysqllocal.accounts SET Status = 0, UPDATEDATE = CURRENT_TIMESTAMP\
+            \ WHERE AccountName = ${user.username}\"]}"
+          type: string
+        ENTITLEMENTVALUEIMPORT:
+          example: |-
+            <dataMapping>
+                <count-query description="This is the Source Endpoint DB Count Query">
+                    <![CDATA[
+            select count(*) as count, endpointname,owner, 'Test-DB-Connector-mysql-SS' as endpoint, 'Test-DB-Connector-mysql-SS' as securitysystem, "1" as status from mysqllocal.accounts;
+            ]]>
+                </count-query>
+                <sql-query description="This is the Source Database Query">
+                    <![CDATA[select 'Test-DB-Connector-mysql-SS' as systemname,dataowner1,'Test-DB-Connector-mysql-SS' as endpointname,entitlementtype,entitlementvalue,entID,1 as status from mysqllocal.entitlements]]>
+                </sql-query>
+                <mapper description="This is the mapping field for Saviynt Field name" deleteentitlementowner="true" entnotpresentaction="noaction" createentitlementtype="true" systems="'Test-DB-Connector-mysql-SS'">
+                    <mapfield saviyntproperty="securitysystems.systemname" sourceproperty="systemname" type="character"></mapfield>
+                    <mapfield saviyntproperty="endpoints.endpointname" sourceproperty="endpointname" type="character"></mapfield>
+                    <mapfield saviyntproperty="entitlementtypes.entitlementname" sourceproperty="entitlementtype" type="character"></mapfield>
+                    <mapfield saviyntproperty="entitlementvalues.entitlement_value" sourceproperty="entitlementvalue" type="character"></mapfield>
+                    <mapfield saviyntproperty="entitlementvalues.entitlementID" sourceproperty="entID" type="character"></mapfield>
+                    <mapfield saviyntproperty="entitlementvalues.status" sourceproperty="status" type="number"></mapfield>
+                    <mapfield saviyntproperty="entitlementvalues.entowner1" sourceproperty="dataowner1" type="number"></mapfield>
+                </mapper>
+            </dataMapping>
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        UPDATEUSERJSON:
+          example: "{\"UpdateUserQry\":[\"UPDATE mysqllocal.users SET firstname =\
+            \ ${user.firstname}, lastname = ${user.lastname}, departmentname = ${user.departmentname},\
+            \ displayname = ${user.displayname}, manager = ${user.manager}, orgunitID\
+            \ = ${user.orgunitID}, updatedate = CURRENT_TIMESTAMP WHERE username =${user.username}\"\
+            ]}"
+          type: string
+        PASSWORD_NOOFSPLCHARS:
+          example: "4"
+          type: string
+        REVOKEACCESSJSON:
+          example: "{\"ENTITLEMENT_TYPE1\":[\"UPDATE mysqllocal.accounts SET Status\
+            \ = 0, UPDATEDATE = CURRENT_TIMESTAMP WHERE AccountName = ${user.username}\
+            \ AND EntitlementType = ${entitlement.type} AND EntitlementValue = ${entitlement.value}\"\
+            ]}"
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        URL:
+          example: jdbc:mysql://34.139.69.20:3306
+          type: string
+        SYSTEMIMPORT:
+          type: string
+        DRIVERNAME:
+          example: com.mysql.jdbc.Driver
+          type: string
+        DELETEACCOUNTJSON:
+          example: "\"DeleteAccountQry\":[\"DELETE FROM mysqllocal.users WHERE username\
+            \ = ${user.username}\",\"DELETE FROM mysqllocal.accounts WHERE AccountName\
+            \ = ${user.username}\"]}"
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          type: string
+        USERNAME:
+          example: connadmin
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        PASSWORD_NOOFCAPSALPHA:
+          type: string
+        PASSWORD_NOOFDIGITS:
+          type: string
+        CONNECTIONPROPERTIES:
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        isTimeoutConfigValidated:
+          example: false
+          type: boolean
+        ACCOUNTSIMPORT:
+          example: "<dataMapping>\n\t    <count-query description=\"This is the Source\
+            \ Endpoint DB Count Query\">\n\t        <![CDATA[\n\tselect count(*) as\
+            \ count, accountname, 'Test-DB-Connector-mysql-SS' as endpoint, 'Test-DB-Connector-mysql-SS'\
+            \ as securitysystem, \"1\" as status,updatedate from mysqllocal.accounts;\n\
+            \t]]>\n\t    </count-query>\n\t    <sql-query description=\"This is the\
+            \ Source DB Query\" uniquecolumnsascommaseparated=\"name\">\n\t      \
+            \  <![CDATA[select accountname,'Test-DB-Connector-mysql-SS' as securitysystem,'Test-DB-Connector-mysql-SS'\
+            \ as endpoint,entitlementtype,entitlementvalue,status,updatedate from\
+            \ mysqllocal.accounts]]>\n\t    </sql-query>\n\t    <incrementalcondition>\n\
+            \t      <![CDATA['${incrementalcolmaxval.format(\"yyy-mm-dd hh:mm:ss\"\
+            )}']]>\n\t    </incrementalcondition>\n\t    <mapper description=\"This\
+            \ is the mapping field for Saviynt Field name\" accountnotinfileaction=\"\
+            Suspend\" deleteaccountentitlement=\"true\" ifusernotexists=\"noaction\"\
+            \ incrementalcolumn=\"accounts.UPDATEDATE\" systems=\"'Test-DB-Connector-mysql-SS'\"\
+            >\n\t        <mapfield saviyntproperty=\"accounts.name\" sourceproperty=\"\
+            accountName\" type=\"character\"></mapfield>\n\t        <mapfield saviyntproperty=\"\
+            securitysystems.systemname\" sourceproperty=\"securitysystem\" type=\"\
+            character\"></mapfield>\n\t        <mapfield saviyntproperty=\"endpoints.endpointname\"\
+            \ sourceproperty=\"endpoint\" type=\"character\"></mapfield>\n\t     \
+            \   <mapfield saviyntproperty=\"entitlementtypes.entitlementname\" sourceproperty=\"\
+            entitlementtype\" type=\"character\"></mapfield>\n\t        <mapfield\
+            \ saviyntproperty=\"entitlementvalues.entitlementvalue\" sourceproperty=\"\
+            entitlementvalue\" type=\"character\"></mapfield>\n\t        <mapfield\
+            \ saviyntproperty=\"accounts.status\" sourceproperty=\"status\" type=\"\
+            character\"></mapfield>\n\t        <mapfield saviyntproperty=\"accounts.customproperty25\"\
+            \ sourceproperty=\"updatedate\" type=\"date\"/>\n\t    </mapper>\n\t</dataMapping>"
+          type: string
+        PASSWORD:
+          example: password123
+          type: string
+        ENABLEACCOUNTJSON:
+          example: "{\"EnableAccountQry\":[\"UPDATE mysqllocal.users SET enabled =\
+            \ 1, updatedate = CURRENT_TIMESTAMP WHERE username = ${user.username}\"\
+            ,\"UPDATE mysqllocal.accounts SET Status = 1, UPDATEDATE = CURRENT_TIMESTAMP\
+            \ WHERE AccountName = ${user.username}\"]}"
+          type: string
+        PASSWORD_MAX_LENGTH:
+          example: "16"
+          type: string
+        MAX_PAGINATION_SIZE:
+          example: "100"
+          type: string
+        UPDATEACCOUNTJSON:
+          example: "{\"UpdateAccountQry\":[\"UPDATE mysqllocal.users SET firstname\
+            \ =${user.firstname}, lastname = ${user.lastname}, departmentname = ${user.departmentname},\
+            \ displayname = ${user.displayname}, manager = ${user.manager}, orgunitID\
+            \ = ${user.orgunitID}, updatedate = CURRENT_TIMESTAMP WHERE username =\
+            \ ${user.username}\"]}"
+          type: string
+        GRANTACCESSJSON:
+          example: "{\"ENTITLEMENT_TYPE1\":[\"INSERT INTO mysqllocal.accounts(AccountName,\
+            \ EntitlementType, EntitlementValue, Status, UPDATEDATE) VALUES(${user.username},\
+            \ ${entitlement.type}, ${entitlement.value}, 1, CURRENT_TIMESTAMP)\"],\"\
+            ROLE_ACCESS\":[\"INSERT INTO mysqllocal.roles(role_name, description,\
+            \ displayname, status, updatedate) VALUES(${role.name}, ${role.description},\
+            \ ${role.displayname}, 1, CURRENT_TIMESTAMP)\"]}"
+          type: string
+        CLI_COMMAND_JSON:
+          type: string
+    ADSIConnectionAttributes:
+      properties:
+        importNestedMembership:
+          example: "true"
+          type: string
+        PASSWDPOLICYJSON:
+          type: string
+        CREATEACCOUNTJSON:
+          example: |-
+            {
+               "objects": [
+                 {
+                   "objectClasses": [
+                     "user",
+                     "top",
+                     "Person",
+                     "OrganizationalPerson"
+                   ],
+                   "baseDn": "CN=Users,DC=saviyntlabs,DC=org",
+                   "password": "Password@123",
+                   "attributes": {
+                     "sn": "${user.lastname}",
+                     "sAMAccountName": "${task.accountName}",
+                     "cn": "${task.accountName}",
+                     "userAccountControl": 512,
+                     "co": "",
+                     "department": "${user.departmentname}",
+                     "displayName": "${user.displayname}",
+                     "employeeID": "${user.employeeid}",
+                     "employeeNumber": "1",
+                     "employeeType": "${user.employeeType}",
+                     "givenName": "${user.firstname}",
+                     "l": "${user.city}",
+                     "mail": "${user.email}",
+                     "proxyAddresses": [
+                       "SMTP:test@test.org",
+                       "SIP:Test@test1.org"
+                     ]
+                   }
+                 }
+               ]
+             }
+          type: string
+        ENDPOINTS_FILTER:
+          type: string
+        DISABLEACCOUNTJSON:
+          example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
+            :\"${account.accountID}\",\"deleteAllGroups\":false,\"attributes\":{\"\
+            userAccountControl\":514}}]}"
+          type: string
+        REMOVEACCESSENTITLEMENTJSON:
+          example: "{\\n   \"objects\":[\\n      {\\n         \"objectClasses\":[\\\
+            n            \"group\"\\n         ],\\n         \"distinguishedName\"\
+            :\"${ent1Value.entitlement_value?.replace('\\\\', '\\\\\\\\\\\\')?.replace('/',\
+            \ '\\\\/')}\",\\n         \"removeGroup\":\"${ent2Value.entitlement_value?.replace('\\\
+            \\', '\\\\\\\\\\\\')?.replace('/', '\\\\/')}\"\\n      }\\n   ],\\n  \
+            \ \"requestConfiguration\":{\\n      \"grpMemExistenceChk\":{\\n     \
+            \    \"enable\":true\\n      }\\n   }\\n}"
+          type: string
+        groupSearchBaseDN:
+          example: "DC=saviyntlabs,DC=org"
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        STATUSKEYJSON:
+          example: |-
+            {
+              "STATUS_ACTIVE": [
+                "512",
+                "544",
+                "66048"
+              ],
+              "STATUS_INACTIVE": [
+                "546",
+                "514"
+              ]
+            }
+          type: string
+        DEFAULT_USER_ROLE:
+          type: string
+        FOREST_DETAILS:
+          example: "{\"forestDetails\":{\"example.org\":[{\"saviyntlabs.org\":[\"\
+            example.org\"]}]}}"
+          type: string
+        USERNAME:
+          example: username
+          type: string
+        UPDATESERVICEACCOUNTJSON:
+          example: "{\\n  \"objects\": [\\n    {\\n      \"objectClasses\": [\\n \
+            \       \"user\",\\n        \"top\",\\n        \"Person\",\\n        \"\
+            OrganizationalPerson\"\\n      ],\\n      \"distinguishedName\": \"${account.accountID?.replace('\\\
+            \\', '\\\\\\\\\\\\')?.replace('/', '\\\\/')}\",\\n      \"attributes\"\
+            : {\\n        \"pwdLastSet\": 0,\\n        \"displayName\": \"testDPUpdated\"\
+            \\n      }\\n    }\\n  ]\\n}"
+          type: string
+        ADDACCESSJSON:
+          example: "{\\n  \"objects\": [\\n    {\\n      \"objectClasses\": [\\n \
+            \       \"user\"\\n      ],\\n      \"distinguishedName\": \"${accountID}\"\
+            ,\\n      \"addGroup\": \"${entitlement_values}\"\\n    }\\n  ],\\n  \"\
+            requestConfiguration\": {\\n    \"grpMemExistenceChk\": {\\n      \"enable\"\
+            : true\\n    }\\n  }\\n}"
+          type: string
+        CREATESERVICEACCOUNTJSON:
+          example: "{\\n  \"objects\": [\\n    {\\n      \"objectClasses\": [\\n \
+            \       \"user\",\\n        \"top\",\\n        \"Person\",\\n        \"\
+            OrganizationalPerson\"\\n      ],\\n      \"baseDn\": \"${baseDN}\",\\\
+            n      \"password\": \"${password}\",\\n      \"attributes\": {\\n   \
+            \     \"sAMAccountName\": \"${task.accountName}\",\\n        \"cn\": \"\
+            ${task.accountName}\",\\n        \"displayname\": \"testDP\",\\n     \
+            \   \"userAccountControl\": 512\\n      }\\n    }\\n  ]\\n}"
+          type: string
+        ACCOUNTNAMERULE:
+          example: "{\"AccountNameRule\":{\"Attributes\":[{\"cn\":\"ACCOUNTID\",\"\
+            baseDN\":\"${baseDN}\",\"RuleCheck\":\"${user.lastname}, ${user.firstname}###${user.lastname},\
+            \ ${user.firstname}1###${user.lastname}, ${user.firstname}2###${user.lastname},\
+            \ ${user.firstname}3###${user.lastname}, ${user.firstname}4\"}]}}"
+          type: string
+        CONNECTION_URL:
+          example: http://sample.com
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        createUpdateMappings:
+          type: string
+        ACCOUNT_ATTRIBUTE:
+          example: "[CUSTOMPROPERTY1::samaccountname#String,CUSTOMPROPERTY2::userprincipalname#String,LASTLOGONDATE::lastLogon#millisec,DISPLAYNAME::cn#String,CUSTOMPROPERTY25::company#String,CUSTOMPROPERTY3::sn#String,COMMENTS::distinguishedname#String,CUSTOMPROPERTY4::homedirectory#String,LASTPASSWORDCHANGE::pwdlastset#millisec,CUSTOMPROPERTY5::co#String,CUSTOMPROPERTY6::cn#String,CUSTOMPROPERTY7::givenname#String,CUSTOMPROPERTY8::title#String,CUSTOMPROPERTY9::telephonenumber#String,CUSTOMPROPERTY10::c#String,DESCRIPTION::description#String,CUSTOMPROPERTY11::usncreated#String,VALIDTHROUGH::accountexpires#millisec,CUSTOMPROPERTY12::logoncount#String,CUSTOMPROPERTY13::physicaldeliveryofficename#String,UPDATEDATE::whenchanged#date,CUSTOMPROPERTY14::extensionattribute1#String,CUSTOMPROPERTY15::extensionattribute2#String,CUSTOMPROPERTY16::streetaddress#String,CUSTOMPROPERTY17::mailnickname#String,CUSTOMPROPERTY18::department#String,CUSTOMPROPERTY19::countrycode#String,NAME::distinguishedname#String,CUSTOMPROPERTY21::manager#String,CUSTOMPROPERTY22::homephone#String,CUSTOMPROPERTY23::mobile#String,ACCOUNTCLASS::objectclass#String,ACCOUNTID::distinguishedname#String,CUSTOMPROPERTY24::useraccountcontrol#String,status::useraccountcontrol#Number,CUSTOMPROPERTY26::objectguid#String,CUSTOMPROPERTY28::forest#String,CUSTOMPROPERTY29::domain#string,CUSTOMPROPERTY30::objectclass#String]"
+          type: string
+        PASSWORD:
+          example: pass123#
+          type: string
+        PAM_CONFIG:
+          type: string
+        PAGE_SIZE:
+          example: "1000"
+          type: string
+        SEARCHFILTER:
+          example: "DC=example,DC=org"
+          type: string
+        UPDATEGROUPJSON:
+          example: "{\"objects\":[{\"attributes\":{\"description\":\"${role.description}\"\
+            ,\"proxyAddresses\":\"${role.customproperty20}\"},\"distinguishedName\"\
+            :\"${role.role_name}\",\"objectClasses\":[\"group\"]}]}"
+          type: string
+        CREATEGROUPJSON:
+          example: "\"objects\":[{\"attributes\":{\"cn\":\"${role.displayname}\",\"\
+            description\":\"${role.description}\",\"displayName\":\"${role.displayname}\"\
+            ,\"groupType\":\"${role?.customproperty21 == 'Security' role?.customproperty22\
+            \ == 'Global'?'-2147483646' : role?.customproperty21=='Security'role?.customproperty22=='Universal'?'-2147483640'\
+            \ : role?.customproperty21== 'Security'role?.customproperty22=='Domain\
+            \ Local' ? '-2147483644':role?.customproperty21=='Distribution'role?.customproperty22=='Global'\
+            \ ? '2':role?.customproperty21== 'Distribution'role?.customproperty22=='Universal'?'8':role?.customproperty21=='Distribution'role?.customproperty22=='Domain\
+            \ Local'?'4':''}\",\"name\":\"${role.displayname}\"},\"baseDn\":\"${role.customproperty24}\"\
+            ,\"objectClasses\":[\"group\"]}]}"
+          type: string
+        ENTITLEMENT_ATTRIBUTE:
+          example: memberOf
+          type: string
+        CHECKFORUNIQUE:
+          example: "\"CheckForUnique\":{\"Attributes\":[{\"samaccountname\":\"customproperty1\"\
+            ,\"RuleCheck\":\"${user.lastname}###${user.lastname}1###${user.lastname}2###${user.lastname}3###${user.lastname}4###${user.lastname}5###${user.lastname}6###${user.lastname}7###${user.lastname}8\"\
+            },{\"userprincipalname\":\"customproperty2\",\"RuleCheck\":\"${user.lastname}@domainame.com###${user.lastname}1@domainname.com###${user.lastname}2@domainname.com###${user.lastname}3@domainname.com###${user.lastname}4@domainname.com\"\
+            },{\"displayname\":\"customproperty31\",\"RuleCheck\":\"${user.lastname},\
+            \ ${user.firstname}###${user.lastname}, ${user.firstname}1###${user.lastname},\
+            \ ${user.firstname}2###${user.lastname}, ${user.firstname}3###${user.lastname},\
+            \ ${user.firstname}4\"}]}}"
+          type: string
+        REMOVESERVICEACCOUNTJSON:
+          example: "{\\n  \"objects\": [\\n    {\\n      \"distinguishedName\": \"\
+            ${account.accountID?.replace('\\\\', '\\\\\\\\')?.replace('/', '\\\\/')}\"\
+            ,\\n      \"removeAction\": \"DELETE\",\\n      \"deleteChildObjects\"\
+            : false\\n    }\\n  ]\\n}"
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        UPDATEUSERJSON:
+          type: string
+        URL:
+          example: www.example.com
+          type: string
+        MOVEACCOUNTJSON:
+          type: string
+        CUSTOMCONFIGJSON:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          example: |-
+            {
+              "importGroupHierarchy": "true",
+              "entitlementTypeName": "memberOf",
+              "performGroupAccountLinking": "true",
+              "groupObjectClass": "(objectclass=group)",
+              "entitlementOwnerAttribute": "managedby",
+              "tableFieldAttribute": "accountID",
+              "mapping": "memberHash:memberof_char,customProperty1:samaccounttype_char,customProperty2:instancetype_char,customProperty3:usncreated_char,customProperty4:grouptype_char,customProperty5:dscorepropagationdata_char,customProperty12:dn_char,customProperty13:cn_char,lastscandate:whencreated_date,customProperty15:managedBy_char,entitlement_glossary:description_char,description:description_char,displayname:name_char,customProperty9:name_char,customProperty10:objectcategory_char,customProperty11:samaccounttype_char,entitlement_value:distinguishedname_char,entitlementid:distinguishedname_char,customProperty14:objectclass_char,updatedate:whenchanged_date,customProperty17:distinguishedname_char,RECONCILATION_FIELD:customProperty18,customProperty18:objectguid_char"
+            }
+          type: string
+        groupImportMapping:
+          example: "{ \"importGroupHierarchy\": \"true\", \"entitlementTypeName\"\
+            : \"memberOf\", \"performGroupAccountLinking\": \"true\", \"groupObjectClass\"\
+            : \"(objectclass=group)\", \"entitlementOwnerAttribute\": \"managedby\"\
+            , \"tableFieldAttribute\": \"accountID\", \"mapping\": \"memberHash:memberof_char,customProperty1:samaccounttype_char,customProperty2:instancetype_char,customProperty3:usncreated_char,customProperty4:grouptype_char,customProperty5:dscorepropagationdata_char,customProperty12:dn_char,customProperty13:cn_char,lastscandate:whencreated_date,customProperty15:managedBy_char,entitlement_glossary:description_char,description:description_char,displayname:name_char,customProperty9:name_char,customProperty10:objectcategory_char,customProperty11:samaccounttype_char,entitlement_value:distinguishedname_char,entitlementid:distinguishedname_char,customProperty14:objectclass_char,updatedate:whenchanged_date,customProperty17:distinguishedname_char,RECONCILATION_FIELD:customProperty18,customProperty18:objectguid_char\"\
+            \ }"
+          type: string
+        PROVISIONING_URL:
+          example: http://example.com
+          type: string
+        REMOVEGROUPJSON:
+          example: |-
+            {
+              "objects": [
+                {
+                  "distinguishedName": "${role.role_name}",
+                  "removeAction": "DELETE",
+                  "deleteChildObjects": false
+                }
+              ]
+            }
+          type: string
+        REMOVEACCESSJSON:
+          example: "{\"objects\": [{\"distinguishedName\": \"${account.accountID}\"\
+            ,\"removeAction\": \"DELETE\",\"deleteChildObjects\": false}]}"
+          type: string
+        IMPORTDATACOOKIES:
+          type: string
+        RESETANDCHANGEPASSWRDJSON:
+          example: "{ \"objects\":[ { \"objectClasses\":[ \"user\" ], \"password\"\
+            :\"${password}\", \"distinguishedName\":\"\", \"attributes\":{ \"pwdLastSet\"\
+            :\"${pwdLastSet}\" } } ]}"
+          type: string
+        USER_ATTRIBUTE:
+          example: "[FIRSTNAME::givenname#String,LASTNAME::sn#String,CUSTOMPROPERTY1::samaccountname#String,USERNAME::distinguishedname#String,DISPLAYNAME::cn#String,CUSTOMPROPERTY25::description#String,CUSTOMPROPERTY3::sn#String,COMMENTS::distinguishedname#String,CUSTOMPROPERTY4::homedirectory#String,CUSTOMPROPERTY5::co#String,CUSTOMPROPERTY6::cn#String,CUSTOMPROPERTY7::givenname#String,CUSTOMPROPERTY8::title#String,CUSTOMPROPERTY9::telephonenumber#String,CUSTOMPROPERTY10::c#String,CUSTOMPROPERTY11::uSNCreated#String,ENDDATE::accountExpires#millisec,CUSTOMPROPERTY12::logonCount#String,CUSTOMPROPERTY13::physicaldeliveryofficename#String,UPDATEDATE::whenchanged#date,CUSTOMPROPERTY14::extensionattribute1#String,CUSTOMPROPERTY15::extensionattribute2#String,CUSTOMPROPERTY16::streetaddress#String,CUSTOMPROPERTY17::mailnickname#String,CUSTOMPROPERTY18::department#String,CUSTOMPROPERTY19::countrycode#String,CUSTOMPROPERTY2::samaccountname#String,CUSTOMPROPERTY20::userprincipalname#String,CUSTOMPROPERTY21::manager#String,CUSTOMPROPERTY22::homephone#String,CUSTOMPROPERTY23::mobile#String,CREATEDATE::whencreated#date,customproperty24::useraccountcontrol#String,CUSTOMPROPERTY26::distinguishedname#String,statuskey::useraccountcontrol#String,CUSTOMPROPERTY27::objectguid#String,RECONCILATION_FIELD::CUSTOMPROPERTY27,CUSTOMPROPERTY28::forest#String,CUSTOMPROPERTY29::domain#string]"
+          type: string
+        ADDACCESSENTITLEMENTJSON:
+          example: "{\\n   \"objects\":[\\n      {\\n         \"objectClasses\":[\\\
+            n            \"group\"\\n         ],\\n         \"distinguishedName\"\
+            :\"${ent1Value.entitlement_value?.replace('\\\\', '\\\\\\\\')?.replace('/',\
+            \ '\\\\/')}\",\\n         \"addGroup\":\"${ent2Value.entitlement_value?.replace('\\\
+            \\', '\\\\\\\\')?.replace('/', '\\\\/')}\"\\n      }\\n   ],\\n   \"requestConfiguration\"\
+            :{\\n      \"grpMemExistenceChk\":{\\n         \"enable\":true\\n    \
+            \  }\\n   }\\n}"
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        isTimeoutConfigValidated:
+          example: true
+          type: boolean
+        ENABLEGROUPMANAGEMENT:
+          type: string
+        ENABLEACCOUNTJSON:
+          example: "{\"objects\":[{\"objectClasses\":[\"user\"],\"distinguishedName\"\
+            :\"${account.accountID}\",\"deleteAllGroups\":false,\"attributes\":{\"\
+            userAccountControl\":512}}]}"
+          type: string
+        FORESTLIST:
+          example: example.org
+          type: string
+        OBJECTFILTER:
+          example: (&(objectCategory=person)(objectClass=user))
+          type: string
+        UPDATEACCOUNTJSON:
+          example: "{\\\"objects\\\":[{\\\"attributes\\\":{\\\"additionalAttributes\\\
+            \":{\\\"companyName\\\":\\\"Saviynt\\\",\\\"departmentName\\\":\\\"PM\\\
+            \"},\\\"displayName\\\":\\\"${user.displayname}\\\",\\\"streetAddress\\\
+            \":\\\"${user.street}\\\"},\\\"distinguishedName\\\":\\\"${account.accountID?.replace('\\\
+            \\', '\\\\\\\\')?.replace('/', '\\\\/')}\\\",\\\"objectClasses\\\":[\\\
+            \"user\\\"]}]}"
+          type: string
+        REMOVEACCOUNTJSON:
+          example: "{\\n  \"objects\": [\\n    {\\n      \"objectClasses\": [\\n \
+            \       \"group\"\\n      ],\\n      \"distinguishedName\": \"${accountID}\"\
+            ,\\n      \"removeGroup\": \"${entitlement_values}\"\\n    }\\n  ],\\\
+            n  \"requestConfiguration\": {\\n    \"grpMemExistenceChk\": {\\n    \
+            \  \"enable\": true\\n    }\\n  }\\n}"
           type: string
     createOrUpdate_request:
       discriminator:

@@ -11,11 +11,12 @@ package connections
 
 import (
 	"context"
+	"log"
+	"testing"
+
 	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"log"
-	"testing"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
@@ -24,6 +25,34 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 	apiClient := openapiclient.NewAPIClient(configuration)
 
 	t.Run("Test ConnectionsAPIService CreateOrUpdate", func(t *testing.T) {
+
+		t.Skip("skip test")
+		conn_name := "sample"
+		url := "www.sample.com"
+		username := "admin"
+		password := "pass123"
+		adConn := openapiclient.ADConnector{
+			BaseConnector: openapiclient.BaseConnector{
+				Connectiontype: "AD",
+				ConnectionName: conn_name,
+			},
+			URL:      &url,
+			USERNAME: &username,
+			PASSWORD: password,
+		}
+
+		adConnRequest := openapiclient.CreateOrUpdateRequest{
+			ADConnector: &adConn,
+		}
+
+		apiResp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).CreateOrUpdateRequest(adConnRequest).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, apiResp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
@@ -39,12 +68,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-		// respJSON, err := json.MarshalIndent(resp, "", "  ")
-		// if err != nil {
-		// 	log.Fatalf("Error marshalling response: %v", err)
-		// }
-		// fmt.Println("Export Connection Response:")
-		// fmt.Println(string(respJSON))
+
 	})
 
 }

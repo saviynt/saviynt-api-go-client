@@ -1,4 +1,4 @@
-# GetConnectionDetailsResponse
+# ADSIConnectionResponse
 
 ## Properties
 
@@ -20,345 +20,345 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGetConnectionDetailsResponse
+### NewADSIConnectionResponse
 
-`func NewGetConnectionDetailsResponse() *GetConnectionDetailsResponse`
+`func NewADSIConnectionResponse() *ADSIConnectionResponse`
 
-NewGetConnectionDetailsResponse instantiates a new GetConnectionDetailsResponse object
+NewADSIConnectionResponse instantiates a new ADSIConnectionResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetConnectionDetailsResponseWithDefaults
+### NewADSIConnectionResponseWithDefaults
 
-`func NewGetConnectionDetailsResponseWithDefaults() *GetConnectionDetailsResponse`
+`func NewADSIConnectionResponseWithDefaults() *ADSIConnectionResponse`
 
-NewGetConnectionDetailsResponseWithDefaults instantiates a new GetConnectionDetailsResponse object
+NewADSIConnectionResponseWithDefaults instantiates a new ADSIConnectionResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetMsg
 
-`func (o *GetConnectionDetailsResponse) GetMsg() string`
+`func (o *ADSIConnectionResponse) GetMsg() string`
 
 GetMsg returns the Msg field if non-nil, zero value otherwise.
 
 ### GetMsgOk
 
-`func (o *GetConnectionDetailsResponse) GetMsgOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetMsgOk() (*string, bool)`
 
 GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMsg
 
-`func (o *GetConnectionDetailsResponse) SetMsg(v string)`
+`func (o *ADSIConnectionResponse) SetMsg(v string)`
 
 SetMsg sets Msg field to given value.
 
 ### HasMsg
 
-`func (o *GetConnectionDetailsResponse) HasMsg() bool`
+`func (o *ADSIConnectionResponse) HasMsg() bool`
 
 HasMsg returns a boolean if a field has been set.
 
 ### GetEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) GetEmailtemplate() string`
+`func (o *ADSIConnectionResponse) GetEmailtemplate() string`
 
 GetEmailtemplate returns the Emailtemplate field if non-nil, zero value otherwise.
 
 ### GetEmailtemplateOk
 
-`func (o *GetConnectionDetailsResponse) GetEmailtemplateOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetEmailtemplateOk() (*string, bool)`
 
 GetEmailtemplateOk returns a tuple with the Emailtemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) SetEmailtemplate(v string)`
+`func (o *ADSIConnectionResponse) SetEmailtemplate(v string)`
 
 SetEmailtemplate sets Emailtemplate field to given value.
 
 ### HasEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) HasEmailtemplate() bool`
+`func (o *ADSIConnectionResponse) HasEmailtemplate() bool`
 
 HasEmailtemplate returns a boolean if a field has been set.
 
 ### GetUpdatedby
 
-`func (o *GetConnectionDetailsResponse) GetUpdatedby() string`
+`func (o *ADSIConnectionResponse) GetUpdatedby() string`
 
 GetUpdatedby returns the Updatedby field if non-nil, zero value otherwise.
 
 ### GetUpdatedbyOk
 
-`func (o *GetConnectionDetailsResponse) GetUpdatedbyOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetUpdatedbyOk() (*string, bool)`
 
 GetUpdatedbyOk returns a tuple with the Updatedby field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedby
 
-`func (o *GetConnectionDetailsResponse) SetUpdatedby(v string)`
+`func (o *ADSIConnectionResponse) SetUpdatedby(v string)`
 
 SetUpdatedby sets Updatedby field to given value.
 
 ### HasUpdatedby
 
-`func (o *GetConnectionDetailsResponse) HasUpdatedby() bool`
+`func (o *ADSIConnectionResponse) HasUpdatedby() bool`
 
 HasUpdatedby returns a boolean if a field has been set.
 
 ### GetConnectionname
 
-`func (o *GetConnectionDetailsResponse) GetConnectionname() string`
+`func (o *ADSIConnectionResponse) GetConnectionname() string`
 
 GetConnectionname returns the Connectionname field if non-nil, zero value otherwise.
 
 ### GetConnectionnameOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionnameOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetConnectionnameOk() (*string, bool)`
 
 GetConnectionnameOk returns a tuple with the Connectionname field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionname
 
-`func (o *GetConnectionDetailsResponse) SetConnectionname(v string)`
+`func (o *ADSIConnectionResponse) SetConnectionname(v string)`
 
 SetConnectionname sets Connectionname field to given value.
 
 ### HasConnectionname
 
-`func (o *GetConnectionDetailsResponse) HasConnectionname() bool`
+`func (o *ADSIConnectionResponse) HasConnectionname() bool`
 
 HasConnectionname returns a boolean if a field has been set.
 
 ### GetConnectionkey
 
-`func (o *GetConnectionDetailsResponse) GetConnectionkey() int32`
+`func (o *ADSIConnectionResponse) GetConnectionkey() int32`
 
 GetConnectionkey returns the Connectionkey field if non-nil, zero value otherwise.
 
 ### GetConnectionkeyOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionkeyOk() (*int32, bool)`
+`func (o *ADSIConnectionResponse) GetConnectionkeyOk() (*int32, bool)`
 
 GetConnectionkeyOk returns a tuple with the Connectionkey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionkey
 
-`func (o *GetConnectionDetailsResponse) SetConnectionkey(v int32)`
+`func (o *ADSIConnectionResponse) SetConnectionkey(v int32)`
 
 SetConnectionkey sets Connectionkey field to given value.
 
 ### HasConnectionkey
 
-`func (o *GetConnectionDetailsResponse) HasConnectionkey() bool`
+`func (o *ADSIConnectionResponse) HasConnectionkey() bool`
 
 HasConnectionkey returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *GetConnectionDetailsResponse) GetDescription() string`
+`func (o *ADSIConnectionResponse) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *GetConnectionDetailsResponse) GetDescriptionOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *GetConnectionDetailsResponse) SetDescription(v string)`
+`func (o *ADSIConnectionResponse) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *GetConnectionDetailsResponse) HasDescription() bool`
+`func (o *ADSIConnectionResponse) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetConnectiontype
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontype() string`
+`func (o *ADSIConnectionResponse) GetConnectiontype() string`
 
 GetConnectiontype returns the Connectiontype field if non-nil, zero value otherwise.
 
 ### GetConnectiontypeOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontypeOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetConnectiontypeOk() (*string, bool)`
 
 GetConnectiontypeOk returns a tuple with the Connectiontype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectiontype
 
-`func (o *GetConnectionDetailsResponse) SetConnectiontype(v string)`
+`func (o *ADSIConnectionResponse) SetConnectiontype(v string)`
 
 SetConnectiontype sets Connectiontype field to given value.
 
 ### HasConnectiontype
 
-`func (o *GetConnectionDetailsResponse) HasConnectiontype() bool`
+`func (o *ADSIConnectionResponse) HasConnectiontype() bool`
 
 HasConnectiontype returns a boolean if a field has been set.
 
 ### GetCreatedon
 
-`func (o *GetConnectionDetailsResponse) GetCreatedon() string`
+`func (o *ADSIConnectionResponse) GetCreatedon() string`
 
 GetCreatedon returns the Createdon field if non-nil, zero value otherwise.
 
 ### GetCreatedonOk
 
-`func (o *GetConnectionDetailsResponse) GetCreatedonOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetCreatedonOk() (*string, bool)`
 
 GetCreatedonOk returns a tuple with the Createdon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedon
 
-`func (o *GetConnectionDetailsResponse) SetCreatedon(v string)`
+`func (o *ADSIConnectionResponse) SetCreatedon(v string)`
 
 SetCreatedon sets Createdon field to given value.
 
 ### HasCreatedon
 
-`func (o *GetConnectionDetailsResponse) HasCreatedon() bool`
+`func (o *ADSIConnectionResponse) HasCreatedon() bool`
 
 HasCreatedon returns a boolean if a field has been set.
 
 ### GetCreatedby
 
-`func (o *GetConnectionDetailsResponse) GetCreatedby() string`
+`func (o *ADSIConnectionResponse) GetCreatedby() string`
 
 GetCreatedby returns the Createdby field if non-nil, zero value otherwise.
 
 ### GetCreatedbyOk
 
-`func (o *GetConnectionDetailsResponse) GetCreatedbyOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetCreatedbyOk() (*string, bool)`
 
 GetCreatedbyOk returns a tuple with the Createdby field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedby
 
-`func (o *GetConnectionDetailsResponse) SetCreatedby(v string)`
+`func (o *ADSIConnectionResponse) SetCreatedby(v string)`
 
 SetCreatedby sets Createdby field to given value.
 
 ### HasCreatedby
 
-`func (o *GetConnectionDetailsResponse) HasCreatedby() bool`
+`func (o *ADSIConnectionResponse) HasCreatedby() bool`
 
 HasCreatedby returns a boolean if a field has been set.
 
 ### GetErrorcode
 
-`func (o *GetConnectionDetailsResponse) GetErrorcode() int32`
+`func (o *ADSIConnectionResponse) GetErrorcode() int32`
 
 GetErrorcode returns the Errorcode field if non-nil, zero value otherwise.
 
 ### GetErrorcodeOk
 
-`func (o *GetConnectionDetailsResponse) GetErrorcodeOk() (*int32, bool)`
+`func (o *ADSIConnectionResponse) GetErrorcodeOk() (*int32, bool)`
 
 GetErrorcodeOk returns a tuple with the Errorcode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorcode
 
-`func (o *GetConnectionDetailsResponse) SetErrorcode(v int32)`
+`func (o *ADSIConnectionResponse) SetErrorcode(v int32)`
 
 SetErrorcode sets Errorcode field to given value.
 
 ### HasErrorcode
 
-`func (o *GetConnectionDetailsResponse) HasErrorcode() bool`
+`func (o *ADSIConnectionResponse) HasErrorcode() bool`
 
 HasErrorcode returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *GetConnectionDetailsResponse) GetStatus() int32`
+`func (o *ADSIConnectionResponse) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *GetConnectionDetailsResponse) GetStatusOk() (*int32, bool)`
+`func (o *ADSIConnectionResponse) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *GetConnectionDetailsResponse) SetStatus(v int32)`
+`func (o *ADSIConnectionResponse) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *GetConnectionDetailsResponse) HasStatus() bool`
+`func (o *ADSIConnectionResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) GetDefaultsavroles() string`
+`func (o *ADSIConnectionResponse) GetDefaultsavroles() string`
 
 GetDefaultsavroles returns the Defaultsavroles field if non-nil, zero value otherwise.
 
 ### GetDefaultsavrolesOk
 
-`func (o *GetConnectionDetailsResponse) GetDefaultsavrolesOk() (*string, bool)`
+`func (o *ADSIConnectionResponse) GetDefaultsavrolesOk() (*string, bool)`
 
 GetDefaultsavrolesOk returns a tuple with the Defaultsavroles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) SetDefaultsavroles(v string)`
+`func (o *ADSIConnectionResponse) SetDefaultsavroles(v string)`
 
 SetDefaultsavroles sets Defaultsavroles field to given value.
 
 ### HasDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) HasDefaultsavroles() bool`
+`func (o *ADSIConnectionResponse) HasDefaultsavroles() bool`
 
 HasDefaultsavroles returns a boolean if a field has been set.
 
 ### GetConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) GetConnectionattributes() ADSIConnectionAttributes`
+`func (o *ADSIConnectionResponse) GetConnectionattributes() ADSIConnectionAttributes`
 
 GetConnectionattributes returns the Connectionattributes field if non-nil, zero value otherwise.
 
 ### GetConnectionattributesOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionattributesOk() (*ADSIConnectionAttributes, bool)`
+`func (o *ADSIConnectionResponse) GetConnectionattributesOk() (*ADSIConnectionAttributes, bool)`
 
 GetConnectionattributesOk returns a tuple with the Connectionattributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) SetConnectionattributes(v ADSIConnectionAttributes)`
+`func (o *ADSIConnectionResponse) SetConnectionattributes(v ADSIConnectionAttributes)`
 
 SetConnectionattributes sets Connectionattributes field to given value.
 
 ### HasConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) HasConnectionattributes() bool`
+`func (o *ADSIConnectionResponse) HasConnectionattributes() bool`
 
 HasConnectionattributes returns a boolean if a field has been set.
 

@@ -26,7 +26,7 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	ctx := context.Background()
 
-	t.Run("Test ConnectionsAPIService TestConnection", func(t *testing.T) {
+	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)
 		} else if skipTests {

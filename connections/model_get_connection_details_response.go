@@ -19,6 +19,8 @@ import (
 // GetConnectionDetailsResponse - struct for GetConnectionDetailsResponse
 type GetConnectionDetailsResponse struct {
 	ADConnectionResponse   *ADConnectionResponse
+	ADSIConnectionResponse *ADSIConnectionResponse
+	DBConnectionResponse   *DBConnectionResponse
 	RESTConnectionResponse *RESTConnectionResponse
 }
 
@@ -26,6 +28,20 @@ type GetConnectionDetailsResponse struct {
 func ADConnectionResponseAsGetConnectionDetailsResponse(v *ADConnectionResponse) GetConnectionDetailsResponse {
 	return GetConnectionDetailsResponse{
 		ADConnectionResponse: v,
+	}
+}
+
+// ADSIConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns ADSIConnectionResponse wrapped in GetConnectionDetailsResponse
+func ADSIConnectionResponseAsGetConnectionDetailsResponse(v *ADSIConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		ADSIConnectionResponse: v,
+	}
+}
+
+// DBConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns DBConnectionResponse wrapped in GetConnectionDetailsResponse
+func DBConnectionResponseAsGetConnectionDetailsResponse(v *DBConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		DBConnectionResponse: v,
 	}
 }
 
@@ -57,6 +73,40 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.ADConnectionResponse = nil
 	}
 
+	// try to unmarshal data into ADSIConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.ADSIConnectionResponse)
+	if err == nil {
+		jsonADSIConnectionResponse, _ := json.Marshal(dst.ADSIConnectionResponse)
+		if string(jsonADSIConnectionResponse) == "{}" { // empty struct
+			dst.ADSIConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.ADSIConnectionResponse); err != nil {
+				dst.ADSIConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.ADSIConnectionResponse = nil
+	}
+
+	// try to unmarshal data into DBConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.DBConnectionResponse)
+	if err == nil {
+		jsonDBConnectionResponse, _ := json.Marshal(dst.DBConnectionResponse)
+		if string(jsonDBConnectionResponse) == "{}" { // empty struct
+			dst.DBConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.DBConnectionResponse); err != nil {
+				dst.DBConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.DBConnectionResponse = nil
+	}
+
 	// try to unmarshal data into RESTConnectionResponse
 	err = newStrictDecoder(data).Decode(&dst.RESTConnectionResponse)
 	if err == nil {
@@ -77,6 +127,8 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ADConnectionResponse = nil
+		dst.ADSIConnectionResponse = nil
+		dst.DBConnectionResponse = nil
 		dst.RESTConnectionResponse = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(GetConnectionDetailsResponse)")
@@ -91,6 +143,14 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 	if src.ADConnectionResponse != nil {
 		return json.Marshal(&src.ADConnectionResponse)
+	}
+
+	if src.ADSIConnectionResponse != nil {
+		return json.Marshal(&src.ADSIConnectionResponse)
+	}
+
+	if src.DBConnectionResponse != nil {
+		return json.Marshal(&src.DBConnectionResponse)
 	}
 
 	if src.RESTConnectionResponse != nil {
@@ -109,6 +169,14 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 		return obj.ADConnectionResponse
 	}
 
+	if obj.ADSIConnectionResponse != nil {
+		return obj.ADSIConnectionResponse
+	}
+
+	if obj.DBConnectionResponse != nil {
+		return obj.DBConnectionResponse
+	}
+
 	if obj.RESTConnectionResponse != nil {
 		return obj.RESTConnectionResponse
 	}
@@ -121,6 +189,14 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 func (obj GetConnectionDetailsResponse) GetActualInstanceValue() interface{} {
 	if obj.ADConnectionResponse != nil {
 		return *obj.ADConnectionResponse
+	}
+
+	if obj.ADSIConnectionResponse != nil {
+		return *obj.ADSIConnectionResponse
+	}
+
+	if obj.DBConnectionResponse != nil {
+		return *obj.DBConnectionResponse
 	}
 
 	if obj.RESTConnectionResponse != nil {
