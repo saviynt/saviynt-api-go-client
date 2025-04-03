@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**URL** | Pointer to **string** | Host Name for connection | [optional] 
+**ConnectionType** | Pointer to **string** | Connection type | [optional] 
 **LAST_IMPORT_TIME** | Pointer to **string** | Timestamp of the last import operation. | [optional] 
 **CREATEACCOUNTJSON** | Pointer to **string** | JSON template for creating an account. | [optional] 
 **DISABLEACCOUNTJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for disabling an active account. | [optional] 
 **GroupSearchBaseDN** | Pointer to **string** | Base DN for group search in LDAP. | [optional] 
-**ASSWORD_NOOFSPLCHARS** | Pointer to **string** | Number of special characters in password. | [optional] 
+**PASSWORD_NOOFSPLCHARS** | Pointer to **string** | Number of special characters in password. | [optional] 
 **PASSWORD_NOOFDIGITS** | Pointer to **string** | Specify the Number of digits required for the random password. | [optional] 
-**ConnectionType** | Pointer to **string** | Type of connection, e.g., MS_BASED_CONNECTOR. | [optional] 
 **STATUSKEYJSON** | Pointer to **string** | JSON configuration for account statuses. | [optional] 
 **SEARCHFILTER** | Pointer to **string** | LDAP search filter. | [optional] 
 **ConfigJSON** | Pointer to **string** | We can use this attribute to define the connectionTimeoutConfig. | [optional] 
@@ -40,6 +41,7 @@ Name | Type | Description | Notes
 **STATUS_THRESHOLD_CONFIG** | Pointer to **string** | JSON configuration for account status thresholds. | [optional] 
 **RESETANDCHANGEPASSWRDJSON** | Pointer to **string** | JSON actions for password reset/change. | [optional] 
 **SUPPORTEMPTYSTRING** | Pointer to **string** | Set to TRUE to send an empty value or null string during provisioning. | [optional] 
+**READ_OPERATIONAL_ATTRIBUTES** | Pointer to **string** | Set to TRUE to send an empty value or null string during provisioning. | [optional] 
 **ENABLEACCOUNTJSON** | Pointer to **string** | JSON configuration to enable account actions. | [optional] 
 **USER_ATTRIBUTE** | Pointer to **string** | Map LDAP user attribute to EIC user attribute for import. | [optional] 
 **DEFAULT_USER_ROLE** | Pointer to **string** | Default SAV Role to be assigned to all the new users imported via User Import. | [optional] 
@@ -52,7 +54,6 @@ Name | Type | Description | Notes
 **UPDATEUSERJSON** | Pointer to **string** | JSON template for updating user attributes. | [optional] 
 **Saveconnection** | Pointer to **string** | Flag to save connection permanently. | [optional] 
 **Systemname** | Pointer to **string** | Associated system name. | [optional] 
-**PASSWORD_NOOFSPLCHARS** | Pointer to **string** | Number of special characters in password. | [optional] 
 **GroupImportMapping** | Pointer to **string** | Mapping for importing groups. | [optional] 
 **UNLOCKACCOUNTJSON** | Pointer to **string** | JSON template for unlocking accounts. | [optional] 
 **ENABLEGROUPMANAGEMENT** | Pointer to **string** | Specify TRUE to enable Group Management for AD. | [optional] 
@@ -85,6 +86,56 @@ will change when the set of required properties is changed
 NewADConnectionAttributesWithDefaults instantiates a new ADConnectionAttributes object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetURL
+
+`func (o *ADConnectionAttributes) GetURL() string`
+
+GetURL returns the URL field if non-nil, zero value otherwise.
+
+### GetURLOk
+
+`func (o *ADConnectionAttributes) GetURLOk() (*string, bool)`
+
+GetURLOk returns a tuple with the URL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetURL
+
+`func (o *ADConnectionAttributes) SetURL(v string)`
+
+SetURL sets URL field to given value.
+
+### HasURL
+
+`func (o *ADConnectionAttributes) HasURL() bool`
+
+HasURL returns a boolean if a field has been set.
+
+### GetConnectionType
+
+`func (o *ADConnectionAttributes) GetConnectionType() string`
+
+GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
+
+### GetConnectionTypeOk
+
+`func (o *ADConnectionAttributes) GetConnectionTypeOk() (*string, bool)`
+
+GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnectionType
+
+`func (o *ADConnectionAttributes) SetConnectionType(v string)`
+
+SetConnectionType sets ConnectionType field to given value.
+
+### HasConnectionType
+
+`func (o *ADConnectionAttributes) HasConnectionType() bool`
+
+HasConnectionType returns a boolean if a field has been set.
 
 ### GetLAST_IMPORT_TIME
 
@@ -186,30 +237,30 @@ SetGroupSearchBaseDN sets GroupSearchBaseDN field to given value.
 
 HasGroupSearchBaseDN returns a boolean if a field has been set.
 
-### GetASSWORD_NOOFSPLCHARS
+### GetPASSWORD_NOOFSPLCHARS
 
-`func (o *ADConnectionAttributes) GetASSWORD_NOOFSPLCHARS() string`
+`func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARS() string`
 
-GetASSWORD_NOOFSPLCHARS returns the ASSWORD_NOOFSPLCHARS field if non-nil, zero value otherwise.
+GetPASSWORD_NOOFSPLCHARS returns the PASSWORD_NOOFSPLCHARS field if non-nil, zero value otherwise.
 
-### GetASSWORD_NOOFSPLCHARSOk
+### GetPASSWORD_NOOFSPLCHARSOk
 
-`func (o *ADConnectionAttributes) GetASSWORD_NOOFSPLCHARSOk() (*string, bool)`
+`func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARSOk() (*string, bool)`
 
-GetASSWORD_NOOFSPLCHARSOk returns a tuple with the ASSWORD_NOOFSPLCHARS field if it's non-nil, zero value otherwise
+GetPASSWORD_NOOFSPLCHARSOk returns a tuple with the PASSWORD_NOOFSPLCHARS field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetASSWORD_NOOFSPLCHARS
+### SetPASSWORD_NOOFSPLCHARS
 
-`func (o *ADConnectionAttributes) SetASSWORD_NOOFSPLCHARS(v string)`
+`func (o *ADConnectionAttributes) SetPASSWORD_NOOFSPLCHARS(v string)`
 
-SetASSWORD_NOOFSPLCHARS sets ASSWORD_NOOFSPLCHARS field to given value.
+SetPASSWORD_NOOFSPLCHARS sets PASSWORD_NOOFSPLCHARS field to given value.
 
-### HasASSWORD_NOOFSPLCHARS
+### HasPASSWORD_NOOFSPLCHARS
 
-`func (o *ADConnectionAttributes) HasASSWORD_NOOFSPLCHARS() bool`
+`func (o *ADConnectionAttributes) HasPASSWORD_NOOFSPLCHARS() bool`
 
-HasASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
+HasPASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
 
 ### GetPASSWORD_NOOFDIGITS
 
@@ -235,31 +286,6 @@ SetPASSWORD_NOOFDIGITS sets PASSWORD_NOOFDIGITS field to given value.
 `func (o *ADConnectionAttributes) HasPASSWORD_NOOFDIGITS() bool`
 
 HasPASSWORD_NOOFDIGITS returns a boolean if a field has been set.
-
-### GetConnectionType
-
-`func (o *ADConnectionAttributes) GetConnectionType() string`
-
-GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
-
-### GetConnectionTypeOk
-
-`func (o *ADConnectionAttributes) GetConnectionTypeOk() (*string, bool)`
-
-GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConnectionType
-
-`func (o *ADConnectionAttributes) SetConnectionType(v string)`
-
-SetConnectionType sets ConnectionType field to given value.
-
-### HasConnectionType
-
-`func (o *ADConnectionAttributes) HasConnectionType() bool`
-
-HasConnectionType returns a boolean if a field has been set.
 
 ### GetSTATUSKEYJSON
 
@@ -986,6 +1012,31 @@ SetSUPPORTEMPTYSTRING sets SUPPORTEMPTYSTRING field to given value.
 
 HasSUPPORTEMPTYSTRING returns a boolean if a field has been set.
 
+### GetREAD_OPERATIONAL_ATTRIBUTES
+
+`func (o *ADConnectionAttributes) GetREAD_OPERATIONAL_ATTRIBUTES() string`
+
+GetREAD_OPERATIONAL_ATTRIBUTES returns the READ_OPERATIONAL_ATTRIBUTES field if non-nil, zero value otherwise.
+
+### GetREAD_OPERATIONAL_ATTRIBUTESOk
+
+`func (o *ADConnectionAttributes) GetREAD_OPERATIONAL_ATTRIBUTESOk() (*string, bool)`
+
+GetREAD_OPERATIONAL_ATTRIBUTESOk returns a tuple with the READ_OPERATIONAL_ATTRIBUTES field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetREAD_OPERATIONAL_ATTRIBUTES
+
+`func (o *ADConnectionAttributes) SetREAD_OPERATIONAL_ATTRIBUTES(v string)`
+
+SetREAD_OPERATIONAL_ATTRIBUTES sets READ_OPERATIONAL_ATTRIBUTES field to given value.
+
+### HasREAD_OPERATIONAL_ATTRIBUTES
+
+`func (o *ADConnectionAttributes) HasREAD_OPERATIONAL_ATTRIBUTES() bool`
+
+HasREAD_OPERATIONAL_ATTRIBUTES returns a boolean if a field has been set.
+
 ### GetENABLEACCOUNTJSON
 
 `func (o *ADConnectionAttributes) GetENABLEACCOUNTJSON() string`
@@ -1285,31 +1336,6 @@ SetSystemname sets Systemname field to given value.
 `func (o *ADConnectionAttributes) HasSystemname() bool`
 
 HasSystemname returns a boolean if a field has been set.
-
-### GetPASSWORD_NOOFSPLCHARS
-
-`func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARS() string`
-
-GetPASSWORD_NOOFSPLCHARS returns the PASSWORD_NOOFSPLCHARS field if non-nil, zero value otherwise.
-
-### GetPASSWORD_NOOFSPLCHARSOk
-
-`func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARSOk() (*string, bool)`
-
-GetPASSWORD_NOOFSPLCHARSOk returns a tuple with the PASSWORD_NOOFSPLCHARS field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPASSWORD_NOOFSPLCHARS
-
-`func (o *ADConnectionAttributes) SetPASSWORD_NOOFSPLCHARS(v string)`
-
-SetPASSWORD_NOOFSPLCHARS sets PASSWORD_NOOFSPLCHARS field to given value.
-
-### HasPASSWORD_NOOFSPLCHARS
-
-`func (o *ADConnectionAttributes) HasPASSWORD_NOOFSPLCHARS() bool`
-
-HasPASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
 
 ### GetGroupImportMapping
 

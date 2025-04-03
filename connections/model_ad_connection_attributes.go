@@ -19,6 +19,10 @@ var _ MappedNullable = &ADConnectionAttributes{}
 
 // ADConnectionAttributes struct for ADConnectionAttributes
 type ADConnectionAttributes struct {
+	// Host Name for connection
+	URL *string `json:"URL,omitempty"`
+	// Connection type
+	ConnectionType *string `json:"connectionType,omitempty"`
 	// Timestamp of the last import operation.
 	LAST_IMPORT_TIME *string `json:"LAST_IMPORT_TIME,omitempty"`
 	// JSON template for creating an account.
@@ -28,11 +32,9 @@ type ADConnectionAttributes struct {
 	// Base DN for group search in LDAP.
 	GroupSearchBaseDN *string `json:"groupSearchBaseDN,omitempty"`
 	// Number of special characters in password.
-	ASSWORD_NOOFSPLCHARS *string `json:"ASSWORD_NOOFSPLCHARS,omitempty"`
+	PASSWORD_NOOFSPLCHARS *string `json:"PASSWORD_NOOFSPLCHARS,omitempty"`
 	// Specify the Number of digits required for the random password.
 	PASSWORD_NOOFDIGITS *string `json:"PASSWORD_NOOFDIGITS,omitempty"`
-	// Type of connection, e.g., MS_BASED_CONNECTOR.
-	ConnectionType *string `json:"connectionType,omitempty"`
 	// JSON configuration for account statuses.
 	STATUSKEYJSON *string `json:"STATUSKEYJSON,omitempty"`
 	// LDAP search filter.
@@ -91,6 +93,8 @@ type ADConnectionAttributes struct {
 	RESETANDCHANGEPASSWRDJSON *string `json:"RESETANDCHANGEPASSWRDJSON,omitempty"`
 	// Set to TRUE to send an empty value or null string during provisioning.
 	SUPPORTEMPTYSTRING *string `json:"SUPPORTEMPTYSTRING,omitempty"`
+	// Set to TRUE to send an empty value or null string during provisioning.
+	READ_OPERATIONAL_ATTRIBUTES *string `json:"READ_OPERATIONAL_ATTRIBUTES,omitempty"`
 	// JSON configuration to enable account actions.
 	ENABLEACCOUNTJSON *string `json:"ENABLEACCOUNTJSON,omitempty"`
 	// Map LDAP user attribute to EIC user attribute for import.
@@ -115,8 +119,6 @@ type ADConnectionAttributes struct {
 	Saveconnection *string `json:"saveconnection,omitempty"`
 	// Associated system name.
 	Systemname *string `json:"systemname,omitempty"`
-	// Number of special characters in password.
-	PASSWORD_NOOFSPLCHARS *string `json:"PASSWORD_NOOFSPLCHARS,omitempty"`
 	// Mapping for importing groups.
 	GroupImportMapping *string `json:"groupImportMapping,omitempty"`
 	// JSON template for unlocking accounts.
@@ -159,6 +161,70 @@ func NewADConnectionAttributes() *ADConnectionAttributes {
 func NewADConnectionAttributesWithDefaults() *ADConnectionAttributes {
 	this := ADConnectionAttributes{}
 	return &this
+}
+
+// GetURL returns the URL field value if set, zero value otherwise.
+func (o *ADConnectionAttributes) GetURL() string {
+	if o == nil || IsNil(o.URL) {
+		var ret string
+		return ret
+	}
+	return *o.URL
+}
+
+// GetURLOk returns a tuple with the URL field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ADConnectionAttributes) GetURLOk() (*string, bool) {
+	if o == nil || IsNil(o.URL) {
+		return nil, false
+	}
+	return o.URL, true
+}
+
+// HasURL returns a boolean if a field has been set.
+func (o *ADConnectionAttributes) HasURL() bool {
+	if o != nil && !IsNil(o.URL) {
+		return true
+	}
+
+	return false
+}
+
+// SetURL gets a reference to the given string and assigns it to the URL field.
+func (o *ADConnectionAttributes) SetURL(v string) {
+	o.URL = &v
+}
+
+// GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
+func (o *ADConnectionAttributes) GetConnectionType() string {
+	if o == nil || IsNil(o.ConnectionType) {
+		var ret string
+		return ret
+	}
+	return *o.ConnectionType
+}
+
+// GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ADConnectionAttributes) GetConnectionTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ConnectionType) {
+		return nil, false
+	}
+	return o.ConnectionType, true
+}
+
+// HasConnectionType returns a boolean if a field has been set.
+func (o *ADConnectionAttributes) HasConnectionType() bool {
+	if o != nil && !IsNil(o.ConnectionType) {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionType gets a reference to the given string and assigns it to the ConnectionType field.
+func (o *ADConnectionAttributes) SetConnectionType(v string) {
+	o.ConnectionType = &v
 }
 
 // GetLAST_IMPORT_TIME returns the LAST_IMPORT_TIME field value if set, zero value otherwise.
@@ -289,36 +355,36 @@ func (o *ADConnectionAttributes) SetGroupSearchBaseDN(v string) {
 	o.GroupSearchBaseDN = &v
 }
 
-// GetASSWORD_NOOFSPLCHARS returns the ASSWORD_NOOFSPLCHARS field value if set, zero value otherwise.
-func (o *ADConnectionAttributes) GetASSWORD_NOOFSPLCHARS() string {
-	if o == nil || IsNil(o.ASSWORD_NOOFSPLCHARS) {
+// GetPASSWORD_NOOFSPLCHARS returns the PASSWORD_NOOFSPLCHARS field value if set, zero value otherwise.
+func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARS() string {
+	if o == nil || IsNil(o.PASSWORD_NOOFSPLCHARS) {
 		var ret string
 		return ret
 	}
-	return *o.ASSWORD_NOOFSPLCHARS
+	return *o.PASSWORD_NOOFSPLCHARS
 }
 
-// GetASSWORD_NOOFSPLCHARSOk returns a tuple with the ASSWORD_NOOFSPLCHARS field value if set, nil otherwise
+// GetPASSWORD_NOOFSPLCHARSOk returns a tuple with the PASSWORD_NOOFSPLCHARS field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ADConnectionAttributes) GetASSWORD_NOOFSPLCHARSOk() (*string, bool) {
-	if o == nil || IsNil(o.ASSWORD_NOOFSPLCHARS) {
+func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARSOk() (*string, bool) {
+	if o == nil || IsNil(o.PASSWORD_NOOFSPLCHARS) {
 		return nil, false
 	}
-	return o.ASSWORD_NOOFSPLCHARS, true
+	return o.PASSWORD_NOOFSPLCHARS, true
 }
 
-// HasASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
-func (o *ADConnectionAttributes) HasASSWORD_NOOFSPLCHARS() bool {
-	if o != nil && !IsNil(o.ASSWORD_NOOFSPLCHARS) {
+// HasPASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
+func (o *ADConnectionAttributes) HasPASSWORD_NOOFSPLCHARS() bool {
+	if o != nil && !IsNil(o.PASSWORD_NOOFSPLCHARS) {
 		return true
 	}
 
 	return false
 }
 
-// SetASSWORD_NOOFSPLCHARS gets a reference to the given string and assigns it to the ASSWORD_NOOFSPLCHARS field.
-func (o *ADConnectionAttributes) SetASSWORD_NOOFSPLCHARS(v string) {
-	o.ASSWORD_NOOFSPLCHARS = &v
+// SetPASSWORD_NOOFSPLCHARS gets a reference to the given string and assigns it to the PASSWORD_NOOFSPLCHARS field.
+func (o *ADConnectionAttributes) SetPASSWORD_NOOFSPLCHARS(v string) {
+	o.PASSWORD_NOOFSPLCHARS = &v
 }
 
 // GetPASSWORD_NOOFDIGITS returns the PASSWORD_NOOFDIGITS field value if set, zero value otherwise.
@@ -351,38 +417,6 @@ func (o *ADConnectionAttributes) HasPASSWORD_NOOFDIGITS() bool {
 // SetPASSWORD_NOOFDIGITS gets a reference to the given string and assigns it to the PASSWORD_NOOFDIGITS field.
 func (o *ADConnectionAttributes) SetPASSWORD_NOOFDIGITS(v string) {
 	o.PASSWORD_NOOFDIGITS = &v
-}
-
-// GetConnectionType returns the ConnectionType field value if set, zero value otherwise.
-func (o *ADConnectionAttributes) GetConnectionType() string {
-	if o == nil || IsNil(o.ConnectionType) {
-		var ret string
-		return ret
-	}
-	return *o.ConnectionType
-}
-
-// GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADConnectionAttributes) GetConnectionTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.ConnectionType) {
-		return nil, false
-	}
-	return o.ConnectionType, true
-}
-
-// HasConnectionType returns a boolean if a field has been set.
-func (o *ADConnectionAttributes) HasConnectionType() bool {
-	if o != nil && !IsNil(o.ConnectionType) {
-		return true
-	}
-
-	return false
-}
-
-// SetConnectionType gets a reference to the given string and assigns it to the ConnectionType field.
-func (o *ADConnectionAttributes) SetConnectionType(v string) {
-	o.ConnectionType = &v
 }
 
 // GetSTATUSKEYJSON returns the STATUSKEYJSON field value if set, zero value otherwise.
@@ -1313,6 +1347,38 @@ func (o *ADConnectionAttributes) SetSUPPORTEMPTYSTRING(v string) {
 	o.SUPPORTEMPTYSTRING = &v
 }
 
+// GetREAD_OPERATIONAL_ATTRIBUTES returns the READ_OPERATIONAL_ATTRIBUTES field value if set, zero value otherwise.
+func (o *ADConnectionAttributes) GetREAD_OPERATIONAL_ATTRIBUTES() string {
+	if o == nil || IsNil(o.READ_OPERATIONAL_ATTRIBUTES) {
+		var ret string
+		return ret
+	}
+	return *o.READ_OPERATIONAL_ATTRIBUTES
+}
+
+// GetREAD_OPERATIONAL_ATTRIBUTESOk returns a tuple with the READ_OPERATIONAL_ATTRIBUTES field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ADConnectionAttributes) GetREAD_OPERATIONAL_ATTRIBUTESOk() (*string, bool) {
+	if o == nil || IsNil(o.READ_OPERATIONAL_ATTRIBUTES) {
+		return nil, false
+	}
+	return o.READ_OPERATIONAL_ATTRIBUTES, true
+}
+
+// HasREAD_OPERATIONAL_ATTRIBUTES returns a boolean if a field has been set.
+func (o *ADConnectionAttributes) HasREAD_OPERATIONAL_ATTRIBUTES() bool {
+	if o != nil && !IsNil(o.READ_OPERATIONAL_ATTRIBUTES) {
+		return true
+	}
+
+	return false
+}
+
+// SetREAD_OPERATIONAL_ATTRIBUTES gets a reference to the given string and assigns it to the READ_OPERATIONAL_ATTRIBUTES field.
+func (o *ADConnectionAttributes) SetREAD_OPERATIONAL_ATTRIBUTES(v string) {
+	o.READ_OPERATIONAL_ATTRIBUTES = &v
+}
+
 // GetENABLEACCOUNTJSON returns the ENABLEACCOUNTJSON field value if set, zero value otherwise.
 func (o *ADConnectionAttributes) GetENABLEACCOUNTJSON() string {
 	if o == nil || IsNil(o.ENABLEACCOUNTJSON) {
@@ -1695,38 +1761,6 @@ func (o *ADConnectionAttributes) HasSystemname() bool {
 // SetSystemname gets a reference to the given string and assigns it to the Systemname field.
 func (o *ADConnectionAttributes) SetSystemname(v string) {
 	o.Systemname = &v
-}
-
-// GetPASSWORD_NOOFSPLCHARS returns the PASSWORD_NOOFSPLCHARS field value if set, zero value otherwise.
-func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARS() string {
-	if o == nil || IsNil(o.PASSWORD_NOOFSPLCHARS) {
-		var ret string
-		return ret
-	}
-	return *o.PASSWORD_NOOFSPLCHARS
-}
-
-// GetPASSWORD_NOOFSPLCHARSOk returns a tuple with the PASSWORD_NOOFSPLCHARS field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ADConnectionAttributes) GetPASSWORD_NOOFSPLCHARSOk() (*string, bool) {
-	if o == nil || IsNil(o.PASSWORD_NOOFSPLCHARS) {
-		return nil, false
-	}
-	return o.PASSWORD_NOOFSPLCHARS, true
-}
-
-// HasPASSWORD_NOOFSPLCHARS returns a boolean if a field has been set.
-func (o *ADConnectionAttributes) HasPASSWORD_NOOFSPLCHARS() bool {
-	if o != nil && !IsNil(o.PASSWORD_NOOFSPLCHARS) {
-		return true
-	}
-
-	return false
-}
-
-// SetPASSWORD_NOOFSPLCHARS gets a reference to the given string and assigns it to the PASSWORD_NOOFSPLCHARS field.
-func (o *ADConnectionAttributes) SetPASSWORD_NOOFSPLCHARS(v string) {
-	o.PASSWORD_NOOFSPLCHARS = &v
 }
 
 // GetGroupImportMapping returns the GroupImportMapping field value if set, zero value otherwise.
@@ -2155,6 +2189,12 @@ func (o ADConnectionAttributes) MarshalJSON() ([]byte, error) {
 
 func (o ADConnectionAttributes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.URL) {
+		toSerialize["URL"] = o.URL
+	}
+	if !IsNil(o.ConnectionType) {
+		toSerialize["connectionType"] = o.ConnectionType
+	}
 	if !IsNil(o.LAST_IMPORT_TIME) {
 		toSerialize["LAST_IMPORT_TIME"] = o.LAST_IMPORT_TIME
 	}
@@ -2167,14 +2207,11 @@ func (o ADConnectionAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.GroupSearchBaseDN) {
 		toSerialize["groupSearchBaseDN"] = o.GroupSearchBaseDN
 	}
-	if !IsNil(o.ASSWORD_NOOFSPLCHARS) {
-		toSerialize["ASSWORD_NOOFSPLCHARS"] = o.ASSWORD_NOOFSPLCHARS
+	if !IsNil(o.PASSWORD_NOOFSPLCHARS) {
+		toSerialize["PASSWORD_NOOFSPLCHARS"] = o.PASSWORD_NOOFSPLCHARS
 	}
 	if !IsNil(o.PASSWORD_NOOFDIGITS) {
 		toSerialize["PASSWORD_NOOFDIGITS"] = o.PASSWORD_NOOFDIGITS
-	}
-	if !IsNil(o.ConnectionType) {
-		toSerialize["connectionType"] = o.ConnectionType
 	}
 	if !IsNil(o.STATUSKEYJSON) {
 		toSerialize["STATUSKEYJSON"] = o.STATUSKEYJSON
@@ -2263,6 +2300,9 @@ func (o ADConnectionAttributes) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SUPPORTEMPTYSTRING) {
 		toSerialize["SUPPORTEMPTYSTRING"] = o.SUPPORTEMPTYSTRING
 	}
+	if !IsNil(o.READ_OPERATIONAL_ATTRIBUTES) {
+		toSerialize["READ_OPERATIONAL_ATTRIBUTES"] = o.READ_OPERATIONAL_ATTRIBUTES
+	}
 	if !IsNil(o.ENABLEACCOUNTJSON) {
 		toSerialize["ENABLEACCOUNTJSON"] = o.ENABLEACCOUNTJSON
 	}
@@ -2298,9 +2338,6 @@ func (o ADConnectionAttributes) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Systemname) {
 		toSerialize["systemname"] = o.Systemname
-	}
-	if !IsNil(o.PASSWORD_NOOFSPLCHARS) {
-		toSerialize["PASSWORD_NOOFSPLCHARS"] = o.PASSWORD_NOOFSPLCHARS
 	}
 	if !IsNil(o.GroupImportMapping) {
 		toSerialize["groupImportMapping"] = o.GroupImportMapping

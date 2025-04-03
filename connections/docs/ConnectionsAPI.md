@@ -76,7 +76,7 @@ No authorization required
 
 ## GetConnectionDetails
 
-> GetConnectionDetails GetConnectionDetails(ctx).Connectionname(connectionname).Connectionkey(connectionkey).Execute()
+> GetConnectionDetailsResponse GetConnectionDetails(ctx).GetConnectionDetailsRequest(getConnectionDetailsRequest).Execute()
 
 Get connection details
 
@@ -93,17 +93,16 @@ import (
 )
 
 func main() {
-	connectionname := "connectionname_example" // string | Name of the connection (optional)
-	connectionkey := "connectionkey_example" // string | Connection key (optional)
+	getConnectionDetailsRequest := *openapiclient.NewGetConnectionDetailsRequest() // GetConnectionDetailsRequest | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Connectionname(connectionname).Connectionkey(connectionkey).Execute()
+	resp, r, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).GetConnectionDetailsRequest(getConnectionDetailsRequest).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.GetConnectionDetails``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `GetConnectionDetails`: GetConnectionDetails
+	// response from `GetConnectionDetails`: GetConnectionDetailsResponse
 	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.GetConnectionDetails`: %v\n", resp)
 }
 ```
@@ -119,12 +118,11 @@ Other parameters are passed through a pointer to a apiGetConnectionDetailsReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **connectionname** | **string** | Name of the connection | 
- **connectionkey** | **string** | Connection key | 
+ **getConnectionDetailsRequest** | [**GetConnectionDetailsRequest**](GetConnectionDetailsRequest.md) |  | 
 
 ### Return type
 
-[**GetConnectionDetails**](GetConnectionDetails.md)
+[**GetConnectionDetailsResponse**](GetConnectionDetailsResponse.md)
 
 ### Authorization
 
@@ -132,7 +130,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

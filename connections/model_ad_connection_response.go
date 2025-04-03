@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the GetConnectionDetails type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &GetConnectionDetails{}
+// checks if the ADConnectionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ADConnectionResponse{}
 
-// GetConnectionDetails struct for GetConnectionDetails
-type GetConnectionDetails struct {
+// ADConnectionResponse struct for ADConnectionResponse
+type ADConnectionResponse struct {
 	// API response message
 	Msg *string `json:"msg,omitempty"`
 	// Email template for the connection
@@ -38,30 +38,31 @@ type GetConnectionDetails struct {
 	// Creator account for the connection
 	Createdby *string `json:"createdby,omitempty"`
 	// Error code
-	Errorcode       *int32  `json:"errorcode,omitempty"`
-	Status          *int32  `json:"status,omitempty"`
-	Defaultsavroles *string `json:"defaultsavroles,omitempty"`
+	Errorcode            *int32                  `json:"errorcode,omitempty"`
+	Status               *int32                  `json:"status,omitempty"`
+	Defaultsavroles      *string                 `json:"defaultsavroles,omitempty"`
+	Connectionattributes *ADConnectionAttributes `json:"connectionattributes,omitempty"`
 }
 
-// NewGetConnectionDetails instantiates a new GetConnectionDetails object
+// NewADConnectionResponse instantiates a new ADConnectionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetConnectionDetails() *GetConnectionDetails {
-	this := GetConnectionDetails{}
+func NewADConnectionResponse() *ADConnectionResponse {
+	this := ADConnectionResponse{}
 	return &this
 }
 
-// NewGetConnectionDetailsWithDefaults instantiates a new GetConnectionDetails object
+// NewADConnectionResponseWithDefaults instantiates a new ADConnectionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetConnectionDetailsWithDefaults() *GetConnectionDetails {
-	this := GetConnectionDetails{}
+func NewADConnectionResponseWithDefaults() *ADConnectionResponse {
+	this := ADConnectionResponse{}
 	return &this
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetMsg() string {
+func (o *ADConnectionResponse) GetMsg() string {
 	if o == nil || IsNil(o.Msg) {
 		var ret string
 		return ret
@@ -71,7 +72,7 @@ func (o *GetConnectionDetails) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetMsgOk() (*string, bool) {
+func (o *ADConnectionResponse) GetMsgOk() (*string, bool) {
 	if o == nil || IsNil(o.Msg) {
 		return nil, false
 	}
@@ -79,7 +80,7 @@ func (o *GetConnectionDetails) GetMsgOk() (*string, bool) {
 }
 
 // HasMsg returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasMsg() bool {
+func (o *ADConnectionResponse) HasMsg() bool {
 	if o != nil && !IsNil(o.Msg) {
 		return true
 	}
@@ -88,12 +89,12 @@ func (o *GetConnectionDetails) HasMsg() bool {
 }
 
 // SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *GetConnectionDetails) SetMsg(v string) {
+func (o *ADConnectionResponse) SetMsg(v string) {
 	o.Msg = &v
 }
 
 // GetEmailtemplate returns the Emailtemplate field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetEmailtemplate() string {
+func (o *ADConnectionResponse) GetEmailtemplate() string {
 	if o == nil || IsNil(o.Emailtemplate) {
 		var ret string
 		return ret
@@ -103,7 +104,7 @@ func (o *GetConnectionDetails) GetEmailtemplate() string {
 
 // GetEmailtemplateOk returns a tuple with the Emailtemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetEmailtemplateOk() (*string, bool) {
+func (o *ADConnectionResponse) GetEmailtemplateOk() (*string, bool) {
 	if o == nil || IsNil(o.Emailtemplate) {
 		return nil, false
 	}
@@ -111,7 +112,7 @@ func (o *GetConnectionDetails) GetEmailtemplateOk() (*string, bool) {
 }
 
 // HasEmailtemplate returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasEmailtemplate() bool {
+func (o *ADConnectionResponse) HasEmailtemplate() bool {
 	if o != nil && !IsNil(o.Emailtemplate) {
 		return true
 	}
@@ -120,12 +121,12 @@ func (o *GetConnectionDetails) HasEmailtemplate() bool {
 }
 
 // SetEmailtemplate gets a reference to the given string and assigns it to the Emailtemplate field.
-func (o *GetConnectionDetails) SetEmailtemplate(v string) {
+func (o *ADConnectionResponse) SetEmailtemplate(v string) {
 	o.Emailtemplate = &v
 }
 
 // GetUpdatedby returns the Updatedby field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetUpdatedby() string {
+func (o *ADConnectionResponse) GetUpdatedby() string {
 	if o == nil || IsNil(o.Updatedby) {
 		var ret string
 		return ret
@@ -135,7 +136,7 @@ func (o *GetConnectionDetails) GetUpdatedby() string {
 
 // GetUpdatedbyOk returns a tuple with the Updatedby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetUpdatedbyOk() (*string, bool) {
+func (o *ADConnectionResponse) GetUpdatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Updatedby) {
 		return nil, false
 	}
@@ -143,7 +144,7 @@ func (o *GetConnectionDetails) GetUpdatedbyOk() (*string, bool) {
 }
 
 // HasUpdatedby returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasUpdatedby() bool {
+func (o *ADConnectionResponse) HasUpdatedby() bool {
 	if o != nil && !IsNil(o.Updatedby) {
 		return true
 	}
@@ -152,12 +153,12 @@ func (o *GetConnectionDetails) HasUpdatedby() bool {
 }
 
 // SetUpdatedby gets a reference to the given string and assigns it to the Updatedby field.
-func (o *GetConnectionDetails) SetUpdatedby(v string) {
+func (o *ADConnectionResponse) SetUpdatedby(v string) {
 	o.Updatedby = &v
 }
 
 // GetConnectionname returns the Connectionname field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetConnectionname() string {
+func (o *ADConnectionResponse) GetConnectionname() string {
 	if o == nil || IsNil(o.Connectionname) {
 		var ret string
 		return ret
@@ -167,7 +168,7 @@ func (o *GetConnectionDetails) GetConnectionname() string {
 
 // GetConnectionnameOk returns a tuple with the Connectionname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetConnectionnameOk() (*string, bool) {
+func (o *ADConnectionResponse) GetConnectionnameOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectionname) {
 		return nil, false
 	}
@@ -175,7 +176,7 @@ func (o *GetConnectionDetails) GetConnectionnameOk() (*string, bool) {
 }
 
 // HasConnectionname returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasConnectionname() bool {
+func (o *ADConnectionResponse) HasConnectionname() bool {
 	if o != nil && !IsNil(o.Connectionname) {
 		return true
 	}
@@ -184,12 +185,12 @@ func (o *GetConnectionDetails) HasConnectionname() bool {
 }
 
 // SetConnectionname gets a reference to the given string and assigns it to the Connectionname field.
-func (o *GetConnectionDetails) SetConnectionname(v string) {
+func (o *ADConnectionResponse) SetConnectionname(v string) {
 	o.Connectionname = &v
 }
 
 // GetConnectionkey returns the Connectionkey field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetConnectionkey() int32 {
+func (o *ADConnectionResponse) GetConnectionkey() int32 {
 	if o == nil || IsNil(o.Connectionkey) {
 		var ret int32
 		return ret
@@ -199,7 +200,7 @@ func (o *GetConnectionDetails) GetConnectionkey() int32 {
 
 // GetConnectionkeyOk returns a tuple with the Connectionkey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetConnectionkeyOk() (*int32, bool) {
+func (o *ADConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
 	if o == nil || IsNil(o.Connectionkey) {
 		return nil, false
 	}
@@ -207,7 +208,7 @@ func (o *GetConnectionDetails) GetConnectionkeyOk() (*int32, bool) {
 }
 
 // HasConnectionkey returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasConnectionkey() bool {
+func (o *ADConnectionResponse) HasConnectionkey() bool {
 	if o != nil && !IsNil(o.Connectionkey) {
 		return true
 	}
@@ -216,12 +217,12 @@ func (o *GetConnectionDetails) HasConnectionkey() bool {
 }
 
 // SetConnectionkey gets a reference to the given int32 and assigns it to the Connectionkey field.
-func (o *GetConnectionDetails) SetConnectionkey(v int32) {
+func (o *ADConnectionResponse) SetConnectionkey(v int32) {
 	o.Connectionkey = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetDescription() string {
+func (o *ADConnectionResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -231,7 +232,7 @@ func (o *GetConnectionDetails) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetDescriptionOk() (*string, bool) {
+func (o *ADConnectionResponse) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -239,7 +240,7 @@ func (o *GetConnectionDetails) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasDescription() bool {
+func (o *ADConnectionResponse) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -248,12 +249,12 @@ func (o *GetConnectionDetails) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *GetConnectionDetails) SetDescription(v string) {
+func (o *ADConnectionResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetConnectiontype returns the Connectiontype field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetConnectiontype() string {
+func (o *ADConnectionResponse) GetConnectiontype() string {
 	if o == nil || IsNil(o.Connectiontype) {
 		var ret string
 		return ret
@@ -263,7 +264,7 @@ func (o *GetConnectionDetails) GetConnectiontype() string {
 
 // GetConnectiontypeOk returns a tuple with the Connectiontype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetConnectiontypeOk() (*string, bool) {
+func (o *ADConnectionResponse) GetConnectiontypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectiontype) {
 		return nil, false
 	}
@@ -271,7 +272,7 @@ func (o *GetConnectionDetails) GetConnectiontypeOk() (*string, bool) {
 }
 
 // HasConnectiontype returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasConnectiontype() bool {
+func (o *ADConnectionResponse) HasConnectiontype() bool {
 	if o != nil && !IsNil(o.Connectiontype) {
 		return true
 	}
@@ -280,12 +281,12 @@ func (o *GetConnectionDetails) HasConnectiontype() bool {
 }
 
 // SetConnectiontype gets a reference to the given string and assigns it to the Connectiontype field.
-func (o *GetConnectionDetails) SetConnectiontype(v string) {
+func (o *ADConnectionResponse) SetConnectiontype(v string) {
 	o.Connectiontype = &v
 }
 
 // GetCreatedon returns the Createdon field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetCreatedon() string {
+func (o *ADConnectionResponse) GetCreatedon() string {
 	if o == nil || IsNil(o.Createdon) {
 		var ret string
 		return ret
@@ -295,7 +296,7 @@ func (o *GetConnectionDetails) GetCreatedon() string {
 
 // GetCreatedonOk returns a tuple with the Createdon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetCreatedonOk() (*string, bool) {
+func (o *ADConnectionResponse) GetCreatedonOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdon) {
 		return nil, false
 	}
@@ -303,7 +304,7 @@ func (o *GetConnectionDetails) GetCreatedonOk() (*string, bool) {
 }
 
 // HasCreatedon returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasCreatedon() bool {
+func (o *ADConnectionResponse) HasCreatedon() bool {
 	if o != nil && !IsNil(o.Createdon) {
 		return true
 	}
@@ -312,12 +313,12 @@ func (o *GetConnectionDetails) HasCreatedon() bool {
 }
 
 // SetCreatedon gets a reference to the given string and assigns it to the Createdon field.
-func (o *GetConnectionDetails) SetCreatedon(v string) {
+func (o *ADConnectionResponse) SetCreatedon(v string) {
 	o.Createdon = &v
 }
 
 // GetCreatedby returns the Createdby field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetCreatedby() string {
+func (o *ADConnectionResponse) GetCreatedby() string {
 	if o == nil || IsNil(o.Createdby) {
 		var ret string
 		return ret
@@ -327,7 +328,7 @@ func (o *GetConnectionDetails) GetCreatedby() string {
 
 // GetCreatedbyOk returns a tuple with the Createdby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetCreatedbyOk() (*string, bool) {
+func (o *ADConnectionResponse) GetCreatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdby) {
 		return nil, false
 	}
@@ -335,7 +336,7 @@ func (o *GetConnectionDetails) GetCreatedbyOk() (*string, bool) {
 }
 
 // HasCreatedby returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasCreatedby() bool {
+func (o *ADConnectionResponse) HasCreatedby() bool {
 	if o != nil && !IsNil(o.Createdby) {
 		return true
 	}
@@ -344,12 +345,12 @@ func (o *GetConnectionDetails) HasCreatedby() bool {
 }
 
 // SetCreatedby gets a reference to the given string and assigns it to the Createdby field.
-func (o *GetConnectionDetails) SetCreatedby(v string) {
+func (o *ADConnectionResponse) SetCreatedby(v string) {
 	o.Createdby = &v
 }
 
 // GetErrorcode returns the Errorcode field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetErrorcode() int32 {
+func (o *ADConnectionResponse) GetErrorcode() int32 {
 	if o == nil || IsNil(o.Errorcode) {
 		var ret int32
 		return ret
@@ -359,7 +360,7 @@ func (o *GetConnectionDetails) GetErrorcode() int32 {
 
 // GetErrorcodeOk returns a tuple with the Errorcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetErrorcodeOk() (*int32, bool) {
+func (o *ADConnectionResponse) GetErrorcodeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Errorcode) {
 		return nil, false
 	}
@@ -367,7 +368,7 @@ func (o *GetConnectionDetails) GetErrorcodeOk() (*int32, bool) {
 }
 
 // HasErrorcode returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasErrorcode() bool {
+func (o *ADConnectionResponse) HasErrorcode() bool {
 	if o != nil && !IsNil(o.Errorcode) {
 		return true
 	}
@@ -376,12 +377,12 @@ func (o *GetConnectionDetails) HasErrorcode() bool {
 }
 
 // SetErrorcode gets a reference to the given int32 and assigns it to the Errorcode field.
-func (o *GetConnectionDetails) SetErrorcode(v int32) {
+func (o *ADConnectionResponse) SetErrorcode(v int32) {
 	o.Errorcode = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetStatus() int32 {
+func (o *ADConnectionResponse) GetStatus() int32 {
 	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
@@ -391,7 +392,7 @@ func (o *GetConnectionDetails) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetStatusOk() (*int32, bool) {
+func (o *ADConnectionResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -399,7 +400,7 @@ func (o *GetConnectionDetails) GetStatusOk() (*int32, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasStatus() bool {
+func (o *ADConnectionResponse) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -408,12 +409,12 @@ func (o *GetConnectionDetails) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *GetConnectionDetails) SetStatus(v int32) {
+func (o *ADConnectionResponse) SetStatus(v int32) {
 	o.Status = &v
 }
 
 // GetDefaultsavroles returns the Defaultsavroles field value if set, zero value otherwise.
-func (o *GetConnectionDetails) GetDefaultsavroles() string {
+func (o *ADConnectionResponse) GetDefaultsavroles() string {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		var ret string
 		return ret
@@ -423,7 +424,7 @@ func (o *GetConnectionDetails) GetDefaultsavroles() string {
 
 // GetDefaultsavrolesOk returns a tuple with the Defaultsavroles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetConnectionDetails) GetDefaultsavrolesOk() (*string, bool) {
+func (o *ADConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		return nil, false
 	}
@@ -431,7 +432,7 @@ func (o *GetConnectionDetails) GetDefaultsavrolesOk() (*string, bool) {
 }
 
 // HasDefaultsavroles returns a boolean if a field has been set.
-func (o *GetConnectionDetails) HasDefaultsavroles() bool {
+func (o *ADConnectionResponse) HasDefaultsavroles() bool {
 	if o != nil && !IsNil(o.Defaultsavroles) {
 		return true
 	}
@@ -440,11 +441,43 @@ func (o *GetConnectionDetails) HasDefaultsavroles() bool {
 }
 
 // SetDefaultsavroles gets a reference to the given string and assigns it to the Defaultsavroles field.
-func (o *GetConnectionDetails) SetDefaultsavroles(v string) {
+func (o *ADConnectionResponse) SetDefaultsavroles(v string) {
 	o.Defaultsavroles = &v
 }
 
-func (o GetConnectionDetails) MarshalJSON() ([]byte, error) {
+// GetConnectionattributes returns the Connectionattributes field value if set, zero value otherwise.
+func (o *ADConnectionResponse) GetConnectionattributes() ADConnectionAttributes {
+	if o == nil || IsNil(o.Connectionattributes) {
+		var ret ADConnectionAttributes
+		return ret
+	}
+	return *o.Connectionattributes
+}
+
+// GetConnectionattributesOk returns a tuple with the Connectionattributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ADConnectionResponse) GetConnectionattributesOk() (*ADConnectionAttributes, bool) {
+	if o == nil || IsNil(o.Connectionattributes) {
+		return nil, false
+	}
+	return o.Connectionattributes, true
+}
+
+// HasConnectionattributes returns a boolean if a field has been set.
+func (o *ADConnectionResponse) HasConnectionattributes() bool {
+	if o != nil && !IsNil(o.Connectionattributes) {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionattributes gets a reference to the given ADConnectionAttributes and assigns it to the Connectionattributes field.
+func (o *ADConnectionResponse) SetConnectionattributes(v ADConnectionAttributes) {
+	o.Connectionattributes = &v
+}
+
+func (o ADConnectionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -452,7 +485,7 @@ func (o GetConnectionDetails) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o GetConnectionDetails) ToMap() (map[string]interface{}, error) {
+func (o ADConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Msg) {
 		toSerialize["msg"] = o.Msg
@@ -490,41 +523,44 @@ func (o GetConnectionDetails) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Defaultsavroles) {
 		toSerialize["defaultsavroles"] = o.Defaultsavroles
 	}
+	if !IsNil(o.Connectionattributes) {
+		toSerialize["connectionattributes"] = o.Connectionattributes
+	}
 	return toSerialize, nil
 }
 
-type NullableGetConnectionDetails struct {
-	value *GetConnectionDetails
+type NullableADConnectionResponse struct {
+	value *ADConnectionResponse
 	isSet bool
 }
 
-func (v NullableGetConnectionDetails) Get() *GetConnectionDetails {
+func (v NullableADConnectionResponse) Get() *ADConnectionResponse {
 	return v.value
 }
 
-func (v *NullableGetConnectionDetails) Set(val *GetConnectionDetails) {
+func (v *NullableADConnectionResponse) Set(val *ADConnectionResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetConnectionDetails) IsSet() bool {
+func (v NullableADConnectionResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetConnectionDetails) Unset() {
+func (v *NullableADConnectionResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetConnectionDetails(val *GetConnectionDetails) *NullableGetConnectionDetails {
-	return &NullableGetConnectionDetails{value: val, isSet: true}
+func NewNullableADConnectionResponse(val *ADConnectionResponse) *NullableADConnectionResponse {
+	return &NullableADConnectionResponse{value: val, isSet: true}
 }
 
-func (v NullableGetConnectionDetails) MarshalJSON() ([]byte, error) {
+func (v NullableADConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetConnectionDetails) UnmarshalJSON(src []byte) error {
+func (v *NullableADConnectionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

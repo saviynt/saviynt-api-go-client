@@ -131,25 +131,17 @@ func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest
 }
 
 type ApiGetConnectionDetailsRequest struct {
-	ctx            context.Context
-	ApiService     *ConnectionsAPIService
-	connectionname *string
-	connectionkey  *string
+	ctx                         context.Context
+	ApiService                  *ConnectionsAPIService
+	getConnectionDetailsRequest *GetConnectionDetailsRequest
 }
 
-// Name of the connection
-func (r ApiGetConnectionDetailsRequest) Connectionname(connectionname string) ApiGetConnectionDetailsRequest {
-	r.connectionname = &connectionname
+func (r ApiGetConnectionDetailsRequest) GetConnectionDetailsRequest(getConnectionDetailsRequest GetConnectionDetailsRequest) ApiGetConnectionDetailsRequest {
+	r.getConnectionDetailsRequest = &getConnectionDetailsRequest
 	return r
 }
 
-// Connection key
-func (r ApiGetConnectionDetailsRequest) Connectionkey(connectionkey string) ApiGetConnectionDetailsRequest {
-	r.connectionkey = &connectionkey
-	return r
-}
-
-func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetails, *http.Response, error) {
+func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetailsResponse, *http.Response, error) {
 	return r.ApiService.GetConnectionDetailsExecute(r)
 }
 
@@ -168,13 +160,13 @@ func (a *ConnectionsAPIService) GetConnectionDetails(ctx context.Context) ApiGet
 
 // Execute executes the request
 //
-//	@return GetConnectionDetails
-func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDetailsRequest) (*GetConnectionDetails, *http.Response, error) {
+//	@return GetConnectionDetailsResponse
+func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDetailsRequest) (*GetConnectionDetailsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *GetConnectionDetails
+		localVarReturnValue *GetConnectionDetailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnectionDetails")
@@ -187,9 +179,12 @@ func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.getConnectionDetailsRequest == nil {
+		return localVarReturnValue, nil, reportError("getConnectionDetailsRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"multipart/form-data"}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -205,12 +200,8 @@ func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.connectionname != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "connectionname", r.connectionname, "", "")
-	}
-	if r.connectionkey != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "connectionkey", r.connectionkey, "", "")
-	}
+	// body params
+	localVarPostBody = r.getConnectionDetailsRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

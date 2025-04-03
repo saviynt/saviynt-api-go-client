@@ -11,12 +11,10 @@ package test
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"strings"
 	"testing"
-	"time"
 
-	saviyntapigoclient "github.com/saviynt/saviynt-api-go-client"
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -34,34 +32,19 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 		} else if skipTests {
 			t.Skip(MsgSkipTest)
 		}
-		connName := "hellow1"
-		adConn := connections.ADConnector{
-			BaseConnector: connections.BaseConnector{
-				Connectiontype: "AD",
-				ConnectionName: connName,
-				Description:    saviyntapigoclient.Pointer("Updated at " + time.Now().UTC().Format(time.RFC3339)),
-			},
-			URL:      stringPtr("ldap://test-ad.example.com"),
-			USERNAME: stringPtr("admin"),
-			PASSWORD: "XXXXX",
+
+		data := "3752"
+		req := connections.GetConnectionDetailsRequest{
+			Connectionkey: &data,
 		}
-
-		adConnRequest := connections.CreateOrUpdateRequest{
-			ADConnector: &adConn,
+		resp, httpRes, err := apiClient.Connections.GetConnectionDetails(ctx).GetConnectionDetailsRequest(req).Execute()
+		if err != nil {
+			log.Fatalf("API error: %v", err.Error())
 		}
-
-		apiResp, httpResp, err := apiClient.Connections.CreateOrUpdate(ctx).CreateOrUpdateRequest(adConnRequest).Execute()
-
-		fmt.Printf("Response: %+v\n", apiResp)
 
 		require.Nil(t, err)
-		require.NotNil(t, httpResp)
-		assert.Equal(t, 200, httpResp.StatusCode)
-		assert.Equal(t, "0", *apiResp.ErrorCode)
-	})
-}
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-// Helper function to return a pointer to a string
-func stringPtr(s string) *string {
-	return &s
+	})
 }

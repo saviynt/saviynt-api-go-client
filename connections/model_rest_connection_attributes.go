@@ -50,7 +50,7 @@ type RESTConnectionAttributes struct {
 	IsTimeoutSupported       *bool                                            `json:"isTimeoutSupported,omitempty"`
 	ImportAccountEntJSON     *string                                          `json:"ImportAccountEntJSON,omitempty"`
 	IsTimeoutConfigValidated *bool                                            `json:"isTimeoutConfigValidated,omitempty"`
-	ConnectionJSON           map[string]interface{}                           `json:"ConnectionJSON,omitempty"`
+	ConnectionJSON           *string                                          `json:"ConnectionJSON,omitempty"`
 }
 
 // NewRESTConnectionAttributes instantiates a new RESTConnectionAttributes object
@@ -935,19 +935,19 @@ func (o *RESTConnectionAttributes) SetIsTimeoutConfigValidated(v bool) {
 }
 
 // GetConnectionJSON returns the ConnectionJSON field value if set, zero value otherwise.
-func (o *RESTConnectionAttributes) GetConnectionJSON() map[string]interface{} {
+func (o *RESTConnectionAttributes) GetConnectionJSON() string {
 	if o == nil || IsNil(o.ConnectionJSON) {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
-	return o.ConnectionJSON
+	return *o.ConnectionJSON
 }
 
 // GetConnectionJSONOk returns a tuple with the ConnectionJSON field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributes) GetConnectionJSONOk() (map[string]interface{}, bool) {
+func (o *RESTConnectionAttributes) GetConnectionJSONOk() (*string, bool) {
 	if o == nil || IsNil(o.ConnectionJSON) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.ConnectionJSON, true
 }
@@ -961,9 +961,9 @@ func (o *RESTConnectionAttributes) HasConnectionJSON() bool {
 	return false
 }
 
-// SetConnectionJSON gets a reference to the given map[string]interface{} and assigns it to the ConnectionJSON field.
-func (o *RESTConnectionAttributes) SetConnectionJSON(v map[string]interface{}) {
-	o.ConnectionJSON = v
+// SetConnectionJSON gets a reference to the given string and assigns it to the ConnectionJSON field.
+func (o *RESTConnectionAttributes) SetConnectionJSON(v string) {
+	o.ConnectionJSON = &v
 }
 
 func (o RESTConnectionAttributes) MarshalJSON() ([]byte, error) {

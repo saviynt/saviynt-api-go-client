@@ -14,6 +14,7 @@ import (
 	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"log"
 	"testing"
 )
 
@@ -24,38 +25,26 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService CreateOrUpdate", func(t *testing.T) {
 
-		t.Skip("skip test")
-
-		resp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
-
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Execute()
+		data := "4060"
+		req := openapiclient.GetConnectionDetailsRequest{
+			Connectionkey: &data,
+		}
+		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).GetConnectionDetailsRequest(req).Execute()
+		if err != nil {
+			log.Fatalf("API error: %v", err.Error())
+		}
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ConnectionsAPIService GetConnections", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
+		// respJSON, err := json.MarshalIndent(resp, "", "  ")
+		// if err != nil {
+		// 	log.Fatalf("Error marshalling response: %v", err)
+		// }
+		// fmt.Println("Export Connection Response:")
+		// fmt.Println(string(respJSON))
 	})
 
 }

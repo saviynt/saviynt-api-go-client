@@ -91,7 +91,7 @@ paths:
       operationId: getConnectionDetails
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               $ref: '#/components/schemas/getConnectionDetails_request'
         required: true
@@ -100,7 +100,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getConnectionDetails'
+                $ref: '#/components/schemas/getConnectionDetailsResponse'
           description: Connection details retrieved successfully.
       summary: Get connection details
       tags:
@@ -1635,24 +1635,85 @@ components:
           items:
             $ref: '#/components/schemas/getConnectionsResponse_ConnectionList_inner'
           type: array
+    getConnectionDetailsResponse:
+      discriminator:
+        mapping:
+          AD: '#/components/schemas/ADConnectionResponse'
+          REST: '#/components/schemas/RESTConnectionResponse'
+        propertyName: connectiontype
+      oneOf:
+      - $ref: '#/components/schemas/ADConnectionResponse'
+      - $ref: '#/components/schemas/RESTConnectionResponse'
     getConnectionDetails:
+      properties:
+        msg:
+          description: API response message
+          example: success
+          type: string
+        emailtemplate:
+          description: Email template for the connection
+          example: ""
+          type: string
+        updatedby:
+          description: Updator account for the connection
+          example: admin(adminfname adminlname)
+          type: string
+        connectionname:
+          description: Name of the connection
+          example: AD
+          type: string
+        connectionkey:
+          description: Connection key
+          example: 120
+          type: integer
+        description:
+          description: Description for the connection
+          example: Workday
+          type: string
+        connectiontype:
+          description: Connection type
+          example: Workday-SOAP
+          type: string
+        createdon:
+          description: Connection creation time
+          example: 2020-03-12T11:49:15Z
+          type: string
+        createdby:
+          description: Creator account for the connection
+          example: admin(null null)
+          type: string
+        errorcode:
+          description: Error code
+          example: 0
+          type: integer
+        status:
+          example: 1
+          type: integer
+        defaultsavroles:
+          example: ""
+          type: string
+    ADConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/ADConnectionAttributes'
       example:
         msg: success
         emailtemplate: ""
         updatedby: admin(adminfname adminlname)
-        connectionname: Workday
+        connectionname: AD
         connectionkey: 120
         description: Workday
         connectionattributes:
-          ASSWORD_NOOFSPLCHARS: "1"
-          LAST_IMPORT_TIME: 2017-03-23T00:48:28Z
+          LAST_IMPORT_TIME: 2017-03-23T00:48:28
           CREATEACCOUNTJSON: |
             {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
           ENDPOINTS_FILTER: ENDPOINTS_FILTER
           DISABLEACCOUNTJSON: "{\"userAccountControl\":\"546\",\"deleteAllGroups\"\
             :\"No\"}"
           groupSearchBaseDN: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
-          connectionType: AD
+          connectionType: MS_BASED_CONNECTOR
           PASSWORD_NOOFSPLCHARS: "1"
           STATUSKEYJSON: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\"\
             :[\"514\",\"546\"]}"
@@ -1729,6 +1790,8 @@ components:
             connectionTimeout: 2
           UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\"\
             ,\"givenName\":\"${user.firstname}\"}"
+          URL: LDAP://saviyntdc01.saviyntlabs.org:389
+          READ_OPERATIONAL_ATTRIBUTES: "FALSE"
           BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
           LDAP_OR_AD: AD
           ORG_BASE: ORG_BASE
@@ -1770,66 +1833,22 @@ components:
         connectiontype: Workday-SOAP
         errorcode: 0
         status: 1
-      properties:
-        msg:
-          description: API response message
-          example: success
-          type: string
-        emailtemplate:
-          description: Email template for the connection
-          example: ""
-          type: string
-        updatedby:
-          description: Updator account for the connection
-          example: admin(adminfname adminlname)
-          type: string
-        connectionname:
-          description: Name of the connection
-          example: Workday
-          type: string
-        connectionkey:
-          description: Connection key
-          example: 120
-          type: integer
-        description:
-          description: Description for the connection
-          example: Workday
-          type: string
-        connectiontype:
-          description: Connection type
-          example: Workday-SOAP
-          type: string
-        createdon:
-          description: Connection creation time
-          example: 2020-03-12T11:49:15Z
-          type: string
-        createdby:
-          description: Creator account for the connection
-          example: admin(null null)
-          type: string
-        errorcode:
-          description: Error code
-          example: 0
-          type: integer
-        status:
-          example: 1
-          type: integer
-        defaultsavroles:
-          example: ""
-          type: string
-        connectionattributes:
-          $ref: '#/components/schemas/getConnectionDetails_connectionattributes'
+    RESTConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/RESTConnectionAttributes'
     ADConnectionAttributes:
       example:
-        ASSWORD_NOOFSPLCHARS: "1"
-        LAST_IMPORT_TIME: 2017-03-23T00:48:28Z
+        LAST_IMPORT_TIME: 2017-03-23T00:48:28
         CREATEACCOUNTJSON: |
           {'createaccountqry': "INSERT IGNORE INTO users (id,displayname,email,empid,firstname,lastname,systemname,username,password) values (${user.id}, '${user.displayname}', '${user.email}', '${user.employeeid}', '${user.firstname}','${user.lastname}','${user.systemusername}', '${user.username}','${randompassword}')"}
         ENDPOINTS_FILTER: ENDPOINTS_FILTER
         DISABLEACCOUNTJSON: "{\"userAccountControl\":\"546\",\"deleteAllGroups\":\"\
           No\"}"
         groupSearchBaseDN: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
-        connectionType: AD
+        connectionType: MS_BASED_CONNECTOR
         PASSWORD_NOOFSPLCHARS: "1"
         STATUSKEYJSON: "{\"STATUS_ACTIVE\":[\"512\",\"544\"],\"STATUS_INACTIVE\":[\"\
           514\",\"546\"]}"
@@ -1905,6 +1924,8 @@ components:
           connectionTimeout: 2
         UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\",\"\
           givenName\":\"${user.firstname}\"}"
+        URL: LDAP://saviyntdc01.saviyntlabs.org:389
+        READ_OPERATIONAL_ATTRIBUTES: "FALSE"
         BASE: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
         LDAP_OR_AD: AD
         ORG_BASE: ORG_BASE
@@ -1941,9 +1962,17 @@ components:
         UPDATEACCOUNTJSON: "{\"uid\":\"${task.accountName.toString().toLowerCase()}\"\
           ,\"description\":\"AS 400 Integration with Saviynt\"}"
       properties:
+        URL:
+          description: Host Name for connection
+          example: LDAP://saviyntdc01.saviyntlabs.org:389
+          type: string
+        connectionType:
+          description: Connection type
+          example: MS_BASED_CONNECTOR
+          type: string
         LAST_IMPORT_TIME:
           description: Timestamp of the last import operation.
-          example: 2017-03-23T00:48:28Z
+          example: 2017-03-23T00:48:28
           type: string
         CREATEACCOUNTJSON:
           description: JSON template for creating an account.
@@ -1959,17 +1988,13 @@ components:
           description: Base DN for group search in LDAP.
           example: "CN=Users,DC=Saviynt,DC=ABC,DC=Com"
           type: string
-        ASSWORD_NOOFSPLCHARS:
+        PASSWORD_NOOFSPLCHARS:
           description: Number of special characters in password.
           example: "1"
           type: string
         PASSWORD_NOOFDIGITS:
           description: Specify the Number of digits required for the random password.
           example: "5"
-          type: string
-        connectionType:
-          description: "Type of connection, e.g., MS_BASED_CONNECTOR."
-          example: AD
           type: string
         STATUSKEYJSON:
           description: JSON configuration for account statuses.
@@ -2123,6 +2148,10 @@ components:
           description: Set to TRUE to send an empty value or null string during provisioning.
           example: "FALSE"
           type: string
+        READ_OPERATIONAL_ATTRIBUTES:
+          description: Set to TRUE to send an empty value or null string during provisioning.
+          example: "FALSE"
+          type: string
         ENABLEACCOUNTJSON:
           description: JSON configuration to enable account actions.
           example: "{\"USEDNFROMACCOUNT\":\"NO\",\"ENABLEACCOUNTOU\":\"OU=ActiveUsers,OU=TestUsers,dc=test,dc=com\"\
@@ -2178,10 +2207,6 @@ components:
         systemname:
           description: Associated system name.
           example: Dummyapplication
-          type: string
-        PASSWORD_NOOFSPLCHARS:
-          description: Number of special characters in password.
-          example: "1"
           type: string
         groupImportMapping:
           description: Mapping for importing groups.
@@ -2242,7 +2267,7 @@ components:
           type: string
         connectionType:
           description: "Type of connection, e.g., MS_BASED_CONNECTOR."
-          example: AD
+          example: MS_BASED_CONNECTOR
           type: string
         ENDPOINTS_FILTER:
           type: string
@@ -2308,10 +2333,7 @@ components:
         isTimeoutConfigValidated:
           type: boolean
         ConnectionJSON:
-          additionalProperties: true
-          example: |
-            {'authentications': {'Slack': {'authType': 'oauth2', 'url': 'https://api.slack.com', 'httpMethod': 'POST', 'httpParams': {}, 'httpHeaders': {'contentType': 'application/x-www-form-urlencoded'}, 'httpContentType': 'application/x-www-form-urlencoded', 'expiryError': 'ExpiredAuthenticationToken', 'authError': ['InvalidAuthenticationToken', 'AuthenticationFailed'], 'timeOutError': 'Read timed out', 'errorPath': 'error.code', 'maxRefreshTryCount': 5, 'tokenResponsePath': 'access_token', 'tokenType': 'Bearer', 'accessToken': 'Bearer @ACCESS_TOKEN@', 'testConnectionParams': {'http': {'url': 'https://api.slack.com/scim/v1/Users?startIndex=1&count=1', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/x-www-form-urlencoded', 'httpMethod': 'GET'}, 'successResponses': {'statusCode': [200]}, 'errors': ['invalid_authentication'], 'errorPath': 'Errors.description'}}}}
-          type: object
+          type: string
     createOrUpdate_request:
       discriminator:
         mapping:
@@ -2356,8 +2378,6 @@ components:
           example: "1"
           type: string
     getConnectionDetails_request:
-      nullable: true
-      oneOf: []
       properties:
         connectionname:
           description: Name of the connection
@@ -2410,11 +2430,6 @@ components:
           description: Time of connection updation
           example: 2017-03-23T00:48:28Z
           type: string
-    getConnectionDetails_connectionattributes:
-      description: Dynamic attributes based on connection type
-      oneOf:
-      - $ref: '#/components/schemas/ADConnectionAttributes'
-      - $ref: '#/components/schemas/RESTConnectionAttributes'
     ADConnectionAttributes_connectionTimeoutConfig:
       example:
         retryWait: 0

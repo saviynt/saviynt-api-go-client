@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **IsTimeoutSupported** | Pointer to **bool** |  | [optional] 
 **ImportAccountEntJSON** | Pointer to **string** |  | [optional] 
 **IsTimeoutConfigValidated** | Pointer to **bool** |  | [optional] 
-**ConnectionJSON** | Pointer to **map[string]interface{}** |  | [optional] 
+**ConnectionJSON** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -729,20 +729,20 @@ HasIsTimeoutConfigValidated returns a boolean if a field has been set.
 
 ### GetConnectionJSON
 
-`func (o *RESTConnectionAttributes) GetConnectionJSON() map[string]interface{}`
+`func (o *RESTConnectionAttributes) GetConnectionJSON() string`
 
 GetConnectionJSON returns the ConnectionJSON field if non-nil, zero value otherwise.
 
 ### GetConnectionJSONOk
 
-`func (o *RESTConnectionAttributes) GetConnectionJSONOk() (*map[string]interface{}, bool)`
+`func (o *RESTConnectionAttributes) GetConnectionJSONOk() (*string, bool)`
 
 GetConnectionJSONOk returns a tuple with the ConnectionJSON field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionJSON
 
-`func (o *RESTConnectionAttributes) SetConnectionJSON(v map[string]interface{})`
+`func (o *RESTConnectionAttributes) SetConnectionJSON(v string)`
 
 SetConnectionJSON sets ConnectionJSON field to given value.
 

@@ -8,6 +8,7 @@ client.go
 configuration.go
 docs/ADConnectionAttributes.md
 docs/ADConnectionAttributesConnectionTimeoutConfig.md
+docs/ADConnectionResponse.md
 docs/ADConnector.md
 docs/ADSIConnector.md
 docs/BaseConnector.md
@@ -17,12 +18,14 @@ docs/CreateOrUpdateResponse.md
 docs/D365Connector.md
 docs/DBConnector.md
 docs/GetConnectionDetails.md
-docs/GetConnectionDetailsConnectionattributes.md
+docs/GetConnectionDetailsRequest.md
+docs/GetConnectionDetailsResponse.md
 docs/GetConnectionsRequest.md
 docs/GetConnectionsResponse.md
 docs/GetConnectionsResponseConnectionListInner.md
 docs/RESTConnectionAttributes.md
 docs/RESTConnectionAttributesConnectionTimeoutConfig.md
+docs/RESTConnectionResponse.md
 docs/RESTConnector.md
 docs/SAPConnector.md
 docs/SalesforceConnector.md
@@ -32,6 +35,7 @@ go.mod
 go.sum
 model_ad_connection_attributes.go
 model_ad_connection_attributes_connection_timeout_config.go
+model_ad_connection_response.go
 model_ad_connector.go
 model_adsi_connector.go
 model_base_connector.go
@@ -40,12 +44,14 @@ model_create_or_update_response.go
 model_d365_connector.go
 model_db_connector.go
 model_get_connection_details.go
-model_get_connection_details_connectionattributes.go
+model_get_connection_details_request.go
+model_get_connection_details_response.go
 model_get_connections_request.go
 model_get_connections_response.go
 model_get_connections_response_connection_list_inner.go
 model_rest_connection_attributes.go
 model_rest_connection_attributes_connection_timeout_config.go
+model_rest_connection_response.go
 model_rest_connector.go
 model_salesforce_connector.go
 model_sap_connector.go
