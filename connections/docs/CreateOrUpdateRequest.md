@@ -21,12 +21,12 @@ Name | Type | Description | Notes
 **FORESTLIST** | **string** | Forest List (Comma Separated) which we need to manage | 
 **DEFAULT_USER_ROLE** | Pointer to **string** | Default SAV Role to be assigned to all the new users that gets imported via User Import | [optional] 
 **UPDATEUSERJSON** | Pointer to **string** | JSON to specify the Queries/stored procedures which will be used to Update an existing Account,Objects Exposed-(randomPassword,task,user,accountName,role,updatetaskuser,endpoint and all the objects defined in Dynamic Attributes ). | [optional] 
-**ENDPOINTS_FILTER** | Pointer to **string** |  | [optional] 
+**ENDPOINTS_FILTER** | Pointer to **string** | Property for ENDPOINTS_FILTER | [optional] 
 **SEARCHFILTER** | Pointer to **string** | Account Search Filter to specify the starting point of the directory from where the accounts needs to be imported. You can have multiple BaseDNs here separated by ###. | [optional] 
 **OBJECTFILTER** | Pointer to **string** | Object Filter is used to filter the objects that will be returned.This filter will be same for all domains. | [optional] 
 **ACCOUNT_ATTRIBUTE** | Pointer to **string** | Map EIC and AD attributes for account import (AD attributes must be in lower case) | [optional] 
-**STATUS_THRESHOLD_CONFIG** | Pointer to **string** | Applicable for Accounts full import only.If this config isdefined with status/threshold values, it will take precedence over account_not_in_file_action defined in ACCOUNTIMPORT xml.If this config is defined with only correlateInactiveAccounts, then account_not_in_file_action will used as normal.The attributes of statusAndThresholdConfig json are:statusColumn: Property in saviynt which stores the status of target system.activeStatus:All possible values that denotes the Active status of the target system.accountThresholdValue: No. of accounts to be deleted in Saviynt &gt;&#x3D; accountThresholdValue, it performs NO ACTION, else it disables the accounts.inactivateAccountsNotInFile: If true,accounts not in file are marked as Inactive. If false, accounts not in file are marked as SUSPENDED FROM IMPORT SERVICE.CorrelateInactiveAccounts: If true, correlates disabled accounts as well with the users. | [optional] 
-**ENTITLEMENT_ATTRIBUTE** | Pointer to **string** | Account attribute that contains group membership | [optional] 
+**STATUS_THRESHOLD_CONFIG** | Pointer to **string** | Property for STATUS_THRESHOLD_CONFIG | [optional] 
+**ENTITLEMENT_ATTRIBUTE** | Pointer to **string** | Property for ENTITLEMENT_ATTRIBUTE | [optional] 
 **USER_ATTRIBUTE** | Pointer to **string** | Map EIC and AD attributes for user import (AD attributes must be in lower case) | [optional] 
 **GroupSearchBaseDN** | Pointer to **string** | Group Search Filter to specify the starting point of the directory from where the groups needs to be imported. You can have multiple BaseDNs here separated by ###. | [optional] 
 **CHECKFORUNIQUE** | Pointer to **string** | Evaluate the uniqueness of an attribute | [optional] 
@@ -52,7 +52,7 @@ Name | Type | Description | Notes
 **CREATESERVICEACCOUNTJSON** | Pointer to **string** | Specify the Field Value which will be used to Create the New Service Account. | [optional] 
 **UPDATESERVICEACCOUNTJSON** | Pointer to **string** | Specify the Field Value which will be used to update the existing Service Account. | [optional] 
 **REMOVESERVICEACCOUNTJSON** | Pointer to **string** | Specify the actions to be performed while deleting a service account. | [optional] 
-**PAM_CONFIG** | Pointer to **string** |  | [optional] 
+**PAM_CONFIG** | Pointer to **string** | Property for PAM_CONFIG | [optional] 
 **MODIFYUSERDATAJSON** | Pointer to **string** | Property for MODIFYUSERDATAJSON | [optional] 
 **MESSAGESERVER** | Pointer to **string** | set it to TRUE if the Message Server is going to be used for connecting to SAP | [optional] 
 **JCO_ASHOST** | Pointer to **string** | HostName for connection for Import | [optional] 
@@ -106,9 +106,9 @@ Name | Type | Description | Notes
 **AUDIT_LOG_JSON** | Pointer to **string** | Property for AUDIT_LOG_JSON | [optional] 
 **ECCORS4HANA** | Pointer to **string** | Property for ECC_OR_S4HANA | [optional] 
 **DATA_IMPORT_FILTER** | Pointer to **string** | Property for DATA_IMPORT_FILTER | [optional] 
-**ConfigJSON** | Pointer to **string** |  | [optional] 
+**ConfigJSON** | Pointer to **string** | Property for ConfigJSON | [optional] 
 **CLIENT_ID** | **string** |  | 
-**CLIENT_SECRET** | **string** |  | 
+**CLIENT_SECRET** | **string** | Property for CLIENT_SECRET | 
 **REFRESH_TOKEN** | Pointer to **string** |  | [optional] 
 **REDIRECT_URI** | Pointer to **string** |  | [optional] 
 **INSTANCE_URL** | Pointer to **string** |  | [optional] 
@@ -119,18 +119,18 @@ Name | Type | Description | Notes
 **ACCOUNT_FIELD_QUERY** | Pointer to **string** |  | [optional] 
 **FIELD_MAPPING_JSON** | Pointer to **string** |  | [optional] 
 **MODIFYACCOUNTJSON** | Pointer to **string** |  | [optional] 
-**ConnectionJSON** | Pointer to **map[string]interface{}** |  | [optional] 
+**ConnectionJSON** | Pointer to **string** | Property for ConnectionJSON | [optional] 
 **ImportUserJSON** | Pointer to **string** | Property for ImportUserJSON | [optional] 
 **ImportAccountEntJSON** | Pointer to **string** |  | [optional] 
-**CreateAccountJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Create the New Account | [optional] 
-**UpdateAccountJSON** | Pointer to **string** | JSON to specify the Field Value which will be used to Update existing Account | [optional] 
-**EnableAccountJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for enabling a disabled account | [optional] 
-**DisableAccountJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for disabling a enabled account | [optional] 
-**AddAccessJSON** | Pointer to **string** | JSON to ADD Access to an account | [optional] 
-**RemoveAccessJSON** | Pointer to **string** | JSON to REMOVE Access from an account | [optional] 
+**CreateAccountJSON** | Pointer to **string** | Property for CreateAccountJSON | [optional] 
+**UpdateAccountJSON** | Pointer to **string** | Property for UpdateAccountJSON | [optional] 
+**EnableAccountJSON** | Pointer to **string** | Property for EnableAccountJSON | [optional] 
+**DisableAccountJSON** | Pointer to **string** | Property for DisableAccountJSON | [optional] 
+**AddAccessJSON** | Pointer to **string** | Property for AddAccessJSON | [optional] 
+**RemoveAccessJSON** | Pointer to **string** | Property for RemoveAccessJSON | [optional] 
 **UpdateUserJSON** | Pointer to **string** | Property for UpdateUserJSON | [optional] 
-**ChangePassJSON** | Pointer to **string** |  | [optional] 
-**RemoveAccountJSON** | Pointer to **string** | JSON to specify the different attributes to be checked and action to be performed for deleting/suspending an account | [optional] 
+**ChangePassJSON** | Pointer to **string** | Property for ChangePassJSON | [optional] 
+**RemoveAccountJSON** | Pointer to **string** | Property for RemoveAccountJSON | [optional] 
 **TicketStatusJSON** | Pointer to **string** |  | [optional] 
 **CreateTicketJSON** | Pointer to **string** |  | [optional] 
 **PasswdPolicyJSON** | Pointer to **string** |  | [optional] 
@@ -188,12 +188,40 @@ Name | Type | Description | Notes
 **USERIMPORT** | Pointer to **string** | User Import XML file content | [optional] 
 **MAX_PAGINATION_SIZE** | Pointer to **string** | Defines the max number of records from the target to be processed in each page | [optional] 
 **CLI_COMMAND_JSON** | Pointer to **string** | JSON to specify the commands which can be executed in target server. | [optional] 
+**ACCESS_TOKEN** | Pointer to **string** | Property for ACCESS_TOKEN | [optional] 
+**AAD_TENANT_ID** | **string** | Property for AAD_TENANT_ID | 
+**AZURE_MGMT_ACCESS_TOKEN** | Pointer to **string** | Property for AZURE_MGMT_ACCESS_TOKEN | [optional] 
+**AUTHENTICATION_ENDPOINT** | Pointer to **string** | Property for AUTHENTICATION_ENDPOINT | [optional] 
+**MICROSOFT_GRAPH_ENDPOINT** | Pointer to **string** | Property for MICROSOFT_GRAPH_ENDPOINT | [optional] 
+**AZURE_MANAGEMENT_ENDPOINT** | Pointer to **string** | Property for AZURE_MANAGEMENT_ENDPOINT | [optional] 
+**CREATEUSERS** | Pointer to **string** | Property for CREATEUSERS | [optional] 
+**WINDOWS_CONNECTOR_JSON** | Pointer to **string** | Property for WINDOWS_CONNECTOR_JSON | [optional] 
+**CREATE_NEW_ENDPOINTS** | Pointer to **string** | Property for CREATE_NEW_ENDPOINTS | [optional] 
+**MANAGED_ACCOUNT_TYPE** | Pointer to **string** | Property for MANAGED_ACCOUNT_TYPE | [optional] 
+**ACCOUNT_ATTRIBUTES** | Pointer to **string** | Property for ACCOUNT_ATTRIBUTES | [optional] 
+**SERVICE_ACCOUNT_ATTRIBUTES** | Pointer to **string** | Property for SERVICE_ACCOUNT_ATTRIBUTES | [optional] 
+**DELTATOKENSJSON** | Pointer to **string** | Property for DELTATOKENSJSON | [optional] 
+**ACCOUNT_IMPORT_FIELDS** | Pointer to **string** | Property for ACCOUNT_IMPORT_FIELDS | [optional] 
+**IMPORT_DEPTH** | Pointer to **string** | Property for IMPORT_DEPTH | [optional] 
+**CreateGroupJSON** | Pointer to **string** | Property for CreateGroupJSON | [optional] 
+**UpdateGroupJSON** | Pointer to **string** | Property for UpdateGroupJSON | [optional] 
+**AddAccessToEntitlementJSON** | Pointer to **string** | Property for AddAccessToEntitlementJSON | [optional] 
+**RemoveAccessFromEntitlementJSON** | Pointer to **string** | Property for RemoveAccessFromEntitlementJSON | [optional] 
+**DeleteGroupJSON** | Pointer to **string** | Property for DeleteGroupJSON | [optional] 
+**CreateServicePrincipalJSON** | Pointer to **string** | Property for CreateServicePrincipalJSON | [optional] 
+**UpdateServicePrincipalJSON** | Pointer to **string** | Property for UpdateServicePrincipalJSON | [optional] 
+**RemoveServicePrincipalJSON** | Pointer to **string** | Property for RemoveServicePrincipalJSON | [optional] 
+**ENTITLEMENT_FILTER_JSON** | Pointer to **string** | Property for ENTITLEMENT_FILTER_JSON | [optional] 
+**CreateTeamJSON** | Pointer to **string** | Property for CreateTeamJSON | [optional] 
+**CreateChannelJSON** | Pointer to **string** | Property for CreateChannelJSON | [optional] 
+**ACCOUNTS_FILTER** | Pointer to **string** | Property for ACCOUNTS_FILTER | [optional] 
+**ENHANCEDDIRECTORYROLES** | Pointer to **string** | Property for ENHANCEDDIRECTORYROLES | [optional] 
 
 ## Methods
 
 ### NewCreateOrUpdateRequest
 
-`func NewCreateOrUpdateRequest(connectionName string, connectiontype string, uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, cLIENTID string, cLIENTSECRET string, bASEURL string, tENANTID string, lOGINURL string, uSEOAUTH string, dRIVERNAME string, ) *CreateOrUpdateRequest`
+`func NewCreateOrUpdateRequest(connectionName string, connectiontype string, uRL string, uSERNAME string, pASSWORD string, cONNECTIONURL string, fORESTLIST string, cLIENTID string, cLIENTSECRET string, bASEURL string, tENANTID string, lOGINURL string, uSEOAUTH string, dRIVERNAME string, aADTENANTID string, ) *CreateOrUpdateRequest`
 
 NewCreateOrUpdateRequest instantiates a new CreateOrUpdateRequest object
 This constructor will assign default values to properties that have it defined,
@@ -3040,20 +3068,20 @@ HasMODIFYACCOUNTJSON returns a boolean if a field has been set.
 
 ### GetConnectionJSON
 
-`func (o *CreateOrUpdateRequest) GetConnectionJSON() map[string]interface{}`
+`func (o *CreateOrUpdateRequest) GetConnectionJSON() string`
 
 GetConnectionJSON returns the ConnectionJSON field if non-nil, zero value otherwise.
 
 ### GetConnectionJSONOk
 
-`func (o *CreateOrUpdateRequest) GetConnectionJSONOk() (*map[string]interface{}, bool)`
+`func (o *CreateOrUpdateRequest) GetConnectionJSONOk() (*string, bool)`
 
 GetConnectionJSONOk returns a tuple with the ConnectionJSON field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionJSON
 
-`func (o *CreateOrUpdateRequest) SetConnectionJSON(v map[string]interface{})`
+`func (o *CreateOrUpdateRequest) SetConnectionJSON(v string)`
 
 SetConnectionJSON sets ConnectionJSON field to given value.
 
@@ -4737,6 +4765,701 @@ SetCLI_COMMAND_JSON sets CLI_COMMAND_JSON field to given value.
 `func (o *CreateOrUpdateRequest) HasCLI_COMMAND_JSON() bool`
 
 HasCLI_COMMAND_JSON returns a boolean if a field has been set.
+
+### GetACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) GetACCESS_TOKEN() string`
+
+GetACCESS_TOKEN returns the ACCESS_TOKEN field if non-nil, zero value otherwise.
+
+### GetACCESS_TOKENOk
+
+`func (o *CreateOrUpdateRequest) GetACCESS_TOKENOk() (*string, bool)`
+
+GetACCESS_TOKENOk returns a tuple with the ACCESS_TOKEN field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) SetACCESS_TOKEN(v string)`
+
+SetACCESS_TOKEN sets ACCESS_TOKEN field to given value.
+
+### HasACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) HasACCESS_TOKEN() bool`
+
+HasACCESS_TOKEN returns a boolean if a field has been set.
+
+### GetAAD_TENANT_ID
+
+`func (o *CreateOrUpdateRequest) GetAAD_TENANT_ID() string`
+
+GetAAD_TENANT_ID returns the AAD_TENANT_ID field if non-nil, zero value otherwise.
+
+### GetAAD_TENANT_IDOk
+
+`func (o *CreateOrUpdateRequest) GetAAD_TENANT_IDOk() (*string, bool)`
+
+GetAAD_TENANT_IDOk returns a tuple with the AAD_TENANT_ID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAAD_TENANT_ID
+
+`func (o *CreateOrUpdateRequest) SetAAD_TENANT_ID(v string)`
+
+SetAAD_TENANT_ID sets AAD_TENANT_ID field to given value.
+
+
+### GetAZURE_MGMT_ACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) GetAZURE_MGMT_ACCESS_TOKEN() string`
+
+GetAZURE_MGMT_ACCESS_TOKEN returns the AZURE_MGMT_ACCESS_TOKEN field if non-nil, zero value otherwise.
+
+### GetAZURE_MGMT_ACCESS_TOKENOk
+
+`func (o *CreateOrUpdateRequest) GetAZURE_MGMT_ACCESS_TOKENOk() (*string, bool)`
+
+GetAZURE_MGMT_ACCESS_TOKENOk returns a tuple with the AZURE_MGMT_ACCESS_TOKEN field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAZURE_MGMT_ACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) SetAZURE_MGMT_ACCESS_TOKEN(v string)`
+
+SetAZURE_MGMT_ACCESS_TOKEN sets AZURE_MGMT_ACCESS_TOKEN field to given value.
+
+### HasAZURE_MGMT_ACCESS_TOKEN
+
+`func (o *CreateOrUpdateRequest) HasAZURE_MGMT_ACCESS_TOKEN() bool`
+
+HasAZURE_MGMT_ACCESS_TOKEN returns a boolean if a field has been set.
+
+### GetAUTHENTICATION_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) GetAUTHENTICATION_ENDPOINT() string`
+
+GetAUTHENTICATION_ENDPOINT returns the AUTHENTICATION_ENDPOINT field if non-nil, zero value otherwise.
+
+### GetAUTHENTICATION_ENDPOINTOk
+
+`func (o *CreateOrUpdateRequest) GetAUTHENTICATION_ENDPOINTOk() (*string, bool)`
+
+GetAUTHENTICATION_ENDPOINTOk returns a tuple with the AUTHENTICATION_ENDPOINT field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAUTHENTICATION_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) SetAUTHENTICATION_ENDPOINT(v string)`
+
+SetAUTHENTICATION_ENDPOINT sets AUTHENTICATION_ENDPOINT field to given value.
+
+### HasAUTHENTICATION_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) HasAUTHENTICATION_ENDPOINT() bool`
+
+HasAUTHENTICATION_ENDPOINT returns a boolean if a field has been set.
+
+### GetMICROSOFT_GRAPH_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) GetMICROSOFT_GRAPH_ENDPOINT() string`
+
+GetMICROSOFT_GRAPH_ENDPOINT returns the MICROSOFT_GRAPH_ENDPOINT field if non-nil, zero value otherwise.
+
+### GetMICROSOFT_GRAPH_ENDPOINTOk
+
+`func (o *CreateOrUpdateRequest) GetMICROSOFT_GRAPH_ENDPOINTOk() (*string, bool)`
+
+GetMICROSOFT_GRAPH_ENDPOINTOk returns a tuple with the MICROSOFT_GRAPH_ENDPOINT field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMICROSOFT_GRAPH_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) SetMICROSOFT_GRAPH_ENDPOINT(v string)`
+
+SetMICROSOFT_GRAPH_ENDPOINT sets MICROSOFT_GRAPH_ENDPOINT field to given value.
+
+### HasMICROSOFT_GRAPH_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) HasMICROSOFT_GRAPH_ENDPOINT() bool`
+
+HasMICROSOFT_GRAPH_ENDPOINT returns a boolean if a field has been set.
+
+### GetAZURE_MANAGEMENT_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) GetAZURE_MANAGEMENT_ENDPOINT() string`
+
+GetAZURE_MANAGEMENT_ENDPOINT returns the AZURE_MANAGEMENT_ENDPOINT field if non-nil, zero value otherwise.
+
+### GetAZURE_MANAGEMENT_ENDPOINTOk
+
+`func (o *CreateOrUpdateRequest) GetAZURE_MANAGEMENT_ENDPOINTOk() (*string, bool)`
+
+GetAZURE_MANAGEMENT_ENDPOINTOk returns a tuple with the AZURE_MANAGEMENT_ENDPOINT field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAZURE_MANAGEMENT_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) SetAZURE_MANAGEMENT_ENDPOINT(v string)`
+
+SetAZURE_MANAGEMENT_ENDPOINT sets AZURE_MANAGEMENT_ENDPOINT field to given value.
+
+### HasAZURE_MANAGEMENT_ENDPOINT
+
+`func (o *CreateOrUpdateRequest) HasAZURE_MANAGEMENT_ENDPOINT() bool`
+
+HasAZURE_MANAGEMENT_ENDPOINT returns a boolean if a field has been set.
+
+### GetCREATEUSERS
+
+`func (o *CreateOrUpdateRequest) GetCREATEUSERS() string`
+
+GetCREATEUSERS returns the CREATEUSERS field if non-nil, zero value otherwise.
+
+### GetCREATEUSERSOk
+
+`func (o *CreateOrUpdateRequest) GetCREATEUSERSOk() (*string, bool)`
+
+GetCREATEUSERSOk returns a tuple with the CREATEUSERS field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCREATEUSERS
+
+`func (o *CreateOrUpdateRequest) SetCREATEUSERS(v string)`
+
+SetCREATEUSERS sets CREATEUSERS field to given value.
+
+### HasCREATEUSERS
+
+`func (o *CreateOrUpdateRequest) HasCREATEUSERS() bool`
+
+HasCREATEUSERS returns a boolean if a field has been set.
+
+### GetWINDOWS_CONNECTOR_JSON
+
+`func (o *CreateOrUpdateRequest) GetWINDOWS_CONNECTOR_JSON() string`
+
+GetWINDOWS_CONNECTOR_JSON returns the WINDOWS_CONNECTOR_JSON field if non-nil, zero value otherwise.
+
+### GetWINDOWS_CONNECTOR_JSONOk
+
+`func (o *CreateOrUpdateRequest) GetWINDOWS_CONNECTOR_JSONOk() (*string, bool)`
+
+GetWINDOWS_CONNECTOR_JSONOk returns a tuple with the WINDOWS_CONNECTOR_JSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWINDOWS_CONNECTOR_JSON
+
+`func (o *CreateOrUpdateRequest) SetWINDOWS_CONNECTOR_JSON(v string)`
+
+SetWINDOWS_CONNECTOR_JSON sets WINDOWS_CONNECTOR_JSON field to given value.
+
+### HasWINDOWS_CONNECTOR_JSON
+
+`func (o *CreateOrUpdateRequest) HasWINDOWS_CONNECTOR_JSON() bool`
+
+HasWINDOWS_CONNECTOR_JSON returns a boolean if a field has been set.
+
+### GetCREATE_NEW_ENDPOINTS
+
+`func (o *CreateOrUpdateRequest) GetCREATE_NEW_ENDPOINTS() string`
+
+GetCREATE_NEW_ENDPOINTS returns the CREATE_NEW_ENDPOINTS field if non-nil, zero value otherwise.
+
+### GetCREATE_NEW_ENDPOINTSOk
+
+`func (o *CreateOrUpdateRequest) GetCREATE_NEW_ENDPOINTSOk() (*string, bool)`
+
+GetCREATE_NEW_ENDPOINTSOk returns a tuple with the CREATE_NEW_ENDPOINTS field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCREATE_NEW_ENDPOINTS
+
+`func (o *CreateOrUpdateRequest) SetCREATE_NEW_ENDPOINTS(v string)`
+
+SetCREATE_NEW_ENDPOINTS sets CREATE_NEW_ENDPOINTS field to given value.
+
+### HasCREATE_NEW_ENDPOINTS
+
+`func (o *CreateOrUpdateRequest) HasCREATE_NEW_ENDPOINTS() bool`
+
+HasCREATE_NEW_ENDPOINTS returns a boolean if a field has been set.
+
+### GetMANAGED_ACCOUNT_TYPE
+
+`func (o *CreateOrUpdateRequest) GetMANAGED_ACCOUNT_TYPE() string`
+
+GetMANAGED_ACCOUNT_TYPE returns the MANAGED_ACCOUNT_TYPE field if non-nil, zero value otherwise.
+
+### GetMANAGED_ACCOUNT_TYPEOk
+
+`func (o *CreateOrUpdateRequest) GetMANAGED_ACCOUNT_TYPEOk() (*string, bool)`
+
+GetMANAGED_ACCOUNT_TYPEOk returns a tuple with the MANAGED_ACCOUNT_TYPE field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMANAGED_ACCOUNT_TYPE
+
+`func (o *CreateOrUpdateRequest) SetMANAGED_ACCOUNT_TYPE(v string)`
+
+SetMANAGED_ACCOUNT_TYPE sets MANAGED_ACCOUNT_TYPE field to given value.
+
+### HasMANAGED_ACCOUNT_TYPE
+
+`func (o *CreateOrUpdateRequest) HasMANAGED_ACCOUNT_TYPE() bool`
+
+HasMANAGED_ACCOUNT_TYPE returns a boolean if a field has been set.
+
+### GetACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) GetACCOUNT_ATTRIBUTES() string`
+
+GetACCOUNT_ATTRIBUTES returns the ACCOUNT_ATTRIBUTES field if non-nil, zero value otherwise.
+
+### GetACCOUNT_ATTRIBUTESOk
+
+`func (o *CreateOrUpdateRequest) GetACCOUNT_ATTRIBUTESOk() (*string, bool)`
+
+GetACCOUNT_ATTRIBUTESOk returns a tuple with the ACCOUNT_ATTRIBUTES field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) SetACCOUNT_ATTRIBUTES(v string)`
+
+SetACCOUNT_ATTRIBUTES sets ACCOUNT_ATTRIBUTES field to given value.
+
+### HasACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) HasACCOUNT_ATTRIBUTES() bool`
+
+HasACCOUNT_ATTRIBUTES returns a boolean if a field has been set.
+
+### GetSERVICE_ACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) GetSERVICE_ACCOUNT_ATTRIBUTES() string`
+
+GetSERVICE_ACCOUNT_ATTRIBUTES returns the SERVICE_ACCOUNT_ATTRIBUTES field if non-nil, zero value otherwise.
+
+### GetSERVICE_ACCOUNT_ATTRIBUTESOk
+
+`func (o *CreateOrUpdateRequest) GetSERVICE_ACCOUNT_ATTRIBUTESOk() (*string, bool)`
+
+GetSERVICE_ACCOUNT_ATTRIBUTESOk returns a tuple with the SERVICE_ACCOUNT_ATTRIBUTES field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSERVICE_ACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) SetSERVICE_ACCOUNT_ATTRIBUTES(v string)`
+
+SetSERVICE_ACCOUNT_ATTRIBUTES sets SERVICE_ACCOUNT_ATTRIBUTES field to given value.
+
+### HasSERVICE_ACCOUNT_ATTRIBUTES
+
+`func (o *CreateOrUpdateRequest) HasSERVICE_ACCOUNT_ATTRIBUTES() bool`
+
+HasSERVICE_ACCOUNT_ATTRIBUTES returns a boolean if a field has been set.
+
+### GetDELTATOKENSJSON
+
+`func (o *CreateOrUpdateRequest) GetDELTATOKENSJSON() string`
+
+GetDELTATOKENSJSON returns the DELTATOKENSJSON field if non-nil, zero value otherwise.
+
+### GetDELTATOKENSJSONOk
+
+`func (o *CreateOrUpdateRequest) GetDELTATOKENSJSONOk() (*string, bool)`
+
+GetDELTATOKENSJSONOk returns a tuple with the DELTATOKENSJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDELTATOKENSJSON
+
+`func (o *CreateOrUpdateRequest) SetDELTATOKENSJSON(v string)`
+
+SetDELTATOKENSJSON sets DELTATOKENSJSON field to given value.
+
+### HasDELTATOKENSJSON
+
+`func (o *CreateOrUpdateRequest) HasDELTATOKENSJSON() bool`
+
+HasDELTATOKENSJSON returns a boolean if a field has been set.
+
+### GetACCOUNT_IMPORT_FIELDS
+
+`func (o *CreateOrUpdateRequest) GetACCOUNT_IMPORT_FIELDS() string`
+
+GetACCOUNT_IMPORT_FIELDS returns the ACCOUNT_IMPORT_FIELDS field if non-nil, zero value otherwise.
+
+### GetACCOUNT_IMPORT_FIELDSOk
+
+`func (o *CreateOrUpdateRequest) GetACCOUNT_IMPORT_FIELDSOk() (*string, bool)`
+
+GetACCOUNT_IMPORT_FIELDSOk returns a tuple with the ACCOUNT_IMPORT_FIELDS field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetACCOUNT_IMPORT_FIELDS
+
+`func (o *CreateOrUpdateRequest) SetACCOUNT_IMPORT_FIELDS(v string)`
+
+SetACCOUNT_IMPORT_FIELDS sets ACCOUNT_IMPORT_FIELDS field to given value.
+
+### HasACCOUNT_IMPORT_FIELDS
+
+`func (o *CreateOrUpdateRequest) HasACCOUNT_IMPORT_FIELDS() bool`
+
+HasACCOUNT_IMPORT_FIELDS returns a boolean if a field has been set.
+
+### GetIMPORT_DEPTH
+
+`func (o *CreateOrUpdateRequest) GetIMPORT_DEPTH() string`
+
+GetIMPORT_DEPTH returns the IMPORT_DEPTH field if non-nil, zero value otherwise.
+
+### GetIMPORT_DEPTHOk
+
+`func (o *CreateOrUpdateRequest) GetIMPORT_DEPTHOk() (*string, bool)`
+
+GetIMPORT_DEPTHOk returns a tuple with the IMPORT_DEPTH field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIMPORT_DEPTH
+
+`func (o *CreateOrUpdateRequest) SetIMPORT_DEPTH(v string)`
+
+SetIMPORT_DEPTH sets IMPORT_DEPTH field to given value.
+
+### HasIMPORT_DEPTH
+
+`func (o *CreateOrUpdateRequest) HasIMPORT_DEPTH() bool`
+
+HasIMPORT_DEPTH returns a boolean if a field has been set.
+
+### GetCreateGroupJSON
+
+`func (o *CreateOrUpdateRequest) GetCreateGroupJSON() string`
+
+GetCreateGroupJSON returns the CreateGroupJSON field if non-nil, zero value otherwise.
+
+### GetCreateGroupJSONOk
+
+`func (o *CreateOrUpdateRequest) GetCreateGroupJSONOk() (*string, bool)`
+
+GetCreateGroupJSONOk returns a tuple with the CreateGroupJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateGroupJSON
+
+`func (o *CreateOrUpdateRequest) SetCreateGroupJSON(v string)`
+
+SetCreateGroupJSON sets CreateGroupJSON field to given value.
+
+### HasCreateGroupJSON
+
+`func (o *CreateOrUpdateRequest) HasCreateGroupJSON() bool`
+
+HasCreateGroupJSON returns a boolean if a field has been set.
+
+### GetUpdateGroupJSON
+
+`func (o *CreateOrUpdateRequest) GetUpdateGroupJSON() string`
+
+GetUpdateGroupJSON returns the UpdateGroupJSON field if non-nil, zero value otherwise.
+
+### GetUpdateGroupJSONOk
+
+`func (o *CreateOrUpdateRequest) GetUpdateGroupJSONOk() (*string, bool)`
+
+GetUpdateGroupJSONOk returns a tuple with the UpdateGroupJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateGroupJSON
+
+`func (o *CreateOrUpdateRequest) SetUpdateGroupJSON(v string)`
+
+SetUpdateGroupJSON sets UpdateGroupJSON field to given value.
+
+### HasUpdateGroupJSON
+
+`func (o *CreateOrUpdateRequest) HasUpdateGroupJSON() bool`
+
+HasUpdateGroupJSON returns a boolean if a field has been set.
+
+### GetAddAccessToEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) GetAddAccessToEntitlementJSON() string`
+
+GetAddAccessToEntitlementJSON returns the AddAccessToEntitlementJSON field if non-nil, zero value otherwise.
+
+### GetAddAccessToEntitlementJSONOk
+
+`func (o *CreateOrUpdateRequest) GetAddAccessToEntitlementJSONOk() (*string, bool)`
+
+GetAddAccessToEntitlementJSONOk returns a tuple with the AddAccessToEntitlementJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddAccessToEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) SetAddAccessToEntitlementJSON(v string)`
+
+SetAddAccessToEntitlementJSON sets AddAccessToEntitlementJSON field to given value.
+
+### HasAddAccessToEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) HasAddAccessToEntitlementJSON() bool`
+
+HasAddAccessToEntitlementJSON returns a boolean if a field has been set.
+
+### GetRemoveAccessFromEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) GetRemoveAccessFromEntitlementJSON() string`
+
+GetRemoveAccessFromEntitlementJSON returns the RemoveAccessFromEntitlementJSON field if non-nil, zero value otherwise.
+
+### GetRemoveAccessFromEntitlementJSONOk
+
+`func (o *CreateOrUpdateRequest) GetRemoveAccessFromEntitlementJSONOk() (*string, bool)`
+
+GetRemoveAccessFromEntitlementJSONOk returns a tuple with the RemoveAccessFromEntitlementJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveAccessFromEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) SetRemoveAccessFromEntitlementJSON(v string)`
+
+SetRemoveAccessFromEntitlementJSON sets RemoveAccessFromEntitlementJSON field to given value.
+
+### HasRemoveAccessFromEntitlementJSON
+
+`func (o *CreateOrUpdateRequest) HasRemoveAccessFromEntitlementJSON() bool`
+
+HasRemoveAccessFromEntitlementJSON returns a boolean if a field has been set.
+
+### GetDeleteGroupJSON
+
+`func (o *CreateOrUpdateRequest) GetDeleteGroupJSON() string`
+
+GetDeleteGroupJSON returns the DeleteGroupJSON field if non-nil, zero value otherwise.
+
+### GetDeleteGroupJSONOk
+
+`func (o *CreateOrUpdateRequest) GetDeleteGroupJSONOk() (*string, bool)`
+
+GetDeleteGroupJSONOk returns a tuple with the DeleteGroupJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeleteGroupJSON
+
+`func (o *CreateOrUpdateRequest) SetDeleteGroupJSON(v string)`
+
+SetDeleteGroupJSON sets DeleteGroupJSON field to given value.
+
+### HasDeleteGroupJSON
+
+`func (o *CreateOrUpdateRequest) HasDeleteGroupJSON() bool`
+
+HasDeleteGroupJSON returns a boolean if a field has been set.
+
+### GetCreateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) GetCreateServicePrincipalJSON() string`
+
+GetCreateServicePrincipalJSON returns the CreateServicePrincipalJSON field if non-nil, zero value otherwise.
+
+### GetCreateServicePrincipalJSONOk
+
+`func (o *CreateOrUpdateRequest) GetCreateServicePrincipalJSONOk() (*string, bool)`
+
+GetCreateServicePrincipalJSONOk returns a tuple with the CreateServicePrincipalJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) SetCreateServicePrincipalJSON(v string)`
+
+SetCreateServicePrincipalJSON sets CreateServicePrincipalJSON field to given value.
+
+### HasCreateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) HasCreateServicePrincipalJSON() bool`
+
+HasCreateServicePrincipalJSON returns a boolean if a field has been set.
+
+### GetUpdateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) GetUpdateServicePrincipalJSON() string`
+
+GetUpdateServicePrincipalJSON returns the UpdateServicePrincipalJSON field if non-nil, zero value otherwise.
+
+### GetUpdateServicePrincipalJSONOk
+
+`func (o *CreateOrUpdateRequest) GetUpdateServicePrincipalJSONOk() (*string, bool)`
+
+GetUpdateServicePrincipalJSONOk returns a tuple with the UpdateServicePrincipalJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) SetUpdateServicePrincipalJSON(v string)`
+
+SetUpdateServicePrincipalJSON sets UpdateServicePrincipalJSON field to given value.
+
+### HasUpdateServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) HasUpdateServicePrincipalJSON() bool`
+
+HasUpdateServicePrincipalJSON returns a boolean if a field has been set.
+
+### GetRemoveServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) GetRemoveServicePrincipalJSON() string`
+
+GetRemoveServicePrincipalJSON returns the RemoveServicePrincipalJSON field if non-nil, zero value otherwise.
+
+### GetRemoveServicePrincipalJSONOk
+
+`func (o *CreateOrUpdateRequest) GetRemoveServicePrincipalJSONOk() (*string, bool)`
+
+GetRemoveServicePrincipalJSONOk returns a tuple with the RemoveServicePrincipalJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRemoveServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) SetRemoveServicePrincipalJSON(v string)`
+
+SetRemoveServicePrincipalJSON sets RemoveServicePrincipalJSON field to given value.
+
+### HasRemoveServicePrincipalJSON
+
+`func (o *CreateOrUpdateRequest) HasRemoveServicePrincipalJSON() bool`
+
+HasRemoveServicePrincipalJSON returns a boolean if a field has been set.
+
+### GetENTITLEMENT_FILTER_JSON
+
+`func (o *CreateOrUpdateRequest) GetENTITLEMENT_FILTER_JSON() string`
+
+GetENTITLEMENT_FILTER_JSON returns the ENTITLEMENT_FILTER_JSON field if non-nil, zero value otherwise.
+
+### GetENTITLEMENT_FILTER_JSONOk
+
+`func (o *CreateOrUpdateRequest) GetENTITLEMENT_FILTER_JSONOk() (*string, bool)`
+
+GetENTITLEMENT_FILTER_JSONOk returns a tuple with the ENTITLEMENT_FILTER_JSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetENTITLEMENT_FILTER_JSON
+
+`func (o *CreateOrUpdateRequest) SetENTITLEMENT_FILTER_JSON(v string)`
+
+SetENTITLEMENT_FILTER_JSON sets ENTITLEMENT_FILTER_JSON field to given value.
+
+### HasENTITLEMENT_FILTER_JSON
+
+`func (o *CreateOrUpdateRequest) HasENTITLEMENT_FILTER_JSON() bool`
+
+HasENTITLEMENT_FILTER_JSON returns a boolean if a field has been set.
+
+### GetCreateTeamJSON
+
+`func (o *CreateOrUpdateRequest) GetCreateTeamJSON() string`
+
+GetCreateTeamJSON returns the CreateTeamJSON field if non-nil, zero value otherwise.
+
+### GetCreateTeamJSONOk
+
+`func (o *CreateOrUpdateRequest) GetCreateTeamJSONOk() (*string, bool)`
+
+GetCreateTeamJSONOk returns a tuple with the CreateTeamJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateTeamJSON
+
+`func (o *CreateOrUpdateRequest) SetCreateTeamJSON(v string)`
+
+SetCreateTeamJSON sets CreateTeamJSON field to given value.
+
+### HasCreateTeamJSON
+
+`func (o *CreateOrUpdateRequest) HasCreateTeamJSON() bool`
+
+HasCreateTeamJSON returns a boolean if a field has been set.
+
+### GetCreateChannelJSON
+
+`func (o *CreateOrUpdateRequest) GetCreateChannelJSON() string`
+
+GetCreateChannelJSON returns the CreateChannelJSON field if non-nil, zero value otherwise.
+
+### GetCreateChannelJSONOk
+
+`func (o *CreateOrUpdateRequest) GetCreateChannelJSONOk() (*string, bool)`
+
+GetCreateChannelJSONOk returns a tuple with the CreateChannelJSON field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreateChannelJSON
+
+`func (o *CreateOrUpdateRequest) SetCreateChannelJSON(v string)`
+
+SetCreateChannelJSON sets CreateChannelJSON field to given value.
+
+### HasCreateChannelJSON
+
+`func (o *CreateOrUpdateRequest) HasCreateChannelJSON() bool`
+
+HasCreateChannelJSON returns a boolean if a field has been set.
+
+### GetACCOUNTS_FILTER
+
+`func (o *CreateOrUpdateRequest) GetACCOUNTS_FILTER() string`
+
+GetACCOUNTS_FILTER returns the ACCOUNTS_FILTER field if non-nil, zero value otherwise.
+
+### GetACCOUNTS_FILTEROk
+
+`func (o *CreateOrUpdateRequest) GetACCOUNTS_FILTEROk() (*string, bool)`
+
+GetACCOUNTS_FILTEROk returns a tuple with the ACCOUNTS_FILTER field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetACCOUNTS_FILTER
+
+`func (o *CreateOrUpdateRequest) SetACCOUNTS_FILTER(v string)`
+
+SetACCOUNTS_FILTER sets ACCOUNTS_FILTER field to given value.
+
+### HasACCOUNTS_FILTER
+
+`func (o *CreateOrUpdateRequest) HasACCOUNTS_FILTER() bool`
+
+HasACCOUNTS_FILTER returns a boolean if a field has been set.
+
+### GetENHANCEDDIRECTORYROLES
+
+`func (o *CreateOrUpdateRequest) GetENHANCEDDIRECTORYROLES() string`
+
+GetENHANCEDDIRECTORYROLES returns the ENHANCEDDIRECTORYROLES field if non-nil, zero value otherwise.
+
+### GetENHANCEDDIRECTORYROLESOk
+
+`func (o *CreateOrUpdateRequest) GetENHANCEDDIRECTORYROLESOk() (*string, bool)`
+
+GetENHANCEDDIRECTORYROLESOk returns a tuple with the ENHANCEDDIRECTORYROLES field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetENHANCEDDIRECTORYROLES
+
+`func (o *CreateOrUpdateRequest) SetENHANCEDDIRECTORYROLES(v string)`
+
+SetENHANCEDDIRECTORYROLES sets ENHANCEDDIRECTORYROLES field to given value.
+
+### HasENHANCEDDIRECTORYROLES
+
+`func (o *CreateOrUpdateRequest) HasENHANCEDDIRECTORYROLES() bool`
+
+HasENHANCEDDIRECTORYROLES returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

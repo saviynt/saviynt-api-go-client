@@ -18,10 +18,14 @@ import (
 
 // GetConnectionDetailsResponse - struct for GetConnectionDetailsResponse
 type GetConnectionDetailsResponse struct {
-	ADConnectionResponse   *ADConnectionResponse
+	ADConnectionResponse *ADConnectionResponse
 	ADSIConnectionResponse *ADSIConnectionResponse
-	DBConnectionResponse   *DBConnectionResponse
+	DBConnectionResponse *DBConnectionResponse
+	EntraIDConnectionResponse *EntraIDConnectionResponse
 	RESTConnectionResponse *RESTConnectionResponse
+	SAPConnectionResponse *SAPConnectionResponse
+	SalesforceConnectionResponse *SalesforceConnectionResponse
+	WorkdayConnectionResponse *WorkdayConnectionResponse
 }
 
 // ADConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns ADConnectionResponse wrapped in GetConnectionDetailsResponse
@@ -45,12 +49,41 @@ func DBConnectionResponseAsGetConnectionDetailsResponse(v *DBConnectionResponse)
 	}
 }
 
+// EntraIDConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns EntraIDConnectionResponse wrapped in GetConnectionDetailsResponse
+func EntraIDConnectionResponseAsGetConnectionDetailsResponse(v *EntraIDConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		EntraIDConnectionResponse: v,
+	}
+}
+
 // RESTConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns RESTConnectionResponse wrapped in GetConnectionDetailsResponse
 func RESTConnectionResponseAsGetConnectionDetailsResponse(v *RESTConnectionResponse) GetConnectionDetailsResponse {
 	return GetConnectionDetailsResponse{
 		RESTConnectionResponse: v,
 	}
 }
+
+// SAPConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns SAPConnectionResponse wrapped in GetConnectionDetailsResponse
+func SAPConnectionResponseAsGetConnectionDetailsResponse(v *SAPConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		SAPConnectionResponse: v,
+	}
+}
+
+// SalesforceConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns SalesforceConnectionResponse wrapped in GetConnectionDetailsResponse
+func SalesforceConnectionResponseAsGetConnectionDetailsResponse(v *SalesforceConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		SalesforceConnectionResponse: v,
+	}
+}
+
+// WorkdayConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns WorkdayConnectionResponse wrapped in GetConnectionDetailsResponse
+func WorkdayConnectionResponseAsGetConnectionDetailsResponse(v *WorkdayConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		WorkdayConnectionResponse: v,
+	}
+}
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
@@ -107,6 +140,23 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.DBConnectionResponse = nil
 	}
 
+	// try to unmarshal data into EntraIDConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.EntraIDConnectionResponse)
+	if err == nil {
+		jsonEntraIDConnectionResponse, _ := json.Marshal(dst.EntraIDConnectionResponse)
+		if string(jsonEntraIDConnectionResponse) == "{}" { // empty struct
+			dst.EntraIDConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.EntraIDConnectionResponse); err != nil {
+				dst.EntraIDConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.EntraIDConnectionResponse = nil
+	}
+
 	// try to unmarshal data into RESTConnectionResponse
 	err = newStrictDecoder(data).Decode(&dst.RESTConnectionResponse)
 	if err == nil {
@@ -124,12 +174,67 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.RESTConnectionResponse = nil
 	}
 
+	// try to unmarshal data into SAPConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.SAPConnectionResponse)
+	if err == nil {
+		jsonSAPConnectionResponse, _ := json.Marshal(dst.SAPConnectionResponse)
+		if string(jsonSAPConnectionResponse) == "{}" { // empty struct
+			dst.SAPConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.SAPConnectionResponse); err != nil {
+				dst.SAPConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.SAPConnectionResponse = nil
+	}
+
+	// try to unmarshal data into SalesforceConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.SalesforceConnectionResponse)
+	if err == nil {
+		jsonSalesforceConnectionResponse, _ := json.Marshal(dst.SalesforceConnectionResponse)
+		if string(jsonSalesforceConnectionResponse) == "{}" { // empty struct
+			dst.SalesforceConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.SalesforceConnectionResponse); err != nil {
+				dst.SalesforceConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.SalesforceConnectionResponse = nil
+	}
+
+	// try to unmarshal data into WorkdayConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.WorkdayConnectionResponse)
+	if err == nil {
+		jsonWorkdayConnectionResponse, _ := json.Marshal(dst.WorkdayConnectionResponse)
+		if string(jsonWorkdayConnectionResponse) == "{}" { // empty struct
+			dst.WorkdayConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.WorkdayConnectionResponse); err != nil {
+				dst.WorkdayConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.WorkdayConnectionResponse = nil
+	}
+
 	if match > 1 { // more than 1 match
 		// reset to nil
 		dst.ADConnectionResponse = nil
 		dst.ADSIConnectionResponse = nil
 		dst.DBConnectionResponse = nil
+		dst.EntraIDConnectionResponse = nil
 		dst.RESTConnectionResponse = nil
+		dst.SAPConnectionResponse = nil
+		dst.SalesforceConnectionResponse = nil
+		dst.WorkdayConnectionResponse = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(GetConnectionDetailsResponse)")
 	} else if match == 1 {
@@ -153,15 +258,31 @@ func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.DBConnectionResponse)
 	}
 
+	if src.EntraIDConnectionResponse != nil {
+		return json.Marshal(&src.EntraIDConnectionResponse)
+	}
+
 	if src.RESTConnectionResponse != nil {
 		return json.Marshal(&src.RESTConnectionResponse)
+	}
+
+	if src.SAPConnectionResponse != nil {
+		return json.Marshal(&src.SAPConnectionResponse)
+	}
+
+	if src.SalesforceConnectionResponse != nil {
+		return json.Marshal(&src.SalesforceConnectionResponse)
+	}
+
+	if src.WorkdayConnectionResponse != nil {
+		return json.Marshal(&src.WorkdayConnectionResponse)
 	}
 
 	return nil, nil // no data in oneOf schemas
 }
 
 // Get the actual instance
-func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
+func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -177,8 +298,24 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 		return obj.DBConnectionResponse
 	}
 
+	if obj.EntraIDConnectionResponse != nil {
+		return obj.EntraIDConnectionResponse
+	}
+
 	if obj.RESTConnectionResponse != nil {
 		return obj.RESTConnectionResponse
+	}
+
+	if obj.SAPConnectionResponse != nil {
+		return obj.SAPConnectionResponse
+	}
+
+	if obj.SalesforceConnectionResponse != nil {
+		return obj.SalesforceConnectionResponse
+	}
+
+	if obj.WorkdayConnectionResponse != nil {
+		return obj.WorkdayConnectionResponse
 	}
 
 	// all schemas are nil
@@ -186,7 +323,7 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj GetConnectionDetailsResponse) GetActualInstanceValue() interface{} {
+func (obj GetConnectionDetailsResponse) GetActualInstanceValue() (interface{}) {
 	if obj.ADConnectionResponse != nil {
 		return *obj.ADConnectionResponse
 	}
@@ -199,8 +336,24 @@ func (obj GetConnectionDetailsResponse) GetActualInstanceValue() interface{} {
 		return *obj.DBConnectionResponse
 	}
 
+	if obj.EntraIDConnectionResponse != nil {
+		return *obj.EntraIDConnectionResponse
+	}
+
 	if obj.RESTConnectionResponse != nil {
 		return *obj.RESTConnectionResponse
+	}
+
+	if obj.SAPConnectionResponse != nil {
+		return *obj.SAPConnectionResponse
+	}
+
+	if obj.SalesforceConnectionResponse != nil {
+		return *obj.SalesforceConnectionResponse
+	}
+
+	if obj.WorkdayConnectionResponse != nil {
+		return *obj.WorkdayConnectionResponse
 	}
 
 	// all schemas are nil
@@ -242,3 +395,5 @@ func (v *NullableGetConnectionDetailsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

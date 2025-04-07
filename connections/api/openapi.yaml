@@ -1579,6 +1579,154 @@ components:
         - PASSWORD
         - URL
         - USERNAME
+    EntraIDConnector:
+      allOf:
+      - $ref: '#/components/schemas/BaseConnector'
+      - required:
+        - AAD_TENANT_ID
+        - CLIENT_ID
+        - CLIENT_SECRET
+      - properties:
+          CLIENT_ID:
+            type: string
+          CLIENT_SECRET:
+            description: Property for CLIENT_SECRET
+            type: string
+          ACCESS_TOKEN:
+            description: Property for ACCESS_TOKEN
+            type: string
+          AAD_TENANT_ID:
+            description: Property for AAD_TENANT_ID
+            type: string
+          AZURE_MGMT_ACCESS_TOKEN:
+            description: Property for AZURE_MGMT_ACCESS_TOKEN
+            type: string
+          AUTHENTICATION_ENDPOINT:
+            description: Property for AUTHENTICATION_ENDPOINT
+            type: string
+          MICROSOFT_GRAPH_ENDPOINT:
+            description: Property for MICROSOFT_GRAPH_ENDPOINT
+            type: string
+          AZURE_MANAGEMENT_ENDPOINT:
+            description: Property for AZURE_MANAGEMENT_ENDPOINT
+            type: string
+          ImportUserJSON:
+            description: Property for ImportUserJSON
+            type: string
+          CREATEUSERS:
+            description: Property for CREATEUSERS
+            type: string
+          WINDOWS_CONNECTOR_JSON:
+            description: Property for WINDOWS_CONNECTOR_JSON
+            type: string
+          CREATE_NEW_ENDPOINTS:
+            description: Property for CREATE_NEW_ENDPOINTS
+            type: string
+          MANAGED_ACCOUNT_TYPE:
+            description: Property for MANAGED_ACCOUNT_TYPE
+            type: string
+          ACCOUNT_ATTRIBUTES:
+            description: Property for ACCOUNT_ATTRIBUTES
+            type: string
+          SERVICE_ACCOUNT_ATTRIBUTES:
+            description: Property for SERVICE_ACCOUNT_ATTRIBUTES
+            type: string
+          DELTATOKENSJSON:
+            description: Property for DELTATOKENSJSON
+            type: string
+          ACCOUNT_IMPORT_FIELDS:
+            description: Property for ACCOUNT_IMPORT_FIELDS
+            type: string
+          IMPORT_DEPTH:
+            description: Property for IMPORT_DEPTH
+            type: string
+          ENTITLEMENT_ATTRIBUTE:
+            description: Property for ENTITLEMENT_ATTRIBUTE
+            type: string
+          CreateAccountJSON:
+            description: Property for CreateAccountJSON
+            type: string
+          UpdateAccountJSON:
+            description: Property for UpdateAccountJSON
+            type: string
+          EnableAccountJSON:
+            description: Property for EnableAccountJSON
+            type: string
+          DisableAccountJSON:
+            description: Property for DisableAccountJSON
+            type: string
+          AddAccessJSON:
+            description: Property for AddAccessJSON
+            type: string
+          RemoveAccessJSON:
+            description: Property for RemoveAccessJSON
+            type: string
+          UpdateUserJSON:
+            description: Property for UpdateUserJSON
+            type: string
+          ChangePassJSON:
+            description: Property for ChangePassJSON
+            type: string
+          RemoveAccountJSON:
+            description: Property for RemoveAccountJSON
+            type: string
+          ConnectionJSON:
+            description: Property for ConnectionJSON
+            type: string
+          CreateGroupJSON:
+            description: Property for CreateGroupJSON
+            type: string
+          UpdateGroupJSON:
+            description: Property for UpdateGroupJSON
+            type: string
+          AddAccessToEntitlementJSON:
+            description: Property for AddAccessToEntitlementJSON
+            type: string
+          RemoveAccessFromEntitlementJSON:
+            description: Property for RemoveAccessFromEntitlementJSON
+            type: string
+          DeleteGroupJSON:
+            description: Property for DeleteGroupJSON
+            type: string
+          CreateServicePrincipalJSON:
+            description: Property for CreateServicePrincipalJSON
+            type: string
+          UpdateServicePrincipalJSON:
+            description: Property for UpdateServicePrincipalJSON
+            type: string
+          RemoveServicePrincipalJSON:
+            description: Property for RemoveServicePrincipalJSON
+            type: string
+          ENTITLEMENT_FILTER_JSON:
+            description: Property for ENTITLEMENT_FILTER_JSON
+            type: string
+          CreateTeamJSON:
+            description: Property for CreateTeamJSON
+            type: string
+          CreateChannelJSON:
+            description: Property for CreateChannelJSON
+            type: string
+          STATUS_THRESHOLD_CONFIG:
+            description: Property for STATUS_THRESHOLD_CONFIG
+            type: string
+          ACCOUNTS_FILTER:
+            description: Property for ACCOUNTS_FILTER
+            type: string
+          PAM_CONFIG:
+            description: Property for PAM_CONFIG
+            type: string
+          ENDPOINTS_FILTER:
+            description: Property for ENDPOINTS_FILTER
+            type: string
+          ConfigJSON:
+            description: Property for ConfigJSON
+            type: string
+          MODIFYUSERDATAJSON:
+            description: Property for MODIFYUSERDATAJSON
+            type: string
+          ENHANCEDDIRECTORYROLES:
+            description: Property for ENHANCEDDIRECTORYROLES
+            type: string
     CreateOrUpdateResponse:
       example:
         msg: Connection Successful
@@ -1642,12 +1790,20 @@ components:
           REST: '#/components/schemas/RESTConnectionResponse'
           DB: '#/components/schemas/DBConnectionResponse'
           ADSI: '#/components/schemas/ADSIConnectionResponse'
+          Workday: '#/components/schemas/WorkdayConnectionResponse'
+          EntraID: '#/components/schemas/EntraIDConnectionResponse'
+          SAP: '#/components/schemas/SAPConnectionResponse'
+          Salesforce: '#/components/schemas/SalesforceConnectionResponse'
         propertyName: connectiontype
       oneOf:
       - $ref: '#/components/schemas/ADConnectionResponse'
       - $ref: '#/components/schemas/RESTConnectionResponse'
       - $ref: '#/components/schemas/DBConnectionResponse'
       - $ref: '#/components/schemas/ADSIConnectionResponse'
+      - $ref: '#/components/schemas/WorkdayConnectionResponse'
+      - $ref: '#/components/schemas/EntraIDConnectionResponse'
+      - $ref: '#/components/schemas/SAPConnectionResponse'
+      - $ref: '#/components/schemas/SalesforceConnectionResponse'
     getConnectionDetails:
       properties:
         msg:
@@ -1788,10 +1944,11 @@ components:
           connectionTimeoutConfig:
             retryWait: 0
             tokenRefreshMaxTryCount: 6
-            retryWaitMaxValue: 1
+            retryFailureStatusCode: 1
+            retryWaitMaxValue: 5
             retryCount: 5
-            readTimeout: 5
-            connectionTimeout: 2
+            readTimeout: 2
+            connectionTimeout: 7
           UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\"\
             ,\"givenName\":\"${user.firstname}\"}"
           URL: LDAP://sample.com
@@ -1855,6 +2012,30 @@ components:
       - properties:
           connectionattributes:
             $ref: '#/components/schemas/ADSIConnectionAttributes'
+    SAPConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/SAPConnectionAttributes'
+    SalesforceConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/SalesforceConnectionAttributes'
+    WorkdayConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/WorkdayConnectionAttributes'
+    EntraIDConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/EntraIDConnectionAttributes'
     ADConnectionAttributes:
       example:
         LAST_IMPORT_TIME: 2017-03-23T00:48:28
@@ -1934,10 +2115,11 @@ components:
         connectionTimeoutConfig:
           retryWait: 0
           tokenRefreshMaxTryCount: 6
-          retryWaitMaxValue: 1
+          retryFailureStatusCode: 1
+          retryWaitMaxValue: 5
           retryCount: 5
-          readTimeout: 5
-          connectionTimeout: 2
+          readTimeout: 2
+          connectionTimeout: 7
         UPDATEUSERJSON: "{\"mail\":\"${user.email}\",\"sn\":\"${user.lastname}\",\"\
           givenName\":\"${user.firstname}\"}"
         URL: LDAP://sample.com
@@ -2821,6 +3003,537 @@ components:
             n  \"requestConfiguration\": {\\n    \"grpMemExistenceChk\": {\\n    \
             \  \"enable\": true\\n    }\\n  }\\n}"
           type: string
+    WorkdayConnectionAttributes:
+      properties:
+        USE_OAUTH:
+          example: "FALSE"
+          type: string
+        USER_IMPORT_MAPPING:
+          type: string
+        ACCOUNTS_LAST_IMPORT_TIME:
+          example: "null"
+          type: string
+        STATUS_KEY_JSON:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        RAAS_MAPPING_JSON:
+          example: "{\"reportUrlMapping\":[{\"accessType\":\"Account\",\"url\":\"\
+            ${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_Accounts?format=xml\"\
+            },{\"accessType\":\"Security Group\",\"url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_SecurityGroups?format=xml\"\
+            ,\"mappingUrl\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_WorkersToSecurityGroups?format=xml\"\
+            ,\"inc_url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_SecurityGroupsWorkers?format=xml\"\
+            ,\"enable_chunked_retrieval\":0,\"locationHierarchyUrl\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_LocationHierarchies\"\
+            ,\"locationHierarchies\":[],\"countryReportUrl\":\"${BASE_URL}/ccx/service/systemreport2/${TENANT_NAME}/Country_Summary\"\
+            ,\"countryCodes\":[]},{\"accessType\":\"Domain Security Policy\",\"url\"\
+            :\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_DomainSecurityPermissions?format=xml\"\
+            ,\"inc_url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_Domains?format=xml&Include_Changes_to_Security_Groups=0\"\
+            },{\"accessType\":\"Business Process Security Policy\",\"url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_BusinessProcessPermissions?format=xml\"\
+            ,\"inc_url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_BusinessProcesses?format=xml&Include_Changes_to_Security_Groups=0\"\
+            },{\"accessType\":\"Business Process Definitions\",\"url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_BusinessProcessDefinitions?format=xml\"\
+            },{\"accessType\":\"Organizational Role\",\"url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_OrgRolesWorkers?format=xml\"\
+            ,\"enhancedUrl\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_RoleSecurityGroups?format=xml\"\
+            },{\"accessType\":\"Tasks And Reports\",\"url\":\"${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_ReportsTasksGetPut?Include_Inactive=0,${BASE_URL}/ccx/service/customreport2/${TENANT_NAME}/${REPORT_OWNER}/SAV_ReportsTasksViewModify?Include_Inactive=0\"\
+            },{\"accessType\":\"Organization\"}],\"auditReportUrlMapping\":[{\"reportName\"\
+            :\"userActivity\",\"url\":\"${BASE_URL}/ccx/service/systemreport2/${TENANT_NAME}/View_User_Activity?format=xml\"\
+            ,\"importDateStep\":\"6\",\"indexName\":\"audit\",\"auditDateStart\":\"\
+            ${CURRENT_TIMESTAMP_MINUS_24HRS}\",\"ImportMapping\":{\"fileCreateTime\"\
+            :\"wd:Request_Time\",\"sourceTranslatedAddress\":\"wd:IP_Address\",\"\
+            requestClientApplication\":\"wd:User_Agent\",\"suser\":\"wd:System_Account.wd:Descriptor\"\
+            ,\"filePath\":\"wd:Task\",\"filePermission\":\"wd:Activity_Category\"\
+            ,\"duser\":\"wd:Target.wd:Descriptor\",\"duid\":\"wd:Target.wd:ID[1].wd:type\"\
+            }}]}"
+          type: string
+        ACCOUNT_IMPORT_PAYLOAD:
+          example: "svc:Get_Workers_Request bsvc:version=\"${API_VERSION}\"><bsvc:Request_Criteria><bsvc:Exclude_Inactive_Workers>false</bsvc:Exclude_Inactive_Workers><bsvc:Exclude_Employees>false</bsvc:Exclude_Employees>"
+          type: string
+        UPDATE_ACCOUNT_PAYLOAD:
+          example: "<bsvc:Maintain_Contact_Information_for_Person_Event_Request bsvc:Add_Only=\"\
+            false\" bsvc:version=\"${API_VERSION}\"><bsvc:Business_Process_Parameters><bsvc:Auto_Complete>true</bsvc:Auto_Complete><bsvc:Run_Now>true</bsvc:Run_Now></bsvc:Business_Process_Parameters><bsvc:Maintain_Contact_Information_Data><bsvc:Worker_Reference\
+            \ bsvc:Descriptor=\"\"><bsvc:ID bsvc:type=\"WID\">${user.customproperty1}</bsvc:ID></bsvc:Worker_Reference><bsvc:Effective_Date>${CURRENT_PROV_TIMESTAMP}</bsvc:Effective_Date><bsvc:Worker_Contact_Information_Data><bsvc:Email_Address_Data><bsvc:Email_Address>${user.email}</bsvc:Email_Address><bsvc:Usage_Data\
+            \ bsvc:Public=\"true\"><bsvc:Type_Data bsvc:Primary=\"true\"><bsvc:Type_Reference\
+            \ bsvc:Descriptor=\"work\"><bsvc:ID bsvc:type=\"Communication_Usage_Type_ID\"\
+            >WORK</bsvc:ID></bsvc:Type_Reference></bsvc:Type_Data></bsvc:Usage_Data></bsvc:Email_Address_Data></bsvc:Worker_Contact_Information_Data></bsvc:Maintain_Contact_Information_Data></bsvc:Maintain_Contact_Information_for_Person_Event_Request>"
+          type: string
+        CLIENT_ID:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          example: "{\"statusAndThresholdConfig\":{\"statusColumn\":\"customproperty30\"\
+            ,\"deleteLinks\":false,\"accountThresholdValue\":1000,\"correlateInactiveAccounts\"\
+            :false,\"inactivateAccountsNotInFile\":false}}"
+          type: string
+        USERNAME:
+          example: username
+          type: string
+        ACCESS_IMPORT_LIST:
+          example: "Security Group,Domain Security Policy"
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        ACCOUNT_IMPORT_MAPPING:
+          example: "\"ImportType\":\"SOAP\",\"ResponsePath\":\"Body.Get_Workers_Response.Response_Data.Worker\"\
+            ,\"ImportMapping\":{\"NAME\":\"Worker_Data.User_ID\",\"ACCOUNTID\":\"\
+            Worker_Reference.ID(@wd:type=='WID')\",\"CUSTOMPROPERTY30\":\"Worker_Data.Employment_Data.Worker_Status_Data.Active\"\
+            ,\"CUSTOMPROPERTY1\":\"Worker_Data.Personal_Data.Identification_Data.Custom_ID.Custom_ID_Data(ID_Type_Reference->ID=='CustomID_NTID').ID\"\
+            ,\"CUSTOMPROPERTY2\":\"Worker_Data.Personal_Data.Identification_Data.Custom_ID.Custom_ID_Data(ID_Type_Reference\
+            \ - > ID == 'CustomID_GPID').ID\",\"CUSTOMPROPERTY3\":\"Worker_Data.Personal_Data.Identification_Data.Custom_ID.Custom_ID_Data(ID_Type_Reference\
+            \ - > ID == 'CustomID_UPN').ID\",\"CUSTOMPROPERTY4\":\"Worker_Data.Personal_Data.Contact_Data.Email_Address_Data(Usage_Data\
+            \ - > Type_Data - > Type_Reference - > ID == 'WORK').Email_Address\",\"\
+            CUSTOMPROPERTY5\":\"Worker_Data.Personal_Data.Name_Data.Legal_Name_Data.Name_Detail_Data.First_Name\"\
+            ,\"CUSTOMPROPERTY6\":\"Worker_Data.Personal_Data.Name_Data.Legal_Name_Data.Name_Detail_Data.Last_Name\"\
+            ,\"CUSTOMPROPERTY7\":\"Worker_Data.Personal_Data.Name_Data.Legal_Name_Data.Name_Detail_Data.Country_Reference.ID(@type\
+            \ == 'ISO_3166-1_Alpha-3_Code')\",\"CUSTOMPROPERTY9\":\"Worker_Data.Role_Data.Organization_Role_Data.Organization_Role.Organization_Role_Reference.ID(@type\
+            \ == 'Organization_Role_ID')\",\"CUSTOMPROPERTY11\":\"Worker_Data.Worker_ID\"\
+            ,\"CUSTOMPROPERTY12\":\"Worker_Data.Personal_Data.Identification_Data.Custom_ID(Custom_ID_Data\
+            \ - > ID_Type_Reference - > ID == 'CustomID_GPID').Custom_ID_Shared_Reference.ID(@type\
+            \ == 'Custom_Identifier_Reference_ID')\",\"CUSTOMPROPERTY13\":\"Worker_Data.Personal_Data.Identification_Data.Custom_ID(Custom_ID_Data\
+            \ - > ID_Type_Reference - > ID == 'CustomID_UPN').Custom_ID_Shared_Reference.ID(@type\
+            \ == 'Custom_Identifier_Reference_ID')\"}}"
+          type: string
+        CLIENT_SECRET:
+          example: secret
+          type: string
+        ORGROLE_IMPORT_PAYLOAD:
+          example: "bsvc:Get_Organizations_Request bsvc:version=\"${API_VERSION}\"\
+            ><bsvc:Request_Criteria><bsvc:Include_Inactive>1</bsvc:Include_Inactive>${INCREMENTAL_IMPORT_CRITERIA}</bsvc:Request_Criteria><bsvc:Response_Filter><bsvc:Page>${PAGE_NUMBER}</bsvc:Page><bsvc:Count>${PAGE_SIZE}</bsvc:Count></bsvc:Response_Filter><bsvc:Response_Group><bsvc:Include_Roles_Data>1</bsvc:Include_Roles_Data><bsvc:Include_Hierarchy_Data>0</bsvc:Include_Hierarchy_Data><bsvc:Include_Supervisory_Data>0</bsvc:Include_Supervisory_Data><bsvc:Include_Staffing_Restrictions_Data>0</bsvc:Include_Staffing_Restrictions_Data></bsvc:Response_Group></bsvc:Get_Organizations_Request>"
+          type: string
+        ASSIGN_ORGROLE_PAYLOAD:
+          example: "<bsvc:Assign_Roles_Request bsvc:version=\"${API_VERSION}\">"
+          type: string
+        ACCESS_IMPORT_MAPPING:
+          example: "{\"Security Group\":{\"ImportMapping\":{\"displayname\":\"wd:Security_Group.wd:Descriptor~#~char\"\
+            ,\"description\":\"wd:Comment~#~char\"}},\"Domain Security Policy\":{\"\
+            ImportMapping\":{}},\"Business Process Security Policy\":{\"ImportMapping\"\
+            :{}},\"Business Process Definitions\":{\"ImportMapping\":{}},\"Organizational\
+            \ Role\":{\"ImportMapping\":{}},\"Organization\":{\"ImportMapping\":{}},\"\
+            Tasks And Reports\":{\"ImportMapping\":{}}}"
+          type: string
+        API_VERSION:
+          example: v0.1
+          type: string
+        REMOVE_ORGROLE_PAYLOAD:
+          example: "<bsvc:Assign_Roles_Request bsvc:version=\"${API_VERSION}\"><bsvc:Business_Process_Parameters><bsvc:Auto_Complete>1</bsvc:Auto_Complete></bsvc:Business_Process_Parameters><bsvc:Assign_Roles_Event_Data><bsvc:Event_Target_Assignee_Reference\
+            \ bsvc:Descriptor=\"?\"><bsvc:ID bsvc:type=\"WID\">${user.customproperty1}</bsvc:ID></bsvc:Event_Target_Assignee_Reference><bsvc:Remove_All_Role_Assignments_for_Event_Target_Assignee>0</bsvc:Remove_All_Role_Assignments_for_Event_Target_Assignee><bsvc:Assign_Roles_Role_Assignment_Data><bsvc:Role_Assigner_Reference><bsvc:ID\
+            \ bsvc:type=\"Organization_Reference_ID\">${Organization_Reference_ID}</bsvc:ID></bsvc:Role_Assigner_Reference><bsvc:Assignable_Role_Reference><bsvc:ID\
+            \ bsvc:type=\"WID\">${entitlementID}</bsvc:ID></bsvc:Assignable_Role_Reference><bsvc:Remove_Existing_Assignees_for_Assignable_Role_on_Role_Assigner>0</bsvc:Remove_Existing_Assignees_for_Assignable_Role_on_Role_Assigner><bsvc:Update_Later_Dated_Assignments>1</bsvc:Update_Later_Dated_Assignments><bsvc:Assignees_to_Remove_Reference><bsvc:ID\
+            \ bsvc:type=\"WID\">${user.customproperty1}</bsvc:ID></bsvc:Assignees_to_Remove_Reference><bsvc:Remove_Supervisory_Organization_Single_Assignment_Manager>0</bsvc:Remove_Supervisory_Organization_Single_Assignment_Manager></bsvc:Assign_Roles_Role_Assignment_Data></bsvc:Assign_Roles_Event_Data></bsvc:Assign_Roles_Request>"
+          type: string
+        INCLUDE_REFERENCE_DESCRIPTORS:
+          type: string
+        REFRESH_TOKEN:
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        isTimeoutConfigValidated:
+          example: true
+          type: boolean
+        USE_X509AUTH_FOR_SOAP:
+          example: "FALSE"
+          type: string
+        REPORT_OWNER:
+          type: string
+        X509_KEY:
+          type: string
+        CUSTOM_CONFIG:
+          type: string
+        USERATTRIBUTEJSON:
+          type: string
+        X509_CERT:
+          type: string
+        PASSWORD:
+          example: password123
+          type: string
+        USER_IMPORT_PAYLOAD:
+          type: string
+        PAM_CONFIG:
+          type: string
+        ACCESS_LAST_IMPORT_TIME:
+          example: "{\"Organization\":{\"From\":\"2024-01-22T21:49:02.674-08:00\"\
+            },\"Security Group\":{\"Created_Moment\":\"2024-01-22T21:49:02.674-08:00\"\
+            ,\"Last_Updated\":\"2024-01-22T21:49:02.674-08:00\"},\"Domain Security\
+            \ Policy\":{\"From\":\"2024-01-22T21:49:02.674-08:00\"},\"Tasks And Reports\"\
+            :{\"Created_Moment\":\"2024-01-22T21:49:02.674-08:00\",\"Last_Updated\"\
+            :\"2024-01-22T21:49:02.674-08:00\"},\"Business Process Security Policy\"\
+            :{\"From\":\"2024-01-22T21:49:02.674-08:00\"},\"Organizational Role\"\
+            :{\"Created_Moment\":\"2024-01-22T21:49:02.674-08:00\",\"Last_Updated\"\
+            :\"2024-01-22T21:49:02.674-08:00\"}}"
+          type: string
+        USERS_LAST_IMPORT_TIME:
+          example: 2025-01-13T03:14:28.530-08:00
+          type: string
+        UPDATE_USER_PAYLOAD:
+          type: string
+        PAGE_SIZE:
+          example: "1000"
+          type: string
+        TENANT_NAME:
+          example: tenant
+          type: string
+        USE_ENHANCED_ORGROLE:
+          example: "FALSE"
+          type: string
+        CREATE_ACCOUNT_PAYLOAD:
+          example: "<bsvc:Workday_Account_for_Worker_Add bsvc:version=\"${API_VERSION}\"\
+            ><bsvc:Workday_Account_for_Worker_Data><bsvc:User_Name>${accountName}</bsvc:User_Name><bsvc:Password>${password}</bsvc:Password></bsvc:Workday_Account_for_Worker_Data></bsvc:Workday_Account_for_Worker_Add>"
+          type: string
+        BASE_URL:
+          example: www.example.workday.com
+          type: string
+    EntraIDConnectionAttributes:
+      properties:
+        UpdateUserJSON:
+          type: string
+        MICROSOFT_GRAPH_ENDPOINT:
+          example: https://example.com
+          type: string
+        ENDPOINTS_FILTER:
+          type: string
+        ImportUserJSON:
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        EnableAccountJSON:
+          example: "\"call\":[{\"name\":\"call1\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/${account.accountID}\",\"httpMethod\":\"\
+            PATCH\",\"httpParams\":\"{\\\"accountEnabled\\\": true}\",\"httpHeaders\"\
+            :{\"Authorization\":\"${access_token}\"},\"httpContentType\":\"application/json\"\
+            ,\"successResponses\":{\"statusCode\":[200,201,204,205]}}]}"
+          type: string
+        ConnectionJSON:
+          example: 2Zu5TzAaslOVICigob+xCt8PA2vO79ly17qVvzL1EDqdZ3bplvfOjTonpUDBeDOad/fkHgpHsfO6azHVdRz6oBpB6ELGaMdGQeI
+          type: string
+        CLIENT_ID:
+          example: client_id
+          type: string
+        DeleteGroupJSON:
+          type: string
+        ConfigJSON:
+          example: "{\"connectionTimeoutConfig\":{\"connectionTimeout\":10,\"readTimeout\"\
+            :60,\"retryWait\":5,\"retryCount\":3}}"
+          type: string
+        ACCESS_TOKEN:
+          example: access_token
+          type: string
+        AddAccessJSON:
+          example: "{\"call\":[{\"name\":\"SKU\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/users/${account.accountID}"
+          type: string
+        CreateChannelJSON:
+          type: string
+        UpdateAccountJSON:
+          example: "{\"call\":[{\"name\":\"call1\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/users/${account.accountID}\",\"httpMethod\"\
+            :\"PATCH\",\"httpParams\":\"{\\\"userprincipalname\\\": \\\"${account.name}\\\
+            \"}\",\"httpHeaders\":{\"Authorization\":\"${access_token}\"},\"httpContentType\"\
+            :\"application/json\",\"successResponses\":{\"statusCode\":[200,201,204,205]}}]}"
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        RemoveServicePrincipalJSON:
+          type: string
+        IMPORT_DEPTH:
+          example: FINE GRAINED
+          type: string
+        CreateAccountJSON:
+          example: "call\":[{\"name\":\"call1\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/users\",\"httpMethod\":\"POST\",\"httpParams\"\
+            :\"{\\\"accountEnabled\\\":true,\\\"displayName\\\":\\\"${user.firstname}\\\
+            \",\\\"mailNickname\\\":\\\"${user.firstname}\\\",\\\"userPrincipalName\\\
+            \":\\\"${user.username}@saviyntlive.onmicrosoft.com\\\",\\\"passwordProfile\\\
+            \":{\\\"forceChangePasswordNextSignIn\\\":true,\\\"password\\\":\\\"${password}\\\
+            \"}}\",\"httpHeaders\":{\"Authorization\":\"${access_token}\"},\"httpContentType\"\
+            :\"application/json\",\"successResponses\":{\"statusCode\":[200,201,204,205]}}],\"\
+            accountIdPath\":\"call1.message.id\",\"dateFormat\":\"yyyy-MM-dd'T'HH:mm:ssXXX\"\
+            ,\"responseColsToPropsMap\":{\"displayName\":\"call1.message.displayName~#~char\"\
+            ,\"name\":\"call1.message.userPrincipalName~#~char\"}}"
+          type: string
+        PAM_CONFIG:
+          type: string
+        UpdateServicePrincipalJSON:
+          type: string
+        AZURE_MANAGEMENT_ENDPOINT:
+          example: https://management.azure.com
+          type: string
+        ENTITLEMENT_ATTRIBUTE:
+          type: string
+        ACCOUNTS_FILTER:
+          type: string
+        WINDOWS_CONNECTOR_JSON:
+          type: string
+        DELTATOKENSJSON:
+          type: string
+        AZURE_MGMT_ACCESS_TOKEN:
+          example: token
+          type: string
+        CreateTeamJSON:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        ENHANCEDDIRECTORYROLES:
+          example: "FALSE"
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          example: "{ \"statusAndThresholdConfig\": { \"accountThresholdValue\": 1000,\
+            \ \"appAccountThresholdValue\": 500, \"correlateInactiveAccounts\": true,\
+            \ \"statusColumn\": \"customproperty10\", \"activeStatus\": [\"true\"\
+            ], \"deleteLinks\": true, \"inactivateAccountsNotInFile\": false } }"
+          type: string
+        ACCOUNT_IMPORT_FIELDS:
+          example: "accountEnabled,mail,businessPhone,surname,givenName,displayName,userPrincipalName,id"
+          type: string
+        RemoveAccountJSON:
+          example: "{\"call\":[{\"name\":\"call1\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/users/${account.accountID}\",\"httpMethod\"\
+            :\"DELETE\",\"httpHeaders\":{\"Authorization\":\"${access_token}\"},\"\
+            httpContentType\":\"application/json\",\"successResponses\":{\"statusCode\"\
+            :[200,201,204,205]}}]}"
+          type: string
+        ChangePassJSON:
+          example: "{\"call\":[{\"name\":\"call1\",\"connection\":\"${connectionName}\"\
+            ,\"url\":\"https://example.com/users/${account.accountID}\",\"httpMethod\"\
+            :\"PATCH\",\"httpParams\":\"{\\\"passwordPolicies\\\" :\\\"DisableStrongPassword\\\
+            \",\\\"passwordProfile\\\" : {\\\"password\\\":\\\"${password}\\\",\\\"\
+            forceChangePasswordNextSignIn\\\": false}}\",\"httpHeaders\":{\"Authorization\"\
+            :\"${access_token}\"},\"httpContentType\":\"application/json\",\"successResponses\"\
+            :{\"statusCode\":[200,201,204,205]}}]}"
+          type: string
+        CLIENT_SECRET:
+          example: client_secret
+          type: string
+        ENTITLEMENT_FILTER_JSON:
+          type: string
+        SERVICE_ACCOUNT_ATTRIBUTES:
+          type: string
+        AddAccessToEntitlementJSON:
+          type: string
+        AUTHENTICATION_ENDPOINT:
+          example: https://example.com
+          type: string
+        CreateServicePrincipalJSON:
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        isTimeoutConfigValidated:
+          example: true
+          type: boolean
+        RemoveAccessJSON:
+          type: string
+        CREATEUSERS:
+          example: "NO"
+          type: string
+        RemoveAccessFromEntitlementJSON:
+          type: string
+        DisableAccountJSON:
+          type: string
+        CREATE_NEW_ENDPOINTS:
+          example: "NO"
+          type: string
+        MANAGED_ACCOUNT_TYPE:
+          type: string
+        ACCOUNT_ATTRIBUTES:
+          type: string
+        AAD_TENANT_ID:
+          example: tenant_id
+          type: string
+        UpdateGroupJSON:
+          type: string
+        CreateGroupJSON:
+          type: string
+    SAPConnectionAttributes:
+      properties:
+        CREATEACCOUNTJSON:
+          type: string
+        AUDIT_LOG_JSON:
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        SAPTABLE_FILTER_LANG:
+          type: string
+        PASSWORD_NOOFSPLCHARS:
+          type: string
+        TERMINATEDUSERGROUP:
+          type: string
+        LOGS_TABLE_FILTER:
+          type: string
+        ECC_OR_S4HANA:
+          type: string
+        FIREFIGHTERID_REVOKE_ACCESS_JSON:
+          type: string
+        ConfigJSON:
+          type: string
+        FIREFIGHTERID_GRANT_ACCESS_JSON:
+          type: string
+        PROV_PASSWORD:
+          type: string
+        JCO_SNC_LIBRARY:
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        JCO_R3NAME:
+          type: string
+        EXTERNAL_SOD_EVAL_JSON:
+          type: string
+        JCO_ASHOST:
+          example: sap.example.com
+          type: string
+        PASSWORD_NOOFDIGITS:
+          type: string
+        PROV_JCO_MSHOST:
+          type: string
+        PASSWORD:
+          example: pass123
+          type: string
+        PAM_CONFIG:
+          type: string
+        JCO_SNC_MYNAME:
+          type: string
+        ENFORCEPASSWORDCHANGE:
+          type: string
+        JCO_USER:
+          type: string
+        JCO_SNC_MODE:
+          type: string
+        PROV_JCO_MSSERV:
+          type: string
+        HANAREFTABLEJSON:
+          type: string
+        PASSWORD_MIN_LENGTH:
+          type: string
+        JCO_CLIENT:
+          example: "10"
+          type: string
+        TERMINATED_USER_ROLE_ACTION:
+          type: string
+        RESET_PWD_FOR_NEWACCOUNT:
+          type: string
+        PROV_JCO_CLIENT:
+          type: string
+        SNC:
+          type: string
+        JCO_MSSERV:
+          type: string
+        PROV_CUA_SNC:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        PROV_JCO_USER:
+          type: string
+        JCO_LANG:
+          example: en
+          type: string
+        JCO_SNC_PARTNERNAME:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          type: string
+        PROV_JCO_SYSNR:
+          type: string
+        SETCUASYSTEM:
+          type: string
+        MESSAGESERVER:
+          example: "FALSE"
+          type: string
+        PROV_JCO_ASHOST:
+          type: string
+        PROV_JCO_GROUP:
+          type: string
+        PROV_CUA_ENABLED:
+          type: string
+        JCO_MSHOST:
+          type: string
+        PROV_JCO_R3NAME:
+          type: string
+        PASSWORD_NOOFCAPSALPHA:
+          type: string
+        MODIFYUSERDATAJSON:
+          type: string
+        isTimeoutConfigValidated:
+          example: true
+          type: boolean
+        JCO_SNC_QOP:
+          type: string
+        TABLES:
+          type: string
+        PROV_JCO_LANG:
+          type: string
+        JCO_SYSNR:
+          example: "101"
+          type: string
+        EXTERNAL_SOD_EVAL_JSON_DETAIL:
+          type: string
+        DATA_IMPORT_FILTER:
+          type: string
+        ENABLEACCOUNTJSON:
+          type: string
+        ALTERNATE_OUTPUT_PARAMETER_ET_DATA:
+          type: string
+        JCO_GROUP:
+          type: string
+        PASSWORD_MAX_LENGTH:
+          type: string
+        USERIMPORTJSON:
+          type: string
+        SYSTEMNAME:
+          type: string
+        UPDATEACCOUNTJSON:
+          type: string
+    SalesforceConnectionAttributes:
+      properties:
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        CLIENT_SECRET:
+          example: client_secret
+          type: string
+        OBJECT_TO_BE_IMPORTED:
+          type: string
+        FEATURE_LICENSE_JSON:
+          type: string
+        CREATEACCOUNTJSON:
+          type: string
+        REDIRECT_URI:
+          example: https://example.com
+          type: string
+        REFRESH_TOKEN:
+          example: refresh_token
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+        MODIFYACCOUNTJSON:
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        isTimeoutConfigValidated:
+          example: true
+          type: boolean
+        CLIENT_ID:
+          example: client_id
+          type: string
+        PAM_CONFIG:
+          type: string
+        CUSTOMCONFIGJSON:
+          type: string
+        FIELD_MAPPING_JSON:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          type: string
+        ACCOUNT_FIELD_QUERY:
+          type: string
+        CUSTOM_CREATEACCOUNT_URL:
+          type: string
+        ACCOUNT_FILTER_QUERY:
+          type: string
+        INSTANCE_URL:
+          example: https://example.salesforce.com
+          type: string
     createOrUpdate_request:
       discriminator:
         mapping:
@@ -2832,6 +3545,7 @@ components:
           D365: '#/components/schemas/D365Connector'
           Workday: '#/components/schemas/WorkdayConnector'
           DB: '#/components/schemas/DBConnector'
+          EntraID: '#/components/schemas/EntraIDConnector'
         propertyName: connectiontype
       oneOf:
       - $ref: '#/components/schemas/ADConnector'
@@ -2842,6 +3556,7 @@ components:
       - $ref: '#/components/schemas/D365Connector'
       - $ref: '#/components/schemas/WorkdayConnector'
       - $ref: '#/components/schemas/DBConnector'
+      - $ref: '#/components/schemas/EntraIDConnector'
     getConnections_request:
       properties:
         connectionname:
@@ -2921,16 +3636,19 @@ components:
       example:
         retryWait: 0
         tokenRefreshMaxTryCount: 6
-        retryWaitMaxValue: 1
+        retryFailureStatusCode: 1
+        retryWaitMaxValue: 5
         retryCount: 5
-        readTimeout: 5
-        connectionTimeout: 2
+        readTimeout: 2
+        connectionTimeout: 7
       properties:
         retryWait:
           description: Wait time before retrying a failed connection.
           type: integer
         tokenRefreshMaxTryCount:
           description: Maximum number of retries for token refresh.
+          type: integer
+        retryFailureStatusCode:
           type: integer
         retryWaitMaxValue:
           description: Maximum wait time for retries.
@@ -2950,6 +3668,8 @@ components:
           type: integer
         tokenRefreshMaxTryCount:
           type: integer
+        retryFailureStatusCode:
+          type: string
         retryWaitMaxValue:
           type: integer
         retryCount:

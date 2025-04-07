@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the DBConnectionResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &DBConnectionResponse{}
+// checks if the SalesforceConnectionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SalesforceConnectionResponse{}
 
-// DBConnectionResponse struct for DBConnectionResponse
-type DBConnectionResponse struct {
+// SalesforceConnectionResponse struct for SalesforceConnectionResponse
+type SalesforceConnectionResponse struct {
 	// API response message
 	Msg *string `json:"msg,omitempty"`
 	// Email template for the connection
@@ -41,28 +41,28 @@ type DBConnectionResponse struct {
 	Errorcode *int32 `json:"errorcode,omitempty"`
 	Status *int32 `json:"status,omitempty"`
 	Defaultsavroles *string `json:"defaultsavroles,omitempty"`
-	Connectionattributes *DBConnectionAttributes `json:"connectionattributes,omitempty"`
+	Connectionattributes *SalesforceConnectionAttributes `json:"connectionattributes,omitempty"`
 }
 
-// NewDBConnectionResponse instantiates a new DBConnectionResponse object
+// NewSalesforceConnectionResponse instantiates a new SalesforceConnectionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDBConnectionResponse() *DBConnectionResponse {
-	this := DBConnectionResponse{}
+func NewSalesforceConnectionResponse() *SalesforceConnectionResponse {
+	this := SalesforceConnectionResponse{}
 	return &this
 }
 
-// NewDBConnectionResponseWithDefaults instantiates a new DBConnectionResponse object
+// NewSalesforceConnectionResponseWithDefaults instantiates a new SalesforceConnectionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDBConnectionResponseWithDefaults() *DBConnectionResponse {
-	this := DBConnectionResponse{}
+func NewSalesforceConnectionResponseWithDefaults() *SalesforceConnectionResponse {
+	this := SalesforceConnectionResponse{}
 	return &this
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetMsg() string {
+func (o *SalesforceConnectionResponse) GetMsg() string {
 	if o == nil || IsNil(o.Msg) {
 		var ret string
 		return ret
@@ -72,7 +72,7 @@ func (o *DBConnectionResponse) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetMsgOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetMsgOk() (*string, bool) {
 	if o == nil || IsNil(o.Msg) {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *DBConnectionResponse) GetMsgOk() (*string, bool) {
 }
 
 // HasMsg returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasMsg() bool {
+func (o *SalesforceConnectionResponse) HasMsg() bool {
 	if o != nil && !IsNil(o.Msg) {
 		return true
 	}
@@ -89,12 +89,12 @@ func (o *DBConnectionResponse) HasMsg() bool {
 }
 
 // SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *DBConnectionResponse) SetMsg(v string) {
+func (o *SalesforceConnectionResponse) SetMsg(v string) {
 	o.Msg = &v
 }
 
 // GetEmailtemplate returns the Emailtemplate field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetEmailtemplate() string {
+func (o *SalesforceConnectionResponse) GetEmailtemplate() string {
 	if o == nil || IsNil(o.Emailtemplate) {
 		var ret string
 		return ret
@@ -104,7 +104,7 @@ func (o *DBConnectionResponse) GetEmailtemplate() string {
 
 // GetEmailtemplateOk returns a tuple with the Emailtemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetEmailtemplateOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetEmailtemplateOk() (*string, bool) {
 	if o == nil || IsNil(o.Emailtemplate) {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *DBConnectionResponse) GetEmailtemplateOk() (*string, bool) {
 }
 
 // HasEmailtemplate returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasEmailtemplate() bool {
+func (o *SalesforceConnectionResponse) HasEmailtemplate() bool {
 	if o != nil && !IsNil(o.Emailtemplate) {
 		return true
 	}
@@ -121,12 +121,12 @@ func (o *DBConnectionResponse) HasEmailtemplate() bool {
 }
 
 // SetEmailtemplate gets a reference to the given string and assigns it to the Emailtemplate field.
-func (o *DBConnectionResponse) SetEmailtemplate(v string) {
+func (o *SalesforceConnectionResponse) SetEmailtemplate(v string) {
 	o.Emailtemplate = &v
 }
 
 // GetUpdatedby returns the Updatedby field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetUpdatedby() string {
+func (o *SalesforceConnectionResponse) GetUpdatedby() string {
 	if o == nil || IsNil(o.Updatedby) {
 		var ret string
 		return ret
@@ -136,7 +136,7 @@ func (o *DBConnectionResponse) GetUpdatedby() string {
 
 // GetUpdatedbyOk returns a tuple with the Updatedby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetUpdatedbyOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetUpdatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Updatedby) {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *DBConnectionResponse) GetUpdatedbyOk() (*string, bool) {
 }
 
 // HasUpdatedby returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasUpdatedby() bool {
+func (o *SalesforceConnectionResponse) HasUpdatedby() bool {
 	if o != nil && !IsNil(o.Updatedby) {
 		return true
 	}
@@ -153,12 +153,12 @@ func (o *DBConnectionResponse) HasUpdatedby() bool {
 }
 
 // SetUpdatedby gets a reference to the given string and assigns it to the Updatedby field.
-func (o *DBConnectionResponse) SetUpdatedby(v string) {
+func (o *SalesforceConnectionResponse) SetUpdatedby(v string) {
 	o.Updatedby = &v
 }
 
 // GetConnectionname returns the Connectionname field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetConnectionname() string {
+func (o *SalesforceConnectionResponse) GetConnectionname() string {
 	if o == nil || IsNil(o.Connectionname) {
 		var ret string
 		return ret
@@ -168,7 +168,7 @@ func (o *DBConnectionResponse) GetConnectionname() string {
 
 // GetConnectionnameOk returns a tuple with the Connectionname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetConnectionnameOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetConnectionnameOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectionname) {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *DBConnectionResponse) GetConnectionnameOk() (*string, bool) {
 }
 
 // HasConnectionname returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasConnectionname() bool {
+func (o *SalesforceConnectionResponse) HasConnectionname() bool {
 	if o != nil && !IsNil(o.Connectionname) {
 		return true
 	}
@@ -185,12 +185,12 @@ func (o *DBConnectionResponse) HasConnectionname() bool {
 }
 
 // SetConnectionname gets a reference to the given string and assigns it to the Connectionname field.
-func (o *DBConnectionResponse) SetConnectionname(v string) {
+func (o *SalesforceConnectionResponse) SetConnectionname(v string) {
 	o.Connectionname = &v
 }
 
 // GetConnectionkey returns the Connectionkey field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetConnectionkey() int32 {
+func (o *SalesforceConnectionResponse) GetConnectionkey() int32 {
 	if o == nil || IsNil(o.Connectionkey) {
 		var ret int32
 		return ret
@@ -200,7 +200,7 @@ func (o *DBConnectionResponse) GetConnectionkey() int32 {
 
 // GetConnectionkeyOk returns a tuple with the Connectionkey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
+func (o *SalesforceConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
 	if o == nil || IsNil(o.Connectionkey) {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *DBConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
 }
 
 // HasConnectionkey returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasConnectionkey() bool {
+func (o *SalesforceConnectionResponse) HasConnectionkey() bool {
 	if o != nil && !IsNil(o.Connectionkey) {
 		return true
 	}
@@ -217,12 +217,12 @@ func (o *DBConnectionResponse) HasConnectionkey() bool {
 }
 
 // SetConnectionkey gets a reference to the given int32 and assigns it to the Connectionkey field.
-func (o *DBConnectionResponse) SetConnectionkey(v int32) {
+func (o *SalesforceConnectionResponse) SetConnectionkey(v int32) {
 	o.Connectionkey = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetDescription() string {
+func (o *SalesforceConnectionResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *DBConnectionResponse) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetDescriptionOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *DBConnectionResponse) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasDescription() bool {
+func (o *SalesforceConnectionResponse) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -249,12 +249,12 @@ func (o *DBConnectionResponse) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *DBConnectionResponse) SetDescription(v string) {
+func (o *SalesforceConnectionResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetConnectiontype returns the Connectiontype field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetConnectiontype() string {
+func (o *SalesforceConnectionResponse) GetConnectiontype() string {
 	if o == nil || IsNil(o.Connectiontype) {
 		var ret string
 		return ret
@@ -264,7 +264,7 @@ func (o *DBConnectionResponse) GetConnectiontype() string {
 
 // GetConnectiontypeOk returns a tuple with the Connectiontype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetConnectiontypeOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetConnectiontypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectiontype) {
 		return nil, false
 	}
@@ -272,7 +272,7 @@ func (o *DBConnectionResponse) GetConnectiontypeOk() (*string, bool) {
 }
 
 // HasConnectiontype returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasConnectiontype() bool {
+func (o *SalesforceConnectionResponse) HasConnectiontype() bool {
 	if o != nil && !IsNil(o.Connectiontype) {
 		return true
 	}
@@ -281,12 +281,12 @@ func (o *DBConnectionResponse) HasConnectiontype() bool {
 }
 
 // SetConnectiontype gets a reference to the given string and assigns it to the Connectiontype field.
-func (o *DBConnectionResponse) SetConnectiontype(v string) {
+func (o *SalesforceConnectionResponse) SetConnectiontype(v string) {
 	o.Connectiontype = &v
 }
 
 // GetCreatedon returns the Createdon field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetCreatedon() string {
+func (o *SalesforceConnectionResponse) GetCreatedon() string {
 	if o == nil || IsNil(o.Createdon) {
 		var ret string
 		return ret
@@ -296,7 +296,7 @@ func (o *DBConnectionResponse) GetCreatedon() string {
 
 // GetCreatedonOk returns a tuple with the Createdon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetCreatedonOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetCreatedonOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdon) {
 		return nil, false
 	}
@@ -304,7 +304,7 @@ func (o *DBConnectionResponse) GetCreatedonOk() (*string, bool) {
 }
 
 // HasCreatedon returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasCreatedon() bool {
+func (o *SalesforceConnectionResponse) HasCreatedon() bool {
 	if o != nil && !IsNil(o.Createdon) {
 		return true
 	}
@@ -313,12 +313,12 @@ func (o *DBConnectionResponse) HasCreatedon() bool {
 }
 
 // SetCreatedon gets a reference to the given string and assigns it to the Createdon field.
-func (o *DBConnectionResponse) SetCreatedon(v string) {
+func (o *SalesforceConnectionResponse) SetCreatedon(v string) {
 	o.Createdon = &v
 }
 
 // GetCreatedby returns the Createdby field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetCreatedby() string {
+func (o *SalesforceConnectionResponse) GetCreatedby() string {
 	if o == nil || IsNil(o.Createdby) {
 		var ret string
 		return ret
@@ -328,7 +328,7 @@ func (o *DBConnectionResponse) GetCreatedby() string {
 
 // GetCreatedbyOk returns a tuple with the Createdby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetCreatedbyOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetCreatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdby) {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *DBConnectionResponse) GetCreatedbyOk() (*string, bool) {
 }
 
 // HasCreatedby returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasCreatedby() bool {
+func (o *SalesforceConnectionResponse) HasCreatedby() bool {
 	if o != nil && !IsNil(o.Createdby) {
 		return true
 	}
@@ -345,12 +345,12 @@ func (o *DBConnectionResponse) HasCreatedby() bool {
 }
 
 // SetCreatedby gets a reference to the given string and assigns it to the Createdby field.
-func (o *DBConnectionResponse) SetCreatedby(v string) {
+func (o *SalesforceConnectionResponse) SetCreatedby(v string) {
 	o.Createdby = &v
 }
 
 // GetErrorcode returns the Errorcode field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetErrorcode() int32 {
+func (o *SalesforceConnectionResponse) GetErrorcode() int32 {
 	if o == nil || IsNil(o.Errorcode) {
 		var ret int32
 		return ret
@@ -360,7 +360,7 @@ func (o *DBConnectionResponse) GetErrorcode() int32 {
 
 // GetErrorcodeOk returns a tuple with the Errorcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetErrorcodeOk() (*int32, bool) {
+func (o *SalesforceConnectionResponse) GetErrorcodeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Errorcode) {
 		return nil, false
 	}
@@ -368,7 +368,7 @@ func (o *DBConnectionResponse) GetErrorcodeOk() (*int32, bool) {
 }
 
 // HasErrorcode returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasErrorcode() bool {
+func (o *SalesforceConnectionResponse) HasErrorcode() bool {
 	if o != nil && !IsNil(o.Errorcode) {
 		return true
 	}
@@ -377,12 +377,12 @@ func (o *DBConnectionResponse) HasErrorcode() bool {
 }
 
 // SetErrorcode gets a reference to the given int32 and assigns it to the Errorcode field.
-func (o *DBConnectionResponse) SetErrorcode(v int32) {
+func (o *SalesforceConnectionResponse) SetErrorcode(v int32) {
 	o.Errorcode = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetStatus() int32 {
+func (o *SalesforceConnectionResponse) GetStatus() int32 {
 	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
@@ -392,7 +392,7 @@ func (o *DBConnectionResponse) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetStatusOk() (*int32, bool) {
+func (o *SalesforceConnectionResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -400,7 +400,7 @@ func (o *DBConnectionResponse) GetStatusOk() (*int32, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasStatus() bool {
+func (o *SalesforceConnectionResponse) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -409,12 +409,12 @@ func (o *DBConnectionResponse) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *DBConnectionResponse) SetStatus(v int32) {
+func (o *SalesforceConnectionResponse) SetStatus(v int32) {
 	o.Status = &v
 }
 
 // GetDefaultsavroles returns the Defaultsavroles field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetDefaultsavroles() string {
+func (o *SalesforceConnectionResponse) GetDefaultsavroles() string {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		var ret string
 		return ret
@@ -424,7 +424,7 @@ func (o *DBConnectionResponse) GetDefaultsavroles() string {
 
 // GetDefaultsavrolesOk returns a tuple with the Defaultsavroles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
+func (o *SalesforceConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		return nil, false
 	}
@@ -432,7 +432,7 @@ func (o *DBConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
 }
 
 // HasDefaultsavroles returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasDefaultsavroles() bool {
+func (o *SalesforceConnectionResponse) HasDefaultsavroles() bool {
 	if o != nil && !IsNil(o.Defaultsavroles) {
 		return true
 	}
@@ -441,14 +441,14 @@ func (o *DBConnectionResponse) HasDefaultsavroles() bool {
 }
 
 // SetDefaultsavroles gets a reference to the given string and assigns it to the Defaultsavroles field.
-func (o *DBConnectionResponse) SetDefaultsavroles(v string) {
+func (o *SalesforceConnectionResponse) SetDefaultsavroles(v string) {
 	o.Defaultsavroles = &v
 }
 
 // GetConnectionattributes returns the Connectionattributes field value if set, zero value otherwise.
-func (o *DBConnectionResponse) GetConnectionattributes() DBConnectionAttributes {
+func (o *SalesforceConnectionResponse) GetConnectionattributes() SalesforceConnectionAttributes {
 	if o == nil || IsNil(o.Connectionattributes) {
-		var ret DBConnectionAttributes
+		var ret SalesforceConnectionAttributes
 		return ret
 	}
 	return *o.Connectionattributes
@@ -456,7 +456,7 @@ func (o *DBConnectionResponse) GetConnectionattributes() DBConnectionAttributes 
 
 // GetConnectionattributesOk returns a tuple with the Connectionattributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionResponse) GetConnectionattributesOk() (*DBConnectionAttributes, bool) {
+func (o *SalesforceConnectionResponse) GetConnectionattributesOk() (*SalesforceConnectionAttributes, bool) {
 	if o == nil || IsNil(o.Connectionattributes) {
 		return nil, false
 	}
@@ -464,7 +464,7 @@ func (o *DBConnectionResponse) GetConnectionattributesOk() (*DBConnectionAttribu
 }
 
 // HasConnectionattributes returns a boolean if a field has been set.
-func (o *DBConnectionResponse) HasConnectionattributes() bool {
+func (o *SalesforceConnectionResponse) HasConnectionattributes() bool {
 	if o != nil && !IsNil(o.Connectionattributes) {
 		return true
 	}
@@ -472,12 +472,12 @@ func (o *DBConnectionResponse) HasConnectionattributes() bool {
 	return false
 }
 
-// SetConnectionattributes gets a reference to the given DBConnectionAttributes and assigns it to the Connectionattributes field.
-func (o *DBConnectionResponse) SetConnectionattributes(v DBConnectionAttributes) {
+// SetConnectionattributes gets a reference to the given SalesforceConnectionAttributes and assigns it to the Connectionattributes field.
+func (o *SalesforceConnectionResponse) SetConnectionattributes(v SalesforceConnectionAttributes) {
 	o.Connectionattributes = &v
 }
 
-func (o DBConnectionResponse) MarshalJSON() ([]byte, error) {
+func (o SalesforceConnectionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -485,7 +485,7 @@ func (o DBConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o DBConnectionResponse) ToMap() (map[string]interface{}, error) {
+func (o SalesforceConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Msg) {
 		toSerialize["msg"] = o.Msg
@@ -529,38 +529,38 @@ func (o DBConnectionResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableDBConnectionResponse struct {
-	value *DBConnectionResponse
+type NullableSalesforceConnectionResponse struct {
+	value *SalesforceConnectionResponse
 	isSet bool
 }
 
-func (v NullableDBConnectionResponse) Get() *DBConnectionResponse {
+func (v NullableSalesforceConnectionResponse) Get() *SalesforceConnectionResponse {
 	return v.value
 }
 
-func (v *NullableDBConnectionResponse) Set(val *DBConnectionResponse) {
+func (v *NullableSalesforceConnectionResponse) Set(val *SalesforceConnectionResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableDBConnectionResponse) IsSet() bool {
+func (v NullableSalesforceConnectionResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableDBConnectionResponse) Unset() {
+func (v *NullableSalesforceConnectionResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableDBConnectionResponse(val *DBConnectionResponse) *NullableDBConnectionResponse {
-	return &NullableDBConnectionResponse{value: val, isSet: true}
+func NewNullableSalesforceConnectionResponse(val *SalesforceConnectionResponse) *NullableSalesforceConnectionResponse {
+	return &NullableSalesforceConnectionResponse{value: val, isSet: true}
 }
 
-func (v NullableDBConnectionResponse) MarshalJSON() ([]byte, error) {
+func (v NullableSalesforceConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableDBConnectionResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableSalesforceConnectionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

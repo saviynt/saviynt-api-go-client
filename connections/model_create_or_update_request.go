@@ -18,14 +18,15 @@ import (
 
 // CreateOrUpdateRequest - struct for CreateOrUpdateRequest
 type CreateOrUpdateRequest struct {
-	ADConnector         *ADConnector
-	ADSIConnector       *ADSIConnector
-	D365Connector       *D365Connector
-	DBConnector         *DBConnector
-	RESTConnector       *RESTConnector
-	SAPConnector        *SAPConnector
+	ADConnector *ADConnector
+	ADSIConnector *ADSIConnector
+	D365Connector *D365Connector
+	DBConnector *DBConnector
+	EntraIDConnector *EntraIDConnector
+	RESTConnector *RESTConnector
+	SAPConnector *SAPConnector
 	SalesforceConnector *SalesforceConnector
-	WorkdayConnector    *WorkdayConnector
+	WorkdayConnector *WorkdayConnector
 }
 
 // ADConnectorAsCreateOrUpdateRequest is a convenience function that returns ADConnector wrapped in CreateOrUpdateRequest
@@ -56,6 +57,13 @@ func DBConnectorAsCreateOrUpdateRequest(v *DBConnector) CreateOrUpdateRequest {
 	}
 }
 
+// EntraIDConnectorAsCreateOrUpdateRequest is a convenience function that returns EntraIDConnector wrapped in CreateOrUpdateRequest
+func EntraIDConnectorAsCreateOrUpdateRequest(v *EntraIDConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
+		EntraIDConnector: v,
+	}
+}
+
 // RESTConnectorAsCreateOrUpdateRequest is a convenience function that returns RESTConnector wrapped in CreateOrUpdateRequest
 func RESTConnectorAsCreateOrUpdateRequest(v *RESTConnector) CreateOrUpdateRequest {
 	return CreateOrUpdateRequest{
@@ -83,6 +91,7 @@ func WorkdayConnectorAsCreateOrUpdateRequest(v *WorkdayConnector) CreateOrUpdate
 		WorkdayConnector: v,
 	}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
@@ -154,6 +163,23 @@ func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		dst.DBConnector = nil
+	}
+
+	// try to unmarshal data into EntraIDConnector
+	err = newStrictDecoder(data).Decode(&dst.EntraIDConnector)
+	if err == nil {
+		jsonEntraIDConnector, _ := json.Marshal(dst.EntraIDConnector)
+		if string(jsonEntraIDConnector) == "{}" { // empty struct
+			dst.EntraIDConnector = nil
+		} else {
+			if err = validator.Validate(dst.EntraIDConnector); err != nil {
+				dst.EntraIDConnector = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.EntraIDConnector = nil
 	}
 
 	// try to unmarshal data into RESTConnector
@@ -230,6 +256,7 @@ func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 		dst.ADSIConnector = nil
 		dst.D365Connector = nil
 		dst.DBConnector = nil
+		dst.EntraIDConnector = nil
 		dst.RESTConnector = nil
 		dst.SAPConnector = nil
 		dst.SalesforceConnector = nil
@@ -261,6 +288,10 @@ func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.DBConnector)
 	}
 
+	if src.EntraIDConnector != nil {
+		return json.Marshal(&src.EntraIDConnector)
+	}
+
 	if src.RESTConnector != nil {
 		return json.Marshal(&src.RESTConnector)
 	}
@@ -281,7 +312,7 @@ func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CreateOrUpdateRequest) GetActualInstance() interface{} {
+func (obj *CreateOrUpdateRequest) GetActualInstance() (interface{}) {
 	if obj == nil {
 		return nil
 	}
@@ -299,6 +330,10 @@ func (obj *CreateOrUpdateRequest) GetActualInstance() interface{} {
 
 	if obj.DBConnector != nil {
 		return obj.DBConnector
+	}
+
+	if obj.EntraIDConnector != nil {
+		return obj.EntraIDConnector
 	}
 
 	if obj.RESTConnector != nil {
@@ -322,7 +357,7 @@ func (obj *CreateOrUpdateRequest) GetActualInstance() interface{} {
 }
 
 // Get the actual instance value
-func (obj CreateOrUpdateRequest) GetActualInstanceValue() interface{} {
+func (obj CreateOrUpdateRequest) GetActualInstanceValue() (interface{}) {
 	if obj.ADConnector != nil {
 		return *obj.ADConnector
 	}
@@ -337,6 +372,10 @@ func (obj CreateOrUpdateRequest) GetActualInstanceValue() interface{} {
 
 	if obj.DBConnector != nil {
 		return *obj.DBConnector
+	}
+
+	if obj.EntraIDConnector != nil {
+		return *obj.EntraIDConnector
 	}
 
 	if obj.RESTConnector != nil {
@@ -394,3 +433,5 @@ func (v *NullableCreateOrUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

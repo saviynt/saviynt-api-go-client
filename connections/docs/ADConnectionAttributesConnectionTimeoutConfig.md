@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RetryWait** | Pointer to **int32** | Wait time before retrying a failed connection. | [optional] 
 **TokenRefreshMaxTryCount** | Pointer to **int32** | Maximum number of retries for token refresh. | [optional] 
+**RetryFailureStatusCode** | Pointer to **int32** |  | [optional] 
 **RetryWaitMaxValue** | Pointer to **int32** | Maximum wait time for retries. | [optional] 
 **RetryCount** | Pointer to **int32** | Number of retry attempts allowed. | [optional] 
 **ReadTimeout** | Pointer to **int32** | Read timeout duration (in seconds). | [optional] 
@@ -79,6 +80,31 @@ SetTokenRefreshMaxTryCount sets TokenRefreshMaxTryCount field to given value.
 `func (o *ADConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryCount() bool`
 
 HasTokenRefreshMaxTryCount returns a boolean if a field has been set.
+
+### GetRetryFailureStatusCode
+
+`func (o *ADConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() int32`
+
+GetRetryFailureStatusCode returns the RetryFailureStatusCode field if non-nil, zero value otherwise.
+
+### GetRetryFailureStatusCodeOk
+
+`func (o *ADConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool)`
+
+GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetryFailureStatusCode
+
+`func (o *ADConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32)`
+
+SetRetryFailureStatusCode sets RetryFailureStatusCode field to given value.
+
+### HasRetryFailureStatusCode
+
+`func (o *ADConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusCode() bool`
+
+HasRetryFailureStatusCode returns a boolean if a field has been set.
 
 ### GetRetryWaitMaxValue
 

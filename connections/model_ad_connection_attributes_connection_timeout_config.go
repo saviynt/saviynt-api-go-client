@@ -23,6 +23,7 @@ type ADConnectionAttributesConnectionTimeoutConfig struct {
 	RetryWait *int32 `json:"retryWait,omitempty"`
 	// Maximum number of retries for token refresh.
 	TokenRefreshMaxTryCount *int32 `json:"tokenRefreshMaxTryCount,omitempty"`
+	RetryFailureStatusCode *int32 `json:"retryFailureStatusCode,omitempty"`
 	// Maximum wait time for retries.
 	RetryWaitMaxValue *int32 `json:"retryWaitMaxValue,omitempty"`
 	// Number of retry attempts allowed.
@@ -112,6 +113,38 @@ func (o *ADConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryCou
 // SetTokenRefreshMaxTryCount gets a reference to the given int32 and assigns it to the TokenRefreshMaxTryCount field.
 func (o *ADConnectionAttributesConnectionTimeoutConfig) SetTokenRefreshMaxTryCount(v int32) {
 	o.TokenRefreshMaxTryCount = &v
+}
+
+// GetRetryFailureStatusCode returns the RetryFailureStatusCode field value if set, zero value otherwise.
+func (o *ADConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() int32 {
+	if o == nil || IsNil(o.RetryFailureStatusCode) {
+		var ret int32
+		return ret
+	}
+	return *o.RetryFailureStatusCode
+}
+
+// GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ADConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool) {
+	if o == nil || IsNil(o.RetryFailureStatusCode) {
+		return nil, false
+	}
+	return o.RetryFailureStatusCode, true
+}
+
+// HasRetryFailureStatusCode returns a boolean if a field has been set.
+func (o *ADConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusCode() bool {
+	if o != nil && !IsNil(o.RetryFailureStatusCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetRetryFailureStatusCode gets a reference to the given int32 and assigns it to the RetryFailureStatusCode field.
+func (o *ADConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32) {
+	o.RetryFailureStatusCode = &v
 }
 
 // GetRetryWaitMaxValue returns the RetryWaitMaxValue field value if set, zero value otherwise.
@@ -243,7 +276,7 @@ func (o *ADConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeout(v i
 }
 
 func (o ADConnectionAttributesConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -257,6 +290,9 @@ func (o ADConnectionAttributesConnectionTimeoutConfig) ToMap() (map[string]inter
 	}
 	if !IsNil(o.TokenRefreshMaxTryCount) {
 		toSerialize["tokenRefreshMaxTryCount"] = o.TokenRefreshMaxTryCount
+	}
+	if !IsNil(o.RetryFailureStatusCode) {
+		toSerialize["retryFailureStatusCode"] = o.RetryFailureStatusCode
 	}
 	if !IsNil(o.RetryWaitMaxValue) {
 		toSerialize["retryWaitMaxValue"] = o.RetryWaitMaxValue
@@ -308,3 +344,5 @@ func (v *NullableADConnectionAttributesConnectionTimeoutConfig) UnmarshalJSON(sr
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

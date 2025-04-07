@@ -1,4 +1,4 @@
-# RESTConnectionAttributesConnectionTimeoutConfig
+# EntraIDConnectionAttributesConnectionTimeoutConfig
 
 ## Properties
 
@@ -14,195 +14,195 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewRESTConnectionAttributesConnectionTimeoutConfig
+### NewEntraIDConnectionAttributesConnectionTimeoutConfig
 
-`func NewRESTConnectionAttributesConnectionTimeoutConfig() *RESTConnectionAttributesConnectionTimeoutConfig`
+`func NewEntraIDConnectionAttributesConnectionTimeoutConfig() *EntraIDConnectionAttributesConnectionTimeoutConfig`
 
-NewRESTConnectionAttributesConnectionTimeoutConfig instantiates a new RESTConnectionAttributesConnectionTimeoutConfig object
+NewEntraIDConnectionAttributesConnectionTimeoutConfig instantiates a new EntraIDConnectionAttributesConnectionTimeoutConfig object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewRESTConnectionAttributesConnectionTimeoutConfigWithDefaults
+### NewEntraIDConnectionAttributesConnectionTimeoutConfigWithDefaults
 
-`func NewRESTConnectionAttributesConnectionTimeoutConfigWithDefaults() *RESTConnectionAttributesConnectionTimeoutConfig`
+`func NewEntraIDConnectionAttributesConnectionTimeoutConfigWithDefaults() *EntraIDConnectionAttributesConnectionTimeoutConfig`
 
-NewRESTConnectionAttributesConnectionTimeoutConfigWithDefaults instantiates a new RESTConnectionAttributesConnectionTimeoutConfig object
+NewEntraIDConnectionAttributesConnectionTimeoutConfigWithDefaults instantiates a new EntraIDConnectionAttributesConnectionTimeoutConfig object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetRetryWait
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWait() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryWait() int32`
 
 GetRetryWait returns the RetryWait field if non-nil, zero value otherwise.
 
 ### GetRetryWaitOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryWaitOk() (*int32, bool)`
 
 GetRetryWaitOk returns a tuple with the RetryWait field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRetryWait
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryWait(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetRetryWait(v int32)`
 
 SetRetryWait sets RetryWait field to given value.
 
 ### HasRetryWait
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWait() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasRetryWait() bool`
 
 HasRetryWait returns a boolean if a field has been set.
 
 ### GetTokenRefreshMaxTryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCount() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCount() int32`
 
 GetTokenRefreshMaxTryCount returns the TokenRefreshMaxTryCount field if non-nil, zero value otherwise.
 
 ### GetTokenRefreshMaxTryCountOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCountOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCountOk() (*int32, bool)`
 
 GetTokenRefreshMaxTryCountOk returns a tuple with the TokenRefreshMaxTryCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTokenRefreshMaxTryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetTokenRefreshMaxTryCount(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetTokenRefreshMaxTryCount(v int32)`
 
 SetTokenRefreshMaxTryCount sets TokenRefreshMaxTryCount field to given value.
 
 ### HasTokenRefreshMaxTryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryCount() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryCount() bool`
 
 HasTokenRefreshMaxTryCount returns a boolean if a field has been set.
 
 ### GetRetryFailureStatusCode
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() string`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() string`
 
 GetRetryFailureStatusCode returns the RetryFailureStatusCode field if non-nil, zero value otherwise.
 
 ### GetRetryFailureStatusCodeOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*string, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*string, bool)`
 
 GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRetryFailureStatusCode
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v string)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v string)`
 
 SetRetryFailureStatusCode sets RetryFailureStatusCode field to given value.
 
 ### HasRetryFailureStatusCode
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusCode() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusCode() bool`
 
 HasRetryFailureStatusCode returns a boolean if a field has been set.
 
 ### GetRetryWaitMaxValue
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValue() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValue() int32`
 
 GetRetryWaitMaxValue returns the RetryWaitMaxValue field if non-nil, zero value otherwise.
 
 ### GetRetryWaitMaxValueOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValueOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValueOk() (*int32, bool)`
 
 GetRetryWaitMaxValueOk returns a tuple with the RetryWaitMaxValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRetryWaitMaxValue
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryWaitMaxValue(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetRetryWaitMaxValue(v int32)`
 
 SetRetryWaitMaxValue sets RetryWaitMaxValue field to given value.
 
 ### HasRetryWaitMaxValue
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWaitMaxValue() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasRetryWaitMaxValue() bool`
 
 HasRetryWaitMaxValue returns a boolean if a field has been set.
 
 ### GetRetryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCount() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryCount() int32`
 
 GetRetryCount returns the RetryCount field if non-nil, zero value otherwise.
 
 ### GetRetryCountOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCountOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetRetryCountOk() (*int32, bool)`
 
 GetRetryCountOk returns a tuple with the RetryCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRetryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryCount(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetRetryCount(v int32)`
 
 SetRetryCount sets RetryCount field to given value.
 
 ### HasRetryCount
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryCount() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasRetryCount() bool`
 
 HasRetryCount returns a boolean if a field has been set.
 
 ### GetReadTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeout() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetReadTimeout() int32`
 
 GetReadTimeout returns the ReadTimeout field if non-nil, zero value otherwise.
 
 ### GetReadTimeoutOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeoutOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetReadTimeoutOk() (*int32, bool)`
 
 GetReadTimeoutOk returns a tuple with the ReadTimeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReadTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetReadTimeout(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetReadTimeout(v int32)`
 
 SetReadTimeout sets ReadTimeout field to given value.
 
 ### HasReadTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasReadTimeout() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasReadTimeout() bool`
 
 HasReadTimeout returns a boolean if a field has been set.
 
 ### GetConnectionTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeout() int32`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeout() int32`
 
 GetConnectionTimeout returns the ConnectionTimeout field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeoutOk() (*int32, bool)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeoutOk() (*int32, bool)`
 
 GetConnectionTimeoutOk returns a tuple with the ConnectionTimeout field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeout(v int32)`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeout(v int32)`
 
 SetConnectionTimeout sets ConnectionTimeout field to given value.
 
 ### HasConnectionTimeout
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasConnectionTimeout() bool`
+`func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) HasConnectionTimeout() bool`
 
 HasConnectionTimeout returns a boolean if a field has been set.
 
