@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RetryWait** | Pointer to **int32** |  | [optional] 
 **TokenRefreshMaxTryCount** | Pointer to **int32** |  | [optional] 
-**RetryFailureStatusCode** | Pointer to **string** |  | [optional] 
+**RetryFailureStatusCode** | Pointer to **int32** |  | [optional] 
 **RetryWaitMaxValue** | Pointer to **int32** |  | [optional] 
 **RetryCount** | Pointer to **int32** |  | [optional] 
 **ReadTimeout** | Pointer to **int32** |  | [optional] 
@@ -83,20 +83,20 @@ HasTokenRefreshMaxTryCount returns a boolean if a field has been set.
 
 ### GetRetryFailureStatusCode
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() string`
+`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() int32`
 
 GetRetryFailureStatusCode returns the RetryFailureStatusCode field if non-nil, zero value otherwise.
 
 ### GetRetryFailureStatusCodeOk
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*string, bool)`
+`func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool)`
 
 GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRetryFailureStatusCode
 
-`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v string)`
+`func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32)`
 
 SetRetryFailureStatusCode sets RetryFailureStatusCode field to given value.
 

@@ -18,14 +18,14 @@ import (
 
 // GetConnectionDetailsResponse - struct for GetConnectionDetailsResponse
 type GetConnectionDetailsResponse struct {
-	ADConnectionResponse *ADConnectionResponse
-	ADSIConnectionResponse *ADSIConnectionResponse
-	DBConnectionResponse *DBConnectionResponse
-	EntraIDConnectionResponse *EntraIDConnectionResponse
-	RESTConnectionResponse *RESTConnectionResponse
-	SAPConnectionResponse *SAPConnectionResponse
+	ADConnectionResponse         *ADConnectionResponse
+	ADSIConnectionResponse       *ADSIConnectionResponse
+	DBConnectionResponse         *DBConnectionResponse
+	EntraIDConnectionResponse    *EntraIDConnectionResponse
+	RESTConnectionResponse       *RESTConnectionResponse
+	SAPConnectionResponse        *SAPConnectionResponse
 	SalesforceConnectionResponse *SalesforceConnectionResponse
-	WorkdayConnectionResponse *WorkdayConnectionResponse
+	WorkdayConnectionResponse    *WorkdayConnectionResponse
 }
 
 // ADConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns ADConnectionResponse wrapped in GetConnectionDetailsResponse
@@ -83,7 +83,6 @@ func WorkdayConnectionResponseAsGetConnectionDetailsResponse(v *WorkdayConnectio
 		WorkdayConnectionResponse: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
@@ -282,7 +281,7 @@ func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
+func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -323,7 +322,7 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj GetConnectionDetailsResponse) GetActualInstanceValue() (interface{}) {
+func (obj GetConnectionDetailsResponse) GetActualInstanceValue() interface{} {
 	if obj.ADConnectionResponse != nil {
 		return *obj.ADConnectionResponse
 	}
@@ -395,5 +394,3 @@ func (v *NullableGetConnectionDetailsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

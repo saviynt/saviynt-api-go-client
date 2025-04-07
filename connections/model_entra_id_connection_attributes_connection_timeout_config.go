@@ -19,13 +19,13 @@ var _ MappedNullable = &EntraIDConnectionAttributesConnectionTimeoutConfig{}
 
 // EntraIDConnectionAttributesConnectionTimeoutConfig struct for EntraIDConnectionAttributesConnectionTimeoutConfig
 type EntraIDConnectionAttributesConnectionTimeoutConfig struct {
-	RetryWait *int32 `json:"retryWait,omitempty"`
-	TokenRefreshMaxTryCount *int32 `json:"tokenRefreshMaxTryCount,omitempty"`
-	RetryFailureStatusCode *string `json:"retryFailureStatusCode,omitempty"`
-	RetryWaitMaxValue *int32 `json:"retryWaitMaxValue,omitempty"`
-	RetryCount *int32 `json:"retryCount,omitempty"`
-	ReadTimeout *int32 `json:"readTimeout,omitempty"`
-	ConnectionTimeout *int32 `json:"connectionTimeout,omitempty"`
+	RetryWait               *int32  `json:"retryWait,omitempty"`
+	TokenRefreshMaxTryCount *int32  `json:"tokenRefreshMaxTryCount,omitempty"`
+	RetryFailureStatusCode  *string `json:"retryFailureStatusCode,omitempty"`
+	RetryWaitMaxValue       *int32  `json:"retryWaitMaxValue,omitempty"`
+	RetryCount              *int32  `json:"retryCount,omitempty"`
+	ReadTimeout             *int32  `json:"readTimeout,omitempty"`
+	ConnectionTimeout       *int32  `json:"connectionTimeout,omitempty"`
 }
 
 // NewEntraIDConnectionAttributesConnectionTimeoutConfig instantiates a new EntraIDConnectionAttributesConnectionTimeoutConfig object
@@ -270,7 +270,7 @@ func (o *EntraIDConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeou
 }
 
 func (o EntraIDConnectionAttributesConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,5 +338,3 @@ func (v *NullableEntraIDConnectionAttributesConnectionTimeoutConfig) UnmarshalJS
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

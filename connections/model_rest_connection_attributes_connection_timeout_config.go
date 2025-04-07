@@ -19,13 +19,13 @@ var _ MappedNullable = &RESTConnectionAttributesConnectionTimeoutConfig{}
 
 // RESTConnectionAttributesConnectionTimeoutConfig struct for RESTConnectionAttributesConnectionTimeoutConfig
 type RESTConnectionAttributesConnectionTimeoutConfig struct {
-	RetryWait *int32 `json:"retryWait,omitempty"`
+	RetryWait               *int32 `json:"retryWait,omitempty"`
 	TokenRefreshMaxTryCount *int32 `json:"tokenRefreshMaxTryCount,omitempty"`
-	RetryFailureStatusCode *string `json:"retryFailureStatusCode,omitempty"`
-	RetryWaitMaxValue *int32 `json:"retryWaitMaxValue,omitempty"`
-	RetryCount *int32 `json:"retryCount,omitempty"`
-	ReadTimeout *int32 `json:"readTimeout,omitempty"`
-	ConnectionTimeout *int32 `json:"connectionTimeout,omitempty"`
+	RetryFailureStatusCode  *int32 `json:"retryFailureStatusCode,omitempty"`
+	RetryWaitMaxValue       *int32 `json:"retryWaitMaxValue,omitempty"`
+	RetryCount              *int32 `json:"retryCount,omitempty"`
+	ReadTimeout             *int32 `json:"readTimeout,omitempty"`
+	ConnectionTimeout       *int32 `json:"connectionTimeout,omitempty"`
 }
 
 // NewRESTConnectionAttributesConnectionTimeoutConfig instantiates a new RESTConnectionAttributesConnectionTimeoutConfig object
@@ -110,9 +110,9 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetTokenRefreshMaxTryC
 }
 
 // GetRetryFailureStatusCode returns the RetryFailureStatusCode field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() string {
+func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() int32 {
 	if o == nil || IsNil(o.RetryFailureStatusCode) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.RetryFailureStatusCode
@@ -120,7 +120,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusC
 
 // GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*string, bool) {
+func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryFailureStatusCode) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusC
 	return false
 }
 
-// SetRetryFailureStatusCode gets a reference to the given string and assigns it to the RetryFailureStatusCode field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v string) {
+// SetRetryFailureStatusCode gets a reference to the given int32 and assigns it to the RetryFailureStatusCode field.
+func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32) {
 	o.RetryFailureStatusCode = &v
 }
 
@@ -270,7 +270,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeout(v
 }
 
 func (o RESTConnectionAttributesConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,5 +338,3 @@ func (v *NullableRESTConnectionAttributesConnectionTimeoutConfig) UnmarshalJSON(
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

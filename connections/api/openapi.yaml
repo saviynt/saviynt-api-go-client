@@ -3669,7 +3669,7 @@ components:
         tokenRefreshMaxTryCount:
           type: integer
         retryFailureStatusCode:
-          type: string
+          type: integer
         retryWaitMaxValue:
           type: integer
         retryCount:
