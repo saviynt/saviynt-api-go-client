@@ -11,9 +11,9 @@ package test
 import (
 	"context"
 	"os"
+	"strconv"
 	"strings"
 	"testing"
-	"strconv"
 
 	"github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
@@ -31,7 +31,7 @@ func TestConnectionsAPIService(t *testing.T) {
 	username := os.Getenv("AD_USERNAME")
 	ctx := context.Background()
 
-	t.Run("Test CreateConnections", func(t *testing.T) {
+	t.Run("Test CreateConnection", func(t *testing.T) {
 		if skipTests && strings.TrimSpace(skipMsg) != "" {
 			t.Skip(skipMsg)
 		} else if skipTests {
@@ -102,7 +102,7 @@ func TestConnectionsAPIService(t *testing.T) {
 			t.Skip(MsgSkipTest)
 		}
 
-		connKeyStr := strconv.Itoa(int(connKey)) 
+		connKeyStr := strconv.Itoa(int(connKey))
 		req := connections.GetConnectionDetailsRequest{
 			Connectionkey: &connKeyStr,
 		}
@@ -115,5 +115,20 @@ func TestConnectionsAPIService(t *testing.T) {
 		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpResp.StatusCode)
 		assert.Equal(t, connKey, *resp.ADConnectionResponse.Connectionkey)
+	})
+
+	t.Run("Test GetConnections", func(t *testing.T) {
+		if skipTests && strings.TrimSpace(skipMsg) != "" {
+			t.Skip(skipMsg)
+		} else if skipTests {
+			t.Skip(MsgSkipTest)
+		}
+
+		readReq := apiClient.Connections.GetConnections(ctx).GetConnectionsRequest(connections.GetConnectionsRequest{})
+		resp, httpResp, err := readReq.Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpResp.StatusCode)
+		assert.Equal(t, "0", *resp.ErrorCode)
 	})
 }
