@@ -18,12 +18,13 @@ import (
 	"net/url"
 )
 
+
 // ConnectionsAPIService ConnectionsAPI service
 type ConnectionsAPIService service
 
 type ApiCreateOrUpdateRequest struct {
-	ctx                   context.Context
-	ApiService            *ConnectionsAPIService
+	ctx context.Context
+	ApiService *ConnectionsAPIService
 	createOrUpdateRequest *CreateOrUpdateRequest
 }
 
@@ -39,25 +40,24 @@ func (r ApiCreateOrUpdateRequest) Execute() (*CreateOrUpdateResponse, *http.Resp
 /*
 CreateOrUpdate Create a connection
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateOrUpdateRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateOrUpdateRequest
 */
 func (a *ConnectionsAPIService) CreateOrUpdate(ctx context.Context) ApiCreateOrUpdateRequest {
 	return ApiCreateOrUpdateRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return CreateOrUpdateResponse
+//  @return CreateOrUpdateResponse
 func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest) (*CreateOrUpdateResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *CreateOrUpdateResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CreateOrUpdateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.CreateOrUpdate")
@@ -131,8 +131,8 @@ func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest
 }
 
 type ApiGetConnectionDetailsRequest struct {
-	ctx                         context.Context
-	ApiService                  *ConnectionsAPIService
+	ctx context.Context
+	ApiService *ConnectionsAPIService
 	getConnectionDetailsRequest *GetConnectionDetailsRequest
 }
 
@@ -148,25 +148,24 @@ func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetailsResponse
 /*
 GetConnectionDetails Get connection details
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetConnectionDetailsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetConnectionDetailsRequest
 */
 func (a *ConnectionsAPIService) GetConnectionDetails(ctx context.Context) ApiGetConnectionDetailsRequest {
 	return ApiGetConnectionDetailsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GetConnectionDetailsResponse
+//  @return GetConnectionDetailsResponse
 func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDetailsRequest) (*GetConnectionDetailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetConnectionDetailsResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetConnectionDetailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnectionDetails")
@@ -240,8 +239,8 @@ func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDe
 }
 
 type ApiGetConnectionsRequest struct {
-	ctx                   context.Context
-	ApiService            *ConnectionsAPIService
+	ctx context.Context
+	ApiService *ConnectionsAPIService
 	getConnectionsRequest *GetConnectionsRequest
 }
 
@@ -257,25 +256,24 @@ func (r ApiGetConnectionsRequest) Execute() (*GetConnectionsResponse, *http.Resp
 /*
 GetConnections Get list of connections
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetConnectionsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetConnectionsRequest
 */
 func (a *ConnectionsAPIService) GetConnections(ctx context.Context) ApiGetConnectionsRequest {
 	return ApiGetConnectionsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GetConnectionsResponse
+//  @return GetConnectionsResponse
 func (a *ConnectionsAPIService) GetConnectionsExecute(r ApiGetConnectionsRequest) (*GetConnectionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetConnectionsResponse
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnections")

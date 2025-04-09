@@ -20,40 +20,40 @@ var _ MappedNullable = &DBConnectionAttributes{}
 // DBConnectionAttributes struct for DBConnectionAttributes
 type DBConnectionAttributes struct {
 	// Minimum length of password
-	PASSWORD_MIN_LENGTH      *string                                          `json:"PASSWORD_MIN_LENGTH,omitempty"`
-	CHANGEPASSJSON           *string                                          `json:"CHANGEPASSJSON,omitempty"`
-	ACCOUNTEXISTSJSON        *string                                          `json:"ACCOUNTEXISTSJSON,omitempty"`
-	ROLESIMPORT              *string                                          `json:"ROLESIMPORT,omitempty"`
-	ROLEOWNERIMPORT          *string                                          `json:"ROLEOWNERIMPORT,omitempty"`
-	CREATEACCOUNTJSON        *string                                          `json:"CREATEACCOUNTJSON,omitempty"`
-	USERIMPORT               *string                                          `json:"USERIMPORT,omitempty"`
-	DISABLEACCOUNTJSON       *string                                          `json:"DISABLEACCOUNTJSON,omitempty"`
-	ENTITLEMENTVALUEIMPORT   *string                                          `json:"ENTITLEMENTVALUEIMPORT,omitempty"`
-	ConnectionTimeoutConfig  *RESTConnectionAttributesConnectionTimeoutConfig `json:"connectionTimeoutConfig,omitempty"`
-	UPDATEUSERJSON           *string                                          `json:"UPDATEUSERJSON,omitempty"`
-	PASSWORD_NOOFSPLCHARS    *string                                          `json:"PASSWORD_NOOFSPLCHARS,omitempty"`
-	REVOKEACCESSJSON         *string                                          `json:"REVOKEACCESSJSON,omitempty"`
-	ConnectionType           *string                                          `json:"connectionType,omitempty"`
-	URL                      *string                                          `json:"URL,omitempty"`
-	SYSTEMIMPORT             *string                                          `json:"SYSTEMIMPORT,omitempty"`
-	DRIVERNAME               *string                                          `json:"DRIVERNAME,omitempty"`
-	DELETEACCOUNTJSON        *string                                          `json:"DELETEACCOUNTJSON,omitempty"`
-	STATUS_THRESHOLD_CONFIG  *string                                          `json:"STATUS_THRESHOLD_CONFIG,omitempty"`
-	USERNAME                 *string                                          `json:"USERNAME,omitempty"`
-	IsTimeoutSupported       *bool                                            `json:"isTimeoutSupported,omitempty"`
-	PASSWORD_NOOFCAPSALPHA   *string                                          `json:"PASSWORD_NOOFCAPSALPHA,omitempty"`
-	PASSWORD_NOOFDIGITS      *string                                          `json:"PASSWORD_NOOFDIGITS,omitempty"`
-	CONNECTIONPROPERTIES     *string                                          `json:"CONNECTIONPROPERTIES,omitempty"`
-	MODIFYUSERDATAJSON       *string                                          `json:"MODIFYUSERDATAJSON,omitempty"`
-	IsTimeoutConfigValidated *bool                                            `json:"isTimeoutConfigValidated,omitempty"`
-	ACCOUNTSIMPORT           *string                                          `json:"ACCOUNTSIMPORT,omitempty"`
-	PASSWORD                 *string                                          `json:"PASSWORD,omitempty"`
-	ENABLEACCOUNTJSON        *string                                          `json:"ENABLEACCOUNTJSON,omitempty"`
-	PASSWORD_MAX_LENGTH      *string                                          `json:"PASSWORD_MAX_LENGTH,omitempty"`
-	MAX_PAGINATION_SIZE      *string                                          `json:"MAX_PAGINATION_SIZE,omitempty"`
-	UPDATEACCOUNTJSON        *string                                          `json:"UPDATEACCOUNTJSON,omitempty"`
-	GRANTACCESSJSON          *string                                          `json:"GRANTACCESSJSON,omitempty"`
-	CLI_COMMAND_JSON         *string                                          `json:"CLI_COMMAND_JSON,omitempty"`
+	PASSWORD_MIN_LENGTH *string `json:"PASSWORD_MIN_LENGTH,omitempty"`
+	CHANGEPASSJSON *string `json:"CHANGEPASSJSON,omitempty"`
+	ACCOUNTEXISTSJSON *string `json:"ACCOUNTEXISTSJSON,omitempty"`
+	ROLESIMPORT *string `json:"ROLESIMPORT,omitempty"`
+	ROLEOWNERIMPORT *string `json:"ROLEOWNERIMPORT,omitempty"`
+	CREATEACCOUNTJSON *string `json:"CREATEACCOUNTJSON,omitempty"`
+	USERIMPORT *string `json:"USERIMPORT,omitempty"`
+	DISABLEACCOUNTJSON *string `json:"DISABLEACCOUNTJSON,omitempty"`
+	ENTITLEMENTVALUEIMPORT *string `json:"ENTITLEMENTVALUEIMPORT,omitempty"`
+	ConnectionTimeoutConfig *ConnectionTimeoutConfig `json:"connectionTimeoutConfig,omitempty"`
+	UPDATEUSERJSON *string `json:"UPDATEUSERJSON,omitempty"`
+	PASSWORD_NOOFSPLCHARS *string `json:"PASSWORD_NOOFSPLCHARS,omitempty"`
+	REVOKEACCESSJSON *string `json:"REVOKEACCESSJSON,omitempty"`
+	ConnectionType *string `json:"connectionType,omitempty"`
+	URL *string `json:"URL,omitempty"`
+	SYSTEMIMPORT *string `json:"SYSTEMIMPORT,omitempty"`
+	DRIVERNAME *string `json:"DRIVERNAME,omitempty"`
+	DELETEACCOUNTJSON *string `json:"DELETEACCOUNTJSON,omitempty"`
+	STATUS_THRESHOLD_CONFIG *string `json:"STATUS_THRESHOLD_CONFIG,omitempty"`
+	USERNAME *string `json:"USERNAME,omitempty"`
+	IsTimeoutSupported *bool `json:"isTimeoutSupported,omitempty"`
+	PASSWORD_NOOFCAPSALPHA *string `json:"PASSWORD_NOOFCAPSALPHA,omitempty"`
+	PASSWORD_NOOFDIGITS *string `json:"PASSWORD_NOOFDIGITS,omitempty"`
+	CONNECTIONPROPERTIES *string `json:"CONNECTIONPROPERTIES,omitempty"`
+	MODIFYUSERDATAJSON *string `json:"MODIFYUSERDATAJSON,omitempty"`
+	IsTimeoutConfigValidated *bool `json:"isTimeoutConfigValidated,omitempty"`
+	ACCOUNTSIMPORT *string `json:"ACCOUNTSIMPORT,omitempty"`
+	PASSWORD *string `json:"PASSWORD,omitempty"`
+	ENABLEACCOUNTJSON *string `json:"ENABLEACCOUNTJSON,omitempty"`
+	PASSWORD_MAX_LENGTH *string `json:"PASSWORD_MAX_LENGTH,omitempty"`
+	MAX_PAGINATION_SIZE *string `json:"MAX_PAGINATION_SIZE,omitempty"`
+	UPDATEACCOUNTJSON *string `json:"UPDATEACCOUNTJSON,omitempty"`
+	GRANTACCESSJSON *string `json:"GRANTACCESSJSON,omitempty"`
+	CLI_COMMAND_JSON *string `json:"CLI_COMMAND_JSON,omitempty"`
 }
 
 // NewDBConnectionAttributes instantiates a new DBConnectionAttributes object
@@ -362,9 +362,9 @@ func (o *DBConnectionAttributes) SetENTITLEMENTVALUEIMPORT(v string) {
 }
 
 // GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field value if set, zero value otherwise.
-func (o *DBConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig {
+func (o *DBConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig {
 	if o == nil || IsNil(o.ConnectionTimeoutConfig) {
-		var ret RESTConnectionAttributesConnectionTimeoutConfig
+		var ret ConnectionTimeoutConfig
 		return ret
 	}
 	return *o.ConnectionTimeoutConfig
@@ -372,7 +372,7 @@ func (o *DBConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttr
 
 // GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DBConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool) {
+func (o *DBConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool) {
 	if o == nil || IsNil(o.ConnectionTimeoutConfig) {
 		return nil, false
 	}
@@ -388,8 +388,8 @@ func (o *DBConnectionAttributes) HasConnectionTimeoutConfig() bool {
 	return false
 }
 
-// SetConnectionTimeoutConfig gets a reference to the given RESTConnectionAttributesConnectionTimeoutConfig and assigns it to the ConnectionTimeoutConfig field.
-func (o *DBConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig) {
+// SetConnectionTimeoutConfig gets a reference to the given ConnectionTimeoutConfig and assigns it to the ConnectionTimeoutConfig field.
+func (o *DBConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig) {
 	o.ConnectionTimeoutConfig = &v
 }
 
@@ -1162,7 +1162,7 @@ func (o *DBConnectionAttributes) SetCLI_COMMAND_JSON(v string) {
 }
 
 func (o DBConnectionAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -1311,3 +1311,5 @@ func (v *NullableDBConnectionAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

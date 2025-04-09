@@ -11,12 +11,10 @@ package connections
 
 import (
 	"context"
-	"log"
-	"testing"
-
-	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/saviynt/saviynt-api-go-client/connections"
 )
 
 func Test_connections_ConnectionsAPIService(t *testing.T) {
@@ -26,44 +24,33 @@ func Test_connections_ConnectionsAPIService(t *testing.T) {
 
 	t.Run("Test ConnectionsAPIService CreateOrUpdate", func(t *testing.T) {
 
-		t.Skip("skip test")
-		conn_name := "sample"
-		url := "www.sample.com"
-		username := "admin"
-		password := "pass123"
-		adConn := openapiclient.ADConnector{
-			BaseConnector: openapiclient.BaseConnector{
-				Connectiontype: "AD",
-				ConnectionName: conn_name,
-			},
-			URL:      &url,
-			USERNAME: &username,
-			PASSWORD: password,
-		}
+		t.Skip("skip test")  // remove to run test
 
-		adConnRequest := openapiclient.CreateOrUpdateRequest{
-			ADConnector: &adConn,
-		}
+		resp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).Execute()
 
-		apiResp, httpRes, err := apiClient.ConnectionsAPI.CreateOrUpdate(context.Background()).CreateOrUpdateRequest(adConnRequest).Execute()
 		require.Nil(t, err)
-		require.NotNil(t, apiResp)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
 	t.Run("Test ConnectionsAPIService GetConnectionDetails", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-		data := "4060"
-		req := openapiclient.GetConnectionDetailsRequest{
-			Connectionkey: &data,
-		}
-		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).GetConnectionDetailsRequest(req).Execute()
-		if err != nil {
-			log.Fatalf("API error: %v", err.Error())
-		}
+		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnectionDetails(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ConnectionsAPIService GetConnections", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.ConnectionsAPI.GetConnections(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

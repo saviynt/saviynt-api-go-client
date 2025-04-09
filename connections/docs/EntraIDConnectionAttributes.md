@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **DELTATOKENSJSON** | Pointer to **string** |  | [optional] 
 **AZURE_MGMT_ACCESS_TOKEN** | Pointer to **string** |  | [optional] 
 **CreateTeamJSON** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **ENHANCEDDIRECTORYROLES** | Pointer to **string** |  | [optional] 
 **STATUS_THRESHOLD_CONFIG** | Pointer to **string** |  | [optional] 
 **ACCOUNT_IMPORT_FIELDS** | Pointer to **string** |  | [optional] 
@@ -752,20 +752,20 @@ HasCreateTeamJSON returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *EntraIDConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *EntraIDConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *EntraIDConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *EntraIDConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *EntraIDConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *EntraIDConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

@@ -100,13 +100,13 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ADConnectionAttributes](docs/ADConnectionAttributes.md)
- - [ADConnectionAttributesConnectionTimeoutConfig](docs/ADConnectionAttributesConnectionTimeoutConfig.md)
  - [ADConnectionResponse](docs/ADConnectionResponse.md)
  - [ADConnector](docs/ADConnector.md)
  - [ADSIConnectionAttributes](docs/ADSIConnectionAttributes.md)
  - [ADSIConnectionResponse](docs/ADSIConnectionResponse.md)
  - [ADSIConnector](docs/ADSIConnector.md)
  - [BaseConnector](docs/BaseConnector.md)
+ - [ConnectionTimeoutConfig](docs/ConnectionTimeoutConfig.md)
  - [CreateOrUpdateRequest](docs/CreateOrUpdateRequest.md)
  - [CreateOrUpdateResponse](docs/CreateOrUpdateResponse.md)
  - [D365Connector](docs/D365Connector.md)
@@ -123,7 +123,6 @@ Class | Method | HTTP request | Description
  - [GetConnectionsResponse](docs/GetConnectionsResponse.md)
  - [GetConnectionsResponseConnectionListInner](docs/GetConnectionsResponseConnectionListInner.md)
  - [RESTConnectionAttributes](docs/RESTConnectionAttributes.md)
- - [RESTConnectionAttributesConnectionTimeoutConfig](docs/RESTConnectionAttributesConnectionTimeoutConfig.md)
  - [RESTConnectionResponse](docs/RESTConnectionResponse.md)
  - [RESTConnector](docs/RESTConnector.md)
  - [SAPConnectionAttributes](docs/SAPConnectionAttributes.md)
