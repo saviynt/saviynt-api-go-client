@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **SendOtpJSON** | Pointer to **string** |  | [optional] 
 **ValidateOtpJSON** | Pointer to **string** |  | [optional] 
 **PAM_CONFIG** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **CreateAccountJSON** | Pointer to **string** |  | [optional] 
 **UpdateAccountJSON** | Pointer to **string** |  | [optional] 
 **EnableAccountJSON** | Pointer to **string** |  | [optional] 
@@ -454,20 +454,20 @@ HasPAM_CONFIG returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *RESTConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *RESTConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *RESTConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *RESTConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *RESTConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *RESTConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

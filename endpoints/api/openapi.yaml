@@ -531,7 +531,6 @@ components:
           type: string
     getEndpoints_200_response_endpoints_inner:
       example:
-        ownerType: User
         Custom Property 26: value26
         Custom Property 27: value27
         Custom Property 28: value28
@@ -539,24 +538,34 @@ components:
         entsWithNewAccount: "3,4"
         changePasswordAccessQuery: changepwdaccessqry
         userAccountCorrelationRule: (users.customproperty7) = accounts.name
-        accessquery: access qry
+        Account Custom Property 48 Label: Account Custom Property 48 Label
+        Account Custom Property 58 Label: Account Custom Property 58 Label
+        Account Custom Property 25 Label: Account Custom Property 25 Label
+        Account Custom Property 28 Label: Account Custom Property 28 Label
         Custom Property 30: value30
+        Account Custom Property 60 Label: Account Custom Property 60 Label
         Custom Property 31: value31
+        Account Custom Property 15 Label: Account Custom Property 15 Label
+        Account Custom Property 18 Label: Account Custom Property 18 Label
+        Account Custom Property 38 Label: Account Custom Property 38 Label
         id: id
         Custom Property 32: value32
         Custom Property 33: value33
         Custom Property 34: value34
+        Account Custom Property 40 Label: Account Custom Property 40 Label
+        Account Custom Property 50 Label: Account Custom Property 50 Label
         Custom Property 35: value35
         Custom Property 36: value36
         Custom Property 37: value37
         Custom Property 38: value38
+        Account Custom Property 55 Label: Account Custom Property 55 Label
         Custom Property 39: value39
-        updatedBy: admin
+        Account Custom Property 35 Label: Account Custom Property 35 Label
         securitysystem: connectiontest
-        baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
-          :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
-          :\"0\",\"arstaskkey\":\"\"}]"
-        pluginConfigs: pluginConfigs_test
+        Account Custom Property 7 Label: Account Custom Property 7 Label
+        Account Custom Property 12 Label: Account Custom Property 12 Label
+        Account Custom Property 32 Label: Account Custom Property 32 Label
+        Account Custom Property 52 Label: Account Custom Property 52 Label
         Custom Property 40: value40
         Custom Property 41: value41
         Custom Property 42: value42
@@ -566,23 +575,22 @@ components:
         Custom Property 45: value45
         status: "1"
         updateDate: 2025-03-13 09:00:12.0
-        allowRemoveAllRoleOnRequest: "true"
+        Account Custom Property 46 Label: Account Custom Property 46 Label
+        Account Custom Property 8 Label: Account Custom Property 8 Label
         displayName: new-endpoint
-        roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
-          \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
-          \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
         connectionconfig_as_json: "{\n\t\"conf\": [{}]\n}"
         accountNameRule: users.username
+        Account Custom Property 16 Label: Account Custom Property 16 Label
+        Account Custom Property 56 Label: Account Custom Property 56 Label
         createEntTaskforRemoveAcc: "true"
-        serviceAccountAccessQuery: tetssrvquery
-        endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
-          \ : true}"
-        taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
-          ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+        Account Custom Property 33 Label: Account Custom Property 33 Label
+        Account Custom Property 23 Label: Account Custom Property 23 Label
+        Account Custom Property 1 Label: Account Custom Property 1 Label
         disableaccountrequest: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"BLOCKINFLIGHTREQUEST\"\
           :\"0\",\"DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
         Custom Property 10: value10
         Custom Property 11: value11
+        Account Custom Property 10 Label: Account Custom Property 10 Label
         Custom Property 12: value12
         Custom Property 13: value13
         createDate: 2024-01-18 05:34:22.0
@@ -595,31 +603,83 @@ components:
         Custom Property 17: value17
         Custom Property 7: value7
         Custom Property 18: value18
+        Account Custom Property 2 Label: Account Custom Property 2 Label
+        Account Custom Property 17 Label: Account Custom Property 17 Label
         Custom Property 8: value8
         Custom Property 19: value19
-        enableCopyAccess: "false"
         Custom Property 9: value9
+        Account Custom Property 45 Label: Account Custom Property 45 Label
         parentEndpoint: testokta1
-        statusConfig: "Enable,Lock"
-        disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"DISABLEMODIFYACCOUNT\"\
-          :\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
-        ownerkey: "9"
+        Account Custom Property 57 Label: Account Custom Property 57 Label
         Custom Property 1: value1
         Custom Property 2: value2
         Custom Property 3: value3
+        Account Custom Property 22 Label: Account Custom Property 22 Label
         requestableapplication: "true"
         connectionconfig: "{\"conf\":[{\"ADDUSERTOENT\":\"TRUE\"},{\"ADDMEMBERTOENT\"\
           :\"TRUE\"}]}"
         createdFrom: Created Manually
-        createdBy: "1"
-        endpointname: Create-an-endpoint
+        Account Custom Property 51 Label: Account Custom Property 51 Label
         Custom Property 20: value20
         Custom Property 21: value21
         Custom Property 22: value22
         Custom Property 23: value23
+        Account Custom Property 29 Label: Account Custom Property 29 Label
+        Account Custom Property 34 Label: Account Custom Property 34 Label
         Custom Property 24: value24
         accountTypeNoDeprovision: Service
         Custom Property 25: value25
+        ownerType: User
+        Account Custom Property 3 Label: Account Custom Property 3 Label
+        Account Custom Property 21 Label: Account Custom Property 21 Label
+        Account Custom Property 31 Label: Account Custom Property 31 Label
+        Account Custom Property 11 Label: Account Custom Property 11 Label
+        Account Custom Property 41 Label: Account Custom Property 41 Label
+        accessquery: access qry
+        Account Custom Property 6 Label: Account Custom Property 6 Label
+        Account Custom Property 9 Label: Account Custom Property 9 Label
+        updatedBy: admin
+        Account Custom Property 27 Label: Account Custom Property 27 Label
+        baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
+          :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
+          :\"0\",\"arstaskkey\":\"\"}]"
+        Account Custom Property 47 Label: Account Custom Property 47 Label
+        pluginConfigs: pluginConfigs_test
+        Account Custom Property 39 Label: Account Custom Property 39 Label
+        Account Custom Property 44 Label: Account Custom Property 44 Label
+        Account Custom Property 59 Label: Account Custom Property 59 Label
+        Account Custom Property 19 Label: Account Custom Property 19 Label
+        Account Custom Property 24 Label: Account Custom Property 24 Label
+        Account Custom Property 36 Label: Account Custom Property 36 Label
+        Account Custom Property 26 Label: Account Custom Property 26 Label
+        allowRemoveAllRoleOnRequest: "true"
+        roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
+          \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
+          \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
+        serviceAccountAccessQuery: tetssrvquery
+        Account Custom Property 13 Label: Account Custom Property 13 Label
+        endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
+          \ : true}"
+        Account Custom Property 43 Label: Account Custom Property 43 Label
+        taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
+          ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+        Account Custom Property 53 Label: Account Custom Property 53 Label
+        Account Custom Property 4 Label: Account Custom Property 4 Label
+        Account Custom Property 20 Label: Account Custom Property 20 Label
+        Account Custom Property 30 Label: Account Custom Property 30 Label
+        enableCopyAccess: "false"
+        statusConfig: "Enable,Lock"
+        Account Custom Property 37 Label: Account Custom Property 37 Label
+        disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"DISABLEMODIFYACCOUNT\"\
+          :\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
+        ownerkey: "9"
+        Account Custom Property 42 Label: Account Custom Property 42 Label
+        Account Custom Property 14 Label: Account Custom Property 14 Label
+        Account Custom Property 49 Label: Account Custom Property 49 Label
+        createdBy: "1"
+        endpointname: Create-an-endpoint
+        Account Custom Property 5 Label: Account Custom Property 5 Label
+        Account Custom Property 54 Label: Account Custom Property 54 Label
       properties:
         id:
           type: string
@@ -967,6 +1027,186 @@ components:
         Custom Property 45:
           description: Custom Property 45
           example: value45
+          type: string
+        Account Custom Property 1 Label:
+          description: Custom Property 1 Label
+          type: string
+        Account Custom Property 2 Label:
+          description: Custom Property 2 Label
+          type: string
+        Account Custom Property 3 Label:
+          description: Custom Property 3 Label
+          type: string
+        Account Custom Property 4 Label:
+          description: Custom Property 4 Label
+          type: string
+        Account Custom Property 5 Label:
+          description: Custom Property 5 Label
+          type: string
+        Account Custom Property 6 Label:
+          description: Custom Property 6 Label
+          type: string
+        Account Custom Property 7 Label:
+          description: Custom Property 7 Label
+          type: string
+        Account Custom Property 8 Label:
+          description: Custom Property 8 Label
+          type: string
+        Account Custom Property 9 Label:
+          description: Custom Property 9 Label
+          type: string
+        Account Custom Property 10 Label:
+          description: Custom Property 10 Label
+          type: string
+        Account Custom Property 11 Label:
+          description: Custom Property 11 Label
+          type: string
+        Account Custom Property 12 Label:
+          description: Custom Property 12 Label
+          type: string
+        Account Custom Property 13 Label:
+          description: Custom Property 13 Label
+          type: string
+        Account Custom Property 14 Label:
+          description: Custom Property 14 Label
+          type: string
+        Account Custom Property 15 Label:
+          description: Custom Property 15 Label
+          type: string
+        Account Custom Property 16 Label:
+          description: Custom Property 16 Label
+          type: string
+        Account Custom Property 17 Label:
+          description: Custom Property 17 Label
+          type: string
+        Account Custom Property 18 Label:
+          description: Custom Property 18 Label
+          type: string
+        Account Custom Property 19 Label:
+          description: Custom Property 19 Label
+          type: string
+        Account Custom Property 20 Label:
+          description: Custom Property 20 Label
+          type: string
+        Account Custom Property 21 Label:
+          description: Custom Property 21 Label
+          type: string
+        Account Custom Property 22 Label:
+          description: Custom Property 22 Label
+          type: string
+        Account Custom Property 23 Label:
+          description: Custom Property 23 Label
+          type: string
+        Account Custom Property 24 Label:
+          description: Custom Property 24 Label
+          type: string
+        Account Custom Property 25 Label:
+          description: Custom Property 25 Label
+          type: string
+        Account Custom Property 26 Label:
+          description: Custom Property 26 Label
+          type: string
+        Account Custom Property 27 Label:
+          description: Custom Property 27 Label
+          type: string
+        Account Custom Property 28 Label:
+          description: Custom Property 28 Label
+          type: string
+        Account Custom Property 29 Label:
+          description: Custom Property 29 Label
+          type: string
+        Account Custom Property 30 Label:
+          description: Custom Property 30 Label
+          type: string
+        Account Custom Property 31 Label:
+          description: Custom Property 31 Label
+          type: string
+        Account Custom Property 32 Label:
+          description: Custom Property 32 Label
+          type: string
+        Account Custom Property 33 Label:
+          description: Custom Property 33 Label
+          type: string
+        Account Custom Property 34 Label:
+          description: Custom Property 34 Label
+          type: string
+        Account Custom Property 35 Label:
+          description: Custom Property 35 Label
+          type: string
+        Account Custom Property 36 Label:
+          description: Custom Property 36 Label
+          type: string
+        Account Custom Property 37 Label:
+          description: Custom Property 37 Label
+          type: string
+        Account Custom Property 38 Label:
+          description: Custom Property 38 Label
+          type: string
+        Account Custom Property 39 Label:
+          description: Custom Property 39 Label
+          type: string
+        Account Custom Property 40 Label:
+          description: Custom Property 40 Label
+          type: string
+        Account Custom Property 41 Label:
+          description: Custom Property 41 Label
+          type: string
+        Account Custom Property 42 Label:
+          description: Custom Property 42 Label
+          type: string
+        Account Custom Property 43 Label:
+          description: Custom Property 43 Label
+          type: string
+        Account Custom Property 44 Label:
+          description: Custom Property 44 Label
+          type: string
+        Account Custom Property 45 Label:
+          description: Custom Property 45 Label
+          type: string
+        Account Custom Property 46 Label:
+          description: Custom Property 46 Label
+          type: string
+        Account Custom Property 47 Label:
+          description: Custom Property 47 Label
+          type: string
+        Account Custom Property 48 Label:
+          description: Custom Property 48 Label
+          type: string
+        Account Custom Property 49 Label:
+          description: Custom Property 49 Label
+          type: string
+        Account Custom Property 50 Label:
+          description: Custom Property 50 Label
+          type: string
+        Account Custom Property 51 Label:
+          description: Custom Property 51 Label
+          type: string
+        Account Custom Property 52 Label:
+          description: Custom Property 52 Label
+          type: string
+        Account Custom Property 53 Label:
+          description: Custom Property 53 Label
+          type: string
+        Account Custom Property 54 Label:
+          description: Custom Property 54 Label
+          type: string
+        Account Custom Property 55 Label:
+          description: Custom Property 55 Label
+          type: string
+        Account Custom Property 56 Label:
+          description: Custom Property 56 Label
+          type: string
+        Account Custom Property 57 Label:
+          description: Custom Property 57 Label
+          type: string
+        Account Custom Property 58 Label:
+          description: Custom Property 58 Label
+          type: string
+        Account Custom Property 59 Label:
+          description: Custom Property 59 Label
+          type: string
+        Account Custom Property 60 Label:
+          description: Custom Property 60 Label
           type: string
     createEndpoint_request:
       properties:
@@ -1545,32 +1785,41 @@ components:
     getEndpoints_200_response:
       example:
         endpoints:
-        - ownerType: User
-          Custom Property 26: value26
+        - Custom Property 26: value26
           Custom Property 27: value27
           Custom Property 28: value28
           Custom Property 29: value29
           entsWithNewAccount: "3,4"
           changePasswordAccessQuery: changepwdaccessqry
           userAccountCorrelationRule: (users.customproperty7) = accounts.name
-          accessquery: access qry
+          Account Custom Property 48 Label: Account Custom Property 48 Label
+          Account Custom Property 58 Label: Account Custom Property 58 Label
+          Account Custom Property 25 Label: Account Custom Property 25 Label
+          Account Custom Property 28 Label: Account Custom Property 28 Label
           Custom Property 30: value30
+          Account Custom Property 60 Label: Account Custom Property 60 Label
           Custom Property 31: value31
+          Account Custom Property 15 Label: Account Custom Property 15 Label
+          Account Custom Property 18 Label: Account Custom Property 18 Label
+          Account Custom Property 38 Label: Account Custom Property 38 Label
           id: id
           Custom Property 32: value32
           Custom Property 33: value33
           Custom Property 34: value34
+          Account Custom Property 40 Label: Account Custom Property 40 Label
+          Account Custom Property 50 Label: Account Custom Property 50 Label
           Custom Property 35: value35
           Custom Property 36: value36
           Custom Property 37: value37
           Custom Property 38: value38
+          Account Custom Property 55 Label: Account Custom Property 55 Label
           Custom Property 39: value39
-          updatedBy: admin
+          Account Custom Property 35 Label: Account Custom Property 35 Label
           securitysystem: connectiontest
-          baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
-            :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
-            :\"0\",\"arstaskkey\":\"\"}]"
-          pluginConfigs: pluginConfigs_test
+          Account Custom Property 7 Label: Account Custom Property 7 Label
+          Account Custom Property 12 Label: Account Custom Property 12 Label
+          Account Custom Property 32 Label: Account Custom Property 32 Label
+          Account Custom Property 52 Label: Account Custom Property 52 Label
           Custom Property 40: value40
           Custom Property 41: value41
           Custom Property 42: value42
@@ -1580,23 +1829,22 @@ components:
           Custom Property 45: value45
           status: "1"
           updateDate: 2025-03-13 09:00:12.0
-          allowRemoveAllRoleOnRequest: "true"
+          Account Custom Property 46 Label: Account Custom Property 46 Label
+          Account Custom Property 8 Label: Account Custom Property 8 Label
           displayName: new-endpoint
-          roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
-            \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
-            \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
           connectionconfig_as_json: "{\n\t\"conf\": [{}]\n}"
           accountNameRule: users.username
+          Account Custom Property 16 Label: Account Custom Property 16 Label
+          Account Custom Property 56 Label: Account Custom Property 56 Label
           createEntTaskforRemoveAcc: "true"
-          serviceAccountAccessQuery: tetssrvquery
-          endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
-            \ : true}"
-          taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
-            ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+          Account Custom Property 33 Label: Account Custom Property 33 Label
+          Account Custom Property 23 Label: Account Custom Property 23 Label
+          Account Custom Property 1 Label: Account Custom Property 1 Label
           disableaccountrequest: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"BLOCKINFLIGHTREQUEST\"\
             :\"0\",\"DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
           Custom Property 10: value10
           Custom Property 11: value11
+          Account Custom Property 10 Label: Account Custom Property 10 Label
           Custom Property 12: value12
           Custom Property 13: value13
           createDate: 2024-01-18 05:34:22.0
@@ -1609,57 +1857,118 @@ components:
           Custom Property 17: value17
           Custom Property 7: value7
           Custom Property 18: value18
+          Account Custom Property 2 Label: Account Custom Property 2 Label
+          Account Custom Property 17 Label: Account Custom Property 17 Label
           Custom Property 8: value8
           Custom Property 19: value19
-          enableCopyAccess: "false"
           Custom Property 9: value9
+          Account Custom Property 45 Label: Account Custom Property 45 Label
           parentEndpoint: testokta1
-          statusConfig: "Enable,Lock"
-          disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"\
-            DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
-          ownerkey: "9"
+          Account Custom Property 57 Label: Account Custom Property 57 Label
           Custom Property 1: value1
           Custom Property 2: value2
           Custom Property 3: value3
+          Account Custom Property 22 Label: Account Custom Property 22 Label
           requestableapplication: "true"
           connectionconfig: "{\"conf\":[{\"ADDUSERTOENT\":\"TRUE\"},{\"ADDMEMBERTOENT\"\
             :\"TRUE\"}]}"
           createdFrom: Created Manually
-          createdBy: "1"
-          endpointname: Create-an-endpoint
+          Account Custom Property 51 Label: Account Custom Property 51 Label
           Custom Property 20: value20
           Custom Property 21: value21
           Custom Property 22: value22
           Custom Property 23: value23
+          Account Custom Property 29 Label: Account Custom Property 29 Label
+          Account Custom Property 34 Label: Account Custom Property 34 Label
           Custom Property 24: value24
           accountTypeNoDeprovision: Service
           Custom Property 25: value25
-        - ownerType: User
-          Custom Property 26: value26
+          ownerType: User
+          Account Custom Property 3 Label: Account Custom Property 3 Label
+          Account Custom Property 21 Label: Account Custom Property 21 Label
+          Account Custom Property 31 Label: Account Custom Property 31 Label
+          Account Custom Property 11 Label: Account Custom Property 11 Label
+          Account Custom Property 41 Label: Account Custom Property 41 Label
+          accessquery: access qry
+          Account Custom Property 6 Label: Account Custom Property 6 Label
+          Account Custom Property 9 Label: Account Custom Property 9 Label
+          updatedBy: admin
+          Account Custom Property 27 Label: Account Custom Property 27 Label
+          baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
+            :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
+            :\"0\",\"arstaskkey\":\"\"}]"
+          Account Custom Property 47 Label: Account Custom Property 47 Label
+          pluginConfigs: pluginConfigs_test
+          Account Custom Property 39 Label: Account Custom Property 39 Label
+          Account Custom Property 44 Label: Account Custom Property 44 Label
+          Account Custom Property 59 Label: Account Custom Property 59 Label
+          Account Custom Property 19 Label: Account Custom Property 19 Label
+          Account Custom Property 24 Label: Account Custom Property 24 Label
+          Account Custom Property 36 Label: Account Custom Property 36 Label
+          Account Custom Property 26 Label: Account Custom Property 26 Label
+          allowRemoveAllRoleOnRequest: "true"
+          roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
+            \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
+            \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
+          serviceAccountAccessQuery: tetssrvquery
+          Account Custom Property 13 Label: Account Custom Property 13 Label
+          endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
+            \ : true}"
+          Account Custom Property 43 Label: Account Custom Property 43 Label
+          taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
+            ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+          Account Custom Property 53 Label: Account Custom Property 53 Label
+          Account Custom Property 4 Label: Account Custom Property 4 Label
+          Account Custom Property 20 Label: Account Custom Property 20 Label
+          Account Custom Property 30 Label: Account Custom Property 30 Label
+          enableCopyAccess: "false"
+          statusConfig: "Enable,Lock"
+          Account Custom Property 37 Label: Account Custom Property 37 Label
+          disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"\
+            DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
+          ownerkey: "9"
+          Account Custom Property 42 Label: Account Custom Property 42 Label
+          Account Custom Property 14 Label: Account Custom Property 14 Label
+          Account Custom Property 49 Label: Account Custom Property 49 Label
+          createdBy: "1"
+          endpointname: Create-an-endpoint
+          Account Custom Property 5 Label: Account Custom Property 5 Label
+          Account Custom Property 54 Label: Account Custom Property 54 Label
+        - Custom Property 26: value26
           Custom Property 27: value27
           Custom Property 28: value28
           Custom Property 29: value29
           entsWithNewAccount: "3,4"
           changePasswordAccessQuery: changepwdaccessqry
           userAccountCorrelationRule: (users.customproperty7) = accounts.name
-          accessquery: access qry
+          Account Custom Property 48 Label: Account Custom Property 48 Label
+          Account Custom Property 58 Label: Account Custom Property 58 Label
+          Account Custom Property 25 Label: Account Custom Property 25 Label
+          Account Custom Property 28 Label: Account Custom Property 28 Label
           Custom Property 30: value30
+          Account Custom Property 60 Label: Account Custom Property 60 Label
           Custom Property 31: value31
+          Account Custom Property 15 Label: Account Custom Property 15 Label
+          Account Custom Property 18 Label: Account Custom Property 18 Label
+          Account Custom Property 38 Label: Account Custom Property 38 Label
           id: id
           Custom Property 32: value32
           Custom Property 33: value33
           Custom Property 34: value34
+          Account Custom Property 40 Label: Account Custom Property 40 Label
+          Account Custom Property 50 Label: Account Custom Property 50 Label
           Custom Property 35: value35
           Custom Property 36: value36
           Custom Property 37: value37
           Custom Property 38: value38
+          Account Custom Property 55 Label: Account Custom Property 55 Label
           Custom Property 39: value39
-          updatedBy: admin
+          Account Custom Property 35 Label: Account Custom Property 35 Label
           securitysystem: connectiontest
-          baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
-            :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
-            :\"0\",\"arstaskkey\":\"\"}]"
-          pluginConfigs: pluginConfigs_test
+          Account Custom Property 7 Label: Account Custom Property 7 Label
+          Account Custom Property 12 Label: Account Custom Property 12 Label
+          Account Custom Property 32 Label: Account Custom Property 32 Label
+          Account Custom Property 52 Label: Account Custom Property 52 Label
           Custom Property 40: value40
           Custom Property 41: value41
           Custom Property 42: value42
@@ -1669,23 +1978,22 @@ components:
           Custom Property 45: value45
           status: "1"
           updateDate: 2025-03-13 09:00:12.0
-          allowRemoveAllRoleOnRequest: "true"
+          Account Custom Property 46 Label: Account Custom Property 46 Label
+          Account Custom Property 8 Label: Account Custom Property 8 Label
           displayName: new-endpoint
-          roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
-            \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
-            \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
           connectionconfig_as_json: "{\n\t\"conf\": [{}]\n}"
           accountNameRule: users.username
+          Account Custom Property 16 Label: Account Custom Property 16 Label
+          Account Custom Property 56 Label: Account Custom Property 56 Label
           createEntTaskforRemoveAcc: "true"
-          serviceAccountAccessQuery: tetssrvquery
-          endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
-            \ : true}"
-          taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
-            ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+          Account Custom Property 33 Label: Account Custom Property 33 Label
+          Account Custom Property 23 Label: Account Custom Property 23 Label
+          Account Custom Property 1 Label: Account Custom Property 1 Label
           disableaccountrequest: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"BLOCKINFLIGHTREQUEST\"\
             :\"0\",\"DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
           Custom Property 10: value10
           Custom Property 11: value11
+          Account Custom Property 10 Label: Account Custom Property 10 Label
           Custom Property 12: value12
           Custom Property 13: value13
           createDate: 2024-01-18 05:34:22.0
@@ -1698,31 +2006,83 @@ components:
           Custom Property 17: value17
           Custom Property 7: value7
           Custom Property 18: value18
+          Account Custom Property 2 Label: Account Custom Property 2 Label
+          Account Custom Property 17 Label: Account Custom Property 17 Label
           Custom Property 8: value8
           Custom Property 19: value19
-          enableCopyAccess: "false"
           Custom Property 9: value9
+          Account Custom Property 45 Label: Account Custom Property 45 Label
           parentEndpoint: testokta1
-          statusConfig: "Enable,Lock"
-          disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"\
-            DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
-          ownerkey: "9"
+          Account Custom Property 57 Label: Account Custom Property 57 Label
           Custom Property 1: value1
           Custom Property 2: value2
           Custom Property 3: value3
+          Account Custom Property 22 Label: Account Custom Property 22 Label
           requestableapplication: "true"
           connectionconfig: "{\"conf\":[{\"ADDUSERTOENT\":\"TRUE\"},{\"ADDMEMBERTOENT\"\
             :\"TRUE\"}]}"
           createdFrom: Created Manually
-          createdBy: "1"
-          endpointname: Create-an-endpoint
+          Account Custom Property 51 Label: Account Custom Property 51 Label
           Custom Property 20: value20
           Custom Property 21: value21
           Custom Property 22: value22
           Custom Property 23: value23
+          Account Custom Property 29 Label: Account Custom Property 29 Label
+          Account Custom Property 34 Label: Account Custom Property 34 Label
           Custom Property 24: value24
           accountTypeNoDeprovision: Service
           Custom Property 25: value25
+          ownerType: User
+          Account Custom Property 3 Label: Account Custom Property 3 Label
+          Account Custom Property 21 Label: Account Custom Property 21 Label
+          Account Custom Property 31 Label: Account Custom Property 31 Label
+          Account Custom Property 11 Label: Account Custom Property 11 Label
+          Account Custom Property 41 Label: Account Custom Property 41 Label
+          accessquery: access qry
+          Account Custom Property 6 Label: Account Custom Property 6 Label
+          Account Custom Property 9 Label: Account Custom Property 9 Label
+          updatedBy: admin
+          Account Custom Property 27 Label: Account Custom Property 27 Label
+          baseLineConfig: "[{\"date\":\"Wed Feb 21 16:23:44 UTC 2024\",\"processInitiatedBy\"\
+            :\"admin\",\"numberofaccountsbaselined\":\"0\",\"numberofaccountentsbaselined\"\
+            :\"0\",\"arstaskkey\":\"\"}]"
+          Account Custom Property 47 Label: Account Custom Property 47 Label
+          pluginConfigs: pluginConfigs_test
+          Account Custom Property 39 Label: Account Custom Property 39 Label
+          Account Custom Property 44 Label: Account Custom Property 44 Label
+          Account Custom Property 59 Label: Account Custom Property 59 Label
+          Account Custom Property 19 Label: Account Custom Property 19 Label
+          Account Custom Property 24 Label: Account Custom Property 24 Label
+          Account Custom Property 36 Label: Account Custom Property 36 Label
+          Account Custom Property 26 Label: Account Custom Property 26 Label
+          allowRemoveAllRoleOnRequest: "true"
+          roleTypeAsJson: "{\"4\":\"2__0__ __(r.customproperty2 LIKE CONCAT('%','${''==job_code?'ZZZZ':job_code.replaceAll('\\\
+            \\'','')!='ALL'?job_code.replaceAll('\\\\'',''):''}','%') OR r.customproperty2='Transversal')\
+            \ AND__-1\",\"5\":\"2__1__ __test__-1\"}"
+          serviceAccountAccessQuery: tetssrvquery
+          Account Custom Property 13 Label: Account Custom Property 13 Label
+          endpointConfig: "{\"Copy Service Account Request Data\": true,\"DISABLE_SORTING\"\
+            \ : true}"
+          Account Custom Property 43 Label: Account Custom Property 43 Label
+          taskemailtemplates: "[{\"emailTemplateType\":\"1\",\"taskType\":\"NEW_ACC_PASSWORD\"\
+            ,\"emailTemplate\":\"23-Monthly-Async Request Submission Status\"}]"
+          Account Custom Property 53 Label: Account Custom Property 53 Label
+          Account Custom Property 4 Label: Account Custom Property 4 Label
+          Account Custom Property 20 Label: Account Custom Property 20 Label
+          Account Custom Property 30 Label: Account Custom Property 30 Label
+          enableCopyAccess: "false"
+          statusConfig: "Enable,Lock"
+          Account Custom Property 37 Label: Account Custom Property 37 Label
+          disableaccountrequestServiceAccount: "{\"DISABLEREMOVEACCOUNT\":\"0\",\"\
+            DISABLEMODIFYACCOUNT\":\"0\",\"DISABLENEWACCOUNT\":\"0\"}"
+          ownerkey: "9"
+          Account Custom Property 42 Label: Account Custom Property 42 Label
+          Account Custom Property 14 Label: Account Custom Property 14 Label
+          Account Custom Property 49 Label: Account Custom Property 49 Label
+          createdBy: "1"
+          endpointname: Create-an-endpoint
+          Account Custom Property 5 Label: Account Custom Property 5 Label
+          Account Custom Property 54 Label: Account Custom Property 54 Label
         displayCount: "2"
         errorCode: "0"
         message: Success

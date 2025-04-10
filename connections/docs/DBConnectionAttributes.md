@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **USERIMPORT** | Pointer to **string** |  | [optional] 
 **DISABLEACCOUNTJSON** | Pointer to **string** |  | [optional] 
 **ENTITLEMENTVALUEIMPORT** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **UPDATEUSERJSON** | Pointer to **string** |  | [optional] 
 **PASSWORD_NOOFSPLCHARS** | Pointer to **string** |  | [optional] 
 **REVOKEACCESSJSON** | Pointer to **string** |  | [optional] 
@@ -285,20 +285,20 @@ HasENTITLEMENTVALUEIMPORT returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *DBConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *DBConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *DBConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *DBConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *DBConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *DBConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

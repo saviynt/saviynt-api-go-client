@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **ENTITLEMENT_ATTRIBUTE** | Pointer to **string** |  | [optional] 
 **CHECKFORUNIQUE** | Pointer to **string** |  | [optional] 
 **REMOVESERVICEACCOUNTJSON** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **UPDATEUSERJSON** | Pointer to **string** |  | [optional] 
 **URL** | Pointer to **string** |  | [optional] 
 **MOVEACCOUNTJSON** | Pointer to **string** |  | [optional] 
@@ -802,20 +802,20 @@ HasREMOVESERVICEACCOUNTJSON returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *ADSIConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *ADSIConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *ADSIConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *ADSIConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *ADSIConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *ADSIConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **SNC** | Pointer to **string** |  | [optional] 
 **JCO_MSSERV** | Pointer to **string** |  | [optional] 
 **PROV_CUA_SNC** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **PROV_JCO_USER** | Pointer to **string** |  | [optional] 
 **JCO_LANG** | Pointer to **string** |  | [optional] 
 **JCO_SNC_PARTNERNAME** | Pointer to **string** |  | [optional] 
@@ -965,20 +965,20 @@ HasPROV_CUA_SNC returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *SAPConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *SAPConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *SAPConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *SAPConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *SAPConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *SAPConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

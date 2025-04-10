@@ -14,39 +14,45 @@ import (
 	"encoding/json"
 )
 
-// checks if the RESTConnectionAttributesConnectionTimeoutConfig type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &RESTConnectionAttributesConnectionTimeoutConfig{}
+// checks if the ConnectionTimeoutConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ConnectionTimeoutConfig{}
 
-// RESTConnectionAttributesConnectionTimeoutConfig struct for RESTConnectionAttributesConnectionTimeoutConfig
-type RESTConnectionAttributesConnectionTimeoutConfig struct {
-	RetryWait               *int32 `json:"retryWait,omitempty"`
+// ConnectionTimeoutConfig struct for ConnectionTimeoutConfig
+type ConnectionTimeoutConfig struct {
+	// Wait time before retrying a failed connection.
+	RetryWait *int32 `json:"retryWait,omitempty"`
+	// Maximum number of retries for token refresh.
 	TokenRefreshMaxTryCount *int32 `json:"tokenRefreshMaxTryCount,omitempty"`
-	RetryFailureStatusCode  *int32 `json:"retryFailureStatusCode,omitempty"`
-	RetryWaitMaxValue       *int32 `json:"retryWaitMaxValue,omitempty"`
-	RetryCount              *int32 `json:"retryCount,omitempty"`
-	ReadTimeout             *int32 `json:"readTimeout,omitempty"`
-	ConnectionTimeout       *int32 `json:"connectionTimeout,omitempty"`
+	RetryFailureStatusCode *int32 `json:"retryFailureStatusCode,omitempty"`
+	// Maximum wait time for retries.
+	RetryWaitMaxValue *int32 `json:"retryWaitMaxValue,omitempty"`
+	// Number of retry attempts allowed.
+	RetryCount *int32 `json:"retryCount,omitempty"`
+	// Read timeout duration (in seconds).
+	ReadTimeout *int32 `json:"readTimeout,omitempty"`
+	// Connection timeout duration (in seconds).
+	ConnectionTimeout *int32 `json:"connectionTimeout,omitempty"`
 }
 
-// NewRESTConnectionAttributesConnectionTimeoutConfig instantiates a new RESTConnectionAttributesConnectionTimeoutConfig object
+// NewConnectionTimeoutConfig instantiates a new ConnectionTimeoutConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRESTConnectionAttributesConnectionTimeoutConfig() *RESTConnectionAttributesConnectionTimeoutConfig {
-	this := RESTConnectionAttributesConnectionTimeoutConfig{}
+func NewConnectionTimeoutConfig() *ConnectionTimeoutConfig {
+	this := ConnectionTimeoutConfig{}
 	return &this
 }
 
-// NewRESTConnectionAttributesConnectionTimeoutConfigWithDefaults instantiates a new RESTConnectionAttributesConnectionTimeoutConfig object
+// NewConnectionTimeoutConfigWithDefaults instantiates a new ConnectionTimeoutConfig object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRESTConnectionAttributesConnectionTimeoutConfigWithDefaults() *RESTConnectionAttributesConnectionTimeoutConfig {
-	this := RESTConnectionAttributesConnectionTimeoutConfig{}
+func NewConnectionTimeoutConfigWithDefaults() *ConnectionTimeoutConfig {
+	this := ConnectionTimeoutConfig{}
 	return &this
 }
 
 // GetRetryWait returns the RetryWait field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWait() int32 {
+func (o *ConnectionTimeoutConfig) GetRetryWait() int32 {
 	if o == nil || IsNil(o.RetryWait) {
 		var ret int32
 		return ret
@@ -56,7 +62,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWait() int32 {
 
 // GetRetryWaitOk returns a tuple with the RetryWait field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetRetryWaitOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryWait) {
 		return nil, false
 	}
@@ -64,7 +70,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitOk() (*int
 }
 
 // HasRetryWait returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWait() bool {
+func (o *ConnectionTimeoutConfig) HasRetryWait() bool {
 	if o != nil && !IsNil(o.RetryWait) {
 		return true
 	}
@@ -73,12 +79,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWait() bool {
 }
 
 // SetRetryWait gets a reference to the given int32 and assigns it to the RetryWait field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryWait(v int32) {
+func (o *ConnectionTimeoutConfig) SetRetryWait(v int32) {
 	o.RetryWait = &v
 }
 
 // GetTokenRefreshMaxTryCount returns the TokenRefreshMaxTryCount field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCount() int32 {
+func (o *ConnectionTimeoutConfig) GetTokenRefreshMaxTryCount() int32 {
 	if o == nil || IsNil(o.TokenRefreshMaxTryCount) {
 		var ret int32
 		return ret
@@ -88,7 +94,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryC
 
 // GetTokenRefreshMaxTryCountOk returns a tuple with the TokenRefreshMaxTryCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryCountOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetTokenRefreshMaxTryCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.TokenRefreshMaxTryCount) {
 		return nil, false
 	}
@@ -96,7 +102,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetTokenRefreshMaxTryC
 }
 
 // HasTokenRefreshMaxTryCount returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryCount() bool {
+func (o *ConnectionTimeoutConfig) HasTokenRefreshMaxTryCount() bool {
 	if o != nil && !IsNil(o.TokenRefreshMaxTryCount) {
 		return true
 	}
@@ -105,12 +111,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasTokenRefreshMaxTryC
 }
 
 // SetTokenRefreshMaxTryCount gets a reference to the given int32 and assigns it to the TokenRefreshMaxTryCount field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetTokenRefreshMaxTryCount(v int32) {
+func (o *ConnectionTimeoutConfig) SetTokenRefreshMaxTryCount(v int32) {
 	o.TokenRefreshMaxTryCount = &v
 }
 
 // GetRetryFailureStatusCode returns the RetryFailureStatusCode field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCode() int32 {
+func (o *ConnectionTimeoutConfig) GetRetryFailureStatusCode() int32 {
 	if o == nil || IsNil(o.RetryFailureStatusCode) {
 		var ret int32
 		return ret
@@ -120,7 +126,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusC
 
 // GetRetryFailureStatusCodeOk returns a tuple with the RetryFailureStatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetRetryFailureStatusCodeOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryFailureStatusCode) {
 		return nil, false
 	}
@@ -128,7 +134,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryFailureStatusC
 }
 
 // HasRetryFailureStatusCode returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusCode() bool {
+func (o *ConnectionTimeoutConfig) HasRetryFailureStatusCode() bool {
 	if o != nil && !IsNil(o.RetryFailureStatusCode) {
 		return true
 	}
@@ -137,12 +143,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryFailureStatusC
 }
 
 // SetRetryFailureStatusCode gets a reference to the given int32 and assigns it to the RetryFailureStatusCode field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32) {
+func (o *ConnectionTimeoutConfig) SetRetryFailureStatusCode(v int32) {
 	o.RetryFailureStatusCode = &v
 }
 
 // GetRetryWaitMaxValue returns the RetryWaitMaxValue field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValue() int32 {
+func (o *ConnectionTimeoutConfig) GetRetryWaitMaxValue() int32 {
 	if o == nil || IsNil(o.RetryWaitMaxValue) {
 		var ret int32
 		return ret
@@ -152,7 +158,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValue()
 
 // GetRetryWaitMaxValueOk returns a tuple with the RetryWaitMaxValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValueOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetRetryWaitMaxValueOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryWaitMaxValue) {
 		return nil, false
 	}
@@ -160,7 +166,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryWaitMaxValueOk
 }
 
 // HasRetryWaitMaxValue returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWaitMaxValue() bool {
+func (o *ConnectionTimeoutConfig) HasRetryWaitMaxValue() bool {
 	if o != nil && !IsNil(o.RetryWaitMaxValue) {
 		return true
 	}
@@ -169,12 +175,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryWaitMaxValue()
 }
 
 // SetRetryWaitMaxValue gets a reference to the given int32 and assigns it to the RetryWaitMaxValue field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryWaitMaxValue(v int32) {
+func (o *ConnectionTimeoutConfig) SetRetryWaitMaxValue(v int32) {
 	o.RetryWaitMaxValue = &v
 }
 
 // GetRetryCount returns the RetryCount field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCount() int32 {
+func (o *ConnectionTimeoutConfig) GetRetryCount() int32 {
 	if o == nil || IsNil(o.RetryCount) {
 		var ret int32
 		return ret
@@ -184,7 +190,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCount() int32 
 
 // GetRetryCountOk returns a tuple with the RetryCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCountOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetRetryCountOk() (*int32, bool) {
 	if o == nil || IsNil(o.RetryCount) {
 		return nil, false
 	}
@@ -192,7 +198,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetRetryCountOk() (*in
 }
 
 // HasRetryCount returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryCount() bool {
+func (o *ConnectionTimeoutConfig) HasRetryCount() bool {
 	if o != nil && !IsNil(o.RetryCount) {
 		return true
 	}
@@ -201,12 +207,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasRetryCount() bool {
 }
 
 // SetRetryCount gets a reference to the given int32 and assigns it to the RetryCount field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetRetryCount(v int32) {
+func (o *ConnectionTimeoutConfig) SetRetryCount(v int32) {
 	o.RetryCount = &v
 }
 
 // GetReadTimeout returns the ReadTimeout field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeout() int32 {
+func (o *ConnectionTimeoutConfig) GetReadTimeout() int32 {
 	if o == nil || IsNil(o.ReadTimeout) {
 		var ret int32
 		return ret
@@ -216,7 +222,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeout() int32
 
 // GetReadTimeoutOk returns a tuple with the ReadTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeoutOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetReadTimeoutOk() (*int32, bool) {
 	if o == nil || IsNil(o.ReadTimeout) {
 		return nil, false
 	}
@@ -224,7 +230,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetReadTimeoutOk() (*i
 }
 
 // HasReadTimeout returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasReadTimeout() bool {
+func (o *ConnectionTimeoutConfig) HasReadTimeout() bool {
 	if o != nil && !IsNil(o.ReadTimeout) {
 		return true
 	}
@@ -233,12 +239,12 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasReadTimeout() bool 
 }
 
 // SetReadTimeout gets a reference to the given int32 and assigns it to the ReadTimeout field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetReadTimeout(v int32) {
+func (o *ConnectionTimeoutConfig) SetReadTimeout(v int32) {
 	o.ReadTimeout = &v
 }
 
 // GetConnectionTimeout returns the ConnectionTimeout field value if set, zero value otherwise.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeout() int32 {
+func (o *ConnectionTimeoutConfig) GetConnectionTimeout() int32 {
 	if o == nil || IsNil(o.ConnectionTimeout) {
 		var ret int32
 		return ret
@@ -248,7 +254,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeout()
 
 // GetConnectionTimeoutOk returns a tuple with the ConnectionTimeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeoutOk() (*int32, bool) {
+func (o *ConnectionTimeoutConfig) GetConnectionTimeoutOk() (*int32, bool) {
 	if o == nil || IsNil(o.ConnectionTimeout) {
 		return nil, false
 	}
@@ -256,7 +262,7 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) GetConnectionTimeoutOk
 }
 
 // HasConnectionTimeout returns a boolean if a field has been set.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasConnectionTimeout() bool {
+func (o *ConnectionTimeoutConfig) HasConnectionTimeout() bool {
 	if o != nil && !IsNil(o.ConnectionTimeout) {
 		return true
 	}
@@ -265,19 +271,19 @@ func (o *RESTConnectionAttributesConnectionTimeoutConfig) HasConnectionTimeout()
 }
 
 // SetConnectionTimeout gets a reference to the given int32 and assigns it to the ConnectionTimeout field.
-func (o *RESTConnectionAttributesConnectionTimeoutConfig) SetConnectionTimeout(v int32) {
+func (o *ConnectionTimeoutConfig) SetConnectionTimeout(v int32) {
 	o.ConnectionTimeout = &v
 }
 
-func (o RESTConnectionAttributesConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+func (o ConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
 
-func (o RESTConnectionAttributesConnectionTimeoutConfig) ToMap() (map[string]interface{}, error) {
+func (o ConnectionTimeoutConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.RetryWait) {
 		toSerialize["retryWait"] = o.RetryWait
@@ -303,38 +309,40 @@ func (o RESTConnectionAttributesConnectionTimeoutConfig) ToMap() (map[string]int
 	return toSerialize, nil
 }
 
-type NullableRESTConnectionAttributesConnectionTimeoutConfig struct {
-	value *RESTConnectionAttributesConnectionTimeoutConfig
+type NullableConnectionTimeoutConfig struct {
+	value *ConnectionTimeoutConfig
 	isSet bool
 }
 
-func (v NullableRESTConnectionAttributesConnectionTimeoutConfig) Get() *RESTConnectionAttributesConnectionTimeoutConfig {
+func (v NullableConnectionTimeoutConfig) Get() *ConnectionTimeoutConfig {
 	return v.value
 }
 
-func (v *NullableRESTConnectionAttributesConnectionTimeoutConfig) Set(val *RESTConnectionAttributesConnectionTimeoutConfig) {
+func (v *NullableConnectionTimeoutConfig) Set(val *ConnectionTimeoutConfig) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRESTConnectionAttributesConnectionTimeoutConfig) IsSet() bool {
+func (v NullableConnectionTimeoutConfig) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRESTConnectionAttributesConnectionTimeoutConfig) Unset() {
+func (v *NullableConnectionTimeoutConfig) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRESTConnectionAttributesConnectionTimeoutConfig(val *RESTConnectionAttributesConnectionTimeoutConfig) *NullableRESTConnectionAttributesConnectionTimeoutConfig {
-	return &NullableRESTConnectionAttributesConnectionTimeoutConfig{value: val, isSet: true}
+func NewNullableConnectionTimeoutConfig(val *ConnectionTimeoutConfig) *NullableConnectionTimeoutConfig {
+	return &NullableConnectionTimeoutConfig{value: val, isSet: true}
 }
 
-func (v NullableRESTConnectionAttributesConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
+func (v NullableConnectionTimeoutConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRESTConnectionAttributesConnectionTimeoutConfig) UnmarshalJSON(src []byte) error {
+func (v *NullableConnectionTimeoutConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -2036,6 +2036,36 @@ components:
       - properties:
           connectionattributes:
             $ref: '#/components/schemas/EntraIDConnectionAttributes'
+    ConnectionTimeoutConfig:
+      example:
+        retryWait: 0
+        tokenRefreshMaxTryCount: 6
+        retryFailureStatusCode: 1
+        retryWaitMaxValue: 5
+        retryCount: 5
+        readTimeout: 2
+        connectionTimeout: 7
+      properties:
+        retryWait:
+          description: Wait time before retrying a failed connection.
+          type: integer
+        tokenRefreshMaxTryCount:
+          description: Maximum number of retries for token refresh.
+          type: integer
+        retryFailureStatusCode:
+          type: integer
+        retryWaitMaxValue:
+          description: Maximum wait time for retries.
+          type: integer
+        retryCount:
+          description: Number of retry attempts allowed.
+          type: integer
+        readTimeout:
+          description: Read timeout duration (in seconds).
+          type: integer
+        connectionTimeout:
+          description: Connection timeout duration (in seconds).
+          type: integer
     ADConnectionAttributes:
       example:
         LAST_IMPORT_TIME: 2017-03-23T00:48:28
@@ -2444,7 +2474,7 @@ components:
           description: Rules for checking unique users in JSON format.
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/ADConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         isTimeoutConfigValidated:
           description: Indicates if timeout configuration is validated.
           type: boolean
@@ -2497,7 +2527,7 @@ components:
         PAM_CONFIG:
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         CreateAccountJSON:
           example: |
             {'accountIdPath': 'call1.message.id', 'dateFormat': "yyyy-MM-dd'T'HH:mm:ssXXX", 'responseColsToPropsMap': {'name': 'call1.message.username~#~char', 'displayName': 'call1.message.displayName~#~char', 'updatedate': 'call1.message.meta.created~#~date', 'comments': 'call1.message.emails[0].value~#~char'}, 'call': [{'name': 'call1', 'connection': 'Slack', 'url': 'https://api.slack.com/scim/v1/Users', 'httpMethod': 'POST', 'httpParams': '{"schemas":["urn:scim:schemas:core:1.0"],"userName": "${user.username}","nickName": "${user.firstname}", "name": {"givenName": "${user.firstname}","familyName": "${user.lastname}"},"active": false,"emails": [{"value": "${user.email}", "primary": true}]}', 'httpHeaders': {'Authorization': '${access_token}'}, 'httpContentType': 'application/json', 'successResponses': {'statusCode': [201]}, 'unsuccessResponses': {'statusCode': [400, 500]}}]}
@@ -2616,7 +2646,7 @@ components:
             </dataMapping>
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         UPDATEUSERJSON:
           example: "{\"UpdateUserQry\":[\"UPDATE mysqllocal.users SET firstname =\
             \ ${user.firstname}, lastname = ${user.lastname}, departmentname = ${user.departmentname},\
@@ -2903,7 +2933,7 @@ components:
             : false\\n    }\\n  ]\\n}"
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         UPDATEUSERJSON:
           type: string
         URL:
@@ -3016,7 +3046,7 @@ components:
         STATUS_KEY_JSON:
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         connectionType:
           example: MS_BASED_CONNECTOR
           type: string
@@ -3274,7 +3304,7 @@ components:
         CreateTeamJSON:
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         ENHANCEDDIRECTORYROLES:
           example: "FALSE"
           type: string
@@ -3423,7 +3453,7 @@ components:
         PROV_CUA_SNC:
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         PROV_JCO_USER:
           type: string
         JCO_LANG:
@@ -3505,7 +3535,7 @@ components:
           example: refresh_token
           type: string
         connectionTimeoutConfig:
-          $ref: '#/components/schemas/RESTConnectionAttributes_connectionTimeoutConfig'
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
         MODIFYACCOUNTJSON:
           type: string
         connectionType:
@@ -3632,49 +3662,3 @@ components:
           description: Time of connection updation
           example: 2017-03-23T00:48:28Z
           type: string
-    ADConnectionAttributes_connectionTimeoutConfig:
-      example:
-        retryWait: 0
-        tokenRefreshMaxTryCount: 6
-        retryFailureStatusCode: 1
-        retryWaitMaxValue: 5
-        retryCount: 5
-        readTimeout: 2
-        connectionTimeout: 7
-      properties:
-        retryWait:
-          description: Wait time before retrying a failed connection.
-          type: integer
-        tokenRefreshMaxTryCount:
-          description: Maximum number of retries for token refresh.
-          type: integer
-        retryFailureStatusCode:
-          type: integer
-        retryWaitMaxValue:
-          description: Maximum wait time for retries.
-          type: integer
-        retryCount:
-          description: Number of retry attempts allowed.
-          type: integer
-        readTimeout:
-          description: Read timeout duration (in seconds).
-          type: integer
-        connectionTimeout:
-          description: Connection timeout duration (in seconds).
-          type: integer
-    RESTConnectionAttributes_connectionTimeoutConfig:
-      properties:
-        retryWait:
-          type: integer
-        tokenRefreshMaxTryCount:
-          type: integer
-        retryFailureStatusCode:
-          type: integer
-        retryWaitMaxValue:
-          type: integer
-        retryCount:
-          type: integer
-        readTimeout:
-          type: integer
-        connectionTimeout:
-          type: integer

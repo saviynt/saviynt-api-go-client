@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **USER_IMPORT_MAPPING** | Pointer to **string** |  | [optional] 
 **ACCOUNTS_LAST_IMPORT_TIME** | Pointer to **string** |  | [optional] 
 **STATUS_KEY_JSON** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **ConnectionType** | Pointer to **string** |  | [optional] 
 **RAAS_MAPPING_JSON** | Pointer to **string** |  | [optional] 
 **ACCOUNT_IMPORT_PAYLOAD** | Pointer to **string** |  | [optional] 
@@ -168,20 +168,20 @@ HasSTATUS_KEY_JSON returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *WorkdayConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *WorkdayConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *WorkdayConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *WorkdayConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *WorkdayConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *WorkdayConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

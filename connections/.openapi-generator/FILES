@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -6,13 +7,13 @@ api_connections.go
 client.go
 configuration.go
 docs/ADConnectionAttributes.md
-docs/ADConnectionAttributesConnectionTimeoutConfig.md
 docs/ADConnectionResponse.md
 docs/ADConnector.md
 docs/ADSIConnectionAttributes.md
 docs/ADSIConnectionResponse.md
 docs/ADSIConnector.md
 docs/BaseConnector.md
+docs/ConnectionTimeoutConfig.md
 docs/ConnectionsAPI.md
 docs/CreateOrUpdateRequest.md
 docs/CreateOrUpdateResponse.md
@@ -30,7 +31,6 @@ docs/GetConnectionsRequest.md
 docs/GetConnectionsResponse.md
 docs/GetConnectionsResponseConnectionListInner.md
 docs/RESTConnectionAttributes.md
-docs/RESTConnectionAttributesConnectionTimeoutConfig.md
 docs/RESTConnectionResponse.md
 docs/RESTConnector.md
 docs/SAPConnectionAttributes.md
@@ -46,13 +46,13 @@ git_push.sh
 go.mod
 go.sum
 model_ad_connection_attributes.go
-model_ad_connection_attributes_connection_timeout_config.go
 model_ad_connection_response.go
 model_ad_connector.go
 model_adsi_connection_attributes.go
 model_adsi_connection_response.go
 model_adsi_connector.go
 model_base_connector.go
+model_connection_timeout_config.go
 model_create_or_update_request.go
 model_create_or_update_response.go
 model_d365_connector.go
@@ -69,7 +69,6 @@ model_get_connections_request.go
 model_get_connections_response.go
 model_get_connections_response_connection_list_inner.go
 model_rest_connection_attributes.go
-model_rest_connection_attributes_connection_timeout_config.go
 model_rest_connection_response.go
 model_rest_connector.go
 model_salesforce_connection_attributes.go
@@ -82,4 +81,5 @@ model_workday_connection_attributes.go
 model_workday_connection_response.go
 model_workday_connector.go
 response.go
+test/api_connections_test.go
 utils.go

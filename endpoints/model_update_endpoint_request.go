@@ -1,7 +1,7 @@
 /*
 Account Management API
 
-API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria.
+API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria. 
 
 API version: 1.0.0
 */
@@ -11,8 +11,8 @@ API version: 1.0.0
 package endpoints
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -58,10 +58,10 @@ type UpdateEndpointRequest struct {
 	// Specify true to prevent users from raising duplicate requests for the same applications.
 	BlockInflightRequest *string `json:"blockInflightRequest,omitempty"`
 	// Use this parameter to determine if you need to remove the accesses which were granted outside Saviynt.
-	Outofbandaction     *string                                         `json:"outofbandaction,omitempty"`
+	Outofbandaction *string `json:"outofbandaction,omitempty"`
 	RequestableRoleType []UpdateEndpointRequestRequestableRoleTypeInner `json:"requestableRoleType,omitempty"`
-	EmailTemplate       []UpdateEndpointRequestEmailTemplateInner       `json:"emailTemplate,omitempty"`
-	MappedEndpoints     []UpdateEndpointRequestMappedEndpointsInner     `json:"mappedEndpoints,omitempty"`
+	EmailTemplate []UpdateEndpointRequestEmailTemplateInner `json:"emailTemplate,omitempty"`
+	MappedEndpoints []UpdateEndpointRequestMappedEndpointsInner `json:"mappedEndpoints,omitempty"`
 	// Specify rule to generate an account name for this endpoint while creating a new account.
 	AccountNameRule *string `json:"accountNameRule,omitempty"`
 	// SQL query to configure the accounts for which you can change passwords.
@@ -71,7 +71,7 @@ type UpdateEndpointRequest struct {
 	// Specify the parent and child relationship for the Active Directory endpoint. The specified value is used to filter the parent and child objects in the Request Access tile.
 	ParentAccountPattern *string `json:"parentAccountPattern,omitempty"`
 	// Rule to generate a name for this endpoint while creating a new service account.
-	ServiceAccountNameRule    *string     `json:"serviceAccountNameRule,omitempty"`
+	ServiceAccountNameRule *string `json:"serviceAccountNameRule,omitempty"`
 	ServiceAccountAccessQuery interface{} `json:"serviceAccountAccessQuery,omitempty"`
 	// Specify query to restrict the access for changing the account password of the endpoint.
 	ChangePasswordAccessQuery *string `json:"changePasswordAccessQuery,omitempty"`
@@ -4759,7 +4759,7 @@ func (o *UpdateEndpointRequest) SetAllowRemoveAllRoleOnRequest(v string) {
 }
 
 func (o UpdateEndpointRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -5199,10 +5199,10 @@ func (o *UpdateEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -5258,3 +5258,5 @@ func (v *NullableUpdateEndpointRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

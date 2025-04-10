@@ -65,7 +65,7 @@ Name | Type | Description | Notes
 **MAX_CHANGENUMBER** | Pointer to **string** | Maximum change number for incremental syncs. | [optional] 
 **INCREMENTAL_CONFIG** | Pointer to **string** | Configuration for incremental data sync. | [optional] 
 **CHECKFORUNIQUE** | Pointer to **string** | Rules for checking unique users in JSON format. | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**ADConnectionAttributesConnectionTimeoutConfig**](ADConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **IsTimeoutConfigValidated** | Pointer to **bool** | Indicates if timeout configuration is validated. | [optional] 
 
 ## Methods
@@ -1614,20 +1614,20 @@ HasCHECKFORUNIQUE returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *ADConnectionAttributes) GetConnectionTimeoutConfig() ADConnectionAttributesConnectionTimeoutConfig`
+`func (o *ADConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *ADConnectionAttributes) GetConnectionTimeoutConfigOk() (*ADConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *ADConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *ADConnectionAttributes) SetConnectionTimeoutConfig(v ADConnectionAttributesConnectionTimeoutConfig)`
+`func (o *ADConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

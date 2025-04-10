@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **CREATEACCOUNTJSON** | Pointer to **string** |  | [optional] 
 **REDIRECT_URI** | Pointer to **string** |  | [optional] 
 **REFRESH_TOKEN** | Pointer to **string** |  | [optional] 
-**ConnectionTimeoutConfig** | Pointer to [**RESTConnectionAttributesConnectionTimeoutConfig**](RESTConnectionAttributesConnectionTimeoutConfig.md) |  | [optional] 
+**ConnectionTimeoutConfig** | Pointer to [**ConnectionTimeoutConfig**](ConnectionTimeoutConfig.md) |  | [optional] 
 **MODIFYACCOUNTJSON** | Pointer to **string** |  | [optional] 
 **ConnectionType** | Pointer to **string** |  | [optional] 
 **IsTimeoutConfigValidated** | Pointer to **bool** |  | [optional] 
@@ -221,20 +221,20 @@ HasREFRESH_TOKEN returns a boolean if a field has been set.
 
 ### GetConnectionTimeoutConfig
 
-`func (o *SalesforceConnectionAttributes) GetConnectionTimeoutConfig() RESTConnectionAttributesConnectionTimeoutConfig`
+`func (o *SalesforceConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig`
 
 GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field if non-nil, zero value otherwise.
 
 ### GetConnectionTimeoutConfigOk
 
-`func (o *SalesforceConnectionAttributes) GetConnectionTimeoutConfigOk() (*RESTConnectionAttributesConnectionTimeoutConfig, bool)`
+`func (o *SalesforceConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool)`
 
 GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionTimeoutConfig
 
-`func (o *SalesforceConnectionAttributes) SetConnectionTimeoutConfig(v RESTConnectionAttributesConnectionTimeoutConfig)`
+`func (o *SalesforceConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig)`
 
 SetConnectionTimeoutConfig sets ConnectionTimeoutConfig field to given value.
 

@@ -140,8 +140,8 @@ type ADConnectionAttributes struct {
 	// Configuration for incremental data sync.
 	INCREMENTAL_CONFIG *string `json:"INCREMENTAL_CONFIG,omitempty"`
 	// Rules for checking unique users in JSON format.
-	CHECKFORUNIQUE          *string                                        `json:"CHECKFORUNIQUE,omitempty"`
-	ConnectionTimeoutConfig *ADConnectionAttributesConnectionTimeoutConfig `json:"connectionTimeoutConfig,omitempty"`
+	CHECKFORUNIQUE *string `json:"CHECKFORUNIQUE,omitempty"`
+	ConnectionTimeoutConfig *ConnectionTimeoutConfig `json:"connectionTimeoutConfig,omitempty"`
 	// Indicates if timeout configuration is validated.
 	IsTimeoutConfigValidated *bool `json:"isTimeoutConfigValidated,omitempty"`
 }
@@ -2116,9 +2116,9 @@ func (o *ADConnectionAttributes) SetCHECKFORUNIQUE(v string) {
 }
 
 // GetConnectionTimeoutConfig returns the ConnectionTimeoutConfig field value if set, zero value otherwise.
-func (o *ADConnectionAttributes) GetConnectionTimeoutConfig() ADConnectionAttributesConnectionTimeoutConfig {
+func (o *ADConnectionAttributes) GetConnectionTimeoutConfig() ConnectionTimeoutConfig {
 	if o == nil || IsNil(o.ConnectionTimeoutConfig) {
-		var ret ADConnectionAttributesConnectionTimeoutConfig
+		var ret ConnectionTimeoutConfig
 		return ret
 	}
 	return *o.ConnectionTimeoutConfig
@@ -2126,7 +2126,7 @@ func (o *ADConnectionAttributes) GetConnectionTimeoutConfig() ADConnectionAttrib
 
 // GetConnectionTimeoutConfigOk returns a tuple with the ConnectionTimeoutConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ADConnectionAttributes) GetConnectionTimeoutConfigOk() (*ADConnectionAttributesConnectionTimeoutConfig, bool) {
+func (o *ADConnectionAttributes) GetConnectionTimeoutConfigOk() (*ConnectionTimeoutConfig, bool) {
 	if o == nil || IsNil(o.ConnectionTimeoutConfig) {
 		return nil, false
 	}
@@ -2142,8 +2142,8 @@ func (o *ADConnectionAttributes) HasConnectionTimeoutConfig() bool {
 	return false
 }
 
-// SetConnectionTimeoutConfig gets a reference to the given ADConnectionAttributesConnectionTimeoutConfig and assigns it to the ConnectionTimeoutConfig field.
-func (o *ADConnectionAttributes) SetConnectionTimeoutConfig(v ADConnectionAttributesConnectionTimeoutConfig) {
+// SetConnectionTimeoutConfig gets a reference to the given ConnectionTimeoutConfig and assigns it to the ConnectionTimeoutConfig field.
+func (o *ADConnectionAttributes) SetConnectionTimeoutConfig(v ConnectionTimeoutConfig) {
 	o.ConnectionTimeoutConfig = &v
 }
 
@@ -2180,7 +2180,7 @@ func (o *ADConnectionAttributes) SetIsTimeoutConfigValidated(v bool) {
 }
 
 func (o ADConnectionAttributes) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -2416,3 +2416,5 @@ func (v *NullableADConnectionAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
