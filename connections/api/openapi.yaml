@@ -1727,6 +1727,138 @@ components:
           ENHANCEDDIRECTORYROLES:
             description: Property for ENHANCEDDIRECTORYROLES
             type: string
+    UNIXConnector:
+      allOf:
+      - $ref: '#/components/schemas/BaseConnector'
+      - properties:
+          HOST_NAME:
+            description: Property for HOST_NAME
+            type: string
+          PORT_NUMBER:
+            description: Property for PORT_NUMBER
+            type: string
+          USERNAME:
+            description: Property for USERNAME
+            type: string
+          PASSWORD:
+            description: Property for PASSWORD
+            type: string
+          GROUPS_FILE:
+            description: Property for GROUPS_FILE
+            type: string
+          ACCOUNTS_FILE:
+            description: Property for ACCOUNTS_FILE
+            type: string
+          SHADOW_FILE:
+            description: Property for SHADOW_FILE
+            type: string
+          PROVISION_ACCOUNT_COMMAND:
+            description: Property for PROVISION_ACCOUNT_COMMAND
+            type: string
+          DEPROVISION_ACCOUNT_COMMAND:
+            description: Property for DEPROVISION_ACCOUNT_COMMAND
+            type: string
+          ADD_ACCESS_COMMAND:
+            description: Property for ADD_ACCESS_COMMAND
+            type: string
+          REMOVE_ACCESS_COMMAND:
+            description: Property for REMOVE_ACCESS_COMMAND
+            type: string
+          CHANGE_PASSWRD_JSON:
+            description: Property for CHANGE_PASSWRD_JSON
+            type: string
+          PEM_KEY_FILE:
+            description: Property for PEM_KEY_FILE
+            type: string
+          ENABLE_ACCOUNT_COMMAND:
+            description: Property for ENABLE_ACCOUNT_COMMAND
+            type: string
+          DISABLE_ACCOUNT_COMMAND:
+            description: Property for DISABLE_ACCOUNT_COMMAND
+            type: string
+          ACCOUNT_ENTITLEMENT_MAPPING_COMMAND:
+            description: Property for ACCOUNT_ENTITLEMENT_MAPPING_COMMAND
+            type: string
+          PASSPHRASE:
+            description: Property for PASSPHRASE
+            type: string
+          UPDATE_ACCOUNT_COMMAND:
+            description: Property for UPDATE_ACCOUNT_COMMAND
+            type: string
+          CREATE_GROUP_COMMAND:
+            description: Property for CREATE_GROUP_COMMAND
+            type: string
+          DELETE_GROUP_COMMAND:
+            description: Property for DELETE_GROUP_COMMAND
+            type: string
+          ADD_GROUP_OWNER_COMMAND:
+            description: Property for ADD_GROUP_OWNER_COMMAND
+            type: string
+          ADD_PRIMARY_GROUP_COMMAND:
+            description: Property for ADD_PRIMARY_GROUP_COMMAND
+            type: string
+          FIREFIGHTERID_GRANT_ACCESS_COMMAND:
+            description: Property for FIREFIGHTERID_GRANT_ACCESS_COMMAND
+            type: string
+          FIREFIGHTERID_REVOKE_ACCESS_COMMAND:
+            description: Property for FIREFIGHTERID_REVOKE_ACCESS_COMMAND
+            type: string
+          INACTIVE_LOCK_ACCOUNT:
+            description: Property for INACTIVE_LOCK_ACCOUNT
+            type: string
+          STATUS_THRESHOLD_CONFIG:
+            description: Property for STATUS_THRESHOLD_CONFIG
+            type: string
+          CUSTOM_CONFIG_JSON:
+            description: Property for CUSTOM_CONFIG_JSON
+            type: string
+          SSH_KEY:
+            description: Property for SSH_KEY
+            type: string
+          LOCK_ACCOUNT_COMMAND:
+            description: Property for LOCK_ACCOUNT_COMMAND
+            type: string
+          UNLOCK_ACCOUNT_COMMAND:
+            description: Property for UNLOCK_ACCOUNT_COMMAND
+            type: string
+          PassThroughConnectionDetails:
+            description: Property for PassThroughConnectionDetails
+            type: string
+          SSHPassThroughPassword:
+            description: Property for SSHPassThroughPassword
+            type: string
+          SSHPassThroughSSHKEY:
+            description: Property for SSHPassThroughSSHKEY
+            type: string
+          SSHPassThroughPassphrase:
+            description: Property for SSHPassThroughPassphrase
+            type: string
+        required:
+        - HOST_NAME
+        - PORT_NUMBER
+        - USERNAME
+    GithubRESTConnector:
+      allOf:
+      - $ref: '#/components/schemas/BaseConnector'
+      - properties:
+          ConnectionJSON:
+            description: Property for ConnectionJSON
+            type: string
+          ImportAccountEntJSON:
+            description: Property for ImportAccountEntJSON
+            type: string
+          ACCESS_TOKENS:
+            description: Property for ACCESS_TOKENS
+            type: string
+          ORGANIZATION_LIST:
+            description: Property for ORGANIZATION_LIST
+            type: string
+          STATUS_THRESHOLD_CONFIG:
+            description: Property for STATUS_THRESHOLD_CONFIG
+            type: string
+          PAM_CONFIG:
+            description: Property for PAM_CONFIG
+            type: string
     CreateOrUpdateResponse:
       example:
         msg: Connection Successful
@@ -1794,6 +1926,8 @@ components:
           EntraID: '#/components/schemas/EntraIDConnectionResponse'
           SAP: '#/components/schemas/SAPConnectionResponse'
           Salesforce: '#/components/schemas/SalesforceConnectionResponse'
+          UNIX: '#/components/schemas/UNIXConnectionResponse'
+          GithubREST: '#/components/schemas/GithubRESTResponse'
         propertyName: connectiontype
       oneOf:
       - $ref: '#/components/schemas/ADConnectionResponse'
@@ -1804,6 +1938,8 @@ components:
       - $ref: '#/components/schemas/EntraIDConnectionResponse'
       - $ref: '#/components/schemas/SAPConnectionResponse'
       - $ref: '#/components/schemas/SalesforceConnectionResponse'
+      - $ref: '#/components/schemas/UNIXConnectionResponse'
+      - $ref: '#/components/schemas/GithubRESTConnectionResponse'
     getConnectionDetails:
       properties:
         msg:
@@ -2036,6 +2172,18 @@ components:
       - properties:
           connectionattributes:
             $ref: '#/components/schemas/EntraIDConnectionAttributes'
+    UNIXConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/UNIXConnectionAttributes'
+    GithubRESTConnectionResponse:
+      allOf:
+      - $ref: '#/components/schemas/getConnectionDetails'
+      - properties:
+          connectionattributes:
+            $ref: '#/components/schemas/GithubRESTConnectionAttributes'
     ConnectionTimeoutConfig:
       example:
         retryWait: 0
@@ -3564,6 +3712,120 @@ components:
         INSTANCE_URL:
           example: https://example.salesforce.com
           type: string
+    UNIXConnectionAttributes:
+      properties:
+        GROUPS_FILE:
+          type: string
+        SSH_KEY:
+          type: string
+        ACCOUNT_ENTITLEMENT_MAPPING_COMMAND:
+          type: string
+        REMOVE_ACCESS_COMMAND:
+          type: string
+        PEM_KEY_FILE:
+          type: string
+        PassThroughConnectionDetails:
+          type: string
+        DISABLE_ACCOUNT_COMMAND:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
+        PORT_NUMBER:
+          type: string
+        connectionType:
+          example: MS_BASED_CONNECTOR
+          type: string
+        CREATE_GROUP_COMMAND:
+          type: string
+        ACCOUNTS_FILE:
+          type: string
+        PASSPHRASE:
+          type: string
+        DELETE_GROUP_COMMAND:
+          type: string
+        HOST_NAME:
+          example: 255.255.255.255
+          type: string
+        ADD_GROUP_OWNER_COMMAND:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          example: "{\r\n\t\"statusAndThresholdConfig\": {\r\n\t\t\"statusColumn\"\
+            : \"status\",\r\n\t\t\"activeStatus\": [\"1\", \"active\"],\r\n\t\t\"\
+            deleteLinks\": true,\r\n\t\t\"accountThresholdValue\": 1000,\r\n\t\t\"\
+            correlateInactiveAccounts\": false,\r\n\t\t\"inactivateAccountsNotInFile\"\
+            : false\r\n\t}\r\n}"
+          type: string
+        USERNAME:
+          example: username
+          type: string
+        INACTIVE_LOCK_ACCOUNT:
+          type: string
+        ADD_ACCESS_COMMAND:
+          example: "sudo usermod -aG ${entitlement_Value} ${username}"
+          type: string
+        UPDATE_ACCOUNT_COMMAND:
+          type: string
+        SSHPassThroughPassphrase:
+          type: string
+        SHADOW_FILE:
+          type: string
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        SSHPassThroughSSHKEY:
+          type: string
+        PROVISION_ACCOUNT_COMMAND:
+          type: string
+        FIREFIGHTERID_GRANT_ACCESS_COMMAND:
+          type: string
+        UNLOCK_ACCOUNT_COMMAND:
+          type: string
+        DEPROVISION_ACCOUNT_COMMAND:
+          type: string
+        CHANGE_PASSWRD_JSON:
+          type: string
+        SSHPassThroughPassword:
+          type: string
+        FIREFIGHTERID_REVOKE_ACCESS_COMMAND:
+          type: string
+        ADD_PRIMARY_GROUP_COMMAND:
+          type: string
+        isTimeoutConfigValidated:
+          example: false
+          type: boolean
+        LOCK_ACCOUNT_COMMAND:
+          type: string
+        PASSWORD:
+          example: pass123
+          type: string
+        CUSTOM_CONFIG_JSON:
+          type: string
+        ENABLE_ACCOUNT_COMMAND:
+          type: string
+    GithubRESTConnectionAttributes:
+      properties:
+        isTimeoutSupported:
+          example: true
+          type: boolean
+        ConnectionJSON:
+          type: string
+        PAM_CONFIG:
+          type: string
+        ORGANIZATION_LIST:
+          type: string
+        ImportAccountEntJSON:
+          type: string
+        STATUS_THRESHOLD_CONFIG:
+          type: string
+        ACCESS_TOKENS:
+          type: string
+        connectionTimeoutConfig:
+          $ref: '#/components/schemas/ConnectionTimeoutConfig'
+        connectionType:
+          type: string
+        isTimeoutConfigValidated:
+          example: false
+          type: boolean
     createOrUpdate_request:
       discriminator:
         mapping:
@@ -3576,6 +3838,8 @@ components:
           Workday: '#/components/schemas/WorkdayConnector'
           DB: '#/components/schemas/DBConnector'
           EntraID: '#/components/schemas/EntraIDConnector'
+          UNIX: '#/components/schemas/UNIXConnector'
+          GithubREST: '#/components/schemas/GithubRESTConnector'
         propertyName: connectiontype
       oneOf:
       - $ref: '#/components/schemas/ADConnector'
@@ -3587,6 +3851,8 @@ components:
       - $ref: '#/components/schemas/WorkdayConnector'
       - $ref: '#/components/schemas/DBConnector'
       - $ref: '#/components/schemas/EntraIDConnector'
+      - $ref: '#/components/schemas/UNIXConnector'
+      - $ref: '#/components/schemas/GithubRESTConnector'
     getConnections_request:
       properties:
         connectionname:

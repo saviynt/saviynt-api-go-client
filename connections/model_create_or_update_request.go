@@ -18,15 +18,17 @@ import (
 
 // CreateOrUpdateRequest - struct for CreateOrUpdateRequest
 type CreateOrUpdateRequest struct {
-	ADConnector *ADConnector
-	ADSIConnector *ADSIConnector
-	D365Connector *D365Connector
-	DBConnector *DBConnector
-	EntraIDConnector *EntraIDConnector
-	RESTConnector *RESTConnector
-	SAPConnector *SAPConnector
+	ADConnector         *ADConnector
+	ADSIConnector       *ADSIConnector
+	D365Connector       *D365Connector
+	DBConnector         *DBConnector
+	EntraIDConnector    *EntraIDConnector
+	GithubRESTConnector *GithubRESTConnector
+	RESTConnector       *RESTConnector
+	SAPConnector        *SAPConnector
 	SalesforceConnector *SalesforceConnector
-	WorkdayConnector *WorkdayConnector
+	UNIXConnector       *UNIXConnector
+	WorkdayConnector    *WorkdayConnector
 }
 
 // ADConnectorAsCreateOrUpdateRequest is a convenience function that returns ADConnector wrapped in CreateOrUpdateRequest
@@ -64,6 +66,13 @@ func EntraIDConnectorAsCreateOrUpdateRequest(v *EntraIDConnector) CreateOrUpdate
 	}
 }
 
+// GithubRESTConnectorAsCreateOrUpdateRequest is a convenience function that returns GithubRESTConnector wrapped in CreateOrUpdateRequest
+func GithubRESTConnectorAsCreateOrUpdateRequest(v *GithubRESTConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
+		GithubRESTConnector: v,
+	}
+}
+
 // RESTConnectorAsCreateOrUpdateRequest is a convenience function that returns RESTConnector wrapped in CreateOrUpdateRequest
 func RESTConnectorAsCreateOrUpdateRequest(v *RESTConnector) CreateOrUpdateRequest {
 	return CreateOrUpdateRequest{
@@ -85,13 +94,19 @@ func SalesforceConnectorAsCreateOrUpdateRequest(v *SalesforceConnector) CreateOr
 	}
 }
 
+// UNIXConnectorAsCreateOrUpdateRequest is a convenience function that returns UNIXConnector wrapped in CreateOrUpdateRequest
+func UNIXConnectorAsCreateOrUpdateRequest(v *UNIXConnector) CreateOrUpdateRequest {
+	return CreateOrUpdateRequest{
+		UNIXConnector: v,
+	}
+}
+
 // WorkdayConnectorAsCreateOrUpdateRequest is a convenience function that returns WorkdayConnector wrapped in CreateOrUpdateRequest
 func WorkdayConnectorAsCreateOrUpdateRequest(v *WorkdayConnector) CreateOrUpdateRequest {
 	return CreateOrUpdateRequest{
 		WorkdayConnector: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
@@ -182,6 +197,23 @@ func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 		dst.EntraIDConnector = nil
 	}
 
+	// try to unmarshal data into GithubRESTConnector
+	err = newStrictDecoder(data).Decode(&dst.GithubRESTConnector)
+	if err == nil {
+		jsonGithubRESTConnector, _ := json.Marshal(dst.GithubRESTConnector)
+		if string(jsonGithubRESTConnector) == "{}" { // empty struct
+			dst.GithubRESTConnector = nil
+		} else {
+			if err = validator.Validate(dst.GithubRESTConnector); err != nil {
+				dst.GithubRESTConnector = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.GithubRESTConnector = nil
+	}
+
 	// try to unmarshal data into RESTConnector
 	err = newStrictDecoder(data).Decode(&dst.RESTConnector)
 	if err == nil {
@@ -233,6 +265,23 @@ func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 		dst.SalesforceConnector = nil
 	}
 
+	// try to unmarshal data into UNIXConnector
+	err = newStrictDecoder(data).Decode(&dst.UNIXConnector)
+	if err == nil {
+		jsonUNIXConnector, _ := json.Marshal(dst.UNIXConnector)
+		if string(jsonUNIXConnector) == "{}" { // empty struct
+			dst.UNIXConnector = nil
+		} else {
+			if err = validator.Validate(dst.UNIXConnector); err != nil {
+				dst.UNIXConnector = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.UNIXConnector = nil
+	}
+
 	// try to unmarshal data into WorkdayConnector
 	err = newStrictDecoder(data).Decode(&dst.WorkdayConnector)
 	if err == nil {
@@ -257,9 +306,11 @@ func (dst *CreateOrUpdateRequest) UnmarshalJSON(data []byte) error {
 		dst.D365Connector = nil
 		dst.DBConnector = nil
 		dst.EntraIDConnector = nil
+		dst.GithubRESTConnector = nil
 		dst.RESTConnector = nil
 		dst.SAPConnector = nil
 		dst.SalesforceConnector = nil
+		dst.UNIXConnector = nil
 		dst.WorkdayConnector = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(CreateOrUpdateRequest)")
@@ -292,6 +343,10 @@ func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.EntraIDConnector)
 	}
 
+	if src.GithubRESTConnector != nil {
+		return json.Marshal(&src.GithubRESTConnector)
+	}
+
 	if src.RESTConnector != nil {
 		return json.Marshal(&src.RESTConnector)
 	}
@@ -304,6 +359,10 @@ func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SalesforceConnector)
 	}
 
+	if src.UNIXConnector != nil {
+		return json.Marshal(&src.UNIXConnector)
+	}
+
 	if src.WorkdayConnector != nil {
 		return json.Marshal(&src.WorkdayConnector)
 	}
@@ -312,7 +371,7 @@ func (src CreateOrUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *CreateOrUpdateRequest) GetActualInstance() (interface{}) {
+func (obj *CreateOrUpdateRequest) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -336,6 +395,10 @@ func (obj *CreateOrUpdateRequest) GetActualInstance() (interface{}) {
 		return obj.EntraIDConnector
 	}
 
+	if obj.GithubRESTConnector != nil {
+		return obj.GithubRESTConnector
+	}
+
 	if obj.RESTConnector != nil {
 		return obj.RESTConnector
 	}
@@ -348,6 +411,10 @@ func (obj *CreateOrUpdateRequest) GetActualInstance() (interface{}) {
 		return obj.SalesforceConnector
 	}
 
+	if obj.UNIXConnector != nil {
+		return obj.UNIXConnector
+	}
+
 	if obj.WorkdayConnector != nil {
 		return obj.WorkdayConnector
 	}
@@ -357,7 +424,7 @@ func (obj *CreateOrUpdateRequest) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj CreateOrUpdateRequest) GetActualInstanceValue() (interface{}) {
+func (obj CreateOrUpdateRequest) GetActualInstanceValue() interface{} {
 	if obj.ADConnector != nil {
 		return *obj.ADConnector
 	}
@@ -378,6 +445,10 @@ func (obj CreateOrUpdateRequest) GetActualInstanceValue() (interface{}) {
 		return *obj.EntraIDConnector
 	}
 
+	if obj.GithubRESTConnector != nil {
+		return *obj.GithubRESTConnector
+	}
+
 	if obj.RESTConnector != nil {
 		return *obj.RESTConnector
 	}
@@ -388,6 +459,10 @@ func (obj CreateOrUpdateRequest) GetActualInstanceValue() (interface{}) {
 
 	if obj.SalesforceConnector != nil {
 		return *obj.SalesforceConnector
+	}
+
+	if obj.UNIXConnector != nil {
+		return *obj.UNIXConnector
 	}
 
 	if obj.WorkdayConnector != nil {
@@ -433,5 +508,3 @@ func (v *NullableCreateOrUpdateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

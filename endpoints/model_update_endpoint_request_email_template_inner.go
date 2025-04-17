@@ -1,7 +1,7 @@
 /*
 Account Management API
 
-API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria. 
+API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria.
 
 API version: 1.0.0
 */
@@ -19,11 +19,11 @@ var _ MappedNullable = &UpdateEndpointRequestEmailTemplateInner{}
 
 // UpdateEndpointRequestEmailTemplateInner struct for UpdateEndpointRequestEmailTemplateInner
 type UpdateEndpointRequestEmailTemplateInner struct {
-	// 
+	//
 	EmailTemplateType *string `json:"emailTemplateType,omitempty"`
-	// 
+	//
 	TaskType *string `json:"taskType,omitempty"`
-	// 
+	//
 	EmailTemplate *string `json:"emailTemplate,omitempty"`
 }
 
@@ -141,7 +141,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) SetEmailTemplate(v string) {
 }
 
 func (o UpdateEndpointRequestEmailTemplateInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -197,5 +197,3 @@ func (v *NullableUpdateEndpointRequestEmailTemplateInner) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

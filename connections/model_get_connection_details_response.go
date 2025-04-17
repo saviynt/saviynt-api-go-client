@@ -18,14 +18,16 @@ import (
 
 // GetConnectionDetailsResponse - struct for GetConnectionDetailsResponse
 type GetConnectionDetailsResponse struct {
-	ADConnectionResponse *ADConnectionResponse
-	ADSIConnectionResponse *ADSIConnectionResponse
-	DBConnectionResponse *DBConnectionResponse
-	EntraIDConnectionResponse *EntraIDConnectionResponse
-	RESTConnectionResponse *RESTConnectionResponse
-	SAPConnectionResponse *SAPConnectionResponse
+	ADConnectionResponse         *ADConnectionResponse
+	ADSIConnectionResponse       *ADSIConnectionResponse
+	DBConnectionResponse         *DBConnectionResponse
+	EntraIDConnectionResponse    *EntraIDConnectionResponse
+	GithubRESTConnectionResponse *GithubRESTConnectionResponse
+	RESTConnectionResponse       *RESTConnectionResponse
+	SAPConnectionResponse        *SAPConnectionResponse
 	SalesforceConnectionResponse *SalesforceConnectionResponse
-	WorkdayConnectionResponse *WorkdayConnectionResponse
+	UNIXConnectionResponse       *UNIXConnectionResponse
+	WorkdayConnectionResponse    *WorkdayConnectionResponse
 }
 
 // ADConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns ADConnectionResponse wrapped in GetConnectionDetailsResponse
@@ -56,6 +58,13 @@ func EntraIDConnectionResponseAsGetConnectionDetailsResponse(v *EntraIDConnectio
 	}
 }
 
+// GithubRESTConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns GithubRESTConnectionResponse wrapped in GetConnectionDetailsResponse
+func GithubRESTConnectionResponseAsGetConnectionDetailsResponse(v *GithubRESTConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		GithubRESTConnectionResponse: v,
+	}
+}
+
 // RESTConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns RESTConnectionResponse wrapped in GetConnectionDetailsResponse
 func RESTConnectionResponseAsGetConnectionDetailsResponse(v *RESTConnectionResponse) GetConnectionDetailsResponse {
 	return GetConnectionDetailsResponse{
@@ -77,13 +86,19 @@ func SalesforceConnectionResponseAsGetConnectionDetailsResponse(v *SalesforceCon
 	}
 }
 
+// UNIXConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns UNIXConnectionResponse wrapped in GetConnectionDetailsResponse
+func UNIXConnectionResponseAsGetConnectionDetailsResponse(v *UNIXConnectionResponse) GetConnectionDetailsResponse {
+	return GetConnectionDetailsResponse{
+		UNIXConnectionResponse: v,
+	}
+}
+
 // WorkdayConnectionResponseAsGetConnectionDetailsResponse is a convenience function that returns WorkdayConnectionResponse wrapped in GetConnectionDetailsResponse
 func WorkdayConnectionResponseAsGetConnectionDetailsResponse(v *WorkdayConnectionResponse) GetConnectionDetailsResponse {
 	return GetConnectionDetailsResponse{
 		WorkdayConnectionResponse: v,
 	}
 }
-
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
@@ -157,6 +172,23 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.EntraIDConnectionResponse = nil
 	}
 
+	// try to unmarshal data into GithubRESTConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.GithubRESTConnectionResponse)
+	if err == nil {
+		jsonGithubRESTConnectionResponse, _ := json.Marshal(dst.GithubRESTConnectionResponse)
+		if string(jsonGithubRESTConnectionResponse) == "{}" { // empty struct
+			dst.GithubRESTConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.GithubRESTConnectionResponse); err != nil {
+				dst.GithubRESTConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.GithubRESTConnectionResponse = nil
+	}
+
 	// try to unmarshal data into RESTConnectionResponse
 	err = newStrictDecoder(data).Decode(&dst.RESTConnectionResponse)
 	if err == nil {
@@ -208,6 +240,23 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.SalesforceConnectionResponse = nil
 	}
 
+	// try to unmarshal data into UNIXConnectionResponse
+	err = newStrictDecoder(data).Decode(&dst.UNIXConnectionResponse)
+	if err == nil {
+		jsonUNIXConnectionResponse, _ := json.Marshal(dst.UNIXConnectionResponse)
+		if string(jsonUNIXConnectionResponse) == "{}" { // empty struct
+			dst.UNIXConnectionResponse = nil
+		} else {
+			if err = validator.Validate(dst.UNIXConnectionResponse); err != nil {
+				dst.UNIXConnectionResponse = nil
+			} else {
+				match++
+			}
+		}
+	} else {
+		dst.UNIXConnectionResponse = nil
+	}
+
 	// try to unmarshal data into WorkdayConnectionResponse
 	err = newStrictDecoder(data).Decode(&dst.WorkdayConnectionResponse)
 	if err == nil {
@@ -231,9 +280,11 @@ func (dst *GetConnectionDetailsResponse) UnmarshalJSON(data []byte) error {
 		dst.ADSIConnectionResponse = nil
 		dst.DBConnectionResponse = nil
 		dst.EntraIDConnectionResponse = nil
+		dst.GithubRESTConnectionResponse = nil
 		dst.RESTConnectionResponse = nil
 		dst.SAPConnectionResponse = nil
 		dst.SalesforceConnectionResponse = nil
+		dst.UNIXConnectionResponse = nil
 		dst.WorkdayConnectionResponse = nil
 
 		return fmt.Errorf("data matches more than one schema in oneOf(GetConnectionDetailsResponse)")
@@ -262,6 +313,10 @@ func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.EntraIDConnectionResponse)
 	}
 
+	if src.GithubRESTConnectionResponse != nil {
+		return json.Marshal(&src.GithubRESTConnectionResponse)
+	}
+
 	if src.RESTConnectionResponse != nil {
 		return json.Marshal(&src.RESTConnectionResponse)
 	}
@@ -274,6 +329,10 @@ func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SalesforceConnectionResponse)
 	}
 
+	if src.UNIXConnectionResponse != nil {
+		return json.Marshal(&src.UNIXConnectionResponse)
+	}
+
 	if src.WorkdayConnectionResponse != nil {
 		return json.Marshal(&src.WorkdayConnectionResponse)
 	}
@@ -282,7 +341,7 @@ func (src GetConnectionDetailsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
+func (obj *GetConnectionDetailsResponse) GetActualInstance() interface{} {
 	if obj == nil {
 		return nil
 	}
@@ -302,6 +361,10 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
 		return obj.EntraIDConnectionResponse
 	}
 
+	if obj.GithubRESTConnectionResponse != nil {
+		return obj.GithubRESTConnectionResponse
+	}
+
 	if obj.RESTConnectionResponse != nil {
 		return obj.RESTConnectionResponse
 	}
@@ -314,6 +377,10 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
 		return obj.SalesforceConnectionResponse
 	}
 
+	if obj.UNIXConnectionResponse != nil {
+		return obj.UNIXConnectionResponse
+	}
+
 	if obj.WorkdayConnectionResponse != nil {
 		return obj.WorkdayConnectionResponse
 	}
@@ -323,7 +390,7 @@ func (obj *GetConnectionDetailsResponse) GetActualInstance() (interface{}) {
 }
 
 // Get the actual instance value
-func (obj GetConnectionDetailsResponse) GetActualInstanceValue() (interface{}) {
+func (obj GetConnectionDetailsResponse) GetActualInstanceValue() interface{} {
 	if obj.ADConnectionResponse != nil {
 		return *obj.ADConnectionResponse
 	}
@@ -340,6 +407,10 @@ func (obj GetConnectionDetailsResponse) GetActualInstanceValue() (interface{}) {
 		return *obj.EntraIDConnectionResponse
 	}
 
+	if obj.GithubRESTConnectionResponse != nil {
+		return *obj.GithubRESTConnectionResponse
+	}
+
 	if obj.RESTConnectionResponse != nil {
 		return *obj.RESTConnectionResponse
 	}
@@ -350,6 +421,10 @@ func (obj GetConnectionDetailsResponse) GetActualInstanceValue() (interface{}) {
 
 	if obj.SalesforceConnectionResponse != nil {
 		return *obj.SalesforceConnectionResponse
+	}
+
+	if obj.UNIXConnectionResponse != nil {
+		return *obj.UNIXConnectionResponse
 	}
 
 	if obj.WorkdayConnectionResponse != nil {
@@ -395,5 +470,3 @@ func (v *NullableGetConnectionDetailsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

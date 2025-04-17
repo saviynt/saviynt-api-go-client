@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the SAPConnectionResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &SAPConnectionResponse{}
+// checks if the GithubRESTConnectionResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GithubRESTConnectionResponse{}
 
-// SAPConnectionResponse struct for SAPConnectionResponse
-type SAPConnectionResponse struct {
+// GithubRESTConnectionResponse struct for GithubRESTConnectionResponse
+type GithubRESTConnectionResponse struct {
 	// API response message
 	Msg *string `json:"msg,omitempty"`
 	// Email template for the connection
@@ -38,31 +38,31 @@ type SAPConnectionResponse struct {
 	// Creator account for the connection
 	Createdby *string `json:"createdby,omitempty"`
 	// Error code
-	Errorcode            *int32                   `json:"errorcode,omitempty"`
-	Status               *int32                   `json:"status,omitempty"`
-	Defaultsavroles      *string                  `json:"defaultsavroles,omitempty"`
-	Connectionattributes *SAPConnectionAttributes `json:"connectionattributes,omitempty"`
+	Errorcode            *int32                          `json:"errorcode,omitempty"`
+	Status               *int32                          `json:"status,omitempty"`
+	Defaultsavroles      *string                         `json:"defaultsavroles,omitempty"`
+	Connectionattributes *GithubRESTConnectionAttributes `json:"connectionattributes,omitempty"`
 }
 
-// NewSAPConnectionResponse instantiates a new SAPConnectionResponse object
+// NewGithubRESTConnectionResponse instantiates a new GithubRESTConnectionResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSAPConnectionResponse() *SAPConnectionResponse {
-	this := SAPConnectionResponse{}
+func NewGithubRESTConnectionResponse() *GithubRESTConnectionResponse {
+	this := GithubRESTConnectionResponse{}
 	return &this
 }
 
-// NewSAPConnectionResponseWithDefaults instantiates a new SAPConnectionResponse object
+// NewGithubRESTConnectionResponseWithDefaults instantiates a new GithubRESTConnectionResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSAPConnectionResponseWithDefaults() *SAPConnectionResponse {
-	this := SAPConnectionResponse{}
+func NewGithubRESTConnectionResponseWithDefaults() *GithubRESTConnectionResponse {
+	this := GithubRESTConnectionResponse{}
 	return &this
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetMsg() string {
+func (o *GithubRESTConnectionResponse) GetMsg() string {
 	if o == nil || IsNil(o.Msg) {
 		var ret string
 		return ret
@@ -72,7 +72,7 @@ func (o *SAPConnectionResponse) GetMsg() string {
 
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetMsgOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetMsgOk() (*string, bool) {
 	if o == nil || IsNil(o.Msg) {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *SAPConnectionResponse) GetMsgOk() (*string, bool) {
 }
 
 // HasMsg returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasMsg() bool {
+func (o *GithubRESTConnectionResponse) HasMsg() bool {
 	if o != nil && !IsNil(o.Msg) {
 		return true
 	}
@@ -89,12 +89,12 @@ func (o *SAPConnectionResponse) HasMsg() bool {
 }
 
 // SetMsg gets a reference to the given string and assigns it to the Msg field.
-func (o *SAPConnectionResponse) SetMsg(v string) {
+func (o *GithubRESTConnectionResponse) SetMsg(v string) {
 	o.Msg = &v
 }
 
 // GetEmailtemplate returns the Emailtemplate field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetEmailtemplate() string {
+func (o *GithubRESTConnectionResponse) GetEmailtemplate() string {
 	if o == nil || IsNil(o.Emailtemplate) {
 		var ret string
 		return ret
@@ -104,7 +104,7 @@ func (o *SAPConnectionResponse) GetEmailtemplate() string {
 
 // GetEmailtemplateOk returns a tuple with the Emailtemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetEmailtemplateOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetEmailtemplateOk() (*string, bool) {
 	if o == nil || IsNil(o.Emailtemplate) {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *SAPConnectionResponse) GetEmailtemplateOk() (*string, bool) {
 }
 
 // HasEmailtemplate returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasEmailtemplate() bool {
+func (o *GithubRESTConnectionResponse) HasEmailtemplate() bool {
 	if o != nil && !IsNil(o.Emailtemplate) {
 		return true
 	}
@@ -121,12 +121,12 @@ func (o *SAPConnectionResponse) HasEmailtemplate() bool {
 }
 
 // SetEmailtemplate gets a reference to the given string and assigns it to the Emailtemplate field.
-func (o *SAPConnectionResponse) SetEmailtemplate(v string) {
+func (o *GithubRESTConnectionResponse) SetEmailtemplate(v string) {
 	o.Emailtemplate = &v
 }
 
 // GetUpdatedby returns the Updatedby field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetUpdatedby() string {
+func (o *GithubRESTConnectionResponse) GetUpdatedby() string {
 	if o == nil || IsNil(o.Updatedby) {
 		var ret string
 		return ret
@@ -136,7 +136,7 @@ func (o *SAPConnectionResponse) GetUpdatedby() string {
 
 // GetUpdatedbyOk returns a tuple with the Updatedby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetUpdatedbyOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetUpdatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Updatedby) {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *SAPConnectionResponse) GetUpdatedbyOk() (*string, bool) {
 }
 
 // HasUpdatedby returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasUpdatedby() bool {
+func (o *GithubRESTConnectionResponse) HasUpdatedby() bool {
 	if o != nil && !IsNil(o.Updatedby) {
 		return true
 	}
@@ -153,12 +153,12 @@ func (o *SAPConnectionResponse) HasUpdatedby() bool {
 }
 
 // SetUpdatedby gets a reference to the given string and assigns it to the Updatedby field.
-func (o *SAPConnectionResponse) SetUpdatedby(v string) {
+func (o *GithubRESTConnectionResponse) SetUpdatedby(v string) {
 	o.Updatedby = &v
 }
 
 // GetConnectionname returns the Connectionname field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetConnectionname() string {
+func (o *GithubRESTConnectionResponse) GetConnectionname() string {
 	if o == nil || IsNil(o.Connectionname) {
 		var ret string
 		return ret
@@ -168,7 +168,7 @@ func (o *SAPConnectionResponse) GetConnectionname() string {
 
 // GetConnectionnameOk returns a tuple with the Connectionname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetConnectionnameOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetConnectionnameOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectionname) {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *SAPConnectionResponse) GetConnectionnameOk() (*string, bool) {
 }
 
 // HasConnectionname returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasConnectionname() bool {
+func (o *GithubRESTConnectionResponse) HasConnectionname() bool {
 	if o != nil && !IsNil(o.Connectionname) {
 		return true
 	}
@@ -185,12 +185,12 @@ func (o *SAPConnectionResponse) HasConnectionname() bool {
 }
 
 // SetConnectionname gets a reference to the given string and assigns it to the Connectionname field.
-func (o *SAPConnectionResponse) SetConnectionname(v string) {
+func (o *GithubRESTConnectionResponse) SetConnectionname(v string) {
 	o.Connectionname = &v
 }
 
 // GetConnectionkey returns the Connectionkey field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetConnectionkey() int32 {
+func (o *GithubRESTConnectionResponse) GetConnectionkey() int32 {
 	if o == nil || IsNil(o.Connectionkey) {
 		var ret int32
 		return ret
@@ -200,7 +200,7 @@ func (o *SAPConnectionResponse) GetConnectionkey() int32 {
 
 // GetConnectionkeyOk returns a tuple with the Connectionkey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
+func (o *GithubRESTConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
 	if o == nil || IsNil(o.Connectionkey) {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *SAPConnectionResponse) GetConnectionkeyOk() (*int32, bool) {
 }
 
 // HasConnectionkey returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasConnectionkey() bool {
+func (o *GithubRESTConnectionResponse) HasConnectionkey() bool {
 	if o != nil && !IsNil(o.Connectionkey) {
 		return true
 	}
@@ -217,12 +217,12 @@ func (o *SAPConnectionResponse) HasConnectionkey() bool {
 }
 
 // SetConnectionkey gets a reference to the given int32 and assigns it to the Connectionkey field.
-func (o *SAPConnectionResponse) SetConnectionkey(v int32) {
+func (o *GithubRESTConnectionResponse) SetConnectionkey(v int32) {
 	o.Connectionkey = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetDescription() string {
+func (o *GithubRESTConnectionResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -232,7 +232,7 @@ func (o *SAPConnectionResponse) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetDescriptionOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *SAPConnectionResponse) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasDescription() bool {
+func (o *GithubRESTConnectionResponse) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -249,12 +249,12 @@ func (o *SAPConnectionResponse) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *SAPConnectionResponse) SetDescription(v string) {
+func (o *GithubRESTConnectionResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetConnectiontype returns the Connectiontype field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetConnectiontype() string {
+func (o *GithubRESTConnectionResponse) GetConnectiontype() string {
 	if o == nil || IsNil(o.Connectiontype) {
 		var ret string
 		return ret
@@ -264,7 +264,7 @@ func (o *SAPConnectionResponse) GetConnectiontype() string {
 
 // GetConnectiontypeOk returns a tuple with the Connectiontype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetConnectiontypeOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetConnectiontypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Connectiontype) {
 		return nil, false
 	}
@@ -272,7 +272,7 @@ func (o *SAPConnectionResponse) GetConnectiontypeOk() (*string, bool) {
 }
 
 // HasConnectiontype returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasConnectiontype() bool {
+func (o *GithubRESTConnectionResponse) HasConnectiontype() bool {
 	if o != nil && !IsNil(o.Connectiontype) {
 		return true
 	}
@@ -281,12 +281,12 @@ func (o *SAPConnectionResponse) HasConnectiontype() bool {
 }
 
 // SetConnectiontype gets a reference to the given string and assigns it to the Connectiontype field.
-func (o *SAPConnectionResponse) SetConnectiontype(v string) {
+func (o *GithubRESTConnectionResponse) SetConnectiontype(v string) {
 	o.Connectiontype = &v
 }
 
 // GetCreatedon returns the Createdon field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetCreatedon() string {
+func (o *GithubRESTConnectionResponse) GetCreatedon() string {
 	if o == nil || IsNil(o.Createdon) {
 		var ret string
 		return ret
@@ -296,7 +296,7 @@ func (o *SAPConnectionResponse) GetCreatedon() string {
 
 // GetCreatedonOk returns a tuple with the Createdon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetCreatedonOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetCreatedonOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdon) {
 		return nil, false
 	}
@@ -304,7 +304,7 @@ func (o *SAPConnectionResponse) GetCreatedonOk() (*string, bool) {
 }
 
 // HasCreatedon returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasCreatedon() bool {
+func (o *GithubRESTConnectionResponse) HasCreatedon() bool {
 	if o != nil && !IsNil(o.Createdon) {
 		return true
 	}
@@ -313,12 +313,12 @@ func (o *SAPConnectionResponse) HasCreatedon() bool {
 }
 
 // SetCreatedon gets a reference to the given string and assigns it to the Createdon field.
-func (o *SAPConnectionResponse) SetCreatedon(v string) {
+func (o *GithubRESTConnectionResponse) SetCreatedon(v string) {
 	o.Createdon = &v
 }
 
 // GetCreatedby returns the Createdby field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetCreatedby() string {
+func (o *GithubRESTConnectionResponse) GetCreatedby() string {
 	if o == nil || IsNil(o.Createdby) {
 		var ret string
 		return ret
@@ -328,7 +328,7 @@ func (o *SAPConnectionResponse) GetCreatedby() string {
 
 // GetCreatedbyOk returns a tuple with the Createdby field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetCreatedbyOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetCreatedbyOk() (*string, bool) {
 	if o == nil || IsNil(o.Createdby) {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *SAPConnectionResponse) GetCreatedbyOk() (*string, bool) {
 }
 
 // HasCreatedby returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasCreatedby() bool {
+func (o *GithubRESTConnectionResponse) HasCreatedby() bool {
 	if o != nil && !IsNil(o.Createdby) {
 		return true
 	}
@@ -345,12 +345,12 @@ func (o *SAPConnectionResponse) HasCreatedby() bool {
 }
 
 // SetCreatedby gets a reference to the given string and assigns it to the Createdby field.
-func (o *SAPConnectionResponse) SetCreatedby(v string) {
+func (o *GithubRESTConnectionResponse) SetCreatedby(v string) {
 	o.Createdby = &v
 }
 
 // GetErrorcode returns the Errorcode field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetErrorcode() int32 {
+func (o *GithubRESTConnectionResponse) GetErrorcode() int32 {
 	if o == nil || IsNil(o.Errorcode) {
 		var ret int32
 		return ret
@@ -360,7 +360,7 @@ func (o *SAPConnectionResponse) GetErrorcode() int32 {
 
 // GetErrorcodeOk returns a tuple with the Errorcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetErrorcodeOk() (*int32, bool) {
+func (o *GithubRESTConnectionResponse) GetErrorcodeOk() (*int32, bool) {
 	if o == nil || IsNil(o.Errorcode) {
 		return nil, false
 	}
@@ -368,7 +368,7 @@ func (o *SAPConnectionResponse) GetErrorcodeOk() (*int32, bool) {
 }
 
 // HasErrorcode returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasErrorcode() bool {
+func (o *GithubRESTConnectionResponse) HasErrorcode() bool {
 	if o != nil && !IsNil(o.Errorcode) {
 		return true
 	}
@@ -377,12 +377,12 @@ func (o *SAPConnectionResponse) HasErrorcode() bool {
 }
 
 // SetErrorcode gets a reference to the given int32 and assigns it to the Errorcode field.
-func (o *SAPConnectionResponse) SetErrorcode(v int32) {
+func (o *GithubRESTConnectionResponse) SetErrorcode(v int32) {
 	o.Errorcode = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetStatus() int32 {
+func (o *GithubRESTConnectionResponse) GetStatus() int32 {
 	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
@@ -392,7 +392,7 @@ func (o *SAPConnectionResponse) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetStatusOk() (*int32, bool) {
+func (o *GithubRESTConnectionResponse) GetStatusOk() (*int32, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -400,7 +400,7 @@ func (o *SAPConnectionResponse) GetStatusOk() (*int32, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasStatus() bool {
+func (o *GithubRESTConnectionResponse) HasStatus() bool {
 	if o != nil && !IsNil(o.Status) {
 		return true
 	}
@@ -409,12 +409,12 @@ func (o *SAPConnectionResponse) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *SAPConnectionResponse) SetStatus(v int32) {
+func (o *GithubRESTConnectionResponse) SetStatus(v int32) {
 	o.Status = &v
 }
 
 // GetDefaultsavroles returns the Defaultsavroles field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetDefaultsavroles() string {
+func (o *GithubRESTConnectionResponse) GetDefaultsavroles() string {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		var ret string
 		return ret
@@ -424,7 +424,7 @@ func (o *SAPConnectionResponse) GetDefaultsavroles() string {
 
 // GetDefaultsavrolesOk returns a tuple with the Defaultsavroles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
+func (o *GithubRESTConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
 	if o == nil || IsNil(o.Defaultsavroles) {
 		return nil, false
 	}
@@ -432,7 +432,7 @@ func (o *SAPConnectionResponse) GetDefaultsavrolesOk() (*string, bool) {
 }
 
 // HasDefaultsavroles returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasDefaultsavroles() bool {
+func (o *GithubRESTConnectionResponse) HasDefaultsavroles() bool {
 	if o != nil && !IsNil(o.Defaultsavroles) {
 		return true
 	}
@@ -441,14 +441,14 @@ func (o *SAPConnectionResponse) HasDefaultsavroles() bool {
 }
 
 // SetDefaultsavroles gets a reference to the given string and assigns it to the Defaultsavroles field.
-func (o *SAPConnectionResponse) SetDefaultsavroles(v string) {
+func (o *GithubRESTConnectionResponse) SetDefaultsavroles(v string) {
 	o.Defaultsavroles = &v
 }
 
 // GetConnectionattributes returns the Connectionattributes field value if set, zero value otherwise.
-func (o *SAPConnectionResponse) GetConnectionattributes() SAPConnectionAttributes {
+func (o *GithubRESTConnectionResponse) GetConnectionattributes() GithubRESTConnectionAttributes {
 	if o == nil || IsNil(o.Connectionattributes) {
-		var ret SAPConnectionAttributes
+		var ret GithubRESTConnectionAttributes
 		return ret
 	}
 	return *o.Connectionattributes
@@ -456,7 +456,7 @@ func (o *SAPConnectionResponse) GetConnectionattributes() SAPConnectionAttribute
 
 // GetConnectionattributesOk returns a tuple with the Connectionattributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SAPConnectionResponse) GetConnectionattributesOk() (*SAPConnectionAttributes, bool) {
+func (o *GithubRESTConnectionResponse) GetConnectionattributesOk() (*GithubRESTConnectionAttributes, bool) {
 	if o == nil || IsNil(o.Connectionattributes) {
 		return nil, false
 	}
@@ -464,7 +464,7 @@ func (o *SAPConnectionResponse) GetConnectionattributesOk() (*SAPConnectionAttri
 }
 
 // HasConnectionattributes returns a boolean if a field has been set.
-func (o *SAPConnectionResponse) HasConnectionattributes() bool {
+func (o *GithubRESTConnectionResponse) HasConnectionattributes() bool {
 	if o != nil && !IsNil(o.Connectionattributes) {
 		return true
 	}
@@ -472,12 +472,12 @@ func (o *SAPConnectionResponse) HasConnectionattributes() bool {
 	return false
 }
 
-// SetConnectionattributes gets a reference to the given SAPConnectionAttributes and assigns it to the Connectionattributes field.
-func (o *SAPConnectionResponse) SetConnectionattributes(v SAPConnectionAttributes) {
+// SetConnectionattributes gets a reference to the given GithubRESTConnectionAttributes and assigns it to the Connectionattributes field.
+func (o *GithubRESTConnectionResponse) SetConnectionattributes(v GithubRESTConnectionAttributes) {
 	o.Connectionattributes = &v
 }
 
-func (o SAPConnectionResponse) MarshalJSON() ([]byte, error) {
+func (o GithubRESTConnectionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -485,7 +485,7 @@ func (o SAPConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o SAPConnectionResponse) ToMap() (map[string]interface{}, error) {
+func (o GithubRESTConnectionResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Msg) {
 		toSerialize["msg"] = o.Msg
@@ -529,38 +529,38 @@ func (o SAPConnectionResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableSAPConnectionResponse struct {
-	value *SAPConnectionResponse
+type NullableGithubRESTConnectionResponse struct {
+	value *GithubRESTConnectionResponse
 	isSet bool
 }
 
-func (v NullableSAPConnectionResponse) Get() *SAPConnectionResponse {
+func (v NullableGithubRESTConnectionResponse) Get() *GithubRESTConnectionResponse {
 	return v.value
 }
 
-func (v *NullableSAPConnectionResponse) Set(val *SAPConnectionResponse) {
+func (v *NullableGithubRESTConnectionResponse) Set(val *GithubRESTConnectionResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableSAPConnectionResponse) IsSet() bool {
+func (v NullableGithubRESTConnectionResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableSAPConnectionResponse) Unset() {
+func (v *NullableGithubRESTConnectionResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableSAPConnectionResponse(val *SAPConnectionResponse) *NullableSAPConnectionResponse {
-	return &NullableSAPConnectionResponse{value: val, isSet: true}
+func NewNullableGithubRESTConnectionResponse(val *GithubRESTConnectionResponse) *NullableGithubRESTConnectionResponse {
+	return &NullableGithubRESTConnectionResponse{value: val, isSet: true}
 }
 
-func (v NullableSAPConnectionResponse) MarshalJSON() ([]byte, error) {
+func (v NullableGithubRESTConnectionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableSAPConnectionResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableGithubRESTConnectionResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

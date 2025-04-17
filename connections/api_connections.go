@@ -13,18 +13,20 @@ package connections
 import (
 	"bytes"
 	"context"
+	"encoding/json"
+	"fmt"
 	"io"
+	"mime/multipart"
 	"net/http"
 	"net/url"
 )
-
 
 // ConnectionsAPIService ConnectionsAPI service
 type ConnectionsAPIService service
 
 type ApiCreateOrUpdateRequest struct {
-	ctx context.Context
-	ApiService *ConnectionsAPIService
+	ctx                   context.Context
+	ApiService            *ConnectionsAPIService
 	createOrUpdateRequest *CreateOrUpdateRequest
 }
 
@@ -40,24 +42,69 @@ func (r ApiCreateOrUpdateRequest) Execute() (*CreateOrUpdateResponse, *http.Resp
 /*
 CreateOrUpdate Create a connection
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateOrUpdateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiCreateOrUpdateRequest
 */
 func (a *ConnectionsAPIService) CreateOrUpdate(ctx context.Context) ApiCreateOrUpdateRequest {
 	return ApiCreateOrUpdateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return CreateOrUpdateResponse
+//
+//	@return CreateOrUpdateResponse
+func ConvertToMultipartForm(data interface{}) (body *bytes.Buffer, contentType string, err error) {
+	// Convert data to JSON
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to marshal data to JSON: %w", err)
+	}
+
+	// Unmarshal the JSON into a map[string]interface{}
+	var formFields map[string]interface{}
+	err = json.Unmarshal(jsonData, &formFields)
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to unmarshal JSON into map: %w", err)
+	}
+
+	// Create a new buffer and a multipart writer
+	body = new(bytes.Buffer)
+	writer := multipart.NewWriter(body)
+
+	// Iterate over the map and write each key/value pair as a form field
+	for key, val := range formFields {
+		// Convert the value to a string.
+		// Adjust handling if the API expects files or other types.
+		var strVal string
+		switch v := val.(type) {
+		case string:
+			strVal = v
+		default:
+			strVal = fmt.Sprintf("%v", v)
+		}
+		err = writer.WriteField(key, strVal)
+		if err != nil {
+			return nil, "", fmt.Errorf("failed to write form field %s: %w", key, err)
+		}
+	}
+
+	// Close the writer to finalize the multipart form
+	err = writer.Close()
+	if err != nil {
+		return nil, "", fmt.Errorf("failed to close multipart writer: %w", err)
+	}
+
+	// Return the buffer and the proper Content-Type with boundary
+	return body, writer.FormDataContentType(), nil
+}
 func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest) (*CreateOrUpdateResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CreateOrUpdateResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CreateOrUpdateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.CreateOrUpdate")
@@ -92,7 +139,20 @@ func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.createOrUpdateRequest
+	formBody, contentType, err := ConvertToMultipartForm(r.createOrUpdateRequest)
+	if err != nil {
+		return nil, nil, fmt.Errorf("error creating multipart form: %w", err)
+	}
+	// Instead of using the original JSON payload:
+	localVarPostBody = formBody
+	localVarHeaderParams["Content-Type"] = contentType
+	if buf, ok := localVarPostBody.(*bytes.Buffer); ok {
+		fmt.Println("Multipart form-data request body:")
+		fmt.Println(buf.String())
+	} else {
+		fmt.Println("localVarPostBody is not a *bytes.Buffer")
+	}
+
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -131,8 +191,8 @@ func (a *ConnectionsAPIService) CreateOrUpdateExecute(r ApiCreateOrUpdateRequest
 }
 
 type ApiGetConnectionDetailsRequest struct {
-	ctx context.Context
-	ApiService *ConnectionsAPIService
+	ctx                         context.Context
+	ApiService                  *ConnectionsAPIService
 	getConnectionDetailsRequest *GetConnectionDetailsRequest
 }
 
@@ -148,24 +208,25 @@ func (r ApiGetConnectionDetailsRequest) Execute() (*GetConnectionDetailsResponse
 /*
 GetConnectionDetails Get connection details
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetConnectionDetailsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetConnectionDetailsRequest
 */
 func (a *ConnectionsAPIService) GetConnectionDetails(ctx context.Context) ApiGetConnectionDetailsRequest {
 	return ApiGetConnectionDetailsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetConnectionDetailsResponse
+//
+//	@return GetConnectionDetailsResponse
 func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDetailsRequest) (*GetConnectionDetailsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetConnectionDetailsResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetConnectionDetailsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnectionDetails")
@@ -239,8 +300,8 @@ func (a *ConnectionsAPIService) GetConnectionDetailsExecute(r ApiGetConnectionDe
 }
 
 type ApiGetConnectionsRequest struct {
-	ctx context.Context
-	ApiService *ConnectionsAPIService
+	ctx                   context.Context
+	ApiService            *ConnectionsAPIService
 	getConnectionsRequest *GetConnectionsRequest
 }
 
@@ -256,24 +317,25 @@ func (r ApiGetConnectionsRequest) Execute() (*GetConnectionsResponse, *http.Resp
 /*
 GetConnections Get list of connections
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetConnectionsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetConnectionsRequest
 */
 func (a *ConnectionsAPIService) GetConnections(ctx context.Context) ApiGetConnectionsRequest {
 	return ApiGetConnectionsRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return GetConnectionsResponse
+//
+//	@return GetConnectionsResponse
 func (a *ConnectionsAPIService) GetConnectionsExecute(r ApiGetConnectionsRequest) (*GetConnectionsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetConnectionsResponse
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetConnectionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnections")

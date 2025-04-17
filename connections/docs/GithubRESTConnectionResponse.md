@@ -1,4 +1,4 @@
-# GetConnectionDetailsResponse
+# GithubRESTConnectionResponse
 
 ## Properties
 
@@ -20,345 +20,345 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewGetConnectionDetailsResponse
+### NewGithubRESTConnectionResponse
 
-`func NewGetConnectionDetailsResponse() *GetConnectionDetailsResponse`
+`func NewGithubRESTConnectionResponse() *GithubRESTConnectionResponse`
 
-NewGetConnectionDetailsResponse instantiates a new GetConnectionDetailsResponse object
+NewGithubRESTConnectionResponse instantiates a new GithubRESTConnectionResponse object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewGetConnectionDetailsResponseWithDefaults
+### NewGithubRESTConnectionResponseWithDefaults
 
-`func NewGetConnectionDetailsResponseWithDefaults() *GetConnectionDetailsResponse`
+`func NewGithubRESTConnectionResponseWithDefaults() *GithubRESTConnectionResponse`
 
-NewGetConnectionDetailsResponseWithDefaults instantiates a new GetConnectionDetailsResponse object
+NewGithubRESTConnectionResponseWithDefaults instantiates a new GithubRESTConnectionResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetMsg
 
-`func (o *GetConnectionDetailsResponse) GetMsg() string`
+`func (o *GithubRESTConnectionResponse) GetMsg() string`
 
 GetMsg returns the Msg field if non-nil, zero value otherwise.
 
 ### GetMsgOk
 
-`func (o *GetConnectionDetailsResponse) GetMsgOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetMsgOk() (*string, bool)`
 
 GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMsg
 
-`func (o *GetConnectionDetailsResponse) SetMsg(v string)`
+`func (o *GithubRESTConnectionResponse) SetMsg(v string)`
 
 SetMsg sets Msg field to given value.
 
 ### HasMsg
 
-`func (o *GetConnectionDetailsResponse) HasMsg() bool`
+`func (o *GithubRESTConnectionResponse) HasMsg() bool`
 
 HasMsg returns a boolean if a field has been set.
 
 ### GetEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) GetEmailtemplate() string`
+`func (o *GithubRESTConnectionResponse) GetEmailtemplate() string`
 
 GetEmailtemplate returns the Emailtemplate field if non-nil, zero value otherwise.
 
 ### GetEmailtemplateOk
 
-`func (o *GetConnectionDetailsResponse) GetEmailtemplateOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetEmailtemplateOk() (*string, bool)`
 
 GetEmailtemplateOk returns a tuple with the Emailtemplate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) SetEmailtemplate(v string)`
+`func (o *GithubRESTConnectionResponse) SetEmailtemplate(v string)`
 
 SetEmailtemplate sets Emailtemplate field to given value.
 
 ### HasEmailtemplate
 
-`func (o *GetConnectionDetailsResponse) HasEmailtemplate() bool`
+`func (o *GithubRESTConnectionResponse) HasEmailtemplate() bool`
 
 HasEmailtemplate returns a boolean if a field has been set.
 
 ### GetUpdatedby
 
-`func (o *GetConnectionDetailsResponse) GetUpdatedby() string`
+`func (o *GithubRESTConnectionResponse) GetUpdatedby() string`
 
 GetUpdatedby returns the Updatedby field if non-nil, zero value otherwise.
 
 ### GetUpdatedbyOk
 
-`func (o *GetConnectionDetailsResponse) GetUpdatedbyOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetUpdatedbyOk() (*string, bool)`
 
 GetUpdatedbyOk returns a tuple with the Updatedby field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpdatedby
 
-`func (o *GetConnectionDetailsResponse) SetUpdatedby(v string)`
+`func (o *GithubRESTConnectionResponse) SetUpdatedby(v string)`
 
 SetUpdatedby sets Updatedby field to given value.
 
 ### HasUpdatedby
 
-`func (o *GetConnectionDetailsResponse) HasUpdatedby() bool`
+`func (o *GithubRESTConnectionResponse) HasUpdatedby() bool`
 
 HasUpdatedby returns a boolean if a field has been set.
 
 ### GetConnectionname
 
-`func (o *GetConnectionDetailsResponse) GetConnectionname() string`
+`func (o *GithubRESTConnectionResponse) GetConnectionname() string`
 
 GetConnectionname returns the Connectionname field if non-nil, zero value otherwise.
 
 ### GetConnectionnameOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionnameOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetConnectionnameOk() (*string, bool)`
 
 GetConnectionnameOk returns a tuple with the Connectionname field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionname
 
-`func (o *GetConnectionDetailsResponse) SetConnectionname(v string)`
+`func (o *GithubRESTConnectionResponse) SetConnectionname(v string)`
 
 SetConnectionname sets Connectionname field to given value.
 
 ### HasConnectionname
 
-`func (o *GetConnectionDetailsResponse) HasConnectionname() bool`
+`func (o *GithubRESTConnectionResponse) HasConnectionname() bool`
 
 HasConnectionname returns a boolean if a field has been set.
 
 ### GetConnectionkey
 
-`func (o *GetConnectionDetailsResponse) GetConnectionkey() int32`
+`func (o *GithubRESTConnectionResponse) GetConnectionkey() int32`
 
 GetConnectionkey returns the Connectionkey field if non-nil, zero value otherwise.
 
 ### GetConnectionkeyOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionkeyOk() (*int32, bool)`
+`func (o *GithubRESTConnectionResponse) GetConnectionkeyOk() (*int32, bool)`
 
 GetConnectionkeyOk returns a tuple with the Connectionkey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionkey
 
-`func (o *GetConnectionDetailsResponse) SetConnectionkey(v int32)`
+`func (o *GithubRESTConnectionResponse) SetConnectionkey(v int32)`
 
 SetConnectionkey sets Connectionkey field to given value.
 
 ### HasConnectionkey
 
-`func (o *GetConnectionDetailsResponse) HasConnectionkey() bool`
+`func (o *GithubRESTConnectionResponse) HasConnectionkey() bool`
 
 HasConnectionkey returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *GetConnectionDetailsResponse) GetDescription() string`
+`func (o *GithubRESTConnectionResponse) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *GetConnectionDetailsResponse) GetDescriptionOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *GetConnectionDetailsResponse) SetDescription(v string)`
+`func (o *GithubRESTConnectionResponse) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *GetConnectionDetailsResponse) HasDescription() bool`
+`func (o *GithubRESTConnectionResponse) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetConnectiontype
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontype() string`
+`func (o *GithubRESTConnectionResponse) GetConnectiontype() string`
 
 GetConnectiontype returns the Connectiontype field if non-nil, zero value otherwise.
 
 ### GetConnectiontypeOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectiontypeOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetConnectiontypeOk() (*string, bool)`
 
 GetConnectiontypeOk returns a tuple with the Connectiontype field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectiontype
 
-`func (o *GetConnectionDetailsResponse) SetConnectiontype(v string)`
+`func (o *GithubRESTConnectionResponse) SetConnectiontype(v string)`
 
 SetConnectiontype sets Connectiontype field to given value.
 
 ### HasConnectiontype
 
-`func (o *GetConnectionDetailsResponse) HasConnectiontype() bool`
+`func (o *GithubRESTConnectionResponse) HasConnectiontype() bool`
 
 HasConnectiontype returns a boolean if a field has been set.
 
 ### GetCreatedon
 
-`func (o *GetConnectionDetailsResponse) GetCreatedon() string`
+`func (o *GithubRESTConnectionResponse) GetCreatedon() string`
 
 GetCreatedon returns the Createdon field if non-nil, zero value otherwise.
 
 ### GetCreatedonOk
 
-`func (o *GetConnectionDetailsResponse) GetCreatedonOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetCreatedonOk() (*string, bool)`
 
 GetCreatedonOk returns a tuple with the Createdon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedon
 
-`func (o *GetConnectionDetailsResponse) SetCreatedon(v string)`
+`func (o *GithubRESTConnectionResponse) SetCreatedon(v string)`
 
 SetCreatedon sets Createdon field to given value.
 
 ### HasCreatedon
 
-`func (o *GetConnectionDetailsResponse) HasCreatedon() bool`
+`func (o *GithubRESTConnectionResponse) HasCreatedon() bool`
 
 HasCreatedon returns a boolean if a field has been set.
 
 ### GetCreatedby
 
-`func (o *GetConnectionDetailsResponse) GetCreatedby() string`
+`func (o *GithubRESTConnectionResponse) GetCreatedby() string`
 
 GetCreatedby returns the Createdby field if non-nil, zero value otherwise.
 
 ### GetCreatedbyOk
 
-`func (o *GetConnectionDetailsResponse) GetCreatedbyOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetCreatedbyOk() (*string, bool)`
 
 GetCreatedbyOk returns a tuple with the Createdby field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreatedby
 
-`func (o *GetConnectionDetailsResponse) SetCreatedby(v string)`
+`func (o *GithubRESTConnectionResponse) SetCreatedby(v string)`
 
 SetCreatedby sets Createdby field to given value.
 
 ### HasCreatedby
 
-`func (o *GetConnectionDetailsResponse) HasCreatedby() bool`
+`func (o *GithubRESTConnectionResponse) HasCreatedby() bool`
 
 HasCreatedby returns a boolean if a field has been set.
 
 ### GetErrorcode
 
-`func (o *GetConnectionDetailsResponse) GetErrorcode() int32`
+`func (o *GithubRESTConnectionResponse) GetErrorcode() int32`
 
 GetErrorcode returns the Errorcode field if non-nil, zero value otherwise.
 
 ### GetErrorcodeOk
 
-`func (o *GetConnectionDetailsResponse) GetErrorcodeOk() (*int32, bool)`
+`func (o *GithubRESTConnectionResponse) GetErrorcodeOk() (*int32, bool)`
 
 GetErrorcodeOk returns a tuple with the Errorcode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetErrorcode
 
-`func (o *GetConnectionDetailsResponse) SetErrorcode(v int32)`
+`func (o *GithubRESTConnectionResponse) SetErrorcode(v int32)`
 
 SetErrorcode sets Errorcode field to given value.
 
 ### HasErrorcode
 
-`func (o *GetConnectionDetailsResponse) HasErrorcode() bool`
+`func (o *GithubRESTConnectionResponse) HasErrorcode() bool`
 
 HasErrorcode returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *GetConnectionDetailsResponse) GetStatus() int32`
+`func (o *GithubRESTConnectionResponse) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *GetConnectionDetailsResponse) GetStatusOk() (*int32, bool)`
+`func (o *GithubRESTConnectionResponse) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *GetConnectionDetailsResponse) SetStatus(v int32)`
+`func (o *GithubRESTConnectionResponse) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *GetConnectionDetailsResponse) HasStatus() bool`
+`func (o *GithubRESTConnectionResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) GetDefaultsavroles() string`
+`func (o *GithubRESTConnectionResponse) GetDefaultsavroles() string`
 
 GetDefaultsavroles returns the Defaultsavroles field if non-nil, zero value otherwise.
 
 ### GetDefaultsavrolesOk
 
-`func (o *GetConnectionDetailsResponse) GetDefaultsavrolesOk() (*string, bool)`
+`func (o *GithubRESTConnectionResponse) GetDefaultsavrolesOk() (*string, bool)`
 
 GetDefaultsavrolesOk returns a tuple with the Defaultsavroles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) SetDefaultsavroles(v string)`
+`func (o *GithubRESTConnectionResponse) SetDefaultsavroles(v string)`
 
 SetDefaultsavroles sets Defaultsavroles field to given value.
 
 ### HasDefaultsavroles
 
-`func (o *GetConnectionDetailsResponse) HasDefaultsavroles() bool`
+`func (o *GithubRESTConnectionResponse) HasDefaultsavroles() bool`
 
 HasDefaultsavroles returns a boolean if a field has been set.
 
 ### GetConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) GetConnectionattributes() GithubRESTConnectionAttributes`
+`func (o *GithubRESTConnectionResponse) GetConnectionattributes() GithubRESTConnectionAttributes`
 
 GetConnectionattributes returns the Connectionattributes field if non-nil, zero value otherwise.
 
 ### GetConnectionattributesOk
 
-`func (o *GetConnectionDetailsResponse) GetConnectionattributesOk() (*GithubRESTConnectionAttributes, bool)`
+`func (o *GithubRESTConnectionResponse) GetConnectionattributesOk() (*GithubRESTConnectionAttributes, bool)`
 
 GetConnectionattributesOk returns a tuple with the Connectionattributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) SetConnectionattributes(v GithubRESTConnectionAttributes)`
+`func (o *GithubRESTConnectionResponse) SetConnectionattributes(v GithubRESTConnectionAttributes)`
 
 SetConnectionattributes sets Connectionattributes field to given value.
 
 ### HasConnectionattributes
 
-`func (o *GetConnectionDetailsResponse) HasConnectionattributes() bool`
+`func (o *GithubRESTConnectionResponse) HasConnectionattributes() bool`
 
 HasConnectionattributes returns a boolean if a field has been set.
 
