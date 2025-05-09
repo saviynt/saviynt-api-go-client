@@ -1,7 +1,7 @@
 /*
 Account Management API
 
-API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria.
+API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria. 
 
 API version: 1.0.0
 */
@@ -11,8 +11,8 @@ API version: 1.0.0
 package endpoints
 
 import (
-	"bytes"
 	"encoding/json"
+	"bytes"
 	"fmt"
 )
 
@@ -23,6 +23,10 @@ var _ MappedNullable = &CreateEndpointRequest{}
 type CreateEndpointRequest struct {
 	// Specify a name for the endpoint. Provide a logical name that will help you easily identify it.
 	Endpointname string `json:"endpointname"`
+	// Specify the primary account type for the endpoint.
+	PrimaryAccountType *string `json:"primaryAccountType,omitempty"`
+	AccountTypeNoPasswordChange *string `json:"accountTypeNoPasswordChange,omitempty"`
+	Taskemailtemplates []CreateEndpointRequestEmailTemplateInner `json:"taskemailtemplates,omitempty"`
 	// Enter a user-friendly display name for the endpoint that will be displayed in the user interface. Display Name can be different from Endpoint Name.
 	DisplayName string `json:"displayName"`
 	// Specify the Security system for which you want to create an endpoint.
@@ -60,8 +64,8 @@ type CreateEndpointRequest struct {
 	// Specify the parent and child relationship for the Active Directory endpoint. The specified value is used to filter the parent and child objects in the Request Access tile.
 	ParentAccountPattern *string `json:"parentAccountPattern,omitempty"`
 	// Rule to generate a name for this endpoint while creating a new service account
-	ServiceAccountNameRule    *string     `json:"serviceAccountNameRule,omitempty"`
-	ServiceAccountAccessQuery interface{} `json:"serviceAccountAccessQuery,omitempty"`
+	ServiceAccountNameRule *string `json:"serviceAccountNameRule,omitempty"`
+	ServiceAccountAccessQuery *string `json:"serviceAccountAccessQuery,omitempty"`
 	// Specify query to restrict the access for changing the account password of the endpoint.
 	ChangePasswordAccessQuery *string `json:"changePasswordAccessQuery,omitempty"`
 	// Specify true to prevent users from raising duplicate requests for the same applications.
@@ -336,6 +340,102 @@ func (o *CreateEndpointRequest) GetEndpointnameOk() (*string, bool) {
 // SetEndpointname sets field value
 func (o *CreateEndpointRequest) SetEndpointname(v string) {
 	o.Endpointname = v
+}
+
+// GetPrimaryAccountType returns the PrimaryAccountType field value if set, zero value otherwise.
+func (o *CreateEndpointRequest) GetPrimaryAccountType() string {
+	if o == nil || IsNil(o.PrimaryAccountType) {
+		var ret string
+		return ret
+	}
+	return *o.PrimaryAccountType
+}
+
+// GetPrimaryAccountTypeOk returns a tuple with the PrimaryAccountType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpointRequest) GetPrimaryAccountTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.PrimaryAccountType) {
+		return nil, false
+	}
+	return o.PrimaryAccountType, true
+}
+
+// HasPrimaryAccountType returns a boolean if a field has been set.
+func (o *CreateEndpointRequest) HasPrimaryAccountType() bool {
+	if o != nil && !IsNil(o.PrimaryAccountType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrimaryAccountType gets a reference to the given string and assigns it to the PrimaryAccountType field.
+func (o *CreateEndpointRequest) SetPrimaryAccountType(v string) {
+	o.PrimaryAccountType = &v
+}
+
+// GetAccountTypeNoPasswordChange returns the AccountTypeNoPasswordChange field value if set, zero value otherwise.
+func (o *CreateEndpointRequest) GetAccountTypeNoPasswordChange() string {
+	if o == nil || IsNil(o.AccountTypeNoPasswordChange) {
+		var ret string
+		return ret
+	}
+	return *o.AccountTypeNoPasswordChange
+}
+
+// GetAccountTypeNoPasswordChangeOk returns a tuple with the AccountTypeNoPasswordChange field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpointRequest) GetAccountTypeNoPasswordChangeOk() (*string, bool) {
+	if o == nil || IsNil(o.AccountTypeNoPasswordChange) {
+		return nil, false
+	}
+	return o.AccountTypeNoPasswordChange, true
+}
+
+// HasAccountTypeNoPasswordChange returns a boolean if a field has been set.
+func (o *CreateEndpointRequest) HasAccountTypeNoPasswordChange() bool {
+	if o != nil && !IsNil(o.AccountTypeNoPasswordChange) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountTypeNoPasswordChange gets a reference to the given string and assigns it to the AccountTypeNoPasswordChange field.
+func (o *CreateEndpointRequest) SetAccountTypeNoPasswordChange(v string) {
+	o.AccountTypeNoPasswordChange = &v
+}
+
+// GetTaskemailtemplates returns the Taskemailtemplates field value if set, zero value otherwise.
+func (o *CreateEndpointRequest) GetTaskemailtemplates() []CreateEndpointRequestEmailTemplateInner {
+	if o == nil || IsNil(o.Taskemailtemplates) {
+		var ret []CreateEndpointRequestEmailTemplateInner
+		return ret
+	}
+	return o.Taskemailtemplates
+}
+
+// GetTaskemailtemplatesOk returns a tuple with the Taskemailtemplates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateEndpointRequest) GetTaskemailtemplatesOk() ([]CreateEndpointRequestEmailTemplateInner, bool) {
+	if o == nil || IsNil(o.Taskemailtemplates) {
+		return nil, false
+	}
+	return o.Taskemailtemplates, true
+}
+
+// HasTaskemailtemplates returns a boolean if a field has been set.
+func (o *CreateEndpointRequest) HasTaskemailtemplates() bool {
+	if o != nil && !IsNil(o.Taskemailtemplates) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaskemailtemplates gets a reference to the given []CreateEndpointRequestEmailTemplateInner and assigns it to the Taskemailtemplates field.
+func (o *CreateEndpointRequest) SetTaskemailtemplates(v []CreateEndpointRequestEmailTemplateInner) {
+	o.Taskemailtemplates = v
 }
 
 // GetDisplayName returns the DisplayName field value
@@ -930,23 +1030,22 @@ func (o *CreateEndpointRequest) SetServiceAccountNameRule(v string) {
 	o.ServiceAccountNameRule = &v
 }
 
-// GetServiceAccountAccessQuery returns the ServiceAccountAccessQuery field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CreateEndpointRequest) GetServiceAccountAccessQuery() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetServiceAccountAccessQuery returns the ServiceAccountAccessQuery field value if set, zero value otherwise.
+func (o *CreateEndpointRequest) GetServiceAccountAccessQuery() string {
+	if o == nil || IsNil(o.ServiceAccountAccessQuery) {
+		var ret string
 		return ret
 	}
-	return o.ServiceAccountAccessQuery
+	return *o.ServiceAccountAccessQuery
 }
 
 // GetServiceAccountAccessQueryOk returns a tuple with the ServiceAccountAccessQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CreateEndpointRequest) GetServiceAccountAccessQueryOk() (*interface{}, bool) {
+func (o *CreateEndpointRequest) GetServiceAccountAccessQueryOk() (*string, bool) {
 	if o == nil || IsNil(o.ServiceAccountAccessQuery) {
 		return nil, false
 	}
-	return &o.ServiceAccountAccessQuery, true
+	return o.ServiceAccountAccessQuery, true
 }
 
 // HasServiceAccountAccessQuery returns a boolean if a field has been set.
@@ -958,9 +1057,9 @@ func (o *CreateEndpointRequest) HasServiceAccountAccessQuery() bool {
 	return false
 }
 
-// SetServiceAccountAccessQuery gets a reference to the given interface{} and assigns it to the ServiceAccountAccessQuery field.
-func (o *CreateEndpointRequest) SetServiceAccountAccessQuery(v interface{}) {
-	o.ServiceAccountAccessQuery = v
+// SetServiceAccountAccessQuery gets a reference to the given string and assigns it to the ServiceAccountAccessQuery field.
+func (o *CreateEndpointRequest) SetServiceAccountAccessQuery(v string) {
+	o.ServiceAccountAccessQuery = &v
 }
 
 // GetChangePasswordAccessQuery returns the ChangePasswordAccessQuery field value if set, zero value otherwise.
@@ -4612,7 +4711,7 @@ func (o *CreateEndpointRequest) SetAllowRemoveAllRoleOnRequest(v string) {
 }
 
 func (o CreateEndpointRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -4622,6 +4721,15 @@ func (o CreateEndpointRequest) MarshalJSON() ([]byte, error) {
 func (o CreateEndpointRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["endpointname"] = o.Endpointname
+	if !IsNil(o.PrimaryAccountType) {
+		toSerialize["primaryAccountType"] = o.PrimaryAccountType
+	}
+	if !IsNil(o.AccountTypeNoPasswordChange) {
+		toSerialize["accountTypeNoPasswordChange"] = o.AccountTypeNoPasswordChange
+	}
+	if !IsNil(o.Taskemailtemplates) {
+		toSerialize["taskemailtemplates"] = o.Taskemailtemplates
+	}
 	toSerialize["displayName"] = o.DisplayName
 	toSerialize["securitysystem"] = o.Securitysystem
 	if !IsNil(o.Description) {
@@ -4675,7 +4783,7 @@ func (o CreateEndpointRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ServiceAccountNameRule) {
 		toSerialize["serviceAccountNameRule"] = o.ServiceAccountNameRule
 	}
-	if o.ServiceAccountAccessQuery != nil {
+	if !IsNil(o.ServiceAccountAccessQuery) {
 		toSerialize["serviceAccountAccessQuery"] = o.ServiceAccountAccessQuery
 	}
 	if !IsNil(o.ChangePasswordAccessQuery) {
@@ -5038,10 +5146,10 @@ func (o *CreateEndpointRequest) UnmarshalJSON(data []byte) (err error) {
 	err = json.Unmarshal(data, &allProperties)
 
 	if err != nil {
-		return err
+		return err;
 	}
 
-	for _, requiredProperty := range requiredProperties {
+	for _, requiredProperty := range(requiredProperties) {
 		if _, exists := allProperties[requiredProperty]; !exists {
 			return fmt.Errorf("no value given for required property %v", requiredProperty)
 		}
@@ -5097,3 +5205,5 @@ func (v *NullableCreateEndpointRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

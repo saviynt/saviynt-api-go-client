@@ -5,6 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
+**Description** | Pointer to **string** | Description for the endpoint. | [optional] 
+**StatusForUniqueAccount** | Pointer to **string** |  | [optional] 
+**Requestowner** | Pointer to **string** |  | [optional] 
+**Requestable** | Pointer to **string** |  | [optional] 
+**PrimaryAccountType** | Pointer to **string** | Specify the primary account type for the endpoint. | [optional] 
+**AccountTypeNoPasswordChange** | Pointer to **string** | Specify the account type for which password change is not allowed. | [optional] 
+**ServiceAccountNameRule** | Pointer to **string** |  | [optional] 
+**AccountNameValidatorRegex** | Pointer to **string** |  | [optional] 
+**AllowChangePasswordSqlquery** | Pointer to **string** |  | [optional] 
+**ParentAccountPattern** | Pointer to **string** |  | [optional] 
 **OwnerType** | Pointer to **string** | Specify the owner type for the endpoint. An endpoint can be owned by a User or Usergroup. | [optional] 
 **Securitysystem** | Pointer to **string** | Specify the Security system for which you want to create an endpoint. | [optional] 
 **Endpointname** | Pointer to **string** | Specify a name for the endpoint. Provide a logical name that will help you easily identify it. | [optional] 
@@ -114,36 +124,36 @@ Name | Type | Description | Notes
 **AccountCustomProperty28Label** | Pointer to **string** | Custom Property 28 Label | [optional] 
 **AccountCustomProperty29Label** | Pointer to **string** | Custom Property 29 Label | [optional] 
 **AccountCustomProperty30Label** | Pointer to **string** | Custom Property 30 Label | [optional] 
-**AccountCustomProperty31Label** | Pointer to **string** | Custom Property 31 Label | [optional] 
-**AccountCustomProperty32Label** | Pointer to **string** | Custom Property 32 Label | [optional] 
-**AccountCustomProperty33Label** | Pointer to **string** | Custom Property 33 Label | [optional] 
-**AccountCustomProperty34Label** | Pointer to **string** | Custom Property 34 Label | [optional] 
-**AccountCustomProperty35Label** | Pointer to **string** | Custom Property 35 Label | [optional] 
-**AccountCustomProperty36Label** | Pointer to **string** | Custom Property 36 Label | [optional] 
-**AccountCustomProperty37Label** | Pointer to **string** | Custom Property 37 Label | [optional] 
-**AccountCustomProperty38Label** | Pointer to **string** | Custom Property 38 Label | [optional] 
-**AccountCustomProperty39Label** | Pointer to **string** | Custom Property 39 Label | [optional] 
-**AccountCustomProperty40Label** | Pointer to **string** | Custom Property 40 Label | [optional] 
-**AccountCustomProperty41Label** | Pointer to **string** | Custom Property 41 Label | [optional] 
-**AccountCustomProperty42Label** | Pointer to **string** | Custom Property 42 Label | [optional] 
-**AccountCustomProperty43Label** | Pointer to **string** | Custom Property 43 Label | [optional] 
-**AccountCustomProperty44Label** | Pointer to **string** | Custom Property 44 Label | [optional] 
-**AccountCustomProperty45Label** | Pointer to **string** | Custom Property 45 Label | [optional] 
-**AccountCustomProperty46Label** | Pointer to **string** | Custom Property 46 Label | [optional] 
-**AccountCustomProperty47Label** | Pointer to **string** | Custom Property 47 Label | [optional] 
-**AccountCustomProperty48Label** | Pointer to **string** | Custom Property 48 Label | [optional] 
-**AccountCustomProperty49Label** | Pointer to **string** | Custom Property 49 Label | [optional] 
-**AccountCustomProperty50Label** | Pointer to **string** | Custom Property 50 Label | [optional] 
-**AccountCustomProperty51Label** | Pointer to **string** | Custom Property 51 Label | [optional] 
-**AccountCustomProperty52Label** | Pointer to **string** | Custom Property 52 Label | [optional] 
-**AccountCustomProperty53Label** | Pointer to **string** | Custom Property 53 Label | [optional] 
-**AccountCustomProperty54Label** | Pointer to **string** | Custom Property 54 Label | [optional] 
-**AccountCustomProperty55Label** | Pointer to **string** | Custom Property 55 Label | [optional] 
-**AccountCustomProperty56Label** | Pointer to **string** | Custom Property 56 Label | [optional] 
-**AccountCustomProperty57Label** | Pointer to **string** | Custom Property 57 Label | [optional] 
-**AccountCustomProperty58Label** | Pointer to **string** | Custom Property 58 Label | [optional] 
-**AccountCustomProperty59Label** | Pointer to **string** | Custom Property 59 Label | [optional] 
-**AccountCustomProperty60Label** | Pointer to **string** | Custom Property 60 Label | [optional] 
+**Customproperty31Label** | Pointer to **string** | Custom Property 31 Label | [optional] 
+**Customproperty32Label** | Pointer to **string** | Custom Property 32 Label | [optional] 
+**Customproperty33Label** | Pointer to **string** | Custom Property 33 Label | [optional] 
+**Customproperty34Label** | Pointer to **string** | Custom Property 34 Label | [optional] 
+**Customproperty35Label** | Pointer to **string** | Custom Property 35 Label | [optional] 
+**Customproperty36Label** | Pointer to **string** | Custom Property 36 Label | [optional] 
+**Customproperty37Label** | Pointer to **string** | Custom Property 37 Label | [optional] 
+**Customproperty38Label** | Pointer to **string** | Custom Property 38 Label | [optional] 
+**Customproperty39Label** | Pointer to **string** | Custom Property 39 Label | [optional] 
+**Customproperty40Label** | Pointer to **string** | Custom Property 40 Label | [optional] 
+**Customproperty41Label** | Pointer to **string** | Custom Property 41 Label | [optional] 
+**Customproperty42Label** | Pointer to **string** | Custom Property 42 Label | [optional] 
+**Customproperty43Label** | Pointer to **string** | Custom Property 43 Label | [optional] 
+**Customproperty44Label** | Pointer to **string** | Custom Property 44 Label | [optional] 
+**Customproperty45Label** | Pointer to **string** | Custom Property 45 Label | [optional] 
+**Customproperty46Label** | Pointer to **string** | Custom Property 46 Label | [optional] 
+**Customproperty47Label** | Pointer to **string** | Custom Property 47 Label | [optional] 
+**Customproperty48Label** | Pointer to **string** | Custom Property 48 Label | [optional] 
+**Customproperty49Label** | Pointer to **string** | Custom Property 49 Label | [optional] 
+**Customproperty50Label** | Pointer to **string** | Custom Property 50 Label | [optional] 
+**Customproperty51Label** | Pointer to **string** | Custom Property 51 Label | [optional] 
+**Customproperty52Label** | Pointer to **string** | Custom Property 52 Label | [optional] 
+**Customproperty53Label** | Pointer to **string** | Custom Property 53 Label | [optional] 
+**Customproperty54Label** | Pointer to **string** | Custom Property 54 Label | [optional] 
+**Customproperty55Label** | Pointer to **string** | Custom Property 55 Label | [optional] 
+**Customproperty56Label** | Pointer to **string** | Custom Property 56 Label | [optional] 
+**Customproperty57Label** | Pointer to **string** | Custom Property 57 Label | [optional] 
+**Customproperty58Label** | Pointer to **string** | Custom Property 58 Label | [optional] 
+**Customproperty59Label** | Pointer to **string** | Custom Property 59 Label | [optional] 
+**Customproperty60Label** | Pointer to **string** | Custom Property 60 Label | [optional] 
 
 ## Methods
 
@@ -188,6 +198,256 @@ SetId sets Id field to given value.
 `func (o *GetEndpoints200ResponseEndpointsInner) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetDescription
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### GetStatusForUniqueAccount
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetStatusForUniqueAccount() string`
+
+GetStatusForUniqueAccount returns the StatusForUniqueAccount field if non-nil, zero value otherwise.
+
+### GetStatusForUniqueAccountOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetStatusForUniqueAccountOk() (*string, bool)`
+
+GetStatusForUniqueAccountOk returns a tuple with the StatusForUniqueAccount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatusForUniqueAccount
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetStatusForUniqueAccount(v string)`
+
+SetStatusForUniqueAccount sets StatusForUniqueAccount field to given value.
+
+### HasStatusForUniqueAccount
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasStatusForUniqueAccount() bool`
+
+HasStatusForUniqueAccount returns a boolean if a field has been set.
+
+### GetRequestowner
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetRequestowner() string`
+
+GetRequestowner returns the Requestowner field if non-nil, zero value otherwise.
+
+### GetRequestownerOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetRequestownerOk() (*string, bool)`
+
+GetRequestownerOk returns a tuple with the Requestowner field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestowner
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetRequestowner(v string)`
+
+SetRequestowner sets Requestowner field to given value.
+
+### HasRequestowner
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasRequestowner() bool`
+
+HasRequestowner returns a boolean if a field has been set.
+
+### GetRequestable
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetRequestable() string`
+
+GetRequestable returns the Requestable field if non-nil, zero value otherwise.
+
+### GetRequestableOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetRequestableOk() (*string, bool)`
+
+GetRequestableOk returns a tuple with the Requestable field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRequestable
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetRequestable(v string)`
+
+SetRequestable sets Requestable field to given value.
+
+### HasRequestable
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasRequestable() bool`
+
+HasRequestable returns a boolean if a field has been set.
+
+### GetPrimaryAccountType
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetPrimaryAccountType() string`
+
+GetPrimaryAccountType returns the PrimaryAccountType field if non-nil, zero value otherwise.
+
+### GetPrimaryAccountTypeOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetPrimaryAccountTypeOk() (*string, bool)`
+
+GetPrimaryAccountTypeOk returns a tuple with the PrimaryAccountType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrimaryAccountType
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetPrimaryAccountType(v string)`
+
+SetPrimaryAccountType sets PrimaryAccountType field to given value.
+
+### HasPrimaryAccountType
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasPrimaryAccountType() bool`
+
+HasPrimaryAccountType returns a boolean if a field has been set.
+
+### GetAccountTypeNoPasswordChange
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountTypeNoPasswordChange() string`
+
+GetAccountTypeNoPasswordChange returns the AccountTypeNoPasswordChange field if non-nil, zero value otherwise.
+
+### GetAccountTypeNoPasswordChangeOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountTypeNoPasswordChangeOk() (*string, bool)`
+
+GetAccountTypeNoPasswordChangeOk returns a tuple with the AccountTypeNoPasswordChange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountTypeNoPasswordChange
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountTypeNoPasswordChange(v string)`
+
+SetAccountTypeNoPasswordChange sets AccountTypeNoPasswordChange field to given value.
+
+### HasAccountTypeNoPasswordChange
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountTypeNoPasswordChange() bool`
+
+HasAccountTypeNoPasswordChange returns a boolean if a field has been set.
+
+### GetServiceAccountNameRule
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetServiceAccountNameRule() string`
+
+GetServiceAccountNameRule returns the ServiceAccountNameRule field if non-nil, zero value otherwise.
+
+### GetServiceAccountNameRuleOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetServiceAccountNameRuleOk() (*string, bool)`
+
+GetServiceAccountNameRuleOk returns a tuple with the ServiceAccountNameRule field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountNameRule
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetServiceAccountNameRule(v string)`
+
+SetServiceAccountNameRule sets ServiceAccountNameRule field to given value.
+
+### HasServiceAccountNameRule
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasServiceAccountNameRule() bool`
+
+HasServiceAccountNameRule returns a boolean if a field has been set.
+
+### GetAccountNameValidatorRegex
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountNameValidatorRegex() string`
+
+GetAccountNameValidatorRegex returns the AccountNameValidatorRegex field if non-nil, zero value otherwise.
+
+### GetAccountNameValidatorRegexOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountNameValidatorRegexOk() (*string, bool)`
+
+GetAccountNameValidatorRegexOk returns a tuple with the AccountNameValidatorRegex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountNameValidatorRegex
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountNameValidatorRegex(v string)`
+
+SetAccountNameValidatorRegex sets AccountNameValidatorRegex field to given value.
+
+### HasAccountNameValidatorRegex
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountNameValidatorRegex() bool`
+
+HasAccountNameValidatorRegex returns a boolean if a field has been set.
+
+### GetAllowChangePasswordSqlquery
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAllowChangePasswordSqlquery() string`
+
+GetAllowChangePasswordSqlquery returns the AllowChangePasswordSqlquery field if non-nil, zero value otherwise.
+
+### GetAllowChangePasswordSqlqueryOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetAllowChangePasswordSqlqueryOk() (*string, bool)`
+
+GetAllowChangePasswordSqlqueryOk returns a tuple with the AllowChangePasswordSqlquery field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowChangePasswordSqlquery
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetAllowChangePasswordSqlquery(v string)`
+
+SetAllowChangePasswordSqlquery sets AllowChangePasswordSqlquery field to given value.
+
+### HasAllowChangePasswordSqlquery
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasAllowChangePasswordSqlquery() bool`
+
+HasAllowChangePasswordSqlquery returns a boolean if a field has been set.
+
+### GetParentAccountPattern
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetParentAccountPattern() string`
+
+GetParentAccountPattern returns the ParentAccountPattern field if non-nil, zero value otherwise.
+
+### GetParentAccountPatternOk
+
+`func (o *GetEndpoints200ResponseEndpointsInner) GetParentAccountPatternOk() (*string, bool)`
+
+GetParentAccountPatternOk returns a tuple with the ParentAccountPattern field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentAccountPattern
+
+`func (o *GetEndpoints200ResponseEndpointsInner) SetParentAccountPattern(v string)`
+
+SetParentAccountPattern sets ParentAccountPattern field to given value.
+
+### HasParentAccountPattern
+
+`func (o *GetEndpoints200ResponseEndpointsInner) HasParentAccountPattern() bool`
+
+HasParentAccountPattern returns a boolean if a field has been set.
 
 ### GetOwnerType
 
@@ -2914,755 +3174,755 @@ SetAccountCustomProperty30Label sets AccountCustomProperty30Label field to given
 
 HasAccountCustomProperty30Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty31Label
+### GetCustomproperty31Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty31Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty31Label() string`
 
-GetAccountCustomProperty31Label returns the AccountCustomProperty31Label field if non-nil, zero value otherwise.
+GetCustomproperty31Label returns the Customproperty31Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty31LabelOk
+### GetCustomproperty31LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty31LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty31LabelOk() (*string, bool)`
 
-GetAccountCustomProperty31LabelOk returns a tuple with the AccountCustomProperty31Label field if it's non-nil, zero value otherwise
+GetCustomproperty31LabelOk returns a tuple with the Customproperty31Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty31Label
+### SetCustomproperty31Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty31Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty31Label(v string)`
 
-SetAccountCustomProperty31Label sets AccountCustomProperty31Label field to given value.
+SetCustomproperty31Label sets Customproperty31Label field to given value.
 
-### HasAccountCustomProperty31Label
+### HasCustomproperty31Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty31Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty31Label() bool`
 
-HasAccountCustomProperty31Label returns a boolean if a field has been set.
+HasCustomproperty31Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty32Label
+### GetCustomproperty32Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty32Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty32Label() string`
 
-GetAccountCustomProperty32Label returns the AccountCustomProperty32Label field if non-nil, zero value otherwise.
+GetCustomproperty32Label returns the Customproperty32Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty32LabelOk
+### GetCustomproperty32LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty32LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty32LabelOk() (*string, bool)`
 
-GetAccountCustomProperty32LabelOk returns a tuple with the AccountCustomProperty32Label field if it's non-nil, zero value otherwise
+GetCustomproperty32LabelOk returns a tuple with the Customproperty32Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty32Label
+### SetCustomproperty32Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty32Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty32Label(v string)`
 
-SetAccountCustomProperty32Label sets AccountCustomProperty32Label field to given value.
+SetCustomproperty32Label sets Customproperty32Label field to given value.
 
-### HasAccountCustomProperty32Label
+### HasCustomproperty32Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty32Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty32Label() bool`
 
-HasAccountCustomProperty32Label returns a boolean if a field has been set.
+HasCustomproperty32Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty33Label
+### GetCustomproperty33Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty33Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty33Label() string`
 
-GetAccountCustomProperty33Label returns the AccountCustomProperty33Label field if non-nil, zero value otherwise.
+GetCustomproperty33Label returns the Customproperty33Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty33LabelOk
+### GetCustomproperty33LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty33LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty33LabelOk() (*string, bool)`
 
-GetAccountCustomProperty33LabelOk returns a tuple with the AccountCustomProperty33Label field if it's non-nil, zero value otherwise
+GetCustomproperty33LabelOk returns a tuple with the Customproperty33Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty33Label
+### SetCustomproperty33Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty33Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty33Label(v string)`
 
-SetAccountCustomProperty33Label sets AccountCustomProperty33Label field to given value.
+SetCustomproperty33Label sets Customproperty33Label field to given value.
 
-### HasAccountCustomProperty33Label
+### HasCustomproperty33Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty33Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty33Label() bool`
 
-HasAccountCustomProperty33Label returns a boolean if a field has been set.
+HasCustomproperty33Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty34Label
+### GetCustomproperty34Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty34Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty34Label() string`
 
-GetAccountCustomProperty34Label returns the AccountCustomProperty34Label field if non-nil, zero value otherwise.
+GetCustomproperty34Label returns the Customproperty34Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty34LabelOk
+### GetCustomproperty34LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty34LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty34LabelOk() (*string, bool)`
 
-GetAccountCustomProperty34LabelOk returns a tuple with the AccountCustomProperty34Label field if it's non-nil, zero value otherwise
+GetCustomproperty34LabelOk returns a tuple with the Customproperty34Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty34Label
+### SetCustomproperty34Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty34Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty34Label(v string)`
 
-SetAccountCustomProperty34Label sets AccountCustomProperty34Label field to given value.
+SetCustomproperty34Label sets Customproperty34Label field to given value.
 
-### HasAccountCustomProperty34Label
+### HasCustomproperty34Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty34Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty34Label() bool`
 
-HasAccountCustomProperty34Label returns a boolean if a field has been set.
+HasCustomproperty34Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty35Label
+### GetCustomproperty35Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty35Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty35Label() string`
 
-GetAccountCustomProperty35Label returns the AccountCustomProperty35Label field if non-nil, zero value otherwise.
+GetCustomproperty35Label returns the Customproperty35Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty35LabelOk
+### GetCustomproperty35LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty35LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty35LabelOk() (*string, bool)`
 
-GetAccountCustomProperty35LabelOk returns a tuple with the AccountCustomProperty35Label field if it's non-nil, zero value otherwise
+GetCustomproperty35LabelOk returns a tuple with the Customproperty35Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty35Label
+### SetCustomproperty35Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty35Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty35Label(v string)`
 
-SetAccountCustomProperty35Label sets AccountCustomProperty35Label field to given value.
+SetCustomproperty35Label sets Customproperty35Label field to given value.
 
-### HasAccountCustomProperty35Label
+### HasCustomproperty35Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty35Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty35Label() bool`
 
-HasAccountCustomProperty35Label returns a boolean if a field has been set.
+HasCustomproperty35Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty36Label
+### GetCustomproperty36Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty36Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty36Label() string`
 
-GetAccountCustomProperty36Label returns the AccountCustomProperty36Label field if non-nil, zero value otherwise.
+GetCustomproperty36Label returns the Customproperty36Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty36LabelOk
+### GetCustomproperty36LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty36LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty36LabelOk() (*string, bool)`
 
-GetAccountCustomProperty36LabelOk returns a tuple with the AccountCustomProperty36Label field if it's non-nil, zero value otherwise
+GetCustomproperty36LabelOk returns a tuple with the Customproperty36Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty36Label
+### SetCustomproperty36Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty36Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty36Label(v string)`
 
-SetAccountCustomProperty36Label sets AccountCustomProperty36Label field to given value.
+SetCustomproperty36Label sets Customproperty36Label field to given value.
 
-### HasAccountCustomProperty36Label
+### HasCustomproperty36Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty36Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty36Label() bool`
 
-HasAccountCustomProperty36Label returns a boolean if a field has been set.
+HasCustomproperty36Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty37Label
+### GetCustomproperty37Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty37Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty37Label() string`
 
-GetAccountCustomProperty37Label returns the AccountCustomProperty37Label field if non-nil, zero value otherwise.
+GetCustomproperty37Label returns the Customproperty37Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty37LabelOk
+### GetCustomproperty37LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty37LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty37LabelOk() (*string, bool)`
 
-GetAccountCustomProperty37LabelOk returns a tuple with the AccountCustomProperty37Label field if it's non-nil, zero value otherwise
+GetCustomproperty37LabelOk returns a tuple with the Customproperty37Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty37Label
+### SetCustomproperty37Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty37Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty37Label(v string)`
 
-SetAccountCustomProperty37Label sets AccountCustomProperty37Label field to given value.
+SetCustomproperty37Label sets Customproperty37Label field to given value.
 
-### HasAccountCustomProperty37Label
+### HasCustomproperty37Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty37Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty37Label() bool`
 
-HasAccountCustomProperty37Label returns a boolean if a field has been set.
+HasCustomproperty37Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty38Label
+### GetCustomproperty38Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty38Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty38Label() string`
 
-GetAccountCustomProperty38Label returns the AccountCustomProperty38Label field if non-nil, zero value otherwise.
+GetCustomproperty38Label returns the Customproperty38Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty38LabelOk
+### GetCustomproperty38LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty38LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty38LabelOk() (*string, bool)`
 
-GetAccountCustomProperty38LabelOk returns a tuple with the AccountCustomProperty38Label field if it's non-nil, zero value otherwise
+GetCustomproperty38LabelOk returns a tuple with the Customproperty38Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty38Label
+### SetCustomproperty38Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty38Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty38Label(v string)`
 
-SetAccountCustomProperty38Label sets AccountCustomProperty38Label field to given value.
+SetCustomproperty38Label sets Customproperty38Label field to given value.
 
-### HasAccountCustomProperty38Label
+### HasCustomproperty38Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty38Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty38Label() bool`
 
-HasAccountCustomProperty38Label returns a boolean if a field has been set.
+HasCustomproperty38Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty39Label
+### GetCustomproperty39Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty39Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty39Label() string`
 
-GetAccountCustomProperty39Label returns the AccountCustomProperty39Label field if non-nil, zero value otherwise.
+GetCustomproperty39Label returns the Customproperty39Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty39LabelOk
+### GetCustomproperty39LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty39LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty39LabelOk() (*string, bool)`
 
-GetAccountCustomProperty39LabelOk returns a tuple with the AccountCustomProperty39Label field if it's non-nil, zero value otherwise
+GetCustomproperty39LabelOk returns a tuple with the Customproperty39Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty39Label
+### SetCustomproperty39Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty39Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty39Label(v string)`
 
-SetAccountCustomProperty39Label sets AccountCustomProperty39Label field to given value.
+SetCustomproperty39Label sets Customproperty39Label field to given value.
 
-### HasAccountCustomProperty39Label
+### HasCustomproperty39Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty39Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty39Label() bool`
 
-HasAccountCustomProperty39Label returns a boolean if a field has been set.
+HasCustomproperty39Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty40Label
+### GetCustomproperty40Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty40Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty40Label() string`
 
-GetAccountCustomProperty40Label returns the AccountCustomProperty40Label field if non-nil, zero value otherwise.
+GetCustomproperty40Label returns the Customproperty40Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty40LabelOk
+### GetCustomproperty40LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty40LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty40LabelOk() (*string, bool)`
 
-GetAccountCustomProperty40LabelOk returns a tuple with the AccountCustomProperty40Label field if it's non-nil, zero value otherwise
+GetCustomproperty40LabelOk returns a tuple with the Customproperty40Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty40Label
+### SetCustomproperty40Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty40Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty40Label(v string)`
 
-SetAccountCustomProperty40Label sets AccountCustomProperty40Label field to given value.
+SetCustomproperty40Label sets Customproperty40Label field to given value.
 
-### HasAccountCustomProperty40Label
+### HasCustomproperty40Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty40Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty40Label() bool`
 
-HasAccountCustomProperty40Label returns a boolean if a field has been set.
+HasCustomproperty40Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty41Label
+### GetCustomproperty41Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty41Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty41Label() string`
 
-GetAccountCustomProperty41Label returns the AccountCustomProperty41Label field if non-nil, zero value otherwise.
+GetCustomproperty41Label returns the Customproperty41Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty41LabelOk
+### GetCustomproperty41LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty41LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty41LabelOk() (*string, bool)`
 
-GetAccountCustomProperty41LabelOk returns a tuple with the AccountCustomProperty41Label field if it's non-nil, zero value otherwise
+GetCustomproperty41LabelOk returns a tuple with the Customproperty41Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty41Label
+### SetCustomproperty41Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty41Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty41Label(v string)`
 
-SetAccountCustomProperty41Label sets AccountCustomProperty41Label field to given value.
+SetCustomproperty41Label sets Customproperty41Label field to given value.
 
-### HasAccountCustomProperty41Label
+### HasCustomproperty41Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty41Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty41Label() bool`
 
-HasAccountCustomProperty41Label returns a boolean if a field has been set.
+HasCustomproperty41Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty42Label
+### GetCustomproperty42Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty42Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty42Label() string`
 
-GetAccountCustomProperty42Label returns the AccountCustomProperty42Label field if non-nil, zero value otherwise.
+GetCustomproperty42Label returns the Customproperty42Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty42LabelOk
+### GetCustomproperty42LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty42LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty42LabelOk() (*string, bool)`
 
-GetAccountCustomProperty42LabelOk returns a tuple with the AccountCustomProperty42Label field if it's non-nil, zero value otherwise
+GetCustomproperty42LabelOk returns a tuple with the Customproperty42Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty42Label
+### SetCustomproperty42Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty42Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty42Label(v string)`
 
-SetAccountCustomProperty42Label sets AccountCustomProperty42Label field to given value.
+SetCustomproperty42Label sets Customproperty42Label field to given value.
 
-### HasAccountCustomProperty42Label
+### HasCustomproperty42Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty42Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty42Label() bool`
 
-HasAccountCustomProperty42Label returns a boolean if a field has been set.
+HasCustomproperty42Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty43Label
+### GetCustomproperty43Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty43Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty43Label() string`
 
-GetAccountCustomProperty43Label returns the AccountCustomProperty43Label field if non-nil, zero value otherwise.
+GetCustomproperty43Label returns the Customproperty43Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty43LabelOk
+### GetCustomproperty43LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty43LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty43LabelOk() (*string, bool)`
 
-GetAccountCustomProperty43LabelOk returns a tuple with the AccountCustomProperty43Label field if it's non-nil, zero value otherwise
+GetCustomproperty43LabelOk returns a tuple with the Customproperty43Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty43Label
+### SetCustomproperty43Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty43Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty43Label(v string)`
 
-SetAccountCustomProperty43Label sets AccountCustomProperty43Label field to given value.
+SetCustomproperty43Label sets Customproperty43Label field to given value.
 
-### HasAccountCustomProperty43Label
+### HasCustomproperty43Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty43Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty43Label() bool`
 
-HasAccountCustomProperty43Label returns a boolean if a field has been set.
+HasCustomproperty43Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty44Label
+### GetCustomproperty44Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty44Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty44Label() string`
 
-GetAccountCustomProperty44Label returns the AccountCustomProperty44Label field if non-nil, zero value otherwise.
+GetCustomproperty44Label returns the Customproperty44Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty44LabelOk
+### GetCustomproperty44LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty44LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty44LabelOk() (*string, bool)`
 
-GetAccountCustomProperty44LabelOk returns a tuple with the AccountCustomProperty44Label field if it's non-nil, zero value otherwise
+GetCustomproperty44LabelOk returns a tuple with the Customproperty44Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty44Label
+### SetCustomproperty44Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty44Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty44Label(v string)`
 
-SetAccountCustomProperty44Label sets AccountCustomProperty44Label field to given value.
+SetCustomproperty44Label sets Customproperty44Label field to given value.
 
-### HasAccountCustomProperty44Label
+### HasCustomproperty44Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty44Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty44Label() bool`
 
-HasAccountCustomProperty44Label returns a boolean if a field has been set.
+HasCustomproperty44Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty45Label
+### GetCustomproperty45Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty45Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty45Label() string`
 
-GetAccountCustomProperty45Label returns the AccountCustomProperty45Label field if non-nil, zero value otherwise.
+GetCustomproperty45Label returns the Customproperty45Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty45LabelOk
+### GetCustomproperty45LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty45LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty45LabelOk() (*string, bool)`
 
-GetAccountCustomProperty45LabelOk returns a tuple with the AccountCustomProperty45Label field if it's non-nil, zero value otherwise
+GetCustomproperty45LabelOk returns a tuple with the Customproperty45Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty45Label
+### SetCustomproperty45Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty45Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty45Label(v string)`
 
-SetAccountCustomProperty45Label sets AccountCustomProperty45Label field to given value.
+SetCustomproperty45Label sets Customproperty45Label field to given value.
 
-### HasAccountCustomProperty45Label
+### HasCustomproperty45Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty45Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty45Label() bool`
 
-HasAccountCustomProperty45Label returns a boolean if a field has been set.
+HasCustomproperty45Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty46Label
+### GetCustomproperty46Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty46Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty46Label() string`
 
-GetAccountCustomProperty46Label returns the AccountCustomProperty46Label field if non-nil, zero value otherwise.
+GetCustomproperty46Label returns the Customproperty46Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty46LabelOk
+### GetCustomproperty46LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty46LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty46LabelOk() (*string, bool)`
 
-GetAccountCustomProperty46LabelOk returns a tuple with the AccountCustomProperty46Label field if it's non-nil, zero value otherwise
+GetCustomproperty46LabelOk returns a tuple with the Customproperty46Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty46Label
+### SetCustomproperty46Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty46Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty46Label(v string)`
 
-SetAccountCustomProperty46Label sets AccountCustomProperty46Label field to given value.
+SetCustomproperty46Label sets Customproperty46Label field to given value.
 
-### HasAccountCustomProperty46Label
+### HasCustomproperty46Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty46Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty46Label() bool`
 
-HasAccountCustomProperty46Label returns a boolean if a field has been set.
+HasCustomproperty46Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty47Label
+### GetCustomproperty47Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty47Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty47Label() string`
 
-GetAccountCustomProperty47Label returns the AccountCustomProperty47Label field if non-nil, zero value otherwise.
+GetCustomproperty47Label returns the Customproperty47Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty47LabelOk
+### GetCustomproperty47LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty47LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty47LabelOk() (*string, bool)`
 
-GetAccountCustomProperty47LabelOk returns a tuple with the AccountCustomProperty47Label field if it's non-nil, zero value otherwise
+GetCustomproperty47LabelOk returns a tuple with the Customproperty47Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty47Label
+### SetCustomproperty47Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty47Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty47Label(v string)`
 
-SetAccountCustomProperty47Label sets AccountCustomProperty47Label field to given value.
+SetCustomproperty47Label sets Customproperty47Label field to given value.
 
-### HasAccountCustomProperty47Label
+### HasCustomproperty47Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty47Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty47Label() bool`
 
-HasAccountCustomProperty47Label returns a boolean if a field has been set.
+HasCustomproperty47Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty48Label
+### GetCustomproperty48Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty48Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty48Label() string`
 
-GetAccountCustomProperty48Label returns the AccountCustomProperty48Label field if non-nil, zero value otherwise.
+GetCustomproperty48Label returns the Customproperty48Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty48LabelOk
+### GetCustomproperty48LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty48LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty48LabelOk() (*string, bool)`
 
-GetAccountCustomProperty48LabelOk returns a tuple with the AccountCustomProperty48Label field if it's non-nil, zero value otherwise
+GetCustomproperty48LabelOk returns a tuple with the Customproperty48Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty48Label
+### SetCustomproperty48Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty48Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty48Label(v string)`
 
-SetAccountCustomProperty48Label sets AccountCustomProperty48Label field to given value.
+SetCustomproperty48Label sets Customproperty48Label field to given value.
 
-### HasAccountCustomProperty48Label
+### HasCustomproperty48Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty48Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty48Label() bool`
 
-HasAccountCustomProperty48Label returns a boolean if a field has been set.
+HasCustomproperty48Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty49Label
+### GetCustomproperty49Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty49Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty49Label() string`
 
-GetAccountCustomProperty49Label returns the AccountCustomProperty49Label field if non-nil, zero value otherwise.
+GetCustomproperty49Label returns the Customproperty49Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty49LabelOk
+### GetCustomproperty49LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty49LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty49LabelOk() (*string, bool)`
 
-GetAccountCustomProperty49LabelOk returns a tuple with the AccountCustomProperty49Label field if it's non-nil, zero value otherwise
+GetCustomproperty49LabelOk returns a tuple with the Customproperty49Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty49Label
+### SetCustomproperty49Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty49Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty49Label(v string)`
 
-SetAccountCustomProperty49Label sets AccountCustomProperty49Label field to given value.
+SetCustomproperty49Label sets Customproperty49Label field to given value.
 
-### HasAccountCustomProperty49Label
+### HasCustomproperty49Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty49Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty49Label() bool`
 
-HasAccountCustomProperty49Label returns a boolean if a field has been set.
+HasCustomproperty49Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty50Label
+### GetCustomproperty50Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty50Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty50Label() string`
 
-GetAccountCustomProperty50Label returns the AccountCustomProperty50Label field if non-nil, zero value otherwise.
+GetCustomproperty50Label returns the Customproperty50Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty50LabelOk
+### GetCustomproperty50LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty50LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty50LabelOk() (*string, bool)`
 
-GetAccountCustomProperty50LabelOk returns a tuple with the AccountCustomProperty50Label field if it's non-nil, zero value otherwise
+GetCustomproperty50LabelOk returns a tuple with the Customproperty50Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty50Label
+### SetCustomproperty50Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty50Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty50Label(v string)`
 
-SetAccountCustomProperty50Label sets AccountCustomProperty50Label field to given value.
+SetCustomproperty50Label sets Customproperty50Label field to given value.
 
-### HasAccountCustomProperty50Label
+### HasCustomproperty50Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty50Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty50Label() bool`
 
-HasAccountCustomProperty50Label returns a boolean if a field has been set.
+HasCustomproperty50Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty51Label
+### GetCustomproperty51Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty51Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty51Label() string`
 
-GetAccountCustomProperty51Label returns the AccountCustomProperty51Label field if non-nil, zero value otherwise.
+GetCustomproperty51Label returns the Customproperty51Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty51LabelOk
+### GetCustomproperty51LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty51LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty51LabelOk() (*string, bool)`
 
-GetAccountCustomProperty51LabelOk returns a tuple with the AccountCustomProperty51Label field if it's non-nil, zero value otherwise
+GetCustomproperty51LabelOk returns a tuple with the Customproperty51Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty51Label
+### SetCustomproperty51Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty51Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty51Label(v string)`
 
-SetAccountCustomProperty51Label sets AccountCustomProperty51Label field to given value.
+SetCustomproperty51Label sets Customproperty51Label field to given value.
 
-### HasAccountCustomProperty51Label
+### HasCustomproperty51Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty51Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty51Label() bool`
 
-HasAccountCustomProperty51Label returns a boolean if a field has been set.
+HasCustomproperty51Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty52Label
+### GetCustomproperty52Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty52Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty52Label() string`
 
-GetAccountCustomProperty52Label returns the AccountCustomProperty52Label field if non-nil, zero value otherwise.
+GetCustomproperty52Label returns the Customproperty52Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty52LabelOk
+### GetCustomproperty52LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty52LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty52LabelOk() (*string, bool)`
 
-GetAccountCustomProperty52LabelOk returns a tuple with the AccountCustomProperty52Label field if it's non-nil, zero value otherwise
+GetCustomproperty52LabelOk returns a tuple with the Customproperty52Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty52Label
+### SetCustomproperty52Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty52Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty52Label(v string)`
 
-SetAccountCustomProperty52Label sets AccountCustomProperty52Label field to given value.
+SetCustomproperty52Label sets Customproperty52Label field to given value.
 
-### HasAccountCustomProperty52Label
+### HasCustomproperty52Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty52Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty52Label() bool`
 
-HasAccountCustomProperty52Label returns a boolean if a field has been set.
+HasCustomproperty52Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty53Label
+### GetCustomproperty53Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty53Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty53Label() string`
 
-GetAccountCustomProperty53Label returns the AccountCustomProperty53Label field if non-nil, zero value otherwise.
+GetCustomproperty53Label returns the Customproperty53Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty53LabelOk
+### GetCustomproperty53LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty53LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty53LabelOk() (*string, bool)`
 
-GetAccountCustomProperty53LabelOk returns a tuple with the AccountCustomProperty53Label field if it's non-nil, zero value otherwise
+GetCustomproperty53LabelOk returns a tuple with the Customproperty53Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty53Label
+### SetCustomproperty53Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty53Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty53Label(v string)`
 
-SetAccountCustomProperty53Label sets AccountCustomProperty53Label field to given value.
+SetCustomproperty53Label sets Customproperty53Label field to given value.
 
-### HasAccountCustomProperty53Label
+### HasCustomproperty53Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty53Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty53Label() bool`
 
-HasAccountCustomProperty53Label returns a boolean if a field has been set.
+HasCustomproperty53Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty54Label
+### GetCustomproperty54Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty54Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty54Label() string`
 
-GetAccountCustomProperty54Label returns the AccountCustomProperty54Label field if non-nil, zero value otherwise.
+GetCustomproperty54Label returns the Customproperty54Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty54LabelOk
+### GetCustomproperty54LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty54LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty54LabelOk() (*string, bool)`
 
-GetAccountCustomProperty54LabelOk returns a tuple with the AccountCustomProperty54Label field if it's non-nil, zero value otherwise
+GetCustomproperty54LabelOk returns a tuple with the Customproperty54Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty54Label
+### SetCustomproperty54Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty54Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty54Label(v string)`
 
-SetAccountCustomProperty54Label sets AccountCustomProperty54Label field to given value.
+SetCustomproperty54Label sets Customproperty54Label field to given value.
 
-### HasAccountCustomProperty54Label
+### HasCustomproperty54Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty54Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty54Label() bool`
 
-HasAccountCustomProperty54Label returns a boolean if a field has been set.
+HasCustomproperty54Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty55Label
+### GetCustomproperty55Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty55Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty55Label() string`
 
-GetAccountCustomProperty55Label returns the AccountCustomProperty55Label field if non-nil, zero value otherwise.
+GetCustomproperty55Label returns the Customproperty55Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty55LabelOk
+### GetCustomproperty55LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty55LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty55LabelOk() (*string, bool)`
 
-GetAccountCustomProperty55LabelOk returns a tuple with the AccountCustomProperty55Label field if it's non-nil, zero value otherwise
+GetCustomproperty55LabelOk returns a tuple with the Customproperty55Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty55Label
+### SetCustomproperty55Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty55Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty55Label(v string)`
 
-SetAccountCustomProperty55Label sets AccountCustomProperty55Label field to given value.
+SetCustomproperty55Label sets Customproperty55Label field to given value.
 
-### HasAccountCustomProperty55Label
+### HasCustomproperty55Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty55Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty55Label() bool`
 
-HasAccountCustomProperty55Label returns a boolean if a field has been set.
+HasCustomproperty55Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty56Label
+### GetCustomproperty56Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty56Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty56Label() string`
 
-GetAccountCustomProperty56Label returns the AccountCustomProperty56Label field if non-nil, zero value otherwise.
+GetCustomproperty56Label returns the Customproperty56Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty56LabelOk
+### GetCustomproperty56LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty56LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty56LabelOk() (*string, bool)`
 
-GetAccountCustomProperty56LabelOk returns a tuple with the AccountCustomProperty56Label field if it's non-nil, zero value otherwise
+GetCustomproperty56LabelOk returns a tuple with the Customproperty56Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty56Label
+### SetCustomproperty56Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty56Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty56Label(v string)`
 
-SetAccountCustomProperty56Label sets AccountCustomProperty56Label field to given value.
+SetCustomproperty56Label sets Customproperty56Label field to given value.
 
-### HasAccountCustomProperty56Label
+### HasCustomproperty56Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty56Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty56Label() bool`
 
-HasAccountCustomProperty56Label returns a boolean if a field has been set.
+HasCustomproperty56Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty57Label
+### GetCustomproperty57Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty57Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty57Label() string`
 
-GetAccountCustomProperty57Label returns the AccountCustomProperty57Label field if non-nil, zero value otherwise.
+GetCustomproperty57Label returns the Customproperty57Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty57LabelOk
+### GetCustomproperty57LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty57LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty57LabelOk() (*string, bool)`
 
-GetAccountCustomProperty57LabelOk returns a tuple with the AccountCustomProperty57Label field if it's non-nil, zero value otherwise
+GetCustomproperty57LabelOk returns a tuple with the Customproperty57Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty57Label
+### SetCustomproperty57Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty57Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty57Label(v string)`
 
-SetAccountCustomProperty57Label sets AccountCustomProperty57Label field to given value.
+SetCustomproperty57Label sets Customproperty57Label field to given value.
 
-### HasAccountCustomProperty57Label
+### HasCustomproperty57Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty57Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty57Label() bool`
 
-HasAccountCustomProperty57Label returns a boolean if a field has been set.
+HasCustomproperty57Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty58Label
+### GetCustomproperty58Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty58Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty58Label() string`
 
-GetAccountCustomProperty58Label returns the AccountCustomProperty58Label field if non-nil, zero value otherwise.
+GetCustomproperty58Label returns the Customproperty58Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty58LabelOk
+### GetCustomproperty58LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty58LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty58LabelOk() (*string, bool)`
 
-GetAccountCustomProperty58LabelOk returns a tuple with the AccountCustomProperty58Label field if it's non-nil, zero value otherwise
+GetCustomproperty58LabelOk returns a tuple with the Customproperty58Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty58Label
+### SetCustomproperty58Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty58Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty58Label(v string)`
 
-SetAccountCustomProperty58Label sets AccountCustomProperty58Label field to given value.
+SetCustomproperty58Label sets Customproperty58Label field to given value.
 
-### HasAccountCustomProperty58Label
+### HasCustomproperty58Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty58Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty58Label() bool`
 
-HasAccountCustomProperty58Label returns a boolean if a field has been set.
+HasCustomproperty58Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty59Label
+### GetCustomproperty59Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty59Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty59Label() string`
 
-GetAccountCustomProperty59Label returns the AccountCustomProperty59Label field if non-nil, zero value otherwise.
+GetCustomproperty59Label returns the Customproperty59Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty59LabelOk
+### GetCustomproperty59LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty59LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty59LabelOk() (*string, bool)`
 
-GetAccountCustomProperty59LabelOk returns a tuple with the AccountCustomProperty59Label field if it's non-nil, zero value otherwise
+GetCustomproperty59LabelOk returns a tuple with the Customproperty59Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty59Label
+### SetCustomproperty59Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty59Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty59Label(v string)`
 
-SetAccountCustomProperty59Label sets AccountCustomProperty59Label field to given value.
+SetCustomproperty59Label sets Customproperty59Label field to given value.
 
-### HasAccountCustomProperty59Label
+### HasCustomproperty59Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty59Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty59Label() bool`
 
-HasAccountCustomProperty59Label returns a boolean if a field has been set.
+HasCustomproperty59Label returns a boolean if a field has been set.
 
-### GetAccountCustomProperty60Label
+### GetCustomproperty60Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty60Label() string`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty60Label() string`
 
-GetAccountCustomProperty60Label returns the AccountCustomProperty60Label field if non-nil, zero value otherwise.
+GetCustomproperty60Label returns the Customproperty60Label field if non-nil, zero value otherwise.
 
-### GetAccountCustomProperty60LabelOk
+### GetCustomproperty60LabelOk
 
-`func (o *GetEndpoints200ResponseEndpointsInner) GetAccountCustomProperty60LabelOk() (*string, bool)`
+`func (o *GetEndpoints200ResponseEndpointsInner) GetCustomproperty60LabelOk() (*string, bool)`
 
-GetAccountCustomProperty60LabelOk returns a tuple with the AccountCustomProperty60Label field if it's non-nil, zero value otherwise
+GetCustomproperty60LabelOk returns a tuple with the Customproperty60Label field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountCustomProperty60Label
+### SetCustomproperty60Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) SetAccountCustomProperty60Label(v string)`
+`func (o *GetEndpoints200ResponseEndpointsInner) SetCustomproperty60Label(v string)`
 
-SetAccountCustomProperty60Label sets AccountCustomProperty60Label field to given value.
+SetCustomproperty60Label sets Customproperty60Label field to given value.
 
-### HasAccountCustomProperty60Label
+### HasCustomproperty60Label
 
-`func (o *GetEndpoints200ResponseEndpointsInner) HasAccountCustomProperty60Label() bool`
+`func (o *GetEndpoints200ResponseEndpointsInner) HasCustomproperty60Label() bool`
 
-HasAccountCustomProperty60Label returns a boolean if a field has been set.
+HasCustomproperty60Label returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

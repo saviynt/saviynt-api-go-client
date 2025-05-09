@@ -90,12 +90,12 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [CreateEndpointRequest](docs/CreateEndpointRequest.md)
+ - [CreateEndpointRequestEmailTemplateInner](docs/CreateEndpointRequestEmailTemplateInner.md)
  - [GetEndpoints200Response](docs/GetEndpoints200Response.md)
  - [GetEndpoints200ResponseEndpointsInner](docs/GetEndpoints200ResponseEndpointsInner.md)
  - [GetEndpointsRequest](docs/GetEndpointsRequest.md)
  - [UpdateEndpoint200Response](docs/UpdateEndpoint200Response.md)
  - [UpdateEndpointRequest](docs/UpdateEndpointRequest.md)
- - [UpdateEndpointRequestEmailTemplateInner](docs/UpdateEndpointRequestEmailTemplateInner.md)
  - [UpdateEndpointRequestMappedEndpointsInner](docs/UpdateEndpointRequestMappedEndpointsInner.md)
  - [UpdateEndpointRequestRequestableRoleTypeInner](docs/UpdateEndpointRequestRequestableRoleTypeInner.md)
 

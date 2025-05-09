@@ -5,6 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Endpointname** | **string** | Specify a name for the endpoint. Provide a logical name that will help you easily identify it. | 
+**PrimaryAccountType** | Pointer to **string** | Specify the primary account type for the endpoint. | [optional] 
+**AccountTypeNoPasswordChange** | Pointer to **string** |  | [optional] 
+**Taskemailtemplates** | Pointer to [**[]CreateEndpointRequestEmailTemplateInner**](CreateEndpointRequestEmailTemplateInner.md) |  | [optional] 
 **DisplayName** | **string** | Enter a user-friendly display name for the endpoint that will be displayed in the user interface. Display Name can be different from Endpoint Name. | 
 **Securitysystem** | **string** | Specify the Security system for which you want to create an endpoint. | 
 **Description** | Pointer to **string** |  Specify a description for the endpoint. | [optional] 
@@ -24,7 +27,7 @@ Name | Type | Description | Notes
 **Requestable** | Pointer to **string** | Is this endpoint requestable | [optional] 
 **ParentAccountPattern** | Pointer to **string** | Specify the parent and child relationship for the Active Directory endpoint. The specified value is used to filter the parent and child objects in the Request Access tile. | [optional] 
 **ServiceAccountNameRule** | Pointer to **string** | Rule to generate a name for this endpoint while creating a new service account | [optional] 
-**ServiceAccountAccessQuery** | Pointer to **interface{}** |  | [optional] 
+**ServiceAccountAccessQuery** | Pointer to **string** |  | [optional] 
 **ChangePasswordAccessQuery** | Pointer to **string** | Specify query to restrict the access for changing the account password of the endpoint. | [optional] 
 **BlockInflightRequest** | Pointer to **string** | Specify true to prevent users from raising duplicate requests for the same applications. | [optional] 
 **AccountNameRule** | Pointer to **string** | Specify rule to generate an account name for this endpoint while creating a new account. | [optional] 
@@ -178,6 +181,81 @@ and a boolean to check if the value has been set.
 
 SetEndpointname sets Endpointname field to given value.
 
+
+### GetPrimaryAccountType
+
+`func (o *CreateEndpointRequest) GetPrimaryAccountType() string`
+
+GetPrimaryAccountType returns the PrimaryAccountType field if non-nil, zero value otherwise.
+
+### GetPrimaryAccountTypeOk
+
+`func (o *CreateEndpointRequest) GetPrimaryAccountTypeOk() (*string, bool)`
+
+GetPrimaryAccountTypeOk returns a tuple with the PrimaryAccountType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrimaryAccountType
+
+`func (o *CreateEndpointRequest) SetPrimaryAccountType(v string)`
+
+SetPrimaryAccountType sets PrimaryAccountType field to given value.
+
+### HasPrimaryAccountType
+
+`func (o *CreateEndpointRequest) HasPrimaryAccountType() bool`
+
+HasPrimaryAccountType returns a boolean if a field has been set.
+
+### GetAccountTypeNoPasswordChange
+
+`func (o *CreateEndpointRequest) GetAccountTypeNoPasswordChange() string`
+
+GetAccountTypeNoPasswordChange returns the AccountTypeNoPasswordChange field if non-nil, zero value otherwise.
+
+### GetAccountTypeNoPasswordChangeOk
+
+`func (o *CreateEndpointRequest) GetAccountTypeNoPasswordChangeOk() (*string, bool)`
+
+GetAccountTypeNoPasswordChangeOk returns a tuple with the AccountTypeNoPasswordChange field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountTypeNoPasswordChange
+
+`func (o *CreateEndpointRequest) SetAccountTypeNoPasswordChange(v string)`
+
+SetAccountTypeNoPasswordChange sets AccountTypeNoPasswordChange field to given value.
+
+### HasAccountTypeNoPasswordChange
+
+`func (o *CreateEndpointRequest) HasAccountTypeNoPasswordChange() bool`
+
+HasAccountTypeNoPasswordChange returns a boolean if a field has been set.
+
+### GetTaskemailtemplates
+
+`func (o *CreateEndpointRequest) GetTaskemailtemplates() []CreateEndpointRequestEmailTemplateInner`
+
+GetTaskemailtemplates returns the Taskemailtemplates field if non-nil, zero value otherwise.
+
+### GetTaskemailtemplatesOk
+
+`func (o *CreateEndpointRequest) GetTaskemailtemplatesOk() (*[]CreateEndpointRequestEmailTemplateInner, bool)`
+
+GetTaskemailtemplatesOk returns a tuple with the Taskemailtemplates field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaskemailtemplates
+
+`func (o *CreateEndpointRequest) SetTaskemailtemplates(v []CreateEndpointRequestEmailTemplateInner)`
+
+SetTaskemailtemplates sets Taskemailtemplates field to given value.
+
+### HasTaskemailtemplates
+
+`func (o *CreateEndpointRequest) HasTaskemailtemplates() bool`
+
+HasTaskemailtemplates returns a boolean if a field has been set.
 
 ### GetDisplayName
 
@@ -646,20 +724,20 @@ HasServiceAccountNameRule returns a boolean if a field has been set.
 
 ### GetServiceAccountAccessQuery
 
-`func (o *CreateEndpointRequest) GetServiceAccountAccessQuery() interface{}`
+`func (o *CreateEndpointRequest) GetServiceAccountAccessQuery() string`
 
 GetServiceAccountAccessQuery returns the ServiceAccountAccessQuery field if non-nil, zero value otherwise.
 
 ### GetServiceAccountAccessQueryOk
 
-`func (o *CreateEndpointRequest) GetServiceAccountAccessQueryOk() (*interface{}, bool)`
+`func (o *CreateEndpointRequest) GetServiceAccountAccessQueryOk() (*string, bool)`
 
 GetServiceAccountAccessQueryOk returns a tuple with the ServiceAccountAccessQuery field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetServiceAccountAccessQuery
 
-`func (o *CreateEndpointRequest) SetServiceAccountAccessQuery(v interface{})`
+`func (o *CreateEndpointRequest) SetServiceAccountAccessQuery(v string)`
 
 SetServiceAccountAccessQuery sets ServiceAccountAccessQuery field to given value.
 
@@ -669,16 +747,6 @@ SetServiceAccountAccessQuery sets ServiceAccountAccessQuery field to given value
 
 HasServiceAccountAccessQuery returns a boolean if a field has been set.
 
-### SetServiceAccountAccessQueryNil
-
-`func (o *CreateEndpointRequest) SetServiceAccountAccessQueryNil(b bool)`
-
- SetServiceAccountAccessQueryNil sets the value for ServiceAccountAccessQuery to be an explicit nil
-
-### UnsetServiceAccountAccessQuery
-`func (o *CreateEndpointRequest) UnsetServiceAccountAccessQuery()`
-
-UnsetServiceAccountAccessQuery ensures that no value is present for ServiceAccountAccessQuery, not even an explicit nil
 ### GetChangePasswordAccessQuery
 
 `func (o *CreateEndpointRequest) GetChangePasswordAccessQuery() string`

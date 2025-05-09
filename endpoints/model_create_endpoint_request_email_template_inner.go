@@ -1,7 +1,7 @@
 /*
 Account Management API
 
-API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria.
+API for managing accounts in Saviynt/SSM. - **Create Endpoint**: Creates a new endpoint. - **Update Endpoint**: Updates an existing endpoint based on its name and roletype. - **Get Endpoint List**: Returns a list of endpoints based on search criteria. 
 
 API version: 1.0.0
 */
@@ -14,38 +14,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateEndpointRequestEmailTemplateInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateEndpointRequestEmailTemplateInner{}
+// checks if the CreateEndpointRequestEmailTemplateInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateEndpointRequestEmailTemplateInner{}
 
-// UpdateEndpointRequestEmailTemplateInner struct for UpdateEndpointRequestEmailTemplateInner
-type UpdateEndpointRequestEmailTemplateInner struct {
-	//
+// CreateEndpointRequestEmailTemplateInner struct for CreateEndpointRequestEmailTemplateInner
+type CreateEndpointRequestEmailTemplateInner struct {
+	// 
 	EmailTemplateType *string `json:"emailTemplateType,omitempty"`
-	//
+	// 
 	TaskType *string `json:"taskType,omitempty"`
-	//
+	// 
 	EmailTemplate *string `json:"emailTemplate,omitempty"`
 }
 
-// NewUpdateEndpointRequestEmailTemplateInner instantiates a new UpdateEndpointRequestEmailTemplateInner object
+// NewCreateEndpointRequestEmailTemplateInner instantiates a new CreateEndpointRequestEmailTemplateInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateEndpointRequestEmailTemplateInner() *UpdateEndpointRequestEmailTemplateInner {
-	this := UpdateEndpointRequestEmailTemplateInner{}
+func NewCreateEndpointRequestEmailTemplateInner() *CreateEndpointRequestEmailTemplateInner {
+	this := CreateEndpointRequestEmailTemplateInner{}
 	return &this
 }
 
-// NewUpdateEndpointRequestEmailTemplateInnerWithDefaults instantiates a new UpdateEndpointRequestEmailTemplateInner object
+// NewCreateEndpointRequestEmailTemplateInnerWithDefaults instantiates a new CreateEndpointRequestEmailTemplateInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateEndpointRequestEmailTemplateInnerWithDefaults() *UpdateEndpointRequestEmailTemplateInner {
-	this := UpdateEndpointRequestEmailTemplateInner{}
+func NewCreateEndpointRequestEmailTemplateInnerWithDefaults() *CreateEndpointRequestEmailTemplateInner {
+	this := CreateEndpointRequestEmailTemplateInner{}
 	return &this
 }
 
 // GetEmailTemplateType returns the EmailTemplateType field value if set, zero value otherwise.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateType() string {
+func (o *CreateEndpointRequestEmailTemplateInner) GetEmailTemplateType() string {
 	if o == nil || IsNil(o.EmailTemplateType) {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateType() string 
 
 // GetEmailTemplateTypeOk returns a tuple with the EmailTemplateType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateTypeOk() (*string, bool) {
+func (o *CreateEndpointRequestEmailTemplateInner) GetEmailTemplateTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.EmailTemplateType) {
 		return nil, false
 	}
@@ -63,7 +63,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateTypeOk() (*str
 }
 
 // HasEmailTemplateType returns a boolean if a field has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) HasEmailTemplateType() bool {
+func (o *CreateEndpointRequestEmailTemplateInner) HasEmailTemplateType() bool {
 	if o != nil && !IsNil(o.EmailTemplateType) {
 		return true
 	}
@@ -72,12 +72,12 @@ func (o *UpdateEndpointRequestEmailTemplateInner) HasEmailTemplateType() bool {
 }
 
 // SetEmailTemplateType gets a reference to the given string and assigns it to the EmailTemplateType field.
-func (o *UpdateEndpointRequestEmailTemplateInner) SetEmailTemplateType(v string) {
+func (o *CreateEndpointRequestEmailTemplateInner) SetEmailTemplateType(v string) {
 	o.EmailTemplateType = &v
 }
 
 // GetTaskType returns the TaskType field value if set, zero value otherwise.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetTaskType() string {
+func (o *CreateEndpointRequestEmailTemplateInner) GetTaskType() string {
 	if o == nil || IsNil(o.TaskType) {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetTaskType() string {
 
 // GetTaskTypeOk returns a tuple with the TaskType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetTaskTypeOk() (*string, bool) {
+func (o *CreateEndpointRequestEmailTemplateInner) GetTaskTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.TaskType) {
 		return nil, false
 	}
@@ -95,7 +95,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetTaskTypeOk() (*string, bool
 }
 
 // HasTaskType returns a boolean if a field has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) HasTaskType() bool {
+func (o *CreateEndpointRequestEmailTemplateInner) HasTaskType() bool {
 	if o != nil && !IsNil(o.TaskType) {
 		return true
 	}
@@ -104,12 +104,12 @@ func (o *UpdateEndpointRequestEmailTemplateInner) HasTaskType() bool {
 }
 
 // SetTaskType gets a reference to the given string and assigns it to the TaskType field.
-func (o *UpdateEndpointRequestEmailTemplateInner) SetTaskType(v string) {
+func (o *CreateEndpointRequestEmailTemplateInner) SetTaskType(v string) {
 	o.TaskType = &v
 }
 
 // GetEmailTemplate returns the EmailTemplate field value if set, zero value otherwise.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplate() string {
+func (o *CreateEndpointRequestEmailTemplateInner) GetEmailTemplate() string {
 	if o == nil || IsNil(o.EmailTemplate) {
 		var ret string
 		return ret
@@ -119,7 +119,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplate() string {
 
 // GetEmailTemplateOk returns a tuple with the EmailTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateOk() (*string, bool) {
+func (o *CreateEndpointRequestEmailTemplateInner) GetEmailTemplateOk() (*string, bool) {
 	if o == nil || IsNil(o.EmailTemplate) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *UpdateEndpointRequestEmailTemplateInner) GetEmailTemplateOk() (*string,
 }
 
 // HasEmailTemplate returns a boolean if a field has been set.
-func (o *UpdateEndpointRequestEmailTemplateInner) HasEmailTemplate() bool {
+func (o *CreateEndpointRequestEmailTemplateInner) HasEmailTemplate() bool {
 	if o != nil && !IsNil(o.EmailTemplate) {
 		return true
 	}
@@ -136,19 +136,19 @@ func (o *UpdateEndpointRequestEmailTemplateInner) HasEmailTemplate() bool {
 }
 
 // SetEmailTemplate gets a reference to the given string and assigns it to the EmailTemplate field.
-func (o *UpdateEndpointRequestEmailTemplateInner) SetEmailTemplate(v string) {
+func (o *CreateEndpointRequestEmailTemplateInner) SetEmailTemplate(v string) {
 	o.EmailTemplate = &v
 }
 
-func (o UpdateEndpointRequestEmailTemplateInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+func (o CreateEndpointRequestEmailTemplateInner) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateEndpointRequestEmailTemplateInner) ToMap() (map[string]interface{}, error) {
+func (o CreateEndpointRequestEmailTemplateInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.EmailTemplateType) {
 		toSerialize["emailTemplateType"] = o.EmailTemplateType
@@ -162,38 +162,40 @@ func (o UpdateEndpointRequestEmailTemplateInner) ToMap() (map[string]interface{}
 	return toSerialize, nil
 }
 
-type NullableUpdateEndpointRequestEmailTemplateInner struct {
-	value *UpdateEndpointRequestEmailTemplateInner
+type NullableCreateEndpointRequestEmailTemplateInner struct {
+	value *CreateEndpointRequestEmailTemplateInner
 	isSet bool
 }
 
-func (v NullableUpdateEndpointRequestEmailTemplateInner) Get() *UpdateEndpointRequestEmailTemplateInner {
+func (v NullableCreateEndpointRequestEmailTemplateInner) Get() *CreateEndpointRequestEmailTemplateInner {
 	return v.value
 }
 
-func (v *NullableUpdateEndpointRequestEmailTemplateInner) Set(val *UpdateEndpointRequestEmailTemplateInner) {
+func (v *NullableCreateEndpointRequestEmailTemplateInner) Set(val *CreateEndpointRequestEmailTemplateInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateEndpointRequestEmailTemplateInner) IsSet() bool {
+func (v NullableCreateEndpointRequestEmailTemplateInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateEndpointRequestEmailTemplateInner) Unset() {
+func (v *NullableCreateEndpointRequestEmailTemplateInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateEndpointRequestEmailTemplateInner(val *UpdateEndpointRequestEmailTemplateInner) *NullableUpdateEndpointRequestEmailTemplateInner {
-	return &NullableUpdateEndpointRequestEmailTemplateInner{value: val, isSet: true}
+func NewNullableCreateEndpointRequestEmailTemplateInner(val *CreateEndpointRequestEmailTemplateInner) *NullableCreateEndpointRequestEmailTemplateInner {
+	return &NullableCreateEndpointRequestEmailTemplateInner{value: val, isSet: true}
 }
 
-func (v NullableUpdateEndpointRequestEmailTemplateInner) MarshalJSON() ([]byte, error) {
+func (v NullableCreateEndpointRequestEmailTemplateInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateEndpointRequestEmailTemplateInner) UnmarshalJSON(src []byte) error {
+func (v *NullableCreateEndpointRequestEmailTemplateInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+
